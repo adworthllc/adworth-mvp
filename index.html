@@ -863,14 +863,14 @@
             to { opacity: 1; transform: translateY(0); }
         }
 
-        /* Scroll-triggered fade */
-        .fade-up {
+        /* Scroll-triggered fade — only animate if JS has run */
+        .js-loaded .fade-up {
             opacity: 0;
             transform: translateY(24px);
             transition: opacity 0.6s ease, transform 0.6s ease;
         }
 
-        .fade-up.visible {
+        .js-loaded .fade-up.visible {
             opacity: 1;
             transform: translateY(0);
         }
@@ -1236,6 +1236,9 @@
     </footer>
 
     <script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
+        // Mark body as JS-loaded so fade-up animations activate
+        document.body.classList.add('js-loaded');
+
         // Scroll-triggered animations
         const observer = new IntersectionObserver((entries) => {
             entries.forEach((entry, i) => {
