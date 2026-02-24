@@ -1,0 +1,267 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Privacy Policy — Adworth℠</title>
+    <meta name="description" content="Adworth Privacy Policy — how we collect, use, and protect your data.">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800;900&family=DM+Serif+Display:ital@0;1&display=swap" rel="stylesheet">
+    <style>
+        *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+        :root {
+            --green-deep: #1a4a35; --green-primary: #2d6a4f; --green-accent: #52b788;
+            --green-pale: #d8f3dc; --green-tint: #f0faf3; --off-white: #fafaf8;
+            --white: #ffffff; --ink: #111410; --ink-60: #555a50; --ink-30: #b0b5aa; --border: #e2e8df;
+        }
+        html { scroll-behavior: smooth; }
+        body { font-family: 'Poppins', sans-serif; background: var(--off-white); color: var(--ink); line-height: 1.7; overflow-x: hidden; }
+        .container { max-width: 1160px; margin: 0 auto; padding: 0 2rem; }
+
+        /* HEADER */
+        header { position: sticky; top: 0; z-index: 100; background: rgba(250,250,248,0.92); backdrop-filter: blur(12px); -webkit-backdrop-filter: blur(12px); border-bottom: 1px solid var(--border); }
+        nav { display: flex; justify-content: space-between; align-items: center; padding: 1.25rem 0; }
+        .logo { display: flex; align-items: center; gap: 0.75rem; text-decoration: none; }
+        .logo-mark { font-size: 1.6rem; font-weight: 800; color: var(--green-primary); letter-spacing: -0.5px; }
+        .patent-pill { font-size: 0.6rem; font-weight: 700; text-transform: uppercase; letter-spacing: 1px; background: var(--green-pale); color: var(--green-deep); padding: 0.2rem 0.55rem; border-radius: 100px; border: 1px solid rgba(45,106,79,0.2); }
+        nav ul { list-style: none; display: flex; gap: 2.25rem; align-items: center; }
+        nav a { text-decoration: none; font-size: 0.875rem; font-weight: 500; color: var(--ink-60); transition: color 0.2s; }
+        nav a:hover { color: var(--green-primary); }
+        .nav-cta { background: var(--green-primary) !important; color: white !important; padding: 0.6rem 1.25rem !important; border-radius: 6px !important; font-weight: 600 !important; transition: background 0.2s, transform 0.2s !important; }
+        .nav-cta:hover { background: var(--green-deep) !important; transform: translateY(-1px) !important; }
+
+        /* PAGE HERO */
+        .page-hero { background: var(--green-deep); padding: 4rem 0 3.5rem; position: relative; overflow: hidden; }
+        .page-hero::before { content: ''; position: absolute; inset: 0; background-image: radial-gradient(circle at 80% 50%, rgba(82,183,136,0.12) 0%, transparent 60%); }
+        .page-hero .inner { max-width: 860px; margin: 0 auto; padding: 0 2rem; position: relative; z-index: 1; }
+        .page-label { font-size: 0.72rem; font-weight: 700; text-transform: uppercase; letter-spacing: 2px; color: var(--green-accent); margin-bottom: 0.75rem; display: block; }
+        .page-hero h1 { font-family: 'DM Serif Display', Georgia, serif; font-size: clamp(2rem, 4vw, 3rem); color: white; line-height: 1.15; margin-bottom: 1rem; }
+        .page-hero p { font-size: 0.95rem; color: rgba(255,255,255,0.6); }
+
+        /* CONTENT */
+        .content-wrap { max-width: 860px; margin: 0 auto; padding: 4rem 2rem 6rem; }
+        .toc { background: var(--white); border: 1.5px solid var(--border); border-radius: 12px; padding: 1.75rem 2rem; margin-bottom: 3rem; }
+        .toc h2 { font-size: 0.75rem; font-weight: 700; text-transform: uppercase; letter-spacing: 2px; color: var(--ink-30); margin-bottom: 1rem; }
+        .toc ol { padding-left: 1.25rem; display: grid; grid-template-columns: 1fr 1fr; gap: 0.4rem 2rem; }
+        .toc li { font-size: 0.875rem; }
+        .toc a { color: var(--green-primary); text-decoration: none; font-weight: 500; }
+        .toc a:hover { color: var(--green-deep); text-decoration: underline; }
+        .policy-section { margin-bottom: 3rem; padding-bottom: 3rem; border-bottom: 1px solid var(--border); }
+        .policy-section:last-child { border-bottom: none; margin-bottom: 0; }
+        .policy-section h2 { font-family: 'DM Serif Display', Georgia, serif; font-size: 1.6rem; color: var(--green-primary); margin-bottom: 1rem; display: flex; align-items: center; gap: 0.75rem; }
+        .section-num { font-size: 0.7rem; font-weight: 700; background: var(--green-pale); color: var(--green-deep); padding: 0.2rem 0.55rem; border-radius: 100px; }
+        .policy-section h3 { font-size: 1rem; font-weight: 700; color: var(--ink); margin: 1.5rem 0 0.5rem; }
+        .policy-section p { font-size: 0.95rem; color: var(--ink-60); margin-bottom: 1rem; }
+        .policy-section ul, .policy-section ol { padding-left: 1.5rem; margin-bottom: 1rem; }
+        .policy-section li { font-size: 0.95rem; color: var(--ink-60); margin-bottom: 0.4rem; }
+        .highlight-box { background: var(--green-tint); border: 1.5px solid rgba(45,106,79,0.2); border-radius: 10px; padding: 1.25rem 1.5rem; margin: 1.25rem 0; font-size: 0.9rem; color: var(--green-deep); font-weight: 500; line-height: 1.7; }
+        .highlight-box strong { color: var(--green-primary); }
+        .highlight-box a { color: var(--green-primary); }
+        .policy-section a { color: var(--green-primary); }
+
+        /* FOOTER */
+        footer { background: var(--white); border-top: 1px solid var(--border); padding: 3.5rem 0 2rem; }
+        .footer-grid { display: grid; grid-template-columns: 2fr 1fr 1fr 1fr; gap: 3rem; margin-bottom: 3rem; }
+        .footer-brand-name { font-size: 1.4rem; font-weight: 800; color: var(--green-primary); margin-bottom: 0.6rem; }
+        .footer-tagline { font-size: 0.85rem; color: var(--ink-60); line-height: 1.6; max-width: 260px; }
+        .footer-links h4 { font-size: 0.75rem; font-weight: 700; text-transform: uppercase; letter-spacing: 1.5px; color: var(--ink); margin-bottom: 1rem; }
+        .footer-links ul { list-style: none; }
+        .footer-links a { display: block; font-size: 0.875rem; color: var(--ink-60); text-decoration: none; margin-bottom: 0.6rem; transition: color 0.2s; }
+        .footer-links a:hover { color: var(--green-primary); }
+        .footer-bottom { padding-top: 2rem; border-top: 1px solid var(--border); display: flex; justify-content: space-between; align-items: center; font-size: 0.8rem; color: var(--ink-30); }
+
+        @media (max-width: 900px) { .footer-grid { grid-template-columns: 1fr 1fr; } }
+        @media (max-width: 640px) { nav ul { display: none; } .toc ol { grid-template-columns: 1fr; } .footer-grid { grid-template-columns: 1fr; } .footer-bottom { flex-direction: column; gap: 0.5rem; text-align: center; } }
+    </style>
+</head>
+<body>
+
+    <header>
+        <div class="container">
+            <nav>
+                <a href="/" class="logo">
+                    <span class="logo-mark">Adworth℠</span>
+                    <span class="patent-pill">Patent Pending</span>
+                </a>
+                <ul>
+                    <li><a href="/#problem">Problem</a></li>
+                    <li><a href="/#how-it-works">How It Works</a></li>
+                    <li><a href="/#founder">Founder</a></li>
+                    <li><a href="/#investors">Investors</a></li>
+                    <li><a href="/#waitlist" class="nav-cta">Join Waitlist</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <div class="page-hero">
+        <div class="inner">
+            <span class="page-label">Legal</span>
+            <h1>Privacy Policy</h1>
+            <p>Last updated: February 23, 2026 · Adworth℠ LLC · Charleston, SC</p>
+        </div>
+    </div>
+
+    <div class="content-wrap">
+
+        <div class="toc">
+            <h2>Contents</h2>
+            <ol>
+                <li><a href="#information-we-collect">Information We Collect</a></li>
+                <li><a href="#how-we-use">How We Use Your Information</a></li>
+                <li><a href="#sharing">How We Share Information</a></li>
+                <li><a href="#data-retention">Data Retention</a></li>
+                <li><a href="#your-rights">Your Rights</a></li>
+                <li><a href="#security">Security</a></li>
+                <li><a href="#cookies">Cookies &amp; Tracking</a></li>
+                <li><a href="#children">Children's Privacy</a></li>
+                <li><a href="#changes">Changes to This Policy</a></li>
+                <li><a href="#contact">Contact Us</a></li>
+            </ol>
+        </div>
+
+        <div class="highlight-box">
+            <strong>The short version:</strong> Adworth is built on the principle that your data belongs to you. We collect only what we need to operate the service, we don't sell your data, and we give you full control to delete it at any time. That's kind of the whole point.
+        </div>
+
+        <div class="policy-section" id="information-we-collect">
+            <h2><span class="section-num">01</span> Information We Collect</h2>
+            <h3>Information you provide directly</h3>
+            <p>When you join our waitlist or create an account, we collect:</p>
+            <ul>
+                <li>Email address</li>
+                <li>Name (if provided)</li>
+                <li>Any other information you choose to share with us</li>
+            </ul>
+            <h3>Information collected automatically</h3>
+            <p>When you visit adworth.app or app.adworth.app, we may automatically collect:</p>
+            <ul>
+                <li>Browser type and version</li>
+                <li>Pages visited and time spent</li>
+                <li>Referring URL</li>
+                <li>General geographic location (country/region level only)</li>
+            </ul>
+            <h3>Information we do not collect</h3>
+            <p>We do not collect sensitive personal information such as government IDs, financial account numbers, or health data through our public-facing properties.</p>
+        </div>
+
+        <div class="policy-section" id="how-we-use">
+            <h2><span class="section-num">02</span> How We Use Your Information</h2>
+            <p>We use the information we collect to:</p>
+            <ul>
+                <li>Operate and improve the Adworth platform and services</li>
+                <li>Send you waitlist updates and product announcements (you can unsubscribe at any time)</li>
+                <li>Respond to your inquiries and support requests</li>
+                <li>Understand how visitors use our site to improve the experience</li>
+                <li>Comply with legal obligations</li>
+            </ul>
+            <p>We do not use your information for behavioral advertising, and we do not build advertising profiles from your activity on our platform.</p>
+        </div>
+
+        <div class="policy-section" id="sharing">
+            <h2><span class="section-num">03</span> How We Share Information</h2>
+            <p>We do not sell, rent, or trade your personal information. We may share it only in the following limited circumstances:</p>
+            <h3>Service providers</h3>
+            <p>We use a small number of trusted third-party services to operate our platform (such as form submission processing and analytics). These providers are contractually required to handle your data securely and only for the purposes we specify.</p>
+            <h3>Legal requirements</h3>
+            <p>We may disclose your information if required by law, court order, or government authority, or if we believe disclosure is necessary to protect the rights, property, or safety of Adworth, our users, or the public.</p>
+            <h3>Business transfers</h3>
+            <p>In the event of a merger, acquisition, or sale of assets, your information may be transferred as part of that transaction. We will notify you before your information is transferred and becomes subject to a different privacy policy.</p>
+        </div>
+
+        <div class="policy-section" id="data-retention">
+            <h2><span class="section-num">04</span> Data Retention</h2>
+            <p>We retain your personal information only as long as necessary to provide our services or as required by law. Waitlist email addresses are retained until you unsubscribe or request deletion.</p>
+            <p>When you request deletion of your data, we will remove it from our active systems within 30 days and from backup systems within 90 days.</p>
+        </div>
+
+        <div class="policy-section" id="your-rights">
+            <h2><span class="section-num">05</span> Your Rights</h2>
+            <p>Depending on your location, you may have the following rights regarding your personal information:</p>
+            <ul>
+                <li><strong>Access:</strong> Request a copy of the personal data we hold about you</li>
+                <li><strong>Correction:</strong> Request that we correct inaccurate or incomplete data</li>
+                <li><strong>Deletion:</strong> Request that we delete your personal data</li>
+                <li><strong>Portability:</strong> Request your data in a machine-readable format</li>
+                <li><strong>Objection:</strong> Object to certain uses of your data</li>
+                <li><strong>Withdraw consent:</strong> Withdraw previously given consent at any time</li>
+            </ul>
+            <p>To exercise any of these rights, contact us at <a href="mailto:hello@adworth.app">hello@adworth.app</a>. We will respond within 30 days.</p>
+        </div>
+
+        <div class="policy-section" id="security">
+            <h2><span class="section-num">06</span> Security</h2>
+            <p>We implement industry-standard security measures to protect your information, including encrypted data transmission (HTTPS), access controls, and regular security reviews.</p>
+            <p>No method of transmission over the internet is 100% secure. While we strive to protect your information, we cannot guarantee absolute security. If you believe your information has been compromised, please contact us immediately at <a href="mailto:hello@adworth.app">hello@adworth.app</a>.</p>
+        </div>
+
+        <div class="policy-section" id="cookies">
+            <h2><span class="section-num">07</span> Cookies &amp; Tracking</h2>
+            <p>We use minimal cookies necessary to operate our website (such as session state). We do not use third-party advertising cookies or tracking pixels.</p>
+            <p>You can configure your browser to refuse cookies, though some features of the site may not function properly as a result.</p>
+        </div>
+
+        <div class="policy-section" id="children">
+            <h2><span class="section-num">08</span> Children's Privacy</h2>
+            <p>Adworth's services are not directed to children under 13. We do not knowingly collect personal information from children under 13. If you believe we have inadvertently collected such information, please contact us and we will delete it promptly.</p>
+        </div>
+
+        <div class="policy-section" id="changes">
+            <h2><span class="section-num">09</span> Changes to This Policy</h2>
+            <p>We may update this Privacy Policy from time to time. When we do, we will update the "Last updated" date at the top of this page. For material changes, we will notify waitlist members by email.</p>
+            <p>Your continued use of Adworth after any changes constitutes your acceptance of the updated policy.</p>
+        </div>
+
+        <div class="policy-section" id="contact">
+            <h2><span class="section-num">10</span> Contact Us</h2>
+            <p>If you have questions, concerns, or requests regarding this Privacy Policy or your personal data, please contact us:</p>
+            <div class="highlight-box">
+                <strong>Adworth℠ LLC</strong><br>
+                Charleston, SC, United States<br>
+                <a href="mailto:hello@adworth.app">hello@adworth.app</a>
+            </div>
+        </div>
+
+    </div>
+
+    <footer>
+        <div class="container">
+            <div class="footer-grid">
+                <div>
+                    <div class="footer-brand-name">Adworth℠</div>
+                    <p class="footer-tagline">Cryptographic consent infrastructure for digital advertising. Privacy for people, compliance for platforms.</p>
+                </div>
+                <div class="footer-links">
+                    <h4>Product</h4>
+                    <ul>
+                        <li><a href="/#problem">The Problem</a></li>
+                        <li><a href="/#how-it-works">How It Works</a></li>
+                        <li><a href="https://app.adworth.app">Transparency Demo</a></li>
+                        <li><a href="/#waitlist">Join Waitlist</a></li>
+                    </ul>
+                </div>
+                <div class="footer-links">
+                    <h4>Company</h4>
+                    <ul>
+                        <li><a href="/#founder">Founder</a></li>
+                        <li><a href="/#investors">Investors</a></li>
+                        <li><a href="mailto:hello@adworth.app">Contact</a></li>
+                    </ul>
+                </div>
+                <div class="footer-links">
+                    <h4>Legal</h4>
+                    <ul>
+                        <li><a href="/privacy">Privacy Policy</a></li>
+                        <li><a href="/terms">Terms of Service</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <span>© 2026 Adworth℠ LLC · Patent Pending · Charleston, SC</span>
+                <span>Built in public · Raising seed round</span>
+            </div>
+        </div>
+    </footer>
+
+</body>
+</html>
