@@ -1288,9 +1288,8 @@
                 if (xhr.readyState !== 4) return;
 
                 if (xhr.status >= 200 && xhr.status < 300) {
-                    btn.textContent = '✓ You\'re on the list!';
-                    btn.style.background = '#52b788';
-                    emailInput.value = '';
+                    // Success — redirect to thank you page
+                    window.location.href = '/thanks';
                 } else {
                     // AJAX failed — fall back to native form POST
                     btn.textContent = 'Redirecting…';
