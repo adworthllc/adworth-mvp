@@ -863,14 +863,14 @@
             to { opacity: 1; transform: translateY(0); }
         }
 
-        /* Scroll-triggered fade — only animate if JS has run */
-        .js-loaded .fade-up {
+        /* Scroll-triggered fade */
+        .fade-up {
             opacity: 0;
             transform: translateY(24px);
             transition: opacity 0.6s ease, transform 0.6s ease;
         }
 
-        .js-loaded .fade-up.visible {
+        .fade-up.visible {
             opacity: 1;
             transform: translateY(0);
         }
@@ -1171,7 +1171,7 @@
                 </div>
 
                 <div class="fade-up">
-                    <a href="/cdn-cgi/l/email-protection#036b666f6f6c436267746c71776b2d627373" class="btn btn-white">Schedule a Meeting →</a>
+                    <a href="mailto:nickjohnsonllc@gmail.com" class="btn btn-white">Schedule a Meeting →</a>
                 </div>
             </div>
         </section>
@@ -1217,7 +1217,7 @@
                     <ul>
                         <li><a href="#founder">Founder</a></li>
                         <li><a href="#investors">Investors</a></li>
-                        <li><a href="/cdn-cgi/l/email-protection#79111c15151639181d0e160b0d1157180909">Contact</a></li>
+                        <li><a href="mailto:nickjohnsonllc@gmail.com">Contact</a></li>
                     </ul>
                 </div>
                 <div class="footer-links">
@@ -1235,10 +1235,7 @@
         </div>
     </footer>
 
-    <script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
-        // Mark body as JS-loaded so fade-up animations activate
-        document.body.classList.add('js-loaded');
-
+    <script>
         // Scroll-triggered animations
         const observer = new IntersectionObserver((entries) => {
             entries.forEach((entry, i) => {
@@ -1287,4 +1284,18 @@
                     btn.textContent = '✓ You\'re on the list!';
                     btn.style.background = '#52b788';
                     this.querySelector('input').value = '';
-                } el
+                } else {
+                    btn.textContent = 'Try again';
+                    btn.style.background = '#e05252';
+                    btn.disabled = false;
+                }
+            } catch (err) {
+                btn.textContent = 'Try again';
+                btn.style.background = '#e05252';
+                btn.disabled = false;
+            }
+        });
+    </script>
+
+</body>
+</html>
