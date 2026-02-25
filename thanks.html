@@ -1,0 +1,402 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Adworth℠ — You're On the List</title>
+    <meta name="description" content="Welcome to the Adworth founding member waitlist. You're in.">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800;900&family=DM+Serif+Display:ital@0;1&display=swap" rel="stylesheet">
+    <style>
+        *, *::before, *::after {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --green-deep: #1a4a35;
+            --green-primary: #2d6a4f;
+            --green-mid: #1B7A4E;
+            --green-accent: #52b788;
+            --green-pale: #d8f3dc;
+            --green-tint: #f0faf3;
+            --off-white: #fafaf8;
+            --white: #ffffff;
+            --ink: #111410;
+            --ink-60: #555a50;
+            --ink-30: #b0b5aa;
+            --border: #e2e8df;
+            --gold: #c8a96a;
+            --gold-light: #f5e9d3;
+        }
+
+        html { scroll-behavior: smooth; }
+
+        body {
+            font-family: 'Poppins', sans-serif;
+            background: var(--off-white);
+            color: var(--ink);
+            line-height: 1.6;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+        }
+
+        /* ── HEADER ── */
+        header {
+            background: rgba(250, 250, 248, 0.92);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            border-bottom: 1px solid var(--border);
+        }
+
+        .container {
+            max-width: 1160px;
+            margin: 0 auto;
+            padding: 0 2rem;
+        }
+
+        nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 1.25rem 0;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+            text-decoration: none;
+        }
+
+        .logo-mark {
+            font-family: 'Poppins', sans-serif;
+            font-size: 1.6rem;
+            font-weight: 800;
+            color: var(--green-primary);
+            letter-spacing: -0.5px;
+        }
+
+        .patent-pill {
+            font-size: 0.6rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            background: var(--green-pale);
+            color: var(--green-deep);
+            padding: 0.2rem 0.55rem;
+            border-radius: 100px;
+            border: 1px solid rgba(45,106,79,0.2);
+        }
+
+        nav a.back-link {
+            text-decoration: none;
+            font-size: 0.875rem;
+            font-weight: 500;
+            color: var(--ink-60);
+            transition: color 0.2s;
+        }
+
+        nav a.back-link:hover { color: var(--green-primary); }
+
+        /* ── MAIN CONTENT ── */
+        .thank-you {
+            flex: 1;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 4rem 2rem;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .thank-you::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background-image:
+                linear-gradient(var(--border) 1px, transparent 1px),
+                linear-gradient(90deg, var(--border) 1px, transparent 1px);
+            background-size: 48px 48px;
+            opacity: 0.4;
+            z-index: 0;
+        }
+
+        .thank-you::after {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: radial-gradient(ellipse 60% 50% at 50% 40%, var(--green-tint) 0%, transparent 70%);
+            z-index: 0;
+        }
+
+        .thank-you-card {
+            position: relative;
+            z-index: 1;
+            max-width: 580px;
+            text-align: center;
+            animation: fadeInUp 0.6s ease both;
+        }
+
+        .check-circle {
+            width: 72px;
+            height: 72px;
+            background: var(--green-accent);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 2rem;
+            animation: scaleIn 0.5s 0.2s ease both;
+        }
+
+        .check-circle svg {
+            width: 36px;
+            height: 36px;
+            stroke: white;
+            stroke-width: 3;
+            fill: none;
+        }
+
+        .check-circle svg path {
+            stroke-dasharray: 40;
+            stroke-dashoffset: 40;
+            animation: drawCheck 0.4s 0.6s ease forwards;
+        }
+
+        @keyframes drawCheck {
+            to { stroke-dashoffset: 0; }
+        }
+
+        @keyframes scaleIn {
+            from { opacity: 0; transform: scale(0.5); }
+            to { opacity: 1; transform: scale(1); }
+        }
+
+        @keyframes fadeInUp {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .founding-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.4rem;
+            background: var(--gold-light);
+            color: #7a5c2e;
+            border: 1px solid rgba(200,169,106,0.3);
+            border-radius: 100px;
+            padding: 0.35rem 0.9rem;
+            font-size: 0.75rem;
+            font-weight: 600;
+            margin-bottom: 1.5rem;
+            animation: fadeInUp 0.6s 0.3s ease both;
+        }
+
+        .thank-you-card h1 {
+            font-family: 'DM Serif Display', Georgia, serif;
+            font-size: clamp(2.25rem, 5vw, 3.25rem);
+            line-height: 1.1;
+            color: var(--ink);
+            margin-bottom: 1rem;
+            animation: fadeInUp 0.6s 0.4s ease both;
+        }
+
+        .thank-you-card h1 em {
+            font-style: italic;
+            color: var(--green-primary);
+        }
+
+        .thank-you-card p {
+            font-size: 1.05rem;
+            color: var(--ink-60);
+            line-height: 1.7;
+            margin-bottom: 1.5rem;
+            animation: fadeInUp 0.6s 0.5s ease both;
+        }
+
+        .next-steps {
+            background: var(--white);
+            border: 1.5px solid var(--border);
+            border-radius: 12px;
+            padding: 1.75rem;
+            text-align: left;
+            margin-bottom: 2rem;
+            animation: fadeInUp 0.6s 0.6s ease both;
+        }
+
+        .next-steps h3 {
+            font-size: 0.75rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 1.5px;
+            color: var(--green-accent);
+            margin-bottom: 1rem;
+        }
+
+        .step-row {
+            display: flex;
+            align-items: flex-start;
+            gap: 0.75rem;
+            padding: 0.6rem 0;
+        }
+
+        .step-row + .step-row {
+            border-top: 1px solid var(--border);
+        }
+
+        .step-num {
+            width: 24px;
+            height: 24px;
+            min-width: 24px;
+            background: var(--green-pale);
+            color: var(--green-primary);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 0.7rem;
+            font-weight: 700;
+            margin-top: 2px;
+        }
+
+        .step-row p {
+            font-size: 0.9rem;
+            color: var(--ink-60);
+            margin-bottom: 0;
+            line-height: 1.5;
+        }
+
+        .step-row strong {
+            color: var(--ink);
+        }
+
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            padding: 0.9rem 1.75rem;
+            border-radius: 8px;
+            font-weight: 600;
+            font-size: 0.95rem;
+            text-decoration: none;
+            transition: all 0.2s;
+            border: 1.5px solid transparent;
+            cursor: pointer;
+            font-family: 'Poppins', sans-serif;
+        }
+
+        .btn-primary {
+            background: var(--green-primary);
+            color: white;
+            border-color: var(--green-primary);
+            box-shadow: 0 4px 14px rgba(45,106,79,0.3);
+        }
+
+        .btn-primary:hover {
+            background: var(--green-deep);
+            border-color: var(--green-deep);
+            transform: translateY(-2px);
+            box-shadow: 0 8px 20px rgba(45,106,79,0.35);
+        }
+
+        .btn-ghost {
+            background: transparent;
+            color: var(--green-primary);
+            border-color: var(--green-accent);
+            margin-left: 0.5rem;
+        }
+
+        .btn-ghost:hover {
+            background: var(--green-tint);
+            border-color: var(--green-primary);
+        }
+
+        .cta-group {
+            display: flex;
+            gap: 0.75rem;
+            justify-content: center;
+            flex-wrap: wrap;
+            animation: fadeInUp 0.6s 0.7s ease both;
+        }
+
+        /* ── FOOTER ── */
+        footer {
+            background: var(--white);
+            border-top: 1px solid var(--border);
+            padding: 1.5rem 0;
+            text-align: center;
+        }
+
+        footer p {
+            font-size: 0.8rem;
+            color: var(--ink-30);
+        }
+
+        @media (max-width: 640px) {
+            .cta-group { flex-direction: column; align-items: center; }
+            .btn-ghost { margin-left: 0; }
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <div class="container">
+            <nav>
+                <a href="/" class="logo">
+                    <span class="logo-mark">Adworth℠</span>
+                    <span class="patent-pill">Patent Pending</span>
+                </a>
+                <a href="/" class="back-link">← Back to Home</a>
+            </nav>
+        </div>
+    </header>
+
+    <main class="thank-you">
+        <div class="thank-you-card">
+            <div class="check-circle">
+                <svg viewBox="0 0 24 24">
+                    <path d="M5 13l4 4L19 7" stroke-linecap="round" stroke-linejoin="round"/>
+                </svg>
+            </div>
+
+            <span class="founding-badge">⭐ Founding Member</span>
+
+            <h1>You're <em>in</em>.</h1>
+
+            <p>You've joined the Adworth founding member waitlist. When the consent marketplace launches, you'll be among the first to control your data and get paid for it.</p>
+
+            <div class="next-steps">
+                <h3>What Happens Next</h3>
+                <div class="step-row">
+                    <span class="step-num">1</span>
+                    <p><strong>Confirmation email</strong> — Check your inbox. If you don't see it, check spam.</p>
+                </div>
+                <div class="step-row">
+                    <span class="step-num">2</span>
+                    <p><strong>Early access updates</strong> — We'll email you as we hit milestones. No spam, ever.</p>
+                </div>
+                <div class="step-row">
+                    <span class="step-num">3</span>
+                    <p><strong>Marketplace launch</strong> — Founding members get first access when consent tokens go live.</p>
+                </div>
+            </div>
+
+            <div class="cta-group">
+                <a href="/app" class="btn btn-primary">Try the Demo →</a>
+                <a href="/" class="btn btn-ghost">Back to Home</a>
+            </div>
+        </div>
+    </main>
+
+    <footer>
+        <div class="container">
+            <p>© 2026 Adworth℠ LLC · Patent Pending · Charleston, SC</p>
+        </div>
+    </footer>
+
+</body>
+</html>
