@@ -1183,11 +1183,13 @@
                 <h2 class="section-title fade-up">Be first when consent<br>starts paying</h2>
                 <p class="section-lead fade-up" style="margin: 1rem auto 2.5rem;">First 1,000 users get early marketplace access, founding member status, and priority support. No spam. No irony.</p>
 
-                <form class="waitlist-form fade-up" id="waitlist-form">
+                <form class="waitlist-form fade-up" id="waitlist-form" action="https://formspree.io/f/mlgwgndk" method="POST">
                     <div class="input-group">
                         <input type="email" name="email" placeholder="your@email.com" required>
                         <button type="submit">Join Waitlist</button>
                     </div>
+                    <input type="hidden" name="_next" value="https://adworth.app/#waitlist">
+                    <input type="hidden" name="_subject" value="New Adworth Waitlist Signup">
                     <p class="waitlist-note">Your data stays yours. We're not going to sell it — that's kind of the whole point.</p>
                 </form>
             </div>
@@ -1264,36 +1266,52 @@
             });
         });
 
-        // Waitlist form — Formspree
-        document.getElementById('waitlist-form').addEventListener('submit', async function(e) {
-            e.preventDefault();
-            const btn = this.querySelector('button');
-            const email = this.querySelector('input[type="email"]').value;
+        // Waitlist form — Formspree (with native HTML fallback)
+        document.getElementById('waitlist-form').addEventListener('submit', function(e) {
+            var btn = this.querySelector('button');
+            var emailInput = this.querySelector('input[type="email"]');
+            var email = emailInput.value;
+            var form = this;
 
+            // Try AJAX first for nice UX
+            e.preventDefault();
             btn.textContent = 'Submitting…';
             btn.disabled = true;
 
-            try {
-                const res = await fetch('https://formspree.io/f/mlgwgndk', {
-                    method: 'POST',
-                    headers: { 'Accept': 'application/json', 'Content-Type': 'application/json' },
-                    body: JSON.stringify({ email })
-                });
+            // Use XMLHttpRequest instead of fetch for broader compatibility
+            var xhr = new XMLHttpRequest();
+            xhr.open('POST', 'https://formspree.io/f/mlgwgndk');
+            xhr.setRequestHeader('Accept', 'application/json');
+            xhr.setRequestHeader('Content-Type', 'application/json');
 
-                if (res.ok) {
+            xhr.onreadystatechange = function() {
+                if (xhr.readyState !== 4) return;
+
+                if (xhr.status >= 200 && xhr.status < 300) {
                     btn.textContent = '✓ You\'re on the list!';
                     btn.style.background = '#52b788';
-                    this.querySelector('input').value = '';
+                    emailInput.value = '';
                 } else {
-                    btn.textContent = 'Try again';
-                    btn.style.background = '#e05252';
-                    btn.disabled = false;
+                    // AJAX failed — fall back to native form POST
+                    btn.textContent = 'Redirecting…';
+                    form.submit();
                 }
-            } catch (err) {
-                btn.textContent = 'Try again';
-                btn.style.background = '#e05252';
-                btn.disabled = false;
-            }
+            };
+
+            xhr.onerror = function() {
+                // Network error — fall back to native form POST
+                btn.textContent = 'Redirecting…';
+                form.submit();
+            };
+
+            // Timeout after 8 seconds
+            xhr.timeout = 8000;
+            xhr.ontimeout = function() {
+                btn.textContent = 'Redirecting…';
+                form.submit();
+            };
+
+            xhr.send(JSON.stringify({ email: email }));
         });
     </script>
 
