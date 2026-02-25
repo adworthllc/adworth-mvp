@@ -1266,51 +1266,14 @@
             });
         });
 
-        // Waitlist form — Formspree (with native HTML fallback)
-        document.getElementById('waitlist-form').addEventListener('submit', function(e) {
+        // Waitlist form — Formspree
+        // Use native HTML form submission (AJAX blocked by network config)
+        // The form's action, method, and _next hidden field handle everything
+        document.getElementById('waitlist-form').addEventListener('submit', function() {
             var btn = this.querySelector('button');
-            var emailInput = this.querySelector('input[type="email"]');
-            var email = emailInput.value;
-            var form = this;
-
-            // Try AJAX first for nice UX
-            e.preventDefault();
             btn.textContent = 'Submitting…';
             btn.disabled = true;
-
-            // Use XMLHttpRequest instead of fetch for broader compatibility
-            var xhr = new XMLHttpRequest();
-            xhr.open('POST', 'https://formspree.io/f/mlgwgndk');
-            xhr.setRequestHeader('Accept', 'application/json');
-            xhr.setRequestHeader('Content-Type', 'application/json');
-
-            xhr.onreadystatechange = function() {
-                if (xhr.readyState !== 4) return;
-
-                if (xhr.status >= 200 && xhr.status < 300) {
-                    // Success — redirect to thank you page
-                    window.location.href = '/thanks';
-                } else {
-                    // AJAX failed — fall back to native form POST
-                    btn.textContent = 'Redirecting…';
-                    form.submit();
-                }
-            };
-
-            xhr.onerror = function() {
-                // Network error — fall back to native form POST
-                btn.textContent = 'Redirecting…';
-                form.submit();
-            };
-
-            // Timeout after 8 seconds
-            xhr.timeout = 8000;
-            xhr.ontimeout = function() {
-                btn.textContent = 'Redirecting…';
-                form.submit();
-            };
-
-            xhr.send(JSON.stringify({ email: email }));
+            // Let the form submit naturally — don't preventDefault
         });
     </script>
 
