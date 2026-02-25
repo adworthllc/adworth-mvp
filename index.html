@@ -792,6 +792,124 @@
             margin-bottom: 1.5rem;
         }
 
+        /* ── WAITLIST COUNTER ─────────────────────────────── */
+        .waitlist-counter {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 1.5rem;
+            margin-bottom: 2rem;
+            flex-wrap: wrap;
+        }
+
+        .counter-block {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 0.25rem;
+        }
+
+        .counter-number {
+            font-family: 'DM Serif Display', Georgia, serif;
+            font-size: 2.5rem;
+            color: var(--green-primary);
+            line-height: 1;
+            transition: all 0.3s ease;
+        }
+
+        .counter-label {
+            font-size: 0.75rem;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 1.5px;
+            color: var(--ink-60);
+        }
+
+        .counter-divider {
+            width: 1px;
+            height: 40px;
+            background: var(--border);
+        }
+
+        .spots-bar {
+            max-width: 380px;
+            margin: 0 auto 2rem;
+        }
+
+        .spots-bar-track {
+            height: 6px;
+            background: var(--border);
+            border-radius: 100px;
+            overflow: hidden;
+            margin-bottom: 0.5rem;
+        }
+
+        .spots-bar-fill {
+            height: 100%;
+            background: linear-gradient(90deg, var(--green-primary), var(--green-accent));
+            border-radius: 100px;
+            width: 0%;
+            transition: width 1.2s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        .spots-bar-label {
+            display: flex;
+            justify-content: space-between;
+            font-size: 0.75rem;
+            color: var(--ink-60);
+            font-weight: 500;
+        }
+
+        .spots-bar-label span:first-child {
+            color: var(--green-primary);
+            font-weight: 700;
+        }
+
+        .social-proof-avatars {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 0.5rem;
+            margin-bottom: 0.75rem;
+        }
+
+        .avatar-stack {
+            display: flex;
+        }
+
+        .avatar-stack .avatar {
+            width: 32px;
+            height: 32px;
+            border-radius: 50%;
+            border: 2px solid white;
+            margin-left: -8px;
+            font-size: 0.7rem;
+            font-weight: 700;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+        }
+
+        .avatar-stack .avatar:first-child { margin-left: 0; }
+
+        .avatar-1 { background: #2d6a4f; }
+        .avatar-2 { background: #52b788; }
+        .avatar-3 { background: #1a4a35; }
+        .avatar-4 { background: #74c69d; }
+        .avatar-5 { background: #1B7A4E; }
+
+        .social-proof-text {
+            font-size: 0.875rem;
+            color: var(--ink-60);
+            font-weight: 500;
+        }
+
+        .social-proof-text strong {
+            color: var(--ink);
+            font-weight: 700;
+        }
+
         /* ── FOOTER ───────────────────────────────────────── */
         footer {
             background: var(--white);
@@ -938,7 +1056,7 @@
                 </p>
                 <div class="hero-cta-group">
                     <a href="#waitlist" class="btn btn-primary">Join the Waitlist →</a>
-                    <a href="/app" class="btn btn-ghost">See the Demo</a>
+                    <a href="https://app.adworth.app" class="btn btn-ghost">See the Demo</a>
                 </div>
                 <p class="hero-trust">Patent-pending technology · AI transparency now · Consent marketplace coming</p>
             </div>
@@ -1108,7 +1226,7 @@
                 <h2 class="section-title fade-up">See the problem before the solution</h2>
                 <p class="section-lead fade-up" style="margin: 0 auto 2.5rem;">The marketplace is coming. Today, our DSA compliance demo shows you exactly who's targeting you with AI-generated ads — and what platforms aren't disclosing.</p>
                 <div class="fade-up">
-                    <a href="/app" class="btn btn-primary">Try the Transparency Demo →</a>
+                    <a href="https://app.adworth.app" class="btn btn-primary">Try the Transparency Demo →</a>
                 </div>
             </div>
         </section>
@@ -1120,9 +1238,9 @@
                 <h2 class="section-title fade-up" style="text-align:center; margin-bottom: 3rem;">Why I Left After 18 Years</h2>
                 <div class="founder-card fade-up">
                     <div class="founder-body">
-                        <p>After 18 years at Verizon — the last 15 as a supervisor managing large technical support teams — I left in December 2025 to build something I'd been thinking about for years.</p>
-                        <p>Working inside a major telecom for nearly two decades gives you a front-row seat to how users' trust gets traded away. Companies collect without asking. "Delete my data" goes into a void. Consent is theater. And now, AI platforms are running ads with zero transparency requirements — and nobody is building the infrastructure to fix it.</p>
-                        <p>I'd seen the problem from the inside long enough. It was time to build the solution.</p>
+                        <p>After 18 years at Verizon — the last 15 as a supervisor managing technical support teams — I was laid off in December 2025. I could have taken another corporate role. Instead, I filed a patent.</p>
+                        <p>Working inside a major telecom for nearly two decades, I watched firsthand how users' trust gets traded away. Companies collect without asking. "Delete my data" goes into a void. And now, AI platforms are running ads with zero transparency requirements — and nobody's building the infrastructure to fix it.</p>
+                        <p>Getting laid off forced a real question: <em>what do I actually want to build?</em> The answer had been sitting with me for years.</p>
 
                         <div class="founder-pullquote">
                             "What if users could lend their data — on their terms, with cryptographic enforcement, and get paid for it?"
@@ -1171,7 +1289,7 @@
                 </div>
 
                 <div class="fade-up">
-                    <a href="mailto:hello@adworth.app" class="btn btn-white">Schedule a Meeting →</a>
+                    <a href="mailto:nickjohnsonllc@gmail.com" class="btn btn-white">Schedule a Meeting →</a>
                 </div>
             </div>
         </section>
@@ -1183,13 +1301,34 @@
                 <h2 class="section-title fade-up">Be first when consent<br>starts paying</h2>
                 <p class="section-lead fade-up" style="margin: 1rem auto 2.5rem;">First 1,000 users get early marketplace access, founding member status, and priority support. No spam. No irony.</p>
 
-                <form class="waitlist-form fade-up" id="waitlist-form" action="https://formspree.io/f/mlgwgndk" method="POST">
+                <!-- Social proof avatars -->
+                <div class="social-proof-avatars fade-up">
+                    <div class="avatar-stack">
+                        <div class="avatar avatar-1">NJ</div>
+                        <div class="avatar avatar-2">SK</div>
+                        <div class="avatar avatar-3">ML</div>
+                        <div class="avatar avatar-4">RC</div>
+                        <div class="avatar avatar-5">AK</div>
+                    </div>
+                    <span class="social-proof-text"><strong>Early members</strong> already on the list</span>
+                </div>
+
+                <!-- Spots progress bar -->
+                <div class="spots-bar fade-up">
+                    <div class="spots-bar-track">
+                        <div class="spots-bar-fill" id="spots-fill"></div>
+                    </div>
+                    <div class="spots-bar-label">
+                        <span id="spots-taken">Founding spots claimed</span>
+                        <span>1,000 total</span>
+                    </div>
+                </div>
+
+                <form class="waitlist-form fade-up" id="waitlist-form">
                     <div class="input-group">
                         <input type="email" name="email" placeholder="your@email.com" required>
                         <button type="submit">Join Waitlist</button>
                     </div>
-                    <input type="hidden" name="_next" value="https://adworth.app/thanks">
-                    <input type="hidden" name="_subject" value="New Adworth Waitlist Signup">
                     <p class="waitlist-note">Your data stays yours. We're not going to sell it — that's kind of the whole point.</p>
                 </form>
             </div>
@@ -1210,7 +1349,7 @@
                     <ul>
                         <li><a href="#problem">The Problem</a></li>
                         <li><a href="#how-it-works">How It Works</a></li>
-                        <li><a href="/app">Transparency Demo</a></li>
+                        <li><a href="https://app.adworth.app">Transparency Demo</a></li>
                         <li><a href="#waitlist">Join Waitlist</a></li>
                     </ul>
                 </div>
@@ -1219,7 +1358,7 @@
                     <ul>
                         <li><a href="#founder">Founder</a></li>
                         <li><a href="#investors">Investors</a></li>
-                        <li><a href="mailto:hello@adworth.app">Contact</a></li>
+                        <li><a href="mailto:nickjohnsonllc@gmail.com">Contact</a></li>
                     </ul>
                 </div>
                 <div class="footer-links">
@@ -1266,14 +1405,78 @@
             });
         });
 
+        // Waitlist counter animation
+        // Update WAITLIST_COUNT to your real number whenever you check Formspree
+        const WAITLIST_COUNT = 4; // <-- UPDATE THIS NUMBER MANUALLY
+        const TOTAL_SPOTS = 1000;
+
+        function animateCounter() {
+            const fillEl = document.getElementById('spots-fill');
+            const takenEl = document.getElementById('spots-taken');
+            if (!fillEl || !takenEl) return;
+
+            const pct = Math.min((WAITLIST_COUNT / TOTAL_SPOTS) * 100, 100);
+
+            // Animate fill bar
+            setTimeout(() => {
+                fillEl.style.width = pct + '%';
+            }, 400);
+
+            // Animate number count up
+            let current = 0;
+            const duration = 1200;
+            const step = WAITLIST_COUNT / (duration / 16);
+            const timer = setInterval(() => {
+                current = Math.min(current + step, WAITLIST_COUNT);
+                takenEl.textContent = Math.floor(current) + ' founding spots claimed';
+                if (current >= WAITLIST_COUNT) clearInterval(timer);
+            }, 16);
+        }
+
+        // Trigger when waitlist section comes into view
+        const waitlistSection = document.querySelector('.waitlist-section');
+        if (waitlistSection) {
+            const counterObserver = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        animateCounter();
+                        counterObserver.unobserve(entry.target);
+                    }
+                });
+            }, { threshold: 0.3 });
+            counterObserver.observe(waitlistSection);
+        }
+
         // Waitlist form — Formspree
-        // Use native HTML form submission (AJAX blocked by network config)
-        // The form's action, method, and _next hidden field handle everything
-        document.getElementById('waitlist-form').addEventListener('submit', function() {
-            var btn = this.querySelector('button');
+        document.getElementById('waitlist-form').addEventListener('submit', async function(e) {
+            e.preventDefault();
+            const btn = this.querySelector('button');
+            const email = this.querySelector('input[type="email"]').value;
+
             btn.textContent = 'Submitting…';
             btn.disabled = true;
-            // Let the form submit naturally — don't preventDefault
+
+            try {
+                const res = await fetch('https://formspree.io/f/mlgwgndk', {
+                    method: 'POST',
+                    headers: { 'Accept': 'application/json', 'Content-Type': 'application/json' },
+                    body: JSON.stringify({ email })
+                });
+
+                if (res.ok) {
+                    btn.textContent = '✓ You\'re on the list!';
+                    btn.style.background = '#52b788';
+                    this.querySelector('input').value = '';
+                } else {
+                    btn.textContent = 'Try again';
+                    btn.style.background = '#e05252';
+                    btn.disabled = false;
+                }
+            } catch (err) {
+                btn.textContent = 'Try again';
+                btn.style.background = '#e05252';
+                btn.disabled = false;
+            }
         });
     </script>
 
