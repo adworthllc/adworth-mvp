@@ -8,11 +8,7 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800;900&family=DM+Serif+Display:ital@0;1&display=swap" rel="stylesheet">
     <style>
-        *, *::before, *::after {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
+        *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
 
         :root {
             --green-deep: #1a4a35;
@@ -32,850 +28,154 @@
         }
 
         html { scroll-behavior: smooth; }
-
-        body {
-            font-family: 'Poppins', sans-serif;
-            background: var(--off-white);
-            color: var(--ink);
-            line-height: 1.6;
-            overflow-x: hidden;
-        }
-
-        /* ── TYPOGRAPHY ─────────────────────────────────── */
+        body { font-family: 'Poppins', sans-serif; background: var(--off-white); color: var(--ink); line-height: 1.6; overflow-x: hidden; }
         .serif { font-family: 'DM Serif Display', Georgia, serif; }
+        .container { max-width: 1160px; margin: 0 auto; padding: 0 2rem; }
+        .container--narrow { max-width: 780px; margin: 0 auto; padding: 0 2rem; }
 
-        /* ── LAYOUT ──────────────────────────────────────── */
-        .container {
-            max-width: 1160px;
-            margin: 0 auto;
-            padding: 0 2rem;
-        }
-        .container--narrow {
-            max-width: 780px;
-            margin: 0 auto;
-            padding: 0 2rem;
-        }
-
-        /* ── HEADER ──────────────────────────────────────── */
-        header {
-            position: sticky;
-            top: 0;
-            z-index: 100;
-            background: rgba(250, 250, 248, 0.92);
-            backdrop-filter: blur(12px);
-            -webkit-backdrop-filter: blur(12px);
-            border-bottom: 1px solid var(--border);
-        }
-
-        nav {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            padding: 1.25rem 0;
-        }
-
-        .logo {
-            display: flex;
-            align-items: center;
-            gap: 0.75rem;
-            text-decoration: none;
-        }
-
-        .logo-mark {
-            font-family: 'Poppins', sans-serif;
-            font-size: 1.6rem;
-            font-weight: 800;
-            color: var(--green-primary);
-            letter-spacing: -0.5px;
-        }
-
-        .patent-pill {
-            font-size: 0.6rem;
-            font-weight: 700;
-            text-transform: uppercase;
-            letter-spacing: 1px;
-            background: var(--green-pale);
-            color: var(--green-deep);
-            padding: 0.2rem 0.55rem;
-            border-radius: 100px;
-            border: 1px solid rgba(45,106,79,0.2);
-        }
-
-        nav ul {
-            list-style: none;
-            display: flex;
-            gap: 2.25rem;
-            align-items: center;
-        }
-
-        nav a {
-            text-decoration: none;
-            font-size: 0.875rem;
-            font-weight: 500;
-            color: var(--ink-60);
-            transition: color 0.2s;
-        }
-
+        header { position: sticky; top: 0; z-index: 100; background: rgba(250,250,248,0.92); backdrop-filter: blur(12px); -webkit-backdrop-filter: blur(12px); border-bottom: 1px solid var(--border); }
+        nav { display: flex; justify-content: space-between; align-items: center; padding: 1.25rem 0; }
+        .logo { display: flex; align-items: center; gap: 0.75rem; text-decoration: none; }
+        .logo-mark { font-family: 'Poppins', sans-serif; font-size: 1.6rem; font-weight: 800; color: var(--green-primary); letter-spacing: -0.5px; }
+        .patent-pill { font-size: 0.6rem; font-weight: 700; text-transform: uppercase; letter-spacing: 1px; background: var(--green-pale); color: var(--green-deep); padding: 0.2rem 0.55rem; border-radius: 100px; border: 1px solid rgba(45,106,79,0.2); }
+        nav ul { list-style: none; display: flex; gap: 2.25rem; align-items: center; }
+        nav a { text-decoration: none; font-size: 0.875rem; font-weight: 500; color: var(--ink-60); transition: color 0.2s; }
         nav a:hover { color: var(--green-primary); }
-
-        .nav-cta {
-            background: var(--green-primary) !important;
-            color: white !important;
-            padding: 0.6rem 1.25rem !important;
-            border-radius: 6px !important;
-            font-weight: 600 !important;
-            transition: background 0.2s, transform 0.2s !important;
-        }
-
-        .nav-cta:hover {
-            background: var(--green-deep) !important;
-            transform: translateY(-1px) !important;
-        }
-
-        /* ── HERO ─────────────────────────────────────────── */
-        .hero {
-            position: relative;
-            padding: 7rem 0 6rem;
-            overflow: hidden;
-        }
-
-        /* Subtle grid texture background */
-        .hero::before {
-            content: '';
-            position: absolute;
-            inset: 0;
-            background-image:
-                linear-gradient(var(--border) 1px, transparent 1px),
-                linear-gradient(90deg, var(--border) 1px, transparent 1px);
-            background-size: 48px 48px;
-            opacity: 0.5;
-            z-index: 0;
-        }
-
-        .hero::after {
-            content: '';
-            position: absolute;
-            inset: 0;
-            background: radial-gradient(ellipse 70% 60% at 50% 0%, var(--green-tint) 0%, transparent 70%);
-            z-index: 0;
-        }
-
-        .hero .container {
-            position: relative;
-            z-index: 1;
-            text-align: center;
-        }
-
-        .hero-eyebrow {
-            display: inline-flex;
-            align-items: center;
-            gap: 0.5rem;
-            font-size: 0.8rem;
-            font-weight: 600;
-            text-transform: uppercase;
-            letter-spacing: 1.5px;
-            color: var(--green-mid);
-            background: var(--green-tint);
-            border: 1px solid rgba(45,106,79,0.25);
-            padding: 0.4rem 1rem;
-            border-radius: 100px;
-            margin-bottom: 2rem;
-            animation: fadeInDown 0.6s ease forwards;
-        }
-
-        .hero-eyebrow .dot {
-            width: 6px;
-            height: 6px;
-            background: var(--green-accent);
-            border-radius: 50%;
-            animation: pulse 2s infinite;
-        }
-
-        @keyframes pulse {
-            0%, 100% { opacity: 1; transform: scale(1); }
-            50% { opacity: 0.5; transform: scale(0.8); }
-        }
-
-        .hero h1 {
-            font-family: 'DM Serif Display', Georgia, serif;
-            font-size: clamp(3rem, 6vw, 5.5rem);
-            line-height: 1.05;
-            color: var(--ink);
-            margin-bottom: 1.5rem;
-            animation: fadeInUp 0.7s 0.1s ease both;
-        }
-
-        .hero h1 em {
-            font-style: italic;
-            color: var(--green-primary);
-        }
-
-        .hero-sub {
-            font-size: 1.2rem;
-            color: var(--ink-60);
-            max-width: 620px;
-            margin: 0 auto 2.5rem;
-            font-weight: 400;
-            line-height: 1.7;
-            animation: fadeInUp 0.7s 0.2s ease both;
-        }
-
-        .hero-sub strong {
-            color: var(--ink);
-            font-weight: 600;
-        }
-
-        .hero-cta-group {
-            display: flex;
-            gap: 1rem;
-            justify-content: center;
-            flex-wrap: wrap;
-            animation: fadeInUp 0.7s 0.3s ease both;
-        }
-
-        .btn {
-            display: inline-flex;
-            align-items: center;
-            gap: 0.5rem;
-            padding: 0.9rem 1.75rem;
-            border-radius: 8px;
-            font-weight: 600;
-            font-size: 0.95rem;
-            text-decoration: none;
-            transition: all 0.2s;
-            border: 1.5px solid transparent;
-            cursor: pointer;
-            font-family: 'Poppins', sans-serif;
-        }
-
-        .btn-primary {
-            background: var(--green-primary);
-            color: white;
-            border-color: var(--green-primary);
-            box-shadow: 0 4px 14px rgba(45,106,79,0.3);
-        }
-
-        .btn-primary:hover {
-            background: var(--green-deep);
-            border-color: var(--green-deep);
-            transform: translateY(-2px);
-            box-shadow: 0 8px 20px rgba(45,106,79,0.35);
-        }
-
-        .btn-ghost {
-            background: transparent;
-            color: var(--green-primary);
-            border-color: var(--green-accent);
-        }
-
-        .btn-ghost:hover {
-            background: var(--green-tint);
-            border-color: var(--green-primary);
-        }
-
-        .btn-white {
-            background: white;
-            color: var(--green-primary);
-            border-color: white;
-            box-shadow: 0 4px 14px rgba(0,0,0,0.12);
-        }
-
-        .btn-white:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 8px 24px rgba(0,0,0,0.18);
-        }
-
-        .hero-trust {
-            margin-top: 3rem;
-            font-size: 0.8rem;
-            color: var(--ink-30);
-            font-weight: 500;
-            letter-spacing: 0.5px;
-            animation: fadeInUp 0.7s 0.4s ease both;
-        }
-
-        /* ── STATS BAR ────────────────────────────────────── */
-        .stats-bar {
-            background: var(--white);
-            border-top: 1px solid var(--border);
-            border-bottom: 1px solid var(--border);
-            padding: 3.5rem 0;
-        }
-
-        .stats-grid {
-            display: grid;
-            grid-template-columns: repeat(4, 1fr);
-            gap: 2rem;
-            text-align: center;
-        }
-
-        .stat-item {
-            padding: 0 1rem;
-        }
-
-        .stat-item + .stat-item {
-            border-left: 1px solid var(--border);
-        }
-
-        .stat-value {
-            font-family: 'DM Serif Display', Georgia, serif;
-            font-size: 2.75rem;
-            color: var(--green-primary);
-            line-height: 1;
-            margin-bottom: 0.4rem;
-        }
-
-        .stat-label {
-            font-size: 0.85rem;
-            color: var(--ink-60);
-            font-weight: 500;
-            line-height: 1.4;
-        }
-
-        /* ── PROBLEM ─────────────────────────────────────── */
-        .section {
-            padding: 6rem 0;
-        }
-
-        .section--alt {
-            background: var(--white);
-        }
-
-        .section--dark {
-            background: var(--green-deep);
-            color: white;
-        }
-
-        .label {
-            display: inline-block;
-            font-size: 0.72rem;
-            font-weight: 700;
-            text-transform: uppercase;
-            letter-spacing: 2px;
-            color: var(--green-accent);
-            margin-bottom: 1rem;
-        }
-
-        .section--dark .label {
-            color: var(--green-accent);
-        }
-
-        .section-title {
-            font-family: 'DM Serif Display', Georgia, serif;
-            font-size: clamp(2rem, 4vw, 3.25rem);
-            line-height: 1.15;
-            color: var(--ink);
-            margin-bottom: 1rem;
-        }
-
-        .section--dark .section-title {
-            color: white;
-        }
-
-        .section-lead {
-            font-size: 1.1rem;
-            color: var(--ink-60);
-            max-width: 640px;
-            line-height: 1.7;
-            margin-bottom: 3.5rem;
-        }
-
-        .section--dark .section-lead {
-            color: rgba(255,255,255,0.7);
-        }
-
-        .problem-grid {
-            display: grid;
-            grid-template-columns: repeat(3, 1fr);
-            gap: 1.5px;
-            background: var(--border);
-            border: 1.5px solid var(--border);
-            border-radius: 12px;
-            overflow: hidden;
-        }
-
-        .problem-card {
-            background: var(--white);
-            padding: 2.25rem;
-            transition: background 0.2s;
-        }
-
-        .problem-card:hover {
-            background: var(--green-tint);
-        }
-
-        .problem-icon {
-            width: 44px;
-            height: 44px;
-            background: #fef3f2;
-            border-radius: 10px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 1.25rem;
-            margin-bottom: 1.25rem;
-        }
-
-        .problem-card h3 {
-            font-size: 1.05rem;
-            font-weight: 700;
-            color: var(--ink);
-            margin-bottom: 0.75rem;
-        }
-
-        .problem-card p {
-            font-size: 0.9rem;
-            color: var(--ink-60);
-            line-height: 1.7;
-        }
-
-        /* ── HOW IT WORKS ─────────────────────────────────── */
-        .how-it-works {
-            counter-reset: steps;
-        }
-
-        .steps {
-            display: grid;
-            grid-template-columns: repeat(2, 1fr);
-            gap: 1.5rem;
-            margin-top: 1rem;
-        }
-
-        .step {
-            background: var(--off-white);
-            border: 1.5px solid var(--border);
-            border-radius: 12px;
-            padding: 2.25rem;
-            position: relative;
-            overflow: hidden;
-            transition: border-color 0.2s, transform 0.2s;
-        }
-
-        .step:hover {
-            border-color: var(--green-accent);
-            transform: translateY(-3px);
-        }
-
-        .step::before {
-            counter-increment: steps;
-            content: "0" counter(steps);
-            position: absolute;
-            top: 1.5rem;
-            right: 1.75rem;
-            font-family: 'DM Serif Display', serif;
-            font-size: 3.5rem;
-            color: var(--green-pale);
-            line-height: 1;
-        }
-
-        .step-icon {
-            width: 40px;
-            height: 40px;
-            background: var(--green-pale);
-            border-radius: 10px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 1.1rem;
-            margin-bottom: 1.25rem;
-        }
-
-        .step h3 {
-            font-size: 1.1rem;
-            font-weight: 700;
-            color: var(--green-primary);
-            margin-bottom: 0.75rem;
-        }
-
-        .step p {
-            font-size: 0.9rem;
-            color: var(--ink-60);
-            line-height: 1.7;
-        }
-
-        /* ── MARKETPLACE SPLIT ────────────────────────────── */
-        .split {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 4rem;
-            align-items: center;
-        }
-
-        .split-text .section-lead {
-            margin-bottom: 2rem;
-        }
-
-        .split-visual {
-            background: var(--green-tint);
-            border: 1.5px solid var(--border);
-            border-radius: 16px;
-            padding: 2.5rem;
-            position: relative;
-        }
-
-        .flow-item {
-            display: flex;
-            align-items: flex-start;
-            gap: 1rem;
-            padding: 1rem 0;
-        }
-
-        .flow-item + .flow-item {
-            border-top: 1px solid var(--border);
-        }
-
-        .flow-num {
-            width: 28px;
-            height: 28px;
-            min-width: 28px;
-            background: var(--green-primary);
-            color: white;
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 0.75rem;
-            font-weight: 700;
-            margin-top: 2px;
-        }
-
-        .flow-text strong {
-            display: block;
-            font-size: 0.9rem;
-            font-weight: 700;
-            color: var(--ink);
-            margin-bottom: 0.2rem;
-        }
-
-        .flow-text span {
-            font-size: 0.85rem;
-            color: var(--ink-60);
-        }
-
-        .flow-arrow {
-            text-align: center;
-            color: var(--green-accent);
-            font-size: 1.25rem;
-            margin: 0.25rem 0;
-        }
-
-        /* ── FOUNDER ─────────────────────────────────────── */
-        .founder-card {
-            max-width: 760px;
-            margin: 0 auto;
-            background: var(--white);
-            border: 1.5px solid var(--border);
-            border-radius: 16px;
-            padding: 3.5rem;
-            position: relative;
-        }
-
-        .founder-card::before {
-            content: '\201C';
-            font-family: 'DM Serif Display', serif;
-            font-size: 8rem;
-            color: var(--green-pale);
-            position: absolute;
-            top: -1rem;
-            left: 2.5rem;
-            line-height: 1;
-        }
-
-        .founder-body {
-            font-size: 1rem;
-            color: var(--ink-60);
-            line-height: 1.8;
-        }
-
-        .founder-body p + p {
-            margin-top: 1.25rem;
-        }
-
-        .founder-pullquote {
-            font-family: 'DM Serif Display', serif;
-            font-size: 1.5rem;
-            font-style: italic;
-            color: var(--green-primary);
-            border-left: 3px solid var(--green-accent);
-            padding-left: 1.5rem;
-            margin: 2rem 0;
-            line-height: 1.4;
-        }
-
-        .founder-sig {
-            margin-top: 2.5rem;
-            padding-top: 2rem;
-            border-top: 1px solid var(--border);
-            display: flex;
-            align-items: center;
-            gap: 1rem;
-        }
-
-        .founder-avatar {
-            width: 52px;
-            height: 52px;
-            background: var(--green-pale);
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 1.25rem;
-            font-weight: 800;
-            color: var(--green-primary);
-            flex-shrink: 0;
-        }
-
-        .founder-sig-text strong {
-            display: block;
-            font-weight: 700;
-            font-size: 0.95rem;
-            color: var(--ink);
-        }
-
-        .founder-sig-text small {
-            font-size: 0.8rem;
-            color: var(--ink-60);
-        }
-
-        /* ── INVESTOR CTA ─────────────────────────────────── */
-        .investor-section {
-            background: var(--green-deep);
-            padding: 6rem 0;
-            text-align: center;
-            position: relative;
-            overflow: hidden;
-        }
-
-        .investor-section::before {
-            content: '';
-            position: absolute;
-            inset: 0;
-            background-image: radial-gradient(circle at 20% 50%, rgba(82,183,136,0.15) 0%, transparent 50%),
-                              radial-gradient(circle at 80% 50%, rgba(82,183,136,0.1) 0%, transparent 50%);
-        }
-
-        .investor-section .container {
-            position: relative;
-            z-index: 1;
-        }
-
+        .nav-cta { background: var(--green-primary) !important; color: white !important; padding: 0.6rem 1.25rem !important; border-radius: 6px !important; font-weight: 600 !important; transition: background 0.2s, transform 0.2s !important; }
+        .nav-cta:hover { background: var(--green-deep) !important; transform: translateY(-1px) !important; }
+
+        .hero { position: relative; padding: 7rem 0 6rem; overflow: hidden; }
+        .hero::before { content: ''; position: absolute; inset: 0; background-image: linear-gradient(var(--border) 1px, transparent 1px), linear-gradient(90deg, var(--border) 1px, transparent 1px); background-size: 48px 48px; opacity: 0.5; z-index: 0; }
+        .hero::after { content: ''; position: absolute; inset: 0; background: radial-gradient(ellipse 70% 60% at 50% 0%, var(--green-tint) 0%, transparent 70%); z-index: 0; }
+        .hero .container { position: relative; z-index: 1; text-align: center; }
+        .hero-eyebrow { display: inline-flex; align-items: center; gap: 0.5rem; font-size: 0.8rem; font-weight: 600; text-transform: uppercase; letter-spacing: 1.5px; color: var(--green-mid); background: var(--green-tint); border: 1px solid rgba(45,106,79,0.25); padding: 0.4rem 1rem; border-radius: 100px; margin-bottom: 2rem; animation: fadeInDown 0.6s ease forwards; }
+        .hero-eyebrow .dot { width: 6px; height: 6px; background: var(--green-accent); border-radius: 50%; animation: pulse 2s infinite; }
+        @keyframes pulse { 0%, 100% { opacity: 1; transform: scale(1); } 50% { opacity: 0.5; transform: scale(0.8); } }
+        .hero h1 { font-family: 'DM Serif Display', Georgia, serif; font-size: clamp(3rem, 6vw, 5.5rem); line-height: 1.05; color: var(--ink); margin-bottom: 1.5rem; animation: fadeInUp 0.7s 0.1s ease both; }
+        .hero h1 em { font-style: italic; color: var(--green-primary); }
+        .hero-sub { font-size: 1.2rem; color: var(--ink-60); max-width: 620px; margin: 0 auto 2.5rem; font-weight: 400; line-height: 1.7; animation: fadeInUp 0.7s 0.2s ease both; }
+        .hero-sub strong { color: var(--ink); font-weight: 600; }
+        .hero-cta-group { display: flex; gap: 1rem; justify-content: center; flex-wrap: wrap; animation: fadeInUp 0.7s 0.3s ease both; }
+        .btn { display: inline-flex; align-items: center; gap: 0.5rem; padding: 0.9rem 1.75rem; border-radius: 8px; font-weight: 600; font-size: 0.95rem; text-decoration: none; transition: all 0.2s; border: 1.5px solid transparent; cursor: pointer; font-family: 'Poppins', sans-serif; }
+        .btn-primary { background: var(--green-primary); color: white; border-color: var(--green-primary); box-shadow: 0 4px 14px rgba(45,106,79,0.3); }
+        .btn-primary:hover { background: var(--green-deep); border-color: var(--green-deep); transform: translateY(-2px); box-shadow: 0 8px 20px rgba(45,106,79,0.35); }
+        .btn-ghost { background: transparent; color: var(--green-primary); border-color: var(--green-accent); }
+        .btn-ghost:hover { background: var(--green-tint); border-color: var(--green-primary); }
+        .btn-white { background: white; color: var(--green-primary); border-color: white; box-shadow: 0 4px 14px rgba(0,0,0,0.12); }
+        .btn-white:hover { transform: translateY(-2px); box-shadow: 0 8px 24px rgba(0,0,0,0.18); }
+        .hero-trust { margin-top: 3rem; font-size: 0.8rem; color: var(--ink-30); font-weight: 500; letter-spacing: 0.5px; animation: fadeInUp 0.7s 0.4s ease both; }
+
+        .stats-bar { background: var(--white); border-top: 1px solid var(--border); border-bottom: 1px solid var(--border); padding: 3.5rem 0; }
+        .stats-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 2rem; text-align: center; }
+        .stat-item { padding: 0 1rem; }
+        .stat-item + .stat-item { border-left: 1px solid var(--border); }
+        .stat-value { font-family: 'DM Serif Display', Georgia, serif; font-size: 2.75rem; color: var(--green-primary); line-height: 1; margin-bottom: 0.4rem; }
+        .stat-label { font-size: 0.85rem; color: var(--ink-60); font-weight: 500; line-height: 1.4; }
+
+        .section { padding: 6rem 0; }
+        .section--alt { background: var(--white); }
+        .label { display: inline-block; font-size: 0.72rem; font-weight: 700; text-transform: uppercase; letter-spacing: 2px; color: var(--green-accent); margin-bottom: 1rem; }
+        .section-title { font-family: 'DM Serif Display', Georgia, serif; font-size: clamp(2rem, 4vw, 3.25rem); line-height: 1.15; color: var(--ink); margin-bottom: 1rem; }
+        .section-lead { font-size: 1.1rem; color: var(--ink-60); max-width: 640px; line-height: 1.7; margin-bottom: 3.5rem; }
+
+        .problem-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.5px; background: var(--border); border: 1.5px solid var(--border); border-radius: 12px; overflow: hidden; }
+        .problem-card { background: var(--white); padding: 2.25rem; transition: background 0.2s; }
+        .problem-card:hover { background: var(--green-tint); }
+        .problem-icon { width: 44px; height: 44px; background: #fef3f2; border-radius: 10px; display: flex; align-items: center; justify-content: center; font-size: 1.25rem; margin-bottom: 1.25rem; }
+        .problem-card h3 { font-size: 1.05rem; font-weight: 700; color: var(--ink); margin-bottom: 0.75rem; }
+        .problem-card p { font-size: 0.9rem; color: var(--ink-60); line-height: 1.7; }
+
+        .how-it-works { counter-reset: steps; }
+        .steps { display: grid; grid-template-columns: repeat(2, 1fr); gap: 1.5rem; margin-top: 1rem; }
+        .step { background: var(--off-white); border: 1.5px solid var(--border); border-radius: 12px; padding: 2.25rem; position: relative; overflow: hidden; transition: border-color 0.2s, transform 0.2s; }
+        .step:hover { border-color: var(--green-accent); transform: translateY(-3px); }
+        .step::before { counter-increment: steps; content: "0" counter(steps); position: absolute; top: 1.5rem; right: 1.75rem; font-family: 'DM Serif Display', serif; font-size: 3.5rem; color: var(--green-pale); line-height: 1; }
+        .step-icon { width: 40px; height: 40px; background: var(--green-pale); border-radius: 10px; display: flex; align-items: center; justify-content: center; font-size: 1.1rem; margin-bottom: 1.25rem; }
+        .step h3 { font-size: 1.1rem; font-weight: 700; color: var(--green-primary); margin-bottom: 0.75rem; }
+        .step p { font-size: 0.9rem; color: var(--ink-60); line-height: 1.7; }
+
+        .split { display: grid; grid-template-columns: 1fr 1fr; gap: 4rem; align-items: center; }
+        .split-text .section-lead { margin-bottom: 2rem; }
+        .split-visual { background: var(--green-tint); border: 1.5px solid var(--border); border-radius: 16px; padding: 2.5rem; }
+        .flow-item { display: flex; align-items: flex-start; gap: 1rem; padding: 1rem 0; }
+        .flow-item + .flow-item { border-top: 1px solid var(--border); }
+        .flow-num { width: 28px; height: 28px; min-width: 28px; background: var(--green-primary); color: white; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 0.75rem; font-weight: 700; margin-top: 2px; }
+        .flow-text strong { display: block; font-size: 0.9rem; font-weight: 700; color: var(--ink); margin-bottom: 0.2rem; }
+        .flow-text span { font-size: 0.85rem; color: var(--ink-60); }
+
+        /* ── TRANSPARENCY SECTION ── */
+        .transparency-section { background: var(--white); padding: 6rem 0; border-top: 1px solid var(--border); border-bottom: 1px solid var(--border); }
+        .transparency-inner { max-width: 860px; margin: 0 auto; }
+        .transparency-header { text-align: center; margin-bottom: 3rem; }
+        .transparency-body { font-size: 1.05rem; color: var(--ink-60); line-height: 1.85; margin-bottom: 2rem; }
+        .transparency-body p + p { margin-top: 1.25rem; }
+        .transparency-statement { font-family: 'DM Serif Display', Georgia, serif; font-size: 1.4rem; font-style: italic; color: var(--green-primary); border-left: 3px solid var(--green-accent); padding: 1.25rem 1.75rem; margin: 2.5rem 0; line-height: 1.5; background: var(--green-tint); border-radius: 0 8px 8px 0; }
+        .transparency-rows { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.5px; background: var(--border); border: 1.5px solid var(--border); border-radius: 12px; overflow: hidden; margin-top: 2.5rem; }
+        .transparency-row { background: var(--off-white); padding: 1.75rem; transition: background 0.2s; }
+        .transparency-row:hover { background: var(--green-tint); }
+        .transparency-row-icon { font-size: 1.5rem; margin-bottom: 0.75rem; }
+        .transparency-row h4 { font-size: 0.875rem; font-weight: 700; color: var(--ink); margin-bottom: 0.5rem; }
+        .transparency-row p { font-size: 0.85rem; color: var(--ink-60); line-height: 1.6; }
+        .transparency-row .amount { font-family: 'DM Serif Display', serif; font-size: 1.5rem; color: var(--green-primary); margin-bottom: 0.25rem; }
+        .transparency-closing { font-size: 0.95rem; color: var(--ink-60); line-height: 1.85; margin-top: 2rem; font-style: italic; }
+
+        /* ── FOUNDER ── */
+        .founder-card { max-width: 760px; margin: 0 auto; background: var(--white); border: 1.5px solid var(--border); border-radius: 16px; padding: 3.5rem; position: relative; }
+        .founder-card::before { content: '\201C'; font-family: 'DM Serif Display', serif; font-size: 8rem; color: var(--green-pale); position: absolute; top: -1rem; left: 2.5rem; line-height: 1; }
+        .founder-body { font-size: 1rem; color: var(--ink-60); line-height: 1.8; }
+        .founder-body p + p { margin-top: 1.25rem; }
+        .founder-pullquote { font-family: 'DM Serif Display', serif; font-size: 1.5rem; font-style: italic; color: var(--green-primary); border-left: 3px solid var(--green-accent); padding-left: 1.5rem; margin: 2rem 0; line-height: 1.4; }
+        .founder-transparency-note { background: var(--green-tint); border: 1px solid rgba(45,106,79,0.2); border-radius: 8px; padding: 1.25rem 1.5rem; margin-top: 1.5rem; font-size: 0.9rem; color: var(--ink-60); line-height: 1.7; }
+        .founder-transparency-note strong { color: var(--green-primary); font-weight: 700; }
+        .founder-sig { margin-top: 2.5rem; padding-top: 2rem; border-top: 1px solid var(--border); display: flex; align-items: center; gap: 1rem; }
+        .founder-avatar { width: 52px; height: 52px; background: var(--green-pale); border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 1.25rem; font-weight: 800; color: var(--green-primary); flex-shrink: 0; }
+        .founder-sig-text strong { display: block; font-weight: 700; font-size: 0.95rem; color: var(--ink); }
+        .founder-sig-text small { font-size: 0.8rem; color: var(--ink-60); }
+
+        /* ── INVESTOR ── */
+        .investor-section { background: var(--green-deep); padding: 6rem 0; text-align: center; position: relative; overflow: hidden; }
+        .investor-section::before { content: ''; position: absolute; inset: 0; background-image: radial-gradient(circle at 20% 50%, rgba(82,183,136,0.15) 0%, transparent 50%), radial-gradient(circle at 80% 50%, rgba(82,183,136,0.1) 0%, transparent 50%); }
+        .investor-section .container { position: relative; z-index: 1; }
         .investor-section .label { color: var(--green-accent); }
-
         .investor-section .section-title { color: white; }
+        .investor-lead { font-size: 1.1rem; color: rgba(255,255,255,0.7); max-width: 580px; margin: 0 auto 3.5rem; line-height: 1.7; }
+        .investor-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 1.5rem; max-width: 740px; margin: 0 auto 3.5rem; text-align: left; }
+        .investor-card { background: rgba(255,255,255,0.07); border: 1px solid rgba(255,255,255,0.12); border-radius: 12px; padding: 1.75rem; }
+        .investor-card h4 { font-size: 0.75rem; font-weight: 700; text-transform: uppercase; letter-spacing: 1.5px; color: var(--green-accent); margin-bottom: 1rem; }
+        .investor-card ul { list-style: none; }
+        .investor-card li { font-size: 0.875rem; color: rgba(255,255,255,0.8); padding: 0.4rem 0; padding-left: 1.25rem; position: relative; line-height: 1.5; }
+        .investor-card li::before { content: '✓'; position: absolute; left: 0; color: var(--green-accent); font-size: 0.75rem; top: 0.45rem; }
 
-        .investor-lead {
-            font-size: 1.1rem;
-            color: rgba(255,255,255,0.7);
-            max-width: 580px;
-            margin: 0 auto 3.5rem;
-            line-height: 1.7;
-        }
+        /* ── WAITLIST ── */
+        .waitlist-section { padding: 6rem 0; background: var(--off-white); text-align: center; }
+        .waitlist-form { max-width: 480px; margin: 0 auto; }
+        .input-group { display: flex; gap: 0.75rem; margin-bottom: 1rem; }
+        .waitlist-form input[type="email"] { flex: 1; padding: 0.9rem 1.25rem; border: 1.5px solid var(--border); border-radius: 8px; font-size: 0.95rem; font-family: 'Poppins', sans-serif; background: white; color: var(--ink); transition: border-color 0.2s; }
+        .waitlist-form input[type="email"]:focus { outline: none; border-color: var(--green-primary); }
+        .waitlist-form button { background: var(--green-primary); color: white; padding: 0.9rem 1.5rem; border: none; border-radius: 8px; font-weight: 700; font-size: 0.95rem; cursor: pointer; font-family: 'Poppins', sans-serif; transition: all 0.2s; white-space: nowrap; }
+        .waitlist-form button:hover { background: var(--green-deep); transform: translateY(-1px); }
+        .waitlist-note { font-size: 0.8rem; color: var(--ink-30); margin-top: 0.75rem; }
+        .founding-badge { display: inline-flex; align-items: center; gap: 0.4rem; background: var(--gold-light); color: #7a5c2e; border: 1px solid rgba(200,169,106,0.3); border-radius: 100px; padding: 0.35rem 0.9rem; font-size: 0.75rem; font-weight: 600; margin-bottom: 1.5rem; }
 
-        .investor-grid {
-            display: grid;
-            grid-template-columns: repeat(2, 1fr);
-            gap: 1.5rem;
-            max-width: 740px;
-            margin: 0 auto 3.5rem;
-            text-align: left;
-        }
-
-        .investor-card {
-            background: rgba(255,255,255,0.07);
-            border: 1px solid rgba(255,255,255,0.12);
-            border-radius: 12px;
-            padding: 1.75rem;
-        }
-
-        .investor-card h4 {
-            font-size: 0.75rem;
-            font-weight: 700;
-            text-transform: uppercase;
-            letter-spacing: 1.5px;
-            color: var(--green-accent);
-            margin-bottom: 1rem;
-        }
-
-        .investor-card ul {
-            list-style: none;
-        }
-
-        .investor-card li {
-            font-size: 0.875rem;
-            color: rgba(255,255,255,0.8);
-            padding: 0.4rem 0;
-            padding-left: 1.25rem;
-            position: relative;
-            line-height: 1.5;
-        }
-
-        .investor-card li::before {
-            content: '✓';
-            position: absolute;
-            left: 0;
-            color: var(--green-accent);
-            font-size: 0.75rem;
-            top: 0.45rem;
-        }
-
-        /* ── WAITLIST ─────────────────────────────────────── */
-        .waitlist-section {
-            padding: 6rem 0;
-            background: var(--off-white);
-            text-align: center;
-        }
-
-        .waitlist-form {
-            max-width: 480px;
-            margin: 0 auto;
-        }
-
-        .input-group {
-            display: flex;
-            gap: 0.75rem;
-            margin-bottom: 1rem;
-        }
-
-        .waitlist-form input[type="email"] {
-            flex: 1;
-            padding: 0.9rem 1.25rem;
-            border: 1.5px solid var(--border);
-            border-radius: 8px;
-            font-size: 0.95rem;
-            font-family: 'Poppins', sans-serif;
-            background: white;
-            color: var(--ink);
-            transition: border-color 0.2s;
-        }
-
-        .waitlist-form input[type="email"]:focus {
-            outline: none;
-            border-color: var(--green-primary);
-        }
-
-        .waitlist-form button {
-            background: var(--green-primary);
-            color: white;
-            padding: 0.9rem 1.5rem;
-            border: none;
-            border-radius: 8px;
-            font-weight: 700;
-            font-size: 0.95rem;
-            cursor: pointer;
-            font-family: 'Poppins', sans-serif;
-            transition: all 0.2s;
-            white-space: nowrap;
-        }
-
-        .waitlist-form button:hover {
-            background: var(--green-deep);
-            transform: translateY(-1px);
-        }
-
-        .waitlist-note {
-            font-size: 0.8rem;
-            color: var(--ink-30);
-            margin-top: 0.75rem;
-        }
-
-        .founding-badge {
-            display: inline-flex;
-            align-items: center;
-            gap: 0.4rem;
-            background: var(--gold-light);
-            color: #7a5c2e;
-            border: 1px solid rgba(200,169,106,0.3);
-            border-radius: 100px;
-            padding: 0.35rem 0.9rem;
-            font-size: 0.75rem;
-            font-weight: 600;
-            margin-bottom: 1.5rem;
-        }
-
-        /* ── FOOTER ───────────────────────────────────────── */
-        footer {
-            background: var(--white);
-            border-top: 1px solid var(--border);
-            padding: 3.5rem 0 2rem;
-        }
-
-        .footer-grid {
-            display: grid;
-            grid-template-columns: 2fr 1fr 1fr 1fr;
-            gap: 3rem;
-            margin-bottom: 3rem;
-        }
-
-        .footer-brand-name {
-            font-size: 1.4rem;
-            font-weight: 800;
-            color: var(--green-primary);
-            margin-bottom: 0.6rem;
-        }
-
-        .footer-tagline {
-            font-size: 0.85rem;
-            color: var(--ink-60);
-            line-height: 1.6;
-            max-width: 260px;
-        }
-
-        .footer-links h4 {
-            font-size: 0.75rem;
-            font-weight: 700;
-            text-transform: uppercase;
-            letter-spacing: 1.5px;
-            color: var(--ink);
-            margin-bottom: 1rem;
-        }
-
+        /* ── FOOTER ── */
+        footer { background: var(--white); border-top: 1px solid var(--border); padding: 3.5rem 0 2rem; }
+        .footer-grid { display: grid; grid-template-columns: 2fr 1fr 1fr 1fr; gap: 3rem; margin-bottom: 3rem; }
+        .footer-brand-name { font-size: 1.4rem; font-weight: 800; color: var(--green-primary); margin-bottom: 0.6rem; }
+        .footer-tagline { font-size: 0.85rem; color: var(--ink-60); line-height: 1.6; max-width: 260px; margin-bottom: 0.75rem; }
+        .footer-transparency-note { font-size: 0.78rem; color: var(--ink-30); line-height: 1.6; max-width: 260px; border-top: 1px solid var(--border); padding-top: 0.75rem; margin-top: 0.25rem; }
+        .footer-links h4 { font-size: 0.75rem; font-weight: 700; text-transform: uppercase; letter-spacing: 1.5px; color: var(--ink); margin-bottom: 1rem; }
         .footer-links ul { list-style: none; }
-
-        .footer-links a {
-            display: block;
-            font-size: 0.875rem;
-            color: var(--ink-60);
-            text-decoration: none;
-            margin-bottom: 0.6rem;
-            transition: color 0.2s;
-        }
-
+        .footer-links a { display: block; font-size: 0.875rem; color: var(--ink-60); text-decoration: none; margin-bottom: 0.6rem; transition: color 0.2s; }
         .footer-links a:hover { color: var(--green-primary); }
+        .footer-bottom { padding-top: 2rem; border-top: 1px solid var(--border); display: flex; justify-content: space-between; align-items: center; font-size: 0.8rem; color: var(--ink-30); }
 
-        .footer-bottom {
-            padding-top: 2rem;
-            border-top: 1px solid var(--border);
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            font-size: 0.8rem;
-            color: var(--ink-30);
-        }
+        /* ── ANIMATIONS ── */
+        @keyframes fadeInDown { from { opacity: 0; transform: translateY(-12px); } to { opacity: 1; transform: translateY(0); } }
+        @keyframes fadeInUp { from { opacity: 0; transform: translateY(16px); } to { opacity: 1; transform: translateY(0); } }
+        .fade-up { opacity: 0; transform: translateY(24px); transition: opacity 0.6s ease, transform 0.6s ease; }
+        .fade-up.visible { opacity: 1; transform: translateY(0); }
 
-        /* ── ANIMATIONS ───────────────────────────────────── */
-        @keyframes fadeInDown {
-            from { opacity: 0; transform: translateY(-12px); }
-            to { opacity: 1; transform: translateY(0); }
-        }
-
-        @keyframes fadeInUp {
-            from { opacity: 0; transform: translateY(16px); }
-            to { opacity: 1; transform: translateY(0); }
-        }
-
-        /* Scroll-triggered fade */
-        .fade-up {
-            opacity: 0;
-            transform: translateY(24px);
-            transition: opacity 0.6s ease, transform 0.6s ease;
-        }
-
-        .fade-up.visible {
-            opacity: 1;
-            transform: translateY(0);
-        }
-
-        /* ── RESPONSIVE ──────────────────────────────────── */
+        /* ── RESPONSIVE ── */
         @media (max-width: 900px) {
             .stats-grid { grid-template-columns: repeat(2, 1fr); }
             .stat-item + .stat-item { border-left: none; }
@@ -884,8 +184,8 @@
             .split { grid-template-columns: 1fr; gap: 3rem; }
             .investor-grid { grid-template-columns: 1fr; }
             .footer-grid { grid-template-columns: 1fr 1fr; }
+            .transparency-rows { grid-template-columns: 1fr; gap: 1px; }
         }
-
         @media (max-width: 640px) {
             nav ul { display: none; }
             .hero { padding: 5rem 0 4rem; }
@@ -899,7 +199,6 @@
 </head>
 <body>
 
-    <!-- ── HEADER ── -->
     <header>
         <div class="container">
             <nav>
@@ -910,6 +209,7 @@
                 <ul>
                     <li><a href="#problem">Problem</a></li>
                     <li><a href="#how-it-works">How It Works</a></li>
+                    <li><a href="#transparency">How We Make Money</a></li>
                     <li><a href="#founder">Founder</a></li>
                     <li><a href="#investors">Investors</a></li>
                     <li><a href="#waitlist" class="nav-cta">Join Waitlist</a></li>
@@ -920,18 +220,14 @@
 
     <main>
 
-        <!-- ── HERO ── -->
+        <!-- HERO -->
         <section class="hero">
             <div class="container">
                 <div class="hero-eyebrow">
                     <span class="dot"></span>
                     Seed Round Open · $1.5M
                 </div>
-                <h1>
-                    Your data is worth<br>
-                    <em>billions</em>. You get<br>
-                    none of it.
-                </h1>
+                <h1>Your data is worth<br><em>billions</em>. You get<br>none of it.</h1>
                 <p class="hero-sub">
                     Adworth is <strong>cryptographic consent infrastructure</strong> for digital advertising — 
                     where you control who gets your data, for how long, and get paid every time you share it.
@@ -944,7 +240,7 @@
             </div>
         </section>
 
-        <!-- ── STATS ── -->
+        <!-- STATS -->
         <section class="stats-bar">
             <div class="container">
                 <div class="stats-grid">
@@ -968,13 +264,13 @@
             </div>
         </section>
 
-        <!-- ── PROBLEM ── -->
+        <!-- PROBLEM -->
         <section class="section" id="problem">
             <div class="container">
                 <p class="label fade-up">The Problem</p>
                 <h2 class="section-title fade-up">The internet was built on<br>your attention. You never consented.</h2>
                 <p class="section-lead fade-up">AI platforms like ChatGPT and Perplexity are now running ads — with zero transparency requirements. It's Facebook 2007 all over again, but the stakes are higher.</p>
-                <div class="problem-grid fade-up">
+                <div class="problem-grid">
                     <div class="problem-card">
                         <div class="problem-icon">🔍</div>
                         <h3>Surveillance by Default</h3>
@@ -1009,7 +305,7 @@
             </div>
         </section>
 
-        <!-- ── HOW IT WORKS ── -->
+        <!-- HOW IT WORKS -->
         <section class="section section--alt how-it-works" id="how-it-works">
             <div class="container">
                 <p class="label fade-up">The Solution</p>
@@ -1050,7 +346,7 @@
             </div>
         </section>
 
-        <!-- ── MARKETPLACE FLOW ── -->
+        <!-- MARKETPLACE FLOW -->
         <section class="section">
             <div class="container">
                 <div class="split">
@@ -1063,45 +359,72 @@
                     <div class="split-visual fade-up">
                         <div class="flow-item">
                             <div class="flow-num">1</div>
-                            <div class="flow-text">
-                                <strong>Advertiser requests access</strong>
-                                <span>Nike wants your running data for shoe ads</span>
-                            </div>
+                            <div class="flow-text"><strong>Advertiser requests access</strong><span>Nike wants your running data for shoe ads</span></div>
                         </div>
                         <div class="flow-item">
                             <div class="flow-num">2</div>
-                            <div class="flow-text">
-                                <strong>You issue a Consent Token</strong>
-                                <span>30 days, shoes only, $0.50/month</span>
-                            </div>
+                            <div class="flow-text"><strong>You issue a Consent Token</strong><span>30 days, shoes only, $0.50/month</span></div>
                         </div>
                         <div class="flow-item">
                             <div class="flow-num">3</div>
-                            <div class="flow-text">
-                                <strong>Token verified, payment released</strong>
-                                <span>Funds hit your wallet automatically</span>
-                            </div>
+                            <div class="flow-text"><strong>Token verified, payment released</strong><span>Funds hit your wallet automatically</span></div>
                         </div>
                         <div class="flow-item">
                             <div class="flow-num">4</div>
-                            <div class="flow-text">
-                                <strong>Day 31 — token expires</strong>
-                                <span>Access revoked. Payments stop. Deletion enforced.</span>
-                            </div>
+                            <div class="flow-text"><strong>Day 31 — token expires</strong><span>Access revoked. Payments stop. Deletion enforced.</span></div>
                         </div>
                         <div class="flow-item">
                             <div class="flow-num">5</div>
-                            <div class="flow-text">
-                                <strong>Monitor verifies deletion</strong>
-                                <span>If Nike still has your data, the RPE files automatically</span>
-                            </div>
+                            <div class="flow-text"><strong>Monitor verifies deletion</strong><span>If Nike still has your data, the RPE files automatically</span></div>
                         </div>
                     </div>
                 </div>
             </div>
         </section>
 
-        <!-- ── DEMO BRIDGE ── -->
+        <!-- ── HOW WE MAKE MONEY (TRANSPARENCY) ── -->
+        <section class="transparency-section" id="transparency">
+            <div class="container">
+                <div class="transparency-inner">
+                    <div class="transparency-header">
+                        <p class="label fade-up">How We Make Money</p>
+                        <h2 class="section-title fade-up">Radical honesty about<br>our business model.</h2>
+                    </div>
+                    <div class="transparency-body fade-up">
+                        <p>Most companies hide how they make money because it conflicts with what they claim to stand for. We're building infrastructure for privacy — so hiding our business model would make us no different from everyone else.</p>
+                        <p>Here's exactly how Adworth makes money. No footnotes. No fine print.</p>
+                    </div>
+                    <div class="transparency-statement fade-up">
+                        "When an advertiser pays you for your data, we take a small transaction fee — visible to you, recorded on the ledger, non-negotiable. We don't make money unless you do."
+                    </div>
+                    <div class="transparency-rows">
+                        <div class="transparency-row">
+                            <div class="transparency-row-icon">💳</div>
+                            <div class="amount">2–5%</div>
+                            <h4>Transaction Fee</h4>
+                            <p>When an advertiser pays you for data access, Adworth takes a small percentage. You see the full amount, our cut, and your payout — always.</p>
+                        </div>
+                        <div class="transparency-row">
+                            <div class="transparency-row-icon">🚫</div>
+                            <div class="amount">$0</div>
+                            <h4>From Your Data</h4>
+                            <p>We never sell your data. We never have a hidden revenue stream from your information. If we did, we'd be the problem we're trying to fix.</p>
+                        </div>
+                        <div class="transparency-row">
+                            <div class="transparency-row-icon">🏅</div>
+                            <div class="amount">Coming</div>
+                            <h4>Elite Certification</h4>
+                            <p>Brands pay for automated zero-knowledge compliance audits to prove transparent practices. Users pay nothing. The ledger proves everything.</p>
+                        </div>
+                    </div>
+                    <p class="transparency-closing fade-up">
+                        That's not a promise. That's the architecture — enforced cryptographically, recorded on the ledger, visible to everyone on the platform.
+                    </p>
+                </div>
+            </div>
+        </section>
+
+        <!-- DEMO BRIDGE -->
         <section class="section section--alt">
             <div class="container--narrow" style="text-align: center;">
                 <p class="label fade-up">Right Now</p>
@@ -1113,23 +436,24 @@
             </div>
         </section>
 
-        <!-- ── FOUNDER ── -->
+        <!-- FOUNDER -->
         <section class="section" id="founder">
             <div class="container">
-                <p class="label" style="text-align:center;" class="fade-up">Founder</p>
+                <p class="label fade-up" style="text-align:center;">Founder</p>
                 <h2 class="section-title fade-up" style="text-align:center; margin-bottom: 3rem;">Why I Left After 18 Years</h2>
                 <div class="founder-card fade-up">
                     <div class="founder-body">
                         <p>After 18 years at Verizon — the last 15 as a supervisor managing large technical support teams — I left in December 2025 to build something I'd been thinking about for years.</p>
                         <p>Working inside a major telecom for nearly two decades gives you a front-row seat to how users' trust gets traded away. Companies collect without asking. "Delete my data" goes into a void. Consent is theater. And now, AI platforms are running ads with zero transparency requirements — and nobody is building the infrastructure to fix it.</p>
                         <p>I'd seen the problem from the inside long enough. It was time to build the solution.</p>
-
                         <div class="founder-pullquote">
                             "What if users could lend their data — on their terms, with cryptographic enforcement, and get paid for it?"
                         </div>
-
                         <p>That's Adworth. Not a privacy app. Not a compliance checkbox. Infrastructure — the consent rails that a permission-based internet runs on.</p>
                         <p>The patent was filed February 23, 2026. Now I'm raising $1.5M to build it properly.</p>
+                        <div class="founder-transparency-note">
+                            <strong>On how Adworth makes money:</strong> I want you to know exactly — because if I'm building infrastructure for privacy, hiding our business model would make us no different from everyone else. We take a small fee from advertisers when they pay you. You see it. It's on the ledger. Always.
+                        </div>
                     </div>
                     <div class="founder-sig">
                         <div class="founder-avatar">NJ</div>
@@ -1142,13 +466,12 @@
             </div>
         </section>
 
-        <!-- ── INVESTOR CTA ── -->
+        <!-- INVESTOR -->
         <section class="investor-section" id="investors">
             <div class="container">
                 <p class="label fade-up">For Investors</p>
                 <h2 class="section-title fade-up">We're raising $1.5M to build<br>the consent marketplace</h2>
                 <p class="investor-lead fade-up">18 months to a working two-sided marketplace. The timing window — AI advertising boom, regulatory gap, no patent-protected competitor — won't be open forever.</p>
-
                 <div class="investor-grid fade-up">
                     <div class="investor-card">
                         <h4>What We Have Today</h4>
@@ -1166,23 +489,22 @@
                             <li>Two-sided marketplace (users + advertisers)</li>
                             <li>Transaction fee model — Stripe for consent</li>
                             <li>Enterprise compliance licensing</li>
+                            <li>Adworth Elite Certification program</li>
                         </ul>
                     </div>
                 </div>
-
                 <div class="fade-up">
                     <a href="mailto:hello@adworth.app" class="btn btn-white">Schedule a Meeting →</a>
                 </div>
             </div>
         </section>
 
-        <!-- ── WAITLIST ── -->
+        <!-- WAITLIST -->
         <section class="waitlist-section" id="waitlist">
             <div class="container--narrow">
                 <span class="founding-badge">⭐ Founding Member Offer</span>
                 <h2 class="section-title fade-up">Be first when consent<br>starts paying</h2>
                 <p class="section-lead fade-up" style="margin: 1rem auto 2.5rem;">First 1,000 users get early marketplace access, founding member status, and priority support. No spam. No irony.</p>
-
                 <form class="waitlist-form fade-up" id="waitlist-form" action="https://formspree.io/f/mlgwgndk" method="POST">
                     <div class="input-group">
                         <input type="email" name="email" placeholder="your@email.com" required>
@@ -1197,19 +519,21 @@
 
     </main>
 
-    <!-- ── FOOTER ── -->
+    <!-- FOOTER -->
     <footer>
         <div class="container">
             <div class="footer-grid">
                 <div>
                     <div class="footer-brand-name">Adworth℠</div>
                     <p class="footer-tagline">Cryptographic consent infrastructure for digital advertising. Privacy for people, compliance for platforms.</p>
+                    <p class="footer-transparency-note">Adworth earns a transaction fee when advertisers pay you for your data. That's our only revenue. Always visible. Always on the ledger.</p>
                 </div>
                 <div class="footer-links">
                     <h4>Product</h4>
                     <ul>
                         <li><a href="#problem">The Problem</a></li>
                         <li><a href="#how-it-works">How It Works</a></li>
+                        <li><a href="#transparency">How We Make Money</a></li>
                         <li><a href="/app">Transparency Demo</a></li>
                         <li><a href="#waitlist">Join Waitlist</a></li>
                     </ul>
@@ -1238,17 +562,9 @@
     </footer>
 
     <script>
-        // Scroll-triggered animations
         const observer = new IntersectionObserver((entries) => {
-            entries.forEach((entry, i) => {
+            entries.forEach(entry => {
                 if (entry.isIntersecting) {
-                    // Stagger siblings
-                    const siblings = entry.target.parentElement.querySelectorAll('.fade-up');
-                    siblings.forEach((el, idx) => {
-                        if (el === entry.target) {
-                            setTimeout(() => el.classList.add('visible'), 0);
-                        }
-                    });
                     entry.target.classList.add('visible');
                     observer.unobserve(entry.target);
                 }
@@ -1257,23 +573,18 @@
 
         document.querySelectorAll('.fade-up').forEach(el => observer.observe(el));
 
-        // Stagger children in grids
-        document.querySelectorAll('.problem-grid, .steps, .investor-grid').forEach(grid => {
-            grid.querySelectorAll('.problem-card, .step, .investor-card').forEach((card, i) => {
+        document.querySelectorAll('.problem-grid, .steps, .investor-grid, .transparency-rows').forEach(grid => {
+            grid.querySelectorAll('.problem-card, .step, .investor-card, .transparency-row').forEach((card, i) => {
                 card.classList.add('fade-up');
                 card.style.transitionDelay = `${i * 80}ms`;
                 observer.observe(card);
             });
         });
 
-        // Waitlist form — Formspree
-        // Use native HTML form submission (AJAX blocked by network config)
-        // The form's action, method, and _next hidden field handle everything
         document.getElementById('waitlist-form').addEventListener('submit', function() {
             var btn = this.querySelector('button');
             btn.textContent = 'Submitting…';
             btn.disabled = true;
-            // Let the form submit naturally — don't preventDefault
         });
     </script>
 
