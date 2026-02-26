@@ -571,14 +571,12 @@
                 <span class="founding-badge">⭐ Founding Member Offer</span>
                 <h2 class="section-title fade-up">Be first when consent<br>starts paying</h2>
                 <p class="section-lead fade-up" style="margin: 1rem auto 2.5rem;">First 1,000 users get early marketplace access, founding member status, and priority support. No spam. No irony.</p>
-                <form class="waitlist-form fade-up" id="waitlist-form" action="https://formspree.io/f/mlgwgndk" method="POST">
+                <form class="waitlist-form fade-up" id="waitlist-form" action="https://adworth.app/waitlist-submit" method="POST">
                     <div class="input-group">
                         <input type="email" name="email" placeholder="your@email.com" required>
                         <button type="submit">Join Waitlist</button>
                     </div>
-                    <input type="hidden" name="_next" value="https://adworth.app/thanks">
-                    <input type="hidden" name="_subject" value="New Adworth Waitlist Signup">
-                    <p class="waitlist-note">Your data stays yours. We're not going to sell it — that's kind of the whole point.</p>
+                    <p class="waitlist-note">Your data stays yours — stored on our own infrastructure, never shared with third parties.</p>
                 </form>
             </div>
         </section>
@@ -651,6 +649,7 @@
             var btn = this.querySelector('button');
             btn.textContent = 'Submitting…';
             btn.disabled = true;
+            // Form POSTs to Cloudflare Worker which redirects to /thanks
         });
     </script>
 
