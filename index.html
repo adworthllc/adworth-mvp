@@ -146,6 +146,22 @@
         .investor-card li { font-size: 0.875rem; color: rgba(255,255,255,0.8); padding: 0.4rem 0; padding-left: 1.25rem; position: relative; line-height: 1.5; }
         .investor-card li::before { content: '✓'; position: absolute; left: 0; color: var(--green-accent); font-size: 0.75rem; top: 0.45rem; }
 
+        /* ── MOAT TABLE ── */
+        .moat-table-wrap { max-width: 860px; margin: 0 auto 3.5rem; }
+        .moat-table-label { font-size: 0.72rem; font-weight: 700; text-transform: uppercase; letter-spacing: 2px; color: var(--green-accent); margin-bottom: 1.25rem; text-align: left; }
+        .moat-table { width: 100%; border-collapse: collapse; border: 1px solid rgba(255,255,255,0.12); border-radius: 12px; overflow: hidden; }
+        .moat-table thead th { background: rgba(255,255,255,0.08); font-size: 0.72rem; font-weight: 700; text-transform: uppercase; letter-spacing: 1.5px; color: var(--green-accent); padding: 0.9rem 1.25rem; text-align: left; border-bottom: 1px solid rgba(255,255,255,0.1); }
+        .moat-table tbody tr { border-top: 1px solid rgba(255,255,255,0.06); transition: background 0.15s; }
+        .moat-table tbody tr:hover { background: rgba(255,255,255,0.04); }
+        .moat-table tbody td { padding: 1rem 1.25rem; font-size: 0.875rem; color: rgba(255,255,255,0.8); vertical-align: top; line-height: 1.5; }
+        .moat-table .td-moat { font-weight: 600; color: white; }
+        .moat-table .td-revenue { color: var(--green-accent); font-weight: 600; }
+        .moat-table .td-detail { color: rgba(255,255,255,0.6); font-size: 0.8rem; }
+        .moat-timeline { display: inline-block; font-size: 0.7rem; font-weight: 700; text-transform: uppercase; letter-spacing: 1px; padding: 0.15rem 0.55rem; border-radius: 100px; margin-left: 0.5rem; vertical-align: middle; }
+        .moat-timeline--now { background: rgba(82,183,136,0.2); color: var(--green-accent); border: 1px solid rgba(82,183,136,0.4); }
+        .moat-timeline--soon { background: rgba(200,169,106,0.15); color: #c8a96a; border: 1px solid rgba(200,169,106,0.3); }
+        .moat-timeline--later { background: rgba(255,255,255,0.07); color: rgba(255,255,255,0.5); border: 1px solid rgba(255,255,255,0.12); }
+
         /* ── WAITLIST ── */
         .waitlist-section { padding: 6rem 0; background: var(--off-white); text-align: center; }
         .waitlist-form { max-width: 480px; margin: 0 auto; }
@@ -185,6 +201,7 @@
             .investor-grid { grid-template-columns: 1fr; }
             .footer-grid { grid-template-columns: 1fr 1fr; }
             .transparency-rows { grid-template-columns: 1fr; gap: 1px; }
+            .moat-table-wrap { overflow-x: auto; }
         }
         @media (max-width: 640px) {
             nav ul { display: none; }
@@ -382,7 +399,7 @@
             </div>
         </section>
 
-        <!-- ── HOW WE MAKE MONEY (TRANSPARENCY) ── -->
+        <!-- HOW WE MAKE MONEY -->
         <section class="transparency-section" id="transparency">
             <div class="container">
                 <div class="transparency-inner">
@@ -477,12 +494,14 @@
                 <p class="label fade-up">For Investors</p>
                 <h2 class="section-title fade-up">We're raising $1.5M to build<br>the consent marketplace</h2>
                 <p class="investor-lead fade-up">18 months to a working two-sided marketplace. The timing window — AI advertising boom, regulatory gap, no patent-protected competitor — won't be open forever.</p>
+
                 <div class="investor-grid fade-up">
                     <div class="investor-card">
                         <h4>What We Have Today</h4>
                         <ul>
                             <li>Provisional patent filed Feb 23, 2026</li>
-                            <li>Working DSA compliance demo</li>
+                            <li>Working cryptographic consent validation API</li>
+                            <li>Live DSA compliance demo at adworth.app/app</li>
                             <li>Service mark protection (Adworth℠)</li>
                             <li>Regulatory tailwinds (GDPR, CCPA, DSA)</li>
                         </ul>
@@ -490,14 +509,56 @@
                     <div class="investor-card">
                         <h4>What $1.5M Builds</h4>
                         <ul>
-                            <li>Cryptographic consent infrastructure</li>
+                            <li>Full cryptographic consent infrastructure</li>
                             <li>Two-sided marketplace (users + advertisers)</li>
                             <li>Transaction fee model — Stripe for consent</li>
-                            <li>Enterprise compliance licensing</li>
+                            <li>Enterprise compliance licensing ($15K–$50K/yr)</li>
                             <li>Adworth Elite Certification program</li>
                         </ul>
                     </div>
                 </div>
+
+                <!-- MOAT → REVENUE ALIGNMENT TABLE -->
+                <div class="moat-table-wrap fade-up">
+                    <p class="moat-table-label">How the moat becomes the money</p>
+                    <table class="moat-table">
+                        <thead>
+                            <tr>
+                                <th>Moat Layer</th>
+                                <th>Revenue Expression</th>
+                                <th>Model</th>
+                                <th>Timeline</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td class="td-moat">Cryptographic patent</td>
+                                <td class="td-revenue">Enterprise licensing</td>
+                                <td class="td-detail">$15K–$50K/yr per enterprise client — companies pay to use the patented infrastructure for verifiable consent compliance</td>
+                                <td><span class="moat-timeline moat-timeline--now">Now</span></td>
+                            </tr>
+                            <tr>
+                                <td class="td-moat">Infrastructure position</td>
+                                <td class="td-revenue">Transaction fees</td>
+                                <td class="td-detail">2–5% of every consent exchange on the marketplace — scales automatically with volume, no per-transaction selling required</td>
+                                <td><span class="moat-timeline moat-timeline--soon">18 mo</span></td>
+                            </tr>
+                            <tr>
+                                <td class="td-moat">Regulatory foresight</td>
+                                <td class="td-revenue">DSA compliance SaaS</td>
+                                <td class="td-detail">Recurring subscription for DSA repository monitoring and AI ad transparency auditing — recurring revenue that compounds with each new regulation</td>
+                                <td><span class="moat-timeline moat-timeline--now">Now</span></td>
+                            </tr>
+                            <tr>
+                                <td class="td-moat">Network effects</td>
+                                <td class="td-revenue">Marketplace flywheel</td>
+                                <td class="td-detail">More users → more valuable to advertisers → higher fees → more users. The moat deepens with scale in a way no competitor can buy their way into</td>
+                                <td><span class="moat-timeline moat-timeline--later">3–5 yr</span></td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+
                 <div class="fade-up">
                     <a href="mailto:hello@adworth.app" class="btn btn-white">Schedule a Meeting →</a>
                 </div>
