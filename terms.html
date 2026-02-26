@@ -17,8 +17,6 @@
         html { scroll-behavior: smooth; }
         body { font-family: 'Poppins', sans-serif; background: var(--off-white); color: var(--ink); line-height: 1.7; overflow-x: hidden; }
         .container { max-width: 1160px; margin: 0 auto; padding: 0 2rem; }
-
-        /* HEADER */
         header { position: sticky; top: 0; z-index: 100; background: rgba(250,250,248,0.92); backdrop-filter: blur(12px); -webkit-backdrop-filter: blur(12px); border-bottom: 1px solid var(--border); }
         nav { display: flex; justify-content: space-between; align-items: center; padding: 1.25rem 0; }
         .logo { display: flex; align-items: center; gap: 0.75rem; text-decoration: none; }
@@ -29,16 +27,12 @@
         nav a:hover { color: var(--green-primary); }
         .nav-cta { background: var(--green-primary) !important; color: white !important; padding: 0.6rem 1.25rem !important; border-radius: 6px !important; font-weight: 600 !important; transition: background 0.2s, transform 0.2s !important; }
         .nav-cta:hover { background: var(--green-deep) !important; transform: translateY(-1px) !important; }
-
-        /* PAGE HERO */
         .page-hero { background: var(--green-deep); padding: 4rem 0 3.5rem; position: relative; overflow: hidden; }
         .page-hero::before { content: ''; position: absolute; inset: 0; background-image: radial-gradient(circle at 20% 50%, rgba(82,183,136,0.12) 0%, transparent 60%); }
         .page-hero .inner { max-width: 860px; margin: 0 auto; padding: 0 2rem; position: relative; z-index: 1; }
         .page-label { font-size: 0.72rem; font-weight: 700; text-transform: uppercase; letter-spacing: 2px; color: var(--green-accent); margin-bottom: 0.75rem; display: block; }
         .page-hero h1 { font-family: 'DM Serif Display', Georgia, serif; font-size: clamp(2rem, 4vw, 3rem); color: white; line-height: 1.15; margin-bottom: 1rem; }
         .page-hero p { font-size: 0.95rem; color: rgba(255,255,255,0.6); }
-
-        /* CONTENT */
         .content-wrap { max-width: 860px; margin: 0 auto; padding: 4rem 2rem 6rem; }
         .toc { background: var(--white); border: 1.5px solid var(--border); border-radius: 12px; padding: 1.75rem 2rem; margin-bottom: 3rem; }
         .toc h2 { font-size: 0.75rem; font-weight: 700; text-transform: uppercase; letter-spacing: 2px; color: var(--ink-30); margin-bottom: 1rem; }
@@ -58,18 +52,18 @@
         .highlight-box strong { color: var(--green-primary); }
         .highlight-box a { color: var(--green-primary); }
         .policy-section a { color: var(--green-primary); }
-
-        /* FOOTER */
+        .forward-note { background: var(--off-white); border: 1.5px solid var(--border); border-left: 3px solid var(--green-accent); border-radius: 0 8px 8px 0; padding: 1.1rem 1.4rem; margin: 1.25rem 0; font-size: 0.88rem; color: var(--ink-60); line-height: 1.7; }
+        .forward-note strong { color: var(--ink); }
         footer { background: var(--white); border-top: 1px solid var(--border); padding: 3.5rem 0 2rem; }
         .footer-grid { display: grid; grid-template-columns: 2fr 1fr 1fr 1fr; gap: 3rem; margin-bottom: 3rem; }
         .footer-brand-name { font-size: 1.4rem; font-weight: 800; color: var(--green-primary); margin-bottom: 0.6rem; }
-        .footer-tagline { font-size: 0.85rem; color: var(--ink-60); line-height: 1.6; max-width: 260px; }
+        .footer-tagline { font-size: 0.85rem; color: var(--ink-60); line-height: 1.6; max-width: 260px; margin-bottom: 0.75rem; }
+        .footer-transparency-note { font-size: 0.78rem; color: var(--ink-30); line-height: 1.6; max-width: 260px; border-top: 1px solid var(--border); padding-top: 0.75rem; margin-top: 0.25rem; }
         .footer-links h4 { font-size: 0.75rem; font-weight: 700; text-transform: uppercase; letter-spacing: 1.5px; color: var(--ink); margin-bottom: 1rem; }
         .footer-links ul { list-style: none; }
         .footer-links a { display: block; font-size: 0.875rem; color: var(--ink-60); text-decoration: none; margin-bottom: 0.6rem; transition: color 0.2s; }
         .footer-links a:hover { color: var(--green-primary); }
         .footer-bottom { padding-top: 2rem; border-top: 1px solid var(--border); display: flex; justify-content: space-between; align-items: center; font-size: 0.8rem; color: var(--ink-30); }
-
         @media (max-width: 900px) { .footer-grid { grid-template-columns: 1fr 1fr; } }
         @media (max-width: 640px) { nav ul { display: none; } .toc ol { grid-template-columns: 1fr; } .footer-grid { grid-template-columns: 1fr; } .footer-bottom { flex-direction: column; gap: 0.5rem; text-align: center; } }
     </style>
@@ -86,6 +80,7 @@
                 <ul>
                     <li><a href="/#problem">Problem</a></li>
                     <li><a href="/#how-it-works">How It Works</a></li>
+                    <li><a href="/#transparency">How We Make Money</a></li>
                     <li><a href="/#founder">Founder</a></li>
                     <li><a href="/#investors">Investors</a></li>
                     <li><a href="/#waitlist" class="nav-cta">Join Waitlist</a></li>
@@ -98,7 +93,7 @@
         <div class="inner">
             <span class="page-label">Legal</span>
             <h1>Terms of Service</h1>
-            <p>Last updated: February 24, 2026 · Adworth℠ LLC · Charleston, SC</p>
+            <p>Last updated: February 25, 2026 · Adworth℠ LLC · Charleston, SC</p>
         </div>
     </div>
 
@@ -141,6 +136,9 @@
                 <li>Informational content at adworth.app</li>
             </ul>
             <p>We are an early-stage company. Our services are actively being developed and may change, be interrupted, or be discontinued at any time. We will make reasonable efforts to notify users of significant changes.</p>
+            <div class="forward-note">
+                <strong>Looking ahead:</strong> When the Adworth consent marketplace launches, these Terms will be updated to govern consent token issuance and revocation, advertiser access agreements, transaction fee collection (Adworth charges advertisers a 2–5% fee on each consent exchange — users are never charged), and ledger record-keeping. The business model is fully described at <a href="/#transparency">adworth.app/#transparency</a>. Waitlist members will be notified before any material terms take effect.
+            </div>
         </div>
 
         <div class="policy-section" id="eligibility">
@@ -237,12 +235,14 @@
                 <div>
                     <div class="footer-brand-name">Adworth℠</div>
                     <p class="footer-tagline">Cryptographic consent infrastructure for digital advertising. Privacy for people, compliance for platforms.</p>
+                    <p class="footer-transparency-note">Adworth earns a transaction fee when advertisers pay you for your data. That's our only revenue. Always visible. Always on the ledger.</p>
                 </div>
                 <div class="footer-links">
                     <h4>Product</h4>
                     <ul>
                         <li><a href="/#problem">The Problem</a></li>
                         <li><a href="/#how-it-works">How It Works</a></li>
+                        <li><a href="/#transparency">How We Make Money</a></li>
                         <li><a href="/app">Transparency Demo</a></li>
                         <li><a href="/#waitlist">Join Waitlist</a></li>
                     </ul>
