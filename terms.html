@@ -9,30 +9,39 @@
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800;900&family=DM+Serif+Display:ital@0;1&display=swap" rel="stylesheet">
     <style>
         *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+
         :root {
             --green-deep: #1a4a35; --green-primary: #2d6a4f; --green-accent: #52b788;
             --green-pale: #d8f3dc; --green-tint: #f0faf3; --off-white: #fafaf8;
-            --white: #ffffff; --ink: #111410; --ink-60: #555a50; --ink-30: #b0b5aa; --border: #e2e8df;
+            --white: #ffffff; --ink: #111410; --ink-60: #555a50; --ink-30: #b0b5aa;
+            --border: #e2e8df; --gold: #c8a96a;
         }
+
         html { scroll-behavior: smooth; }
         body { font-family: 'Poppins', sans-serif; background: var(--off-white); color: var(--ink); line-height: 1.7; overflow-x: hidden; }
         .container { max-width: 1160px; margin: 0 auto; padding: 0 2rem; }
+
+        /* ── NAV — exact match to index.html ── */
         header { position: sticky; top: 0; z-index: 100; background: rgba(250,250,248,0.92); backdrop-filter: blur(12px); -webkit-backdrop-filter: blur(12px); border-bottom: 1px solid var(--border); }
         nav { display: flex; justify-content: space-between; align-items: center; padding: 1.25rem 0; }
         .logo { display: flex; align-items: center; gap: 0.75rem; text-decoration: none; }
-        .logo-mark { font-size: 1.6rem; font-weight: 800; color: var(--green-primary); letter-spacing: -0.5px; }
-        .patent-pill { font-size: 0.6rem; font-weight: 700; text-transform: uppercase; letter-spacing: 1px; background: var(--green-pale); color: var(--green-deep); padding: 0.2rem 0.55rem; border-radius: 100px; border: 1px solid rgba(45,106,79,0.2); }
-        nav ul { list-style: none; display: flex; gap: 2.25rem; align-items: center; }
-        nav a { text-decoration: none; font-size: 0.875rem; font-weight: 500; color: var(--ink-60); transition: color 0.2s; }
+        .logo-mark { font-family: 'Poppins', sans-serif; font-size: 1.4rem; font-weight: 800; color: var(--green-primary); letter-spacing: -0.5px; }
+        .patent-pill { font-size: 0.55rem; font-weight: 700; text-transform: uppercase; letter-spacing: 1px; background: var(--green-pale); color: var(--green-deep); padding: 0.15rem 0.45rem; border-radius: 100px; border: 1px solid rgba(45,106,79,0.2); white-space: nowrap; }
+        nav ul { list-style: none; display: flex; gap: 1.5rem; align-items: center; }
+        nav a { text-decoration: none; font-size: 0.8rem; font-weight: 500; color: var(--ink-60); transition: color 0.2s; white-space: nowrap; }
         nav a:hover { color: var(--green-primary); }
-        .nav-cta { background: var(--green-primary) !important; color: white !important; padding: 0.6rem 1.25rem !important; border-radius: 6px !important; font-weight: 600 !important; transition: background 0.2s, transform 0.2s !important; }
+        .nav-cta { background: var(--green-primary) !important; color: white !important; padding: 0.55rem 1rem !important; border-radius: 6px !important; font-weight: 600 !important; transition: background 0.2s, transform 0.2s !important; white-space: nowrap; }
         .nav-cta:hover { background: var(--green-deep) !important; transform: translateY(-1px) !important; }
+
+        /* ── PAGE HERO ── */
         .page-hero { background: var(--green-deep); padding: 4rem 0 3.5rem; position: relative; overflow: hidden; }
         .page-hero::before { content: ''; position: absolute; inset: 0; background-image: radial-gradient(circle at 20% 50%, rgba(82,183,136,0.12) 0%, transparent 60%); }
         .page-hero .inner { max-width: 860px; margin: 0 auto; padding: 0 2rem; position: relative; z-index: 1; }
         .page-label { font-size: 0.72rem; font-weight: 700; text-transform: uppercase; letter-spacing: 2px; color: var(--green-accent); margin-bottom: 0.75rem; display: block; }
         .page-hero h1 { font-family: 'DM Serif Display', Georgia, serif; font-size: clamp(2rem, 4vw, 3rem); color: white; line-height: 1.15; margin-bottom: 1rem; }
         .page-hero p { font-size: 0.95rem; color: rgba(255,255,255,0.6); }
+
+        /* ── CONTENT ── */
         .content-wrap { max-width: 860px; margin: 0 auto; padding: 4rem 2rem 6rem; }
         .toc { background: var(--white); border: 1.5px solid var(--border); border-radius: 12px; padding: 1.75rem 2rem; margin-bottom: 3rem; }
         .toc h2 { font-size: 0.75rem; font-weight: 700; text-transform: uppercase; letter-spacing: 2px; color: var(--ink-30); margin-bottom: 1rem; }
@@ -54,6 +63,8 @@
         .policy-section a { color: var(--green-primary); }
         .forward-note { background: var(--off-white); border: 1.5px solid var(--border); border-left: 3px solid var(--green-accent); border-radius: 0 8px 8px 0; padding: 1.1rem 1.4rem; margin: 1.25rem 0; font-size: 0.88rem; color: var(--ink-60); line-height: 1.7; }
         .forward-note strong { color: var(--ink); }
+
+        /* ── FOOTER — exact match to index.html ── */
         footer { background: var(--white); border-top: 1px solid var(--border); padding: 3.5rem 0 2rem; }
         .footer-grid { display: grid; grid-template-columns: 2fr 1fr 1fr 1fr; gap: 3rem; margin-bottom: 3rem; }
         .footer-brand-name { font-size: 1.4rem; font-weight: 800; color: var(--green-primary); margin-bottom: 0.6rem; }
@@ -64,8 +75,14 @@
         .footer-links a { display: block; font-size: 0.875rem; color: var(--ink-60); text-decoration: none; margin-bottom: 0.6rem; transition: color 0.2s; }
         .footer-links a:hover { color: var(--green-primary); }
         .footer-bottom { padding-top: 2rem; border-top: 1px solid var(--border); display: flex; justify-content: space-between; align-items: center; font-size: 0.8rem; color: var(--ink-30); }
+
         @media (max-width: 900px) { .footer-grid { grid-template-columns: 1fr 1fr; } }
-        @media (max-width: 640px) { nav ul { display: none; } .toc ol { grid-template-columns: 1fr; } .footer-grid { grid-template-columns: 1fr; } .footer-bottom { flex-direction: column; gap: 0.5rem; text-align: center; } }
+        @media (max-width: 640px) {
+            nav ul { display: none; }
+            .toc ol { grid-template-columns: 1fr; }
+            .footer-grid { grid-template-columns: 1fr; }
+            .footer-bottom { flex-direction: column; gap: 0.5rem; text-align: center; }
+        }
     </style>
 </head>
 <body>
@@ -83,6 +100,7 @@
                     <li><a href="/#transparency">How We Make Money</a></li>
                     <li><a href="/#founder">Founder</a></li>
                     <li><a href="/#investors">Investors</a></li>
+                    <li><a href="/dashboard" style="color: var(--gold); font-weight: 600;">Enterprise</a></li>
                     <li><a href="/#waitlist" class="nav-cta">Join Waitlist</a></li>
                 </ul>
             </nav>
@@ -93,7 +111,7 @@
         <div class="inner">
             <span class="page-label">Legal</span>
             <h1>Terms of Service</h1>
-            <p>Last updated: February 25, 2026 · Adworth℠ LLC · Charleston, SC</p>
+            <p>Last updated: February 27, 2026 · Adworth℠ LLC · Charleston, SC</p>
         </div>
     </div>
 
@@ -123,7 +141,7 @@
 
         <div class="policy-section" id="acceptance">
             <h2><span class="section-num">01</span> Acceptance of Terms</h2>
-            <p>By accessing or using any Adworth℠ service — including adworth.app, app.adworth.app, or any associated applications — you agree to be bound by these Terms of Service and our <a href="/privacy">Privacy Policy</a>.</p>
+            <p>By accessing or using any Adworth℠ service — including adworth.app, adworth.app/app, adworth.app/dashboard, or any associated applications — you agree to be bound by these Terms of Service and our <a href="/privacy">Privacy Policy</a>.</p>
             <p>If you do not agree to these terms, please do not use our services.</p>
         </div>
 
@@ -131,7 +149,8 @@
             <h2><span class="section-num">02</span> Description of Services</h2>
             <p>Adworth℠ is a privacy technology platform currently providing:</p>
             <ul>
-                <li>A DSA compliance and ad transparency demo at <a href="/app">app.adworth.app</a></li>
+                <li>A DSA compliance and ad transparency demo at <a href="/app">adworth.app/app</a></li>
+                <li>An enterprise ad verification dashboard preview at <a href="/dashboard">adworth.app/dashboard</a></li>
                 <li>A waitlist for our upcoming cryptographic consent marketplace</li>
                 <li>Informational content at adworth.app</li>
             </ul>
@@ -243,7 +262,8 @@
                         <li><a href="/#problem">The Problem</a></li>
                         <li><a href="/#how-it-works">How It Works</a></li>
                         <li><a href="/#transparency">How We Make Money</a></li>
-                        <li><a href="/app">Transparency Demo</a></li>
+                        <li><a href="/app">Consumer Demo</a></li>
+                        <li><a href="/dashboard">Enterprise Preview</a></li>
                         <li><a href="/#waitlist">Join Waitlist</a></li>
                     </ul>
                 </div>
