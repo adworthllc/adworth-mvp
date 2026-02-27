@@ -9,20 +9,23 @@
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800;900&family=DM+Serif+Display:ital@0;1&display=swap" rel="stylesheet">
     <style>
         *,*::before,*::after{margin:0;padding:0;box-sizing:border-box}
-        :root{--green-deep:#1a4a35;--green-primary:#2d6a4f;--green-accent:#52b788;--green-pale:#d8f3dc;--green-tint:#f0faf3;--off-white:#fafaf8;--white:#fff;--ink:#111410;--ink-60:#555a50;--ink-30:#b0b5aa;--border:#e2e8df;--gold-light:#f5e9d3;--red-light:#fef3f2;--red:#e05252}
+        :root{--green-deep:#1a4a35;--green-primary:#2d6a4f;--green-accent:#52b788;--green-pale:#d8f3dc;--green-tint:#f0faf3;--off-white:#fafaf8;--white:#fff;--ink:#111410;--ink-60:#555a50;--ink-30:#b0b5aa;--border:#e2e8df;--gold:#c8a96a;--gold-light:#f5e9d3;--red-light:#fef3f2;--red:#e05252}
         html{scroll-behavior:smooth}
         body{font-family:'Poppins',sans-serif;background:var(--off-white);color:var(--ink);line-height:1.6;overflow-x:hidden}
         .container{max-width:1160px;margin:0 auto;padding:0 2rem}
+
+        /* ── NAV — exact match to index.html ── */
         header{position:sticky;top:0;z-index:100;background:rgba(250,250,248,0.92);backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px);border-bottom:1px solid var(--border)}
         nav{display:flex;justify-content:space-between;align-items:center;padding:1.25rem 0}
         .logo{display:flex;align-items:center;gap:.75rem;text-decoration:none}
-        .logo-mark{font-size:1.6rem;font-weight:800;color:var(--green-primary);letter-spacing:-.5px}
-        .patent-pill{font-size:.6rem;font-weight:700;text-transform:uppercase;letter-spacing:1px;background:var(--green-pale);color:var(--green-deep);padding:.2rem .55rem;border-radius:100px;border:1px solid rgba(45,106,79,.2)}
-        nav ul{list-style:none;display:flex;gap:2.25rem;align-items:center}
-        nav a{text-decoration:none;font-size:.875rem;font-weight:500;color:var(--ink-60);transition:color .2s}
+        .logo-mark{font-family:'Poppins',sans-serif;font-size:1.4rem;font-weight:800;color:var(--green-primary);letter-spacing:-.5px}
+        .patent-pill{font-size:.55rem;font-weight:700;text-transform:uppercase;letter-spacing:1px;background:var(--green-pale);color:var(--green-deep);padding:.15rem .45rem;border-radius:100px;border:1px solid rgba(45,106,79,.2);white-space:nowrap}
+        nav ul{list-style:none;display:flex;gap:1.5rem;align-items:center}
+        nav a{text-decoration:none;font-size:.8rem;font-weight:500;color:var(--ink-60);transition:color .2s;white-space:nowrap}
         nav a:hover{color:var(--green-primary)}
-        .nav-cta{background:var(--green-primary)!important;color:#fff!important;padding:.6rem 1.25rem!important;border-radius:6px!important;font-weight:600!important}
+        .nav-cta{background:var(--green-primary)!important;color:#fff!important;padding:.55rem 1rem!important;border-radius:6px!important;font-weight:600!important;transition:background .2s,transform .2s!important;white-space:nowrap}
         .nav-cta:hover{background:var(--green-deep)!important;transform:translateY(-1px)!important}
+
         .demo-banner{background:var(--gold-light);border-bottom:1px solid rgba(200,169,106,.3);padding:.75rem 0;text-align:center}
         .demo-banner p{font-size:.8rem;color:#7a5c2e;font-weight:500}
         .page-hero{background:var(--green-deep);padding:4rem 0 3.5rem;position:relative;overflow:hidden;text-align:center}
@@ -77,15 +80,19 @@
         .nudge-text p{font-size:.875rem;color:rgba(255,255,255,.7)}
         .nudge-btn{background:#fff;color:var(--green-primary);padding:.8rem 1.5rem;border-radius:8px;font-weight:700;font-size:.9rem;text-decoration:none;white-space:nowrap;transition:all .2s;box-shadow:0 4px 14px rgba(0,0,0,.15)}
         .nudge-btn:hover{transform:translateY(-2px);box-shadow:0 8px 24px rgba(0,0,0,.2)}
+
+        /* ── FOOTER — exact match to index.html ── */
         footer{background:var(--white);border-top:1px solid var(--border);padding:3.5rem 0 2rem}
         .footer-grid{display:grid;grid-template-columns:2fr 1fr 1fr 1fr;gap:3rem;margin-bottom:3rem}
         .footer-brand-name{font-size:1.4rem;font-weight:800;color:var(--green-primary);margin-bottom:.6rem}
-        .footer-tagline{font-size:.85rem;color:var(--ink-60);line-height:1.6;max-width:260px}
+        .footer-tagline{font-size:.85rem;color:var(--ink-60);line-height:1.6;max-width:260px;margin-bottom:.75rem}
+        .footer-transparency-note{font-size:.78rem;color:var(--ink-30);line-height:1.6;max-width:260px;border-top:1px solid var(--border);padding-top:.75rem;margin-top:.25rem}
         .footer-links h4{font-size:.75rem;font-weight:700;text-transform:uppercase;letter-spacing:1.5px;color:var(--ink);margin-bottom:1rem}
         .footer-links ul{list-style:none}
         .footer-links a{display:block;font-size:.875rem;color:var(--ink-60);text-decoration:none;margin-bottom:.6rem;transition:color .2s}
         .footer-links a:hover{color:var(--green-primary)}
         .footer-bottom{padding-top:2rem;border-top:1px solid var(--border);display:flex;justify-content:space-between;align-items:center;font-size:.8rem;color:var(--ink-30)}
+
         @media(max-width:700px){nav ul{display:none}.ads-grid{grid-template-columns:1fr}.nudge-card{flex-direction:column;text-align:center}.footer-grid{grid-template-columns:1fr 1fr}}
         @media(max-width:480px){.footer-grid{grid-template-columns:1fr}.footer-bottom{flex-direction:column;gap:.5rem;text-align:center}}
     </style>
@@ -102,8 +109,10 @@
             <ul>
                 <li><a href="https://adworth.app/#problem">Problem</a></li>
                 <li><a href="https://adworth.app/#how-it-works">How It Works</a></li>
+                <li><a href="https://adworth.app/#transparency">How We Make Money</a></li>
                 <li><a href="https://adworth.app/#founder">Founder</a></li>
                 <li><a href="https://adworth.app/#investors">Investors</a></li>
+                <li><a href="https://adworth.app/dashboard" style="color:var(--gold);font-weight:600;">Enterprise</a></li>
                 <li><a href="https://adworth.app/#waitlist" class="nav-cta">Join Waitlist</a></li>
             </ul>
         </nav>
@@ -194,13 +203,16 @@
             <div>
                 <div class="footer-brand-name">Adworth℠</div>
                 <p class="footer-tagline">Cryptographic consent infrastructure for digital advertising. Privacy for people, compliance for platforms.</p>
+                <p class="footer-transparency-note">Adworth earns a transaction fee when advertisers pay you for your data. That's our only revenue. Always visible. Always on the ledger.</p>
             </div>
             <div class="footer-links">
                 <h4>Product</h4>
                 <ul>
                     <li><a href="https://adworth.app/#problem">The Problem</a></li>
                     <li><a href="https://adworth.app/#how-it-works">How It Works</a></li>
-                    <li><a href="https://app.adworth.app">Transparency Demo</a></li>
+                    <li><a href="https://adworth.app/#transparency">How We Make Money</a></li>
+                    <li><a href="https://adworth.app/app">Consumer Demo</a></li>
+                    <li><a href="https://adworth.app/dashboard">Enterprise Preview</a></li>
                     <li><a href="https://adworth.app/#waitlist">Join Waitlist</a></li>
                 </ul>
             </div>
