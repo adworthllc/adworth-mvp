@@ -9,30 +9,39 @@
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800;900&family=DM+Serif+Display:ital@0;1&display=swap" rel="stylesheet">
     <style>
         *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+
         :root {
             --green-deep: #1a4a35; --green-primary: #2d6a4f; --green-accent: #52b788;
             --green-pale: #d8f3dc; --green-tint: #f0faf3; --off-white: #fafaf8;
-            --white: #ffffff; --ink: #111410; --ink-60: #555a50; --ink-30: #b0b5aa; --border: #e2e8df;
+            --white: #ffffff; --ink: #111410; --ink-60: #555a50; --ink-30: #b0b5aa;
+            --border: #e2e8df; --gold: #c8a96a;
         }
+
         html { scroll-behavior: smooth; }
         body { font-family: 'Poppins', sans-serif; background: var(--off-white); color: var(--ink); line-height: 1.7; overflow-x: hidden; }
         .container { max-width: 1160px; margin: 0 auto; padding: 0 2rem; }
+
+        /* ── NAV — exact match to index.html ── */
         header { position: sticky; top: 0; z-index: 100; background: rgba(250,250,248,0.92); backdrop-filter: blur(12px); -webkit-backdrop-filter: blur(12px); border-bottom: 1px solid var(--border); }
         nav { display: flex; justify-content: space-between; align-items: center; padding: 1.25rem 0; }
         .logo { display: flex; align-items: center; gap: 0.75rem; text-decoration: none; }
-        .logo-mark { font-size: 1.6rem; font-weight: 800; color: var(--green-primary); letter-spacing: -0.5px; }
-        .patent-pill { font-size: 0.6rem; font-weight: 700; text-transform: uppercase; letter-spacing: 1px; background: var(--green-pale); color: var(--green-deep); padding: 0.2rem 0.55rem; border-radius: 100px; border: 1px solid rgba(45,106,79,0.2); }
-        nav ul { list-style: none; display: flex; gap: 2.25rem; align-items: center; }
-        nav a { text-decoration: none; font-size: 0.875rem; font-weight: 500; color: var(--ink-60); transition: color 0.2s; }
+        .logo-mark { font-family: 'Poppins', sans-serif; font-size: 1.4rem; font-weight: 800; color: var(--green-primary); letter-spacing: -0.5px; }
+        .patent-pill { font-size: 0.55rem; font-weight: 700; text-transform: uppercase; letter-spacing: 1px; background: var(--green-pale); color: var(--green-deep); padding: 0.15rem 0.45rem; border-radius: 100px; border: 1px solid rgba(45,106,79,0.2); white-space: nowrap; }
+        nav ul { list-style: none; display: flex; gap: 1.5rem; align-items: center; }
+        nav a { text-decoration: none; font-size: 0.8rem; font-weight: 500; color: var(--ink-60); transition: color 0.2s; white-space: nowrap; }
         nav a:hover { color: var(--green-primary); }
-        .nav-cta { background: var(--green-primary) !important; color: white !important; padding: 0.6rem 1.25rem !important; border-radius: 6px !important; font-weight: 600 !important; transition: background 0.2s, transform 0.2s !important; }
+        .nav-cta { background: var(--green-primary) !important; color: white !important; padding: 0.55rem 1rem !important; border-radius: 6px !important; font-weight: 600 !important; transition: background 0.2s, transform 0.2s !important; white-space: nowrap; }
         .nav-cta:hover { background: var(--green-deep) !important; transform: translateY(-1px) !important; }
+
+        /* ── PAGE HERO ── */
         .page-hero { background: var(--green-deep); padding: 4rem 0 3.5rem; position: relative; overflow: hidden; }
         .page-hero::before { content: ''; position: absolute; inset: 0; background-image: radial-gradient(circle at 80% 50%, rgba(82,183,136,0.12) 0%, transparent 60%); }
         .page-hero .inner { max-width: 860px; margin: 0 auto; padding: 0 2rem; position: relative; z-index: 1; }
         .page-label { font-size: 0.72rem; font-weight: 700; text-transform: uppercase; letter-spacing: 2px; color: var(--green-accent); margin-bottom: 0.75rem; display: block; }
         .page-hero h1 { font-family: 'DM Serif Display', Georgia, serif; font-size: clamp(2rem, 4vw, 3rem); color: white; line-height: 1.15; margin-bottom: 1rem; }
         .page-hero p { font-size: 0.95rem; color: rgba(255,255,255,0.6); }
+
+        /* ── CONTENT ── */
         .content-wrap { max-width: 860px; margin: 0 auto; padding: 4rem 2rem 6rem; }
         .toc { background: var(--white); border: 1.5px solid var(--border); border-radius: 12px; padding: 1.75rem 2rem; margin-bottom: 3rem; }
         .toc h2 { font-size: 0.75rem; font-weight: 700; text-transform: uppercase; letter-spacing: 2px; color: var(--ink-30); margin-bottom: 1rem; }
@@ -52,17 +61,26 @@
         .highlight-box strong { color: var(--green-primary); }
         .highlight-box a { color: var(--green-primary); }
         .policy-section a { color: var(--green-primary); }
+
+        /* ── FOOTER — exact match to index.html ── */
         footer { background: var(--white); border-top: 1px solid var(--border); padding: 3.5rem 0 2rem; }
         .footer-grid { display: grid; grid-template-columns: 2fr 1fr 1fr 1fr; gap: 3rem; margin-bottom: 3rem; }
         .footer-brand-name { font-size: 1.4rem; font-weight: 800; color: var(--green-primary); margin-bottom: 0.6rem; }
-        .footer-tagline { font-size: 0.85rem; color: var(--ink-60); line-height: 1.6; max-width: 260px; }
+        .footer-tagline { font-size: 0.85rem; color: var(--ink-60); line-height: 1.6; max-width: 260px; margin-bottom: 0.75rem; }
+        .footer-transparency-note { font-size: 0.78rem; color: var(--ink-30); line-height: 1.6; max-width: 260px; border-top: 1px solid var(--border); padding-top: 0.75rem; margin-top: 0.25rem; }
         .footer-links h4 { font-size: 0.75rem; font-weight: 700; text-transform: uppercase; letter-spacing: 1.5px; color: var(--ink); margin-bottom: 1rem; }
         .footer-links ul { list-style: none; }
         .footer-links a { display: block; font-size: 0.875rem; color: var(--ink-60); text-decoration: none; margin-bottom: 0.6rem; transition: color 0.2s; }
         .footer-links a:hover { color: var(--green-primary); }
         .footer-bottom { padding-top: 2rem; border-top: 1px solid var(--border); display: flex; justify-content: space-between; align-items: center; font-size: 0.8rem; color: var(--ink-30); }
+
         @media (max-width: 900px) { .footer-grid { grid-template-columns: 1fr 1fr; } }
-        @media (max-width: 640px) { nav ul { display: none; } .toc ol { grid-template-columns: 1fr; } .footer-grid { grid-template-columns: 1fr; } .footer-bottom { flex-direction: column; gap: 0.5rem; text-align: center; } }
+        @media (max-width: 640px) {
+            nav ul { display: none; }
+            .toc ol { grid-template-columns: 1fr; }
+            .footer-grid { grid-template-columns: 1fr; }
+            .footer-bottom { flex-direction: column; gap: 0.5rem; text-align: center; }
+        }
     </style>
 </head>
 <body>
@@ -77,8 +95,10 @@
                 <ul>
                     <li><a href="/#problem">Problem</a></li>
                     <li><a href="/#how-it-works">How It Works</a></li>
+                    <li><a href="/#transparency">How We Make Money</a></li>
                     <li><a href="/#founder">Founder</a></li>
                     <li><a href="/#investors">Investors</a></li>
+                    <li><a href="/dashboard" style="color: var(--gold); font-weight: 600;">Enterprise</a></li>
                     <li><a href="/#waitlist" class="nav-cta">Join Waitlist</a></li>
                 </ul>
             </nav>
@@ -89,7 +109,7 @@
         <div class="inner">
             <span class="page-label">Legal</span>
             <h1>Privacy Policy</h1>
-            <p>Last updated: February 24, 2026 · Adworth℠ LLC · Charleston, SC</p>
+            <p>Last updated: February 27, 2026 · Adworth℠ LLC · Charleston, SC</p>
         </div>
     </div>
 
@@ -125,7 +145,7 @@
                 <li>Any other information you choose to share with us</li>
             </ul>
             <h3>Information collected automatically</h3>
-            <p>When you visit adworth.app or app.adworth.app, we may automatically collect:</p>
+            <p>When you visit adworth.app, we may automatically collect:</p>
             <ul>
                 <li>Browser type and version</li>
                 <li>Pages visited and time spent</li>
@@ -155,7 +175,8 @@
             <h3>Service providers</h3>
             <p>We use a small number of trusted third-party services to operate our platform. Currently these include:</p>
             <ul>
-                <li><strong>Formspree</strong> (<a href="https://formspree.io" target="_blank" rel="noopener">formspree.io</a>) — When you submit your email through our waitlist form, it is transmitted to and temporarily stored by Formspree on their US-based servers for the purpose of delivering your submission to us. Formspree's privacy policy is available at <a href="https://formspree.io/legal/privacy-policy" target="_blank" rel="noopener">formspree.io/legal/privacy-policy</a>.</li>
+                <li><strong>Cloudflare Workers</strong> (<a href="https://cloudflare.com" target="_blank" rel="noopener">cloudflare.com</a>) — When you submit your email through our waitlist form, it is processed by a Cloudflare Worker hosted on Cloudflare's infrastructure. This worker handles form submission routing and passes your email address to our email delivery service. No waitlist data is stored by the Worker itself beyond the duration of the request. Cloudflare's privacy policy is available at <a href="https://www.cloudflare.com/privacypolicy/" target="_blank" rel="noopener">cloudflare.com/privacypolicy</a>.</li>
+                <li><strong>Resend</strong> (<a href="https://resend.com" target="_blank" rel="noopener">resend.com</a>) — We use Resend as our transactional email delivery service. When you submit the waitlist form, your email address is passed to Resend solely for the purpose of delivering a notification to us and a confirmation to you. Resend does not use your email address for any other purpose. Resend's privacy policy is available at <a href="https://resend.com/legal/privacy-policy" target="_blank" rel="noopener">resend.com/legal/privacy-policy</a>.</li>
                 <li><strong>Vercel</strong> (<a href="https://vercel.com" target="_blank" rel="noopener">vercel.com</a>) — Our website is hosted on Vercel's infrastructure. Vercel may collect standard server logs (IP address, browser type) as part of serving web pages.</li>
                 <li><strong>Cloudflare</strong> (<a href="https://cloudflare.com" target="_blank" rel="noopener">cloudflare.com</a>) — We use Cloudflare for DNS management and security. Cloudflare may process limited request metadata as part of routing traffic to our site.</li>
             </ul>
@@ -168,7 +189,7 @@
 
         <div class="policy-section" id="data-retention">
             <h2><span class="section-num">04</span> Data Retention</h2>
-            <p>We retain your personal information only as long as necessary to provide our services or as required by law. Waitlist email addresses are retained until you unsubscribe or request deletion.</p>
+            <p>We retain your personal information only as long as necessary to provide our services or as required by law. Waitlist email addresses are retained in Cloudflare KV storage until you unsubscribe or request deletion.</p>
             <p>When you request deletion of your data, we will remove it from our active systems within 30 days and from backup systems within 90 days. We will also request deletion from any third-party service providers that may have processed your data.</p>
         </div>
 
@@ -227,13 +248,16 @@
                 <div>
                     <div class="footer-brand-name">Adworth℠</div>
                     <p class="footer-tagline">Cryptographic consent infrastructure for digital advertising. Privacy for people, compliance for platforms.</p>
+                    <p class="footer-transparency-note">Adworth earns a transaction fee when advertisers pay you for your data. That's our only revenue. Always visible. Always on the ledger.</p>
                 </div>
                 <div class="footer-links">
                     <h4>Product</h4>
                     <ul>
                         <li><a href="/#problem">The Problem</a></li>
                         <li><a href="/#how-it-works">How It Works</a></li>
-                        <li><a href="/app">Transparency Demo</a></li>
+                        <li><a href="/#transparency">How We Make Money</a></li>
+                        <li><a href="/app">Consumer Demo</a></li>
+                        <li><a href="/dashboard">Enterprise Preview</a></li>
                         <li><a href="/#waitlist">Join Waitlist</a></li>
                     </ul>
                 </div>
