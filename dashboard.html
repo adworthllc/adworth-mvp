@@ -261,6 +261,107 @@
   ::-webkit-scrollbar { width: 4px; }
   ::-webkit-scrollbar-track { background: transparent; }
   ::-webkit-scrollbar-thumb { background: var(--border); border-radius: 2px; }
+
+  /* ── MOBILE HAMBURGER ── */
+  .menu-toggle {
+    display: none;
+    background: none;
+    border: 1px solid var(--border);
+    border-radius: 6px;
+    padding: 6px 10px;
+    cursor: pointer;
+    font-size: 1rem;
+    color: var(--ink-60);
+    line-height: 1;
+    margin-right: 4px;
+  }
+
+  /* ── SIDEBAR OVERLAY (mobile) ── */
+  .sidebar-overlay {
+    display: none;
+    position: fixed;
+    inset: 0;
+    background: rgba(0,0,0,0.35);
+    z-index: 149;
+  }
+  .sidebar-overlay.visible { display: block; }
+
+  /* ── RESPONSIVE ── */
+  @media (max-width: 768px) {
+
+    /* Collapse body grid to single column */
+    body {
+      grid-template-columns: 1fr;
+      grid-template-rows: auto auto 1fr;
+      grid-template-areas: "banner" "nav" "main";
+    }
+
+    /* Show hamburger, hide excess nav buttons */
+    .menu-toggle { display: block; }
+    .nav-btn { display: none; }
+    .avatar { display: none; }
+
+    /* Sidebar becomes fixed off-canvas drawer */
+    .sidebar {
+      position: fixed;
+      top: 0;
+      left: -260px;
+      width: 240px;
+      height: 100vh;
+      z-index: 150;
+      transition: left 0.25s ease;
+      box-shadow: 4px 0 24px rgba(0,0,0,0.12);
+      padding-top: 60px;
+    }
+    .sidebar.open { left: 0; }
+
+    /* Main takes full width */
+    .main { padding: 16px; gap: 14px; }
+
+    /* Preview banner stacks vertically */
+    .preview-banner {
+      flex-direction: column;
+      gap: 8px;
+      padding: 10px 16px;
+      text-align: center;
+    }
+    .banner-dismiss { margin-left: 0; }
+
+    /* Page header stacks */
+    .page-header { flex-direction: column; align-items: flex-start; gap: 10px; }
+    .header-actions { flex-wrap: wrap; gap: 8px; }
+    .date-btn { font-size: 0.7rem; padding: 5px 10px; }
+
+    /* KPI bar: 2 columns on mobile */
+    .kpi-bar { grid-template-columns: 1fr 1fr; gap: 10px; }
+    .kpi-card { padding: 14px 12px; }
+    .kpi-value { font-size: 1.4rem; }
+    /* Trust ring card: hide ring, restore normal padding */
+    .kpi-card[style*="padding-right"] { padding-right: 12px !important; }
+    .trust-ring { display: none; }
+
+    /* Panels stack vertically */
+    .panels-row { grid-template-columns: 1fr; }
+    .bottom-row { grid-template-columns: 1fr; }
+
+    /* Chart SVG: allow horizontal scroll */
+    .chart-area { overflow-x: auto; -webkit-overflow-scrolling: touch; }
+    .chart-area svg { min-width: 400px; }
+
+    /* Table: allow horizontal scroll */
+    .panel table { display: block; overflow-x: auto; -webkit-overflow-scrolling: touch; }
+
+    /* Sample notice text size */
+    .sample-notice { font-size: 0.72rem; }
+
+    /* Logo smaller */
+    .logo-mark { font-size: 1.1rem; }
+  }
+
+  @media (max-width: 400px) {
+    /* Single column KPIs on very small screens */
+    .kpi-bar { grid-template-columns: 1fr; }
+  }
 </style>
 </head>
 <body>
@@ -279,12 +380,17 @@
   <button class="banner-dismiss" onclick="this.parentElement.style.display='none'" title="Dismiss">✕</button>
 </div>
 
+<!-- SIDEBAR OVERLAY -->
+<div class="sidebar-overlay" id="sidebarOverlay"></div>
+
 <!-- TOP NAV -->
 <nav class="topnav">
+  <button class="menu-toggle" id="menuToggle" aria-label="Open menu">☰</button>
   <a href="/" class="logo">
     <span class="logo-mark">Adworth℠</span>
     <span class="patent-pill">Patent Pending</span>
   </a>
+  <a href="https://adworth.app" class="nav-btn" style="text-decoration:none;">← adworth.app</a>
   <div class="nav-btn">Accounts ▾</div>
   <div class="nav-btn">⚡ Alerts <span class="alert-badge-nav">3</span></div>
   <div class="nav-btn">⚙ Settings</div>
@@ -542,7 +648,7 @@
 
 </main>
 <script>
-// Banner dismiss with localStorage so it stays dismissed
+// Banner dismiss
 if(localStorage.getItem("adw_banner_dismissed")) {
   var b = document.getElementById("previewBanner");
   if(b) b.style.display = "none";
@@ -554,6 +660,34 @@ function dismissBanner() {
 }
 document.querySelectorAll(".banner-dismiss").forEach(function(el){
   el.addEventListener("click", dismissBanner);
+});
+
+// Mobile sidebar toggle
+var sidebar = document.querySelector(".sidebar");
+var overlay = document.getElementById("sidebarOverlay");
+var toggle  = document.getElementById("menuToggle");
+
+function openSidebar() {
+  sidebar.classList.add("open");
+  overlay.classList.add("visible");
+  toggle.textContent = "✕";
+}
+function closeSidebar() {
+  sidebar.classList.remove("open");
+  overlay.classList.remove("visible");
+  toggle.textContent = "☰";
+}
+
+toggle.addEventListener("click", function() {
+  sidebar.classList.contains("open") ? closeSidebar() : openSidebar();
+});
+overlay.addEventListener("click", closeSidebar);
+
+// Close sidebar when a nav item is tapped on mobile
+document.querySelectorAll(".nav-item").forEach(function(item) {
+  item.addEventListener("click", function() {
+    if(window.innerWidth <= 768) closeSidebar();
+  });
 });
 </script>
 </body>
