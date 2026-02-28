@@ -21,7 +21,6 @@
         body { font-family: 'Poppins', sans-serif; background: var(--off-white); color: var(--ink); line-height: 1.7; overflow-x: hidden; }
         .container { max-width: 1160px; margin: 0 auto; padding: 0 2rem; }
 
-        /* ── NAV — exact match to index.html ── */
         header { position: sticky; top: 0; z-index: 100; background: rgba(250,250,248,0.92); backdrop-filter: blur(12px); -webkit-backdrop-filter: blur(12px); border-bottom: 1px solid var(--border); }
         nav { display: flex; justify-content: space-between; align-items: center; padding: 1.25rem 0; }
         .logo { display: flex; align-items: center; gap: 0.75rem; text-decoration: none; }
@@ -33,7 +32,6 @@
         .nav-cta { background: var(--green-primary) !important; color: white !important; padding: 0.55rem 1rem !important; border-radius: 6px !important; font-weight: 600 !important; transition: background 0.2s, transform 0.2s !important; white-space: nowrap; }
         .nav-cta:hover { background: var(--green-deep) !important; transform: translateY(-1px) !important; }
 
-        /* ── PAGE HERO ── */
         .page-hero { background: var(--green-deep); padding: 4rem 0 3.5rem; position: relative; overflow: hidden; }
         .page-hero::before { content: ''; position: absolute; inset: 0; background-image: radial-gradient(circle at 20% 50%, rgba(82,183,136,0.12) 0%, transparent 60%); }
         .page-hero .inner { max-width: 860px; margin: 0 auto; padding: 0 2rem; position: relative; z-index: 1; }
@@ -41,7 +39,6 @@
         .page-hero h1 { font-family: 'DM Serif Display', Georgia, serif; font-size: clamp(2rem, 4vw, 3rem); color: white; line-height: 1.15; margin-bottom: 1rem; }
         .page-hero p { font-size: 0.95rem; color: rgba(255,255,255,0.6); }
 
-        /* ── CONTENT ── */
         .content-wrap { max-width: 860px; margin: 0 auto; padding: 4rem 2rem 6rem; }
         .toc { background: var(--white); border: 1.5px solid var(--border); border-radius: 12px; padding: 1.75rem 2rem; margin-bottom: 3rem; }
         .toc h2 { font-size: 0.75rem; font-weight: 700; text-transform: uppercase; letter-spacing: 2px; color: var(--ink-30); margin-bottom: 1rem; }
@@ -64,7 +61,6 @@
         .forward-note { background: var(--off-white); border: 1.5px solid var(--border); border-left: 3px solid var(--green-accent); border-radius: 0 8px 8px 0; padding: 1.1rem 1.4rem; margin: 1.25rem 0; font-size: 0.88rem; color: var(--ink-60); line-height: 1.7; }
         .forward-note strong { color: var(--ink); }
 
-        /* ── FOOTER — exact match to index.html ── */
         footer { background: var(--white); border-top: 1px solid var(--border); padding: 3.5rem 0 2rem; }
         .footer-grid { display: grid; grid-template-columns: 2fr 1fr 1fr 1fr; gap: 3rem; margin-bottom: 3rem; }
         .footer-brand-name { font-size: 1.4rem; font-weight: 800; color: var(--green-primary); margin-bottom: 0.6rem; }
@@ -111,7 +107,7 @@
         <div class="inner">
             <span class="page-label">Legal</span>
             <h1>Terms of Service</h1>
-            <p>Last updated: February 27, 2026 · Adworth℠ LLC · Charleston, SC</p>
+            <p>Last updated: February 28, 2026 · Adworth℠ LLC · Charleston, SC</p>
         </div>
     </div>
 
@@ -141,7 +137,7 @@
 
         <div class="policy-section" id="acceptance">
             <h2><span class="section-num">01</span> Acceptance of Terms</h2>
-            <p>By accessing or using any Adworth℠ service — including adworth.app, adworth.app/app, adworth.app/dashboard, or any associated applications — you agree to be bound by these Terms of Service and our <a href="/privacy">Privacy Policy</a>.</p>
+            <p>By accessing or using any Adworth℠ service — including adworth.app, adworth.app/app, adworth.app/dashboard, or any associated applications and APIs — you agree to be bound by these Terms of Service and our <a href="/privacy">Privacy Policy</a>.</p>
             <p>If you do not agree to these terms, please do not use our services.</p>
         </div>
 
@@ -151,9 +147,11 @@
             <ul>
                 <li>A DSA compliance and ad transparency demo at <a href="/app">adworth.app/app</a></li>
                 <li>An enterprise ad verification dashboard preview at <a href="/dashboard">adworth.app/dashboard</a></li>
+                <li>A cryptographic consent validation API at api.adworth.app, processing consent token issuance, validation, revocation, and ledger entries</li>
                 <li>A waitlist for our upcoming cryptographic consent marketplace</li>
                 <li>Informational content at adworth.app</li>
             </ul>
+            <p>Our services run on Cloudflare Workers edge infrastructure. Some service functions involve automated processing at the network edge to validate consent tokens and record ledger entries. No personally identifiable information is stored in consent tokens themselves — token identifiers are cryptographic values only.</p>
             <p>We are an early-stage company. Our services are actively being developed and may change, be interrupted, or be discontinued at any time. We will make reasonable efforts to notify users of significant changes.</p>
             <div class="forward-note">
                 <strong>Looking ahead:</strong> When the Adworth consent marketplace launches, these Terms will be updated to govern consent token issuance and revocation, advertiser access agreements, transaction fee collection (Adworth charges advertisers a 2–5% fee on each consent exchange — users are never charged), and ledger record-keeping. The business model is fully described at <a href="/#transparency">adworth.app/#transparency</a>. Waitlist members will be notified before any material terms take effect.
@@ -188,7 +186,8 @@
                 <li>Attempt to gain unauthorized access to our systems or other users' accounts</li>
                 <li>Reverse engineer, decompile, or disassemble any portion of our platform</li>
                 <li>Use automated tools to scrape or harvest data from our services without permission</li>
-                <li>Interfere with or disrupt the integrity or performance of our services</li>
+                <li>Attempt to forge, duplicate, or tamper with cryptographic consent tokens</li>
+                <li>Interfere with or disrupt the integrity or performance of our services or consent ledger</li>
             </ul>
             <p>We reserve the right to investigate and take appropriate action against violations, including account suspension or termination and referral to law enforcement.</p>
         </div>
@@ -289,6 +288,8 @@
             </div>
         </div>
     </footer>
-<script defer src="/_vercel/insights/script.js"></script>
+
+    <!-- No third-party tracking scripts. This page loads no analytics, advertising pixels, or behavioral trackers. -->
+
 </body>
 </html>
