@@ -1,0 +1,611 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Adworth℠ — Enterprise & Investor Overview</title>
+  <link rel="icon" type="image/x-icon" href="/favicon.ico">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800;900&family=DM+Serif+Display:ital@0;1&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+  <style>
+    *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+
+    :root {
+      --green-deep:    #1a4a35;
+      --green-primary: #2d6a4f;
+      --green-mid:     #1B7A4E;
+      --green-accent:  #52b788;
+      --green-pale:    #d8f3dc;
+      --green-tint:    #f0faf3;
+      --off-white:     #fafaf8;
+      --white:         #ffffff;
+      --ink:           #111410;
+      --ink-60:        #555a50;
+      --ink-30:        #b0b5aa;
+      --border:        #e2e8df;
+      --gold:          #c8a96a;
+      --gold-light:    #f5e9d3;
+    }
+
+    html { scroll-behavior: smooth; }
+    body { font-family: 'Poppins', sans-serif; background: var(--off-white); color: var(--ink); line-height: 1.6; overflow-x: hidden; }
+
+    .container        { max-width: 1160px; margin: 0 auto; padding: 0 2rem; }
+    .container--narrow{ max-width: 780px;  margin: 0 auto; padding: 0 2rem; }
+
+    /* ── HEADER ── */
+    header { position: sticky; top: 0; z-index: 100; background: rgba(250,250,248,0.92); backdrop-filter: blur(12px); border-bottom: 1px solid var(--border); }
+    nav { display: flex; justify-content: space-between; align-items: center; padding: 1.25rem 0; }
+    .logo { display: flex; align-items: center; gap: 0.75rem; text-decoration: none; }
+    .logo-mark { font-family: 'Poppins', sans-serif; font-size: 1.4rem; font-weight: 800; color: var(--green-primary); letter-spacing: -0.5px; }
+    .patent-pill { font-size: 0.55rem; font-weight: 700; text-transform: uppercase; letter-spacing: 1px; background: var(--green-pale); color: var(--green-deep); padding: 0.15rem 0.45rem; border-radius: 100px; border: 1px solid rgba(45,106,79,0.2); white-space: nowrap; }
+    nav ul { list-style: none; display: flex; gap: 1.5rem; align-items: center; }
+    nav a { text-decoration: none; font-size: 0.8rem; font-weight: 500; color: var(--ink-60); transition: color 0.2s; white-space: nowrap; }
+    nav a:hover { color: var(--green-primary); }
+    .nav-cta { background: var(--green-primary) !important; color: white !important; padding: 0.55rem 1rem !important; border-radius: 6px !important; font-weight: 600 !important; white-space: nowrap; }
+    .nav-cta:hover { background: var(--green-deep) !important; }
+
+    /* ── BUTTONS ── */
+    .btn { display: inline-flex; align-items: center; gap: 0.5rem; padding: 0.9rem 1.75rem; border-radius: 8px; font-weight: 600; font-size: 0.95rem; text-decoration: none; transition: all 0.2s; border: 1.5px solid transparent; cursor: pointer; font-family: 'Poppins', sans-serif; }
+    .btn-primary { background: var(--green-primary); color: white; border-color: var(--green-primary); box-shadow: 0 4px 14px rgba(45,106,79,0.3); }
+    .btn-primary:hover { background: var(--green-deep); transform: translateY(-2px); box-shadow: 0 8px 20px rgba(45,106,79,0.35); }
+    .btn-ghost { background: transparent; color: var(--green-primary); border-color: var(--green-accent); }
+    .btn-ghost:hover { background: var(--green-tint); border-color: var(--green-primary); }
+    .btn-ghost-gold { background: transparent; color: var(--gold); border: 1.5px solid var(--gold); border-radius: 8px; padding: 0.9rem 1.75rem; font-weight: 600; font-size: 0.95rem; text-decoration: none; transition: all 0.2s; display: inline-flex; align-items: center; gap: 0.5rem; font-family: 'Poppins', sans-serif; }
+    .btn-ghost-gold:hover { background: var(--gold-light); transform: translateY(-2px); }
+    .btn-white { background: white; color: var(--green-primary); border: 1.5px solid white; box-shadow: 0 4px 14px rgba(0,0,0,0.12); }
+    .btn-white:hover { transform: translateY(-2px); box-shadow: 0 8px 24px rgba(0,0,0,0.18); }
+
+    /* ── HERO ── */
+    .hero { position: relative; padding: 7rem 0 6rem; overflow: hidden; }
+    .hero::before { content: ''; position: absolute; inset: 0; background-image: linear-gradient(var(--border) 1px, transparent 1px), linear-gradient(90deg, var(--border) 1px, transparent 1px); background-size: 48px 48px; opacity: 0.5; z-index: 0; }
+    .hero::after  { content: ''; position: absolute; inset: 0; background: radial-gradient(ellipse 70% 60% at 50% 0%, var(--green-tint) 0%, transparent 70%); z-index: 0; }
+    .hero .container { position: relative; z-index: 1; text-align: center; }
+    .hero-eyebrow { display: inline-flex; align-items: center; gap: 0.5rem; font-size: 0.8rem; font-weight: 600; text-transform: uppercase; letter-spacing: 1.5px; color: var(--green-mid); background: var(--green-tint); border: 1px solid rgba(45,106,79,0.25); padding: 0.4rem 1rem; border-radius: 100px; margin-bottom: 2rem; animation: fadeInDown 0.6s ease forwards; }
+    .hero-eyebrow .dot { width: 6px; height: 6px; background: var(--green-accent); border-radius: 50%; animation: pulse 2s infinite; }
+    @keyframes pulse { 0%,100%{opacity:1;transform:scale(1)} 50%{opacity:0.5;transform:scale(0.8)} }
+    .hero h1 { font-family: 'DM Serif Display', Georgia, serif; font-size: clamp(3rem, 6vw, 5.5rem); line-height: 1.05; color: var(--ink); margin-bottom: 1.5rem; animation: fadeInUp 0.7s 0.1s ease both; }
+    .hero h1 em { font-style: italic; color: var(--green-primary); }
+    .hero-sub { font-size: 1.2rem; color: var(--ink-60); max-width: 620px; margin: 0 auto 2.5rem; font-weight: 400; line-height: 1.7; animation: fadeInUp 0.7s 0.2s ease both; }
+    .hero-sub strong { color: var(--ink); font-weight: 600; }
+    .hero-cta-group { display: flex; gap: 1rem; justify-content: center; flex-wrap: wrap; animation: fadeInUp 0.7s 0.3s ease both; }
+    .hero-trust { margin-top: 3rem; font-size: 0.8rem; color: var(--ink-30); font-weight: 500; letter-spacing: 0.5px; animation: fadeInUp 0.7s 0.4s ease both; }
+
+    /* ── STATS ── */
+    .stats-bar { background: var(--white); border-top: 1px solid var(--border); border-bottom: 1px solid var(--border); padding: 3.5rem 0; }
+    .stats-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 2rem; text-align: center; }
+    .stat-item { padding: 0 1rem; }
+    .stat-item + .stat-item { border-left: 1px solid var(--border); }
+    .stat-value { font-family: 'DM Serif Display', Georgia, serif; font-size: 2.75rem; color: var(--green-primary); line-height: 1; margin-bottom: 0.4rem; }
+    .stat-label { font-size: 0.85rem; color: var(--ink-60); font-weight: 500; line-height: 1.4; }
+
+    /* ── SECTIONS ── */
+    .section { padding: 6rem 0; }
+    .section--alt { background: var(--white); }
+    .section--dark { background: var(--green-deep); }
+    .label { display: inline-block; font-size: 0.72rem; font-weight: 700; text-transform: uppercase; letter-spacing: 2px; color: var(--green-accent); margin-bottom: 1rem; }
+    .section-title { font-family: 'DM Serif Display', Georgia, serif; font-size: clamp(2rem, 4vw, 3.25rem); line-height: 1.15; color: var(--ink); margin-bottom: 1rem; }
+    .section-title em { font-style: italic; color: var(--green-primary); }
+    .section-lead { font-size: 1.1rem; color: var(--ink-60); max-width: 640px; line-height: 1.7; margin-bottom: 3.5rem; }
+    .section--dark .section-title { color: white; }
+    .section--dark .section-lead { color: rgba(255,255,255,0.65); }
+    .section--dark .label { color: var(--green-accent); }
+
+    /* ── LIVE DEMO FRAME ── */
+    .demo-frame { background: var(--ink); border-radius: 16px; overflow: hidden; margin-top: 3rem; border: 1px solid rgba(255,255,255,0.08); }
+    .demo-bar { background: rgba(255,255,255,0.06); border-bottom: 1px solid rgba(255,255,255,0.08); padding: 1rem 1.5rem; display: flex; align-items: center; justify-content: space-between; }
+    .demo-dots { display: flex; gap: 0.4rem; }
+    .demo-dot { width: 10px; height: 10px; border-radius: 50%; background: rgba(255,255,255,0.15); }
+    .demo-url { font-family: 'JetBrains Mono', monospace; font-size: 0.72rem; color: rgba(255,255,255,0.3); }
+    .demo-live { display: flex; align-items: center; gap: 0.4rem; font-size: 0.7rem; font-weight: 600; color: var(--green-accent); }
+    .demo-live::before { content: ''; width: 6px; height: 6px; background: var(--green-accent); border-radius: 50%; animation: pulse 2s infinite; }
+    .demo-metrics { display: grid; grid-template-columns: repeat(4,1fr); gap: 1.5rem; padding: 2.5rem; }
+    .demo-metric { background: rgba(255,255,255,0.04); border: 1px solid rgba(255,255,255,0.08); border-radius: 10px; padding: 1.25rem; }
+    .demo-metric-label { font-size: 0.65rem; font-weight: 600; text-transform: uppercase; letter-spacing: 1.5px; color: rgba(255,255,255,0.35); margin-bottom: 0.5rem; }
+    .demo-metric-value { font-family: 'DM Serif Display', serif; font-size: 2.5rem; line-height: 1; }
+    .demo-metric-sub { font-size: 0.7rem; color: rgba(255,255,255,0.3); margin-top: 0.25rem; }
+    .val-risk  { color: #f07070; }
+    .val-amber { color: #e8b860; }
+    .val-green { color: var(--green-accent); }
+    .demo-finding { margin: 0 2.5rem 1.5rem; background: rgba(255,255,255,0.04); border: 1px solid rgba(255,255,255,0.08); border-radius: 10px; padding: 1.25rem; font-size: 0.82rem; color: rgba(255,255,255,0.6); line-height: 1.7; font-style: italic; }
+    .demo-finding-label { color: var(--green-accent); font-style: normal; font-size: 0.65rem; font-weight: 700; text-transform: uppercase; letter-spacing: 1.5px; display: block; margin-bottom: 0.5rem; }
+    .demo-cta-bar { padding: 0 2.5rem 2.5rem; text-align: center; }
+
+    /* ── TECH STEPS ── */
+    .steps { display: grid; grid-template-columns: repeat(2, 1fr); gap: 1.5rem; margin-top: 1rem; counter-reset: steps; }
+    .step { background: var(--off-white); border: 1.5px solid var(--border); border-radius: 12px; padding: 2.25rem; position: relative; overflow: hidden; transition: border-color 0.2s, transform 0.2s; }
+    .step:hover { border-color: var(--green-accent); transform: translateY(-3px); }
+    .step::before { counter-increment: steps; content: "0" counter(steps); position: absolute; top: 1.5rem; right: 1.75rem; font-family: 'DM Serif Display', serif; font-size: 3.5rem; color: var(--green-pale); line-height: 1; }
+    .step-icon { width: 40px; height: 40px; background: var(--green-pale); border-radius: 10px; display: flex; align-items: center; justify-content: center; font-size: 1.1rem; margin-bottom: 1.25rem; }
+    .step h3 { font-size: 1.1rem; font-weight: 700; color: var(--green-primary); margin-bottom: 0.75rem; }
+    .step p { font-size: 0.9rem; color: var(--ink-60); line-height: 1.7; }
+
+    /* ── MOAT TABLE ── */
+    .moat-table-wrap { overflow-x: auto; }
+    .moat-table { width: 100%; border-collapse: collapse; border: 1px solid rgba(255,255,255,0.12); border-radius: 12px; overflow: hidden; }
+    .moat-table thead th { background: rgba(255,255,255,0.08); font-size: 0.72rem; font-weight: 700; text-transform: uppercase; letter-spacing: 1.5px; color: var(--green-accent); padding: 0.9rem 1.25rem; text-align: left; border-bottom: 1px solid rgba(255,255,255,0.1); }
+    .moat-table tbody tr { border-top: 1px solid rgba(255,255,255,0.06); transition: background 0.15s; }
+    .moat-table tbody tr:hover { background: rgba(255,255,255,0.04); }
+    .moat-table tbody td { padding: 1rem 1.25rem; font-size: 0.875rem; color: rgba(255,255,255,0.8); vertical-align: middle; line-height: 1.5; }
+    .check { color: var(--green-accent); font-size: 1rem; }
+    .cross { color: #f07070; }
+    .partial { color: #e8b860; }
+    .row-adworth td { background: rgba(45,106,79,0.12) !important; }
+    .row-adworth td:first-child { font-weight: 700; color: var(--green-accent); }
+    .moat-table td:not(:first-child) { text-align: center; }
+    .moat-table th:not(:first-child) { text-align: center; }
+
+    /* ── RAISE (DARK) ── */
+    .raise-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 1.5rem; margin-bottom: 3.5rem; }
+    .raise-card { background: rgba(255,255,255,0.07); border: 1px solid rgba(255,255,255,0.12); border-radius: 12px; padding: 2rem; }
+    .raise-card h4 { font-size: 0.72rem; font-weight: 700; text-transform: uppercase; letter-spacing: 2px; color: var(--green-accent); margin-bottom: 1.25rem; }
+    .raise-card ul { list-style: none; }
+    .raise-card li { font-size: 0.875rem; color: rgba(255,255,255,0.8); padding: 0.45rem 0; padding-left: 1.25rem; position: relative; line-height: 1.5; border-bottom: 1px solid rgba(255,255,255,0.05); }
+    .raise-card li:last-child { border-bottom: none; }
+    .raise-card li::before { content: '✓'; position: absolute; left: 0; color: var(--green-accent); font-size: 0.75rem; top: 0.5rem; }
+    .raise-amount { font-family: 'DM Serif Display', serif; font-size: 5rem; color: white; line-height: 1; margin: 2rem 0 0.5rem; }
+    .raise-label { font-size: 0.8rem; color: rgba(255,255,255,0.4); font-weight: 500; text-transform: uppercase; letter-spacing: 2px; margin-bottom: 3rem; }
+    .timeline { display: grid; grid-template-columns: repeat(3,1fr); gap: 1.5rem; margin-top: 4rem; }
+    .timeline-item { padding-top: 1.5rem; border-top: 2px solid rgba(255,255,255,0.1); }
+    .timeline-item.active { border-top-color: var(--green-accent); }
+    .timeline-item.next   { border-top-color: rgba(82,183,136,0.4); }
+    .timeline-phase { font-family: 'JetBrains Mono', monospace; font-size: 0.65rem; color: var(--green-accent); text-transform: uppercase; letter-spacing: 2px; margin-bottom: 0.5rem; }
+    .timeline-title { font-size: 0.95rem; font-weight: 700; color: white; margin-bottom: 0.5rem; }
+    .timeline-desc  { font-size: 0.8rem; color: rgba(255,255,255,0.45); line-height: 1.6; }
+
+    /* ── FOUNDER ── */
+    .founder-card { max-width: 760px; margin: 0 auto; background: var(--white); border: 1.5px solid var(--border); border-radius: 16px; padding: 3.5rem; position: relative; }
+    .founder-card::before { content: '\201C'; font-family: 'DM Serif Display', serif; font-size: 8rem; color: var(--green-pale); position: absolute; top: -1rem; left: 2.5rem; line-height: 1; }
+    .founder-body { font-size: 1rem; color: var(--ink-60); line-height: 1.8; }
+    .founder-body p + p { margin-top: 1.25rem; }
+    .founder-pullquote { font-family: 'DM Serif Display', serif; font-size: 1.5rem; font-style: italic; color: var(--green-primary); border-left: 3px solid var(--green-accent); padding-left: 1.5rem; margin: 2rem 0; line-height: 1.4; }
+    .founder-sig { margin-top: 2.5rem; padding-top: 2rem; border-top: 1px solid var(--border); display: flex; align-items: center; gap: 1rem; }
+    .founder-avatar { width: 52px; height: 52px; background: var(--green-pale); border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 1.25rem; font-weight: 800; color: var(--green-primary); flex-shrink: 0; }
+    .founder-sig-text strong { display: block; font-weight: 700; font-size: 0.95rem; color: var(--ink); }
+    .founder-sig-text small  { font-size: 0.8rem; color: var(--ink-60); }
+
+    /* ── CONTACT ── */
+    .contact-grid { display: grid; grid-template-columns: repeat(3,1fr); gap: 1.5rem; margin-top: 3rem; }
+    .contact-card { background: var(--white); border: 1.5px solid var(--border); border-radius: 12px; padding: 2rem; text-decoration: none; transition: all 0.2s; }
+    .contact-card:hover { border-color: var(--green-primary); transform: translateY(-3px); box-shadow: 0 12px 32px rgba(10,15,12,0.08); }
+    .contact-card-label { font-size: 0.65rem; font-weight: 700; text-transform: uppercase; letter-spacing: 2px; color: var(--green-mid); margin-bottom: 0.5rem; }
+    .contact-card-title { font-size: 1.05rem; font-weight: 700; color: var(--ink); margin-bottom: 0.25rem; }
+    .contact-card-sub   { font-size: 0.8rem; color: var(--ink-60); }
+
+    /* ── FOOTER ── */
+    footer { background: var(--white); border-top: 1px solid var(--border); padding: 3.5rem 0 2rem; }
+    .footer-grid { display: grid; grid-template-columns: 2fr 1fr 1fr 1fr; gap: 3rem; margin-bottom: 3rem; }
+    .footer-brand-name { font-size: 1.4rem; font-weight: 800; color: var(--green-primary); margin-bottom: 0.6rem; }
+    .footer-tagline { font-size: 0.85rem; color: var(--ink-60); line-height: 1.6; max-width: 260px; }
+    .footer-links h4 { font-size: 0.75rem; font-weight: 700; text-transform: uppercase; letter-spacing: 1.5px; color: var(--ink); margin-bottom: 1rem; }
+    .footer-links ul { list-style: none; }
+    .footer-links a { display: block; font-size: 0.875rem; color: var(--ink-60); text-decoration: none; margin-bottom: 0.6rem; transition: color 0.2s; }
+    .footer-links a:hover { color: var(--green-primary); }
+    .footer-bottom { padding-top: 2rem; border-top: 1px solid var(--border); display: flex; justify-content: space-between; align-items: center; font-size: 0.8rem; color: var(--ink-30); }
+
+    /* ── ANIMATIONS ── */
+    @keyframes fadeInDown { from{opacity:0;transform:translateY(-12px)} to{opacity:1;transform:translateY(0)} }
+    @keyframes fadeInUp   { from{opacity:0;transform:translateY(16px)}  to{opacity:1;transform:translateY(0)} }
+    .fade-up { opacity:1; transform:none; transition: opacity 0.6s ease, transform 0.6s ease; }
+    .js-ready .fade-up { opacity:0; transform:translateY(24px); }
+    .js-ready .fade-up.visible { opacity:1; transform:none; }
+
+    /* ── RESPONSIVE ── */
+    @media (max-width: 900px) {
+      .stats-grid { grid-template-columns: repeat(2,1fr); }
+      .stat-item + .stat-item { border-left: none; }
+      .steps { grid-template-columns: 1fr; }
+      .raise-grid { grid-template-columns: 1fr; }
+      .timeline { grid-template-columns: 1fr; }
+      .contact-grid { grid-template-columns: 1fr; }
+      .footer-grid { grid-template-columns: 1fr 1fr; }
+      .demo-metrics { grid-template-columns: repeat(2,1fr); }
+    }
+    @media (max-width: 640px) {
+      nav ul { display: none; }
+      .hero { padding: 5rem 0 4rem; }
+      .hero h1 { font-size: 2.75rem; }
+      .demo-metrics { grid-template-columns: repeat(2,1fr); }
+      .footer-grid { grid-template-columns: 1fr; }
+      .footer-bottom { flex-direction: column; gap: 0.5rem; text-align: center; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- HEADER -->
+  <header>
+    <div class="container">
+      <nav>
+        <a href="/" class="logo">
+          <span class="logo-mark">Adworth℠</span>
+          <span class="patent-pill">Enterprise & Investors</span>
+        </a>
+        <ul>
+          <li><a href="#technology">Technology</a></li>
+          <li><a href="#traction">Traction</a></li>
+          <li><a href="#raise">The Raise</a></li>
+          <li><a href="#founder">Founder</a></li>
+          <li><a href="/">← Home</a></li>
+          <li><a href="mailto:hello@adworth.app" class="nav-cta">Schedule Meeting →</a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+
+  <main>
+
+    <!-- HERO -->
+    <section class="hero">
+      <div class="container">
+        <div class="hero-eyebrow">
+          <span class="dot"></span>
+          Seed Round Open · $1.5M · Patent Pending
+        </div>
+        <h1>The <em>consent rails</em><br>the internet has been<br>missing.</h1>
+        <p class="hero-sub">
+          Adworth is <strong>cryptographic infrastructure</strong> for digital advertising —
+          making consent mathematically enforceable, verifiable, and compensated.
+          We're building what Stripe built for payments, but for data.
+        </p>
+        <div class="hero-cta-group">
+          <a href="#live-demo" class="btn btn-primary">See Live Demo ↓</a>
+          <a href="#raise" class="btn btn-ghost">View the Raise</a>
+          <a href="mailto:hello@adworth.app" class="btn-ghost-gold">Schedule Meeting →</a>
+        </div>
+        <p class="hero-trust">Patent-pending technology · Live AI transparency data · Consent marketplace coming</p>
+      </div>
+    </section>
+
+    <!-- STATS -->
+    <section class="stats-bar">
+      <div class="container">
+        <div class="stats-grid">
+          <div class="stat-item fade-up">
+            <div class="stat-value">$700B+</div>
+            <div class="stat-label">Digital ad market built on uncompensated user data</div>
+          </div>
+          <div class="stat-item fade-up">
+            <div class="stat-value">$0</div>
+            <div class="stat-label">Current user share of that value</div>
+          </div>
+          <div class="stat-item fade-up">
+            <div class="stat-value">0%</div>
+            <div class="stat-label">AI platform ad disclosure requirements today</div>
+          </div>
+          <div class="stat-item fade-up">
+            <div class="stat-value">Feb '26</div>
+            <div class="stat-label">Patent filed — 11 independent claims across 5 components</div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- LIVE DEMO -->
+    <section class="section section--alt" id="live-demo">
+      <div class="container">
+        <p class="label fade-up">Live Technology</p>
+        <h2 class="section-title fade-up">Real data. Right now.<br><em>Not a prototype.</em></h2>
+        <p class="section-lead fade-up">Our Ad Intelligence pipeline pulls live ads from Google's Transparency Center and runs AI privacy analysis in real time. This is the problem Adworth solves — made visible.</p>
+
+        <div class="demo-frame fade-up">
+          <div class="demo-bar">
+            <div class="demo-dots"><div class="demo-dot"></div><div class="demo-dot"></div><div class="demo-dot"></div></div>
+            <div class="demo-url">adworth.app/dashboard.html — apple.com analysis</div>
+            <div class="demo-live">Live Data</div>
+          </div>
+          <div class="demo-metrics">
+            <div class="demo-metric">
+              <div class="demo-metric-label">Ads Found</div>
+              <div class="demo-metric-value val-green">40</div>
+              <div class="demo-metric-sub">apple.com · live pull</div>
+            </div>
+            <div class="demo-metric">
+              <div class="demo-metric-label">Privacy Risk</div>
+              <div class="demo-metric-value val-risk">8/10</div>
+              <div class="demo-metric-sub">AI-scored · high</div>
+            </div>
+            <div class="demo-metric">
+              <div class="demo-metric-label">Transparency</div>
+              <div class="demo-metric-value val-risk">2/10</div>
+              <div class="demo-metric-sub">disclosure quality</div>
+            </div>
+            <div class="demo-metric">
+              <div class="demo-metric-label">Reg. Flags</div>
+              <div class="demo-metric-value val-amber">4</div>
+              <div class="demo-metric-sub">GDPR · CCPA · DSA</div>
+            </div>
+          </div>
+          <div class="demo-finding">
+            <span class="demo-finding-label">AI Finding — apple.com</span>
+            "Apple.com hosts persistent multi-year ad campaigns from opaque entities using image-only formats that bypass user inspection, creating unverifiable consent and targeting opacity. Adworth consent tokens would enforce granular opt-in for each advertiser entity and targeting dataset, with cryptographic proof of user authorization tied to specific ad placements."
+          </div>
+          <div class="demo-cta-bar">
+            <a href="/dashboard.html" class="btn btn-primary">Try Live Demo →</a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- TECHNOLOGY -->
+    <section class="section" id="technology">
+      <div class="container">
+        <p class="label fade-up">Patent-Pending Technology</p>
+        <h2 class="section-title fade-up">Five components.<br><em>One infrastructure layer.</em></h2>
+        <p class="section-lead fade-up">Filed February 23, 2026. 11 independent claims. The system makes consent mathematically binding — not a promise, a proof.</p>
+        <div class="steps">
+          <div class="step fade-up">
+            <div class="step-icon">🔑</div>
+            <h3>Cryptographic Consent Token</h3>
+            <p>Users sign permission slips with cryptographic keys. Bound to a specific advertiser, data type, and time window. Cannot be faked, extended, or transferred.</p>
+          </div>
+          <div class="step fade-up">
+            <div class="step-icon">🛡️</div>
+            <h3>Privacy Governance Engine</h3>
+            <p>Every data access request is intercepted and verified automatically. No valid token? Blocked. Expired window? Blocked. Zero manual review required.</p>
+          </div>
+          <div class="step fade-up">
+            <div class="step-icon">📖</div>
+            <h3>Invisibility Ledger</h3>
+            <p>Append-only, tamper-evident record of every consent, revocation, and deletion. Companies cannot claim ignorance. Cryptographic proof at every step.</p>
+          </div>
+          <div class="step fade-up">
+            <div class="step-icon">🔎</div>
+            <h3>State-Persistence Monitor</h3>
+            <p>After deletion, the monitor keeps checking. It crawls data brokers and third-party systems to detect unauthorized data persistence post-revocation.</p>
+          </div>
+          <div class="step fade-up">
+            <div class="step-icon">⚡</div>
+            <h3>Removal Payload Engine</h3>
+            <p>Detects violations and auto-generates legally-cited deletion notices — signed with cryptographic proof — citing GDPR, CCPA, and DSA by article number.</p>
+          </div>
+          <div class="step fade-up">
+            <div class="step-icon">💰</div>
+            <h3>Consent Marketplace</h3>
+            <p>Advertisers pay for verified access. Users receive direct payment when tokens are validated. Revoke consent, payments stop. Deletion is enforced. Fair exchange.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- COMPETITIVE MOAT (DARK) -->
+    <section class="section section--dark" id="traction">
+      <div class="container">
+        <p class="label fade-up">Competitive Position</p>
+        <h2 class="section-title fade-up">No patent-protected<br><em>competitor exists.</em></h2>
+        <p class="section-lead fade-up">Brave Ads and AdEx are building parallel ecosystems. Adworth is infrastructure — working across every existing ad system with cryptographic enforcement no one else has.</p>
+        <div class="moat-table-wrap fade-up">
+          <table class="moat-table">
+            <thead>
+              <tr>
+                <th>Feature</th>
+                <th>Adworth℠</th>
+                <th>Brave Ads</th>
+                <th>AdEx</th>
+                <th>GDPR Tools</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr class="row-adworth">
+                <td>Cryptographic consent binding</td>
+                <td><span class="check">✓</span></td>
+                <td><span class="cross">✗</span></td>
+                <td><span class="cross">✗</span></td>
+                <td><span class="cross">✗</span></td>
+              </tr>
+              <tr>
+                <td>Works across existing ad systems</td>
+                <td><span class="check">✓</span></td>
+                <td><span class="cross">✗</span></td>
+                <td><span class="cross">✗</span></td>
+                <td><span class="partial">~</span></td>
+              </tr>
+              <tr class="row-adworth">
+                <td>Users get paid for data</td>
+                <td><span class="check">✓</span></td>
+                <td><span class="check">✓</span></td>
+                <td><span class="cross">✗</span></td>
+                <td><span class="cross">✗</span></td>
+              </tr>
+              <tr>
+                <td>Automated deletion enforcement</td>
+                <td><span class="check">✓</span></td>
+                <td><span class="cross">✗</span></td>
+                <td><span class="cross">✗</span></td>
+                <td><span class="partial">~</span></td>
+              </tr>
+              <tr class="row-adworth">
+                <td>Tamper-evident audit ledger</td>
+                <td><span class="check">✓</span></td>
+                <td><span class="cross">✗</span></td>
+                <td><span class="partial">~</span></td>
+                <td><span class="cross">✗</span></td>
+              </tr>
+              <tr>
+                <td>AI ad transparency analysis</td>
+                <td><span class="check">✓</span></td>
+                <td><span class="cross">✗</span></td>
+                <td><span class="cross">✗</span></td>
+                <td><span class="cross">✗</span></td>
+              </tr>
+              <tr class="row-adworth">
+                <td>Patent protection</td>
+                <td><span class="check">✓ Filed Feb '26</span></td>
+                <td><span class="cross">✗</span></td>
+                <td><span class="cross">✗</span></td>
+                <td><span class="cross">✗</span></td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </section>
+
+    <!-- THE RAISE -->
+    <section class="section section--dark" id="raise" style="border-top: 1px solid rgba(255,255,255,0.08); padding-top: 4rem;">
+      <div class="container">
+        <p class="label fade-up">Seed Round</p>
+        <div class="raise-amount fade-up">$1.5M</div>
+        <div class="raise-label fade-up">18-month runway · Two-sided marketplace</div>
+        <p class="section-lead fade-up">The timing window — AI advertising boom, regulatory gap, no patent-protected competitor — won't stay open. This is infrastructure that needs to exist.</p>
+        <div class="raise-grid fade-up">
+          <div class="raise-card">
+            <h4>What We Have Today</h4>
+            <ul>
+              <li>Provisional patent filed Feb 23, 2026 — 11 claims</li>
+              <li>Live ad intelligence pipeline (real data, AI analysis)</li>
+              <li>Working consent validation API — cryptographic tokens issuing</li>
+              <li>Cloudflare Workers infrastructure — scalable from day one</li>
+              <li>Service mark protection — Adworth℠</li>
+              <li>SCRA member · SC Research Authority</li>
+            </ul>
+          </div>
+          <div class="raise-card">
+            <h4>What $1.5M Builds</h4>
+            <ul>
+              <li>Full cryptographic consent infrastructure</li>
+              <li>Two-sided marketplace — users + advertisers</li>
+              <li>Transaction fee model — 2–5% when users get paid</li>
+              <li>Enterprise compliance licensing — $15K–50K/year</li>
+              <li>Non-provisional patent filing by Feb 2027</li>
+              <li>First enterprise contracts by month 6</li>
+            </ul>
+          </div>
+        </div>
+        <div class="timeline fade-up">
+          <div class="timeline-item active">
+            <div class="timeline-phase">Now — Month 6</div>
+            <div class="timeline-title">Infrastructure & First Revenue</div>
+            <div class="timeline-desc">Full consent API, enterprise pilot contracts, DSA compliance SaaS launch</div>
+          </div>
+          <div class="timeline-item next">
+            <div class="timeline-phase">Month 6 — 12</div>
+            <div class="timeline-title">Marketplace Beta</div>
+            <div class="timeline-desc">Two-sided marketplace live, first user payments, advertiser onboarding</div>
+          </div>
+          <div class="timeline-item">
+            <div class="timeline-phase">Month 12 — 18</div>
+            <div class="timeline-title">Scale & Non-Provisional Patent</div>
+            <div class="timeline-desc">Real marketplace traction, non-provisional filed, Series A positioning</div>
+          </div>
+        </div>
+        <div style="text-align:center; margin-top:3.5rem;" class="fade-up">
+          <a href="mailto:hello@adworth.app" class="btn btn-white">Schedule Investor Meeting →</a>
+        </div>
+      </div>
+    </section>
+
+    <!-- FOUNDER -->
+    <section class="section" id="founder">
+      <div class="container">
+        <p class="label fade-up" style="text-align:center;">Founder</p>
+        <h2 class="section-title fade-up" style="text-align:center; margin-bottom:3rem;">Why I Left After 18 Years</h2>
+        <div class="founder-card fade-up">
+          <div class="founder-body">
+            <p>I left Verizon in December 2025 after 18 years — the last 15 as a supervisor managing large technical support teams. For 15 of those years I listened to escalated calls from customers who had been financially hurt, legally exposed, emotionally devastated — almost always because of what happened to their data.</p>
+            <p>My background in copyright law and music publishing taught me this pattern early. Ownership extraction follows the same playbook across industries. Taylor Swift didn't own her master recordings. You don't own your data. Adworth changes the second one.</p>
+            <div class="founder-pullquote">
+              "What if users could lend their data — on their terms, with cryptographic enforcement, and get paid for it?"
+            </div>
+            <p>I built it with a high school diploma, 20 years of corporate experience, and AI as my co-founder. The patent was filed February 23, 2026. Now I'm raising $1.5M to build it properly.</p>
+          </div>
+          <div class="founder-sig">
+            <div class="founder-avatar">NJ</div>
+            <div class="founder-sig-text">
+              <strong>Nick Johnson</strong>
+              <small>Founder, Adworth℠ LLC · Charleston, SC · Patent Pending · hello@adworth.app</small>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- CONTACT -->
+    <section class="section section--alt">
+      <div class="container" style="text-align:center;">
+        <p class="label fade-up">Get In Touch</p>
+        <h2 class="section-title fade-up">Ready to talk?</h2>
+        <p class="section-lead fade-up" style="margin: 1rem auto 0;">We're raising $1.5M to build the consent rails for a permission-based internet. The window is open now.</p>
+        <div class="contact-grid fade-up">
+          <a href="mailto:hello@adworth.app" class="contact-card">
+            <div class="contact-card-label">Primary Contact</div>
+            <div class="contact-card-title">hello@adworth.app</div>
+            <div class="contact-card-sub">Schedule a meeting or request a deck</div>
+          </a>
+          <a href="/dashboard.html" class="contact-card">
+            <div class="contact-card-label">Live Demo</div>
+            <div class="contact-card-title">Ad Intelligence Dashboard</div>
+            <div class="contact-card-sub">Real data · AI analysis · No login required</div>
+          </a>
+          <a href="/" class="contact-card">
+            <div class="contact-card-label">Consumer Site</div>
+            <div class="contact-card-title">adworth.app</div>
+            <div class="contact-card-sub">Homepage · Waitlist · Full overview</div>
+          </a>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- FOOTER -->
+  <footer>
+    <div class="container">
+      <div class="footer-grid">
+        <div>
+          <div class="footer-brand-name">Adworth℠</div>
+          <p class="footer-tagline">Cryptographic consent infrastructure for digital advertising. Privacy for people, compliance for platforms.</p>
+        </div>
+        <div class="footer-links">
+          <h4>Pages</h4>
+          <ul>
+            <li><a href="/">Home</a></li>
+            <li><a href="/dashboard.html">Consumer Demo</a></li>
+            <li><a href="/enterprise.html">Enterprise</a></li>
+          </ul>
+        </div>
+        <div class="footer-links">
+          <h4>Company</h4>
+          <ul>
+            <li><a href="#founder">Founder</a></li>
+            <li><a href="#raise">Investors</a></li>
+            <li><a href="mailto:hello@adworth.app">Contact</a></li>
+          </ul>
+        </div>
+        <div class="footer-links">
+          <h4>Legal</h4>
+          <ul>
+            <li><a href="/privacy.html">Privacy Policy</a></li>
+            <li><a href="/terms.html">Terms of Service</a></li>
+          </ul>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <span>© 2026 Adworth℠ LLC · Patent Pending · Charleston, SC</span>
+        <span>Built in public · Raising seed round</span>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    document.body.classList.add('js-ready');
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('visible');
+          observer.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.1, rootMargin: '0px 0px -40px 0px' });
+    document.querySelectorAll('.fade-up').forEach(el => observer.observe(el));
+    document.querySelectorAll('.steps').forEach(grid => {
+      grid.querySelectorAll('.step').forEach((card, i) => {
+        card.classList.add('fade-up');
+        card.style.transitionDelay = `${i * 80}ms`;
+        observer.observe(card);
+      });
+    });
+  </script>
+
+</body>
+</html>
