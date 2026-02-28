@@ -1,663 +1,1028 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Adworth℠ — Ad Intelligence Dashboard</title>
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800;900&family=DM+Serif+Display:ital@0;1&display=swap" rel="stylesheet">
-<style>
-  *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Adworth℠ — Ad Intelligence Dashboard</title>
+  <link rel="icon" type="image/x-icon" href="/favicon.ico">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&family=DM+Serif+Display:ital@0;1&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+  <style>
+    *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
 
-  :root {
-    --green-deep: #1a4a35;
-    --green-primary: #2d6a4f;
-    --green-mid: #1B7A4E;
-    --green-accent: #52b788;
-    --green-pale: #d8f3dc;
-    --green-tint: #f0faf3;
-    --off-white: #fafaf8;
-    --white: #ffffff;
-    --ink: #111410;
-    --ink-60: #555a50;
-    --ink-30: #b0b5aa;
-    --border: #e2e8df;
-    --gold: #c8a96a;
-    --gold-light: #f5e9d3;
-    --warn: #d95f2b;
-    --warn-light: #fdf0ea;
-    --caution: #b07d20;
-    --caution-light: #fdf6e3;
-    --blue: #2563eb;
-    --blue-light: #eff6ff;
-  }
+    :root {
+      --green-deep:    #1a4a35;
+      --green-primary: #2d6a4f;
+      --green-accent:  #52b788;
+      --green-pale:    #d8f3dc;
+      --green-tint:    #f0faf3;
+      --off-white:     #fafaf8;
+      --white:         #ffffff;
+      --ink:           #111410;
+      --ink-60:        #555a50;
+      --ink-30:        #b0b5aa;
+      --border:        #e2e8df;
+      --red:           #e05252;
+      --amber:         #d4930a;
+      --mono:          'JetBrains Mono', monospace;
+    }
 
-  html { font-size: 14px; }
-  body {
-    font-family: 'Poppins', sans-serif;
-    background: var(--off-white);
-    color: var(--ink);
-    min-height: 100vh;
-    display: grid;
-    grid-template-rows: auto 56px 1fr;
-    grid-template-columns: 230px 1fr;
-    grid-template-areas: "banner banner" "nav nav" "sidebar main";
-  }
+    html { scroll-behavior: smooth; }
 
-  /* PREVIEW BANNER */
-  .preview-banner {
-    grid-area: banner;
-    background: var(--green-deep);
-    color: rgba(255,255,255,0.95);
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    gap: 20px;
-    padding: 10px 24px;
-    font-size: 0.75rem;
-    font-weight: 500;
-    line-height: 1.5;
-    position: sticky; top: 0; z-index: 200;
-  }
-  .preview-banner a {
-    color: var(--green-accent);
-    font-weight: 700;
-    text-decoration: none;
-    white-space: nowrap;
-  }
-  .preview-banner a:hover { text-decoration: underline; }
-  .banner-pills {
-    display: flex; align-items: center; gap: 8px; flex-shrink: 0;
-  }
-  .banner-pill {
-    font-size: 0.62rem; font-weight: 700; text-transform: uppercase;
-    letter-spacing: 1px; padding: 3px 10px; border-radius: 100px;
-    white-space: nowrap;
-  }
-  .banner-pill.preview {
-    background: rgba(82,183,136,0.2);
-    color: var(--green-accent);
-    border: 1px solid rgba(82,183,136,0.4);
-  }
-  .banner-pill.sample {
-    background: rgba(200,169,106,0.2);
-    color: var(--gold);
-    border: 1px solid rgba(200,169,106,0.4);
-  }
-  .banner-divider { color: rgba(255,255,255,0.2); }
-  .banner-text { text-align: center; }
-  .banner-text strong { color: white; font-weight: 700; }
-  .banner-dismiss {
-    margin-left: auto;
-    color: rgba(255,255,255,0.4);
-    cursor: pointer;
-    font-size: 1rem;
-    line-height: 1;
-    padding: 2px 6px;
-    border-radius: 4px;
-    transition: color 0.15s;
-    background: none; border: none;
-    flex-shrink: 0;
-  }
-  .banner-dismiss:hover { color: white; }
-
-  /* TOP NAV */
-  .topnav {
-    grid-area: nav;
-    background: rgba(250,250,248,0.97);
-    backdrop-filter: blur(12px);
-    border-bottom: 1px solid var(--border);
-    display: flex; align-items: center;
-    padding: 0 24px; gap: 12px;
-    position: sticky; top: 0; z-index: 100;
-  }
-  .logo { display: flex; align-items: center; gap: 8px; text-decoration: none; margin-right: auto; }
-  .logo-mark { font-family: 'Poppins', sans-serif; font-size: 1.25rem; font-weight: 800; color: var(--green-primary); letter-spacing: -0.5px; }
-  .patent-pill { font-size: 0.6rem; font-weight: 700; text-transform: uppercase; letter-spacing: 1px; background: var(--green-pale); color: var(--green-deep); padding: 0.2rem 0.55rem; border-radius: 100px; border: 1px solid rgba(45,106,79,0.2); }
-  .nav-btn { font-family: 'Poppins', sans-serif; font-size: 0.75rem; font-weight: 500; color: var(--ink-60); background: var(--white); border: 1px solid var(--border); padding: 6px 14px; border-radius: 6px; cursor: pointer; display: flex; align-items: center; gap: 6px; transition: all 0.15s; }
-  .nav-btn:hover { border-color: var(--green-accent); color: var(--green-primary); }
-  .alert-badge-nav { background: var(--warn); color: white; border-radius: 100px; font-size: 0.6rem; font-weight: 700; padding: 1px 6px; }
-  .avatar { width: 32px; height: 32px; border-radius: 50%; background: var(--green-primary); color: white; font-size: 0.7rem; font-weight: 700; display: flex; align-items: center; justify-content: center; cursor: pointer; }
-
-  /* SIDEBAR */
-  .sidebar {
-    grid-area: sidebar;
-    background: var(--white);
-    border-right: 1px solid var(--border);
-    padding: 20px 12px;
-    display: flex; flex-direction: column; gap: 2px;
-    overflow-y: auto;
-  }
-  .sidebar-label { font-size: 0.65rem; font-weight: 700; text-transform: uppercase; letter-spacing: 2px; color: var(--ink-30); padding: 0 8px; margin: 14px 0 6px; }
-  .sidebar-label:first-child { margin-top: 0; }
-  .nav-item { display: flex; align-items: center; gap: 9px; padding: 9px 10px; border-radius: 8px; cursor: pointer; font-size: 0.825rem; font-weight: 500; color: var(--ink-60); transition: all 0.15s; text-decoration: none; position: relative; }
-  .nav-item:hover { background: var(--green-tint); color: var(--green-primary); }
-  .nav-item.active { background: var(--green-tint); color: var(--green-primary); font-weight: 600; border: 1px solid rgba(45,106,79,0.15); }
-  .nav-item.active::before { content: ''; position: absolute; left: -1px; top: 20%; height: 60%; width: 3px; background: var(--green-primary); border-radius: 0 3px 3px 0; }
-  .nav-icon { font-size: 0.9rem; width: 18px; text-align: center; flex-shrink: 0; }
-  .nav-chip { margin-left: auto; font-size: 0.6rem; font-weight: 700; background: var(--warn-light); color: var(--warn); border: 1px solid rgba(217,95,43,0.25); padding: 2px 7px; border-radius: 100px; }
-  .sidebar-footer { margin-top: auto; padding-top: 16px; border-top: 1px solid var(--border); font-size: 0.7rem; color: var(--ink-30); text-align: center; }
-
-  /* MAIN */
-  .main { grid-area: main; padding: 28px 32px; overflow-y: auto; display: flex; flex-direction: column; gap: 20px; }
-
-  .page-header { display: flex; align-items: flex-end; justify-content: space-between; }
-  .page-title { font-family: 'DM Serif Display', Georgia, serif; font-size: 2rem; color: var(--ink); line-height: 1.1; }
-  .page-sub { font-size: 0.75rem; color: var(--ink-30); margin-top: 4px; }
-  .header-actions { display: flex; align-items: center; gap: 10px; }
-  .live-pill { display: flex; align-items: center; gap: 6px; font-size: 0.7rem; font-weight: 600; color: var(--green-mid); background: var(--green-tint); border: 1px solid rgba(45,106,79,0.25); padding: 5px 12px; border-radius: 100px; }
-  .live-dot { width: 6px; height: 6px; border-radius: 50%; background: var(--green-accent); animation: pulse 2s infinite; }
-  @keyframes pulse { 0%,100%{opacity:1;transform:scale(1)} 50%{opacity:0.5;transform:scale(0.85)} }
-  .date-btn { font-size: 0.75rem; font-weight: 500; color: var(--ink-60); background: var(--white); border: 1px solid var(--border); padding: 6px 14px; border-radius: 6px; cursor: pointer; transition: border-color 0.15s; }
-  .date-btn:hover { border-color: var(--green-accent); }
-
-  /* KPI BAR */
-  .kpi-bar { display: grid; grid-template-columns: repeat(5, 1fr); gap: 12px; }
-  .kpi-card { background: var(--white); border: 1px solid var(--border); border-radius: 12px; padding: 18px 16px; position: relative; overflow: hidden; transition: border-color 0.2s, transform 0.2s; animation: fadeUp 0.4s ease both; }
-  .kpi-card:nth-child(1){animation-delay:0s}
-  .kpi-card:nth-child(2){animation-delay:0.07s}
-  .kpi-card:nth-child(3){animation-delay:0.14s}
-  .kpi-card:nth-child(4){animation-delay:0.21s}
-  .kpi-card:nth-child(5){animation-delay:0.28s}
-  @keyframes fadeUp { from{opacity:0;transform:translateY(10px)} to{opacity:1;transform:translateY(0)} }
-  .kpi-card:hover { border-color: var(--green-accent); transform: translateY(-2px); }
-  .kpi-label { font-size: 0.65rem; font-weight: 700; text-transform: uppercase; letter-spacing: 1px; color: var(--ink-30); margin-bottom: 10px; }
-  .kpi-value { font-family: 'DM Serif Display', Georgia, serif; font-size: 1.75rem; color: var(--ink); line-height: 1; margin-bottom: 8px; }
-  .kpi-value.green { color: var(--green-primary); }
-  .kpi-value.warn { color: var(--warn); }
-  .kpi-value.blue { color: var(--blue); }
-  .kpi-delta { font-size: 0.7rem; font-weight: 500; display: flex; align-items: center; gap: 4px; color: var(--ink-30); }
-  .kpi-delta.up { color: var(--green-mid); }
-  .kpi-delta.down { color: var(--warn); }
-  .trust-ring { position: absolute; right: 12px; top: 50%; transform: translateY(-50%); }
-  .trust-ring svg { transform: rotate(-90deg); }
-
-  /* PANELS */
-  .panels-row { display: grid; grid-template-columns: 2fr 1fr; gap: 16px; animation: fadeUp 0.4s 0.35s ease both; }
-  .panel { background: var(--white); border: 1px solid var(--border); border-radius: 12px; overflow: hidden; }
-  .panel-header { display: flex; align-items: center; justify-content: space-between; padding: 14px 18px; border-bottom: 1px solid var(--border); }
-  .panel-title { font-family: 'DM Serif Display', Georgia, serif; font-size: 1rem; color: var(--ink); }
-  .panel-tag { font-size: 0.65rem; font-weight: 600; text-transform: uppercase; letter-spacing: 1px; color: var(--ink-60); background: var(--off-white); border: 1px solid var(--border); padding: 3px 9px; border-radius: 100px; cursor: pointer; transition: all 0.15s; }
-  .panel-tag:hover, .panel-tag.active { background: var(--green-tint); color: var(--green-primary); border-color: rgba(45,106,79,0.25); }
-  .panel-tabs { display: flex; gap: 6px; }
-
-  .chart-area { padding: 16px 18px 12px; }
-  .chart-legend { display: flex; gap: 16px; margin-bottom: 12px; }
-  .legend-item { font-size: 0.7rem; font-weight: 500; color: var(--ink-60); display: flex; align-items: center; gap: 6px; }
-  .legend-line { width: 20px; height: 2px; border-radius: 1px; }
-
-  .waste-list { padding: 14px 18px; display: flex; flex-direction: column; gap: 16px; }
-  .waste-item { display: flex; flex-direction: column; gap: 7px; }
-  .waste-meta { display: flex; justify-content: space-between; align-items: flex-start; }
-  .waste-name { font-size: 0.8rem; font-weight: 600; color: var(--ink); }
-  .waste-sub { font-size: 0.68rem; color: var(--ink-30); margin-top: 1px; }
-  .waste-val { font-family: 'DM Serif Display', serif; font-size: 1rem; color: var(--warn); }
-  .bar-track { height: 5px; background: var(--border); border-radius: 3px; overflow: hidden; }
-  .bar-fill { height: 100%; border-radius: 3px; background: linear-gradient(90deg, var(--warn), #f0956a); }
-
-  /* BOTTOM ROW */
-  .bottom-row { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; animation: fadeUp 0.4s 0.5s ease both; }
-
-  .alerts-list { padding: 6px 10px; }
-  .alert-row { display: flex; align-items: flex-start; gap: 10px; padding: 10px 8px; border-radius: 8px; cursor: pointer; transition: background 0.15s; }
-  .alert-row:hover { background: var(--green-tint); }
-  .alert-indicator { width: 8px; height: 8px; border-radius: 50%; margin-top: 5px; flex-shrink: 0; }
-  .alert-indicator.critical { background: var(--warn); }
-  .alert-indicator.warning { background: var(--caution); }
-  .alert-indicator.info { background: var(--blue); }
-  .alert-content { flex: 1; }
-  .alert-text { font-size: 0.78rem; font-weight: 500; color: var(--ink); line-height: 1.45; }
-  .alert-time { font-size: 0.67rem; color: var(--ink-30); margin-top: 3px; }
-  .alert-tag { font-size: 0.6rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.5px; padding: 2px 8px; border-radius: 100px; white-space: nowrap; flex-shrink: 0; margin-top: 3px; }
-  .alert-tag.critical { background: var(--warn-light); color: var(--warn); border: 1px solid rgba(217,95,43,0.25); }
-  .alert-tag.warning { background: var(--caution-light); color: var(--caution); border: 1px solid rgba(176,125,32,0.25); }
-  .alert-tag.info { background: var(--blue-light); color: var(--blue); border: 1px solid rgba(37,99,235,0.2); }
-
-  table { width: 100%; border-collapse: collapse; }
-  thead th { font-size: 0.65rem; font-weight: 700; text-transform: uppercase; letter-spacing: 1px; color: var(--ink-30); padding: 10px 16px; text-align: left; border-bottom: 1px solid var(--border); background: var(--off-white); }
-  tbody tr { border-bottom: 1px solid var(--border); transition: background 0.15s; }
-  tbody tr:last-child { border-bottom: none; }
-  tbody tr:hover { background: var(--green-tint); }
-  td { padding: 10px 16px; font-size: 0.78rem; color: var(--ink); }
-  td.num { color: var(--ink-60); }
-  td.green { color: var(--green-primary); font-weight: 600; }
-  td.red { color: var(--warn); font-weight: 600; }
-  td.yellow { color: var(--caution); font-weight: 600; }
-  .platform-name { display: flex; align-items: center; gap: 8px; font-weight: 600; }
-  .platform-ico { width: 24px; height: 24px; border-radius: 6px; display: flex; align-items: center; justify-content: center; font-size: 0.7rem; font-weight: 800; }
-  .status-pill { display: inline-flex; align-items: center; gap: 4px; font-size: 0.65rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.5px; padding: 2px 8px; border-radius: 100px; }
-  .status-pill.ok { background: var(--green-pale); color: var(--green-deep); }
-  .status-pill.flag { background: var(--warn-light); color: var(--warn); }
-  .status-pill.review { background: var(--caution-light); color: var(--caution); }
-
-  /* SAMPLE DATA LABELS */
-  .sample-tag {
-    display: inline-flex; align-items: center; gap: 4px;
-    font-size: 0.6rem; font-weight: 700; text-transform: uppercase;
-    letter-spacing: 0.5px; padding: 2px 7px; border-radius: 100px;
-    background: var(--gold-light); color: var(--caution);
-    border: 1px solid rgba(176,125,32,0.25);
-    vertical-align: middle; margin-left: 6px;
-    white-space: nowrap;
-  }
-
-  /* PAGE-LEVEL SAMPLE NOTICE */
-  .sample-notice {
-    background: var(--gold-light);
-    border: 1px solid rgba(200,169,106,0.4);
-    border-radius: 10px;
-    padding: 10px 16px;
-    display: flex;
-    align-items: center;
-    gap: 10px;
-    font-size: 0.75rem;
-    color: var(--caution);
-    font-weight: 500;
-    animation: fadeUp 0.4s ease both;
-  }
-  .sample-notice strong { font-weight: 700; color: #7a5c2e; }
-  .sample-notice-icon { font-size: 1rem; flex-shrink: 0; }
-
-  ::-webkit-scrollbar { width: 4px; }
-  ::-webkit-scrollbar-track { background: transparent; }
-  ::-webkit-scrollbar-thumb { background: var(--border); border-radius: 2px; }
-
-  /* ── MOBILE HAMBURGER ── */
-  .menu-toggle {
-    display: none;
-    background: none;
-    border: 1px solid var(--border);
-    border-radius: 6px;
-    padding: 6px 10px;
-    cursor: pointer;
-    font-size: 1rem;
-    color: var(--ink-60);
-    line-height: 1;
-    margin-right: 4px;
-  }
-
-  /* ── SIDEBAR OVERLAY (mobile) ── */
-  .sidebar-overlay {
-    display: none;
-    position: fixed;
-    inset: 0;
-    background: rgba(0,0,0,0.35);
-    z-index: 149;
-  }
-  .sidebar-overlay.visible { display: block; }
-
-  /* ── RESPONSIVE ── */
-  @media (max-width: 768px) {
     body {
-      grid-template-columns: 1fr;
-      grid-template-rows: auto auto 1fr;
-      grid-template-areas: "banner" "nav" "main";
+      font-family: 'Poppins', sans-serif;
+      background: #0e1a14;
+      color: var(--off-white);
+      min-height: 100vh;
+      overflow-x: hidden;
     }
-    .menu-toggle { display: block; }
-    .nav-btn { display: none; }
-    .avatar { display: none; }
-    .sidebar {
+
+    /* ── GRID BACKGROUND ── */
+    body::before {
+      content: '';
       position: fixed;
-      top: 0;
-      left: -260px;
-      width: 240px;
-      height: 100vh;
-      z-index: 150;
-      transition: left 0.25s ease;
-      box-shadow: 4px 0 24px rgba(0,0,0,0.12);
-      padding-top: 60px;
+      inset: 0;
+      background-image:
+        linear-gradient(rgba(82,183,136,0.04) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(82,183,136,0.04) 1px, transparent 1px);
+      background-size: 40px 40px;
+      pointer-events: none;
+      z-index: 0;
     }
-    .sidebar.open { left: 0; }
-    .main { padding: 16px; gap: 14px; }
-    .preview-banner {
-      flex-direction: column;
-      gap: 8px;
-      padding: 10px 16px;
+
+    /* ── HEADER ── */
+    header {
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      background: rgba(14, 26, 20, 0.92);
+      backdrop-filter: blur(16px);
+      border-bottom: 1px solid rgba(82,183,136,0.15);
+      padding: 0 2rem;
+    }
+
+    nav {
+      max-width: 1400px;
+      margin: 0 auto;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      height: 60px;
+    }
+
+    .logo {
+      display: flex;
+      align-items: center;
+      gap: 0.6rem;
+      text-decoration: none;
+    }
+
+    .logo-text {
+      font-size: 1.3rem;
+      font-weight: 800;
+      color: var(--green-accent);
+      letter-spacing: -0.3px;
+    }
+
+    .badge {
+      font-size: 0.6rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      background: rgba(82,183,136,0.15);
+      color: var(--green-accent);
+      border: 1px solid rgba(82,183,136,0.3);
+      padding: 0.2rem 0.5rem;
+      border-radius: 100px;
+    }
+
+    .nav-right {
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+    }
+
+    .status-dot {
+      display: flex;
+      align-items: center;
+      gap: 0.4rem;
+      font-size: 0.75rem;
+      color: var(--green-accent);
+      font-family: var(--mono);
+    }
+
+    .dot {
+      width: 7px; height: 7px;
+      background: var(--green-accent);
+      border-radius: 50%;
+      animation: pulse 2s infinite;
+    }
+
+    .dot.offline { background: var(--red); animation: none; }
+
+    @keyframes pulse {
+      0%, 100% { opacity: 1; transform: scale(1); }
+      50% { opacity: 0.4; transform: scale(0.7); }
+    }
+
+    /* ── MAIN LAYOUT ── */
+    .main {
+      max-width: 1400px;
+      margin: 0 auto;
+      padding: 2rem;
+      position: relative;
+      z-index: 1;
+    }
+
+    /* ── SEARCH BAR ── */
+    .search-section {
+      background: rgba(255,255,255,0.04);
+      border: 1px solid rgba(82,183,136,0.2);
+      border-radius: 16px;
+      padding: 2rem;
+      margin-bottom: 2rem;
+    }
+
+    .search-label {
+      font-size: 0.7rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 2px;
+      color: var(--green-accent);
+      margin-bottom: 1rem;
+      display: block;
+    }
+
+    .search-row {
+      display: flex;
+      gap: 0.75rem;
+      flex-wrap: wrap;
+    }
+
+    .domain-input {
+      flex: 1;
+      min-width: 240px;
+      padding: 0.85rem 1.25rem;
+      background: rgba(255,255,255,0.06);
+      border: 1px solid rgba(82,183,136,0.25);
+      border-radius: 10px;
+      color: var(--off-white);
+      font-family: var(--mono);
+      font-size: 0.95rem;
+      transition: border-color 0.2s;
+      outline: none;
+    }
+
+    .domain-input:focus {
+      border-color: var(--green-accent);
+      background: rgba(82,183,136,0.08);
+    }
+
+    .domain-input::placeholder { color: rgba(255,255,255,0.25); }
+
+    .btn-analyze {
+      padding: 0.85rem 1.75rem;
+      background: var(--green-primary);
+      color: white;
+      border: none;
+      border-radius: 10px;
+      font-family: 'Poppins', sans-serif;
+      font-weight: 700;
+      font-size: 0.9rem;
+      cursor: pointer;
+      transition: all 0.2s;
+      white-space: nowrap;
+    }
+
+    .btn-analyze:hover { background: var(--green-accent); color: var(--ink); }
+    .btn-analyze:disabled { opacity: 0.5; cursor: not-allowed; }
+
+    .quick-domains {
+      display: flex;
+      gap: 0.5rem;
+      flex-wrap: wrap;
+      margin-top: 1rem;
+    }
+
+    .quick-chip {
+      padding: 0.3rem 0.8rem;
+      background: rgba(255,255,255,0.05);
+      border: 1px solid rgba(255,255,255,0.1);
+      border-radius: 100px;
+      font-size: 0.75rem;
+      font-family: var(--mono);
+      color: var(--ink-30);
+      cursor: pointer;
+      transition: all 0.2s;
+    }
+
+    .quick-chip:hover {
+      border-color: var(--green-accent);
+      color: var(--green-accent);
+      background: rgba(82,183,136,0.08);
+    }
+
+    /* ── METRICS ROW ── */
+    .metrics-row {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 1rem;
+      margin-bottom: 2rem;
+    }
+
+    .metric-card {
+      background: rgba(255,255,255,0.04);
+      border: 1px solid rgba(82,183,136,0.12);
+      border-radius: 12px;
+      padding: 1.5rem;
+      position: relative;
+      overflow: hidden;
+      transition: border-color 0.2s;
+    }
+
+    .metric-card:hover { border-color: rgba(82,183,136,0.3); }
+
+    .metric-card::before {
+      content: '';
+      position: absolute;
+      top: 0; left: 0; right: 0;
+      height: 2px;
+      background: linear-gradient(90deg, var(--green-accent), transparent);
+      opacity: 0.6;
+    }
+
+    .metric-label {
+      font-size: 0.7rem;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 1.5px;
+      color: var(--ink-30);
+      margin-bottom: 0.5rem;
+    }
+
+    .metric-value {
+      font-family: 'DM Serif Display', serif;
+      font-size: 2.25rem;
+      color: var(--green-accent);
+      line-height: 1;
+      margin-bottom: 0.3rem;
+    }
+
+    .metric-sub {
+      font-size: 0.75rem;
+      color: var(--ink-60);
+    }
+
+    /* ── CONTENT GRID ── */
+    .content-grid {
+      display: grid;
+      grid-template-columns: 1fr 380px;
+      gap: 1.5rem;
+    }
+
+    /* ── ANALYSIS PANEL ── */
+    .panel {
+      background: rgba(255,255,255,0.04);
+      border: 1px solid rgba(82,183,136,0.12);
+      border-radius: 16px;
+      overflow: hidden;
+    }
+
+    .panel-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 1.25rem 1.5rem;
+      border-bottom: 1px solid rgba(82,183,136,0.1);
+    }
+
+    .panel-title {
+      font-size: 0.8rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 1.5px;
+      color: var(--green-accent);
+    }
+
+    .panel-body { padding: 1.5rem; }
+
+    /* ── SCORE RINGS ── */
+    .scores-row {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 1rem;
+      margin-bottom: 1.5rem;
+    }
+
+    .score-card {
+      background: rgba(0,0,0,0.2);
+      border-radius: 12px;
+      padding: 1.25rem;
       text-align: center;
     }
-    .banner-dismiss { margin-left: 0; }
-    .page-header { flex-direction: column; align-items: flex-start; gap: 10px; }
-    .header-actions { flex-wrap: wrap; gap: 8px; }
-    .date-btn { font-size: 0.7rem; padding: 5px 10px; }
-    .kpi-bar { grid-template-columns: 1fr 1fr; gap: 10px; }
-    .kpi-card { padding: 14px 12px; }
-    .kpi-value { font-size: 1.4rem; }
-    .kpi-card[style*="padding-right"] { padding-right: 12px !important; }
-    .trust-ring { display: none; }
-    .panels-row { grid-template-columns: 1fr; }
-    .bottom-row { grid-template-columns: 1fr; }
-    .chart-area { overflow-x: auto; -webkit-overflow-scrolling: touch; }
-    .chart-area svg { min-width: 400px; }
-    .panel table { display: block; overflow-x: auto; -webkit-overflow-scrolling: touch; }
-    .sample-notice { font-size: 0.72rem; }
-    .logo-mark { font-size: 1.1rem; }
-  }
 
-  @media (max-width: 400px) {
-    .kpi-bar { grid-template-columns: 1fr; }
-  }
-</style>
+    .score-number {
+      font-family: 'DM Serif Display', serif;
+      font-size: 3rem;
+      line-height: 1;
+      margin-bottom: 0.3rem;
+    }
+
+    .score-label {
+      font-size: 0.7rem;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      color: var(--ink-30);
+    }
+
+    .score-risk    { color: var(--red); }
+    .score-medium  { color: var(--amber); }
+    .score-safe    { color: var(--green-accent); }
+
+    /* ── FINDINGS ── */
+    .finding-item {
+      display: flex;
+      gap: 0.75rem;
+      padding: 0.9rem 0;
+      border-bottom: 1px solid rgba(255,255,255,0.05);
+      align-items: flex-start;
+    }
+
+    .finding-item:last-child { border-bottom: none; }
+
+    .finding-icon {
+      width: 28px; height: 28px;
+      min-width: 28px;
+      border-radius: 6px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 0.75rem;
+      margin-top: 1px;
+    }
+
+    .finding-icon.red   { background: rgba(224,82,82,0.15); }
+    .finding-icon.amber { background: rgba(212,147,10,0.15); }
+    .finding-icon.green { background: rgba(82,183,136,0.15); }
+
+    .finding-text { font-size: 0.85rem; color: rgba(255,255,255,0.7); line-height: 1.5; }
+    .finding-text strong { color: var(--off-white); font-weight: 600; display: block; margin-bottom: 0.1rem; }
+
+    /* ── AD LIST ── */
+    .ad-item {
+      background: rgba(0,0,0,0.2);
+      border: 1px solid rgba(255,255,255,0.06);
+      border-radius: 10px;
+      padding: 1rem;
+      margin-bottom: 0.75rem;
+      transition: border-color 0.2s;
+    }
+
+    .ad-item:hover { border-color: rgba(82,183,136,0.25); }
+
+    .ad-meta {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 0.5rem;
+    }
+
+    .ad-domain {
+      font-family: var(--mono);
+      font-size: 0.75rem;
+      color: var(--green-accent);
+    }
+
+    .ad-format {
+      font-size: 0.65rem;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      background: rgba(82,183,136,0.1);
+      color: var(--green-accent);
+      border: 1px solid rgba(82,183,136,0.2);
+      padding: 0.15rem 0.5rem;
+      border-radius: 100px;
+    }
+
+    .ad-text {
+      font-size: 0.85rem;
+      color: rgba(255,255,255,0.6);
+      line-height: 1.5;
+      margin-bottom: 0.5rem;
+    }
+
+    .ad-footer {
+      display: flex;
+      gap: 0.75rem;
+      font-size: 0.7rem;
+      color: var(--ink-30);
+      font-family: var(--mono);
+      flex-wrap: wrap;
+    }
+
+    /* ── SIDE PANEL ── */
+    .side-stack { display: flex; flex-direction: column; gap: 1.5rem; }
+
+    .adworth-value {
+      background: linear-gradient(135deg, rgba(45,106,79,0.3), rgba(82,183,136,0.1));
+      border: 1px solid rgba(82,183,136,0.3);
+      border-radius: 12px;
+      padding: 1.25rem;
+      font-size: 0.875rem;
+      color: rgba(255,255,255,0.8);
+      line-height: 1.6;
+      font-style: italic;
+    }
+
+    .adworth-value strong {
+      display: block;
+      color: var(--green-accent);
+      font-style: normal;
+      font-size: 0.7rem;
+      text-transform: uppercase;
+      letter-spacing: 1.5px;
+      margin-bottom: 0.5rem;
+    }
+
+    .tags-list {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.4rem;
+      padding: 1rem 1.5rem 1.5rem;
+    }
+
+    .tag {
+      padding: 0.3rem 0.7rem;
+      border-radius: 100px;
+      font-size: 0.72rem;
+      font-weight: 500;
+      border: 1px solid;
+    }
+
+    .tag-red   { background: rgba(224,82,82,0.1);   border-color: rgba(224,82,82,0.3);   color: #f09090; }
+    .tag-amber { background: rgba(212,147,10,0.1);  border-color: rgba(212,147,10,0.3);  color: #e8b860; }
+    .tag-green { background: rgba(82,183,136,0.1);  border-color: rgba(82,183,136,0.3);  color: var(--green-accent); }
+
+    /* ── DOMAIN HISTORY ── */
+    .history-item {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 0.75rem 1.5rem;
+      border-bottom: 1px solid rgba(255,255,255,0.04);
+      cursor: pointer;
+      transition: background 0.15s;
+    }
+
+    .history-item:hover { background: rgba(82,183,136,0.05); }
+
+    .history-domain {
+      font-family: var(--mono);
+      font-size: 0.82rem;
+      color: var(--off-white);
+    }
+
+    .history-score {
+      font-size: 0.75rem;
+      font-weight: 700;
+      padding: 0.2rem 0.6rem;
+      border-radius: 100px;
+    }
+
+    /* ── LOADING STATE ── */
+    .loading-state {
+      text-align: center;
+      padding: 4rem 2rem;
+      color: var(--ink-30);
+    }
+
+    .spinner {
+      width: 40px; height: 40px;
+      border: 3px solid rgba(82,183,136,0.1);
+      border-top-color: var(--green-accent);
+      border-radius: 50%;
+      animation: spin 0.8s linear infinite;
+      margin: 0 auto 1.5rem;
+    }
+
+    @keyframes spin { to { transform: rotate(360deg); } }
+
+    .loading-text {
+      font-family: var(--mono);
+      font-size: 0.85rem;
+      color: var(--green-accent);
+    }
+
+    .loading-steps { margin-top: 1rem; }
+
+    .loading-step {
+      font-size: 0.75rem;
+      color: var(--ink-30);
+      padding: 0.25rem 0;
+      opacity: 0;
+      animation: fadeIn 0.4s forwards;
+    }
+
+    @keyframes fadeIn { to { opacity: 1; } }
+
+    /* ── EMPTY STATE ── */
+    .empty-state {
+      text-align: center;
+      padding: 5rem 2rem;
+    }
+
+    .empty-icon {
+      font-size: 3rem;
+      margin-bottom: 1rem;
+      opacity: 0.4;
+    }
+
+    .empty-title {
+      font-family: 'DM Serif Display', serif;
+      font-size: 1.5rem;
+      color: var(--off-white);
+      margin-bottom: 0.5rem;
+      opacity: 0.6;
+    }
+
+    .empty-sub {
+      font-size: 0.875rem;
+      color: var(--ink-30);
+    }
+
+    /* ── ERROR STATE ── */
+    .error-banner {
+      background: rgba(224,82,82,0.1);
+      border: 1px solid rgba(224,82,82,0.3);
+      border-radius: 10px;
+      padding: 1rem 1.25rem;
+      font-size: 0.85rem;
+      color: #f09090;
+      margin-bottom: 1.5rem;
+      display: none;
+    }
+
+    /* ── INVESTOR NOTE ── */
+    .investor-strip {
+      background: linear-gradient(90deg, rgba(45,106,79,0.2), rgba(82,183,136,0.1));
+      border: 1px solid rgba(82,183,136,0.2);
+      border-radius: 10px;
+      padding: 1rem 1.5rem;
+      margin-bottom: 2rem;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 0.5rem;
+    }
+
+    .investor-strip-text {
+      font-size: 0.8rem;
+      color: rgba(255,255,255,0.6);
+    }
+
+    .investor-strip-text strong { color: var(--green-accent); }
+
+    .live-pill {
+      display: flex;
+      align-items: center;
+      gap: 0.4rem;
+      font-size: 0.7rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      color: var(--green-accent);
+      background: rgba(82,183,136,0.1);
+      border: 1px solid rgba(82,183,136,0.25);
+      padding: 0.3rem 0.75rem;
+      border-radius: 100px;
+    }
+
+    /* ── FOOTER ── */
+    footer {
+      text-align: center;
+      padding: 3rem 2rem 2rem;
+      font-size: 0.75rem;
+      color: var(--ink-30);
+      position: relative;
+      z-index: 1;
+    }
+
+    footer a { color: var(--ink-30); text-decoration: none; }
+    footer a:hover { color: var(--green-accent); }
+
+    /* ── RESPONSIVE ── */
+    @media (max-width: 1024px) {
+      .content-grid { grid-template-columns: 1fr; }
+      .metrics-row { grid-template-columns: repeat(2, 1fr); }
+    }
+
+    @media (max-width: 600px) {
+      .metrics-row { grid-template-columns: repeat(2, 1fr); }
+      .scores-row { grid-template-columns: 1fr; }
+      .main { padding: 1rem; }
+    }
+  </style>
 </head>
 <body>
 
-<!-- PREVIEW BANNER -->
-<div class="preview-banner" id="previewBanner">
-  <div class="banner-pills">
-    <span class="banner-pill preview">⚡ UI Preview</span>
-    <span class="banner-pill sample">⚠ Sample Data Only</span>
-  </div>
-  <div class="banner-text">
-    <strong>Product concept prototype.</strong> All figures, platform names, and metrics shown are illustrative sample data — not real advertiser accounts or live results.
-    &nbsp;·&nbsp;
-    <a href="/#waitlist">Join the waitlist</a> to be notified at launch.
-  </div>
-  <button class="banner-dismiss" onclick="dismissBanner()" title="Dismiss">✕</button>
-</div>
-
-<!-- SIDEBAR OVERLAY -->
-<div class="sidebar-overlay" id="sidebarOverlay"></div>
-
-<!-- TOP NAV -->
-<nav class="topnav">
-  <button class="menu-toggle" id="menuToggle" aria-label="Open menu">☰</button>
-  <a href="/" class="logo">
-    <span class="logo-mark">Adworth℠</span>
-    <span class="patent-pill">Patent Pending</span>
-  </a>
-  <a href="/" class="nav-btn" style="text-decoration:none;">← adworth.app</a>
-  <div class="nav-btn">Accounts ▾</div>
-  <div class="nav-btn">⚡ Alerts <span class="alert-badge-nav">3</span></div>
-  <div class="nav-btn">⚙ Settings</div>
-  <div class="avatar">NJ</div>
-</nav>
-
-<!-- SIDEBAR -->
-<aside class="sidebar">
-  <div class="sidebar-label">Navigate</div>
-  <a class="nav-item active" href="#"><span class="nav-icon">◈</span> Overview</a>
-  <a class="nav-item" href="#"><span class="nav-icon">✓</span> Verification</a>
-  <a class="nav-item" href="#"><span class="nav-icon">⊞</span> Creative Compliance <span class="nav-chip">2 issues</span></a>
-  <a class="nav-item" href="#"><span class="nav-icon">◎</span> Waste Insights</a>
-  <a class="nav-item" href="#"><span class="nav-icon">⇄</span> Integrations</a>
-  <div class="sidebar-label">System</div>
-  <a class="nav-item" href="#"><span class="nav-icon">≡</span> Audit Log</a>
-  <a class="nav-item" href="#"><span class="nav-icon">?</span> Help / Docs</a>
-  <div class="sidebar-footer">Adworth℠ MVP · v0.1</div>
-</aside>
-
-<!-- MAIN -->
-<main class="main">
-
-  <!-- PAGE HEADER -->
-  <div class="page-header">
-    <div>
-      <div class="page-title">Overview</div>
-      <div class="page-sub">Last sync 2 min ago · EU DSA compliant · 4 platforms connected</div>
-    </div>
-    <div class="header-actions">
-      <div class="live-pill"><div class="live-dot"></div> Live</div>
-      <div class="date-btn">📅 Feb 1 – Feb 27, 2026 ▾</div>
-    </div>
-  </div>
-
-  <!-- SAMPLE DATA NOTICE -->
-  <div class="sample-notice">
-    <span class="sample-notice-icon">⚠️</span>
-    <div><strong>Sample Data Only</strong> — All numbers, platform accounts, spend figures, alerts, and discrepancies shown below are fictional and for UI demonstration purposes only. Adworth has no live integrations with Meta, Google, LinkedIn, or TikTok at this time.</div>
-  </div>
-
-  <!-- KPI BAR -->
-  <div class="kpi-bar">
-
-    <div class="kpi-card">
-      <div class="kpi-label">Verified Spend</div>
-      <div class="kpi-value green">$84,320</div>
-      <div class="kpi-delta up">▲ 12.4% vs prior period</div>
-    </div>
-
-    <div class="kpi-card">
-      <div class="kpi-label">Reported Spend</div>
-      <div class="kpi-value blue">$91,750</div>
-      <div class="kpi-delta">— Across 4 platforms</div>
-    </div>
-
-    <div class="kpi-card">
-      <div class="kpi-label">Discrepancy %</div>
-      <div class="kpi-value warn">8.1%</div>
-      <div class="kpi-delta down">▲ 2.1% above threshold</div>
-    </div>
-
-    <div class="kpi-card">
-      <div class="kpi-label">Estimated Waste</div>
-      <div class="kpi-value warn">$7,430</div>
-      <div class="kpi-delta down">▲ $1,200 this week</div>
-    </div>
-
-    <div class="kpi-card" style="padding-right:76px">
-      <div class="kpi-label">Trust Score</div>
-      <div class="kpi-value">78<span style="font-family:'Poppins',sans-serif;font-size:0.85rem;color:var(--ink-30)">/100</span></div>
-      <div class="kpi-delta">— 2 flags active</div>
-      <div class="trust-ring">
-        <svg width="54" height="54" viewBox="0 0 54 54">
-          <circle cx="27" cy="27" r="20" fill="none" stroke="var(--border)" stroke-width="4"/>
-          <circle cx="27" cy="27" r="20" fill="none" stroke="var(--green-accent)" stroke-width="4"
-            stroke-dasharray="125.7" stroke-dashoffset="27.7" stroke-linecap="round"/>
-        </svg>
-      </div>
-    </div>
-
-  </div>
-
-  <!-- CHART + WASTE -->
-  <div class="panels-row">
-
-    <div class="panel">
-      <div class="panel-header">
-        <span class="panel-title">Verification Summary <span class="sample-tag">Sample Data</span></span>
-        <div class="panel-tabs">
-          <span class="panel-tag">Daily</span>
-          <span class="panel-tag active">Weekly</span>
-          <span class="panel-tag">Monthly</span>
+  <header>
+    <nav>
+      <a href="/" class="logo">
+        <span class="logo-text">Adworth℠</span>
+        <span class="badge">Ad Intelligence</span>
+      </a>
+      <div class="nav-right">
+        <div class="status-dot" id="api-status">
+          <span class="dot" id="status-dot"></span>
+          <span id="status-text">Connecting…</span>
         </div>
       </div>
-      <div class="chart-area">
-        <div class="chart-legend">
-          <div class="legend-item"><div class="legend-line" style="background:var(--green-primary)"></div> Verified Spend</div>
-          <div class="legend-item"><div class="legend-line" style="background:var(--blue);border-top:2px dashed var(--blue);height:0;width:20px"></div> Reported Spend</div>
-          <div class="legend-item"><div class="legend-line" style="background:transparent;border-top:2px dashed var(--warn);width:20px;height:0"></div> Discrepancy Gap</div>
-        </div>
-        <svg width="100%" height="180" viewBox="0 0 700 180" preserveAspectRatio="none">
-          <defs>
-            <linearGradient id="gGrad" x1="0" y1="0" x2="0" y2="1">
-              <stop offset="0%" stop-color="#2d6a4f" stop-opacity="0.18"/>
-              <stop offset="100%" stop-color="#2d6a4f" stop-opacity="0"/>
-            </linearGradient>
-          </defs>
-          <line x1="0" y1="45" x2="700" y2="45" stroke="#e2e8df" stroke-width="1"/>
-          <line x1="0" y1="90" x2="700" y2="90" stroke="#e2e8df" stroke-width="1"/>
-          <line x1="0" y1="135" x2="700" y2="135" stroke="#e2e8df" stroke-width="1"/>
-          <path d="M0,130 C70,118 130,128 200,102 C270,78 320,92 390,70 C450,52 520,58 590,38 C640,28 670,24 700,18 L700,175 L0,175 Z" fill="url(#gGrad)"/>
-          <path d="M0,130 C70,118 130,128 200,102 C270,78 320,92 390,70 C450,52 520,58 590,38 C640,28 670,24 700,18"
-            fill="none" stroke="var(--green-primary)" stroke-width="2.5" stroke-linejoin="round"/>
-          <path d="M0,108 C70,96 130,108 200,80 C270,56 320,72 390,50 C450,34 520,38 590,20 C640,10 670,7 700,4"
-            fill="none" stroke="var(--blue)" stroke-width="2" stroke-dasharray="8,4" stroke-linejoin="round"/>
-          <text x="4" y="175" fill="#b0b5aa" font-size="10" font-family="Poppins,sans-serif">Feb 1</text>
-          <text x="155" y="175" fill="#b0b5aa" font-size="10" font-family="Poppins,sans-serif">Feb 8</text>
-          <text x="310" y="175" fill="#b0b5aa" font-size="10" font-family="Poppins,sans-serif">Feb 15</text>
-          <text x="468" y="175" fill="#b0b5aa" font-size="10" font-family="Poppins,sans-serif">Feb 22</text>
-          <text x="636" y="175" fill="#b0b5aa" font-size="10" font-family="Poppins,sans-serif">Feb 27</text>
-        </svg>
+    </nav>
+  </header>
+
+  <div class="main">
+
+    <!-- Investor context strip -->
+    <div class="investor-strip">
+      <div class="investor-strip-text">
+        <strong>Live Demo</strong> — Real ad transparency data powered by patent-pending consent infrastructure.
+        Seed round open · $1.5M · <a href="mailto:hello@adworth.app" style="color:var(--green-accent)">hello@adworth.app</a>
+      </div>
+      <div class="live-pill"><span class="dot"></span> Live Data</div>
+    </div>
+
+    <!-- Search -->
+    <div class="search-section">
+      <span class="search-label">Analyze Advertiser Transparency</span>
+      <div class="search-row">
+        <input
+          class="domain-input"
+          id="domain-input"
+          type="text"
+          placeholder="Enter domain e.g. nike.com"
+          autocomplete="off"
+          spellcheck="false"
+        >
+        <button class="btn-analyze" id="analyze-btn" onclick="analyzeDomain()">
+          Analyze →
+        </button>
+      </div>
+      <div class="quick-domains">
+        <span class="search-label" style="margin:0; align-self:center;">Quick:</span>
+        <span class="quick-chip" onclick="quickSearch('apple.com')">apple.com</span>
+        <span class="quick-chip" onclick="quickSearch('amazon.com')">amazon.com</span>
+        <span class="quick-chip" onclick="quickSearch('spotify.com')">spotify.com</span>
+        <span class="quick-chip" onclick="quickSearch('meta.com')">meta.com</span>
+        <span class="quick-chip" onclick="quickSearch('target.com')">target.com</span>
       </div>
     </div>
 
-    <div class="panel">
-      <div class="panel-header">
-        <span class="panel-title">Waste Breakdown <span class="sample-tag">Sample Data</span></span>
-        <span class="panel-tag">$7,430 total</span>
+    <!-- Error banner -->
+    <div class="error-banner" id="error-banner"></div>
+
+    <!-- Metrics row -->
+    <div class="metrics-row" id="metrics-row" style="display:none;">
+      <div class="metric-card">
+        <div class="metric-label">Ads Found</div>
+        <div class="metric-value" id="m-ads">—</div>
+        <div class="metric-sub">from transparency center</div>
       </div>
-      <div class="waste-list">
-        <div class="waste-item">
-          <div class="waste-meta">
-            <div><div class="waste-name">Platform-level</div><div class="waste-sub">Billing mismatches, hidden fees</div></div>
-            <div class="waste-val">$3,210</div>
+      <div class="metric-card">
+        <div class="metric-label">Privacy Risk</div>
+        <div class="metric-value" id="m-risk" style="color:var(--red)">—</div>
+        <div class="metric-sub">AI-scored 1–10</div>
+      </div>
+      <div class="metric-card">
+        <div class="metric-label">Transparency Score</div>
+        <div class="metric-value" id="m-trans" style="color:var(--amber)">—</div>
+        <div class="metric-sub">disclosure quality</div>
+      </div>
+      <div class="metric-card">
+        <div class="metric-label">Regulatory Flags</div>
+        <div class="metric-value" id="m-flags" style="color:var(--amber)">—</div>
+        <div class="metric-sub">GDPR / CCPA / DSA</div>
+      </div>
+    </div>
+
+    <!-- Main content -->
+    <div class="content-grid">
+
+      <!-- Left: Analysis + Ads -->
+      <div>
+        <div class="panel" id="main-panel">
+          <div class="panel-header">
+            <span class="panel-title" id="panel-title">Ad Transparency Analysis</span>
+            <span style="font-size:0.75rem; color:var(--ink-30); font-family:var(--mono);" id="panel-domain"></span>
           </div>
-          <div class="bar-track"><div class="bar-fill" style="width:67%"></div></div>
-        </div>
-        <div class="waste-item">
-          <div class="waste-meta">
-            <div><div class="waste-name">Campaign-level</div><div class="waste-sub">Duplicate targeting, audience overlap</div></div>
-            <div class="waste-val">$2,580</div>
+          <div class="panel-body" id="panel-body">
+            <div class="empty-state">
+              <div class="empty-icon">🔍</div>
+              <div class="empty-title">Enter a domain to begin</div>
+              <div class="empty-sub">Adworth will pull real ads and run AI privacy analysis</div>
+            </div>
           </div>
-          <div class="bar-track"><div class="bar-fill" style="width:52%"></div></div>
-        </div>
-        <div class="waste-item">
-          <div class="waste-meta">
-            <div><div class="waste-name">Creative-level</div><div class="waste-sub">Non-compliant / low-performing</div></div>
-            <div class="waste-val">$1,640</div>
-          </div>
-          <div class="bar-track"><div class="bar-fill" style="width:33%"></div></div>
         </div>
       </div>
-    </div>
 
+      <!-- Right: Sidebar -->
+      <div class="side-stack">
+
+        <!-- AI Finding -->
+        <div class="panel" id="finding-panel" style="display:none;">
+          <div class="panel-header">
+            <span class="panel-title">Adworth AI Finding</span>
+          </div>
+          <div class="panel-body">
+            <div class="adworth-value" id="adworth-value">
+              <strong>Why Adworth Matters Here</strong>
+              <span id="adworth-value-text"></span>
+            </div>
+            <div style="margin-top:1rem; font-size:0.8rem; color:var(--ink-30); line-height:1.6;" id="top-finding"></div>
+          </div>
+        </div>
+
+        <!-- Data Types -->
+        <div class="panel" id="tags-panel" style="display:none;">
+          <div class="panel-header">
+            <span class="panel-title">Data Types Inferred</span>
+          </div>
+          <div class="tags-list" id="tags-list"></div>
+        </div>
+
+        <!-- Regulatory Flags -->
+        <div class="panel" id="reg-panel" style="display:none;">
+          <div class="panel-header">
+            <span class="panel-title">Regulatory Flags</span>
+          </div>
+          <div class="panel-body" id="reg-body"></div>
+        </div>
+
+        <!-- Domain History -->
+        <div class="panel" id="history-panel">
+          <div class="panel-header">
+            <span class="panel-title">Recently Analyzed</span>
+          </div>
+          <div id="history-list">
+            <div style="padding:1.5rem; text-align:center; color:var(--ink-30); font-size:0.8rem;">
+              Analyzed domains will appear here
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
   </div>
 
-  <!-- BOTTOM ROW -->
-  <div class="bottom-row">
+  <footer>
+    <p>© 2026 Adworth℠ LLC · Patent Pending · Charleston, SC</p>
+    <p style="margin-top:0.3rem;">
+      <a href="/privacy.html">Privacy Policy</a> ·
+      <a href="/terms.html">Terms of Service</a> ·
+      <a href="/">← Back to Home</a>
+    </p>
+  </footer>
 
-    <div class="panel">
-      <div class="panel-header">
-        <span class="panel-title">Alerts & Anomalies</span>
-        <div class="live-pill" style="font-size:0.65rem;padding:4px 10px"><div class="live-dot"></div> 3 active</div>
-      </div>
-      <div class="alerts-list">
-        <div class="alert-row">
-          <div class="alert-indicator critical"></div>
-          <div class="alert-content">
-            <div class="alert-text">Meta spend spike — $4,200 above 7-day average</div>
-            <div class="alert-time">2 hours ago · Campaign: Brand Awareness Q1</div>
+  <script>
+    // ── CONFIG ─────────────────────────────────────────────
+    // Replace with your deployed Worker URL after deployment
+    const WORKER_URL = 'https://adworth-ads.adworthllc.workers.dev';
+
+    const domainHistory = [];
+
+    // ── HEALTH CHECK ────────────────────────────────────────
+    async function checkHealth() {
+      try {
+        const res = await fetch(`${WORKER_URL}/health`);
+        if (res.ok) {
+          document.getElementById('status-dot').className = 'dot';
+          document.getElementById('status-text').textContent = 'API Live';
+        } else throw new Error();
+      } catch {
+        document.getElementById('status-dot').className = 'dot offline';
+        document.getElementById('status-text').textContent = 'API Offline';
+      }
+    }
+
+    // ── QUICK SEARCH ────────────────────────────────────────
+    function quickSearch(domain) {
+      document.getElementById('domain-input').value = domain;
+      analyzeDomain();
+    }
+
+    // ── MAIN ANALYZE FUNCTION ───────────────────────────────
+    async function analyzeDomain() {
+      const input = document.getElementById('domain-input');
+      const domain = input.value.trim().replace(/^https?:\/\//, '').replace(/\/$/, '');
+      if (!domain) return;
+
+      const btn = document.getElementById('analyze-btn');
+      btn.disabled = true;
+      btn.textContent = 'Analyzing…';
+
+      hideError();
+      showLoading(domain);
+      hideMetrics();
+      hideSidePanels();
+
+      try {
+        const res = await fetch(`${WORKER_URL}/ads?domain=${encodeURIComponent(domain)}`);
+        const data = await res.json();
+
+        if (!res.ok) throw new Error(data.error || 'Worker error');
+
+        renderResults(data);
+        addToHistory(domain, data.analysis?.privacyRiskScore);
+
+      } catch (err) {
+        showError(`Could not analyze ${domain}: ${err.message}. Make sure the Worker is deployed.`);
+        showEmptyState();
+      } finally {
+        btn.disabled = false;
+        btn.textContent = 'Analyze →';
+      }
+    }
+
+    // ── RENDER RESULTS ──────────────────────────────────────
+    function renderResults(data) {
+      const { domain, adCount, ads, analysis } = data;
+
+      // Metrics
+      document.getElementById('m-ads').textContent = adCount || 0;
+
+      const risk = analysis?.privacyRiskScore;
+      const trans = analysis?.transparencyScore;
+      const flags = analysis?.regulatoryFlags?.length || 0;
+
+      const riskEl = document.getElementById('m-risk');
+      riskEl.textContent = risk ?? '—';
+      riskEl.style.color = risk >= 7 ? 'var(--red)' : risk >= 4 ? 'var(--amber)' : 'var(--green-accent)';
+
+      const transEl = document.getElementById('m-trans');
+      transEl.textContent = trans ?? '—';
+      transEl.style.color = trans >= 7 ? 'var(--green-accent)' : trans >= 4 ? 'var(--amber)' : 'var(--red)';
+
+      document.getElementById('m-flags').textContent = flags;
+      showMetrics();
+
+      // Panel header
+      document.getElementById('panel-domain').textContent = domain;
+      document.getElementById('panel-title').textContent = `Ads Found (${adCount})`;
+
+      // Score cards + findings
+      let html = '';
+
+      if (analysis) {
+        html += `
+          <div class="scores-row">
+            <div class="score-card">
+              <div class="score-number ${scoreColor(risk, true)}">${risk ?? '—'}</div>
+              <div class="score-label">Privacy Risk</div>
+            </div>
+            <div class="score-card">
+              <div class="score-number ${scoreColor(trans, false)}">${trans ?? '—'}</div>
+              <div class="score-label">Transparency</div>
+            </div>
+          </div>`;
+
+        if (analysis.consentGaps?.length) {
+          html += '<div>';
+          analysis.consentGaps.slice(0, 4).forEach(gap => {
+            html += `
+              <div class="finding-item">
+                <div class="finding-icon red">⚠</div>
+                <div class="finding-text"><strong>Consent Gap</strong>${gap}</div>
+              </div>`;
+          });
+          html += '</div>';
+        }
+      }
+
+      // Ad list
+      if (ads?.length) {
+        html += `<div style="margin-top:1.5rem; font-size:0.7rem; font-weight:700; text-transform:uppercase; letter-spacing:1.5px; color:var(--ink-30); margin-bottom:0.75rem;">Active Ads</div>`;
+        ads.slice(0, 15).forEach(ad => {
+          html += `
+            <div class="ad-item">
+              <div class="ad-meta">
+                <span class="ad-domain">${ad.advertiser || domain}</span>
+                <span class="ad-format">${ad.format || 'ad'}</span>
+              </div>
+              ${ad.text ? `<div class="ad-text">${ad.text.slice(0, 140)}${ad.text.length > 140 ? '…' : ''}</div>` : ''}
+              <div class="ad-footer">
+                ${ad.platforms?.length ? `<span>📱 ${ad.platforms.slice(0,2).join(', ')}</span>` : ''}
+                ${ad.lastShown ? `<span>Last seen: ${ad.lastShown}</span>` : ''}
+                ${ad.regions?.length ? `<span>🌍 ${ad.regions.slice(0,2).join(', ')}</span>` : ''}
+              </div>
+            </div>`;
+        });
+      } else {
+        html += `<div style="padding:2rem; text-align:center; color:var(--ink-30); font-size:0.85rem;">No ads returned for this domain. Try a major brand like apple.com or amazon.com.</div>`;
+      }
+
+      document.getElementById('panel-body').innerHTML = html;
+
+      // Side panels
+      if (analysis) {
+        // AI finding
+        document.getElementById('adworth-value-text').textContent = analysis.adworthValue || '';
+        document.getElementById('top-finding').textContent = analysis.topFinding || '';
+        document.getElementById('finding-panel').style.display = 'block';
+
+        // Data types
+        if (analysis.dataTypesInferred?.length) {
+          const tagsHtml = analysis.dataTypesInferred.map(t =>
+            `<span class="tag tag-amber">${t}</span>`
+          ).join('');
+          document.getElementById('tags-list').innerHTML = tagsHtml;
+          document.getElementById('tags-panel').style.display = 'block';
+        }
+
+        // Regulatory flags
+        if (analysis.regulatoryFlags?.length) {
+          const regHtml = analysis.regulatoryFlags.map(f => `
+            <div class="finding-item">
+              <div class="finding-icon red">⚖</div>
+              <div class="finding-text">${f}</div>
+            </div>`).join('');
+          document.getElementById('reg-body').innerHTML = regHtml;
+          document.getElementById('reg-panel').style.display = 'block';
+        }
+      }
+    }
+
+    // ── HISTORY ─────────────────────────────────────────────
+    function addToHistory(domain, riskScore) {
+      if (!domainHistory.find(d => d.domain === domain)) {
+        domainHistory.unshift({ domain, riskScore });
+        if (domainHistory.length > 8) domainHistory.pop();
+      }
+      renderHistory();
+    }
+
+    function renderHistory() {
+      if (!domainHistory.length) return;
+      const html = domainHistory.map(item => `
+        <div class="history-item" onclick="quickSearch('${item.domain}')">
+          <span class="history-domain">${item.domain}</span>
+          ${item.riskScore != null ? `
+            <span class="history-score" style="background:${item.riskScore >= 7 ? 'rgba(224,82,82,0.15)' : 'rgba(82,183,136,0.15)'}; color:${item.riskScore >= 7 ? '#f09090' : 'var(--green-accent)'}">
+              Risk ${item.riskScore}/10
+            </span>` : ''}
+        </div>`).join('');
+      document.getElementById('history-list').innerHTML = html;
+    }
+
+    // ── HELPERS ─────────────────────────────────────────────
+    function scoreColor(score, invertHigh) {
+      if (!score) return '';
+      if (invertHigh) return score >= 7 ? 'score-risk' : score >= 4 ? 'score-medium' : 'score-safe';
+      return score >= 7 ? 'score-safe' : score >= 4 ? 'score-medium' : 'score-risk';
+    }
+
+    function showLoading(domain) {
+      document.getElementById('panel-body').innerHTML = `
+        <div class="loading-state">
+          <div class="spinner"></div>
+          <div class="loading-text">Analyzing ${domain}</div>
+          <div class="loading-steps">
+            <div class="loading-step" style="animation-delay:0.3s">→ Pulling ads from Google Transparency Center</div>
+            <div class="loading-step" style="animation-delay:1.2s">→ Running AI privacy analysis</div>
+            <div class="loading-step" style="animation-delay:2.2s">→ Scoring consent gaps &amp; regulatory flags</div>
           </div>
-          <div class="alert-tag critical">Critical</div>
-        </div>
-        <div class="alert-row">
-          <div class="alert-indicator warning"></div>
-          <div class="alert-content">
-            <div class="alert-text">Creative missing DSA disclosure tag on 3 assets</div>
-            <div class="alert-time">5 hours ago · Creative Compliance</div>
-          </div>
-          <div class="alert-tag warning">Warning</div>
-        </div>
-        <div class="alert-row">
-          <div class="alert-indicator warning"></div>
-          <div class="alert-content">
-            <div class="alert-text">Discrepancy threshold exceeded — Google Ads 8.1%</div>
-            <div class="alert-time">Yesterday · Limit is 6%</div>
-          </div>
-          <div class="alert-tag warning">Warning</div>
-        </div>
-        <div class="alert-row">
-          <div class="alert-indicator info"></div>
-          <div class="alert-content">
-            <div class="alert-text">Verification report ready for Feb 15–21</div>
-            <div class="alert-time">3 days ago · Ready to review</div>
-          </div>
-          <div class="alert-tag info">Info</div>
-        </div>
-      </div>
-    </div>
+        </div>`;
+    }
 
-    <div class="panel">
-      <div class="panel-header">
-        <span class="panel-title">Platform Breakdown <span class="sample-tag">Sample Data</span></span>
-        <span class="panel-tag">4 connected</span>
-      </div>
-      <table>
-        <thead>
-          <tr>
-            <th>Platform</th>
-            <th>Reported</th>
-            <th>Verified</th>
-            <th>Discr.</th>
-            <th>Status</th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr>
-            <td><div class="platform-name"><div class="platform-ico" style="background:#e8f0fe;color:#1a73e8">f</div> Meta</div></td>
-            <td class="num">$38,200</td>
-            <td class="green">$34,100</td>
-            <td class="red">10.7%</td>
-            <td><span class="status-pill flag">⚠ Flag</span></td>
-          </tr>
-          <tr>
-            <td><div class="platform-name"><div class="platform-ico" style="background:#fce8e6;color:#d93025">G</div> Google</div></td>
-            <td class="num">$29,500</td>
-            <td class="green">$27,800</td>
-            <td class="yellow">5.8%</td>
-            <td><span class="status-pill review">~ Review</span></td>
-          </tr>
-          <tr>
-            <td><div class="platform-name"><div class="platform-ico" style="background:#e8f3f9;color:#0a66c2">in</div> LinkedIn</div></td>
-            <td class="num">$14,050</td>
-            <td class="green">$13,920</td>
-            <td class="green">0.9%</td>
-            <td><span class="status-pill ok">✓ Clean</span></td>
-          </tr>
-          <tr>
-            <td><div class="platform-name"><div class="platform-ico" style="background:#ffe8ef;color:#ff0050">T</div> TikTok</div></td>
-            <td class="num">$10,000</td>
-            <td class="green">$8,500</td>
-            <td class="red">15.0%</td>
-            <td><span class="status-pill flag">⚠ Flag</span></td>
-          </tr>
-        </tbody>
-      </table>
-    </div>
+    function showEmptyState() {
+      document.getElementById('panel-body').innerHTML = `
+        <div class="empty-state">
+          <div class="empty-icon">⚠️</div>
+          <div class="empty-title">Analysis Failed</div>
+          <div class="empty-sub">Check that your Worker is deployed and secrets are set</div>
+        </div>`;
+    }
 
-  </div>
+    function showMetrics()  { document.getElementById('metrics-row').style.display = 'grid'; }
+    function hideMetrics()  { document.getElementById('metrics-row').style.display = 'none'; }
+    function showError(msg) { const el = document.getElementById('error-banner'); el.textContent = msg; el.style.display = 'block'; }
+    function hideError()    { document.getElementById('error-banner').style.display = 'none'; }
 
-</main>
+    function hideSidePanels() {
+      ['finding-panel', 'tags-panel', 'reg-panel'].forEach(id => {
+        document.getElementById(id).style.display = 'none';
+      });
+    }
 
-<script>
-// Banner dismiss — session only, not persisted across visits (privacy-consistent)
-function dismissBanner() {
-  var b = document.getElementById("previewBanner");
-  if(b) b.style.display = "none";
-  try { sessionStorage.setItem("adw_banner_dismissed","1"); } catch(e) {}
-}
-// Restore dismissed state within same session only
-if(sessionStorage.getItem("adw_banner_dismissed")) {
-  var b = document.getElementById("previewBanner");
-  if(b) b.style.display = "none";
-}
+    // Enter key on input
+    document.getElementById('domain-input').addEventListener('keydown', e => {
+      if (e.key === 'Enter') analyzeDomain();
+    });
 
-// Mobile sidebar toggle
-var sidebar = document.querySelector(".sidebar");
-var overlay = document.getElementById("sidebarOverlay");
-var toggle  = document.getElementById("menuToggle");
+    // Init
+    checkHealth();
+  </script>
 
-function openSidebar() {
-  sidebar.classList.add("open");
-  overlay.classList.add("visible");
-  toggle.textContent = "✕";
-}
-function closeSidebar() {
-  sidebar.classList.remove("open");
-  overlay.classList.remove("visible");
-  toggle.textContent = "☰";
-}
-
-toggle.addEventListener("click", function() {
-  sidebar.classList.contains("open") ? closeSidebar() : openSidebar();
-});
-overlay.addEventListener("click", closeSidebar);
-
-document.querySelectorAll(".nav-item").forEach(function(item) {
-  item.addEventListener("click", function() {
-    if(window.innerWidth <= 768) closeSidebar();
-  });
-});
-</script>
-<!-- No third-party tracking scripts. This page loads no analytics, advertising pixels, or behavioral trackers. -->
 </body>
 </html>
