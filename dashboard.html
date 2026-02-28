@@ -288,20 +288,14 @@
 
   /* ── RESPONSIVE ── */
   @media (max-width: 768px) {
-
-    /* Collapse body grid to single column */
     body {
       grid-template-columns: 1fr;
       grid-template-rows: auto auto 1fr;
       grid-template-areas: "banner" "nav" "main";
     }
-
-    /* Show hamburger, hide excess nav buttons */
     .menu-toggle { display: block; }
     .nav-btn { display: none; }
     .avatar { display: none; }
-
-    /* Sidebar becomes fixed off-canvas drawer */
     .sidebar {
       position: fixed;
       top: 0;
@@ -314,11 +308,7 @@
       padding-top: 60px;
     }
     .sidebar.open { left: 0; }
-
-    /* Main takes full width */
     .main { padding: 16px; gap: 14px; }
-
-    /* Preview banner stacks vertically */
     .preview-banner {
       flex-direction: column;
       gap: 8px;
@@ -326,40 +316,24 @@
       text-align: center;
     }
     .banner-dismiss { margin-left: 0; }
-
-    /* Page header stacks */
     .page-header { flex-direction: column; align-items: flex-start; gap: 10px; }
     .header-actions { flex-wrap: wrap; gap: 8px; }
     .date-btn { font-size: 0.7rem; padding: 5px 10px; }
-
-    /* KPI bar: 2 columns on mobile */
     .kpi-bar { grid-template-columns: 1fr 1fr; gap: 10px; }
     .kpi-card { padding: 14px 12px; }
     .kpi-value { font-size: 1.4rem; }
-    /* Trust ring card: hide ring, restore normal padding */
     .kpi-card[style*="padding-right"] { padding-right: 12px !important; }
     .trust-ring { display: none; }
-
-    /* Panels stack vertically */
     .panels-row { grid-template-columns: 1fr; }
     .bottom-row { grid-template-columns: 1fr; }
-
-    /* Chart SVG: allow horizontal scroll */
     .chart-area { overflow-x: auto; -webkit-overflow-scrolling: touch; }
     .chart-area svg { min-width: 400px; }
-
-    /* Table: allow horizontal scroll */
     .panel table { display: block; overflow-x: auto; -webkit-overflow-scrolling: touch; }
-
-    /* Sample notice text size */
     .sample-notice { font-size: 0.72rem; }
-
-    /* Logo smaller */
     .logo-mark { font-size: 1.1rem; }
   }
 
   @media (max-width: 400px) {
-    /* Single column KPIs on very small screens */
     .kpi-bar { grid-template-columns: 1fr; }
   }
 </style>
@@ -375,9 +349,9 @@
   <div class="banner-text">
     <strong>Product concept prototype.</strong> All figures, platform names, and metrics shown are illustrative sample data — not real advertiser accounts or live results.
     &nbsp;·&nbsp;
-    <a href="https://adworth.app/#waitlist">Join the waitlist</a> to be notified at launch.
+    <a href="/#waitlist">Join the waitlist</a> to be notified at launch.
   </div>
-  <button class="banner-dismiss" onclick="this.parentElement.style.display='none'" title="Dismiss">✕</button>
+  <button class="banner-dismiss" onclick="dismissBanner()" title="Dismiss">✕</button>
 </div>
 
 <!-- SIDEBAR OVERLAY -->
@@ -390,7 +364,7 @@
     <span class="logo-mark">Adworth℠</span>
     <span class="patent-pill">Patent Pending</span>
   </a>
-  <a href="https://adworth.app" class="nav-btn" style="text-decoration:none;">← adworth.app</a>
+  <a href="/" class="nav-btn" style="text-decoration:none;">← adworth.app</a>
   <div class="nav-btn">Accounts ▾</div>
   <div class="nav-btn">⚡ Alerts <span class="alert-badge-nav">3</span></div>
   <div class="nav-btn">⚙ Settings</div>
@@ -502,15 +476,11 @@
           <line x1="0" y1="45" x2="700" y2="45" stroke="#e2e8df" stroke-width="1"/>
           <line x1="0" y1="90" x2="700" y2="90" stroke="#e2e8df" stroke-width="1"/>
           <line x1="0" y1="135" x2="700" y2="135" stroke="#e2e8df" stroke-width="1"/>
-          <!-- verified fill -->
           <path d="M0,130 C70,118 130,128 200,102 C270,78 320,92 390,70 C450,52 520,58 590,38 C640,28 670,24 700,18 L700,175 L0,175 Z" fill="url(#gGrad)"/>
-          <!-- verified line -->
           <path d="M0,130 C70,118 130,128 200,102 C270,78 320,92 390,70 C450,52 520,58 590,38 C640,28 670,24 700,18"
             fill="none" stroke="var(--green-primary)" stroke-width="2.5" stroke-linejoin="round"/>
-          <!-- reported dashed line -->
           <path d="M0,108 C70,96 130,108 200,80 C270,56 320,72 390,50 C450,34 520,38 590,20 C640,10 670,7 700,4"
             fill="none" stroke="var(--blue)" stroke-width="2" stroke-dasharray="8,4" stroke-linejoin="round"/>
-          <!-- x labels -->
           <text x="4" y="175" fill="#b0b5aa" font-size="10" font-family="Poppins,sans-serif">Feb 1</text>
           <text x="155" y="175" fill="#b0b5aa" font-size="10" font-family="Poppins,sans-serif">Feb 8</text>
           <text x="310" y="175" fill="#b0b5aa" font-size="10" font-family="Poppins,sans-serif">Feb 15</text>
@@ -647,20 +617,19 @@
   </div>
 
 </main>
+
 <script>
-// Banner dismiss
-if(localStorage.getItem("adw_banner_dismissed")) {
-  var b = document.getElementById("previewBanner");
-  if(b) b.style.display = "none";
-}
+// Banner dismiss — session only, not persisted across visits (privacy-consistent)
 function dismissBanner() {
   var b = document.getElementById("previewBanner");
   if(b) b.style.display = "none";
-  try { localStorage.setItem("adw_banner_dismissed","1"); } catch(e) {}
+  try { sessionStorage.setItem("adw_banner_dismissed","1"); } catch(e) {}
 }
-document.querySelectorAll(".banner-dismiss").forEach(function(el){
-  el.addEventListener("click", dismissBanner);
-});
+// Restore dismissed state within same session only
+if(sessionStorage.getItem("adw_banner_dismissed")) {
+  var b = document.getElementById("previewBanner");
+  if(b) b.style.display = "none";
+}
 
 // Mobile sidebar toggle
 var sidebar = document.querySelector(".sidebar");
@@ -683,12 +652,12 @@ toggle.addEventListener("click", function() {
 });
 overlay.addEventListener("click", closeSidebar);
 
-// Close sidebar when a nav item is tapped on mobile
 document.querySelectorAll(".nav-item").forEach(function(item) {
   item.addEventListener("click", function() {
     if(window.innerWidth <= 768) closeSidebar();
   });
 });
 </script>
+<!-- No third-party tracking scripts. This page loads no analytics, advertising pixels, or behavioral trackers. -->
 </body>
 </html>
