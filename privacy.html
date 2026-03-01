@@ -180,6 +180,26 @@
             <div class="demo-notice">
                 <strong>Current status:</strong> The State-Persistence Monitor currently uses simulated broker checks for demonstration and investor review purposes. It does not yet connect to live data broker APIs. Removal payloads are generated with real legal citations but are not yet transmitted to actual data brokers. This will transition to live integrations as the platform matures.
             </div>
+            <h3>Information processed through the Privacy Governance Engine</h3>
+            <p>When the Privacy Governance Engine (<code>adworth-bouncer</code>) evaluates a data access request, it processes:</p>
+            <ul>
+                <li>The requesting advertiser&rsquo;s identifier</li>
+                <li>The opaque user identifier whose data is being requested</li>
+                <li>The data scope being requested (e.g. <code>running-data-shoe-ads</code>)</li>
+                <li>The active consent tokens for that user-advertiser pair (read from <code>ADWORTH_TOKENS</code> and <code>ADWORTH_LEDGER</code>)</li>
+                <li>Access decision metadata including decision identifiers, timestamps, validation check results, and block reason codes</li>
+            </ul>
+            <p>Every access decision &mdash; whether granted or blocked &mdash; is recorded in both the Governance Log (<code>GOVERNANCE_LOG</code> KV namespace) and the Invisibility Ledger (<code>ADWORTH_LEDGER</code>). No personally identifiable information is processed or stored by the Governance Engine. All identifiers are opaque.</p>
+
+            <h3>Information processed through the Consent Widget and Advertiser Integration</h3>
+            <p>Adworth provides two demonstration interfaces that connect to the live Consent API and Privacy Governance Engine:</p>
+            <ul>
+                <li><strong>Consent Widget:</strong> A user-facing interface for granting and revoking consent tokens. The widget sends consent issuance and revocation requests to the Consent API. All data processed is the same as described under &ldquo;Information collected through our consent API&rdquo; above. Simulated payment amounts are displayed for demonstration purposes only &mdash; no real financial transactions occur.</li>
+                <li><strong>Advertiser Integration Sandbox:</strong> A developer-facing interface for testing access requests against the Privacy Governance Engine. The sandbox sends evaluation requests to the Bouncer worker. All data processed is the same as described under &ldquo;Information processed through the Privacy Governance Engine&rdquo; above. No real advertiser data or production systems are involved.</li>
+            </ul>
+            <div class="demo-notice">
+                <strong>Current status:</strong> Both the Consent Widget and Advertiser Integration page are proof-of-concept demonstrations used for investor review and system validation. They are not publicly deployed or linked from the main Adworth website. Simulated advertiser names (Nike, Spotify, Whole Foods, Peloton) are used for illustration only and do not represent actual partnerships or integrations.
+            </div>            
             <h3>Information we do not collect</h3>
             <p>We do not collect sensitive personal information such as government IDs, financial account numbers, or health data through our public-facing properties. We do not store passwords, API keys, or authentication credentials belonging to end users.</p>
         </div>
