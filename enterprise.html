@@ -3,6 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Adworth enterprise and investor overview. Patent-pending cryptographic consent infrastructure for digital advertising. Seed round open — $1.5M.">
   <title>Adworth&#8480; &#8212; Enterprise &amp; Investor Overview</title>
   <link rel="icon" type="image/x-icon" href="/favicon.ico">
   <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -84,6 +85,7 @@
     .val-green { color: var(--green-accent); }
     .demo-finding { margin: 0 2.5rem 1.5rem; background: rgba(255,255,255,0.04); border: 1px solid rgba(255,255,255,0.08); border-radius: 10px; padding: 1.25rem; font-size: 0.82rem; color: rgba(255,255,255,0.6); line-height: 1.7; font-style: italic; }
     .demo-finding-label { color: var(--green-accent); font-style: normal; font-size: 0.65rem; font-weight: 700; text-transform: uppercase; letter-spacing: 1.5px; display: block; margin-bottom: 0.5rem; }
+    .demo-disclaimer { margin: 0 2.5rem 2rem; font-size: 0.72rem; color: rgba(255,255,255,0.25); line-height: 1.6; font-style: italic; }
     .demo-cta-bar { padding: 0 2.5rem 2.5rem; text-align: center; }
     .steps { display: grid; grid-template-columns: repeat(2, 1fr); gap: 1.5rem; margin-top: 1rem; counter-reset: steps; }
     .step { background: var(--off-white); border: 1.5px solid var(--border); border-radius: 12px; padding: 2.25rem; position: relative; overflow: hidden; transition: border-color 0.2s, transform 0.2s; }
@@ -111,7 +113,7 @@
     .raise-card ul { list-style: none; }
     .raise-card li { font-size: 0.875rem; color: rgba(255,255,255,0.8); padding: 0.45rem 0; padding-left: 1.25rem; position: relative; line-height: 1.5; border-bottom: 1px solid rgba(255,255,255,0.05); }
     .raise-card li:last-child { border-bottom: none; }
-    .raise-card li::before { content: '&#10003;'; position: absolute; left: 0; color: var(--green-accent); font-size: 0.75rem; top: 0.5rem; }
+    .raise-card li::before { content: "\2713"; position: absolute; left: 0; color: var(--green-accent); font-size: 0.75rem; top: 0.5rem; }
     .raise-amount { font-family: 'DM Serif Display', serif; font-size: 5rem; color: white; line-height: 1; margin: 2rem 0 0.5rem; }
     .raise-label { font-size: 0.8rem; color: rgba(255,255,255,0.4); font-weight: 500; text-transform: uppercase; letter-spacing: 2px; margin-bottom: 3rem; }
     .timeline { display: grid; grid-template-columns: repeat(3,1fr); gap: 1.5rem; margin-top: 4rem; }
@@ -204,7 +206,7 @@
         <p class="hero-sub">
           Adworth is <strong>cryptographic infrastructure</strong> for digital advertising &mdash;
           making consent mathematically enforceable, verifiable, and compensated.
-          We're building what Stripe built for payments, but for data.
+          We&rsquo;re building what Stripe built for payments, but for data.
         </p>
         <div class="hero-cta-group">
           <a href="#live-demo" class="btn btn-primary">See Live Demo &#8595;</a>
@@ -242,7 +244,7 @@
       <div class="container">
         <p class="label fade-up">Live Technology</p>
         <h2 class="section-title fade-up">Real data. Right now.<br><em>Not a prototype.</em></h2>
-        <p class="section-lead fade-up">Our Ad Intelligence pipeline pulls live ads from Google's Transparency Center and runs AI privacy analysis in real time. This is the problem Adworth solves &mdash; made visible.</p>
+        <p class="section-lead fade-up">Our Ad Intelligence pipeline pulls live ads from Google&rsquo;s Transparency Center and runs AI privacy analysis in real time. This is the problem Adworth solves &mdash; made visible.</p>
         <div class="demo-frame fade-up">
           <div class="demo-bar">
             <div class="demo-dots"><div class="demo-dot"></div><div class="demo-dot"></div><div class="demo-dot"></div></div>
@@ -272,11 +274,14 @@
             </div>
           </div>
           <div class="demo-finding">
-            <span class="demo-finding-label">AI Finding &mdash; apple.com</span>
-            "Apple.com hosts persistent multi-year ad campaigns from opaque entities using image-only formats that bypass user inspection, creating unverifiable consent and targeting opacity. Adworth consent tokens would enforce granular opt-in for each advertiser entity and targeting dataset, with cryptographic proof of user authorization tied to specific ad placements."
+            <span class="demo-finding-label">AI Analysis &mdash; apple.com (representative sample)</span>
+            &ldquo;Apple.com hosts persistent multi-year ad campaigns from opaque entities using image-only formats that bypass user inspection, creating unverifiable consent and targeting opacity. Adworth consent tokens would enforce granular opt-in for each advertiser entity and targeting dataset, with cryptographic proof of user authorization tied to specific ad placements.&rdquo;
+          </div>
+          <div class="demo-disclaimer">
+            This analysis is based on publicly available data from Google&rsquo;s Ads Transparency Center via SerpApi and AI analysis by Anthropic Claude. Results represent a sample of up to 40 ads and are for informational and educational purposes only. This does not constitute a finding of wrongdoing, regulatory violation, or legal determination of any kind. Try the live tool below to run your own query.
           </div>
           <div class="demo-cta-bar">
-            <a href="/dashboard.html" class="btn btn-primary">Try Live Demo &#8594;</a>
+            <a href="/dashboard.html" class="btn btn-primary">Try Live Demo &mdash; Enter Any Domain &#8594;</a>
           </div>
         </div>
       </div>
@@ -383,7 +388,7 @@
               </tr>
               <tr class="row-adworth">
                 <td>Patent protection</td>
-                <td><span class="check">&#10003; Filed Feb '26</span></td>
+                <td><span class="check">&#10003; Filed Feb &rsquo;26</span></td>
                 <td><span class="cross">&#10007;</span></td>
                 <td><span class="cross">&#10007;</span></td>
                 <td><span class="cross">&#10007;</span></td>
@@ -399,7 +404,7 @@
         <p class="label fade-up">Seed Round</p>
         <div class="raise-amount fade-up">$1.5M</div>
         <div class="raise-label fade-up">18-month runway &middot; Two-sided marketplace</div>
-        <p class="section-lead fade-up">The timing window &mdash; AI advertising boom, regulatory gap, no patent-protected competitor &mdash; won't stay open. This is infrastructure that needs to exist.</p>
+        <p class="section-lead fade-up">The timing window &mdash; AI advertising boom, regulatory gap, no patent-protected competitor &mdash; won&rsquo;t stay open. This is infrastructure that needs to exist.</p>
         <div class="raise-grid fade-up">
           <div class="raise-card">
             <h4>What We Have Today</h4>
@@ -454,11 +459,11 @@
         <div class="founder-card fade-up">
           <div class="founder-body">
             <p>I left Verizon in December 2025 after 18 years &mdash; the last 15 as a supervisor managing large technical support teams. For 15 of those years I listened to escalated calls from customers who had been financially hurt, legally exposed, emotionally devastated &mdash; almost always because of what happened to their data.</p>
-            <p>My understanding of copyright law and music publishing taught me this pattern early. Ownership extraction follows the same playbook across industries. Taylor Swift had to re-record her entire catalog just to own what she created. You don't own your data either. Adworth changes that.</p>
+            <p>My understanding of copyright law and music publishing taught me this pattern early. Ownership extraction follows the same playbook across industries. Taylor Swift had to re-record her entire catalog just to own what she created. You don&rsquo;t own your data either. Adworth changes that.</p>
             <div class="founder-pullquote">
-              "What if users could lend their data &mdash; on their terms, with cryptographic enforcement, and get paid for it?"
+              &ldquo;What if users could lend their data &mdash; on their terms, with cryptographic enforcement, and get paid for it?&rdquo;
             </div>
-            <p>I built it with a high school diploma, 20 years of corporate experience, and AI as my co-founder. The patent was filed February 23, 2026. Now I'm raising $1.5M to build it properly.</p>
+            <p>I built it with a high school diploma, 20 years of corporate experience, and AI as my co-founder. The patent was filed February 23, 2026. Now I&rsquo;m raising $1.5M to build it properly.</p>
           </div>
           <div class="founder-sig">
             <div class="founder-avatar">NJ</div>
@@ -475,7 +480,7 @@
       <div class="container" style="text-align:center;">
         <p class="label fade-up">Get In Touch</p>
         <h2 class="section-title fade-up">Ready to talk?</h2>
-        <p class="section-lead fade-up" style="margin: 1rem auto 0;">We're raising $1.5M to build the consent rails for a permission-based internet. The window is open now.</p>
+        <p class="section-lead fade-up" style="margin: 1rem auto 0;">We&rsquo;re raising $1.5M to build the consent rails for a permission-based internet. The window is open now.</p>
         <div class="contact-grid fade-up">
           <a href="mailto:hello@adworth.app" class="contact-card">
             <div class="contact-card-label">Primary Contact</div>
@@ -504,7 +509,7 @@
         <div>
           <div class="footer-brand-name">Adworth&#8480;</div>
           <p class="footer-tagline">Cryptographic consent infrastructure for digital advertising. Privacy for people, compliance for platforms.</p>
-          <p class="footer-transparency-note">We earn 2&ndash;5% when advertisers pay you for your data. That's our only revenue source. Always visible. Always on the ledger. No exceptions.</p>
+          <p class="footer-transparency-note">We earn 2&ndash;5% when advertisers pay you for your data. That&rsquo;s our only revenue source. Always visible. Always on the ledger. No exceptions.</p>
         </div>
         <div class="footer-links">
           <h4>Pages</h4>
