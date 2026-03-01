@@ -474,19 +474,19 @@
     <div class="section">
       <div class="section-label">Integration</div>
       <div class="section-title">One API call. That's it.</div>
-      <div class="section-desc">Before accessing any user data, call the <code>/check</code> endpoint. The response tells you instantly whether you have valid consent.</div>
+      <div class="section-desc">Before accessing any user data, call the <code>/evaluate</code> endpoint. The response tells you instantly whether you have valid consent.</div>
 
       <!-- Check Access -->
       <div class="code-block">
         <div class="code-header">
           <span class="lang">POST Request</span>
-          <span class="endpoint">/check</span>
+          <span class="endpoint">/evaluate</span>
           <button class="code-copy" onclick="copyCode('code1')">Copy</button>
         </div>
         <div class="code-body">
           <pre id="code1"><span class="comment">// Before accessing user data, verify consent</span>
 
-<span class="keyword">const</span> response = <span class="keyword">await</span> <span class="method">fetch</span>(<span class="string">'https://adworth-bouncer.adworthllc.workers.dev/check'</span>, {
+<span class="keyword">const</span> response = <span class="keyword">await</span> <span class="method">fetch</span>(<span class="string">'https://adworth-bouncer.adworthllc.workers.dev/evaluate'</span>, {
   <span class="key">method</span>: <span class="string">'POST'</span>,
   <span class="key">headers</span>: {
     <span class="string">'Content-Type'</span>: <span class="string">'application/json'</span>,
@@ -684,7 +684,7 @@
         <div class="price">2–5%</div>
         <div class="price-sub">per consent transaction</div>
         <ul class="pricing-features">
-          <li>Unlimited API calls to /check endpoint</li>
+          <li>Unlimited API calls to /evaluate endpoint</li>
           <li>Real-time consent verification</li>
           <li>Automatic ledger recording</li>
           <li>Compliance documentation</li>
@@ -730,7 +730,7 @@
       outputEl.textContent = '';
 
       try {
-        var res = await fetch(url + '/check', {
+        var res = await fetch(url + '/evaluate', {
           method: 'POST',
           headers: {
             'Content-Type': 'application/json',
