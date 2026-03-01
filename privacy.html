@@ -276,7 +276,7 @@
             <ul>
                 <li><strong>Vercel</strong> (<a href="https://vercel.com" target="_blank" rel="noopener noreferrer">vercel.com</a>) &mdash; Our primary website files for adworth.app are hosted and deployed via Vercel. Vercel may retain standard server access logs. Vercel&rsquo;s privacy policy: <a href="https://vercel.com/legal/privacy-policy" target="_blank" rel="noopener noreferrer">vercel.com/legal/privacy-policy</a>.</li>
                 <li><strong>Cloudflare DNS &amp; Security</strong> &mdash; We use Cloudflare for DNS management, DDoS protection, and traffic routing.</li>
-                <li><strong>Google Fonts</strong> &mdash; Our pages load typography from Google Fonts, resulting in a network request to Google&rsquo;s servers. We are evaluating self-hosting fonts to eliminate this dependency.</li>
+                <li><strong>Fonts</strong> &mdash; Typography is served through our own Cloudflare Workers infrastructure (<code>adworth-fonts</code>). No requests are made to Google or any third-party font service. Font files are cached at the edge for performance.</li>
                 <li><strong>IONOS</strong> &mdash; Used for system email only (<code>no-reply@adworth.app</code>). Not used for website hosting.</li>
             </ul>
             <h3>Data broker communications (future)</h3>
