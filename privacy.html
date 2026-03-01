@@ -99,7 +99,7 @@
         <div class="inner">
             <span class="page-label">Legal</span>
             <h1>Privacy Policy</h1>
-            <p>Last updated: February 28, 2026 &middot; Adworth&#8480; LLC &middot; Charleston, SC</p>
+            <p>Last updated: March 1, 2026 &middot; Adworth&#8480; LLC &middot; Charleston, SC</p>
         </div>
     </div>
 
@@ -112,6 +112,7 @@
                 <li><a href="#how-we-use">How We Use Your Information</a></li>
                 <li><a href="#third-party-processing">Third-Party Data Processing</a></li>
                 <li><a href="#sharing">How We Share Information</a></li>
+                <li><a href="#consent-infrastructure">Consent Infrastructure &amp; Ledger</a></li>
                 <li><a href="#data-retention">Data Retention</a></li>
                 <li><a href="#your-rights">Your Rights</a></li>
                 <li><a href="#security">Security</a></li>
@@ -122,7 +123,7 @@
         </div>
 
         <div class="highlight-box">
-            <strong>The short version:</strong> Adworth is built on the principle that your data belongs to you. We collect only what we need to operate the service, we never sell your data, and you can delete it at any time. Our Ad Intelligence Dashboard retrieves public ad data via SerpApi and analyzes it using Anthropic&rsquo;s AI &mdash; no personal user data is involved in that pipeline. We do not use third-party trackers, advertising pixels, or analytics services. That&rsquo;s kind of the whole point.
+            <strong>The short version:</strong> Adworth is built on the principle that your data belongs to you. We collect only what we need to operate the service, we never sell your data, and you can delete it at any time. Our Ad Intelligence Dashboard retrieves public ad data via SerpApi and analyzes it using Anthropic&rsquo;s AI &mdash; no personal user data is involved in that pipeline. Our consent token API uses opaque identifiers only &mdash; no personally identifiable information is stored in tokens or ledger entries. All API access is authenticated and encrypted. We do not use third-party trackers, advertising pixels, or analytics services. That&rsquo;s kind of the whole point.
         </div>
 
         <div class="policy-section" id="information-we-collect">
@@ -151,18 +152,20 @@
                 <li>Publicly available ad data retrieved from Google&rsquo;s Ads Transparency Center via SerpApi &mdash; this includes advertiser names, ad creative IDs, formats, campaign dates, and targeting domains</li>
                 <li>AI-generated analysis of that public ad data, produced by Anthropic&rsquo;s Claude API</li>
             </ul>
-            <p>No personal user data is transmitted to SerpApi or Anthropic as part of dashboard analysis. The pipeline processes publicly available advertiser data only. Results may be cached temporarily in Cloudflare Workers KV (AD_CACHE namespace) for up to 2 hours for performance.</p>
+            <p>No personal user data is transmitted to SerpApi or Anthropic as part of dashboard analysis. The pipeline processes publicly available advertiser data only. Results may be cached temporarily in Cloudflare Workers KV (<code>AD_CACHE</code> namespace) for up to 2 hours for performance.</p>
             <h3>Information collected through our consent API</h3>
-            <p>When you interact with our consent token system, we collect and process:</p>
+            <p>When you interact with our consent token system (<code>adworth-consent-api</code>), we collect and process:</p>
             <ul>
-                <li>Consent token identifiers (cryptographic hashes &mdash; not linked to your identity)</li>
-                <li>Consent scope parameters (advertiser, data type, time window) as specified by you</li>
-                <li>Timestamps of consent issuance, revocation, and expiry</li>
-                <li>Ledger entries recording consent lifecycle events</li>
+                <li>Consent token identifiers (cryptographically generated random values &mdash; not linked to your real-world identity)</li>
+                <li>Opaque user identifiers (user IDs you provide; these are not validated against any identity system)</li>
+                <li>Advertiser identifiers associated with each consent grant</li>
+                <li>Consent scope parameters (data type, time window) as specified by you</li>
+                <li>Timestamps of consent issuance, validation, revocation, and expiry (all in UTC ISO-8601 format)</li>
+                <li>Ledger entries recording each consent lifecycle event in an append-only, tamper-evident log</li>
             </ul>
-            <p>Consent tokens are designed so that no personally identifiable information is embedded in them. Token identifiers are cryptographic values only.</p>
+            <p>Consent tokens are designed so that no personally identifiable information is embedded in them. Token identifiers are 128-bit cryptographic random values only. User IDs within the system are opaque strings with no inherent connection to email addresses, names, or other PII.</p>
             <h3>Information we do not collect</h3>
-            <p>We do not collect sensitive personal information such as government IDs, financial account numbers, or health data through our public-facing properties.</p>
+            <p>We do not collect sensitive personal information such as government IDs, financial account numbers, or health data through our public-facing properties. We do not store passwords, API keys, or authentication credentials belonging to end users.</p>
         </div>
 
         <div class="policy-section" id="how-we-use">
@@ -172,8 +175,9 @@
                 <li>Operate and improve the Adworth platform and services</li>
                 <li>Send you waitlist updates and product announcements (unsubscribe at any time)</li>
                 <li>Respond to your inquiries and support requests</li>
-                <li>Process and validate cryptographic consent tokens as requested by you</li>
-                <li>Maintain the tamper-evident consent ledger on your behalf</li>
+                <li>Issue, validate, and revoke cryptographic consent tokens as requested by you</li>
+                <li>Maintain the tamper-evident consent ledger (Invisibility Ledger) on your behalf</li>
+                <li>Enforce consent boundaries by automatically blocking unauthorized data access requests</li>
                 <li>Power the Ad Intelligence Dashboard with real-time ad transparency data and AI analysis</li>
                 <li>Comply with legal obligations</li>
             </ul>
@@ -204,11 +208,12 @@
             </ul>
 
             <h3>Cloudflare Workers &mdash; server infrastructure</h3>
-            <p>All server-side logic &mdash; including the ad intelligence pipeline, consent token API, and waitlist form processing &mdash; runs on <strong>Cloudflare Workers</strong> edge infrastructure. Cloudflare processes request metadata as part of serving and securing our services.</p>
+            <p>All server-side logic &mdash; including the ad intelligence pipeline, consent token API, invisibility ledger, and waitlist form processing &mdash; runs on <strong>Cloudflare Workers</strong> edge infrastructure. Cloudflare processes request metadata as part of serving and securing our services.</p>
             <ul>
-                <li>Waitlist email addresses are stored in Cloudflare Workers KV</li>
-                <li>Ad data cache is stored in Cloudflare Workers KV (AD_CACHE namespace, TTL 1&ndash;2 hours)</li>
-                <li>Consent ledger entries are stored in Cloudflare Workers KV</li>
+                <li>Waitlist email addresses are stored in Cloudflare Workers KV (<code>WAITLIST</code> namespace)</li>
+                <li>Ad data cache is stored in Cloudflare Workers KV (<code>AD_CACHE</code> namespace, TTL 1&ndash;2 hours)</li>
+                <li>Consent tokens are stored in Cloudflare Workers KV (<code>ADWORTH_TOKENS</code> namespace) with automatic expiration matching the consent duration</li>
+                <li>Consent ledger entries are stored in Cloudflare Workers KV (<code>ADWORTH_LEDGER</code> namespace) as an append-only audit trail</li>
                 <li>Cloudflare&rsquo;s privacy policy: <a href="https://www.cloudflare.com/privacypolicy/" target="_blank" rel="noopener noreferrer">cloudflare.com/privacypolicy</a></li>
             </ul>
         </div>
@@ -231,20 +236,56 @@
             <p>In the event of a merger, acquisition, or sale of assets, your information may be transferred. We will notify you before your information becomes subject to a different privacy policy.</p>
         </div>
 
+        <div class="policy-section" id="consent-infrastructure">
+            <h2><span class="section-num">05</span> Consent Infrastructure &amp; Ledger</h2>
+            <p>Adworth&rsquo;s patent-pending consent infrastructure processes data through two primary systems: the Consent Token API and the Invisibility Ledger. This section explains how each operates and what data is involved.</p>
+
+            <h3>Consent Token API</h3>
+            <p>The Consent Token API (<code>adworth-consent-api</code>) manages the lifecycle of cryptographic consent tokens. Each token represents a specific, bounded grant of consent from a user to an advertiser.</p>
+            <ul>
+                <li><strong>Token issuance:</strong> When consent is granted, a 128-bit cryptographically random token identifier is generated. The token records the advertiser, data scope, issuance timestamp, and expiration date.</li>
+                <li><strong>Token validation:</strong> Any party can verify whether a consent token is currently valid, expired, or revoked. Validation checks are performed in real time against the stored token state.</li>
+                <li><strong>Token revocation:</strong> Users can revoke consent at any time. Revocation is immediate and irreversible &mdash; a revoked token cannot be reactivated. The revocation timestamp is recorded.</li>
+                <li><strong>Token expiration:</strong> Tokens automatically expire at the end of the specified consent duration. Expired tokens are automatically purged from active storage by Cloudflare KV&rsquo;s TTL mechanism.</li>
+            </ul>
+
+            <h3>API authentication</h3>
+            <p>All consent API endpoints (except the public health check) require authentication via a Bearer token in the HTTP Authorization header. API secret keys are:</p>
+            <ul>
+                <li>Encrypted at rest within Cloudflare&rsquo;s environment variable system</li>
+                <li>Never exposed in API responses, logs, or client-side code</li>
+                <li>Validated using constant-time comparison to prevent timing-based attacks</li>
+                <li>Rotatable at any time without affecting stored consent data</li>
+            </ul>
+            <p>Unauthenticated requests to protected endpoints receive a <code>401 Unauthorized</code> response with no data disclosure.</p>
+
+            <h3>Invisibility Ledger</h3>
+            <p>The Invisibility Ledger is an append-only, tamper-evident log of all consent lifecycle events. By design, ledger entries cannot be modified or deleted after creation &mdash; this ensures a permanent audit trail for regulatory compliance and dispute resolution.</p>
+            <ul>
+                <li><strong>What is recorded:</strong> Each ledger entry contains an entry ID, the opaque user ID, event type (e.g. <code>CONSENT_ISSUED</code>, <code>CONSENT_REVOKED</code>), the associated token ID, advertiser ID, consent scope, and a UTC timestamp.</li>
+                <li><strong>What is not recorded:</strong> No email addresses, names, IP addresses, device identifiers, or other personally identifiable information is stored in the ledger.</li>
+                <li><strong>Immutability:</strong> Ledger entries are written once and never overwritten. The append-only key structure ensures that historical entries remain intact regardless of subsequent actions.</li>
+                <li><strong>Access:</strong> Ledger data is accessible only through authenticated API requests. Users can retrieve their own consent history using their opaque user identifier.</li>
+            </ul>
+
+            <h3>Data isolation</h3>
+            <p>Consent token data and ledger entries are stored in dedicated, isolated Cloudflare Workers KV namespaces (<code>ADWORTH_TOKENS</code> and <code>ADWORTH_LEDGER</code>) that are separate from all other Adworth data stores (waitlist, ad cache). There is no cross-contamination between these systems.</p>
+        </div>
+
         <div class="policy-section" id="data-retention">
-            <h2><span class="section-num">05</span> Data Retention</h2>
+            <h2><span class="section-num">06</span> Data Retention</h2>
             <p>We retain your personal information only as long as necessary to provide our services or as required by law.</p>
             <ul>
-                <li><strong>Waitlist email addresses</strong> are stored in Cloudflare Workers KV until you unsubscribe or request deletion.</li>
-                <li><strong>Ad intelligence cache</strong> (SerpApi + Anthropic results) is stored temporarily in Cloudflare Workers KV with a TTL of 1&ndash;2 hours and then automatically purged.</li>
-                <li><strong>Consent ledger entries</strong> are retained as part of the tamper-evident audit trail. These entries contain cryptographic identifiers only &mdash; not personal information.</li>
-                <li><strong>Consent tokens</strong> are invalidated upon revocation or expiry.</li>
+                <li><strong>Waitlist email addresses</strong> are stored in Cloudflare Workers KV (<code>WAITLIST</code> namespace) until you unsubscribe or request deletion.</li>
+                <li><strong>Ad intelligence cache</strong> (SerpApi + Anthropic results) is stored temporarily in Cloudflare Workers KV (<code>AD_CACHE</code> namespace) with a TTL of 1&ndash;2 hours and then automatically purged.</li>
+                <li><strong>Consent tokens</strong> are stored in Cloudflare Workers KV (<code>ADWORTH_TOKENS</code> namespace) with a TTL matching the consent duration. Tokens are automatically purged by Cloudflare after expiration. Revoked tokens remain accessible until their original expiration date for audit purposes, then are purged.</li>
+                <li><strong>Consent ledger entries</strong> are retained indefinitely in Cloudflare Workers KV (<code>ADWORTH_LEDGER</code> namespace) as part of the tamper-evident audit trail. These entries contain only cryptographic identifiers and timestamps &mdash; not personal information. This indefinite retention is a core design requirement for regulatory compliance and consent provability.</li>
             </ul>
-            <p>When you request deletion of your personal data, we will remove it from our active systems within 30 days and from backup systems within 90 days.</p>
+            <p>When you request deletion of your personal data, we will remove it from our active systems within 30 days and from backup systems within 90 days. Note that consent ledger entries (which contain no PII) are retained as part of the immutable audit trail even after personal data deletion, as they serve as proof of consent actions for both users and advertisers.</p>
         </div>
 
         <div class="policy-section" id="your-rights">
-            <h2><span class="section-num">06</span> Your Rights</h2>
+            <h2><span class="section-num">07</span> Your Rights</h2>
             <p>Depending on your location, you may have the following rights regarding your personal information:</p>
             <ul>
                 <li><strong>Access:</strong> Request a copy of the personal data we hold about you</li>
@@ -253,30 +294,42 @@
                 <li><strong>Portability:</strong> Request your data in a machine-readable format</li>
                 <li><strong>Objection:</strong> Object to certain uses of your data</li>
                 <li><strong>Withdraw consent:</strong> Withdraw previously given consent at any time</li>
+                <li><strong>Consent history:</strong> Request a complete export of your consent ledger entries</li>
             </ul>
             <p>To exercise any of these rights, contact us at <a href="mailto:hello@adworth.app">hello@adworth.app</a>. We will respond within 30 days.</p>
         </div>
 
         <div class="policy-section" id="security">
-            <h2><span class="section-num">07</span> Security</h2>
-            <p>We implement industry-standard security measures to protect your information, including encrypted data transmission (HTTPS enforced via Cloudflare), cryptographic signing of consent tokens, append-only ledger design to prevent tampering, and access controls on all stored data.</p>
+            <h2><span class="section-num">08</span> Security</h2>
+            <p>We implement industry-standard security measures to protect your information, including:</p>
+            <ul>
+                <li>Encrypted data transmission (HTTPS enforced via Cloudflare on all endpoints)</li>
+                <li>Cryptographic generation of consent token identifiers using the Web Crypto API (<code>crypto.getRandomValues</code>)</li>
+                <li>Bearer token authentication on all protected API endpoints</li>
+                <li>Constant-time key comparison to prevent timing-based side-channel attacks</li>
+                <li>API secret keys encrypted at rest within Cloudflare&rsquo;s environment variable system</li>
+                <li>Append-only ledger design to prevent tampering with consent history</li>
+                <li>Data isolation between KV namespaces (tokens, ledger, waitlist, and cache are fully separated)</li>
+                <li>Access controls on all stored data with no public read access to protected endpoints</li>
+            </ul>
             <p>No method of transmission over the internet is 100% secure. If you believe your information has been compromised, please contact us immediately at <a href="mailto:hello@adworth.app">hello@adworth.app</a>.</p>
         </div>
 
         <div class="policy-section" id="cookies">
-            <h2><span class="section-num">08</span> Cookies &amp; Tracking</h2>
+            <h2><span class="section-num">09</span> Cookies &amp; Tracking</h2>
             <p>We use minimal cookies necessary to operate our website. We do not use third-party advertising cookies, tracking pixels, behavioral analytics scripts, or any other third-party tracking technologies.</p>
             <p>Cloudflare may set a cookie (<code>__cf_bm</code>) for bot management and security purposes. This cookie does not track you across sites and is not used for advertising.</p>
+            <p>The Adworth consent token injector script (<code>adworth-token-injector</code>) may store consent state in your browser&rsquo;s <code>localStorage</code> under the key <code>adworth_consent_state</code>. This data stays entirely on your device and is never transmitted to our servers unless you explicitly initiate a consent action. You can clear this data at any time through your browser settings.</p>
             <p>You can configure your browser to refuse cookies, though some features of the site may not function properly as a result.</p>
         </div>
 
         <div class="policy-section" id="children">
-            <h2><span class="section-num">09</span> Children&rsquo;s Privacy</h2>
+            <h2><span class="section-num">10</span> Children&rsquo;s Privacy</h2>
             <p>Adworth&rsquo;s services are not directed to children under 13. We do not knowingly collect personal information from children under 13. If you believe we have inadvertently collected such information, please contact us and we will delete it promptly.</p>
         </div>
 
         <div class="policy-section" id="contact">
-            <h2><span class="section-num">10</span> Contact Us</h2>
+            <h2><span class="section-num">11</span> Contact Us</h2>
             <p>If you have questions, concerns, or requests regarding this Privacy Policy or your personal data, please contact us:</p>
             <div class="highlight-box">
                 <strong>Adworth&#8480; LLC</strong><br>
