@@ -3,8 +3,9 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Privacy Policy — Adworth℠</title>
+    <title>Privacy Policy — Adworth&#8480;</title>
     <meta name="description" content="Adworth Privacy Policy — how we collect, use, and protect your data.">
+    <link rel="icon" type="image/x-icon" href="/favicon.ico">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800;900&family=DM+Serif+Display:ital@0;1&display=swap" rel="stylesheet">
     <style>
@@ -79,13 +80,12 @@
         <div class="container">
             <nav>
                 <a href="/" class="logo">
-                    <span class="logo-mark">Adworth℠</span>
+                    <span class="logo-mark">Adworth&#8480;</span>
                     <span class="patent-pill">Patent Pending</span>
                 </a>
                 <ul>
                     <li><a href="/#problem">Problem</a></li>
                     <li><a href="/#how-it-works">How It Works</a></li>
-                    <li><a href="/#transparency">How We Make Money</a></li>
                     <li><a href="/#founder">Founder</a></li>
                     <li><a href="/#investors">Investors</a></li>
                     <li><a href="/enterprise.html" style="color: var(--gold); font-weight: 600;">Enterprise</a></li>
@@ -99,7 +99,7 @@
         <div class="inner">
             <span class="page-label">Legal</span>
             <h1>Privacy Policy</h1>
-            <p>Last updated: February 28, 2026 · Adworth℠ LLC · Charleston, SC</p>
+            <p>Last updated: February 28, 2026 &middot; Adworth&#8480; LLC &middot; Charleston, SC</p>
         </div>
     </div>
 
@@ -116,13 +116,13 @@
                 <li><a href="#your-rights">Your Rights</a></li>
                 <li><a href="#security">Security</a></li>
                 <li><a href="#cookies">Cookies &amp; Tracking</a></li>
-                <li><a href="#children">Children's Privacy</a></li>
+                <li><a href="#children">Children&rsquo;s Privacy</a></li>
                 <li><a href="#contact">Contact Us</a></li>
             </ol>
         </div>
 
         <div class="highlight-box">
-            <strong>The short version:</strong> Adworth is built on the principle that your data belongs to you. We collect only what we need to operate the service, we never sell your data, and you can delete it at any time. Our Ad Intelligence Dashboard retrieves public ad data via SerpApi and analyzes it using Anthropic's AI — no personal user data is involved in that pipeline. We do not use third-party trackers, advertising pixels, or analytics services. That's kind of the whole point.
+            <strong>The short version:</strong> Adworth is built on the principle that your data belongs to you. We collect only what we need to operate the service, we never sell your data, and you can delete it at any time. Our Ad Intelligence Dashboard retrieves public ad data via SerpApi and analyzes it using Anthropic&rsquo;s AI &mdash; no personal user data is involved in that pipeline. We do not use third-party trackers, advertising pixels, or analytics services. That&rsquo;s kind of the whole point.
         </div>
 
         <div class="policy-section" id="information-we-collect">
@@ -148,14 +148,14 @@
             <p>When you use our Ad Intelligence Dashboard (adworth.app/dashboard.html), the following data is processed:</p>
             <ul>
                 <li>The domain name you enter for analysis (e.g. <code>apple.com</code>)</li>
-                <li>Publicly available ad data retrieved from Google's Ads Transparency Center via SerpApi — this includes advertiser names, ad creative IDs, formats, campaign dates, and targeting domains</li>
-                <li>AI-generated analysis of that public ad data, produced by Anthropic's Claude API</li>
+                <li>Publicly available ad data retrieved from Google&rsquo;s Ads Transparency Center via SerpApi &mdash; this includes advertiser names, ad creative IDs, formats, campaign dates, and targeting domains</li>
+                <li>AI-generated analysis of that public ad data, produced by Anthropic&rsquo;s Claude API</li>
             </ul>
             <p>No personal user data is transmitted to SerpApi or Anthropic as part of dashboard analysis. The pipeline processes publicly available advertiser data only. Results may be cached temporarily in Cloudflare Workers KV (AD_CACHE namespace) for up to 2 hours for performance.</p>
             <h3>Information collected through our consent API</h3>
             <p>When you interact with our consent token system, we collect and process:</p>
             <ul>
-                <li>Consent token identifiers (cryptographic hashes — not linked to your identity)</li>
+                <li>Consent token identifiers (cryptographic hashes &mdash; not linked to your identity)</li>
                 <li>Consent scope parameters (advertiser, data type, time window) as specified by you</li>
                 <li>Timestamps of consent issuance, revocation, and expiry</li>
                 <li>Ledger entries recording consent lifecycle events</li>
@@ -184,32 +184,32 @@
             <h2><span class="section-num">03</span> Third-Party Data Processing</h2>
             <p>Our Ad Intelligence Dashboard uses two third-party APIs to deliver real-time ad transparency analysis. This section discloses exactly how those integrations work.</p>
 
-            <h3>SerpApi — ad data retrieval</h3>
-            <p>Ad data displayed in the dashboard is retrieved in real time from Google's Ads Transparency Center via <strong>SerpApi</strong> (<a href="https://serpapi.com" target="_blank" rel="noopener">serpapi.com</a>). When you enter a domain for analysis, we send that domain name to SerpApi's API, which returns publicly available ad data from Google's transparency database.</p>
+            <h3>SerpApi &mdash; ad data retrieval</h3>
+            <p>Ad data displayed in the dashboard is retrieved in real time from Google&rsquo;s Ads Transparency Center via <strong>SerpApi</strong> (<a href="https://serpapi.com" target="_blank" rel="noopener noreferrer">serpapi.com</a>). When you enter a domain for analysis, we send that domain name to SerpApi&rsquo;s API, which returns publicly available ad data from Google&rsquo;s transparency database.</p>
             <ul>
                 <li>Data transmitted to SerpApi: the domain name you entered (e.g. <code>nike.com</code>)</li>
-                <li>Data returned: advertiser names, ad creative IDs, formats, campaign date ranges, targeting domains — all publicly available information</li>
+                <li>Data returned: advertiser names, ad creative IDs, formats, campaign date ranges, targeting domains &mdash; all publicly available information</li>
                 <li>No personal user data is transmitted to SerpApi</li>
                 <li>Results are cached temporarily in Cloudflare Workers KV for up to 2 hours</li>
-                <li>SerpApi's privacy policy: <a href="https://serpapi.com/privacy" target="_blank" rel="noopener">serpapi.com/privacy</a></li>
+                <li>SerpApi&rsquo;s privacy policy: <a href="https://serpapi.com/privacy" target="_blank" rel="noopener noreferrer">serpapi.com/privacy</a></li>
             </ul>
 
-            <h3>Anthropic API — AI privacy analysis</h3>
-            <p>Privacy risk scores, transparency scores, consent gap analysis, regulatory flags, and AI findings displayed in the dashboard are generated by <strong>Anthropic's Claude AI</strong> via the Anthropic API (<a href="https://anthropic.com" target="_blank" rel="noopener">anthropic.com</a>).</p>
+            <h3>Anthropic API &mdash; AI privacy analysis</h3>
+            <p>Privacy risk scores, transparency scores, consent gap analysis, regulatory flags, and AI findings displayed in the dashboard are generated by <strong>Anthropic&rsquo;s Claude AI</strong> via the Anthropic API (<a href="https://anthropic.com" target="_blank" rel="noopener noreferrer">anthropic.com</a>).</p>
             <ul>
                 <li>Data transmitted to Anthropic: the publicly available ad metadata retrieved from SerpApi (advertiser names, ad counts, formats, dates)</li>
                 <li>No personal user data, no waitlist emails, and no consent token data is transmitted to Anthropic</li>
-                <li>AI analysis results are not stored permanently — they are generated on demand and may be temporarily cached</li>
-                <li>Anthropic's privacy policy: <a href="https://www.anthropic.com/legal/privacy" target="_blank" rel="noopener">anthropic.com/legal/privacy</a></li>
+                <li>AI analysis results are not stored permanently &mdash; they are generated on demand and may be temporarily cached</li>
+                <li>Anthropic&rsquo;s privacy policy: <a href="https://www.anthropic.com/legal/privacy" target="_blank" rel="noopener noreferrer">anthropic.com/legal/privacy</a></li>
             </ul>
 
-            <h3>Cloudflare Workers — server infrastructure</h3>
-            <p>All server-side logic — including the ad intelligence pipeline, consent token API, and waitlist form processing — runs on <strong>Cloudflare Workers</strong> edge infrastructure. Cloudflare processes request metadata as part of serving and securing our services.</p>
+            <h3>Cloudflare Workers &mdash; server infrastructure</h3>
+            <p>All server-side logic &mdash; including the ad intelligence pipeline, consent token API, and waitlist form processing &mdash; runs on <strong>Cloudflare Workers</strong> edge infrastructure. Cloudflare processes request metadata as part of serving and securing our services.</p>
             <ul>
                 <li>Waitlist email addresses are stored in Cloudflare Workers KV</li>
-                <li>Ad data cache is stored in Cloudflare Workers KV (AD_CACHE namespace, TTL 1–2 hours)</li>
+                <li>Ad data cache is stored in Cloudflare Workers KV (AD_CACHE namespace, TTL 1&ndash;2 hours)</li>
                 <li>Consent ledger entries are stored in Cloudflare Workers KV</li>
-                <li>Cloudflare's privacy policy: <a href="https://www.cloudflare.com/privacypolicy/" target="_blank" rel="noopener">cloudflare.com/privacypolicy</a></li>
+                <li>Cloudflare&rsquo;s privacy policy: <a href="https://www.cloudflare.com/privacypolicy/" target="_blank" rel="noopener noreferrer">cloudflare.com/privacypolicy</a></li>
             </ul>
         </div>
 
@@ -220,10 +220,10 @@
             <p>As described in Section 03, we use Cloudflare Workers, SerpApi, and Anthropic as infrastructure providers to deliver our services. These providers process data only as necessary to provide the service and are not permitted to use it for their own advertising or marketing purposes.</p>
             <p>We also use:</p>
             <ul>
-                <li><strong>Vercel</strong> (<a href="https://vercel.com" target="_blank" rel="noopener">vercel.com</a>) — Our primary website files for adworth.app are hosted and deployed via Vercel. Vercel may retain standard server access logs. Vercel's privacy policy: <a href="https://vercel.com/legal/privacy-policy" target="_blank" rel="noopener">vercel.com/legal/privacy-policy</a>.</li>
-                <li><strong>Cloudflare DNS &amp; Security</strong> — We use Cloudflare for DNS management, DDoS protection, and traffic routing.</li>
-                <li><strong>Google Fonts</strong> — Our pages load typography from Google Fonts, resulting in a network request to Google's servers. We are evaluating self-hosting fonts to eliminate this dependency.</li>
-                <li><strong>IONOS</strong> — Used for system email only (<code>no-reply@adworth.app</code>). Not used for website hosting.</li>
+                <li><strong>Vercel</strong> (<a href="https://vercel.com" target="_blank" rel="noopener noreferrer">vercel.com</a>) &mdash; Our primary website files for adworth.app are hosted and deployed via Vercel. Vercel may retain standard server access logs. Vercel&rsquo;s privacy policy: <a href="https://vercel.com/legal/privacy-policy" target="_blank" rel="noopener noreferrer">vercel.com/legal/privacy-policy</a>.</li>
+                <li><strong>Cloudflare DNS &amp; Security</strong> &mdash; We use Cloudflare for DNS management, DDoS protection, and traffic routing.</li>
+                <li><strong>Google Fonts</strong> &mdash; Our pages load typography from Google Fonts, resulting in a network request to Google&rsquo;s servers. We are evaluating self-hosting fonts to eliminate this dependency.</li>
+                <li><strong>IONOS</strong> &mdash; Used for system email only (<code>no-reply@adworth.app</code>). Not used for website hosting.</li>
             </ul>
             <h3>Legal requirements</h3>
             <p>We may disclose your information if required by law, court order, or government authority, or if we believe disclosure is necessary to protect the rights, property, or safety of Adworth, our users, or the public.</p>
@@ -236,8 +236,8 @@
             <p>We retain your personal information only as long as necessary to provide our services or as required by law.</p>
             <ul>
                 <li><strong>Waitlist email addresses</strong> are stored in Cloudflare Workers KV until you unsubscribe or request deletion.</li>
-                <li><strong>Ad intelligence cache</strong> (SerpApi + Anthropic results) is stored temporarily in Cloudflare Workers KV with a TTL of 1–2 hours and then automatically purged.</li>
-                <li><strong>Consent ledger entries</strong> are retained as part of the tamper-evident audit trail. These entries contain cryptographic identifiers only — not personal information.</li>
+                <li><strong>Ad intelligence cache</strong> (SerpApi + Anthropic results) is stored temporarily in Cloudflare Workers KV with a TTL of 1&ndash;2 hours and then automatically purged.</li>
+                <li><strong>Consent ledger entries</strong> are retained as part of the tamper-evident audit trail. These entries contain cryptographic identifiers only &mdash; not personal information.</li>
                 <li><strong>Consent tokens</strong> are invalidated upon revocation or expiry.</li>
             </ul>
             <p>When you request deletion of your personal data, we will remove it from our active systems within 30 days and from backup systems within 90 days.</p>
@@ -271,15 +271,15 @@
         </div>
 
         <div class="policy-section" id="children">
-            <h2><span class="section-num">09</span> Children's Privacy</h2>
-            <p>Adworth's services are not directed to children under 13. We do not knowingly collect personal information from children under 13. If you believe we have inadvertently collected such information, please contact us and we will delete it promptly.</p>
+            <h2><span class="section-num">09</span> Children&rsquo;s Privacy</h2>
+            <p>Adworth&rsquo;s services are not directed to children under 13. We do not knowingly collect personal information from children under 13. If you believe we have inadvertently collected such information, please contact us and we will delete it promptly.</p>
         </div>
 
         <div class="policy-section" id="contact">
             <h2><span class="section-num">10</span> Contact Us</h2>
             <p>If you have questions, concerns, or requests regarding this Privacy Policy or your personal data, please contact us:</p>
             <div class="highlight-box">
-                <strong>Adworth℠ LLC</strong><br>
+                <strong>Adworth&#8480; LLC</strong><br>
                 Charleston, SC, United States<br>
                 <a href="mailto:hello@adworth.app">hello@adworth.app</a>
             </div>
@@ -292,16 +292,15 @@
         <div class="container">
             <div class="footer-grid">
                 <div>
-                    <div class="footer-brand-name">Adworth℠</div>
+                    <div class="footer-brand-name">Adworth&#8480;</div>
                     <p class="footer-tagline">Cryptographic consent infrastructure for digital advertising. Privacy for people, compliance for platforms.</p>
-                    <p class="footer-transparency-note">We earn 2–5% when advertisers pay you for your data. That's our only revenue source. Always visible. Always on the ledger. No exceptions.</p>
+                    <p class="footer-transparency-note">We earn 2&ndash;5% when advertisers pay you for your data. That&rsquo;s our only revenue source. Always visible. Always on the ledger. No exceptions.</p>
                 </div>
                 <div class="footer-links">
                     <h4>Product</h4>
                     <ul>
                         <li><a href="/#problem">The Problem</a></li>
                         <li><a href="/#how-it-works">How It Works</a></li>
-                        <li><a href="/#transparency">How We Make Money</a></li>
                         <li><a href="/dashboard.html">Consumer Demo</a></li>
                         <li><a href="/enterprise.html">Enterprise Preview</a></li>
                         <li><a href="/#waitlist">Join Waitlist</a></li>
@@ -324,8 +323,8 @@
                 </div>
             </div>
             <div class="footer-bottom">
-                <span>© 2026 Adworth℠ LLC · Patent Pending · Charleston, SC</span>
-                <span>Built in public · Raising seed round · <a href="/enterprise.html" style="color: var(--gold); text-decoration: none;">Investor Overview →</a></span>
+                <span>&copy; 2026 Adworth&#8480; LLC &middot; Patent Pending &middot; Charleston, SC</span>
+                <span>Built in public &middot; Raising seed round &middot; <a href="/enterprise.html" style="color: var(--gold); text-decoration: none;">Investor Overview &rarr;</a></span>
             </div>
         </div>
     </footer>
