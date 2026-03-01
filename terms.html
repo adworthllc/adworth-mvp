@@ -55,6 +55,8 @@
         .highlight-box a { color: var(--green-primary); }
         .policy-section a { color: var(--green-primary); }
         code { font-family: 'Courier New', monospace; font-size: 0.85rem; background: var(--green-pale); color: var(--green-deep); padding: 0.1rem 0.35rem; border-radius: 4px; }
+        .demo-notice { background: #fff8ee; border: 1.5px solid rgba(200,169,106,0.3); border-radius: 10px; padding: 1.25rem 1.5rem; margin: 1.25rem 0; font-size: 0.9rem; color: #5a4520; font-weight: 500; line-height: 1.7; }
+        .demo-notice strong { color: #7a5c2e; }
         footer { background: var(--white); border-top: 1px solid var(--border); padding: 3.5rem 0 2rem; }
         .footer-grid { display: grid; grid-template-columns: 2fr 1fr 1fr 1fr; gap: 3rem; margin-bottom: 3rem; }
         .footer-brand-name { font-size: 1.4rem; font-weight: 800; color: var(--green-primary); margin-bottom: 0.6rem; }
@@ -111,6 +113,7 @@
                 <li><a href="#acceptance">Acceptance of Terms</a></li>
                 <li><a href="#description">Description of Services</a></li>
                 <li><a href="#consent-api">Consent API &amp; Ledger Terms</a></li>
+                <li><a href="#state-monitor">State-Persistence Monitor &amp; RPE Terms</a></li>
                 <li><a href="#api-access">API Access &amp; Authentication</a></li>
                 <li><a href="#eligibility">Eligibility</a></li>
                 <li><a href="#accounts">Accounts &amp; Registration</a></li>
@@ -126,12 +129,12 @@
         </div>
 
         <div class="highlight-box">
-            <strong>The short version:</strong> Use Adworth legally and in good faith. Don&rsquo;t misuse the platform or infringe on our intellectual property. Consent tokens and ledger entries are governed by specific rules around immutability and data ownership. API access requires authentication. We&rsquo;re in early stages and provide the service as-is. If something goes wrong, our liability is limited. Questions? Reach us at <a href="mailto:hello@adworth.app">hello@adworth.app</a>.
+            <strong>The short version:</strong> Use Adworth legally and in good faith. Don&rsquo;t misuse the platform or infringe on our intellectual property. Consent tokens and ledger entries are governed by specific rules around immutability and data ownership. The State-Persistence Monitor and Removal Payload Engine currently operate in simulated mode for demonstration purposes. API access requires authentication. We&rsquo;re in early stages and provide the service as-is. If something goes wrong, our liability is limited. Questions? Reach us at <a href="mailto:hello@adworth.app">hello@adworth.app</a>.
         </div>
 
         <div class="policy-section" id="acceptance">
             <h2><span class="section-num">01</span> Acceptance of Terms</h2>
-            <p>By accessing or using any Adworth&#8480; service &mdash; including adworth.app, app.adworth.app, the Adworth Consent API, or any associated applications &mdash; you agree to be bound by these Terms of Service and our <a href="/privacy.html">Privacy Policy</a>.</p>
+            <p>By accessing or using any Adworth&#8480; service &mdash; including adworth.app, app.adworth.app, the Adworth Consent API, the State-Persistence Monitor, or any associated applications &mdash; you agree to be bound by these Terms of Service and our <a href="/privacy.html">Privacy Policy</a>.</p>
             <p>If you do not agree to these terms, please do not use our services.</p>
         </div>
 
@@ -142,10 +145,15 @@
                 <li>An Ad Intelligence Dashboard with DSA compliance and ad transparency analysis at app.adworth.app</li>
                 <li>A cryptographic consent token API for issuing, validating, and revoking data consent</li>
                 <li>An append-only Invisibility Ledger recording all consent lifecycle events</li>
+                <li>A State-Persistence Monitor that scans for unauthorized data retention after consent revocation or expiry (Patent Component #4)</li>
+                <li>A Removal Payload Engine that generates legally-cited deletion requests when violations are detected (Patent Component #5)</li>
                 <li>A waitlist for our upcoming cryptographic consent marketplace</li>
                 <li>Informational content at adworth.app</li>
             </ul>
             <p>We are an early-stage company. Our services are actively being developed and may change, be interrupted, or be discontinued at any time. We will make reasonable efforts to notify users of significant changes.</p>
+            <div class="demo-notice">
+                <strong>Current operational status:</strong> The State-Persistence Monitor and Removal Payload Engine are functional but currently operate using simulated data broker checks. No live connections to external data brokers exist at this time. Removal payloads are generated with real legal citations but are not transmitted to third parties. These components will transition to live operation as the platform matures, and these terms will be updated accordingly.
+            </div>
         </div>
 
         <div class="policy-section" id="consent-api">
@@ -160,14 +168,16 @@
                 <li>Tokens expire automatically at the end of the specified duration and are purged from active storage</li>
                 <li>You may revoke any token at any time; revocation is immediate and irreversible</li>
                 <li>A revoked or expired token cannot be reactivated &mdash; a new token must be issued for any subsequent consent grant</li>
+                <li>Revoked and expired tokens may be scanned by the State-Persistence Monitor to detect unauthorized data retention by third parties</li>
             </ul>
 
             <h3>Invisibility Ledger</h3>
-            <p>All consent lifecycle events (issuance, validation, revocation, expiration) are recorded in the Invisibility Ledger. By using the consent system, you acknowledge and agree that:</p>
+            <p>All consent lifecycle events (issuance, validation, revocation, expiration) and enforcement events (violation detection, removal payload generation) are recorded in the Invisibility Ledger. By using the consent system, you acknowledge and agree that:</p>
             <ul>
                 <li>Ledger entries are <strong>append-only and immutable</strong> &mdash; once written, they cannot be modified, overwritten, or deleted by any party, including Adworth</li>
                 <li>This immutability is by design and serves as the tamper-evident audit trail for regulatory compliance and dispute resolution</li>
                 <li>Ledger entries contain only cryptographic identifiers, event types, and timestamps &mdash; not personally identifiable information</li>
+                <li>Ledger event types include <code>CONSENT_ISSUED</code>, <code>CONSENT_REVOKED</code>, <code>CONSENT_EXPIRED</code>, <code>VIOLATION_DETECTED</code>, and <code>RPE_GENERATED</code></li>
                 <li>Ledger entries are retained indefinitely as part of the consent audit trail, even if you request deletion of other personal data</li>
                 <li>You may request an export of your complete ledger history at any time by contacting <a href="mailto:hello@adworth.app">hello@adworth.app</a></li>
             </ul>
@@ -177,14 +187,56 @@
             <p>Adworth acts as infrastructure &mdash; we facilitate consent enforcement but do not access, use, or monetize the underlying user data that consent tokens govern.</p>
         </div>
 
+        <div class="policy-section" id="state-monitor">
+            <h2><span class="section-num">04</span> State-Persistence Monitor &amp; Removal Payload Engine Terms</h2>
+            <p>The following terms govern your use of Adworth&rsquo;s State-Persistence Monitor (Patent Component #4) and Removal Payload Engine (Patent Component #5).</p>
+
+            <h3>State-Persistence Monitor</h3>
+            <p>The State-Persistence Monitor scans for unauthorized data retention by third parties after consent has been revoked or expired. By using or benefiting from this service, you acknowledge that:</p>
+            <ul>
+                <li>Scans are initiated via authenticated API request and process only data already present in the Invisibility Ledger</li>
+                <li>The monitor checks a registry of data brokers to determine whether any still retain data associated with revoked or expired consent tokens</li>
+                <li>Violation detection events are recorded in the Invisibility Ledger as <code>VIOLATION_DETECTED</code> entries and are subject to the same immutability and retention rules as all ledger entries</li>
+                <li>Scan results, including violation records and broker names, are stored in a dedicated data store (<code>MONITOR_STATE</code>) for audit and compliance purposes</li>
+                <li>Detection results are probabilistic and represent the monitor&rsquo;s assessment of unauthorized data persistence, not a guaranteed finding of legal violation</li>
+            </ul>
+            <div class="demo-notice">
+                <strong>Current status:</strong> Broker checks are currently simulated against a representative registry of eight data brokers. The monitor does not connect to live broker APIs and does not transmit any data externally. Simulated results are generated for system validation, investor demonstration, and proof-of-concept purposes only. Detection confidence scores in simulated mode do not reflect actual broker data retention.
+            </div>
+
+            <h3>Removal Payload Engine</h3>
+            <p>When the State-Persistence Monitor detects a potential violation, the Removal Payload Engine automatically generates a legally-cited deletion request. By using or benefiting from this service, you acknowledge that:</p>
+            <ul>
+                <li>Removal payloads are generated automatically based on violation detection results and applicable legal citations (GDPR Article 17, CCPA &sect; 1798.105, DSA Article 26)</li>
+                <li>Payload generation events are recorded in the Invisibility Ledger as <code>RPE_GENERATED</code> entries</li>
+                <li>Removal payloads contain only opaque identifiers, timestamps, legal citations, and broker references &mdash; no personally identifiable information</li>
+                <li>Adworth does not guarantee that removal payloads constitute legally sufficient deletion requests under any specific jurisdiction; users should consult qualified legal counsel for compliance determinations</li>
+                <li>The legal citations included in removal payloads are informational references and do not constitute legal advice</li>
+            </ul>
+            <div class="demo-notice">
+                <strong>Current status:</strong> Removal payloads are generated with real legal citations and complete data structures, but are not transmitted to actual data brokers. All payloads are marked with delivery status <code>SIMULATED</code>. No deletion requests have been sent to any third party. When live delivery begins, these terms will be updated to reflect the transmission process, user consent requirements for sending on your behalf, and any additional obligations.
+            </div>
+
+            <h3>No guarantee of enforcement</h3>
+            <p>Adworth&rsquo;s State-Persistence Monitor and Removal Payload Engine are designed to assist with post-consent enforcement, but Adworth does not guarantee that:</p>
+            <ul>
+                <li>All instances of unauthorized data retention will be detected</li>
+                <li>Data brokers will comply with removal payloads</li>
+                <li>Detection or enforcement actions will satisfy specific regulatory requirements</li>
+                <li>Simulated results accurately represent the behavior of live data broker systems</li>
+            </ul>
+            <p>These tools are provided as technical infrastructure to support your data rights. They do not replace legal counsel, regulatory filings, or direct communication with data processors.</p>
+        </div>
+
         <div class="policy-section" id="api-access">
-            <h2><span class="section-num">04</span> API Access &amp; Authentication</h2>
-            <p>Access to the Adworth Consent API is governed by the following terms:</p>
+            <h2><span class="section-num">05</span> API Access &amp; Authentication</h2>
+            <p>Access to the Adworth Consent API and State-Persistence Monitor API is governed by the following terms:</p>
 
             <h3>Authentication requirements</h3>
             <ul>
                 <li>All protected API endpoints require a valid Bearer token in the HTTP <code>Authorization</code> header</li>
-                <li>The health check endpoint (<code>/health</code>) is publicly accessible without authentication</li>
+                <li>The health check endpoint (<code>/health</code>) and monitor dashboard (<code>/dashboard</code>) are publicly accessible without authentication</li>
+                <li>Protected endpoints include consent token operations, scan initiation, scan history retrieval, and violation queries</li>
                 <li>API keys are issued by Adworth and are confidential &mdash; you must not share, publish, or embed API keys in client-side code or public repositories</li>
                 <li>You are responsible for all activity that occurs using your API key</li>
             </ul>
@@ -197,32 +249,32 @@
             </ul>
 
             <h3>Rate limits &amp; fair use</h3>
-            <p>API access is subject to reasonable rate limits. We reserve the right to throttle or suspend access for any usage patterns that are excessive, abusive, or that degrade service quality for other users. Current rate limits are determined by the Cloudflare Workers free or paid tier applicable to your usage.</p>
+            <p>API access is subject to reasonable rate limits. We reserve the right to throttle or suspend access for any usage patterns that are excessive, abusive, or that degrade service quality for other users. Current rate limits are determined by the Cloudflare Workers free or paid tier applicable to your usage. State-Persistence Monitor scans process the full ledger on each invocation and should be triggered at reasonable intervals.</p>
 
             <h3>API availability</h3>
-            <p>The Consent API is provided on an &ldquo;as available&rdquo; basis. While we strive for high availability, we do not guarantee uptime or response times. The API may be temporarily unavailable due to maintenance, updates, or circumstances beyond our control.</p>
+            <p>The Consent API and State-Persistence Monitor API are provided on an &ldquo;as available&rdquo; basis. While we strive for high availability, we do not guarantee uptime or response times. The APIs may be temporarily unavailable due to maintenance, updates, or circumstances beyond our control.</p>
         </div>
 
         <div class="policy-section" id="eligibility">
-            <h2><span class="section-num">05</span> Eligibility</h2>
+            <h2><span class="section-num">06</span> Eligibility</h2>
             <p>You must be at least 13 years of age to use Adworth services. By using our services, you represent that you meet this requirement.</p>
             <p>If you are using Adworth on behalf of an organization, you represent that you have authority to bind that organization to these terms.</p>
         </div>
 
         <div class="policy-section" id="accounts">
-            <h2><span class="section-num">06</span> Accounts &amp; Registration</h2>
+            <h2><span class="section-num">07</span> Accounts &amp; Registration</h2>
             <p>Some features of our platform may require you to create an account or obtain API credentials. When registering, you agree to:</p>
             <ul>
                 <li>Provide accurate and complete information</li>
                 <li>Keep your credentials (including API keys) secure and confidential</li>
                 <li>Notify us immediately of any unauthorized access to your account or API key</li>
-                <li>Be responsible for all activity that occurs under your account or API key</li>
+                <li>Be responsible for all activity that occurs under your account or API key, including consent token operations, monitor scans, and any resulting enforcement actions</li>
             </ul>
             <p>We reserve the right to suspend or terminate accounts that violate these terms.</p>
         </div>
 
         <div class="policy-section" id="acceptable-use">
-            <h2><span class="section-num">07</span> Acceptable Use</h2>
+            <h2><span class="section-num">08</span> Acceptable Use</h2>
             <p>You agree not to use Adworth services to:</p>
             <ul>
                 <li>Violate any applicable law or regulation</li>
@@ -236,58 +288,64 @@
                 <li>Issue consent tokens on behalf of other users without their explicit authorization</li>
                 <li>Use the API to create false or misleading consent records</li>
                 <li>Share, publish, or embed API keys in publicly accessible code, repositories, or client-side applications</li>
+                <li>Trigger excessive or abusive State-Persistence Monitor scans intended to degrade service performance</li>
+                <li>Misrepresent simulated monitor results as evidence of actual data broker violations in legal proceedings or regulatory filings</li>
+                <li>Use removal payload outputs to harass, threaten, or mislead data brokers or other third parties</li>
             </ul>
             <p>We reserve the right to investigate and take appropriate action against violations, including API key revocation, account suspension or termination, and referral to law enforcement.</p>
         </div>
 
         <div class="policy-section" id="intellectual-property">
-            <h2><span class="section-num">08</span> Intellectual Property</h2>
+            <h2><span class="section-num">09</span> Intellectual Property</h2>
             <h3>Our intellectual property</h3>
-            <p>All content, technology, and materials on the Adworth platform &mdash; including but not limited to the Privacy Governance and Cryptographic Consent Enforcement System (U.S. Provisional Patent Application, filed February 23, 2026), the Adworth&#8480; service mark, the consent token architecture, the Invisibility Ledger design, the Removal Payload Engine, website design, text, and software &mdash; are owned by Adworth LLC and protected by applicable intellectual property laws.</p>
+            <p>All content, technology, and materials on the Adworth platform &mdash; including but not limited to the Privacy Governance and Cryptographic Consent Enforcement System (U.S. Provisional Patent Application, filed February 23, 2026), the Adworth&#8480; service mark, the consent token architecture, the Invisibility Ledger design, the State-Persistence Monitor, the Removal Payload Engine, website design, text, and software &mdash; are owned by Adworth LLC and protected by applicable intellectual property laws.</p>
             <p>You may not copy, reproduce, distribute, or create derivative works from our intellectual property without our express written permission.</p>
             <h3>Your content</h3>
             <p>You retain ownership of any content you submit to our platform. By submitting content, you grant Adworth a limited, non-exclusive license to use that content solely to provide and improve our services.</p>
             <h3>Your consent data</h3>
-            <p>Consent tokens you issue and the consent decisions they represent remain under your control. You may revoke consent at any time, and Adworth will enforce that revocation. The cryptographic identifiers generated by the system are functional artifacts of the service and do not constitute your intellectual property or personal data.</p>
+            <p>Consent tokens you issue and the consent decisions they represent remain under your control. You may revoke consent at any time, and Adworth will enforce that revocation through the consent system and, where applicable, through the State-Persistence Monitor and Removal Payload Engine. The cryptographic identifiers generated by the system are functional artifacts of the service and do not constitute your intellectual property or personal data.</p>
         </div>
 
         <div class="policy-section" id="disclaimer">
-            <h2><span class="section-num">09</span> Disclaimers</h2>
+            <h2><span class="section-num">10</span> Disclaimers</h2>
             <p>Adworth services are provided <strong>&ldquo;as is&rdquo;</strong> and <strong>&ldquo;as available&rdquo;</strong> without warranties of any kind, either express or implied, including but not limited to warranties of merchantability, fitness for a particular purpose, or non-infringement.</p>
             <p>We do not warrant that our services will be uninterrupted, error-free, or free of viruses or other harmful components. As an early-stage platform, we make no guarantees about uptime, data preservation, or feature availability.</p>
-            <p>The consent token system and Invisibility Ledger are provided as technical infrastructure. While designed for regulatory compliance support, Adworth does not guarantee that use of our system constitutes full legal compliance with any specific regulation (including GDPR, CCPA, or DSA). Users should consult qualified legal counsel for compliance determinations.</p>
+            <p>The consent token system, Invisibility Ledger, State-Persistence Monitor, and Removal Payload Engine are provided as technical infrastructure. While designed for regulatory compliance support, Adworth does not guarantee that use of our system constitutes full legal compliance with any specific regulation (including GDPR, CCPA, or DSA). Users should consult qualified legal counsel for compliance determinations.</p>
+            <p>Simulated broker check results do not represent actual data broker behavior or actual instances of unauthorized data retention. Removal payloads generated in simulated mode are for demonstration purposes and should not be relied upon as evidence of legal violations.</p>
             <p>Nothing on this platform constitutes legal, financial, or investment advice.</p>
         </div>
 
         <div class="policy-section" id="limitation">
-            <h2><span class="section-num">10</span> Limitation of Liability</h2>
+            <h2><span class="section-num">11</span> Limitation of Liability</h2>
             <p>To the maximum extent permitted by applicable law, Adworth LLC and its founders, officers, and agents shall not be liable for any indirect, incidental, special, consequential, or punitive damages arising from your use of &mdash; or inability to use &mdash; our services.</p>
-            <p>This includes, without limitation, damages arising from: consent token validation failures, ledger entry delays or inconsistencies, API downtime or authentication errors, or failure of third-party systems (including Cloudflare Workers KV) on which our infrastructure depends.</p>
+            <p>This includes, without limitation, damages arising from: consent token validation failures, ledger entry delays or inconsistencies, API downtime or authentication errors, State-Persistence Monitor scan failures or inaccurate detection results, Removal Payload Engine generation errors or delivery failures, or failure of third-party systems (including Cloudflare Workers KV) on which our infrastructure depends.</p>
+            <p>Adworth is not liable for any consequences arising from third-party data brokers&rsquo; failure to comply with removal payloads, whether simulated or live. Adworth is not liable for any legal, financial, or reputational consequences arising from reliance on simulated monitor results.</p>
             <p>Our total liability to you for any claims arising under these terms shall not exceed the greater of $100 or the amount you paid to Adworth in the 12 months preceding the claim.</p>
         </div>
 
         <div class="policy-section" id="termination">
-            <h2><span class="section-num">11</span> Termination</h2>
+            <h2><span class="section-num">12</span> Termination</h2>
             <p>You may stop using our services at any time. You may request deletion of your account and data by contacting us at <a href="mailto:hello@adworth.app">hello@adworth.app</a>.</p>
-            <p>We reserve the right to suspend or terminate your access to our services at any time, with or without notice, for any reason, including violation of these terms. This includes revocation of API keys.</p>
+            <p>We reserve the right to suspend or terminate your access to our services at any time, with or without notice, for any reason, including violation of these terms. This includes revocation of API keys and suspension of monitor scan access.</p>
             <p>Upon termination, your right to use our services ceases immediately. Provisions that by their nature should survive termination &mdash; including intellectual property, disclaimers, limitation of liability, and ledger immutability &mdash; will survive.</p>
-            <p>Note that consent ledger entries (which contain no personally identifiable information) are retained as part of the immutable audit trail even after account termination, as they serve as proof of consent actions for all parties involved.</p>
+            <p>Note that consent ledger entries, violation detection records, and removal payload records (which contain no personally identifiable information) are retained as part of the immutable audit trail even after account termination, as they serve as proof of consent actions and enforcement for all parties involved.</p>
         </div>
 
         <div class="policy-section" id="governing-law">
-            <h2><span class="section-num">12</span> Governing Law</h2>
+            <h2><span class="section-num">13</span> Governing Law</h2>
             <p>These Terms of Service are governed by and construed in accordance with the laws of the State of South Carolina, United States, without regard to its conflict of law provisions.</p>
             <p>Any disputes arising under these terms shall be resolved exclusively in the state or federal courts located in Charleston County, South Carolina, and you consent to personal jurisdiction in those courts.</p>
         </div>
 
         <div class="policy-section" id="changes">
-            <h2><span class="section-num">13</span> Changes to Terms</h2>
+            <h2><span class="section-num">14</span> Changes to Terms</h2>
             <p>We may update these Terms of Service at any time. When we do, we will update the &ldquo;Last updated&rdquo; date at the top of this page. For material changes, we will notify users by email where possible.</p>
             <p>Your continued use of Adworth services after changes are posted constitutes your acceptance of the updated terms.</p>
+            <p>In particular, these terms will be updated when the State-Persistence Monitor and Removal Payload Engine transition from simulated to live operation, as this change materially affects the scope of data processing and third-party communications.</p>
         </div>
 
         <div class="policy-section" id="contact">
-            <h2><span class="section-num">14</span> Contact Us</h2>
+            <h2><span class="section-num">15</span> Contact Us</h2>
             <p>If you have questions or concerns about these Terms of Service, please contact us:</p>
             <div class="highlight-box">
                 <strong>Adworth&#8480; LLC</strong><br>
