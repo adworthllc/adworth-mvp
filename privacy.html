@@ -321,10 +321,50 @@
 
             <h3>Data isolation</h3>
             <p>Consent token data, ledger entries, and monitor state are stored in dedicated, isolated Cloudflare Workers KV namespaces (<code>ADWORTH_TOKENS</code>, <code>ADWORTH_LEDGER</code>, and <code>MONITOR_STATE</code>) that are separate from all other Adworth data stores (waitlist, ad cache). There is no cross-contamination between these systems.</p>
+        </div>        <div class="policy-section" id="governance-engine">
+            <h2><span class="section-num">06</span> Privacy Governance Engine</h2>
+            <p>Adworth&rsquo;s Privacy Governance Engine (Patent Component #2, <code>adworth-bouncer</code>) is a real-time consent enforcement system that automatically evaluates every data access request before any user data can be accessed. This section explains how it operates.</p>
+
+            <h3>How it works</h3>
+            <p>When an advertiser or third party attempts to access user data, they must first submit an evaluation request to the Governance Engine. The engine performs six validation checks in sequence:</p>
+            <ol>
+                <li><strong>Token existence:</strong> Does a consent token exist for this user-advertiser pair?</li>
+                <li><strong>Revocation check:</strong> Has the user revoked their consent?</li>
+                <li><strong>Expiration check:</strong> Has the consent window expired?</li>
+                <li><strong>Advertiser match:</strong> Does the requesting advertiser match the token holder? (Consent is non-transferable.)</li>
+                <li><strong>Scope match:</strong> Does the requested data type match the scope of the consent token?</li>
+                <li><strong>Ledger double-check:</strong> Is there a revocation event in the Invisibility Ledger that hasn&rsquo;t yet been reflected in the token store?</li>
+            </ol>
+            <p>If any check fails, the request is immediately blocked with a specific reason code. If all checks pass, the request is granted. The decision is final and cannot be overridden.</p>
+
+            <h3>Access decision logging</h3>
+            <p>Every access decision is recorded in two places:</p>
+            <ul>
+                <li>The <strong>Governance Log</strong> (<code>GOVERNANCE_LOG</code> KV namespace): Contains the full decision record including decision identifier, timestamp, advertiser ID, user ID, data scope, decision result, block reason (if applicable), and all check results.</li>
+                <li>The <strong>Invisibility Ledger</strong> (<code>ADWORTH_LEDGER</code> KV namespace): Contains an <code>ACCESS_CHECKED</code> event entry recording the decision for the tamper-evident audit trail.</li>
+            </ul>
+            <p>No personally identifiable information is stored in access decision records. All identifiers are opaque.</p>
+
+            <h3>Block reason codes</h3>
+            <p>When access is blocked, the response includes one of these machine-readable reason codes:</p>
+            <ul>
+                <li><code>NO_CONSENT_TOKEN</code> &mdash; No consent token exists for this user-advertiser pair</li>
+                <li><code>TOKEN_REVOKED</code> &mdash; User has explicitly revoked consent</li>
+                <li><code>TOKEN_EXPIRED</code> &mdash; Consent window has closed</li>
+                <li><code>ADVERTISER_MISMATCH</code> &mdash; Token was issued to a different advertiser</li>
+                <li><code>SCOPE_MISMATCH</code> &mdash; Requested data type is not covered by the consent token</li>
+                <li><code>INVALID_REQUEST</code> &mdash; Required fields missing from the request</li>
+            </ul>
+
+            <h3>Governance Engine dashboard</h3>
+            <p>The Privacy Governance Engine includes an interactive dashboard accessible at the worker&rsquo;s <code>/dashboard</code> endpoint. This dashboard requires API key authentication and displays real-time access decisions, enforcement statistics, and a request testing interface. The dashboard does not set cookies, use <code>localStorage</code>, or load third-party scripts. API keys entered are held in memory only for the duration of the browser session.</p>
+
+            <h3>Authentication</h3>
+            <p>All Governance Engine endpoints (except the public health check) require Bearer token authentication. The same security practices described in Section 05 (API authentication) apply to the Governance Engine.</p>
         </div>
 
         <div class="policy-section" id="state-persistence-monitor">
-            <h2><span class="section-num">06</span> State-Persistence Monitor &amp; Removal Payload Engine</h2>
+            <h2><span class="section-num">07</span> State-Persistence Monitor &amp; Removal Payload Engine</h2>
             <p>Adworth&rsquo;s patent-pending infrastructure includes two enforcement components that operate after consent is revoked or expires. This section explains how each works, what data is processed, and the current operational status.</p>
 
             <h3>State-Persistence Monitor (Patent Component #4)</h3>
@@ -362,7 +402,7 @@
         </div>
 
         <div class="policy-section" id="data-retention">
-            <h2><span class="section-num">07</span> Data Retention</h2>
+            <h2><span class="section-num">08</span> Data Retention</h2>
             <p>We retain your personal information only as long as necessary to provide our services or as required by law.</p>
             <ul>
                 <li><strong>Waitlist email addresses</strong> are stored in Cloudflare Workers KV (<code>WAITLIST</code> namespace) until you unsubscribe or request deletion.</li>
@@ -376,7 +416,7 @@
         </div>
 
         <div class="policy-section" id="your-rights">
-            <h2><span class="section-num">08</span> Your Rights</h2>
+            <h2><span class="section-num">09</span> Your Rights</h2>
             <p>Depending on your location, you may have the following rights regarding your personal information:</p>
             <ul>
                 <li><strong>Access:</strong> Request a copy of the personal data we hold about you</li>
@@ -392,7 +432,7 @@
         </div>
 
         <div class="policy-section" id="security">
-            <h2><span class="section-num">09</span> Security</h2>
+            <h2><span class="section-num">10</span> Security</h2>
             <p>We implement industry-standard security measures to protect your information, including:</p>
             <ul>
                 <li>Encrypted data transmission (HTTPS enforced via Cloudflare on all endpoints)</li>
@@ -404,26 +444,30 @@
                 <li>Data isolation between KV namespaces (tokens, ledger, monitor state, waitlist, and cache are fully separated)</li>
                 <li>Access controls on all stored data with no public read access to protected endpoints</li>
                 <li>Cryptographic proof references in all removal payloads linking back to the tamper-evident ledger</li>
+                <li>Real-time consent enforcement via the Privacy Governance Engine, blocking unauthorized access before data can be reached</li>
+                <li>Cryptographic proof references in all removal payloads linking back to the tamper-evident ledger</li>
+                <li>Six-point validation on every data access request ensuring consent cannot be fake
             </ul>
-            <p>No method of transmission over the internet is 100% secure. If you believe your information has been compromised, please contact us immediately at <a href="mailto:hello@adworth.app">hello@adworth.app</a>.</p>
+            <p>No method of transmission over the internet is 090% secure. If you believe your information has been compromised, please contact us immediately at <a href="mailto:hello@adworth.app">hello@adworth.app</a>.</p>
         </div>
 
         <div class="policy-section" id="cookies">
-            <h2><span class="section-num">10</span> Cookies &amp; Tracking</h2>
+            <h2><span class="section-num">11</span> Cookies &amp; Tracking</h2>
             <p>We use minimal cookies necessary to operate our website. We do not use third-party advertising cookies, tracking pixels, behavioral analytics scripts, or any other third-party tracking technologies.</p>
             <p>Cloudflare may set a cookie (<code>__cf_bm</code>) for bot management and security purposes. This cookie does not track you across sites and is not used for advertising.</p>
             <p>The Adworth consent token injector script (<code>adworth-token-injector</code>) may store consent state in your browser&rsquo;s <code>localStorage</code> under the key <code>adworth_consent_state</code>. This data stays entirely on your device and is never transmitted to our servers unless you explicitly initiate a consent action. You can clear this data at any time through your browser settings.</p>
             <p>The State-Persistence Monitor dashboard does not set any cookies and does not use <code>localStorage</code>. API keys entered in the dashboard are held in memory only for the duration of the browser session and are not persisted.</p>
+            <p>The Privacy Governance Engine dashboard, the Invisibility Ledger viewer, the Consent Widget, and the Advertiser Integration sandbox follow the same practices: no cookies, no <code>localStorage</code>, no third-party scripts. API keys are held in memory only and are not persisted across sessions.</p>
             <p>You can configure your browser to refuse cookies, though some features of the site may not function properly as a result.</p>
         </div>
 
         <div class="policy-section" id="children">
-            <h2><span class="section-num">11</span> Children&rsquo;s Privacy</h2>
+            <h2><span class="section-num">12</span> Children&rsquo;s Privacy</h2>
             <p>Adworth&rsquo;s services are not directed to children under 13. We do not knowingly collect personal information from children under 13. If you believe we have inadvertently collected such information, please contact us and we will delete it promptly.</p>
         </div>
 
         <div class="policy-section" id="contact">
-            <h2><span class="section-num">12</span> Contact Us</h2>
+            <h2><span class="section-num">13</span> Contact Us</h2>
             <p>If you have questions, concerns, or requests regarding this Privacy Policy or your personal data, please contact us:</p>
             <div class="highlight-box">
                 <strong>Adworth&#8480; LLC</strong><br>
