@@ -1,0 +1,736 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Adworth&#8480; — Advertiser Integration</title>
+  <meta name="description" content="Integrate Adworth's cryptographic consent infrastructure into your advertising pipeline. Verifiable consent, automatic compliance.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&family=DM+Serif+Display:ital@0;1&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+  <style>
+    *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+    :root {
+      --green-deep: #1a4a35; --green-primary: #2d6a4f; --green-accent: #52b788;
+      --green-pale: #d8f3dc; --green-tint: #f0faf3; --off-white: #fafaf8;
+      --white: #ffffff; --ink: #111410; --ink-60: #555a50; --ink-30: #b0b5aa;
+      --border: #e2e8df; --red: #e05252; --red-bg: #fef3f2;
+      --gold: #c8a96a; --gold-bg: #fff8ee;
+      --code-bg: #1e1e2e; --code-text: #cdd6f4; --code-green: #a6e3a1;
+      --code-blue: #89b4fa; --code-yellow: #f9e2af; --code-red: #f38ba8;
+      --code-purple: #cba6f7; --code-comment: #6c7086;
+    }
+    body { font-family: 'Poppins', sans-serif; background: var(--off-white); color: var(--ink); line-height: 1.6; }
+
+    /* Header */
+    .header {
+      background: var(--green-deep);
+      color: white;
+      padding: 1.25rem 2rem;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+    .header h1 { font-size: 1.15rem; font-weight: 700; }
+    .header .subtitle { font-size: 0.7rem; color: var(--green-accent); font-weight: 500; }
+    .header .badge {
+      font-size: 0.6rem;
+      background: rgba(82,183,136,0.2);
+      color: var(--green-accent);
+      padding: 0.2rem 0.6rem;
+      border-radius: 100px;
+      border: 1px solid rgba(82,183,136,0.3);
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+    }
+
+    .container { max-width: 1000px; margin: 0 auto; padding: 2rem; }
+
+    /* Hero */
+    .integration-hero {
+      text-align: center;
+      padding: 3rem 0;
+      border-bottom: 1px solid var(--border);
+      margin-bottom: 3rem;
+    }
+    .integration-hero h2 {
+      font-family: 'DM Serif Display', serif;
+      font-size: clamp(1.75rem, 3.5vw, 2.5rem);
+      color: var(--ink);
+      margin-bottom: 0.75rem;
+    }
+    .integration-hero h2 em { color: var(--green-primary); font-style: italic; }
+    .integration-hero p {
+      font-size: 1rem;
+      color: var(--ink-60);
+      max-width: 600px;
+      margin: 0 auto;
+      line-height: 1.7;
+    }
+
+    /* Section */
+    .section { margin-bottom: 3.5rem; }
+    .section-label {
+      font-size: 0.65rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 2px;
+      color: var(--green-accent);
+      margin-bottom: 0.5rem;
+    }
+    .section-title {
+      font-family: 'DM Serif Display', serif;
+      font-size: 1.5rem;
+      color: var(--ink);
+      margin-bottom: 0.5rem;
+    }
+    .section-desc {
+      font-size: 0.9rem;
+      color: var(--ink-60);
+      margin-bottom: 2rem;
+      max-width: 700px;
+      line-height: 1.7;
+    }
+
+    /* Flow diagram */
+    .flow-container {
+      background: var(--white);
+      border: 1.5px solid var(--border);
+      border-radius: 14px;
+      padding: 2.5rem;
+      margin-bottom: 2rem;
+    }
+    .flow-steps {
+      display: flex;
+      align-items: flex-start;
+      gap: 0;
+      justify-content: center;
+      flex-wrap: wrap;
+    }
+    .flow-step {
+      text-align: center;
+      flex: 0 0 160px;
+      position: relative;
+    }
+    .flow-step-icon {
+      width: 56px;
+      height: 56px;
+      border-radius: 14px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.5rem;
+      margin: 0 auto 0.75rem;
+    }
+    .flow-step-icon.advertiser { background: #e8f0fe; }
+    .flow-step-icon.bouncer { background: var(--green-pale); }
+    .flow-step-icon.token { background: var(--gold-bg); }
+    .flow-step-icon.ledger { background: #f3f0ff; }
+    .flow-step-icon.access { background: var(--green-pale); }
+    .flow-step h4 { font-size: 0.8rem; font-weight: 700; color: var(--ink); margin-bottom: 0.25rem; }
+    .flow-step p { font-size: 0.7rem; color: var(--ink-60); line-height: 1.4; }
+    .flow-arrow {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 0 0.25rem;
+      color: var(--green-accent);
+      font-size: 1.25rem;
+      margin-top: 1rem;
+    }
+
+    /* Code blocks */
+    .code-block {
+      background: var(--code-bg);
+      border-radius: 12px;
+      overflow: hidden;
+      margin-bottom: 1.5rem;
+      box-shadow: 0 4px 20px rgba(0,0,0,0.12);
+    }
+    .code-header {
+      background: rgba(255,255,255,0.06);
+      padding: 0.7rem 1.25rem;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      border-bottom: 1px solid rgba(255,255,255,0.06);
+    }
+    .code-header .lang {
+      font-size: 0.7rem;
+      font-weight: 600;
+      color: var(--code-green);
+      text-transform: uppercase;
+      letter-spacing: 1px;
+    }
+    .code-header .endpoint {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 0.7rem;
+      color: var(--code-blue);
+    }
+    .code-copy {
+      font-size: 0.7rem;
+      background: rgba(255,255,255,0.08);
+      color: var(--code-text);
+      border: 1px solid rgba(255,255,255,0.1);
+      border-radius: 6px;
+      padding: 0.3rem 0.6rem;
+      cursor: pointer;
+      font-family: 'Poppins', sans-serif;
+      font-weight: 500;
+    }
+    .code-copy:hover { background: rgba(255,255,255,0.15); }
+    .code-body {
+      padding: 1.25rem;
+      overflow-x: auto;
+    }
+    .code-body pre {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 0.8rem;
+      line-height: 1.7;
+      color: var(--code-text);
+      margin: 0;
+    }
+    .code-body .comment { color: var(--code-comment); }
+    .code-body .string { color: var(--code-green); }
+    .code-body .keyword { color: var(--code-purple); }
+    .code-body .key { color: var(--code-blue); }
+    .code-body .value { color: var(--code-yellow); }
+    .code-body .method { color: var(--code-red); }
+
+    /* Live sandbox */
+    .sandbox {
+      background: var(--white);
+      border: 2px solid var(--green-accent);
+      border-radius: 14px;
+      overflow: hidden;
+      margin-bottom: 2rem;
+      box-shadow: 0 4px 20px rgba(45,106,79,0.08);
+    }
+    .sandbox-header {
+      background: var(--green-tint);
+      padding: 1rem 1.5rem;
+      border-bottom: 1px solid var(--border);
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+    .sandbox-header h3 { font-size: 0.95rem; font-weight: 700; color: var(--green-deep); }
+    .sandbox-header .live-dot {
+      display: flex;
+      align-items: center;
+      gap: 0.4rem;
+      font-size: 0.7rem;
+      font-weight: 600;
+      color: var(--green-primary);
+    }
+    .sandbox-header .live-dot::before {
+      content: '';
+      width: 6px;
+      height: 6px;
+      background: var(--green-accent);
+      border-radius: 50%;
+      animation: pulse 2s infinite;
+    }
+    @keyframes pulse {
+      0%, 100% { opacity: 1; }
+      50% { opacity: 0.4; }
+    }
+    .sandbox-body { padding: 1.5rem; }
+    .sandbox-row {
+      display: flex;
+      gap: 1rem;
+      margin-bottom: 1rem;
+      align-items: end;
+      flex-wrap: wrap;
+    }
+    .sandbox-field { flex: 1; min-width: 140px; }
+    .sandbox-field label {
+      font-size: 0.7rem;
+      font-weight: 600;
+      color: var(--ink-60);
+      display: block;
+      margin-bottom: 0.3rem;
+    }
+    .sandbox-field input, .sandbox-field select {
+      width: 100%;
+      padding: 0.6rem 0.9rem;
+      border: 1.5px solid var(--border);
+      border-radius: 8px;
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 0.8rem;
+      background: white;
+    }
+    .sandbox-field input:focus, .sandbox-field select:focus { outline: none; border-color: var(--green-primary); }
+
+    .btn {
+      padding: 0.6rem 1.15rem;
+      border: none;
+      border-radius: 8px;
+      font-family: 'Poppins', sans-serif;
+      font-weight: 600;
+      font-size: 0.8rem;
+      cursor: pointer;
+      transition: all 0.2s;
+    }
+    .btn-primary { background: var(--green-primary); color: white; }
+    .btn-primary:hover { background: var(--green-deep); transform: translateY(-1px); }
+
+    .response-box {
+      background: var(--code-bg);
+      border-radius: 10px;
+      padding: 1.25rem;
+      margin-top: 1rem;
+      max-height: 400px;
+      overflow-y: auto;
+      display: none;
+    }
+    .response-box pre {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 0.75rem;
+      line-height: 1.6;
+      color: var(--code-text);
+      white-space: pre-wrap;
+      word-break: break-word;
+    }
+    .response-status {
+      font-size: 0.7rem;
+      font-weight: 700;
+      padding: 0.2rem 0.5rem;
+      border-radius: 4px;
+      display: inline-block;
+      margin-bottom: 0.75rem;
+    }
+    .response-status.ok { background: var(--green-pale); color: var(--green-deep); }
+    .response-status.blocked { background: var(--red-bg); color: var(--red); }
+    .response-status.error { background: var(--gold-bg); color: #7a5c2e; }
+
+    /* Features grid */
+    .features-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 1.25rem;
+      margin-bottom: 2rem;
+    }
+    .feature-card {
+      background: var(--white);
+      border: 1.5px solid var(--border);
+      border-radius: 12px;
+      padding: 1.5rem;
+      transition: border-color 0.2s, transform 0.2s;
+    }
+    .feature-card:hover { border-color: var(--green-accent); transform: translateY(-2px); }
+    .feature-card .feat-icon { font-size: 1.5rem; margin-bottom: 0.75rem; }
+    .feature-card h4 { font-size: 0.9rem; font-weight: 700; color: var(--ink); margin-bottom: 0.4rem; }
+    .feature-card p { font-size: 0.8rem; color: var(--ink-60); line-height: 1.6; }
+
+    /* Pricing */
+    .pricing-card {
+      background: var(--white);
+      border: 1.5px solid var(--border);
+      border-radius: 14px;
+      padding: 2.5rem;
+      text-align: center;
+      max-width: 500px;
+      margin: 0 auto;
+    }
+    .pricing-card .price {
+      font-family: 'DM Serif Display', serif;
+      font-size: 2.5rem;
+      color: var(--green-primary);
+      margin: 0.5rem 0;
+    }
+    .pricing-card .price-sub {
+      font-size: 0.85rem;
+      color: var(--ink-60);
+      margin-bottom: 1.5rem;
+    }
+    .pricing-features {
+      text-align: left;
+      max-width: 340px;
+      margin: 0 auto;
+    }
+    .pricing-features li {
+      font-size: 0.85rem;
+      color: var(--ink-60);
+      padding: 0.4rem 0;
+      padding-left: 1.5rem;
+      position: relative;
+      list-style: none;
+    }
+    .pricing-features li::before {
+      content: '✓';
+      position: absolute;
+      left: 0;
+      color: var(--green-accent);
+      font-weight: 700;
+    }
+
+    .disclosure {
+      background: var(--green-tint);
+      border: 1px solid rgba(45,106,79,0.15);
+      border-radius: 8px;
+      padding: 1rem 1.25rem;
+      font-size: 0.78rem;
+      color: var(--ink-60);
+      line-height: 1.6;
+      margin-top: 2rem;
+    }
+
+    @media (max-width: 768px) {
+      .flow-steps { flex-direction: column; align-items: center; }
+      .flow-arrow { transform: rotate(90deg); padding: 0.5rem 0; }
+      .features-grid { grid-template-columns: 1fr; }
+      .sandbox-row { flex-direction: column; }
+    }
+  </style>
+</head>
+<body>
+  <div class="header">
+    <div>
+      <h1>Adworth&#8480; for Advertisers</h1>
+      <div class="subtitle">Integration Guide &middot; API Reference &middot; Live Sandbox</div>
+    </div>
+    <span class="badge">Patent Pending</span>
+  </div>
+
+  <div class="container">
+
+    <!-- Hero -->
+    <div class="integration-hero">
+      <h2>Stop hoping users consented.<br><em>Verify it cryptographically.</em></h2>
+      <p>One API call before you access user data. If they consented — you're in. If not — you're blocked. No guesswork. No compliance risk. No lawsuits.</p>
+    </div>
+
+    <!-- Integration Flow -->
+    <div class="section">
+      <div class="section-label">How It Works</div>
+      <div class="section-title">Five-step consent verification</div>
+      <div class="section-desc">Every data access request passes through the Privacy Governance Engine before reaching user data. Here's the flow:</div>
+
+      <div class="flow-container">
+        <div class="flow-steps">
+          <div class="flow-step">
+            <div class="flow-step-icon advertiser">📡</div>
+            <h4>Your System</h4>
+            <p>Sends access request with user ID, your advertiser ID, and data scope</p>
+          </div>
+          <div class="flow-arrow">→</div>
+          <div class="flow-step">
+            <div class="flow-step-icon bouncer">🛡️</div>
+            <h4>The Bouncer</h4>
+            <p>Validates consent token: exists? active? right advertiser? right scope? not expired?</p>
+          </div>
+          <div class="flow-arrow">→</div>
+          <div class="flow-step">
+            <div class="flow-step-icon token">🔑</div>
+            <h4>Token Check</h4>
+            <p>Cryptographic verification — the token can't be faked, extended, or transferred</p>
+          </div>
+          <div class="flow-arrow">→</div>
+          <div class="flow-step">
+            <div class="flow-step-icon ledger">📖</div>
+            <h4>Ledger Record</h4>
+            <p>Decision recorded in append-only ledger — permanent audit trail</p>
+          </div>
+          <div class="flow-arrow">→</div>
+          <div class="flow-step">
+            <div class="flow-step-icon access">✅</div>
+            <h4>Access Decision</h4>
+            <p>GRANTED with proof, or BLOCKED with reason code</p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Code Examples -->
+    <div class="section">
+      <div class="section-label">Integration</div>
+      <div class="section-title">One API call. That's it.</div>
+      <div class="section-desc">Before accessing any user data, call the <code>/check</code> endpoint. The response tells you instantly whether you have valid consent.</div>
+
+      <!-- Check Access -->
+      <div class="code-block">
+        <div class="code-header">
+          <span class="lang">POST Request</span>
+          <span class="endpoint">/check</span>
+          <button class="code-copy" onclick="copyCode('code1')">Copy</button>
+        </div>
+        <div class="code-body">
+          <pre id="code1"><span class="comment">// Before accessing user data, verify consent</span>
+
+<span class="keyword">const</span> response = <span class="keyword">await</span> <span class="method">fetch</span>(<span class="string">'https://adworth-bouncer.adworthllc.workers.dev/check'</span>, {
+  <span class="key">method</span>: <span class="string">'POST'</span>,
+  <span class="key">headers</span>: {
+    <span class="string">'Content-Type'</span>: <span class="string">'application/json'</span>,
+    <span class="string">'Authorization'</span>: <span class="string">'Bearer YOUR_API_KEY'</span>
+  },
+  <span class="key">body</span>: JSON.<span class="method">stringify</span>({
+    <span class="key">user_id</span>:       <span class="string">'user-abc-123'</span>,
+    <span class="key">advertiser_id</span>: <span class="string">'nike-ads'</span>,
+    <span class="key">scope</span>:         <span class="string">'running-data-shoe-ads'</span>
+  })
+});
+
+<span class="keyword">const</span> decision = <span class="keyword">await</span> response.<span class="method">json</span>();
+
+<span class="keyword">if</span> (decision.<span class="key">decision</span> === <span class="string">'GRANTED'</span>) {
+  <span class="comment">// ✅ Valid consent — proceed with data access</span>
+  <span class="method">accessUserData</span>(decision.<span class="key">token_id</span>);
+} <span class="keyword">else</span> {
+  <span class="comment">// 🚫 No consent — do NOT access data</span>
+  console.<span class="method">log</span>(<span class="string">'Blocked:'</span>, decision.<span class="key">reason_description</span>);
+}</pre>
+        </div>
+      </div>
+
+      <!-- Granted Response -->
+      <div class="code-block">
+        <div class="code-header">
+          <span class="lang">Response — Granted</span>
+          <span class="endpoint">200 OK</span>
+        </div>
+        <div class="code-body">
+          <pre><span class="comment">// User has valid, active consent for this scope</span>
+{
+  <span class="key">"decision"</span>:    <span class="string">"GRANTED"</span>,
+  <span class="key">"decision_id"</span>: <span class="string">"gov_a1b2c3d4-..."</span>,
+  <span class="key">"token_id"</span>:    <span class="string">"bf5e15a558b04546-..."</span>,
+  <span class="key">"details"</span>: {
+    <span class="key">"token_scope"</span>:      <span class="string">"running-data-shoe-ads"</span>,
+    <span class="key">"token_advertiser"</span>: <span class="string">"nike-ads"</span>,
+    <span class="key">"expires_at"</span>:       <span class="string">"2026-04-01T00:00:00Z"</span>,
+    <span class="key">"remaining"</span>:        <span class="string">"29d"</span>
+  },
+  <span class="key">"checks_performed"</span>: [
+    <span class="string">"token_exists"</span>, <span class="string">"token_not_revoked"</span>,
+    <span class="string">"token_not_expired"</span>, <span class="string">"advertiser_match"</span>,
+    <span class="string">"scope_match"</span>, <span class="string">"ledger_revocation_check"</span>
+  ]
+}</pre>
+        </div>
+      </div>
+
+      <!-- Blocked Response -->
+      <div class="code-block">
+        <div class="code-header">
+          <span class="lang">Response — Blocked</span>
+          <span class="endpoint">403 Forbidden</span>
+        </div>
+        <div class="code-body">
+          <pre><span class="comment">// No valid consent — do NOT access this user's data</span>
+{
+  <span class="key">"decision"</span>:            <span class="string">"BLOCKED"</span>,
+  <span class="key">"reason"</span>:              <span class="string">"SCOPE_MISMATCH"</span>,
+  <span class="key">"reason_description"</span>:  <span class="string">"Requested data scope is not covered by the consent token"</span>,
+  <span class="key">"details"</span>: {
+    <span class="key">"token_scope"</span>:    <span class="string">"running-data-shoe-ads"</span>,
+    <span class="key">"requested_scope"</span>: <span class="string">"health-insurance-data"</span>
+  }
+}</pre>
+        </div>
+      </div>
+    </div>
+
+    <!-- Live Sandbox -->
+    <div class="section">
+      <div class="section-label">Try It Live</div>
+      <div class="section-title">Hit the real API right now</div>
+      <div class="section-desc">This sandbox calls the live Privacy Governance Engine. Try different user/advertiser/scope combinations and see real-time enforcement.</div>
+
+      <div class="sandbox">
+        <div class="sandbox-header">
+          <h3>API Sandbox</h3>
+          <span class="live-dot">Connected to live Bouncer</span>
+        </div>
+        <div class="sandbox-body">
+          <div class="sandbox-row">
+            <div class="sandbox-field">
+              <label>Bouncer URL</label>
+              <input type="text" id="sandboxUrl" value="https://adworth-bouncer.adworthllc.workers.dev">
+            </div>
+            <div class="sandbox-field">
+              <label>API Key</label>
+              <input type="password" id="sandboxKey" placeholder="Your API key">
+            </div>
+          </div>
+          <div class="sandbox-row">
+            <div class="sandbox-field">
+              <label>Advertiser ID</label>
+              <input type="text" id="sandboxAdvertiser" value="nike-ads">
+            </div>
+            <div class="sandbox-field">
+              <label>User ID</label>
+              <input type="text" id="sandboxUser" value="test-user-001">
+            </div>
+            <div class="sandbox-field">
+              <label>Data Scope</label>
+              <select id="sandboxScope">
+                <option value="running-data-shoe-ads">running-data-shoe-ads (valid)</option>
+                <option value="health-insurance-data">health-insurance-data (wrong scope)</option>
+                <option value="location-tracking">location-tracking (no consent)</option>
+              </select>
+            </div>
+            <button class="btn btn-primary" onclick="runSandbox()">Check Access →</button>
+          </div>
+          <div class="response-box" id="sandboxResponse">
+            <div id="sandboxStatus"></div>
+            <pre id="sandboxOutput"></pre>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Block Reason Codes -->
+    <div class="section">
+      <div class="section-label">Reference</div>
+      <div class="section-title">Block reason codes</div>
+      <div class="section-desc">When access is denied, the response includes a machine-readable reason code. Handle each appropriately in your integration.</div>
+
+      <div class="features-grid">
+        <div class="feature-card">
+          <div class="feat-icon">🔍</div>
+          <h4>TOKEN_NOT_FOUND</h4>
+          <p>No consent token exists for this user-advertiser pair. The user has never granted consent.</p>
+        </div>
+        <div class="feature-card">
+          <div class="feat-icon">🚫</div>
+          <h4>TOKEN_REVOKED</h4>
+          <p>User explicitly revoked consent. All data must be deleted per the original token terms.</p>
+        </div>
+        <div class="feature-card">
+          <div class="feat-icon">⏰</div>
+          <h4>TOKEN_EXPIRED</h4>
+          <p>Consent window has closed. Request new consent from the user to continue access.</p>
+        </div>
+        <div class="feature-card">
+          <div class="feat-icon">🔀</div>
+          <h4>ADVERTISER_MISMATCH</h4>
+          <p>Token was issued to a different advertiser. Consent is non-transferable.</p>
+        </div>
+        <div class="feature-card">
+          <div class="feat-icon">📋</div>
+          <h4>SCOPE_MISMATCH</h4>
+          <p>Requested data type isn't covered by the consent token. Only the agreed scope is accessible.</p>
+        </div>
+        <div class="feature-card">
+          <div class="feat-icon">⚠️</div>
+          <h4>INVALID_REQUEST</h4>
+          <p>Missing required fields. Every request needs user_id, advertiser_id, and scope.</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- Why integrate -->
+    <div class="section">
+      <div class="section-label">Why Adworth</div>
+      <div class="section-title">Consented data performs better</div>
+      <div class="section-desc">This isn't just compliance — it's better advertising. Users who actively consent to data sharing engage more, convert higher, and don't block your ads.</div>
+
+      <div class="features-grid">
+        <div class="feature-card">
+          <div class="feat-icon">⚖️</div>
+          <h4>Regulatory Compliance</h4>
+          <p>GDPR, CCPA, DSA — one integration covers them all. Cryptographic proof of consent holds up in any jurisdiction.</p>
+        </div>
+        <div class="feature-card">
+          <div class="feat-icon">📈</div>
+          <h4>Higher Engagement</h4>
+          <p>Users who actively consent are 3-5x more likely to engage with your ads. No more wasted impressions on hostile audiences.</p>
+        </div>
+        <div class="feature-card">
+          <div class="feat-icon">🛡️</div>
+          <h4>Audit Trail</h4>
+          <p>Every access decision is logged to the Invisibility Ledger. If regulators ask, you have cryptographic proof of compliance.</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- Pricing -->
+    <div class="section">
+      <div class="section-label">Pricing</div>
+      <div class="section-title">Transaction fee model</div>
+      <div class="section-desc">Like Stripe charges per payment, Adworth charges per consent transaction. No seat licenses. No enterprise minimums during beta.</div>
+
+      <div class="pricing-card">
+        <div class="section-label">Marketplace Fee</div>
+        <div class="price">2–5%</div>
+        <div class="price-sub">per consent transaction</div>
+        <ul class="pricing-features">
+          <li>Unlimited API calls to /check endpoint</li>
+          <li>Real-time consent verification</li>
+          <li>Automatic ledger recording</li>
+          <li>Compliance documentation</li>
+          <li>Block reason analytics</li>
+          <li>Enterprise licensing available (2026)</li>
+        </ul>
+      </div>
+    </div>
+
+    <!-- Disclosure -->
+    <div class="disclosure">
+      <strong>Transparency Disclosure:</strong> This integration guide connects to the live Adworth Privacy Governance
+      Engine (Patent Component #2). The API sandbox sends real requests and records real decisions in the Invisibility
+      Ledger. Pricing is indicative and subject to change. Enterprise licensing ($15K–$50K/year) will be available in
+      2026. The consent marketplace with user payments is under development.
+    </div>
+  </div>
+
+  <script>
+    function copyCode(id) {
+      var el = document.getElementById(id);
+      var text = el.textContent;
+      navigator.clipboard.writeText(text).then(function() {
+        var btn = el.closest('.code-block').querySelector('.code-copy');
+        btn.textContent = 'Copied!';
+        setTimeout(function() { btn.textContent = 'Copy'; }, 2000);
+      });
+    }
+
+    async function runSandbox() {
+      var url = document.getElementById('sandboxUrl').value.replace(/\/$/, '');
+      var key = document.getElementById('sandboxKey').value;
+      var advertiser = document.getElementById('sandboxAdvertiser').value;
+      var user = document.getElementById('sandboxUser').value;
+      var scope = document.getElementById('sandboxScope').value;
+
+      var responseBox = document.getElementById('sandboxResponse');
+      var statusEl = document.getElementById('sandboxStatus');
+      var outputEl = document.getElementById('sandboxOutput');
+
+      responseBox.style.display = 'block';
+      statusEl.innerHTML = '<span class="response-status" style="background:#f0f0f0;color:#555;">Checking...</span>';
+      outputEl.textContent = '';
+
+      try {
+        var res = await fetch(url + '/check', {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+            'Authorization': 'Bearer ' + key,
+          },
+          body: JSON.stringify({
+            user_id: user,
+            advertiser_id: advertiser,
+            scope: scope,
+          }),
+        });
+
+        var data = await res.json();
+
+        if (data.decision === 'GRANTED') {
+          statusEl.innerHTML = '<span class="response-status ok">✓ 200 GRANTED</span>';
+        } else if (data.decision === 'BLOCKED') {
+          statusEl.innerHTML = '<span class="response-status blocked">✕ 403 BLOCKED — ' + (data.reason || '') + '</span>';
+        } else if (data.error) {
+          statusEl.innerHTML = '<span class="response-status error">⚠ ' + res.status + ' ' + data.error + '</span>';
+        }
+
+        outputEl.textContent = JSON.stringify(data, null, 2);
+      } catch (err) {
+        statusEl.innerHTML = '<span class="response-status error">⚠ Connection failed</span>';
+        outputEl.textContent = err.message;
+      }
+    }
+  </script>
+</body>
+</html>
