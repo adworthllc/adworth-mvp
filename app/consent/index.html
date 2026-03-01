@@ -611,8 +611,9 @@
 
         var data = await res.json();
 
-        if (res.ok && data.tokenId) {
-          addEvent('🔑', '<strong>Consent granted</strong> to ' + req.name + ' — Token: <code>' + data.tokenId.substring(0, 12) + '...</code>');
+        if (res.ok && (data.tokenId || (data.token && data.token.tokenId))) {
+          var tid = data.tokenId || data.token.tokenId;
+          addEvent('🔑', '<strong>Consent granted</strong> to ' + req.name + ' — Token: <code>' + tid.substring(0, 12) + '...</code>');
           addEvent('💰', '<strong>Payment activated:</strong> $' + req.payment.toFixed(2) + '/month from ' + req.name);
 
           currentRequest++;
