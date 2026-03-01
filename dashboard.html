@@ -239,9 +239,7 @@
       overflow: hidden;
       transition: border-color 0.2s;
     }
-
     .metric-card:hover { border-color: rgba(82,183,136,0.3); }
-
     .metric-card::before {
       content: '';
       position: absolute;
@@ -250,7 +248,6 @@
       background: linear-gradient(90deg, var(--green-accent), transparent);
       opacity: 0.6;
     }
-
     .metric-label {
       font-size: 0.7rem;
       font-weight: 600;
@@ -258,8 +255,30 @@
       letter-spacing: 1.5px;
       color: var(--ink-30);
       margin-bottom: 0.5rem;
+      display: flex;
+      align-items: center;
+      gap: 0.4rem;
     }
-
+    .metric-info-btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      width: 15px;
+      height: 15px;
+      border-radius: 50%;
+      border: 1px solid rgba(82,183,136,0.4);
+      background: transparent;
+      color: var(--green-accent);
+      font-size: 0.6rem;
+      font-weight: 700;
+      cursor: pointer;
+      transition: all 0.2s;
+      flex-shrink: 0;
+      font-family: 'Poppins', sans-serif;
+      line-height: 1;
+      padding: 0;
+    }
+    .metric-info-btn:hover { background: var(--green-accent); color: #111; border-color: var(--green-accent); }
     .metric-value {
       font-family: 'DM Serif Display', serif;
       font-size: 2.25rem;
@@ -267,11 +286,67 @@
       line-height: 1;
       margin-bottom: 0.3rem;
     }
-
-    .metric-sub {
-      font-size: 0.75rem;
-      color: var(--ink-60);
+    .metric-sub { font-size: 0.75rem; color: var(--ink-60); }
+    /* METRIC MODAL */
+    .metric-modal-overlay {
+      display: none;
+      position: fixed;
+      inset: 0;
+      background: rgba(0,0,0,0.75);
+      backdrop-filter: blur(4px);
+      z-index: 1000;
+      align-items: center;
+      justify-content: center;
+      padding: 1.5rem;
     }
+    .metric-modal-overlay.open { display: flex; }
+    .metric-modal {
+      background: #1a1f1b;
+      border: 1px solid rgba(82,183,136,0.25);
+      border-radius: 16px;
+      padding: 2.5rem;
+      max-width: 520px;
+      width: 100%;
+      position: relative;
+      animation: modalIn 0.2s ease;
+    }
+    @keyframes modalIn { from{opacity:0;transform:translateY(12px) scale(0.97)} to{opacity:1;transform:translateY(0) scale(1)} }
+    .metric-modal-close {
+      position: absolute;
+      top: 1.25rem; right: 1.25rem;
+      background: rgba(255,255,255,0.06);
+      border: none;
+      color: rgba(255,255,255,0.4);
+      width: 28px; height: 28px;
+      border-radius: 50%;
+      cursor: pointer;
+      font-size: 0.85rem;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: all 0.2s;
+    }
+    .metric-modal-close:hover { background: rgba(255,255,255,0.12); color: white; }
+    .metric-modal-tag { font-size: 0.65rem; font-weight: 700; text-transform: uppercase; letter-spacing: 2px; color: var(--green-accent); margin-bottom: 0.6rem; }
+    .metric-modal-title { font-family: 'DM Serif Display', serif; font-size: 1.75rem; color: white; margin-bottom: 1.25rem; line-height: 1.2; }
+    .metric-modal-body { font-size: 0.875rem; color: rgba(255,255,255,0.65); line-height: 1.8; }
+    .metric-modal-body p + p { margin-top: 0.9rem; }
+    .metric-modal-scale {
+      margin-top: 1.25rem;
+      background: rgba(255,255,255,0.04);
+      border: 1px solid rgba(255,255,255,0.07);
+      border-radius: 10px;
+      padding: 1.1rem 1.25rem;
+    }
+    .metric-modal-scale-title { font-size: 0.65rem; font-weight: 700; text-transform: uppercase; letter-spacing: 1.5px; color: rgba(255,255,255,0.35); margin-bottom: 0.75rem; }
+    .scale-row { display: flex; align-items: baseline; gap: 0.75rem; padding: 0.3rem 0; font-size: 0.82rem; border-bottom: 1px solid rgba(255,255,255,0.04); }
+    .scale-row:last-child { border-bottom: none; }
+    .scale-range { font-family: 'JetBrains Mono', monospace; font-size: 0.75rem; font-weight: 600; min-width: 52px; }
+    .scale-low { color: var(--green-accent); }
+    .scale-mid { color: #e8b860; }
+    .scale-high { color: #f07070; }
+    .scale-desc { color: rgba(255,255,255,0.5); line-height: 1.4; }
+    .metric-modal-disclaimer { margin-top: 1.25rem; font-size: 0.72rem; color: rgba(255,255,255,0.25); line-height: 1.6; font-style: italic; }
 
     /* ── CONTENT GRID ── */
     .content-grid {
@@ -686,24 +761,34 @@
     <!-- Metrics row -->
     <div class="metrics-row" id="metrics-row" style="display:none;">
       <div class="metric-card">
-        <div class="metric-label">Ads Found</div>
+        <div class="metric-label">Ads Found <button class="metric-info-btn" onclick="openModal('ads')" title="How is this counted?">i</button></div>
         <div class="metric-value" id="m-ads">—</div>
         <div class="metric-sub">from transparency center</div>
       </div>
       <div class="metric-card">
-        <div class="metric-label">Privacy Risk</div>
+        <div class="metric-label">Privacy Risk <button class="metric-info-btn" onclick="openModal('risk')" title="How is this scored?">i</button></div>
         <div class="metric-value" id="m-risk" style="color:var(--red)">—</div>
         <div class="metric-sub">AI-scored 1–10</div>
       </div>
       <div class="metric-card">
-        <div class="metric-label">Transparency Score</div>
+        <div class="metric-label">Transparency Score <button class="metric-info-btn" onclick="openModal('trans')" title="How is this scored?">i</button></div>
         <div class="metric-value" id="m-trans" style="color:var(--amber)">—</div>
         <div class="metric-sub">disclosure quality</div>
       </div>
       <div class="metric-card">
-        <div class="metric-label">Regulatory Flags</div>
+        <div class="metric-label">Regulatory Flags <button class="metric-info-btn" onclick="openModal('flags')" title="What are these?">i</button></div>
         <div class="metric-value" id="m-flags" style="color:var(--amber)">—</div>
         <div class="metric-sub">GDPR / CCPA / DSA</div>
+      </div>
+    </div>
+
+    <!-- Metric explanation modals -->
+    <div class="metric-modal-overlay" id="modal-overlay" onclick="closeModalOutside(event)">
+      <div class="metric-modal" id="modal-box">
+        <button class="metric-modal-close" onclick="closeModal()">&#10005;</button>
+        <div class="metric-modal-tag" id="modal-tag">How We Score</div>
+        <div class="metric-modal-title" id="modal-title"></div>
+        <div class="metric-modal-body" id="modal-body"></div>
       </div>
     </div>
 
@@ -1021,6 +1106,108 @@
       ['finding-panel', 'tags-panel', 'reg-panel'].forEach(id => {
         document.getElementById(id).style.display = 'none'      });
     }
+
+
+    // ── METRIC MODALS ────────────────────────────────────────
+    const modalData = {
+      ads: {
+        tag: 'Data Source',
+        title: 'Ads Found',
+        body: `<p>This count reflects the number of unique ads retrieved from Google's Ads Transparency Center for the domain you entered. Google's Transparency Center is a public tool that shows ads that have run across Google's ad network, including Search, Display, and YouTube.</p>
+               <p>We retrieve up to <strong style="color:rgba(255,255,255,0.85)">40 ads per query</strong> for performance and clarity. A domain may have more ads than shown — this represents a representative sample of their active or recent ad activity.</p>
+               <p>More ads are not inherently negative. The number provides context for the scale of a domain's advertising footprint.</p>`,
+        scale: null,
+        disclaimer: 'Ad counts reflect publicly available data from Google's Ads Transparency Center via SerpApi. Results may be incomplete or delayed. This count does not imply any wrongdoing.'
+      },
+      risk: {
+        tag: 'AI Scoring Methodology',
+        title: 'Privacy Risk Score',
+        body: `<p>The Privacy Risk Score is generated by Anthropic's Claude AI, which analyzes the publicly available ad data retrieved for a domain. The AI evaluates several factors to produce a score from 1 to 10.</p>
+               <p><strong style="color:rgba(255,255,255,0.85)">What the AI evaluates:</strong></p>
+               <p>&#8226; <strong style="color:rgba(255,255,255,0.7)">Advertiser opacity</strong> — are advertisers clearly identified, or are entities vague and unverifiable?<br>
+               &#8226; <strong style="color:rgba(255,255,255,0.7)">Ad format risk</strong> — image-only ads bypass user inspection and cannot be audited for claims<br>
+               &#8226; <strong style="color:rgba(255,255,255,0.7)">Campaign longevity</strong> — long-running campaigns with no visible consent signals raise risk<br>
+               &#8226; <strong style="color:rgba(255,255,255,0.7)">Targeting transparency</strong> — whether the domain discloses what data is used to target users<br>
+               &#8226; <strong style="color:rgba(255,255,255,0.7)">Consent signals</strong> — presence or absence of verifiable opt-in mechanisms</p>`,
+        scale: {
+          title: 'Score Interpretation',
+          rows: [
+            { range: '1 – 3', cls: 'scale-low', desc: 'Low risk — strong disclosure practices, clear advertiser identities, consent signals present' },
+            { range: '4 – 6', cls: 'scale-mid', desc: 'Moderate risk — some opacity, limited consent visibility, mixed disclosure quality' },
+            { range: '7 – 10', cls: 'scale-high', desc: 'High risk — opaque advertisers, image-only formats, no verifiable consent signals detected' }
+          ]
+        },
+        disclaimer: 'This score is an AI-generated probabilistic assessment for informational purposes only. It does not constitute a legal determination, compliance finding, or allegation of wrongdoing by any advertiser or platform.'
+      },
+      trans: {
+        tag: 'AI Scoring Methodology',
+        title: 'Transparency Score',
+        body: `<p>The Transparency Score measures the quality of a domain's ad disclosure practices based on publicly visible signals in their ad data. It is the inverse of the Privacy Risk Score — higher is better.</p>
+               <p><strong style="color:rgba(255,255,255,0.85)">What the AI evaluates:</strong></p>
+               <p>&#8226; <strong style="color:rgba(255,255,255,0.7)">Advertiser clarity</strong> — are advertisers named and verifiable?<br>
+               &#8226; <strong style="color:rgba(255,255,255,0.7)">Ad content legibility</strong> — can users read and assess the ad content?<br>
+               &#8226; <strong style="color:rgba(255,255,255,0.7)">Disclosure completeness</strong> — does the domain disclose who is advertising and why?<br>
+               &#8226; <strong style="color:rgba(255,255,255,0.7)">Regulation alignment</strong> — does the ad activity align with GDPR Article 21, CCPA, and DSA Article 26 standards?<br>
+               &#8226; <strong style="color:rgba(255,255,255,0.7)">Consent framework presence</strong> — is there evidence of a working consent mechanism?</p>`,
+        scale: {
+          title: 'Score Interpretation',
+          rows: [
+            { range: '8 – 10', cls: 'scale-low', desc: 'High transparency — strong disclosures, named advertisers, regulation-aligned practices' },
+            { range: '4 – 7', cls: 'scale-mid', desc: 'Partial transparency — some disclosures present but gaps exist in consent or advertiser clarity' },
+            { range: '1 – 3', cls: 'scale-high', desc: 'Low transparency — limited disclosure, opaque ad ecosystem, consent signals absent' }
+          ]
+        },
+        disclaimer: 'This score is an AI-generated probabilistic assessment for informational purposes only. It does not constitute a legal determination, compliance finding, or allegation of wrongdoing by any advertiser or platform.'
+      },
+      flags: {
+        tag: 'Regulatory Framework',
+        title: 'Regulatory Flags',
+        body: `<p>Regulatory Flags indicate areas where a domain's publicly visible ad practices may warrant attention under current privacy and transparency regulations. These are identified by the AI based on patterns in the ad data.</p>
+               <p><strong style="color:rgba(255,255,255,0.85)">The three frameworks evaluated:</strong></p>
+               <p>&#8226; <strong style="color:rgba(255,255,255,0.7)">GDPR (EU)</strong> — General Data Protection Regulation. Article 6 requires lawful basis for data processing. Article 21 grants users the right to object to direct marketing. Flags raised when consent signals are absent or advertiser identity is unclear.<br><br>
+               &#8226; <strong style="color:rgba(255,255,255,0.7)">CCPA (California)</strong> — California Consumer Privacy Act. Requires businesses to disclose data collection and provide opt-out rights. Flags raised when targeting data usage is opaque or no opt-out mechanism is detectable.<br><br>
+               &#8226; <strong style="color:rgba(255,255,255,0.7)">DSA (EU)</strong> — Digital Services Act. Article 26 requires platforms to label ads clearly and disclose the parameters used for targeting. Flags raised when ad formats prevent user inspection or targeting parameters are not disclosed.</p>`,
+        scale: null,
+        disclaimer: 'Regulatory flags are AI-generated observations based on publicly available ad data. They are for informational purposes only and do not constitute a legal finding, compliance determination, or allegation of any regulatory violation.'
+      }
+    };
+
+    function openModal(type) {
+      const d = modalData[type];
+      if (!d) return;
+      document.getElementById('modal-tag').textContent = d.tag;
+      document.getElementById('modal-title').textContent = d.title;
+
+      let bodyHtml = d.body;
+
+      if (d.scale) {
+        bodyHtml += `<div class="metric-modal-scale">
+          <div class="metric-modal-scale-title">${d.scale.title}</div>
+          ${d.scale.rows.map(r => `<div class="scale-row"><span class="scale-range ${r.cls}">${r.range}</span><span class="scale-desc">${r.desc}</span></div>`).join('')}
+        </div>`;
+      }
+
+      if (d.disclaimer) {
+        bodyHtml += `<div class="metric-modal-disclaimer">${d.disclaimer}</div>`;
+      }
+
+      document.getElementById('modal-body').innerHTML = bodyHtml;
+      document.getElementById('modal-overlay').classList.add('open');
+      document.body.style.overflow = 'hidden';
+    }
+
+    function closeModal() {
+      document.getElementById('modal-overlay').classList.remove('open');
+      document.body.style.overflow = '';
+    }
+
+    function closeModalOutside(e) {
+      if (e.target === document.getElementById('modal-overlay')) closeModal();
+    }
+
+    document.addEventListener('keydown', function(e) {
+      if (e.key === 'Escape') closeModal();
+    });
 
     // ── ENTER KEY ───────────────────────────────────────────
     document.getElementById('domain-input').addEventListener('keydown', function(e) {
