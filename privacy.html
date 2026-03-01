@@ -213,7 +213,9 @@
                 <li>Respond to your inquiries and support requests</li>
                 <li>Issue, validate, and revoke cryptographic consent tokens as requested by you</li>
                 <li>Maintain the tamper-evident consent ledger (Invisibility Ledger) on your behalf</li>
-                <li>Enforce consent boundaries by automatically blocking unauthorized data access requests</li>
+                <li>Enforce consent boundaries by automatically blocking unauthorized data access requests via the Privacy Governance Engine</li>
+                <li>Evaluate every data access request against active consent tokens in real time, performing six-point validation (token existence, revocation status, expiration, advertiser match, scope match, and ledger double-check)</li>
+                <li>Record all access decisions (granted and blocked) in the Governance Log and Invisibility Ledger for audit purposes</li>
                 <li>Scan for unauthorized data persistence after consent revocation or expiry (State-Persistence Monitor)</li>
                 <li>Generate legally-cited deletion requests when unauthorized data retention is detected (Removal Payload Engine)</li>
                 <li>Record violation detection events and removal payload generation in the Invisibility Ledger for audit purposes</li>
@@ -254,6 +256,7 @@
                 <li>Consent tokens are stored in Cloudflare Workers KV (<code>ADWORTH_TOKENS</code> namespace) with automatic expiration matching the consent duration</li>
                 <li>Consent ledger entries are stored in Cloudflare Workers KV (<code>ADWORTH_LEDGER</code> namespace) as an append-only audit trail</li>
                 <li>State-Persistence Monitor scan results, violation records, and removal payload metadata are stored in Cloudflare Workers KV (<code>MONITOR_STATE</code> namespace)</li>
+                <li>Privacy Governance Engine access decisions are stored in Cloudflare Workers KV (<code>GOVERNANCE_LOG</code> namespace) including decision identifiers, timestamps, advertiser and user identifiers, data scope, and the access decision result (granted or blocked with reason code)</li>
                 <li>Violation detection events and removal payload generation events are additionally recorded in the <code>ADWORTH_LEDGER</code> namespace as part of the tamper-evident audit trail</li>
                 <li>Cloudflare&rsquo;s privacy policy: <a href="https://www.cloudflare.com/privacypolicy/" target="_blank" rel="noopener noreferrer">cloudflare.com/privacypolicy</a></li>
             </ul>
