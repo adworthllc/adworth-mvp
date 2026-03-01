@@ -376,6 +376,30 @@
       margin-top: 2rem;
     }
 
+    /* Beta banner */
+    .beta-banner {
+      background: var(--gold-bg);
+      border-bottom: 1px solid rgba(200,169,106,0.3);
+      padding: 0.6rem 2rem;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 0.5rem;
+      font-size: 0.75rem;
+      color: #7a5c2e;
+      font-weight: 500;
+    }
+    .beta-banner .beta-tag {
+      font-size: 0.6rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      background: var(--gold);
+      color: white;
+      padding: 0.15rem 0.45rem;
+      border-radius: 4px;
+    }
+
     @media (max-width: 768px) {
       .flow-steps { flex-direction: column; align-items: center; }
       .flow-arrow { transform: rotate(90deg); padding: 0.5rem 0; }
@@ -385,6 +409,10 @@
   </style>
 </head>
 <body>
+  <div class="beta-banner">
+    <span class="beta-tag">Beta</span>
+    This is a patent-pending proof of concept. Advertiser integration and enterprise licensing are under development.
+  </div>
   <div class="header">
     <div>
       <h1>Adworth&#8480; for Advertisers</h1>
