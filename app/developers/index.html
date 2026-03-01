@@ -493,9 +493,9 @@
     <span class="string">'Authorization'</span>: <span class="string">'Bearer YOUR_API_KEY'</span>
   },
   <span class="key">body</span>: JSON.<span class="method">stringify</span>({
-    <span class="key">user_id</span>:       <span class="string">'user-abc-123'</span>,
-    <span class="key">advertiser_id</span>: <span class="string">'nike-ads'</span>,
-    <span class="key">scope</span>:         <span class="string">'running-data-shoe-ads'</span>
+    <span class="key">userId</span>:       <span class="string">'user-abc-123'</span>,
+    <span class="key">advertiserId</span>: <span class="string">'nike-ads'</span>,
+    <span class="key">dataScope</span>:    <span class="string">'running-data-shoe-ads'</span>
   })
 });
 
@@ -643,7 +643,7 @@
         <div class="feature-card">
           <div class="feat-icon">⚠️</div>
           <h4>INVALID_REQUEST</h4>
-          <p>Missing required fields. Every request needs user_id, advertiser_id, and scope.</p>
+          <p>Missing required fields. Every request needs userId, advertiserId, and dataScope.</p>
         </div>
       </div>
     </div>
@@ -737,9 +737,9 @@
             'Authorization': 'Bearer ' + key,
           },
           body: JSON.stringify({
-            user_id: user,
-            advertiser_id: advertiser,
-            scope: scope,
+            userId: user,
+            advertiserId: advertiser,
+            dataScope: scope,
           }),
         });
 
