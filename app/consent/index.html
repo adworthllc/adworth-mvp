@@ -598,14 +598,14 @@
       btn.textContent = 'Issuing token...';
 
       try {
-        var res = await fetch(BASE + '/consent/grant', {
+        var res = await fetch(BASE + '/consent/issue', {
           method: 'POST',
           headers: getHeaders(),
           body: JSON.stringify({
-            user_id: USER_ID,
-            advertiser_id: req.advertiser_id,
+            userId: USER_ID,
+            advertiserId: req.advertiser_id,
             scope: req.scope,
-            duration_days: req.duration,
+            durationDays: req.duration,
           }),
         });
 
@@ -638,8 +638,8 @@
           method: 'POST',
           headers: getHeaders(),
           body: JSON.stringify({
-            user_id: USER_ID,
-            token_id: tokenId,
+            userId: USER_ID,
+            tokenId: tokenId,
           }),
         });
 
