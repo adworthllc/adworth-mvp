@@ -208,52 +208,6 @@
             <div class="demo-notice">
                 <strong>Current status:</strong> Broker checks are currently simulated against a representative registry of eight data brokers. The monitor does not connect to live broker APIs and does not transmit any data externally. Simulated results are generated for system validation, investor demonstration, and proof-of-concept purposes only. Detection confidence scores in simulated mode do not reflect actual broker data retention.
             </div>
-
-        <div class="policy-section" id="governance-engine">
-            <h2><span class="section-num">05</span> Privacy Governance Engine Terms</h2>
-            <p>The Privacy Governance Engine (<code>adworth-bouncer</code>) is a real-time consent enforcement service that evaluates data access requests against active consent tokens. By using the Governance Engine, you acknowledge that:</p>
-            <ul>
-                <li>Every data access request is subject to six-point validation including token existence, revocation status, expiration, advertiser match, scope match, and ledger verification</li>
-                <li>Access decisions are final and cannot be overridden manually</li>
-                <li>All access decisions (granted and blocked) are permanently recorded in the Governance Log and Invisibility Ledger</li>
-                <li>Block reason codes are machine-readable and provided for integration purposes</li>
-                <li>The Governance Engine operates in real time and may reject requests due to eventual consistency delays in KV storage</li>
-                <li>Dashboard access requires API key authentication; unauthorized access attempts are logged</li>
-            </ul>
-        </div>
-
-        <div class="policy-section" id="consent-widget">
-            <h2><span class="section-num">06</span> Consent Widget &amp; Advertiser Integration Terms</h2>
-
-            <h3>Consent Widget</h3>
-            <p>The Consent Widget is a demonstration interface that allows users to grant and revoke consent tokens through a visual interface connected to the live Consent API. By using the Consent Widget, you acknowledge that:</p>
-            <ul>
-                <li>Consent tokens issued through the widget are real and recorded in the Invisibility Ledger</li>
-                <li>Simulated advertiser names (Nike, Spotify, Whole Foods, Peloton) are used for demonstration purposes only and do not represent actual partnerships or data-sharing agreements</li>
-                <li>Payment amounts displayed are simulated &mdash; no real financial transactions occur through the widget at this time</li>
-                <li>The widget is a proof-of-concept and may be modified, relocated, or removed without notice</li>
-                <li>Tokens issued through the widget are subject to the same lifecycle rules as all consent tokens (revocation, expiration, enforcement)</li>
-            </ul>
-
-            <h3>Advertiser Integration Sandbox</h3>
-            <p>The Advertiser Integration page provides documentation and a live API sandbox for testing data access requests against the Privacy Governance Engine. By using the sandbox, you acknowledge that:</p>
-            <ul>
-                <li>Sandbox requests hit the live Governance Engine and produce real access decisions recorded in the audit trail</li>
-                <li>The sandbox is provided for evaluation and demonstration purposes</li>
-                <li>Code examples and integration documentation are provided &ldquo;as-is&rdquo; and may change as the API evolves</li>
-                <li>Pricing information shown is indicative and subject to change before the marketplace launches</li>
-                <li>The sandbox is a proof-of-concept and does not constitute a service-level agreement or production API guarantee</li>
-            </ul>
-
-            <h3>Invisibility Ledger Viewer</h3>
-            <p>The Invisibility Ledger viewer (<code>adworth-ledger</code>) provides read-only access to the tamper-evident audit trail. By using the viewer, you acknowledge that:</p>
-            <ul>
-                <li>The viewer is read-only &mdash; it cannot modify, delete, or create ledger entries</li>
-                <li>Ledger entries displayed represent real consent lifecycle and enforcement events</li>
-                <li>Access requires API key authentication</li>
-                <li>The viewer is a proof-of-concept and may be modified without notice</li>
-            </ul>
-        </div>
             
             <h3>Removal Payload Engine</h3>
             <p>When the State-Persistence Monitor detects a potential violation, the Removal Payload Engine automatically generates a legally-cited deletion request. By using or benefiting from this service, you acknowledge that:</p>
@@ -323,6 +277,30 @@
                 <li>Access requires API key authentication</li>
                 <li>The viewer is a proof-of-concept and may be modified without notice</li>
             </ul>
+        </div>
+            
+            <h3>Removal Payload Engine</h3>
+            <p>When the State-Persistence Monitor detects a potential violation, the Removal Payload Engine automatically generates a legally-cited deletion request. By using or benefiting from this service, you acknowledge that:</p>
+            <ul>
+                <li>Removal payloads are generated automatically based on violation detection results and applicable legal citations (GDPR Article 17, CCPA &sect; 1798.105, DSA Article 26)</li>
+                <li>Payload generation events are recorded in the Invisibility Ledger as <code>RPE_GENERATED</code> entries</li>
+                <li>Removal payloads contain only opaque identifiers, timestamps, legal citations, and broker references &mdash; no personally identifiable information</li>
+                <li>Adworth does not guarantee that removal payloads constitute legally sufficient deletion requests under any specific jurisdiction; users should consult qualified legal counsel for compliance determinations</li>
+                <li>The legal citations included in removal payloads are informational references and do not constitute legal advice</li>
+            </ul>
+            <div class="demo-notice">
+                <strong>Current status:</strong> Removal payloads are generated with real legal citations and complete data structures, but are not transmitted to actual data brokers. All payloads are marked with delivery status <code>SIMULATED</code>. No deletion requests have been sent to any third party. When live delivery begins, these terms will be updated to reflect the transmission process, user consent requirements for sending on your behalf, and any additional obligations.
+            </div>
+
+            <h3>No guarantee of enforcement</h3>
+            <p>Adworth&rsquo;s State-Persistence Monitor and Removal Payload Engine are designed to assist with post-consent enforcement, but Adworth does not guarantee that:</p>
+            <ul>
+                <li>All instances of unauthorized data retention will be detected</li>
+                <li>Data brokers will comply with removal payloads</li>
+                <li>Detection or enforcement actions will satisfy specific regulatory requirements</li>
+                <li>Simulated results accurately represent the behavior of live data broker systems</li>
+            </ul>
+            <p>These tools are provided as technical infrastructure to support your data rights. They do not replace legal counsel, regulatory filings, or direct communication with data processors.</p>
         </div>
 
         <div class="policy-section" id="api-access">
