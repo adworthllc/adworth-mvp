@@ -278,31 +278,7 @@
                 <li>The viewer is a proof-of-concept and may be modified without notice</li>
             </ul>
         </div>
-            
-            <h3>Removal Payload Engine</h3>
-            <p>When the State-Persistence Monitor detects a potential violation, the Removal Payload Engine automatically generates a legally-cited deletion request. By using or benefiting from this service, you acknowledge that:</p>
-            <ul>
-                <li>Removal payloads are generated automatically based on violation detection results and applicable legal citations (GDPR Article 17, CCPA &sect; 1798.105, DSA Article 26)</li>
-                <li>Payload generation events are recorded in the Invisibility Ledger as <code>RPE_GENERATED</code> entries</li>
-                <li>Removal payloads contain only opaque identifiers, timestamps, legal citations, and broker references &mdash; no personally identifiable information</li>
-                <li>Adworth does not guarantee that removal payloads constitute legally sufficient deletion requests under any specific jurisdiction; users should consult qualified legal counsel for compliance determinations</li>
-                <li>The legal citations included in removal payloads are informational references and do not constitute legal advice</li>
-            </ul>
-            <div class="demo-notice">
-                <strong>Current status:</strong> Removal payloads are generated with real legal citations and complete data structures, but are not transmitted to actual data brokers. All payloads are marked with delivery status <code>SIMULATED</code>. No deletion requests have been sent to any third party. When live delivery begins, these terms will be updated to reflect the transmission process, user consent requirements for sending on your behalf, and any additional obligations.
-            </div>
-
-            <h3>No guarantee of enforcement</h3>
-            <p>Adworth&rsquo;s State-Persistence Monitor and Removal Payload Engine are designed to assist with post-consent enforcement, but Adworth does not guarantee that:</p>
-            <ul>
-                <li>All instances of unauthorized data retention will be detected</li>
-                <li>Data brokers will comply with removal payloads</li>
-                <li>Detection or enforcement actions will satisfy specific regulatory requirements</li>
-                <li>Simulated results accurately represent the behavior of live data broker systems</li>
-            </ul>
-            <p>These tools are provided as technical infrastructure to support your data rights. They do not replace legal counsel, regulatory filings, or direct communication with data processors.</p>
-        </div>
-
+     
         <div class="policy-section" id="api-access">
             <h2><span class="section-num">07</span> API Access &amp; Authentication</h2>
             <p>Access to the Adworth Consent API and State-Persistence Monitor API is governed by the following terms:</p>
