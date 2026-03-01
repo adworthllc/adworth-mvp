@@ -232,9 +232,55 @@
             </ul>
             <p>These tools are provided as technical infrastructure to support your data rights. They do not replace legal counsel, regulatory filings, or direct communication with data processors.</p>
         </div>
+        
+        <div class="policy-section" id="governance-engine">
+            <h2><span class="section-num">05</span> Privacy Governance Engine Terms</h2>
+            <p>The Privacy Governance Engine (<code>adworth-bouncer</code>) is a real-time consent enforcement service that evaluates data access requests against active consent tokens. By using the Governance Engine, you acknowledge that:</p>
+            <ul>
+                <li>Every data access request is subject to six-point validation including token existence, revocation status, expiration, advertiser match, scope match, and ledger verification</li>
+                <li>Access decisions are final and cannot be overridden manually</li>
+                <li>All access decisions (granted and blocked) are permanently recorded in the Governance Log and Invisibility Ledger</li>
+                <li>Block reason codes are machine-readable and provided for integration purposes</li>
+                <li>The Governance Engine operates in real time and may reject requests due to eventual consistency delays in KV storage</li>
+                <li>Dashboard access requires API key authentication; unauthorized access attempts are logged</li>
+            </ul>
+        </div>
+
+        <div class="policy-section" id="consent-widget">
+            <h2><span class="section-num">06</span> Consent Widget &amp; Advertiser Integration Terms</h2>
+
+            <h3>Consent Widget</h3>
+            <p>The Consent Widget is a demonstration interface that allows users to grant and revoke consent tokens through a visual interface connected to the live Consent API. By using the Consent Widget, you acknowledge that:</p>
+            <ul>
+                <li>Consent tokens issued through the widget are real and recorded in the Invisibility Ledger</li>
+                <li>Simulated advertiser names (Nike, Spotify, Whole Foods, Peloton) are used for demonstration purposes only and do not represent actual partnerships or data-sharing agreements</li>
+                <li>Payment amounts displayed are simulated &mdash; no real financial transactions occur through the widget at this time</li>
+                <li>The widget is a proof-of-concept and may be modified, relocated, or removed without notice</li>
+                <li>Tokens issued through the widget are subject to the same lifecycle rules as all consent tokens (revocation, expiration, enforcement)</li>
+            </ul>
+
+            <h3>Advertiser Integration Sandbox</h3>
+            <p>The Advertiser Integration page provides documentation and a live API sandbox for testing data access requests against the Privacy Governance Engine. By using the sandbox, you acknowledge that:</p>
+            <ul>
+                <li>Sandbox requests hit the live Governance Engine and produce real access decisions recorded in the audit trail</li>
+                <li>The sandbox is provided for evaluation and demonstration purposes</li>
+                <li>Code examples and integration documentation are provided &ldquo;as-is&rdquo; and may change as the API evolves</li>
+                <li>Pricing information shown is indicative and subject to change before the marketplace launches</li>
+                <li>The sandbox is a proof-of-concept and does not constitute a service-level agreement or production API guarantee</li>
+            </ul>
+
+            <h3>Invisibility Ledger Viewer</h3>
+            <p>The Invisibility Ledger viewer (<code>adworth-ledger</code>) provides read-only access to the tamper-evident audit trail. By using the viewer, you acknowledge that:</p>
+            <ul>
+                <li>The viewer is read-only &mdash; it cannot modify, delete, or create ledger entries</li>
+                <li>Ledger entries displayed represent real consent lifecycle and enforcement events</li>
+                <li>Access requires API key authentication</li>
+                <li>The viewer is a proof-of-concept and may be modified without notice</li>
+            </ul>
+        </div>
 
         <div class="policy-section" id="api-access">
-            <h2><span class="section-num">05</span> API Access &amp; Authentication</h2>
+            <h2><span class="section-num">07</span> API Access &amp; Authentication</h2>
             <p>Access to the Adworth Consent API and State-Persistence Monitor API is governed by the following terms:</p>
 
             <h3>Authentication requirements</h3>
@@ -261,13 +307,13 @@
         </div>
 
         <div class="policy-section" id="eligibility">
-            <h2><span class="section-num">06</span> Eligibility</h2>
+            <h2><span class="section-num">08</span> Eligibility</h2>
             <p>You must be at least 13 years of age to use Adworth services. By using our services, you represent that you meet this requirement.</p>
             <p>If you are using Adworth on behalf of an organization, you represent that you have authority to bind that organization to these terms.</p>
         </div>
 
         <div class="policy-section" id="accounts">
-            <h2><span class="section-num">07</span> Accounts &amp; Registration</h2>
+            <h2><span class="section-num">09</span> Accounts &amp; Registration</h2>
             <p>Some features of our platform may require you to create an account or obtain API credentials. When registering, you agree to:</p>
             <ul>
                 <li>Provide accurate and complete information</li>
@@ -279,7 +325,7 @@
         </div>
 
         <div class="policy-section" id="acceptable-use">
-            <h2><span class="section-num">08</span> Acceptable Use</h2>
+            <h2><span class="section-num">10</span> Acceptable Use</h2>
             <p>You agree not to use Adworth services to:</p>
             <ul>
                 <li>Violate any applicable law or regulation</li>
@@ -301,7 +347,7 @@
         </div>
 
         <div class="policy-section" id="intellectual-property">
-            <h2><span class="section-num">09</span> Intellectual Property</h2>
+            <h2><span class="section-num">11</span> Intellectual Property</h2>
             <h3>Our intellectual property</h3>
             <p>All content, technology, and materials on the Adworth platform &mdash; including but not limited to the Privacy Governance and Cryptographic Consent Enforcement System (U.S. Provisional Patent Application, filed February 23, 2026), the Adworth&#8480; service mark, the consent token architecture, the Invisibility Ledger design, the State-Persistence Monitor, the Removal Payload Engine, website design, text, and software &mdash; are owned by Adworth LLC and protected by applicable intellectual property laws.</p>
             <p>You may not copy, reproduce, distribute, or create derivative works from our intellectual property without our express written permission.</p>
@@ -312,16 +358,17 @@
         </div>
 
         <div class="policy-section" id="disclaimer">
-            <h2><span class="section-num">10</span> Disclaimers</h2>
+            <h2><span class="section-num">12</span> Disclaimers</h2>
             <p>Adworth services are provided <strong>&ldquo;as is&rdquo;</strong> and <strong>&ldquo;as available&rdquo;</strong> without warranties of any kind, either express or implied, including but not limited to warranties of merchantability, fitness for a particular purpose, or non-infringement.</p>
             <p>We do not warrant that our services will be uninterrupted, error-free, or free of viruses or other harmful components. As an early-stage platform, we make no guarantees about uptime, data preservation, or feature availability.</p>
             <p>The consent token system, Invisibility Ledger, State-Persistence Monitor, and Removal Payload Engine are provided as technical infrastructure. While designed for regulatory compliance support, Adworth does not guarantee that use of our system constitutes full legal compliance with any specific regulation (including GDPR, CCPA, or DSA). Users should consult qualified legal counsel for compliance determinations.</p>
             <p>Simulated broker check results do not represent actual data broker behavior or actual instances of unauthorized data retention. Removal payloads generated in simulated mode are for demonstration purposes and should not be relied upon as evidence of legal violations.</p>
+            <p>The Privacy Governance Engine, Consent Widget, Advertiser Integration sandbox, and Invisibility Ledger viewer are provided as patent-pending proof-of-concept demonstrations. They are not production services and are not covered by any service-level agreement. Adworth reserves the right to modify, suspend, or discontinue any demonstration feature without notice. Simulated features (including payment amounts, data broker checks, and removal payload delivery) do not represent live commercial operations.</p>
             <p>Nothing on this platform constitutes legal, financial, or investment advice.</p>
         </div>
 
         <div class="policy-section" id="limitation">
-            <h2><span class="section-num">11</span> Limitation of Liability</h2>
+            <h2><span class="section-num">13</span> Limitation of Liability</h2>
             <p>To the maximum extent permitted by applicable law, Adworth LLC and its founders, officers, and agents shall not be liable for any indirect, incidental, special, consequential, or punitive damages arising from your use of &mdash; or inability to use &mdash; our services.</p>
             <p>This includes, without limitation, damages arising from: consent token validation failures, ledger entry delays or inconsistencies, API downtime or authentication errors, State-Persistence Monitor scan failures or inaccurate detection results, Removal Payload Engine generation errors or delivery failures, or failure of third-party systems (including Cloudflare Workers KV) on which our infrastructure depends.</p>
             <p>Adworth is not liable for any consequences arising from third-party data brokers&rsquo; failure to comply with removal payloads, whether simulated or live. Adworth is not liable for any legal, financial, or reputational consequences arising from reliance on simulated monitor results.</p>
@@ -329,7 +376,7 @@
         </div>
 
         <div class="policy-section" id="termination">
-            <h2><span class="section-num">12</span> Termination</h2>
+            <h2><span class="section-num">14</span> Termination</h2>
             <p>You may stop using our services at any time. You may request deletion of your account and data by contacting us at <a href="mailto:hello@adworth.app">hello@adworth.app</a>.</p>
             <p>We reserve the right to suspend or terminate your access to our services at any time, with or without notice, for any reason, including violation of these terms. This includes revocation of API keys and suspension of monitor scan access.</p>
             <p>Upon termination, your right to use our services ceases immediately. Provisions that by their nature should survive termination &mdash; including intellectual property, disclaimers, limitation of liability, and ledger immutability &mdash; will survive.</p>
@@ -337,20 +384,20 @@
         </div>
 
         <div class="policy-section" id="governing-law">
-            <h2><span class="section-num">13</span> Governing Law</h2>
+            <h2><span class="section-num">15</span> Governing Law</h2>
             <p>These Terms of Service are governed by and construed in accordance with the laws of the State of South Carolina, United States, without regard to its conflict of law provisions.</p>
             <p>Any disputes arising under these terms shall be resolved exclusively in the state or federal courts located in Charleston County, South Carolina, and you consent to personal jurisdiction in those courts.</p>
         </div>
 
         <div class="policy-section" id="changes">
-            <h2><span class="section-num">14</span> Changes to Terms</h2>
+            <h2><span class="section-num">16</span> Changes to Terms</h2>
             <p>We may update these Terms of Service at any time. When we do, we will update the &ldquo;Last updated&rdquo; date at the top of this page. For material changes, we will notify users by email where possible.</p>
             <p>Your continued use of Adworth services after changes are posted constitutes your acceptance of the updated terms.</p>
             <p>In particular, these terms will be updated when the State-Persistence Monitor and Removal Payload Engine transition from simulated to live operation, as this change materially affects the scope of data processing and third-party communications.</p>
         </div>
 
         <div class="policy-section" id="contact">
-            <h2><span class="section-num">15</span> Contact Us</h2>
+            <h2><span class="section-num">17</span> Contact Us</h2>
             <p>If you have questions or concerns about these Terms of Service, please contact us:</p>
             <div class="highlight-box">
                 <strong>Adworth&#8480; LLC</strong><br>
