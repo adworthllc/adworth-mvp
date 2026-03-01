@@ -301,6 +301,30 @@
       line-height: 1.6;
     }
 
+    /* Beta banner */
+    .beta-banner {
+      background: var(--gold-bg);
+      border-bottom: 1px solid rgba(200,169,106,0.3);
+      padding: 0.6rem 2rem;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 0.5rem;
+      font-size: 0.75rem;
+      color: #7a5c2e;
+      font-weight: 500;
+    }
+    .beta-banner .beta-tag {
+      font-size: 0.6rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      background: var(--gold);
+      color: white;
+      padding: 0.15rem 0.45rem;
+      border-radius: 4px;
+    }
+
     @media (max-width: 640px) {
       .setup-bar { flex-direction: column; }
       .request-details { grid-template-columns: 1fr; }
@@ -310,6 +334,10 @@
   </style>
 </head>
 <body>
+  <div class="beta-banner">
+    <span class="beta-tag">Beta</span>
+    This is a patent-pending proof of concept. The consent marketplace with real payments is under development.
+  </div>
   <div class="header">
     <div class="header-left">
       <h1>Adworth&#8480;</h1>
