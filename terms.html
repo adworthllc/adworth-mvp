@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Terms of Service — Adworth&#8480;</title>
-    <meta name="description" content="Adworth Terms of Service — the rules for using our platform, demos, and consent infrastructure.">
+    <meta name="description" content="Adworth Terms of Service — the rules governing your use of our platform.">
     <link rel="icon" type="image/x-icon" href="/favicon.ico">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800;900&family=DM+Serif+Display:ital@0;1&display=swap" rel="stylesheet">
@@ -99,7 +99,7 @@
         <div class="inner">
             <span class="page-label">Legal</span>
             <h1>Terms of Service</h1>
-            <p>Last updated: February 28, 2026 &middot; Adworth&#8480; LLC &middot; Charleston, SC</p>
+            <p>Last updated: March 1, 2026 &middot; Adworth&#8480; LLC &middot; Charleston, SC</p>
         </div>
     </div>
 
@@ -110,169 +110,191 @@
             <ol>
                 <li><a href="#acceptance">Acceptance of Terms</a></li>
                 <li><a href="#description">Description of Services</a></li>
-                <li><a href="#demo-services">Demo &amp; Beta Services</a></li>
-                <li><a href="#third-party-data">Third-Party Data &amp; AI Analysis</a></li>
-                <li><a href="#waitlist">Waitlist &amp; Communications</a></li>
-                <li><a href="#consent-tokens">Consent Token System</a></li>
+                <li><a href="#consent-api">Consent API &amp; Ledger Terms</a></li>
+                <li><a href="#api-access">API Access &amp; Authentication</a></li>
+                <li><a href="#eligibility">Eligibility</a></li>
+                <li><a href="#accounts">Accounts &amp; Registration</a></li>
+                <li><a href="#acceptable-use">Acceptable Use</a></li>
                 <li><a href="#intellectual-property">Intellectual Property</a></li>
-                <li><a href="#prohibited">Prohibited Uses</a></li>
-                <li><a href="#disclaimers">Disclaimers</a></li>
+                <li><a href="#disclaimer">Disclaimers</a></li>
                 <li><a href="#limitation">Limitation of Liability</a></li>
+                <li><a href="#termination">Termination</a></li>
+                <li><a href="#governing-law">Governing Law</a></li>
                 <li><a href="#changes">Changes to Terms</a></li>
-                <li><a href="#contact">Contact</a></li>
+                <li><a href="#contact">Contact Us</a></li>
             </ol>
         </div>
 
         <div class="highlight-box">
-            <strong>The short version:</strong> Use Adworth in good faith. Our demo tools use real ad transparency data from Google&rsquo;s Ads Transparency Center, analyzed by AI. They&rsquo;re for informational purposes only &mdash; not legal advice. We&rsquo;re in early development. Things may change. If you&rsquo;re on the waitlist, we&rsquo;ll only contact you about Adworth. That&rsquo;s it.
+            <strong>The short version:</strong> Use Adworth legally and in good faith. Don&rsquo;t misuse the platform or infringe on our intellectual property. Consent tokens and ledger entries are governed by specific rules around immutability and data ownership. API access requires authentication. We&rsquo;re in early stages and provide the service as-is. If something goes wrong, our liability is limited. Questions? Reach us at <a href="mailto:hello@adworth.app">hello@adworth.app</a>.
         </div>
 
         <div class="policy-section" id="acceptance">
             <h2><span class="section-num">01</span> Acceptance of Terms</h2>
-            <p>By accessing or using any Adworth&#8480; service &mdash; including adworth.app, dashboard.html, enterprise.html, or any Cloudflare Workers endpoints operated by Adworth&#8480; LLC &mdash; you agree to be bound by these Terms of Service.</p>
+            <p>By accessing or using any Adworth&#8480; service &mdash; including adworth.app, app.adworth.app, the Adworth Consent API, or any associated applications &mdash; you agree to be bound by these Terms of Service and our <a href="/privacy.html">Privacy Policy</a>.</p>
             <p>If you do not agree to these terms, please do not use our services.</p>
-            <p>These terms apply to all visitors, waitlist members, and users of Adworth&rsquo;s current and future products. They form a legally binding agreement between you and Adworth&#8480; LLC, a limited liability company based in Charleston, South Carolina, United States.</p>
         </div>
 
         <div class="policy-section" id="description">
             <h2><span class="section-num">02</span> Description of Services</h2>
-            <p>Adworth&#8480; is building cryptographic consent infrastructure for digital advertising. Our current services include:</p>
+            <p>Adworth&#8480; is a privacy technology platform currently providing:</p>
             <ul>
-                <li><strong>adworth.app</strong> &mdash; Public-facing homepage, waitlist signup, and company information</li>
-                <li><strong>adworth.app/dashboard.html</strong> &mdash; Ad Intelligence Dashboard: a live transparency tool that retrieves ad data from Google&rsquo;s Ads Transparency Center via SerpApi and performs AI-powered privacy risk analysis via the Anthropic API</li>
-                <li><strong>adworth.app/enterprise.html</strong> &mdash; Investor and enterprise overview page</li>
-                <li><strong>Consent Validation API</strong> &mdash; A Cloudflare Workers endpoint that issues and validates cryptographic consent tokens (currently in beta/demonstration phase)</li>
-                <li><strong>Waitlist</strong> &mdash; Email capture for early access to the Adworth consent marketplace when it launches</li>
+                <li>An Ad Intelligence Dashboard with DSA compliance and ad transparency analysis at app.adworth.app</li>
+                <li>A cryptographic consent token API for issuing, validating, and revoking data consent</li>
+                <li>An append-only Invisibility Ledger recording all consent lifecycle events</li>
+                <li>A waitlist for our upcoming cryptographic consent marketplace</li>
+                <li>Informational content at adworth.app</li>
             </ul>
-            <p>Adworth is in active development. Features, functionality, and availability may change at any time without prior notice.</p>
+            <p>We are an early-stage company. Our services are actively being developed and may change, be interrupted, or be discontinued at any time. We will make reasonable efforts to notify users of significant changes.</p>
         </div>
 
-        <div class="policy-section" id="demo-services">
-            <h2><span class="section-num">03</span> Demo &amp; Beta Services</h2>
-            <p>Our Ad Intelligence Dashboard and consent validation API are demonstration and beta services. They are provided to illustrate the problem Adworth solves and to demonstrate our technical approach.</p>
+        <div class="policy-section" id="consent-api">
+            <h2><span class="section-num">03</span> Consent API &amp; Ledger Terms</h2>
+            <p>The following terms govern your use of Adworth&rsquo;s consent token system and Invisibility Ledger.</p>
 
-            <h3>No guarantee of availability</h3>
-            <p>Demo services may be unavailable, rate-limited, or temporarily suspended at any time. We do not guarantee uptime or continuous availability of any current Adworth service.</p>
-
-            <h3>For informational purposes only</h3>
-            <p>Analysis results generated by the Ad Intelligence Dashboard &mdash; including privacy risk scores, transparency scores, regulatory flags, and AI-generated findings &mdash; are for informational and illustrative purposes only. They do not constitute legal advice, compliance certification, or a guarantee of regulatory status for any advertiser or platform.</p>
-
-            <h3>Results may vary</h3>
-            <p>Ad data retrieved from third-party sources may be incomplete, delayed, or not fully representative of actual advertising activity on any given platform. AI-generated analysis is probabilistic and may contain inaccuracies. Results represent a sample of up to 40 ads per query and do not imply findings of wrongdoing, regulatory violation, or improper conduct by any party.</p>
-        </div>
-
-        <div class="policy-section" id="third-party-data">
-            <h2><span class="section-num">04</span> Third-Party Data &amp; AI Analysis</h2>
-            <p>Our Ad Intelligence Dashboard processes data from external sources using third-party APIs. By using the dashboard, you acknowledge and agree to the following:</p>
-
-            <h3>SerpApi &mdash; Google Ads Transparency Center data</h3>
-            <p>Ad data displayed in our dashboard is retrieved in real time from Google&rsquo;s Ads Transparency Center via <strong>SerpApi</strong> (<a href="https://serpapi.com" target="_blank" rel="noopener noreferrer">serpapi.com</a>). This data includes advertiser names, ad creative identifiers, ad formats, campaign dates, and targeting domain information as made publicly available by Google.</p>
+            <h3>Consent tokens</h3>
+            <p>Consent tokens represent specific, bounded grants of data consent. By issuing a consent token, you acknowledge that:</p>
             <ul>
-                <li>We do not store raw SerpApi results permanently. Results may be cached temporarily in Cloudflare Workers KV (AD_CACHE namespace) for performance, with a cache TTL of 1&ndash;2 hours.</li>
-                <li>SerpApi&rsquo;s Terms of Service apply to the underlying data retrieval: <a href="https://serpapi.com/legal" target="_blank" rel="noopener noreferrer">serpapi.com/legal</a>.</li>
-                <li>Google&rsquo;s Ads Transparency Center data is publicly available information. Our use of it is for transparency and research purposes.</li>
+                <li>Each token is bound to a specific advertiser, data scope, and time window as specified at the time of issuance</li>
+                <li>Tokens are identified by cryptographically generated random values and are not linked to personally identifiable information</li>
+                <li>Tokens expire automatically at the end of the specified duration and are purged from active storage</li>
+                <li>You may revoke any token at any time; revocation is immediate and irreversible</li>
+                <li>A revoked or expired token cannot be reactivated &mdash; a new token must be issued for any subsequent consent grant</li>
             </ul>
 
-            <h3>Anthropic API &mdash; AI privacy analysis</h3>
-            <p>Privacy risk scoring, transparency scoring, consent gap identification, regulatory flag detection, and AI-generated findings displayed in our dashboard are generated by <strong>Anthropic&rsquo;s Claude AI</strong> (<a href="https://anthropic.com" target="_blank" rel="noopener noreferrer">anthropic.com</a>) via the Anthropic API.</p>
+            <h3>Invisibility Ledger</h3>
+            <p>All consent lifecycle events (issuance, validation, revocation, expiration) are recorded in the Invisibility Ledger. By using the consent system, you acknowledge and agree that:</p>
             <ul>
-                <li>Ad data retrieved from SerpApi is sent to Anthropic&rsquo;s API for analysis. This data consists of publicly available advertiser and ad metadata &mdash; no personal user data is transmitted.</li>
-                <li>AI-generated analysis is probabilistic. Scores, findings, and regulatory flags are illustrative assessments, not legal determinations.</li>
-                <li>Anthropic&rsquo;s Terms of Service and Privacy Policy: <a href="https://www.anthropic.com/legal" target="_blank" rel="noopener noreferrer">anthropic.com/legal</a>.</li>
+                <li>Ledger entries are <strong>append-only and immutable</strong> &mdash; once written, they cannot be modified, overwritten, or deleted by any party, including Adworth</li>
+                <li>This immutability is by design and serves as the tamper-evident audit trail for regulatory compliance and dispute resolution</li>
+                <li>Ledger entries contain only cryptographic identifiers, event types, and timestamps &mdash; not personally identifiable information</li>
+                <li>Ledger entries are retained indefinitely as part of the consent audit trail, even if you request deletion of other personal data</li>
+                <li>You may request an export of your complete ledger history at any time by contacting <a href="mailto:hello@adworth.app">hello@adworth.app</a></li>
             </ul>
 
-            <h3>Cloudflare Workers &mdash; Infrastructure</h3>
-            <p>All server-side processing &mdash; including ad data retrieval, AI analysis, consent token issuance and validation, and waitlist form handling &mdash; runs on <strong>Cloudflare Workers</strong> edge infrastructure. Cloudflare&rsquo;s Terms of Service: <a href="https://www.cloudflare.com/terms/" target="_blank" rel="noopener noreferrer">cloudflare.com/terms</a>.</p>
-
-            <h3>No liability for third-party data</h3>
-            <p>Adworth&#8480; LLC is not responsible for the accuracy, completeness, or timeliness of data provided by SerpApi, Google, Anthropic, or any other third-party source. We make no representations about the correctness of analysis results and expressly disclaim any finding of wrongdoing, illegal activity, or regulatory violation implied by any score or flag generated by our tools.</p>
+            <h3>Data ownership</h3>
+            <p>Your data remains yours. Adworth&rsquo;s consent infrastructure does not transfer ownership of your data to Adworth or any third party. The consent token system exists to enforce <em>your</em> decisions about who can access your data, for what purpose, and for how long.</p>
+            <p>Adworth acts as infrastructure &mdash; we facilitate consent enforcement but do not access, use, or monetize the underlying user data that consent tokens govern.</p>
         </div>
 
-        <div class="policy-section" id="waitlist">
-            <h2><span class="section-num">05</span> Waitlist &amp; Communications</h2>
-            <p>By joining the Adworth waitlist, you agree to receive email communications from Adworth&#8480; LLC about product updates, launch announcements, and related company news.</p>
+        <div class="policy-section" id="api-access">
+            <h2><span class="section-num">04</span> API Access &amp; Authentication</h2>
+            <p>Access to the Adworth Consent API is governed by the following terms:</p>
+
+            <h3>Authentication requirements</h3>
             <ul>
-                <li>Your email address is stored in Cloudflare Workers KV on Adworth-controlled infrastructure. It is not shared with third-party marketing platforms or advertising networks.</li>
-                <li>You can unsubscribe from waitlist communications at any time by contacting <a href="mailto:hello@adworth.app">hello@adworth.app</a>.</li>
-                <li>Joining the waitlist does not create a contractual obligation on Adworth&rsquo;s part to deliver any specific product, feature, or timeline.</li>
-                <li>Founding member status (for the first 1,000 waitlist signups) is offered as an indication of early access priority and is not a binding commitment to specific terms, pricing, or benefits.</li>
+                <li>All protected API endpoints require a valid Bearer token in the HTTP <code>Authorization</code> header</li>
+                <li>The health check endpoint (<code>/health</code>) is publicly accessible without authentication</li>
+                <li>API keys are issued by Adworth and are confidential &mdash; you must not share, publish, or embed API keys in client-side code or public repositories</li>
+                <li>You are responsible for all activity that occurs using your API key</li>
             </ul>
+
+            <h3>API key security</h3>
+            <ul>
+                <li>API keys are encrypted at rest within Cloudflare&rsquo;s environment variable system</li>
+                <li>If you suspect your API key has been compromised, contact us immediately at <a href="mailto:hello@adworth.app">hello@adworth.app</a> for key rotation</li>
+                <li>Adworth reserves the right to revoke or rotate API keys at any time for security purposes</li>
+            </ul>
+
+            <h3>Rate limits &amp; fair use</h3>
+            <p>API access is subject to reasonable rate limits. We reserve the right to throttle or suspend access for any usage patterns that are excessive, abusive, or that degrade service quality for other users. Current rate limits are determined by the Cloudflare Workers free or paid tier applicable to your usage.</p>
+
+            <h3>API availability</h3>
+            <p>The Consent API is provided on an &ldquo;as available&rdquo; basis. While we strive for high availability, we do not guarantee uptime or response times. The API may be temporarily unavailable due to maintenance, updates, or circumstances beyond our control.</p>
         </div>
 
-        <div class="policy-section" id="consent-tokens">
-            <h2><span class="section-num">06</span> Consent Token System</h2>
-            <p>Our cryptographic consent token API is currently in beta/demonstration phase. The following terms apply to its use:</p>
+        <div class="policy-section" id="eligibility">
+            <h2><span class="section-num">05</span> Eligibility</h2>
+            <p>You must be at least 13 years of age to use Adworth services. By using our services, you represent that you meet this requirement.</p>
+            <p>If you are using Adworth on behalf of an organization, you represent that you have authority to bind that organization to these terms.</p>
+        </div>
 
-            <h3>Current state</h3>
-            <p>The consent validation API at <code>adworth-dsa-api.adworthllc.workers.dev</code> and the ad intelligence pipeline at <code>adworth-ads.adworthllc.workers.dev</code> currently demonstrate token issuance, validation, and real-time ad transparency analysis. They are not yet connected to a live advertiser marketplace or payment system. All token transactions at this stage are for demonstration purposes only.</p>
+        <div class="policy-section" id="accounts">
+            <h2><span class="section-num">06</span> Accounts &amp; Registration</h2>
+            <p>Some features of our platform may require you to create an account or obtain API credentials. When registering, you agree to:</p>
+            <ul>
+                <li>Provide accurate and complete information</li>
+                <li>Keep your credentials (including API keys) secure and confidential</li>
+                <li>Notify us immediately of any unauthorized access to your account or API key</li>
+                <li>Be responsible for all activity that occurs under your account or API key</li>
+            </ul>
+            <p>We reserve the right to suspend or terminate accounts that violate these terms.</p>
+        </div>
 
-            <h3>Patent-pending technology</h3>
-            <p>The cryptographic consent token system, privacy governance engine, invisibility ledger, state-persistence monitor, and removal payload engine described on adworth.app and implemented in our API are covered by a provisional patent application filed February 23, 2026 with the United States Patent and Trademark Office &mdash; comprising 11 independent claims across five technical components. Unauthorized reproduction, reverse engineering, or commercial use of this technology without a license from Adworth&#8480; LLC is prohibited.</p>
-
-            <h3>No financial transactions</h3>
-            <p>The current consent token system does not process real financial transactions. Any references to user compensation or advertiser payments on adworth.app describe the intended future functionality of the Adworth consent marketplace, which has not yet launched.</p>
+        <div class="policy-section" id="acceptable-use">
+            <h2><span class="section-num">07</span> Acceptable Use</h2>
+            <p>You agree not to use Adworth services to:</p>
+            <ul>
+                <li>Violate any applicable law or regulation</li>
+                <li>Infringe on the intellectual property rights of others</li>
+                <li>Transmit harmful, harassing, defamatory, or fraudulent content</li>
+                <li>Attempt to gain unauthorized access to our systems or other users&rsquo; accounts</li>
+                <li>Reverse engineer, decompile, or disassemble any portion of our platform</li>
+                <li>Use automated tools to scrape or harvest data from our services without permission</li>
+                <li>Interfere with or disrupt the integrity or performance of our services</li>
+                <li>Attempt to forge, tamper with, or manipulate consent tokens or ledger entries</li>
+                <li>Issue consent tokens on behalf of other users without their explicit authorization</li>
+                <li>Use the API to create false or misleading consent records</li>
+                <li>Share, publish, or embed API keys in publicly accessible code, repositories, or client-side applications</li>
+            </ul>
+            <p>We reserve the right to investigate and take appropriate action against violations, including API key revocation, account suspension or termination, and referral to law enforcement.</p>
         </div>
 
         <div class="policy-section" id="intellectual-property">
-            <h2><span class="section-num">07</span> Intellectual Property</h2>
-            <p>All content, technology, and materials on adworth.app and associated services are the property of Adworth&#8480; LLC or its licensors and are protected by applicable intellectual property laws.</p>
-            <ul>
-                <li><strong>Adworth&#8480;</strong> is a registered service mark of Adworth&#8480; LLC (application pending with the United States Patent and Trademark Office).</li>
-                <li>The cryptographic consent infrastructure described and implemented by Adworth is covered by provisional patent application filed February 23, 2026.</li>
-                <li>Website content, copy, design, and visual assets are &copy; 2026 Adworth&#8480; LLC. All rights reserved.</li>
-            </ul>
-            <p>You may not reproduce, distribute, modify, or create derivative works from any Adworth content without prior written permission.</p>
+            <h2><span class="section-num">08</span> Intellectual Property</h2>
+            <h3>Our intellectual property</h3>
+            <p>All content, technology, and materials on the Adworth platform &mdash; including but not limited to the Privacy Governance and Cryptographic Consent Enforcement System (U.S. Provisional Patent Application, filed February 23, 2026), the Adworth&#8480; service mark, the consent token architecture, the Invisibility Ledger design, the Removal Payload Engine, website design, text, and software &mdash; are owned by Adworth LLC and protected by applicable intellectual property laws.</p>
+            <p>You may not copy, reproduce, distribute, or create derivative works from our intellectual property without our express written permission.</p>
+            <h3>Your content</h3>
+            <p>You retain ownership of any content you submit to our platform. By submitting content, you grant Adworth a limited, non-exclusive license to use that content solely to provide and improve our services.</p>
+            <h3>Your consent data</h3>
+            <p>Consent tokens you issue and the consent decisions they represent remain under your control. You may revoke consent at any time, and Adworth will enforce that revocation. The cryptographic identifiers generated by the system are functional artifacts of the service and do not constitute your intellectual property or personal data.</p>
         </div>
 
-        <div class="policy-section" id="prohibited">
-            <h2><span class="section-num">08</span> Prohibited Uses</h2>
-            <p>You agree not to use Adworth&rsquo;s services to:</p>
-            <ul>
-                <li>Scrape, harvest, or systematically extract data from adworth.app or any Adworth API endpoint beyond normal usage</li>
-                <li>Attempt to reverse engineer, decompile, or circumvent any Adworth technology, including cryptographic components</li>
-                <li>Use the Ad Intelligence Dashboard to harass, defame, or make false claims about any advertiser or individual</li>
-                <li>Misrepresent AI-generated analysis results as certified legal compliance determinations</li>
-                <li>Impersonate Adworth or misrepresent an affiliation with Adworth</li>
-                <li>Use Adworth services in any way that violates applicable law, including privacy laws such as GDPR, CCPA, or the DSA</li>
-                <li>Transmit malicious code, conduct denial-of-service attacks, or attempt unauthorized access to our infrastructure</li>
-            </ul>
-        </div>
-
-        <div class="policy-section" id="disclaimers">
+        <div class="policy-section" id="disclaimer">
             <h2><span class="section-num">09</span> Disclaimers</h2>
-            <p>Adworth&rsquo;s services are provided <strong>&ldquo;as is&rdquo;</strong> and <strong>&ldquo;as available&rdquo;</strong> without warranties of any kind, express or implied, including but not limited to warranties of merchantability, fitness for a particular purpose, or non-infringement.</p>
-            <p>We do not warrant that:</p>
-            <ul>
-                <li>Our services will be uninterrupted, error-free, or secure</li>
-                <li>Ad transparency data retrieved from third-party sources is accurate, complete, or current</li>
-                <li>AI-generated privacy analysis constitutes legal advice or a compliance determination</li>
-                <li>The consent token system will perform as described in all environments or use cases</li>
-            </ul>
-            <p>Adworth&#8480; LLC is not a law firm and does not provide legal, compliance, or regulatory advice. Nothing on adworth.app or in our services constitutes legal counsel.</p>
+            <p>Adworth services are provided <strong>&ldquo;as is&rdquo;</strong> and <strong>&ldquo;as available&rdquo;</strong> without warranties of any kind, either express or implied, including but not limited to warranties of merchantability, fitness for a particular purpose, or non-infringement.</p>
+            <p>We do not warrant that our services will be uninterrupted, error-free, or free of viruses or other harmful components. As an early-stage platform, we make no guarantees about uptime, data preservation, or feature availability.</p>
+            <p>The consent token system and Invisibility Ledger are provided as technical infrastructure. While designed for regulatory compliance support, Adworth does not guarantee that use of our system constitutes full legal compliance with any specific regulation (including GDPR, CCPA, or DSA). Users should consult qualified legal counsel for compliance determinations.</p>
+            <p>Nothing on this platform constitutes legal, financial, or investment advice.</p>
         </div>
 
         <div class="policy-section" id="limitation">
             <h2><span class="section-num">10</span> Limitation of Liability</h2>
-            <p>To the maximum extent permitted by applicable law, Adworth&#8480; LLC and its officers, employees, and affiliates shall not be liable for any indirect, incidental, special, consequential, or punitive damages arising from your use of &mdash; or inability to use &mdash; our services.</p>
-            <p>Our total liability to you for any claim arising from these terms or your use of our services shall not exceed the greater of (a) the amount you paid us in the 12 months preceding the claim, or (b) $100 USD.</p>
-            <p>Some jurisdictions do not allow the exclusion or limitation of certain warranties or damages. In such jurisdictions, our liability is limited to the extent permitted by law.</p>
+            <p>To the maximum extent permitted by applicable law, Adworth LLC and its founders, officers, and agents shall not be liable for any indirect, incidental, special, consequential, or punitive damages arising from your use of &mdash; or inability to use &mdash; our services.</p>
+            <p>This includes, without limitation, damages arising from: consent token validation failures, ledger entry delays or inconsistencies, API downtime or authentication errors, or failure of third-party systems (including Cloudflare Workers KV) on which our infrastructure depends.</p>
+            <p>Our total liability to you for any claims arising under these terms shall not exceed the greater of $100 or the amount you paid to Adworth in the 12 months preceding the claim.</p>
+        </div>
+
+        <div class="policy-section" id="termination">
+            <h2><span class="section-num">11</span> Termination</h2>
+            <p>You may stop using our services at any time. You may request deletion of your account and data by contacting us at <a href="mailto:hello@adworth.app">hello@adworth.app</a>.</p>
+            <p>We reserve the right to suspend or terminate your access to our services at any time, with or without notice, for any reason, including violation of these terms. This includes revocation of API keys.</p>
+            <p>Upon termination, your right to use our services ceases immediately. Provisions that by their nature should survive termination &mdash; including intellectual property, disclaimers, limitation of liability, and ledger immutability &mdash; will survive.</p>
+            <p>Note that consent ledger entries (which contain no personally identifiable information) are retained as part of the immutable audit trail even after account termination, as they serve as proof of consent actions for all parties involved.</p>
+        </div>
+
+        <div class="policy-section" id="governing-law">
+            <h2><span class="section-num">12</span> Governing Law</h2>
+            <p>These Terms of Service are governed by and construed in accordance with the laws of the State of South Carolina, United States, without regard to its conflict of law provisions.</p>
+            <p>Any disputes arising under these terms shall be resolved exclusively in the state or federal courts located in Charleston County, South Carolina, and you consent to personal jurisdiction in those courts.</p>
         </div>
 
         <div class="policy-section" id="changes">
-            <h2><span class="section-num">11</span> Changes to Terms</h2>
-            <p>We may update these Terms of Service as our product evolves. When we make material changes, we will update the &ldquo;Last updated&rdquo; date at the top of this page and, where appropriate, notify waitlist members by email.</p>
-            <p>Your continued use of Adworth services after any changes constitutes your acceptance of the updated terms. If you disagree with updated terms, please discontinue use of our services.</p>
+            <h2><span class="section-num">13</span> Changes to Terms</h2>
+            <p>We may update these Terms of Service at any time. When we do, we will update the &ldquo;Last updated&rdquo; date at the top of this page. For material changes, we will notify users by email where possible.</p>
+            <p>Your continued use of Adworth services after changes are posted constitutes your acceptance of the updated terms.</p>
         </div>
 
         <div class="policy-section" id="contact">
-            <h2><span class="section-num">12</span> Contact</h2>
-            <p>Questions about these Terms of Service? Contact us:</p>
+            <h2><span class="section-num">14</span> Contact Us</h2>
+            <p>If you have questions or concerns about these Terms of Service, please contact us:</p>
             <div class="highlight-box">
                 <strong>Adworth&#8480; LLC</strong><br>
                 Charleston, SC, United States<br>
                 <a href="mailto:hello@adworth.app">hello@adworth.app</a>
             </div>
-            <p>For privacy-specific requests, please see our <a href="/privacy.html">Privacy Policy</a>.</p>
+            <p>For information about how we handle your data, please see our <a href="/privacy.html">Privacy Policy</a>.</p>
         </div>
 
     </div>
