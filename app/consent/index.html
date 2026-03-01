@@ -503,7 +503,7 @@
         if (res.status === 401) { alert('Invalid API key'); return; }
 
         var data = await res.json();
-        var entries = data.entries || [];
+        var entries = data.entries || data.ledger || [];
 
         // Build consent state from ledger
         var tokens = {};
