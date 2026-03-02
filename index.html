@@ -138,8 +138,8 @@
         .moat-table tbody tr { border-top: 1px solid rgba(255,255,255,0.06); transition: background 0.15s; }
         .moat-table tbody tr:hover { background: rgba(255,255,255,0.04); }
         .moat-table tbody td { padding: 1rem 1.25rem; font-size: 0.875rem; color: rgba(255,255,255,0.8); vertical-align: top; line-height: 1.5; }
-        .moat-table .td-moat { font-weight: 600; color: white; }
-        .moat-table .td-revenue { color: var(--green-accent); font-weight: 600; }
+        .moat-table .td-moat { font-weight: 600; color: white; vertical-align: middle; white-space: nowrap; }
+        .moat-table .td-revenue { color: var(--green-accent); font-weight: 600; vertical-align: middle; white-space: nowrap; }
         .moat-table .td-detail { color: rgba(255,255,255,0.6); font-size: 0.8rem; }
         .moat-timeline { display: inline-block; font-size: 0.7rem; font-weight: 700; text-transform: uppercase; letter-spacing: 1px; padding: 0.15rem 0.55rem; border-radius: 100px; margin-left: 0.5rem; vertical-align: middle; }
         .moat-timeline--now  { background: rgba(82,183,136,0.2);   color: var(--green-accent); border: 1px solid rgba(82,183,136,0.4); }
@@ -518,6 +518,12 @@
                 <div class="moat-table-wrap fade-up">
                     <p class="moat-table-label">How the moat becomes the money</p>
                     <table class="moat-table">
+                        <colgroup>
+                            <col style="width: 18%;">
+                            <col style="width: 20%;">
+                            <col style="width: 50%;">
+                            <col style="width: 12%;">
+                        </colgroup>
                         <thead>
                             <tr>
                                 <th>Moat Layer</th>
