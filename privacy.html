@@ -108,7 +108,7 @@
         <div class="inner">
             <span class="page-label">Legal</span>
             <h1>Privacy Policy</h1>
-            <p>Last updated: March 1, 2026 &middot; Adworth&#8480; LLC &middot; Charleston, SC</p>
+            <p>Last updated: March 2, 2026 &middot; Adworth&#8480; LLC &middot; Charleston, SC</p>
         </div>
     </div>
 
@@ -138,7 +138,7 @@
         </div>
 
         <div class="highlight-box">
-            <strong>The short version:</strong> Adworth is built on the principle that your data belongs to you. We collect only what we need to operate the service, we never sell your data, and you can delete it at any time. Our Ad Intelligence Dashboard retrieves public ad data via SerpApi and analyzes it using Anthropic&rsquo;s AI &mdash; no personal user data is involved in that pipeline. Our consent token API uses opaque identifiers only &mdash; no personally identifiable information is stored in tokens or ledger entries. Our Privacy Governance Engine automatically enforces consent boundaries by evaluating every data access request against active tokens in real time, blocking unauthorized access before it occurs. Our State-Persistence Monitor scans for unauthorized data retention after you revoke consent, and our Removal Payload Engine generates legally-cited deletion notices on your behalf. Both currently operate in simulated mode for demonstration purposes. All API access is authenticated and encrypted. API keys entered in any Adworth dashboard are stored in <code>sessionStorage</code> only and are cleared automatically when you close the browser tab &mdash; they are never written to permanent storage, cookies, or transmitted beyond your authenticated session. We do not use third-party trackers, advertising pixels, or analytics services. That&rsquo;s kind of the whole point.
+            <strong>The short version:</strong> Adworth is built on the principle that your data belongs to you. We collect only what we need to operate the service, we never sell your data, and you can delete it at any time. Our Ad Intelligence Dashboard retrieves public ad data via SerpApi and analyzes it using Anthropic&rsquo;s AI &mdash; no personal user data is involved in that pipeline. Our consent token API uses opaque identifiers only &mdash; no personally identifiable information is stored in tokens or ledger entries. Our Privacy Governance Engine automatically enforces consent boundaries by evaluating every data access request against active tokens in real time, blocking unauthorized access before it occurs. Our State-Persistence Monitor scans for unauthorized data retention after you revoke consent, and our Removal Payload Engine generates legally-cited deletion notices on your behalf. Both currently operate in simulated mode for demonstration purposes. All API access is authenticated and encrypted. API keys entered in any Adworth dashboard are stored in <code>sessionStorage</code> only and are cleared automatically when you close the browser tab &mdash; they are never written to permanent storage, cookies, or transmitted beyond your authenticated session. We do not use third-party trackers, advertising pixels, analytics services, or third-party email services. That&rsquo;s kind of the whole point.
         </div>
 
         <!-- 01 -->
@@ -286,6 +286,7 @@
                 <li><code>adworth-bouncer.adworthllc.workers.dev</code> &mdash; Privacy Governance Engine (Patent Component #2)</li>
                 <li><code>adworth-state-monitor.adworthllc.workers.dev</code> &mdash; State-Persistence Monitor and Removal Payload Engine (Patent Components #4, #5)</li>
                 <li><code>adworth-ledger.adworthllc.workers.dev</code> &mdash; Invisibility Ledger viewer (Patent Component #3)</li>
+                <li><code>adworth-waitlist.adworthllc.workers.dev</code> &mdash; Waitlist form processing, admin dashboard, and CSV export (authenticated)</li>
                 <li><code>adworth-fonts.adworthllc.workers.dev</code> &mdash; Self-hosted font delivery (no third-party font requests)</li>
             </ul>
             <p>Data stored in Cloudflare Workers KV across our namespaces:</p>
@@ -299,6 +300,9 @@
                 <li>Violation detection events and removal payload generation events are additionally recorded in the <code>ADWORTH_LEDGER</code> namespace as part of the tamper-evident audit trail</li>
                 <li>Cloudflare&rsquo;s privacy policy: <a href="https://www.cloudflare.com/privacypolicy/" target="_blank" rel="noopener noreferrer">cloudflare.com/privacypolicy</a></li>
             </ul>
+
+            <h3>Waitlist management &mdash; no third-party email services</h3>
+            <p>Waitlist form submissions are processed entirely through our own Cloudflare Workers infrastructure (<code>adworth-waitlist.adworthllc.workers.dev</code>). No third-party email services, mailing list providers, or form processors are used. Email addresses are stored in Cloudflare Workers KV and are never transmitted to external services for notification, marketing, or any other purpose. Waitlist communications are sent manually by the founder via Proton Mail using BCC to protect subscriber privacy.</p>
 
             <h3>Simulated data broker checks &mdash; current status</h3>
             <div class="demo-notice">
@@ -320,7 +324,7 @@
                 <li><strong>Cloudflare DNS &amp; Security</strong> &mdash; We use Cloudflare for DNS management, DDoS protection, and traffic routing for adworth.app and all worker subdomains.</li>
                 <li><strong>Self-hosted fonts</strong> &mdash; Typography is served through our own Cloudflare Workers infrastructure (<code>adworth-fonts.adworthllc.workers.dev</code>). No requests are made to Google Fonts or any third-party font service. Font files are cached at the edge for performance.</li>
                 <li><strong>IONOS</strong> &mdash; Used for website hosting of the <code>app.adworth.app</code> subdomain (served from IONOS webspace /app directory) and for system email (<code>no-reply&#64;adworth.app</code>). Standard server access logs may be retained by IONOS as part of hosting operations. IONOS privacy policy: <a href="https://www.ionos.com/terms-gtc/privacy-policy/" target="_blank" rel="noopener noreferrer">ionos.com/terms-gtc/privacy-policy</a>.</li>
-                <li><strong>Proton Mail</strong> &mdash; Inbound correspondence sent to <code>hello&#64;adworth.app</code> is handled via Proton Mail (<a href="https://proton.me" target="_blank" rel="noopener noreferrer">proton.me</a>). Proton Mail provides end-to-end encrypted email infrastructure. Email content you send to us is stored within Proton Mail and is not shared with third parties except as required by law. Proton Mail privacy policy: <a href="https://proton.me/legal/privacy" target="_blank" rel="noopener noreferrer">proton.me/legal/privacy</a>.</li>
+                <li><strong>Proton Mail</strong> &mdash; Inbound correspondence sent to <code>hello&#64;adworth.app</code> is handled via Proton Mail (<a href="https://proton.me" target="_blank" rel="noopener noreferrer">proton.me</a>). Proton Mail provides end-to-end encrypted email infrastructure. Email content you send to us is stored within Proton Mail and is not shared with third parties except as required by law. Waitlist broadcast communications are sent via Proton Mail using BCC to protect subscriber email addresses from other recipients. Proton Mail privacy policy: <a href="https://proton.me/legal/privacy" target="_blank" rel="noopener noreferrer">proton.me/legal/privacy</a>.</li>
             </ul>
 
             <h3>Data broker communications (future)</h3>
@@ -510,6 +514,7 @@
                 <li>Six-point cryptographic validation on every data access request ensuring consent cannot be faked, extended, transferred, or misused</li>
                 <li>Real-time consent enforcement via the Privacy Governance Engine, blocking unauthorized access before data can be reached</li>
                 <li>Cryptographic proof references in all removal payloads linking back to the tamper-evident ledger</li>
+                <li>Waitlist form submissions protected by origin validation, honeypot bot detection, duplicate checking, and email format validation</li>
             </ul>
             <p>No method of transmission over the internet is 100% secure. If you believe your information has been compromised, please contact us immediately at <a href="mailto:hello&#64;adworth.app">hello&#64;adworth.app</a>.</p>
         </div>
@@ -521,7 +526,7 @@
             <p>Cloudflare may set a cookie (<code>__cf_bm</code>) for bot management and security purposes. This cookie does not track you across sites and is not used for advertising.</p>
 
             <h3>Adworth dashboards &mdash; API key handling</h3>
-            <p>All Adworth internal dashboards (Consent API, Privacy Governance Engine, State-Persistence Monitor, and Invisibility Ledger) handle API keys as follows:</p>
+            <p>All Adworth internal dashboards (Consent API, Privacy Governance Engine, State-Persistence Monitor, Invisibility Ledger, and Waitlist Admin) handle API keys as follows:</p>
             <ul>
                 <li>When you enter your API key to unlock a dashboard, it is stored in browser <code>sessionStorage</code> only</li>
                 <li><code>sessionStorage</code> is automatically cleared when you close the browser tab or window &mdash; it does not persist across sessions</li>
