@@ -101,7 +101,7 @@
         <div class="inner">
             <span class="page-label">Legal</span>
             <h1>Terms of Service</h1>
-            <p>Last updated: March 1, 2026 &middot; Adworth&#8480; LLC &middot; Charleston, SC</p>
+            <p>Last updated: March 2, 2026 &middot; Adworth&#8480; LLC &middot; Charleston, SC</p>
         </div>
     </div>
 
@@ -132,7 +132,7 @@
         </div>
 
         <div class="highlight-box">
-            <strong>The short version:</strong> Use Adworth legally and in good faith. Don&rsquo;t misuse the platform or infringe on our intellectual property. Consent tokens and ledger entries are governed by specific rules around immutability and data ownership. The State-Persistence Monitor and Removal Payload Engine currently operate in simulated mode for demonstration purposes. The Privacy Governance Engine enforces consent in real time. The Consent Widget and Advertiser Integration sandbox are proof-of-concept demonstrations. API access requires authentication. We&rsquo;re in early stages and provide the service as-is. If something goes wrong, our liability is limited. Questions? Reach us at <a href="mailto:hello@adworth.app">hello&#64;adworth.app</a>.
+            <strong>The short version:</strong> Use Adworth legally and in good faith. Don&rsquo;t misuse the platform or infringe on our intellectual property. Consent tokens and ledger entries are governed by specific rules around immutability and data ownership. The State-Persistence Monitor and Removal Payload Engine currently operate in simulated mode for demonstration purposes. The Privacy Governance Engine enforces consent in real time. The Consent Widget and Advertiser Integration sandbox are proof-of-concept demonstrations. API access requires authentication. No third-party email services are used for waitlist management or communications. We&rsquo;re in early stages and provide the service as-is. If something goes wrong, our liability is limited. Questions? Reach us at <a href="mailto:hello@adworth.app">hello&#64;adworth.app</a>.
         </div>
 
         <!-- 01 -->
@@ -155,7 +155,7 @@
                 <li>A Removal Payload Engine that generates legally-cited deletion requests when violations are detected (Patent Component #5)</li>
                 <li>A Consent Widget for users to grant and revoke consent tokens through a visual interface (proof-of-concept demonstration)</li>
                 <li>An Advertiser Integration sandbox for testing data access requests against the Governance Engine (proof-of-concept demonstration)</li>
-                <li>A waitlist for our upcoming cryptographic consent marketplace</li>
+                <li>A waitlist for our upcoming cryptographic consent marketplace, with an authenticated admin dashboard for waitlist management</li>
                 <li>Informational content at adworth.app</li>
             </ul>
             <p>We are an early-stage company. Our services are actively being developed and may change, be interrupted, or be discontinued at any time. We will make reasonable efforts to notify users of significant changes.</p>
@@ -170,7 +170,7 @@
             <p>Adworth relies on the following infrastructure providers to deliver its services. By using our services, you acknowledge that your use is also subject to these providers&rsquo; applicable terms and privacy policies.</p>
 
             <h3>Cloudflare Workers</h3>
-            <p>All server-side logic runs on Cloudflare Workers edge infrastructure, including the Consent Token API, Privacy Governance Engine, State-Persistence Monitor, Removal Payload Engine, Invisibility Ledger, ad intelligence pipeline, font delivery, and waitlist processing. Cloudflare processes request metadata as part of serving and securing our services. Cloudflare&rsquo;s terms: <a href="https://www.cloudflare.com/terms/" target="_blank" rel="noopener noreferrer">cloudflare.com/terms</a>.</p>
+            <p>All server-side logic runs on Cloudflare Workers edge infrastructure, including the Consent Token API, Privacy Governance Engine, State-Persistence Monitor, Removal Payload Engine, Invisibility Ledger, ad intelligence pipeline, font delivery, waitlist processing, and waitlist admin dashboard. Cloudflare processes request metadata as part of serving and securing our services. Cloudflare&rsquo;s terms: <a href="https://www.cloudflare.com/terms/" target="_blank" rel="noopener noreferrer">cloudflare.com/terms</a>.</p>
 
             <h3>Vercel</h3>
             <p>Our primary website (adworth.app) is hosted and deployed via Vercel. Vercel may retain standard server access logs. Vercel&rsquo;s terms: <a href="https://vercel.com/legal/terms" target="_blank" rel="noopener noreferrer">vercel.com/legal/terms</a>.</p>
@@ -182,13 +182,16 @@
             <p>Source code is hosted in a private repository under the adworthllc organization on GitHub. GitHub stores code and deployment history only. No user data &mdash; including waitlist emails, consent tokens, ledger entries, or any personally identifiable information &mdash; is stored in or transmitted through GitHub. API secrets and environment variable values are never committed to version control. GitHub&rsquo;s terms: <a href="https://docs.github.com/en/site-policy/github-terms/github-terms-of-service" target="_blank" rel="noopener noreferrer">docs.github.com/terms</a>.</p>
 
             <h3>Proton Mail</h3>
-            <p>Correspondence sent to <code>hello&#64;adworth.app</code> is handled via Proton Mail, which provides end-to-end encrypted email infrastructure. Email content you send to us is stored within Proton Mail and is not shared with third parties except as required by law. Proton Mail&rsquo;s terms: <a href="https://proton.me/legal/terms" target="_blank" rel="noopener noreferrer">proton.me/legal/terms</a>.</p>
+            <p>Correspondence sent to <code>hello&#64;adworth.app</code> is handled via Proton Mail, which provides end-to-end encrypted email infrastructure. Email content you send to us is stored within Proton Mail and is not shared with third parties except as required by law. Waitlist broadcast communications are sent via Proton Mail using BCC to protect subscriber email addresses from other recipients. Proton Mail&rsquo;s terms: <a href="https://proton.me/legal/terms" target="_blank" rel="noopener noreferrer">proton.me/legal/terms</a>.</p>
 
             <h3>SerpApi</h3>
             <p>The Ad Intelligence Dashboard uses SerpApi to retrieve public advertiser data from Google&rsquo;s Ads Transparency Center. When you submit a domain for analysis, that domain name is sent to SerpApi. No personal user data is transmitted to SerpApi. SerpApi&rsquo;s terms: <a href="https://serpapi.com/terms" target="_blank" rel="noopener noreferrer">serpapi.com/terms</a>.</p>
 
             <h3>Anthropic</h3>
             <p>AI privacy analysis in the Ad Intelligence Dashboard is generated by Anthropic&rsquo;s Claude API. Only publicly available ad metadata (advertiser names, ad counts, formats) retrieved from SerpApi is transmitted to Anthropic. No personal user data, waitlist emails, or consent token data is sent to Anthropic. Anthropic&rsquo;s terms: <a href="https://www.anthropic.com/legal/consumer-terms" target="_blank" rel="noopener noreferrer">anthropic.com/legal/consumer-terms</a>.</p>
+
+            <h3>No third-party email services</h3>
+            <p>Adworth does not use any third-party email services, mailing list providers, or form processors for waitlist management or subscriber communications. Waitlist form submissions are processed entirely through our own Cloudflare Workers infrastructure. Email addresses are stored in Cloudflare Workers KV and are never transmitted to external email services for notification, marketing, or any other purpose.</p>
         </div>
 
         <!-- 04 -->
@@ -312,9 +315,7 @@
                 <li>Access requires API key authentication; API keys are stored in <code>sessionStorage</code> only and cleared on tab or browser close</li>
                 <li>The viewer is a proof-of-concept and may be modified without notice</li>
             </ul>
-        </div>
-
-        <!-- 08 -->
+        </div>        <!-- 08 -->
         <div class="policy-section" id="api-access">
             <h2><span class="section-num">08</span> API Access &amp; Authentication</h2>
             <p>Access to the Adworth Consent API, Privacy Governance Engine, State-Persistence Monitor, and associated services is governed by the following terms:</p>
