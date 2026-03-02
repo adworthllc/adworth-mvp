@@ -133,15 +133,15 @@
         .investor-card li::before { content: '✓'; position: absolute; left: 0; color: var(--green-accent); font-size: 0.75rem; top: 0.45rem; }
         .moat-table-wrap { max-width: 860px; margin: 0 auto 3.5rem; }
         .moat-table-label { font-size: 0.72rem; font-weight: 700; text-transform: uppercase; letter-spacing: 2px; color: var(--green-accent); margin-bottom: 1.25rem; text-align: left; }
-        .moat-table { width: 100%; border-collapse: collapse; border: 1px solid rgba(255,255,255,0.12); border-radius: 12px; overflow: hidden; }
-        .moat-table thead th { background: rgba(255,255,255,0.08); font-size: 0.72rem; font-weight: 700; text-transform: uppercase; letter-spacing: 1.5px; color: var(--green-accent); padding: 0.9rem 1.25rem; text-align: left; border-bottom: 1px solid rgba(255,255,255,0.1); }
-        .moat-table tbody tr { border-top: 1px solid rgba(255,255,255,0.06); transition: background 0.15s; }
-        .moat-table tbody tr:hover { background: rgba(255,255,255,0.04); }
-        .moat-table tbody td { padding: 1rem 1.25rem; font-size: 0.875rem; color: rgba(255,255,255,0.8); vertical-align: top; line-height: 1.5; }
-        .moat-table .td-moat { font-weight: 600; color: white; vertical-align: middle; white-space: nowrap; }
-        .moat-table .td-revenue { color: var(--green-accent); font-weight: 600; vertical-align: middle; white-space: nowrap; }
-        .moat-table .td-detail { color: rgba(255,255,255,0.6); font-size: 0.8rem; }
-        .moat-timeline { display: inline-block; font-size: 0.7rem; font-weight: 700; text-transform: uppercase; letter-spacing: 1px; padding: 0.15rem 0.55rem; border-radius: 100px; margin-left: 0.5rem; vertical-align: middle; }
+        .moat-grid { display: grid; grid-template-columns: 160px 180px 1fr 100px; border: 1px solid rgba(255,255,255,0.12); border-radius: 12px; overflow: hidden; }
+        .moat-header { background: rgba(255,255,255,0.08); font-size: 0.72rem; font-weight: 700; text-transform: uppercase; letter-spacing: 1.5px; color: var(--green-accent); padding: 0.9rem 1.25rem; border-bottom: 1px solid rgba(255,255,255,0.1); }
+        .moat-grid > div:not(.moat-header) { padding: 1.1rem 1.25rem; font-size: 0.875rem; color: rgba(255,255,255,0.8); line-height: 1.5; border-top: 1px solid rgba(255,255,255,0.06); display: flex; align-items: center; }
+        .moat-grid > div:not(.moat-header):hover { background: rgba(255,255,255,0.04); }
+        .moat-center { justify-content: center; text-align: center; }
+        .td-moat { font-weight: 600; color: white; }
+        .td-revenue { color: var(--green-accent); font-weight: 600; }
+        .td-detail { color: rgba(255,255,255,0.6); font-size: 0.8rem; }
+        .moat-timeline { display: inline-flex; align-items: center; justify-content: center; font-size: 0.68rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.5px; padding: 0.3rem 0.75rem; border-radius: 100px; white-space: nowrap; min-width: 58px; text-align: center; }
         .moat-timeline--now  { background: rgba(82,183,136,0.2);   color: var(--green-accent); border: 1px solid rgba(82,183,136,0.4); }
         .moat-timeline--soon { background: rgba(200,169,106,0.15); color: #c8a96a; border: 1px solid rgba(200,169,106,0.3); }
         .moat-timeline--later{ background: rgba(255,255,255,0.07); color: rgba(255,255,255,0.5); border: 1px solid rgba(255,255,255,0.12); }
@@ -179,6 +179,7 @@
             .footer-grid { grid-template-columns: 1fr 1fr; }
             .transparency-rows { grid-template-columns: 1fr; gap: 1px; }
             .moat-table-wrap { overflow-x: auto; }
+            .moat-grid { grid-template-columns: 1fr 1fr 2fr 80px; }
             .audience-split-inner { grid-template-columns: 1fr; }
             .audience-divider { width: 100%; height: 1px; margin: 0; }
         }
@@ -515,50 +516,35 @@
                         </ul>
                     </div>
                 </div>
-                <div class="moat-table-wrap fade-up">
+<div class="moat-table-wrap fade-up">
                     <p class="moat-table-label">How the moat becomes the money</p>
-                    <table class="moat-table">
-                        <colgroup>
-                            <col style="width: 18%;">
-                            <col style="width: 20%;">
-                            <col style="width: 50%;">
-                            <col style="width: 12%;">
-                        </colgroup>
-                        <thead>
-                            <tr>
-                                <th>Moat Layer</th>
-                                <th>Revenue Expression</th>
-                                <th>Model</th>
-                                <th>Timeline</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            <tr>
-                                <td class="td-moat">Cryptographic patent</td>
-                                <td class="td-revenue">Enterprise licensing</td>
-                                <td class="td-detail">$15K&ndash;$50K/yr per enterprise client &mdash; companies pay to use the patented infrastructure for verifiable consent compliance</td>
-                                <td><span class="moat-timeline moat-timeline--soon">2026</span></td>
-                            </tr>
-                            <tr>
-                                <td class="td-moat">Infrastructure position</td>
-                                <td class="td-revenue">Transaction fees</td>
-                                <td class="td-detail">2&ndash;5% of every consent exchange on the marketplace &mdash; scales automatically with volume, no per-transaction selling required</td>
-                                <td><span class="moat-timeline moat-timeline--soon">18 mo</span></td>
-                            </tr>
-                            <tr>
-                                <td class="td-moat">Regulatory foresight</td>
-                                <td class="td-revenue">DSA compliance SaaS</td>
-                                <td class="td-detail">Recurring subscription for DSA repository monitoring and AI ad transparency auditing &mdash; recurring revenue that compounds with each new regulation</td>
-                                <td><span class="moat-timeline moat-timeline--soon">2026</span></td>
-                            </tr>
-                            <tr>
-                                <td class="td-moat">Network effects</td>
-                                <td class="td-revenue">Marketplace flywheel</td>
-                                <td class="td-detail">More users &rarr; more valuable to advertisers &rarr; higher fees &rarr; more users. The moat deepens with scale in a way no competitor can buy their way into</td>
-                                <td><span class="moat-timeline moat-timeline--later">3&ndash;5 yr</span></td>
-                            </tr>
-                        </tbody>
-                    </table>
+                    <div class="moat-grid">
+                        <div class="moat-header">Moat Layer</div>
+                        <div class="moat-header">Revenue Expression</div>
+                        <div class="moat-header">Model</div>
+                        <div class="moat-header moat-center">Timeline</div>
+
+                        <div class="td-moat">Cryptographic patent</div>
+                        <div class="td-revenue">Enterprise licensing</div>
+                        <div class="td-detail">$15K&ndash;$50K/yr per enterprise client &mdash; companies pay to use the patented infrastructure for verifiable consent compliance</div>
+                        <div class="moat-center"><span class="moat-timeline moat-timeline--soon">2026</span></div>
+
+                        <div class="td-moat">Infrastructure position</div>
+                        <div class="td-revenue">Transaction fees</div>
+                        <div class="td-detail">2&ndash;5% of every consent exchange on the marketplace &mdash; scales automatically with volume, no per-transaction selling required</div>
+                        <div class="moat-center"><span class="moat-timeline moat-timeline--soon">18 MO</span></div>
+
+                        <div class="td-moat">Regulatory foresight</div>
+                        <div class="td-revenue">DSA compliance SaaS</div>
+                        <div class="td-detail">Recurring subscription for DSA repository monitoring and AI ad transparency auditing &mdash; recurring revenue that compounds with each new regulation</div>
+                        <div class="moat-center"><span class="moat-timeline moat-timeline--soon">2026</span></div>
+
+                        <div class="td-moat">Network effects</div>
+                        <div class="td-revenue">Marketplace flywheel</div>
+                        <div class="td-detail">More users &rarr; more valuable to advertisers &rarr; higher fees &rarr; more users. The moat deepens with scale in a way no competitor can buy their way into</div>
+                        <div class="moat-center"><span class="moat-timeline moat-timeline--later">3&ndash;5 YR</span></div>
+                    </div>
+                </div>
                 </div>
                 <div class="fade-up">
                     <a href="mailto:hello&#64;adworth.app" class="btn btn-white">Schedule a Meeting &rarr;</a>
