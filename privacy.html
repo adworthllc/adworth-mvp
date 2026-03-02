@@ -36,12 +36,18 @@
         .page-hero h1 { font-family: 'DM Serif Display', Georgia, serif; font-size: clamp(2rem, 4vw, 3rem); color: white; line-height: 1.15; margin-bottom: 1rem; }
         .page-hero p { font-size: 0.95rem; color: rgba(255,255,255,0.6); }
         .content-wrap { max-width: 860px; margin: 0 auto; padding: 4rem 2rem 6rem; }
+        /* ── TOC ── */
         .toc { background: var(--white); border: 1.5px solid var(--border); border-radius: 12px; padding: 1.75rem 2rem; margin-bottom: 3rem; }
-        .toc h2 { font-size: 0.75rem; font-weight: 700; text-transform: uppercase; letter-spacing: 2px; color: var(--ink-30); margin-bottom: 1rem; }
-        .toc ol { padding-left: 1.25rem; display: grid; grid-template-columns: 1fr 1fr; gap: 0.4rem 2rem; }
-        .toc li { font-size: 0.875rem; }
+        .toc h2 { font-size: 0.75rem; font-weight: 700; text-transform: uppercase; letter-spacing: 2px; color: var(--ink-30); margin-bottom: 1.25rem; }
+        .toc-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 0 2.5rem; }
+        .toc-col { display: flex; flex-direction: column; gap: 0; }
+        .toc-row { display: grid; grid-template-columns: 1.75rem 1fr; align-items: baseline; padding: 0.3rem 0; border-bottom: 1px solid var(--border); }
+        .toc-row:last-child { border-bottom: none; }
+        .toc-num { font-size: 0.8rem; font-weight: 700; color: var(--ink-30); }
+        .toc-link { font-size: 0.875rem; }
         .toc a { color: var(--green-primary); text-decoration: none; font-weight: 500; }
         .toc a:hover { color: var(--green-deep); text-decoration: underline; }
+        /* ── CONTENT ── */
         .policy-section { margin-bottom: 3rem; padding-bottom: 3rem; border-bottom: 1px solid var(--border); }
         .policy-section:last-child { border-bottom: none; margin-bottom: 0; }
         .policy-section h2 { font-family: 'DM Serif Display', Georgia, serif; font-size: 1.6rem; color: var(--green-primary); margin-bottom: 1rem; display: flex; align-items: center; gap: 0.75rem; }
@@ -57,6 +63,7 @@
         code { font-family: 'Courier New', monospace; font-size: 0.85rem; background: var(--green-pale); color: var(--green-deep); padding: 0.1rem 0.35rem; border-radius: 4px; }
         .demo-notice { background: #fff8ee; border: 1.5px solid rgba(200,169,106,0.3); border-radius: 10px; padding: 1.25rem 1.5rem; margin: 1.25rem 0; font-size: 0.9rem; color: #5a4520; font-weight: 500; line-height: 1.7; }
         .demo-notice strong { color: #7a5c2e; }
+        /* ── FOOTER ── */
         footer { background: var(--white); border-top: 1px solid var(--border); padding: 3.5rem 0 2rem; }
         .footer-grid { display: grid; grid-template-columns: 2fr 1fr 1fr 1fr; gap: 3rem; margin-bottom: 3rem; }
         .footer-brand-name { font-size: 1.4rem; font-weight: 800; color: var(--green-primary); margin-bottom: 0.6rem; }
@@ -70,7 +77,7 @@
         @media (max-width: 900px) { .footer-grid { grid-template-columns: 1fr 1fr; } }
         @media (max-width: 640px) {
             nav ul { display: none; }
-            .toc ol { grid-template-columns: 1fr; }
+            .toc-grid { grid-template-columns: 1fr; }
             .footer-grid { grid-template-columns: 1fr; }
             .footer-bottom { flex-direction: column; gap: 0.5rem; text-align: center; }
         }
@@ -109,21 +116,25 @@
 
         <div class="toc">
             <h2>Contents</h2>
-            <ol>
-                <li><a href="#information-we-collect">Information We Collect</a></li>
-                <li><a href="#how-we-use">How We Use Your Information</a></li>
-                <li><a href="#third-party-processing">Third-Party Data Processing</a></li>
-                <li><a href="#sharing">How We Share Information</a></li>
-                <li><a href="#consent-infrastructure">Consent Infrastructure &amp; Ledger</a></li>
-                <li><a href="#governance-engine">Privacy Governance Engine</a></li>
-                <li><a href="#state-persistence-monitor">State-Persistence Monitor &amp; Removal Payload Engine</a></li>
-                <li><a href="#data-retention">Data Retention</a></li>
-                <li><a href="#your-rights">Your Rights</a></li>
-                <li><a href="#security">Security</a></li>
-                <li><a href="#cookies">Cookies &amp; Tracking</a></li>
-                <li><a href="#children">Children&rsquo;s Privacy</a></li>
-                <li><a href="#contact">Contact Us</a></li>
-            </ol>
+            <div class="toc-grid">
+                <div class="toc-col">
+                    <div class="toc-row"><span class="toc-num">1.</span><span class="toc-link"><a href="#information-we-collect">Information We Collect</a></span></div>
+                    <div class="toc-row"><span class="toc-num">2.</span><span class="toc-link"><a href="#how-we-use">How We Use Your Information</a></span></div>
+                    <div class="toc-row"><span class="toc-num">3.</span><span class="toc-link"><a href="#third-party-processing">Third-Party Data Processing</a></span></div>
+                    <div class="toc-row"><span class="toc-num">4.</span><span class="toc-link"><a href="#sharing">How We Share Information</a></span></div>
+                    <div class="toc-row"><span class="toc-num">5.</span><span class="toc-link"><a href="#consent-infrastructure">Consent Infrastructure &amp; Ledger</a></span></div>
+                    <div class="toc-row"><span class="toc-num">6.</span><span class="toc-link"><a href="#governance-engine">Privacy Governance Engine</a></span></div>
+                    <div class="toc-row"><span class="toc-num">7.</span><span class="toc-link"><a href="#state-persistence-monitor">State-Persistence Monitor &amp; RPE</a></span></div>
+                </div>
+                <div class="toc-col">
+                    <div class="toc-row"><span class="toc-num">8.</span><span class="toc-link"><a href="#data-retention">Data Retention</a></span></div>
+                    <div class="toc-row"><span class="toc-num">9.</span><span class="toc-link"><a href="#your-rights">Your Rights</a></span></div>
+                    <div class="toc-row"><span class="toc-num">10.</span><span class="toc-link"><a href="#security">Security</a></span></div>
+                    <div class="toc-row"><span class="toc-num">11.</span><span class="toc-link"><a href="#cookies">Cookies &amp; Tracking</a></span></div>
+                    <div class="toc-row"><span class="toc-num">12.</span><span class="toc-link"><a href="#children">Children&rsquo;s Privacy</a></span></div>
+                    <div class="toc-row"><span class="toc-num">13.</span><span class="toc-link"><a href="#contact">Contact Us</a></span></div>
+                </div>
+            </div>
         </div>
 
         <div class="highlight-box">
@@ -228,8 +239,7 @@
             <p>We use the information we collect to:</p>
             <ul>
                 <li>Operate and improve the Adworth platform and services</li>
-                <li>Send you waitlist updates and product announcements (unsubscribe at any time)</li>
-                <li>Respond to your inquiries and support requests</li>
+                <li>Communicate with you about the waitlist and product updates</li>
                 <li>Issue, validate, and revoke cryptographic consent tokens as requested by you</li>
                 <li>Maintain the tamper-evident consent ledger (Invisibility Ledger) on your behalf</li>
                 <li>Enforce consent boundaries by automatically blocking unauthorized data access requests via the Privacy Governance Engine</li>
@@ -481,7 +491,7 @@
                 <li><strong>Consent history:</strong> Request a complete export of your consent ledger entries</li>
                 <li><strong>Enforcement history:</strong> Request a copy of all violation detection and removal payload records associated with your opaque user identifier</li>
             </ul>
-            <p>To exercise any of these rights, contact us at <a href="mailto:hello@adworth.app">hello&#64;adworth.app</a>. We will respond within 30 days.</p>
+            <p>To exercise any of these rights, contact us at <a href="mailto:hello&#64;adworth.app">hello&#64;adworth.app</a>. We will respond within 30 days.</p>
         </div>
 
         <!-- 10 -->
@@ -501,7 +511,7 @@
                 <li>Real-time consent enforcement via the Privacy Governance Engine, blocking unauthorized access before data can be reached</li>
                 <li>Cryptographic proof references in all removal payloads linking back to the tamper-evident ledger</li>
             </ul>
-            <p>No method of transmission over the internet is 100% secure. If you believe your information has been compromised, please contact us immediately at <a href="mailto:hello@adworth.app">hello&#64;adworth.app</a>.</p>
+            <p>No method of transmission over the internet is 100% secure. If you believe your information has been compromised, please contact us immediately at <a href="mailto:hello&#64;adworth.app">hello&#64;adworth.app</a>.</p>
         </div>
 
         <!-- 11 -->
@@ -540,7 +550,7 @@
             <div class="highlight-box">
                 <strong>Adworth&#8480; LLC</strong><br>
                 Charleston, SC, United States<br>
-                <a href="mailto:hello@adworth.app">hello&#64;adworth.app</a>
+                <a href="mailto:hello&#64;adworth.app">hello&#64;adworth.app</a>
             </div>
             <p>For terms of use, please see our <a href="/terms.html">Terms of Service</a>.</p>
 
@@ -576,7 +586,7 @@
                     <ul>
                         <li><a href="/#founder">Founder</a></li>
                         <li><a href="/#investors">Investors</a></li>
-                        <li><a href="mailto:hello@adworth.app">Contact</a></li>
+                        <li><a href="mailto:hello&#64;adworth.app">Contact</a></li>
                     </ul>
                 </div>
                 <div class="footer-links">
