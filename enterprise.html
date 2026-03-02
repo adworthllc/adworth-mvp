@@ -72,7 +72,7 @@
     .demo-bar { background: rgba(255,255,255,0.06); border-bottom: 1px solid rgba(255,255,255,0.08); padding: 1rem 1.5rem; display: flex; align-items: center; justify-content: space-between; }
     .demo-dots { display: flex; gap: 0.4rem; }
     .demo-dot { width: 10px; height: 10px; border-radius: 50%; background: rgba(255,255,255,0.15); }
-    .demo-url { font-family: 'JetBrains Mono', monospace; font-size: 0.72rem; color: rgba(255,255,255,0.3); }
+    .demo-url { font-family: monospace; font-size: 0.72rem; color: rgba(255,255,255,0.3); }
     .demo-live { display: flex; align-items: center; gap: 0.4rem; font-size: 0.7rem; font-weight: 600; color: var(--green-accent); }
     .demo-live::before { content: ''; width: 6px; height: 6px; background: var(--green-accent); border-radius: 50%; animation: pulse 2s infinite; }
     .demo-metrics { display: grid; grid-template-columns: repeat(4,1fr); gap: 1.5rem; padding: 2.5rem; }
@@ -94,7 +94,8 @@
     .step-icon { width: 40px; height: 40px; background: var(--green-pale); border-radius: 10px; display: flex; align-items: center; justify-content: center; font-size: 1.1rem; margin-bottom: 1.25rem; }
     .step h3 { font-size: 1.1rem; font-weight: 700; color: var(--green-primary); margin-bottom: 0.75rem; }
     .step p { font-size: 0.9rem; color: var(--ink-60); line-height: 1.7; }
-    .moat-table-wrap { overflow-x: auto; }
+    /* ── Competitive table ── */
+    .moat-table-wrap { overflow-x: auto; margin-top: 2rem; }
     .moat-table { width: 100%; border-collapse: collapse; border: 1px solid rgba(255,255,255,0.12); border-radius: 12px; overflow: hidden; }
     .moat-table thead th { background: rgba(255,255,255,0.08); font-size: 0.72rem; font-weight: 700; text-transform: uppercase; letter-spacing: 1.5px; color: var(--green-accent); padding: 0.9rem 1.25rem; text-align: left; border-bottom: 1px solid rgba(255,255,255,0.1); }
     .moat-table tbody tr { border-top: 1px solid rgba(255,255,255,0.06); transition: background 0.15s; }
@@ -107,6 +108,7 @@
     .row-adworth td:first-child { font-weight: 700; color: var(--green-accent); }
     .moat-table td:not(:first-child) { text-align: center; }
     .moat-table th:not(:first-child) { text-align: center; }
+    /* ── Raise section ── */
     .raise-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 1.5rem; margin-bottom: 3.5rem; }
     .raise-card { background: rgba(255,255,255,0.07); border: 1px solid rgba(255,255,255,0.12); border-radius: 12px; padding: 2rem; }
     .raise-card h4 { font-size: 0.72rem; font-weight: 700; text-transform: uppercase; letter-spacing: 2px; color: var(--green-accent); margin-bottom: 1.25rem; }
@@ -120,9 +122,10 @@
     .timeline-item { padding-top: 1.5rem; border-top: 2px solid rgba(255,255,255,0.1); }
     .timeline-item.active { border-top-color: var(--green-accent); }
     .timeline-item.next { border-top-color: rgba(82,183,136,0.4); }
-    .timeline-phase { font-family: 'JetBrains Mono', monospace; font-size: 0.65rem; color: var(--green-accent); text-transform: uppercase; letter-spacing: 2px; margin-bottom: 0.5rem; }
+    .timeline-phase { font-size: 0.65rem; color: var(--green-accent); text-transform: uppercase; letter-spacing: 2px; margin-bottom: 0.5rem; font-weight: 700; }
     .timeline-title { font-size: 0.95rem; font-weight: 700; color: white; margin-bottom: 0.5rem; }
     .timeline-desc { font-size: 0.8rem; color: rgba(255,255,255,0.45); line-height: 1.6; }
+    /* ── Founder ── */
     .founder-card { max-width: 760px; margin: 0 auto; background: var(--white); border: 1.5px solid var(--border); border-radius: 16px; padding: 3.5rem; position: relative; }
     .founder-card::before { content: '\201C'; font-family: 'DM Serif Display', serif; font-size: 8rem; color: var(--green-pale); position: absolute; top: -1rem; left: 2.5rem; line-height: 1; }
     .founder-body { font-size: 1rem; color: var(--ink-60); line-height: 1.8; }
@@ -132,12 +135,14 @@
     .founder-avatar { width: 52px; height: 52px; background: var(--green-pale); border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 1.25rem; font-weight: 800; color: var(--green-primary); flex-shrink: 0; }
     .founder-sig-text strong { display: block; font-weight: 700; font-size: 0.95rem; color: var(--ink); }
     .founder-sig-text small { font-size: 0.8rem; color: var(--ink-60); }
+    /* ── Contact ── */
     .contact-grid { display: grid; grid-template-columns: repeat(3,1fr); gap: 1.5rem; margin-top: 3rem; }
     .contact-card { background: var(--white); border: 1.5px solid var(--border); border-radius: 12px; padding: 2rem; text-decoration: none; transition: all 0.2s; }
     .contact-card:hover { border-color: var(--green-primary); transform: translateY(-3px); box-shadow: 0 12px 32px rgba(10,15,12,0.08); }
     .contact-card-label { font-size: 0.65rem; font-weight: 700; text-transform: uppercase; letter-spacing: 2px; color: var(--green-mid); margin-bottom: 0.5rem; }
     .contact-card-title { font-size: 1.05rem; font-weight: 700; color: var(--ink); margin-bottom: 0.25rem; }
     .contact-card-sub { font-size: 0.8rem; color: var(--ink-60); }
+    /* ── Footer ── */
     footer { background: var(--white); border-top: 1px solid var(--border); padding: 3.5rem 0 2rem; }
     .footer-grid { display: grid; grid-template-columns: 2fr 1fr 1fr 1fr; gap: 3rem; margin-bottom: 3rem; }
     .footer-brand-name { font-size: 1.4rem; font-weight: 800; color: var(--green-primary); margin-bottom: 0.6rem; }
@@ -162,6 +167,7 @@
       .contact-grid { grid-template-columns: 1fr; }
       .footer-grid { grid-template-columns: 1fr 1fr; }
       .demo-metrics { grid-template-columns: repeat(2,1fr); }
+      .moat-table-wrap { overflow-x: auto; }
     }
     @media (max-width: 640px) {
       nav ul { display: none; }
@@ -188,7 +194,7 @@
           <li><a href="#raise">The Raise</a></li>
           <li><a href="#founder">Founder</a></li>
           <li><a href="/">&#8592; Home</a></li>
-          <li><a href="mailto:hello@adworth.app" class="nav-cta">Schedule Meeting &#8594;</a></li>
+          <li><a href="mailto:hello&#64;adworth.app" class="nav-cta">Schedule Meeting &#8594;</a></li>
         </ul>
       </nav>
     </div>
@@ -196,6 +202,7 @@
 
   <main>
 
+    <!-- HERO -->
     <section class="hero">
       <div class="container">
         <div class="hero-eyebrow">
@@ -211,12 +218,13 @@
         <div class="hero-cta-group">
           <a href="#live-demo" class="btn btn-primary">See Live Demo &#8595;</a>
           <a href="#raise" class="btn btn-ghost">View the Raise</a>
-          <a href="mailto:hello@adworth.app" class="btn-ghost-gold">Schedule Meeting &#8594;</a>
+          <a href="mailto:hello&#64;adworth.app" class="btn-ghost-gold">Schedule Meeting &#8594;</a>
         </div>
         <p class="hero-trust">Patent-pending technology &middot; Live AI transparency data &middot; Consent marketplace coming</p>
       </div>
     </section>
 
+    <!-- STATS -->
     <section class="stats-bar">
       <div class="container">
         <div class="stats-grid">
@@ -233,13 +241,14 @@
             <div class="stat-label">AI platform ad disclosure requirements today</div>
           </div>
           <div class="stat-item fade-up">
-            <div class="stat-value">Feb '26</div>
+            <div class="stat-value">Feb &rsquo;26</div>
             <div class="stat-label">Patent filed &mdash; 11 independent claims across 5 components</div>
           </div>
         </div>
       </div>
     </section>
 
+    <!-- LIVE DEMO -->
     <section class="section section--alt" id="live-demo">
       <div class="container">
         <p class="label fade-up">Live Technology</p>
@@ -287,6 +296,7 @@
       </div>
     </section>
 
+    <!-- TECHNOLOGY -->
     <section class="section" id="technology">
       <div class="container">
         <p class="label fade-up">Patent-Pending Technology</p>
@@ -327,6 +337,7 @@
       </div>
     </section>
 
+    <!-- COMPETITIVE TABLE -->
     <section class="section section--dark" id="traction">
       <div class="container">
         <p class="label fade-up">Competitive Position</p>
@@ -399,6 +410,7 @@
       </div>
     </section>
 
+    <!-- THE RAISE -->
     <section class="section section--dark" id="raise" style="border-top: 1px solid rgba(255,255,255,0.08); padding-top: 4rem;">
       <div class="container">
         <p class="label fade-up">Seed Round</p>
@@ -447,11 +459,12 @@
           </div>
         </div>
         <div style="text-align:center; margin-top:3.5rem;" class="fade-up">
-          <a href="mailto:hello@adworth.app" class="btn btn-white">Schedule Investor Meeting &#8594;</a>
+          <a href="mailto:hello&#64;adworth.app" class="btn btn-white">Schedule Investor Meeting &#8594;</a>
         </div>
       </div>
     </section>
 
+    <!-- FOUNDER -->
     <section class="section" id="founder">
       <div class="container">
         <p class="label fade-up" style="text-align:center;">Founder</p>
@@ -469,22 +482,23 @@
             <div class="founder-avatar">NJ</div>
             <div class="founder-sig-text">
               <strong>Nick Johnson</strong>
-              <small>Founder &amp; CEO, Adworth&#8480; LLC &middot; Charleston, SC &middot; Patent Filed Feb 2026 &middot; <a href="mailto:hello@adworth.app" style="color:var(--green-primary); text-decoration:none;">hello@adworth.app</a></small>
+              <small>Founder &amp; CEO, Adworth&#8480; LLC &middot; Charleston, SC &middot; Patent Filed Feb 2026 &middot; <a href="mailto:hello&#64;adworth.app" style="color:var(--green-primary); text-decoration:none;">hello&#64;adworth.app</a></small>
             </div>
           </div>
         </div>
       </div>
     </section>
 
+    <!-- CONTACT -->
     <section class="section section--alt">
       <div class="container" style="text-align:center;">
         <p class="label fade-up">Get In Touch</p>
         <h2 class="section-title fade-up">Ready to talk?</h2>
         <p class="section-lead fade-up" style="margin: 1rem auto 0;">We&rsquo;re raising $1.5M to build the consent rails for a permission-based internet. The window is open now.</p>
         <div class="contact-grid fade-up">
-          <a href="mailto:hello@adworth.app" class="contact-card">
+          <a href="mailto:hello&#64;adworth.app" class="contact-card">
             <div class="contact-card-label">Primary Contact</div>
-            <div class="contact-card-title">hello@adworth.app</div>
+            <div class="contact-card-title">hello&#64;adworth.app</div>
             <div class="contact-card-sub">Schedule a meeting or request a deck</div>
           </a>
           <a href="/dashboard.html" class="contact-card">
@@ -503,6 +517,7 @@
 
   </main>
 
+  <!-- FOOTER -->
   <footer>
     <div class="container">
       <div class="footer-grid">
@@ -524,7 +539,7 @@
           <ul>
             <li><a href="#founder">Founder</a></li>
             <li><a href="#raise">Investors</a></li>
-            <li><a href="mailto:hello@adworth.app">Contact</a></li>
+            <li><a href="mailto:hello&#64;adworth.app">Contact</a></li>
           </ul>
         </div>
         <div class="footer-links">
@@ -561,6 +576,8 @@
       });
     });
   </script>
+
+  <!-- No third-party tracking scripts. This page loads no analytics, advertising pixels, or behavioral trackers. -->
 
 </body>
 </html>
