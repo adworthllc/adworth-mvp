@@ -47,11 +47,14 @@
         .step-num { width: 24px; height: 24px; min-width: 24px; background: var(--green-pale); color: var(--green-primary); border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 0.7rem; font-weight: 700; margin-top: 2px; }
         .step-row p { font-size: 0.9rem; color: var(--ink-60); margin-bottom: 0; line-height: 1.5; }
         .step-row strong { color: var(--ink); }
+        .step-row a { color: var(--green-primary); text-decoration: none; font-weight: 600; }
+        .step-row a:hover { text-decoration: underline; text-underline-offset: 2px; }
         .btn { display: inline-flex; align-items: center; gap: 0.5rem; padding: 0.9rem 1.75rem; border-radius: 8px; font-weight: 600; font-size: 0.95rem; text-decoration: none; transition: all 0.2s; border: 1.5px solid transparent; cursor: pointer; font-family: 'Poppins', sans-serif; }
         .btn-primary { background: var(--green-primary); color: white; border-color: var(--green-primary); box-shadow: 0 4px 14px rgba(45,106,79,0.3); }
         .btn-primary:hover { background: var(--green-deep); border-color: var(--green-deep); transform: translateY(-2px); box-shadow: 0 8px 20px rgba(45,106,79,0.35); }
         .btn-ghost { background: transparent; color: var(--green-primary); border-color: var(--green-accent); }
         .btn-ghost:hover { background: var(--green-tint); border-color: var(--green-primary); }
+        .btn-sm { padding: 0.7rem 1.25rem; font-size: 0.85rem; }
         .cta-group { display: flex; gap: 0.75rem; justify-content: center; flex-wrap: wrap; animation: fadeInUp 0.6s 0.7s ease both; }
         footer { background: var(--white); border-top: 1px solid var(--border); padding: 1.5rem 0; text-align: center; }
         footer p { font-size: 0.8rem; color: var(--ink-30); }
@@ -84,7 +87,7 @@
 
             <h1>You&rsquo;re <em>in</em>.</h1>
 
-            <p>You&rsquo;ve joined the Adworth founding member waitlist. When the consent marketplace launches, you&rsquo;ll be among the first to control your data and get paid for it.</p>
+            <p>You&rsquo;ve joined the Adworth founding member waitlist. If and when the consent marketplace launches, founding members will have early access to control their data and participate in the consent exchange.</p>
 
             <div class="next-steps">
                 <h3>What Happens Next</h3>
@@ -98,13 +101,18 @@
                 </div>
                 <div class="step-row">
                     <span class="step-num">3</span>
-                    <p><strong>Marketplace launch</strong> &mdash; Founding members get first access when consent tokens go live.</p>
+                    <p><strong>See the consent ledger</strong> &mdash; <a href="/ledger.html">Preview the ledger page</a> that shows how token control, enforcement, and the audit trail would work for founding members. This is separate from the ad transparency demo.</p>
+                </div>
+                <div class="step-row">
+                    <span class="step-num">4</span>
+                    <p><strong>Marketplace launch</strong> &mdash; Founding members are first in line if and when the consent marketplace goes live. We&rsquo;ll keep you updated at every milestone.</p>
                 </div>
             </div>
 
             <div class="cta-group">
-                <a href="/dashboard.html" class="btn btn-primary">Try the Demo &rarr;</a>
-                <a href="/" class="btn btn-ghost">Back to Home</a>
+                <a href="/dashboard.html" class="btn btn-primary">Try the Ad Transparency Demo &rarr;</a>
+                <a href="/ledger.html" class="btn btn-ghost">See Consent Ledger Preview &rarr;</a>
+                <a href="/" class="btn btn-ghost btn-sm" style="border-color: var(--border); color: var(--ink-60);">Back to Home</a>
             </div>
         </div>
     </main>
