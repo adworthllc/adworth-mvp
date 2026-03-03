@@ -3,8 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>My Consent Ledger — Adworth℠</title>
-  <meta name="description" content="See what your data consent ledger would look like with Adworth. Every token issued, every payment earned, every deletion enforced — on your terms.">
+  <title>Adworth℠ — Ad Transparency Dashboard</title>
   <link rel="icon" type="image/x-icon" href="/favicon.ico">
   <link rel="preconnect" href="https://adworth-fonts.adworthllc.workers.dev">
   <link href="https://adworth-fonts.adworthllc.workers.dev/css2?family=Poppins:wght@300;400;500;600;700;800;900&family=DM+Serif+Display:ital@0;1&display=swap" rel="stylesheet">
@@ -18,16 +17,16 @@
       --green-pale:    #d8f3dc;
       --green-tint:    #f0faf3;
       --off-white:     #fafaf8;
+      --white:         #ffffff;
       --ink:           #111410;
       --ink-60:        #555a50;
       --ink-30:        #b0b5aa;
       --border:        #e2e8df;
       --red:           #e05252;
       --amber:         #d4930a;
-      --gold:          #c8a96a;
-      --gold-light:    rgba(200,169,106,0.15);
       --mono:          'JetBrains Mono', monospace;
       --surface:       rgba(255,255,255,0.04);
+      --surface-hover: rgba(255,255,255,0.07);
       --rim:           rgba(82,183,136,0.15);
     }
 
@@ -41,12 +40,13 @@
       overflow-x: hidden;
     }
 
+    /* ── GRID BACKGROUND ── */
     body::before {
       content: '';
       position: fixed; inset: 0;
       background-image:
-        linear-gradient(rgba(82,183,136,0.03) 1px, transparent 1px),
-        linear-gradient(90deg, rgba(82,183,136,0.03) 1px, transparent 1px);
+        linear-gradient(rgba(82,183,136,0.035) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(82,183,136,0.035) 1px, transparent 1px);
       background-size: 48px 48px;
       pointer-events: none; z-index: 0;
     }
@@ -60,883 +60,1054 @@
       padding: 0 2rem;
     }
     nav {
-      max-width: 1200px; margin: 0 auto;
+      max-width: 1400px; margin: 0 auto;
       display: flex; justify-content: space-between; align-items: center;
       height: 60px;
     }
     .logo { display: flex; align-items: center; gap: 0.6rem; text-decoration: none; }
-    .logo-text { font-size: 1.3rem; font-weight: 800; color: var(--green-accent); }
+    .logo-text { font-size: 1.3rem; font-weight: 800; color: var(--green-accent); letter-spacing: -0.3px; }
     .badge {
       font-size: 0.6rem; font-weight: 700; text-transform: uppercase; letter-spacing: 1px;
       background: rgba(82,183,136,0.12); color: var(--green-accent);
       border: 1px solid rgba(82,183,136,0.25); padding: 0.2rem 0.5rem; border-radius: 100px;
     }
     .nav-right { display: flex; align-items: center; gap: 1rem; }
-    .nav-link { font-size: 0.8rem; color: rgba(255,255,255,0.4); text-decoration: none; transition: color 0.2s; }
-    .nav-link:hover { color: var(--green-accent); }
-    .nav-cta {
-      padding: 0.45rem 1rem; background: var(--green-primary); color: white;
-      border: none; border-radius: 6px; font-family: 'Poppins', sans-serif;
-      font-size: 0.75rem; font-weight: 700; cursor: pointer;
-      text-decoration: none; transition: all 0.2s;
+    .status-dot { display: flex; align-items: center; gap: 0.4rem; font-size: 0.75rem; color: var(--green-accent); font-family: var(--mono); }
+    .dot { width: 7px; height: 7px; background: var(--green-accent); border-radius: 50%; animation: pulse 2s infinite; }
+    .dot.offline { background: var(--red); animation: none; }
+    @keyframes pulse { 0%,100%{opacity:1;transform:scale(1)} 50%{opacity:0.4;transform:scale(0.7)} }
+
+    .nav-waitlist-btn {
+      display: inline-flex; align-items: center; gap: 0.4rem;
+      padding: 0.45rem 1rem;
+      background: var(--green-primary); color: white;
+      border: none; border-radius: 6px;
+      font-family: 'Poppins', sans-serif; font-size: 0.75rem; font-weight: 700;
+      cursor: pointer; text-decoration: none;
+      transition: all 0.2s;
     }
-    .nav-cta:hover { background: var(--green-accent); color: var(--ink); }
+    .nav-waitlist-btn:hover { background: var(--green-accent); color: var(--ink); }
 
     /* ── MAIN ── */
     .main {
-      max-width: 1200px; margin: 0 auto;
-      padding: 3rem 2rem 5rem;
-      position: relative; z-index: 1;
+      max-width: 1400px; margin: 0 auto;
+      padding: 2rem; position: relative; z-index: 1;
     }
 
-    /* ── DEMO BANNER ── */
-    .demo-banner {
-      display: flex; align-items: center; gap: 0.75rem;
-      background: var(--gold-light);
-      border: 1px solid rgba(200,169,106,0.3);
-      border-radius: 10px; padding: 0.85rem 1.25rem;
-      margin-bottom: 2.5rem;
-      font-size: 0.82rem; color: rgba(255,255,255,0.6);
-    }
-    .demo-banner-icon { font-size: 1rem; flex-shrink: 0; }
-    .demo-banner strong { color: var(--gold); font-weight: 700; }
-    .demo-banner a { color: var(--gold); text-decoration: underline; text-underline-offset: 2px; }
-
-    /* ── PAGE HEADER ── */
-    .page-header { margin-bottom: 3rem; }
-    .page-eyebrow {
-      font-size: 0.7rem; font-weight: 700; text-transform: uppercase;
-      letter-spacing: 2px; color: var(--green-accent); margin-bottom: 0.75rem;
-    }
-    .page-headline {
-      font-family: 'DM Serif Display', serif;
-      font-size: clamp(2rem, 4vw, 3rem);
-      color: white; line-height: 1.1; margin-bottom: 0.75rem;
-    }
-    .page-headline em { font-style: italic; color: var(--green-accent); }
-    .page-sub {
-      font-size: 1rem; color: rgba(255,255,255,0.5);
-      max-width: 580px; line-height: 1.7;
-    }
-
-    /* ── EARNINGS HERO ── */
-    .earnings-hero {
-      background: linear-gradient(135deg, rgba(26,74,53,0.7), rgba(45,106,79,0.3));
-      border: 1px solid rgba(82,183,136,0.3);
-      border-radius: 20px; padding: 2.5rem 3rem;
+    /* ── CONTEXT BANNER ── */
+    .context-banner {
+      background: linear-gradient(135deg, rgba(26,74,53,0.5), rgba(45,106,79,0.2));
+      border: 1px solid rgba(82,183,136,0.25);
+      border-radius: 14px;
+      padding: 1.5rem 2rem;
       margin-bottom: 2rem;
       display: grid;
       grid-template-columns: 1fr auto;
-      gap: 2rem; align-items: center;
-      position: relative; overflow: hidden;
+      gap: 1.5rem;
+      align-items: center;
     }
-    .earnings-hero::before {
-      content: '';
-      position: absolute; top: 0; right: 0;
-      width: 300px; height: 100%;
-      background: radial-gradient(ellipse at right, rgba(82,183,136,0.12), transparent 70%);
-      pointer-events: none;
-    }
-    .earnings-label {
-      font-size: 0.7rem; font-weight: 700; text-transform: uppercase;
+    .context-banner-left {}
+    .context-banner-eyebrow {
+      font-size: 0.65rem; font-weight: 700; text-transform: uppercase;
       letter-spacing: 2px; color: var(--green-accent); margin-bottom: 0.5rem;
     }
-    .earnings-total {
+    .context-banner-headline {
       font-family: 'DM Serif Display', serif;
-      font-size: clamp(3rem, 6vw, 4.5rem);
-      color: white; line-height: 1;
-      margin-bottom: 0.5rem;
+      font-size: 1.35rem; color: white; line-height: 1.3; margin-bottom: 0.5rem;
     }
-    .earnings-total span { color: var(--green-accent); }
-    .earnings-sub { font-size: 0.85rem; color: rgba(255,255,255,0.45); line-height: 1.6; }
-    .earnings-sub strong { color: rgba(255,255,255,0.7); }
+    .context-banner-headline em { font-style: italic; color: var(--green-accent); }
+    .context-banner-sub {
+      font-size: 0.82rem; color: rgba(255,255,255,0.55); line-height: 1.6;
+    }
+    .context-banner-right { text-align: right; }
+    .live-pill {
+      display: inline-flex; align-items: center; gap: 0.4rem;
+      font-size: 0.68rem; font-weight: 700; text-transform: uppercase; letter-spacing: 1px;
+      color: var(--green-accent); background: rgba(82,183,136,0.1);
+      border: 1px solid rgba(82,183,136,0.25); padding: 0.3rem 0.75rem;
+      border-radius: 100px; margin-bottom: 0.6rem;
+    }
+    .context-banner-link {
+      display: block; font-size: 0.75rem; color: rgba(255,255,255,0.4);
+      text-decoration: none; margin-top: 0.4rem; transition: color 0.2s;
+    }
+    .context-banner-link:hover { color: var(--green-accent); }
 
-    .earnings-stats {
-      display: flex; flex-direction: column; gap: 1rem;
-      text-align: right;
-    }
-    .estat { }
-    .estat-value {
-      font-family: 'DM Serif Display', serif;
-      font-size: 1.75rem; color: var(--green-accent); line-height: 1;
-    }
-    .estat-label { font-size: 0.72rem; color: rgba(255,255,255,0.4); margin-top: 0.2rem; }
-
-    /* ── STATS ROW ── */
-    .stats-row {
-      display: grid; grid-template-columns: repeat(4, 1fr);
-      gap: 1rem; margin-bottom: 2.5rem;
-    }
-    .stat-card {
+    /* ── SEARCH ── */
+    .search-section {
       background: var(--surface);
-      border: 1px solid rgba(82,183,136,0.1);
-      border-radius: 12px; padding: 1.25rem;
-      position: relative; overflow: hidden;
-      transition: border-color 0.2s;
+      border: 1px solid var(--rim);
+      border-radius: 16px; padding: 2rem; margin-bottom: 2rem;
     }
-    .stat-card:hover { border-color: rgba(82,183,136,0.25); }
-    .stat-card::before {
-      content: ''; position: absolute; top: 0; left: 0; right: 0; height: 2px;
-      background: linear-gradient(90deg, var(--green-accent), transparent); opacity: 0.5;
-    }
-    .stat-card-label {
-      font-size: 0.68rem; font-weight: 700; text-transform: uppercase;
-      letter-spacing: 1.5px; color: var(--ink-30); margin-bottom: 0.5rem;
-    }
-    .stat-card-value {
-      font-family: 'DM Serif Display', serif; font-size: 1.75rem;
-      color: var(--green-accent); line-height: 1; margin-bottom: 0.25rem;
-    }
-    .stat-card-sub { font-size: 0.72rem; color: var(--ink-60); }
-
-    /* ── SECTION LABEL ── */
-    .section-label {
+    .search-label {
       font-size: 0.7rem; font-weight: 700; text-transform: uppercase;
       letter-spacing: 2px; color: var(--green-accent);
-      margin-bottom: 1rem; display: flex; align-items: center; gap: 0.75rem;
+      margin-bottom: 1rem; display: block;
     }
-    .section-label::after {
-      content: ''; flex: 1; height: 1px;
-      background: linear-gradient(90deg, rgba(82,183,136,0.2), transparent);
+    .search-row { display: flex; gap: 0.75rem; flex-wrap: wrap; }
+    .domain-input {
+      flex: 1; min-width: 240px;
+      padding: 0.85rem 1.25rem;
+      background: rgba(255,255,255,0.06);
+      border: 1px solid rgba(82,183,136,0.25);
+      border-radius: 10px; color: var(--off-white);
+      font-family: var(--mono); font-size: 0.95rem;
+      transition: border-color 0.2s; outline: none;
     }
-
-    /* ── LAYOUT GRID ── */
-    .ledger-grid {
-      display: grid;
-      grid-template-columns: 1fr 340px;
-      gap: 1.5rem;
+    .domain-input:focus { border-color: var(--green-accent); background: rgba(82,183,136,0.08); }
+    .domain-input::placeholder { color: rgba(255,255,255,0.25); }
+    .btn-analyze {
+      padding: 0.85rem 1.75rem;
+      background: var(--green-primary); color: white;
+      border: none; border-radius: 10px;
+      font-family: 'Poppins', sans-serif; font-weight: 700; font-size: 0.9rem;
+      cursor: pointer; transition: all 0.2s; white-space: nowrap;
     }
-
-    /* ── TOKEN TABLE ── */
-    .token-panel {
-      background: var(--surface);
-      border: 1px solid rgba(82,183,136,0.12);
-      border-radius: 16px; overflow: hidden;
-    }
-    .token-panel-header {
-      display: flex; justify-content: space-between; align-items: center;
-      padding: 1.25rem 1.5rem;
-      border-bottom: 1px solid rgba(82,183,136,0.08);
-    }
-    .token-panel-title {
-      font-size: 0.8rem; font-weight: 700; text-transform: uppercase;
-      letter-spacing: 1.5px; color: var(--green-accent);
-    }
-    .token-filter-row {
-      display: flex; gap: 0.4rem;
-    }
-    .filter-btn {
-      padding: 0.25rem 0.7rem; border-radius: 100px;
-      font-size: 0.68rem; font-weight: 600;
+    .btn-analyze:hover { background: var(--green-accent); color: var(--ink); }
+    .btn-analyze:disabled { opacity: 0.5; cursor: not-allowed; }
+    .quick-domains { display: flex; gap: 0.5rem; flex-wrap: wrap; margin-top: 1rem; align-items: center; }
+    .quick-chip {
+      padding: 0.3rem 0.8rem;
+      background: rgba(255,255,255,0.05);
       border: 1px solid rgba(255,255,255,0.1);
-      background: transparent; color: rgba(255,255,255,0.35);
-      cursor: pointer; font-family: 'Poppins', sans-serif;
-      transition: all 0.2s;
+      border-radius: 100px; font-size: 0.75rem;
+      font-family: var(--mono); color: var(--ink-30);
+      cursor: pointer; transition: all 0.2s;
     }
-    .filter-btn.active, .filter-btn:hover {
-      border-color: rgba(82,183,136,0.4);
-      color: var(--green-accent);
-      background: rgba(82,183,136,0.08);
-    }
+    .quick-chip:hover { border-color: var(--green-accent); color: var(--green-accent); background: rgba(82,183,136,0.08); }
 
-    /* Individual token card */
-    .token-card {
-      padding: 1.25rem 1.5rem;
-      border-bottom: 1px solid rgba(255,255,255,0.04);
-      transition: background 0.15s;
-      animation: tokenIn 0.3s ease both;
+    /* ── METRICS ROW ── */
+    .metrics-row {
+      display: grid; grid-template-columns: repeat(4, 1fr);
+      gap: 1rem; margin-bottom: 2rem;
     }
-    .token-card:last-child { border-bottom: none; }
-    .token-card:hover { background: rgba(82,183,136,0.04); }
-    @keyframes tokenIn { from{opacity:0;transform:translateY(8px)} to{opacity:1;transform:translateY(0)} }
-
-    .token-top {
-      display: flex; justify-content: space-between; align-items: flex-start;
-      margin-bottom: 0.75rem;
-    }
-    .token-advertiser {
-      display: flex; align-items: center; gap: 0.6rem;
-    }
-    .token-logo {
-      width: 32px; height: 32px; border-radius: 8px;
-      display: flex; align-items: center; justify-content: center;
-      font-size: 1rem; flex-shrink: 0;
-    }
-    .token-name { font-weight: 700; font-size: 0.95rem; color: white; }
-    .token-scope { font-size: 0.72rem; color: rgba(255,255,255,0.4); margin-top: 0.1rem; font-family: var(--mono); }
-
-    .token-status {
-      display: inline-flex; align-items: center; gap: 0.35rem;
-      font-size: 0.65rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.8px;
-      padding: 0.25rem 0.65rem; border-radius: 100px; flex-shrink: 0;
-    }
-    .token-status-dot { width: 5px; height: 5px; border-radius: 50%; }
-    .status-active   { background: rgba(82,183,136,0.15);  color: var(--green-accent); border: 1px solid rgba(82,183,136,0.3); }
-    .status-active .token-status-dot   { background: var(--green-accent); animation: pulse 2s infinite; }
-    .status-expired  { background: rgba(255,255,255,0.06); color: rgba(255,255,255,0.35); border: 1px solid rgba(255,255,255,0.1); }
-    .status-expired .token-status-dot  { background: rgba(255,255,255,0.25); }
-    .status-revoked  { background: rgba(224,82,82,0.1);    color: #f09090; border: 1px solid rgba(224,82,82,0.2); }
-    .status-revoked .token-status-dot  { background: var(--red); }
-    @keyframes pulse { 0%,100%{opacity:1;transform:scale(1)} 50%{opacity:0.4;transform:scale(0.7)} }
-
-    .token-body {
-      display: grid; grid-template-columns: repeat(3, 1fr);
-      gap: 0.75rem; margin-bottom: 0.9rem;
-    }
-    .token-field { }
-    .token-field-label {
-      font-size: 0.62rem; font-weight: 600; text-transform: uppercase;
-      letter-spacing: 1px; color: var(--ink-30); margin-bottom: 0.2rem;
-    }
-    .token-field-value {
-      font-size: 0.82rem; color: rgba(255,255,255,0.75);
-      font-family: var(--mono);
-    }
-    .token-field-value.earned { color: var(--green-accent); font-weight: 700; }
-
-    /* Token ID bar */
-    .token-id-bar {
-      display: flex; justify-content: space-between; align-items: center;
-      background: rgba(0,0,0,0.3); border-radius: 6px;
-      padding: 0.5rem 0.75rem;
-    }
-    .token-id {
-      font-family: var(--mono); font-size: 0.68rem;
-      color: rgba(255,255,255,0.2); letter-spacing: 0.5px;
-    }
-    .token-id-actions { display: flex; gap: 0.5rem; }
-    .token-action-btn {
-      font-size: 0.65rem; font-weight: 600; text-transform: uppercase;
-      letter-spacing: 0.5px; padding: 0.2rem 0.6rem;
-      border-radius: 4px; border: none; cursor: pointer;
-      font-family: 'Poppins', sans-serif; transition: all 0.2s;
-    }
-    .btn-revoke { background: rgba(224,82,82,0.1); color: #f09090; }
-    .btn-revoke:hover { background: rgba(224,82,82,0.2); }
-    .btn-renew  { background: rgba(82,183,136,0.1); color: var(--green-accent); }
-    .btn-renew:hover  { background: rgba(82,183,136,0.2); }
-    .btn-view   { background: rgba(255,255,255,0.05); color: rgba(255,255,255,0.4); }
-    .btn-view:hover   { background: rgba(255,255,255,0.1); color: rgba(255,255,255,0.7); }
-
-    /* ── AUDIT LOG ── */
-    .audit-panel {
+    .metric-card {
       background: var(--surface);
       border: 1px solid rgba(82,183,136,0.12);
-      border-radius: 16px; overflow: hidden;
+      border-radius: 12px; padding: 1.5rem;
+      position: relative; overflow: hidden; transition: border-color 0.2s;
     }
-    .audit-header {
-      padding: 1.25rem 1.5rem;
-      border-bottom: 1px solid rgba(82,183,136,0.08);
+    .metric-card:hover { border-color: rgba(82,183,136,0.3); }
+    .metric-card::before {
+      content: ''; position: absolute; top: 0; left: 0; right: 0; height: 2px;
+      background: linear-gradient(90deg, var(--green-accent), transparent); opacity: 0.6;
     }
-    .audit-title {
-      font-size: 0.8rem; font-weight: 700; text-transform: uppercase;
-      letter-spacing: 1.5px; color: var(--green-accent);
+    .metric-label {
+      font-size: 0.7rem; font-weight: 600; text-transform: uppercase;
+      letter-spacing: 1.5px; color: var(--ink-30); margin-bottom: 0.5rem;
+      display: flex; align-items: center; gap: 0.4rem;
     }
-    .audit-subtitle { font-size: 0.72rem; color: rgba(255,255,255,0.3); margin-top: 0.2rem; }
-
-    /* Timeline entries */
-    .audit-entry {
-      display: flex; gap: 0.9rem; padding: 0.9rem 1.5rem;
-      border-bottom: 1px solid rgba(255,255,255,0.04);
-      position: relative;
-    }
-    .audit-entry:last-child { border-bottom: none; }
-
-    .audit-line {
-      position: absolute; left: calc(1.5rem + 7px); top: 2.6rem;
-      width: 1px; bottom: 0;
-      background: linear-gradient(180deg, rgba(82,183,136,0.15), transparent);
-    }
-    .audit-entry:last-child .audit-line { display: none; }
-
-    .audit-dot-wrap { padding-top: 3px; flex-shrink: 0; }
-    .audit-dot {
+    .metric-info-btn {
+      display: inline-flex; align-items: center; justify-content: center;
       width: 15px; height: 15px; border-radius: 50%;
-      display: flex; align-items: center; justify-content: center;
-      font-size: 0.5rem;
-      flex-shrink: 0;
+      border: 1px solid rgba(82,183,136,0.4); background: transparent;
+      color: var(--green-accent); font-size: 0.6rem; font-weight: 700;
+      cursor: pointer; transition: all 0.2s; flex-shrink: 0;
+      font-family: 'Poppins', sans-serif; line-height: 1; padding: 0;
     }
-    .audit-dot.issued   { background: rgba(82,183,136,0.2);  border: 1px solid rgba(82,183,136,0.5); color: var(--green-accent); }
-    .audit-dot.payment  { background: rgba(200,169,106,0.2); border: 1px solid rgba(200,169,106,0.5); color: var(--gold); }
-    .audit-dot.blocked  { background: rgba(212,147,10,0.15); border: 1px solid rgba(212,147,10,0.4); color: var(--amber); }
-    .audit-dot.revoked  { background: rgba(224,82,82,0.15);  border: 1px solid rgba(224,82,82,0.4);  color: var(--red); }
-    .audit-dot.enforced { background: rgba(82,183,136,0.15); border: 1px solid rgba(82,183,136,0.3); color: var(--green-accent); }
-    .audit-dot.expired  { background: rgba(255,255,255,0.05); border: 1px solid rgba(255,255,255,0.15); color: rgba(255,255,255,0.3); }
+    .metric-info-btn:hover { background: var(--green-accent); color: #111; border-color: var(--green-accent); }
+    .metric-value { font-family: 'DM Serif Display', serif; font-size: 2.25rem; color: var(--green-accent); line-height: 1; margin-bottom: 0.3rem; }
+    .metric-sub { font-size: 0.75rem; color: var(--ink-60); }
 
-    .audit-content { flex: 1; min-width: 0; }
-    .audit-event {
-      font-size: 0.78rem; color: rgba(255,255,255,0.75);
-      font-weight: 600; line-height: 1.4; margin-bottom: 0.15rem;
+    /* ── METRIC MODAL ── */
+    .metric-modal-overlay {
+      display: none; position: fixed; inset: 0;
+      background: rgba(0,0,0,0.78); backdrop-filter: blur(4px);
+      z-index: 1000; align-items: center; justify-content: center; padding: 1.5rem;
     }
-    .audit-event span { color: var(--green-accent); }
-    .audit-event span.gold { color: var(--gold); }
-    .audit-event span.red { color: #f09090; }
-    .audit-event span.amber { color: #e8b860; }
-    .audit-detail {
-      font-size: 0.68rem; color: rgba(255,255,255,0.3);
-      font-family: var(--mono); line-height: 1.5;
+    .metric-modal-overlay.open { display: flex; }
+    .metric-modal {
+      background: #151f18; border: 1px solid rgba(82,183,136,0.25);
+      border-radius: 16px; padding: 2.5rem; max-width: 520px; width: 100%;
+      position: relative; animation: modalIn 0.2s ease;
     }
-    .audit-time {
-      font-size: 0.62rem; color: rgba(255,255,255,0.2);
-      font-family: var(--mono); white-space: nowrap; padding-top: 3px;
-      flex-shrink: 0;
+    @keyframes modalIn { from{opacity:0;transform:translateY(12px) scale(0.97)} to{opacity:1;transform:translateY(0) scale(1)} }
+    .metric-modal-close {
+      position: absolute; top: 1.25rem; right: 1.25rem;
+      background: rgba(255,255,255,0.06); border: none; color: rgba(255,255,255,0.4);
+      width: 28px; height: 28px; border-radius: 50%; cursor: pointer;
+      font-size: 0.85rem; display: flex; align-items: center; justify-content: center; transition: all 0.2s;
     }
+    .metric-modal-close:hover { background: rgba(255,255,255,0.12); color: white; }
+    .metric-modal-tag { font-size: 0.65rem; font-weight: 700; text-transform: uppercase; letter-spacing: 2px; color: var(--green-accent); margin-bottom: 0.6rem; }
+    .metric-modal-title { font-family: 'DM Serif Display', serif; font-size: 1.75rem; color: white; margin-bottom: 1.25rem; line-height: 1.2; }
+    .metric-modal-body { font-size: 0.875rem; color: rgba(255,255,255,0.65); line-height: 1.8; }
+    .metric-modal-body p + p { margin-top: 0.9rem; }
+    .metric-modal-scale {
+      margin-top: 1.25rem; background: rgba(255,255,255,0.04);
+      border: 1px solid rgba(255,255,255,0.07); border-radius: 10px; padding: 1.1rem 1.25rem;
+    }
+    .metric-modal-scale-title { font-size: 0.65rem; font-weight: 700; text-transform: uppercase; letter-spacing: 1.5px; color: rgba(255,255,255,0.35); margin-bottom: 0.75rem; }
+    .scale-row { display: flex; align-items: baseline; gap: 0.75rem; padding: 0.3rem 0; font-size: 0.82rem; border-bottom: 1px solid rgba(255,255,255,0.04); }
+    .scale-row:last-child { border-bottom: none; }
+    .scale-range { font-family: 'JetBrains Mono', monospace; font-size: 0.75rem; font-weight: 600; min-width: 52px; }
+    .scale-low { color: var(--green-accent); }
+    .scale-mid { color: #e8b860; }
+    .scale-high { color: #f07070; }
+    .scale-desc { color: rgba(255,255,255,0.5); line-height: 1.4; }
+    .metric-modal-disclaimer { margin-top: 1.25rem; font-size: 0.72rem; color: rgba(255,255,255,0.25); line-height: 1.6; font-style: italic; }
 
-    /* ── EARNINGS BREAKDOWN (sidebar below audit) ── */
-    .earnings-breakdown {
+    /* ── CONTENT GRID ── */
+    .content-grid { display: grid; grid-template-columns: 1fr 380px; gap: 1.5rem; }
+
+    /* ── PANELS ── */
+    .panel {
       background: var(--surface);
       border: 1px solid rgba(82,183,136,0.12);
       border-radius: 16px; overflow: hidden;
-      margin-top: 1.5rem;
     }
-    .eb-header {
-      padding: 1.25rem 1.5rem;
-      border-bottom: 1px solid rgba(82,183,136,0.08);
-    }
-    .eb-title {
-      font-size: 0.8rem; font-weight: 700; text-transform: uppercase;
-      letter-spacing: 1.5px; color: var(--green-accent);
-    }
-    .eb-row {
+    .panel-header {
       display: flex; justify-content: space-between; align-items: center;
-      padding: 0.85rem 1.5rem;
-      border-bottom: 1px solid rgba(255,255,255,0.04);
-      font-size: 0.82rem;
+      padding: 1.25rem 1.5rem; border-bottom: 1px solid rgba(82,183,136,0.08);
     }
-    .eb-row:last-child { border-bottom: none; }
-    .eb-row-label { color: rgba(255,255,255,0.5); }
-    .eb-row-label small { display: block; font-size: 0.68rem; color: rgba(255,255,255,0.25); font-family: var(--mono); margin-top: 0.1rem; }
-    .eb-row-amount { font-weight: 700; font-family: var(--mono); }
-    .eb-row-amount.positive { color: var(--green-accent); }
-    .eb-row-amount.neutral  { color: rgba(255,255,255,0.4); }
-    .eb-total {
-      display: flex; justify-content: space-between; align-items: center;
-      padding: 1.1rem 1.5rem;
-      background: rgba(82,183,136,0.06);
-      border-top: 1px solid rgba(82,183,136,0.15);
-      font-size: 0.9rem; font-weight: 700;
-    }
-    .eb-total-label { color: rgba(255,255,255,0.6); }
-    .eb-total-amount { font-family: 'DM Serif Display', serif; font-size: 1.5rem; color: var(--green-accent); }
+    .panel-title { font-size: 0.8rem; font-weight: 700; text-transform: uppercase; letter-spacing: 1.5px; color: var(--green-accent); }
+    .panel-body { padding: 1.5rem; }
 
-    /* ── CTA BLOCK ── */
-    .ledger-cta {
-      margin-top: 3rem;
-      background: linear-gradient(135deg, rgba(26,74,53,0.6), rgba(45,106,79,0.25));
-      border: 1px solid rgba(82,183,136,0.3);
-      border-radius: 16px; padding: 2.5rem 3rem;
-      display: grid; grid-template-columns: 1fr auto;
-      gap: 2rem; align-items: center;
+    /* ── SCORE CARDS ── */
+    .scores-row { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; margin-bottom: 1.5rem; }
+    .score-card { background: rgba(0,0,0,0.25); border-radius: 12px; padding: 1.25rem; text-align: center; }
+    .score-number { font-family: 'DM Serif Display', serif; font-size: 3rem; line-height: 1; margin-bottom: 0.3rem; }
+    .score-label { font-size: 0.7rem; font-weight: 600; text-transform: uppercase; letter-spacing: 1px; color: var(--ink-30); }
+    .score-risk   { color: var(--red); }
+    .score-medium { color: var(--amber); }
+    .score-safe   { color: var(--green-accent); }
+
+    /* ── FINDINGS ── */
+    .finding-item { display: flex; gap: 0.75rem; padding: 0.9rem 0; border-bottom: 1px solid rgba(255,255,255,0.05); align-items: flex-start; }
+    .finding-item:last-child { border-bottom: none; }
+    .finding-icon { width: 28px; height: 28px; min-width: 28px; border-radius: 6px; display: flex; align-items: center; justify-content: center; font-size: 0.75rem; margin-top: 1px; }
+    .finding-icon.red   { background: rgba(224,82,82,0.15); }
+    .finding-icon.amber { background: rgba(212,147,10,0.15); }
+    .finding-icon.green { background: rgba(82,183,136,0.15); }
+    .finding-text { font-size: 0.85rem; color: rgba(255,255,255,0.7); line-height: 1.5; }
+    .finding-text strong { color: var(--off-white); font-weight: 600; display: block; margin-bottom: 0.1rem; }
+
+    /* ── AD LIST ── */
+    .ads-section-header {
+      display: flex; justify-content: space-between; align-items: center;
+      margin: 1.75rem 0 0.9rem;
     }
-    .ledger-cta-eyebrow {
+    .ads-section-label {
       font-size: 0.7rem; font-weight: 700; text-transform: uppercase;
-      letter-spacing: 2px; color: var(--green-accent); margin-bottom: 0.5rem;
+      letter-spacing: 1.5px; color: var(--ink-30);
     }
-    .ledger-cta-headline {
-      font-family: 'DM Serif Display', serif;
-      font-size: 1.75rem; color: white; line-height: 1.2; margin-bottom: 0.6rem;
-    }
-    .ledger-cta-headline em { font-style: italic; color: var(--green-accent); }
-    .ledger-cta-sub { font-size: 0.875rem; color: rgba(255,255,255,0.5); line-height: 1.6; }
-    .ledger-cta-right { display: flex; flex-direction: column; gap: 0.75rem; align-items: flex-end; }
-    .btn-cta-primary {
-      padding: 0.9rem 2rem; background: var(--green-accent); color: var(--ink);
-      border: none; border-radius: 8px; font-family: 'Poppins', sans-serif;
-      font-weight: 700; font-size: 0.9rem; cursor: pointer;
-      text-decoration: none; transition: all 0.2s; white-space: nowrap;
+    .pii-notice {
       display: inline-flex; align-items: center; gap: 0.4rem;
+      font-size: 0.65rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.8px;
+      background: rgba(82,183,136,0.1); color: var(--green-accent);
+      border: 1px solid rgba(82,183,136,0.25); padding: 0.25rem 0.65rem; border-radius: 100px;
     }
-    .btn-cta-primary:hover { background: #6dcfa0; transform: translateY(-1px); box-shadow: 0 6px 20px rgba(82,183,136,0.3); }
-    .btn-cta-secondary {
-      font-size: 0.78rem; color: rgba(255,255,255,0.35);
-      text-decoration: none; transition: color 0.2s; text-align: center;
-    }
-    .btn-cta-secondary:hover { color: var(--green-accent); }
+    .pii-notice-dot { width: 5px; height: 5px; background: var(--green-accent); border-radius: 50%; }
 
-    /* ── WAITLIST FORM ── */
-    .waitlist-row { display: flex; gap: 0.6rem; }
-    .waitlist-input {
-      flex: 1; padding: 0.8rem 1rem;
+    .ad-item {
+      background: rgba(0,0,0,0.2); border: 1px solid rgba(255,255,255,0.06);
+      border-radius: 10px; padding: 1rem; margin-bottom: 0.75rem; transition: border-color 0.2s;
+    }
+    .ad-item:hover { border-color: rgba(82,183,136,0.25); }
+    .ad-item.is-anonymized { border-color: rgba(82,183,136,0.18); }
+
+    .ad-meta { display: flex; justify-content: space-between; align-items: center; margin-bottom: 0.5rem; gap: 0.5rem; flex-wrap: wrap; }
+    .ad-advertiser-row { display: flex; align-items: center; gap: 0.5rem; flex-wrap: wrap; }
+    .ad-domain { font-family: var(--mono); font-size: 0.78rem; color: var(--green-accent); }
+    .ad-domain.anon { color: rgba(82,183,136,0.6); font-style: italic; }
+
+    .ad-format {
+      font-size: 0.65rem; font-weight: 600; text-transform: uppercase; letter-spacing: 1px;
+      background: rgba(82,183,136,0.1); color: var(--green-accent);
+      border: 1px solid rgba(82,183,136,0.2); padding: 0.15rem 0.5rem; border-radius: 100px;
+    }
+
+    /* PII PROTECTED BADGE */
+    .pii-badge {
+      display: inline-flex; align-items: center; gap: 0.3rem;
+      font-size: 0.6rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.8px;
+      background: rgba(82,183,136,0.08); color: var(--green-accent);
+      border: 1px solid rgba(82,183,136,0.2); padding: 0.12rem 0.45rem; border-radius: 100px;
+    }
+    .pii-badge-icon { font-size: 0.55rem; }
+
+    .ad-text { font-size: 0.85rem; color: rgba(255,255,255,0.55); line-height: 1.5; margin-bottom: 0.5rem; }
+    .ad-footer { display: flex; gap: 0.75rem; font-size: 0.7rem; color: var(--ink-30); font-family: var(--mono); flex-wrap: wrap; }
+
+    /* ── CONSENT MOMENT ── */
+    /* Appears after results render — slides in below the ad list */
+    .consent-moment {
+      margin-top: 2rem;
+      background: linear-gradient(135deg, rgba(26,74,53,0.6), rgba(45,106,79,0.25));
+      border: 1px solid rgba(82,183,136,0.35);
+      border-radius: 14px;
+      padding: 2rem;
+      position: relative;
+      overflow: hidden;
+      animation: slideUp 0.5s 0.3s ease both;
+    }
+    @keyframes slideUp { from{opacity:0;transform:translateY(20px)} to{opacity:1;transform:translateY(0)} }
+    .consent-moment::before {
+      content: '';
+      position: absolute; top: 0; left: 0; right: 0; bottom: 0;
+      background: radial-gradient(ellipse 80% 60% at 0% 50%, rgba(82,183,136,0.08), transparent);
+      pointer-events: none;
+    }
+    .consent-moment-eyebrow {
+      font-size: 0.65rem; font-weight: 700; text-transform: uppercase;
+      letter-spacing: 2px; color: var(--green-accent); margin-bottom: 0.75rem;
+    }
+    .consent-moment-headline {
+      font-family: 'DM Serif Display', serif;
+      font-size: 1.45rem; color: white; line-height: 1.3; margin-bottom: 0.75rem;
+    }
+    .consent-moment-headline em { font-style: italic; color: var(--green-accent); }
+    .consent-moment-body {
+      font-size: 0.875rem; color: rgba(255,255,255,0.65); line-height: 1.7; margin-bottom: 1.5rem;
+    }
+    .consent-moment-body strong { color: rgba(255,255,255,0.85); }
+    .consent-actions { display: flex; gap: 0.75rem; flex-wrap: wrap; align-items: center; }
+    .btn-waitlist {
+      display: inline-flex; align-items: center; gap: 0.5rem;
+      padding: 0.8rem 1.5rem;
+      background: var(--green-accent); color: var(--ink);
+      border: none; border-radius: 8px;
+      font-family: 'Poppins', sans-serif; font-weight: 700; font-size: 0.875rem;
+      cursor: pointer; transition: all 0.2s; text-decoration: none;
+    }
+    .btn-waitlist:hover { background: #6dcfa0; transform: translateY(-1px); box-shadow: 0 6px 20px rgba(82,183,136,0.3); }
+    .btn-learn {
+      display: inline-flex; align-items: center; gap: 0.4rem;
+      font-size: 0.82rem; color: rgba(255,255,255,0.5);
+      text-decoration: none; transition: color 0.2s; background: none; border: none;
+      font-family: 'Poppins', sans-serif; cursor: pointer;
+    }
+    .btn-learn:hover { color: var(--green-accent); }
+    .consent-moment-note {
+      margin-top: 1.25rem;
+      font-size: 0.72rem; color: rgba(255,255,255,0.3); line-height: 1.6;
+      border-top: 1px solid rgba(255,255,255,0.06); padding-top: 1rem;
+    }
+
+    /* ── WAITLIST INLINE FORM ── */
+    .waitlist-inline {
+      display: none;
+      margin-top: 1.25rem;
+      animation: slideUp 0.3s ease both;
+    }
+    .waitlist-inline.open { display: block; }
+    .waitlist-inline-row { display: flex; gap: 0.6rem; }
+    .waitlist-email-input {
+      flex: 1;
+      padding: 0.75rem 1rem;
       background: rgba(255,255,255,0.07);
       border: 1px solid rgba(82,183,136,0.3);
       border-radius: 8px; color: white;
       font-family: var(--mono); font-size: 0.875rem; outline: none;
-      transition: border-color 0.2s; min-width: 200px;
+      transition: border-color 0.2s;
     }
-    .waitlist-input:focus { border-color: var(--green-accent); }
-    .waitlist-input::placeholder { color: rgba(255,255,255,0.2); }
-    .btn-waitlist-submit {
-      padding: 0.8rem 1.25rem;
+    .waitlist-email-input:focus { border-color: var(--green-accent); }
+    .waitlist-email-input::placeholder { color: rgba(255,255,255,0.25); }
+    .btn-submit-waitlist {
+      padding: 0.75rem 1.25rem;
       background: var(--green-primary); color: white;
       border: none; border-radius: 8px;
       font-family: 'Poppins', sans-serif; font-weight: 700; font-size: 0.82rem;
       cursor: pointer; transition: all 0.2s; white-space: nowrap;
     }
-    .btn-waitlist-submit:hover { background: var(--green-accent); color: var(--ink); }
-    .waitlist-note { font-size: 0.68rem; color: rgba(255,255,255,0.25); margin-top: 0.5rem; }
+    .btn-submit-waitlist:hover { background: var(--green-accent); color: var(--ink); }
+    .waitlist-privacy-note { font-size: 0.7rem; color: rgba(255,255,255,0.3); margin-top: 0.6rem; }
+
+    /* ── SIDE PANELS ── */
+    .side-stack { display: flex; flex-direction: column; gap: 1.5rem; }
+
+    .adworth-value {
+      background: linear-gradient(135deg, rgba(45,106,79,0.3), rgba(82,183,136,0.1));
+      border: 1px solid rgba(82,183,136,0.3); border-radius: 12px; padding: 1.25rem;
+      font-size: 0.875rem; color: rgba(255,255,255,0.8); line-height: 1.6; font-style: italic;
+    }
+    .adworth-value strong { display: block; color: var(--green-accent); font-style: normal; font-size: 0.7rem; text-transform: uppercase; letter-spacing: 1.5px; margin-bottom: 0.5rem; }
+
+    .tags-list { display: flex; flex-wrap: wrap; gap: 0.4rem; padding: 1rem 1.5rem 1.5rem; }
+    .tag { padding: 0.3rem 0.7rem; border-radius: 100px; font-size: 0.72rem; font-weight: 500; border: 1px solid; }
+    .tag-red   { background: rgba(224,82,82,0.1);  border-color: rgba(224,82,82,0.3);  color: #f09090; }
+    .tag-amber { background: rgba(212,147,10,0.1); border-color: rgba(212,147,10,0.3); color: #e8b860; }
+    .tag-green { background: rgba(82,183,136,0.1); border-color: rgba(82,183,136,0.3); color: var(--green-accent); }
+
+    /* ── WHAT IS ADWORTH PANEL ── */
+    .explainer-panel {
+      background: linear-gradient(160deg, rgba(26,74,53,0.45), rgba(11,24,16,0.6));
+      border: 1px solid rgba(82,183,136,0.2); border-radius: 16px; overflow: hidden;
+    }
+    .explainer-header {
+      padding: 1.25rem 1.5rem; border-bottom: 1px solid rgba(82,183,136,0.1);
+    }
+    .explainer-title { font-size: 0.8rem; font-weight: 700; text-transform: uppercase; letter-spacing: 1.5px; color: var(--green-accent); }
+    .explainer-body { padding: 1.5rem; }
+    .explainer-step {
+      display: flex; gap: 0.9rem; margin-bottom: 1.1rem; align-items: flex-start;
+    }
+    .explainer-step:last-child { margin-bottom: 0; }
+    .explainer-num {
+      width: 24px; height: 24px; min-width: 24px;
+      background: rgba(82,183,136,0.15); border: 1px solid rgba(82,183,136,0.3);
+      border-radius: 50%; display: flex; align-items: center; justify-content: center;
+      font-size: 0.65rem; font-weight: 800; color: var(--green-accent); margin-top: 1px;
+    }
+    .explainer-text { font-size: 0.82rem; color: rgba(255,255,255,0.6); line-height: 1.55; }
+    .explainer-text strong { color: rgba(255,255,255,0.85); font-weight: 600; }
+    .explainer-cta {
+      margin-top: 1.5rem; padding-top: 1.25rem;
+      border-top: 1px solid rgba(82,183,136,0.1);
+    }
+    .explainer-cta-btn {
+      display: block; width: 100%; text-align: center;
+      padding: 0.75rem;
+      background: rgba(82,183,136,0.12); color: var(--green-accent);
+      border: 1px solid rgba(82,183,136,0.25); border-radius: 8px;
+      font-family: 'Poppins', sans-serif; font-size: 0.78rem; font-weight: 700;
+      text-decoration: none; transition: all 0.2s; cursor: pointer;
+    }
+    .explainer-cta-btn:hover { background: rgba(82,183,136,0.2); border-color: rgba(82,183,136,0.4); }
+
+    /* ── HISTORY ── */
+    .history-item {
+      display: flex; justify-content: space-between; align-items: center;
+      padding: 0.75rem 1.5rem; border-bottom: 1px solid rgba(255,255,255,0.04);
+      cursor: pointer; transition: background 0.15s;
+    }
+    .history-item:hover { background: rgba(82,183,136,0.05); }
+    .history-domain { font-family: var(--mono); font-size: 0.82rem; color: var(--off-white); }
+    .history-score { font-size: 0.75rem; font-weight: 700; padding: 0.2rem 0.6rem; border-radius: 100px; }
+
+    /* ── LOADING ── */
+    .loading-state { text-align: center; padding: 4rem 2rem; color: var(--ink-30); }
+    .spinner { width: 40px; height: 40px; border: 3px solid rgba(82,183,136,0.1); border-top-color: var(--green-accent); border-radius: 50%; animation: spin 0.8s linear infinite; margin: 0 auto 1.5rem; }
+    @keyframes spin { to { transform: rotate(360deg); } }
+    .loading-text { font-family: var(--mono); font-size: 0.85rem; color: var(--green-accent); }
+    .loading-steps { margin-top: 1rem; }
+    .loading-step { font-size: 0.75rem; color: var(--ink-30); padding: 0.25rem 0; opacity: 0; animation: fadeIn 0.4s forwards; }
+    @keyframes fadeIn { to { opacity: 1; } }
+
+    /* ── EMPTY / ERROR ── */
+    .empty-state { text-align: center; padding: 5rem 2rem; }
+    .empty-icon { font-size: 3rem; margin-bottom: 1rem; opacity: 0.4; }
+    .empty-title { font-family: 'DM Serif Display', serif; font-size: 1.5rem; color: var(--off-white); margin-bottom: 0.5rem; opacity: 0.6; }
+    .empty-sub { font-size: 0.875rem; color: var(--ink-30); }
+    .error-banner {
+      background: rgba(224,82,82,0.1); border: 1px solid rgba(224,82,82,0.3);
+      border-radius: 10px; padding: 1rem 1.25rem; font-size: 0.85rem;
+      color: #f09090; margin-bottom: 1.5rem; display: none;
+    }
 
     /* ── FOOTER ── */
     footer {
       text-align: center; padding: 3rem 2rem 2rem;
-      font-size: 0.75rem; color: rgba(255,255,255,0.2);
-      position: relative; z-index: 1;
+      font-size: 0.75rem; color: var(--ink-30); position: relative; z-index: 1;
     }
-    footer a { color: rgba(255,255,255,0.3); text-decoration: none; }
+    footer a { color: var(--ink-30); text-decoration: none; }
     footer a:hover { color: var(--green-accent); }
 
     /* ── RESPONSIVE ── */
-    @media (max-width: 1000px) {
-      .ledger-grid { grid-template-columns: 1fr; }
-      .stats-row { grid-template-columns: repeat(2, 1fr); }
-      .earnings-hero { grid-template-columns: 1fr; }
-      .earnings-stats { flex-direction: row; text-align: left; }
-      .ledger-cta { grid-template-columns: 1fr; }
-      .ledger-cta-right { align-items: flex-start; }
+    @media (max-width: 1100px) {
+      .content-grid { grid-template-columns: 1fr; }
+      .metrics-row { grid-template-columns: repeat(2, 1fr); }
+      .context-banner { grid-template-columns: 1fr; }
+      .context-banner-right { text-align: left; }
     }
     @media (max-width: 600px) {
-      .stats-row { grid-template-columns: repeat(2, 1fr); }
-      .token-body { grid-template-columns: 1fr 1fr; }
-      .main { padding: 1.5rem 1rem 4rem; }
-      .earnings-hero { padding: 1.75rem; }
-      .ledger-cta { padding: 1.75rem; }
-      .waitlist-row { flex-direction: column; }
+      .metrics-row { grid-template-columns: repeat(2, 1fr); }
+      .scores-row { grid-template-columns: 1fr; }
+      .main { padding: 1rem; }
+      .consent-actions { flex-direction: column; align-items: flex-start; }
+      .waitlist-inline-row { flex-direction: column; }
     }
   </style>
 </head>
 <body>
 
-<header>
-  <nav>
-    <a href="/" class="logo">
-      <span class="logo-text">Adworth℠</span>
-      <span class="badge">Consent Ledger</span>
-    </a>
-    <div class="nav-right">
-      <a href="/dashboard.html" class="nav-link">← Dashboard</a>
-      <a href="/" class="nav-link">Home</a>
-      <a href="/#waitlist" class="nav-cta">Join Waitlist →</a>
-    </div>
-  </nav>
-</header>
-
-<div class="main">
-
-  <!-- DEMO BANNER — always visible, clearly labels this as simulated -->
-  <div class="demo-banner">
-    <span class="demo-banner-icon">⚡</span>
-    <div>
-      <strong>Preview · Simulated Data</strong> — This is what your personal consent ledger would look like with Adworth. All advertiser names, token IDs, earnings figures, and events shown here are illustrative examples.
-      <a href="/#waitlist">Join the waitlist</a> to be notified when real ledgers launch.
-    </div>
-  </div>
-
-  <!-- PAGE HEADER -->
-  <div class="page-header">
-    <div class="page-eyebrow">My Consent Ledger</div>
-    <h1 class="page-headline">Your data. Your terms. <em>Your earnings.</em></h1>
-    <p class="page-sub">Every consent token you issue, every payment you receive, every deletion you enforce — recorded permanently on an append-only ledger that no one can modify, including us.</p>
-  </div>
-
-  <!-- EARNINGS HERO -->
-  <div class="earnings-hero">
-    <div>
-      <div class="earnings-label">Total Earned · All Time</div>
-      <div class="earnings-total"><span>$</span>14.73</div>
-      <div class="earnings-sub">
-        From <strong>6 consent tokens</strong> across 4 advertisers ·
-        <strong>$4.20/mo</strong> current active rate ·
-        <strong>2 tokens</strong> pending renewal
-      </div>
-    </div>
-    <div class="earnings-stats">
-      <div class="estat">
-        <div class="estat-value">6</div>
-        <div class="estat-label">Tokens issued</div>
-      </div>
-      <div class="estat">
-        <div class="estat-value">2</div>
-        <div class="estat-label">Active now</div>
-      </div>
-      <div class="estat">
-        <div class="estat-value">1</div>
-        <div class="estat-label">You revoked</div>
-      </div>
-    </div>
-  </div>
-
-  <!-- STATS ROW -->
-  <div class="stats-row">
-    <div class="stat-card">
-      <div class="stat-card-label">Access Requests</div>
-      <div class="stat-card-value">41</div>
-      <div class="stat-card-sub">38 granted · 3 blocked</div>
-    </div>
-    <div class="stat-card">
-      <div class="stat-card-label">Violations Detected</div>
-      <div class="stat-card-value">1</div>
-      <div class="stat-card-sub">1 removal notice auto-sent</div>
-    </div>
-    <div class="stat-card">
-      <div class="stat-card-label">Adworth Fee (2%)</div>
-      <div class="stat-card-value" style="font-size:1.5rem;">$0.30</div>
-      <div class="stat-card-sub">on $14.73 earned · transparent</div>
-    </div>
-    <div class="stat-card">
-      <div class="stat-card-label">Ledger Entries</div>
-      <div class="stat-card-value">58</div>
-      <div class="stat-card-sub">append-only · tamper-evident</div>
-    </div>
-  </div>
-
-  <!-- MAIN LEDGER GRID -->
-  <div class="section-label">Consent Tokens</div>
-  <div class="ledger-grid">
-
-    <!-- LEFT: Token cards -->
-    <div>
-      <div class="token-panel">
-        <div class="token-panel-header">
-          <span class="token-panel-title">All Tokens</span>
-          <div class="token-filter-row">
-            <button class="filter-btn active" onclick="filterTokens('all', this)">All</button>
-            <button class="filter-btn" onclick="filterTokens('active', this)">Active</button>
-            <button class="filter-btn" onclick="filterTokens('expired', this)">Expired</button>
-            <button class="filter-btn" onclick="filterTokens('revoked', this)">Revoked</button>
-          </div>
+  <header>
+    <nav>
+      <a href="/" class="logo">
+        <span class="logo-text">Adworth℠</span>
+        <span class="badge">Ad Transparency</span>
+      </a>
+      <div class="nav-right">
+        <div class="status-dot" id="api-status">
+          <span class="dot" id="status-dot"></span>
+          <span id="status-text">Connecting…</span>
         </div>
-        <div id="token-list"></div>
+        <a href="/#waitlist" class="nav-waitlist-btn">Join Waitlist →</a>
+      </div>
+    </nav>
+  </header>
+
+  <div class="main">
+
+    <!-- Context banner — sets the stage before any search -->
+    <div class="context-banner">
+      <div class="context-banner-left">
+        <div class="context-banner-eyebrow">What You're Looking At</div>
+        <div class="context-banner-headline">
+          Real ads. Real data. <em>Zero consent from you.</em>
+        </div>
+        <div class="context-banner-sub">
+          This tool pulls live advertising data from Google's Ads Transparency Center — the same ads targeting people right now. Enter any domain to see who's running ads, how long they've been running, and what your data is worth to them. Then see what Adworth would do about it.
+        </div>
+      </div>
+      <div class="context-banner-right">
+        <div class="live-pill"><span class="dot"></span> Live Data</div>
+        <a href="/enterprise.html" class="context-banner-link">Investor Overview →</a>
+        <a href="/" class="context-banner-link">← Back to Home</a>
       </div>
     </div>
 
-    <!-- RIGHT: Audit log + earnings breakdown -->
-    <div>
-
-      <div class="audit-panel">
-        <div class="audit-header">
-          <div class="audit-title">Invisibility Ledger</div>
-          <div class="audit-subtitle">Append-only · No one can modify this</div>
-        </div>
-        <div id="audit-log"></div>
+    <!-- Search -->
+    <div class="search-section">
+      <span class="search-label">Analyze Any Advertiser</span>
+      <div class="search-row">
+        <input class="domain-input" id="domain-input" type="text"
+          placeholder="Enter domain — e.g. nike.com" autocomplete="off" spellcheck="false">
+        <button class="btn-analyze" id="analyze-btn" onclick="analyzeDomain()">Analyze →</button>
       </div>
-
-      <div class="earnings-breakdown">
-        <div class="eb-header">
-          <div class="eb-title">Earnings Breakdown</div>
-        </div>
-        <div class="eb-row">
-          <div class="eb-row-label">Spotify USA Inc<small>Music targeting · 30 days · Active</small></div>
-          <div class="eb-row-amount positive">+$2.50</div>
-        </div>
-        <div class="eb-row">
-          <div class="eb-row-label">Spotify USA Inc<small>Podcast targeting · 30 days · Active</small></div>
-          <div class="eb-row-amount positive">+$1.70</div>
-        </div>
-        <div class="eb-row">
-          <div class="eb-row-label">RunnerBrand Co.<small>Athletic data · 60 days · Expired</small></div>
-          <div class="eb-row-amount positive">+$6.00</div>
-        </div>
-        <div class="eb-row">
-          <div class="eb-row-label">TechGadget Inc.<small>Purchase intent · 30 days · Expired</small></div>
-          <div class="eb-row-amount positive">+$2.80</div>
-        </div>
-        <div class="eb-row">
-          <div class="eb-row-label">ClearVPN Ltd.<small>Privacy tools · 14 days · Revoked by you</small></div>
-          <div class="eb-row-amount neutral">$1.73 (partial)</div>
-        </div>
-        <div class="eb-row">
-          <div class="eb-row-label">Advertiser Co.<small>Generic targeting · 7 days · Expired</small></div>
-          <div class="eb-row-amount positive">+$0.00</div>
-        </div>
-        <div class="eb-row" style="border-top:1px solid rgba(82,183,136,0.1);">
-          <div class="eb-row-label" style="color:rgba(255,255,255,0.3); font-size:0.75rem;">Adworth platform fee (2%)</div>
-          <div class="eb-row-amount neutral" style="font-size:0.78rem;">−$0.30</div>
-        </div>
-        <div class="eb-total">
-          <span class="eb-total-label">Your net earnings</span>
-          <span class="eb-total-amount">$14.43</span>
-        </div>
+      <div class="quick-domains">
+        <span class="search-label" style="margin:0; align-self:center;">Try:</span>
+        <span class="quick-chip" onclick="quickSearch('apple.com')">apple.com</span>
+        <span class="quick-chip" onclick="quickSearch('amazon.com')">amazon.com</span>
+        <span class="quick-chip" onclick="quickSearch('spotify.com')">spotify.com</span>
+        <span class="quick-chip" onclick="quickSearch('meta.com')">meta.com</span>
+        <span class="quick-chip" onclick="quickSearch('target.com')">target.com</span>
       </div>
-
     </div>
-  </div>
 
-  <!-- CTA BLOCK -->
-  <div class="ledger-cta">
-    <div>
-      <div class="ledger-cta-eyebrow">This Could Be Your Ledger</div>
-      <h2 class="ledger-cta-headline">The internet built a $700B industry on your data. <em>You got $0.</em></h2>
-      <p class="ledger-cta-sub">Adworth is building the consent infrastructure to change that — cryptographic tokens, real payments, deletion that's enforced not promised. Join the waitlist to be first when it launches.</p>
+    <!-- Error banner -->
+    <div class="error-banner" id="error-banner"></div>
+
+    <!-- Metrics -->
+    <div class="metrics-row" id="metrics-row" style="display:none;">
+      <div class="metric-card">
+        <div class="metric-label">Ads Found <button class="metric-info-btn" onclick="openModal('ads')" title="How is this counted?">i</button></div>
+        <div class="metric-value" id="m-ads">—</div>
+        <div class="metric-sub">from transparency center</div>
+      </div>
+      <div class="metric-card">
+        <div class="metric-label">Privacy Risk <button class="metric-info-btn" onclick="openModal('risk')" title="How is this scored?">i</button></div>
+        <div class="metric-value" id="m-risk" style="color:var(--red)">—</div>
+        <div class="metric-sub">AI-scored 1–10</div>
+      </div>
+      <div class="metric-card">
+        <div class="metric-label">Transparency Score <button class="metric-info-btn" onclick="openModal('trans')" title="How is this scored?">i</button></div>
+        <div class="metric-value" id="m-trans" style="color:var(--amber)">—</div>
+        <div class="metric-sub">disclosure quality</div>
+      </div>
+      <div class="metric-card">
+        <div class="metric-label">Regulatory Flags <button class="metric-info-btn" onclick="openModal('flags')" title="What are these?">i</button></div>
+        <div class="metric-value" id="m-flags" style="color:var(--amber)">—</div>
+        <div class="metric-sub">GDPR / CCPA / DSA</div>
+      </div>
     </div>
-    <div class="ledger-cta-right">
+
+    <!-- Metric modals -->
+    <div class="metric-modal-overlay" id="modal-overlay" onclick="closeModalOutside(event)">
+      <div class="metric-modal" id="modal-box">
+        <button class="metric-modal-close" onclick="closeModal()">&#10005;</button>
+        <div class="metric-modal-tag" id="modal-tag">How We Score</div>
+        <div class="metric-modal-title" id="modal-title"></div>
+        <div class="metric-modal-body" id="modal-body"></div>
+      </div>
+    </div>
+
+    <!-- Content grid -->
+    <div class="content-grid">
+
+      <!-- Left column -->
       <div>
-        <div class="waitlist-row">
-          <input class="waitlist-input" id="cta-email" type="email" placeholder="your@email.com">
-          <button class="btn-waitlist-submit" onclick="submitLedgerWaitlist()">Join Waitlist</button>
+        <div class="panel" id="main-panel">
+          <div class="panel-header">
+            <span class="panel-title" id="panel-title">Ad Transparency Analysis</span>
+            <span style="font-size:0.75rem; color:var(--ink-30); font-family:var(--mono);" id="panel-domain"></span>
+          </div>
+          <div class="panel-body" id="panel-body">
+            <div class="empty-state">
+              <div class="empty-icon">🔍</div>
+              <div class="empty-title">Enter a domain to begin</div>
+              <div class="empty-sub">See exactly who's buying access to people's attention — and why it matters</div>
+            </div>
+          </div>
         </div>
-        <div class="waitlist-note">🔒 Your email is not shared. Not now, not ever. That's the point.</div>
       </div>
-      <a href="/enterprise.html" class="btn-cta-secondary">Investor overview →</a>
+
+      <!-- Right sidebar -->
+      <div class="side-stack">
+
+        <!-- AI Finding -->
+        <div class="panel" id="finding-panel" style="display:none;">
+          <div class="panel-header">
+            <span class="panel-title">Adworth AI Finding</span>
+          </div>
+          <div class="panel-body">
+            <div class="adworth-value" id="adworth-value">
+              <strong>Why Adworth Matters Here</strong>
+              <span id="adworth-value-text"></span>
+            </div>
+            <div style="margin-top:1rem; font-size:0.8rem; color:var(--ink-30); line-height:1.6;" id="top-finding"></div>
+          </div>
+        </div>
+
+        <!-- Data Types -->
+        <div class="panel" id="tags-panel" style="display:none;">
+          <div class="panel-header">
+            <span class="panel-title">Data Types Inferred</span>
+          </div>
+          <div class="tags-list" id="tags-list"></div>
+        </div>
+
+        <!-- Regulatory Flags -->
+        <div class="panel" id="reg-panel" style="display:none;">
+          <div class="panel-header"><span class="panel-title">Regulatory Flags</span></div>
+          <div class="panel-body" id="reg-body"></div>
+        </div>
+
+        <!-- What is Adworth — always visible, explains the solution -->
+        <div class="explainer-panel">
+          <div class="explainer-header">
+            <div class="explainer-title">What Adworth Would Change</div>
+          </div>
+          <div class="explainer-body">
+            <div class="explainer-step">
+              <div class="explainer-num">1</div>
+              <div class="explainer-text"><strong>You control who gets your data</strong> — with a cryptographic token bound to a specific advertiser, data type, and time window. They can't fake it or extend it.</div>
+            </div>
+            <div class="explainer-step">
+              <div class="explainer-num">2</div>
+              <div class="explainer-text"><strong>You get paid when they use it</strong> — advertisers pay a fee, you receive a portion automatically when your token is verified.</div>
+            </div>
+            <div class="explainer-step">
+              <div class="explainer-num">3</div>
+              <div class="explainer-text"><strong>Deletion is enforced, not promised</strong> — when you revoke consent, our system actively monitors and sends legally-cited removal requests if companies still hold your data.</div>
+            </div>
+            <div class="explainer-step">
+              <div class="explainer-num">4</div>
+              <div class="explainer-text"><strong>Everything above is recorded</strong> — an append-only audit ledger that neither you nor we can modify. Your consent history is yours forever.</div>
+            </div>
+            <div class="explainer-cta">
+              <a href="/#waitlist" class="explainer-cta-btn">Be first when consent starts paying →</a>
+            </div>
+          </div>
+        </div>
+
+        <!-- Domain History -->
+        <div class="panel" id="history-panel">
+          <div class="panel-header"><span class="panel-title">Recently Analyzed</span></div>
+          <div id="history-list">
+            <div style="padding:1.5rem; text-align:center; color:var(--ink-30); font-size:0.8rem;">Analyzed domains appear here</div>
+          </div>
+        </div>
+
+      </div>
     </div>
   </div>
 
-</div>
+  <footer>
+    <p>© 2026 Adworth℠ LLC · Patent Pending · Charleston, SC</p>
+    <p style="margin-top:0.3rem;">
+      <a href="/privacy.html">Privacy Policy</a> ·
+      <a href="/terms.html">Terms of Service</a> ·
+      <a href="/">← Back to Home</a>
+    </p>
+    <p style="margin-top:1rem; padding-top:1rem; border-top:1px solid rgba(255,255,255,0.06); font-size:0.72rem; color:rgba(255,255,255,0.22); line-height:1.7; max-width:760px; margin-left:auto; margin-right:auto;">
+      <strong style="color:rgba(255,255,255,0.32); font-weight:600;">Disclosure:</strong>
+      This tool retrieves publicly available ad data from Google's Ads Transparency Center via SerpApi and displays a maximum of 40 results per query. Results may not represent complete advertising activity. Individual advertiser names that appear to identify persons are automatically anonymized and displayed as "Individual Advertiser" per GDPR Art. 5(1)(c).
+      All privacy risk scores, transparency scores, regulatory flags, and AI findings are produced by Anthropic's Claude AI for informational and educational purposes only. This analysis does not constitute legal advice, a compliance determination, or a finding of wrongdoing. No inference of illegal activity or regulatory violation should be drawn from any score or flag displayed here.
+    </p>
+  </footer>
 
-<footer>
-  <p>© 2026 Adworth℠ LLC · Patent Pending · Charleston, SC</p>
-  <p style="margin-top:0.3rem;">
-    <a href="/privacy.html">Privacy Policy</a> ·
-    <a href="/terms.html">Terms of Service</a> ·
-    <a href="/dashboard.html">← Ad Dashboard</a> ·
-    <a href="/">Home</a>
-  </p>
-  <p style="margin-top:1rem; font-size:0.68rem; color:rgba(255,255,255,0.15); max-width:700px; margin-left:auto; margin-right:auto; line-height:1.7;">
-    All data shown on this page is simulated for illustrative purposes only. Advertiser names, token IDs, earnings figures, and ledger events are examples of what the Adworth consent marketplace will display when launched. No real user data, real transactions, or real consent tokens are represented here.
-  </p>
-</footer>
+  <script>
+    const WORKER_URL = 'https://adworth-ads.adworthllc.workers.dev';
+    const domainHistory = [];
 
-<script>
-  // ── MOCK DATA ─────────────────────────────────────────────
-  const TOKENS = [
-    {
-      id: 'AWX-7f3a9c2d',
-      advertiser: 'Spotify USA Inc',
-      logo: '🎵',
-      logoBg: 'rgba(30,215,96,0.15)',
-      scope: 'music-listening · behavioral-targeting',
-      status: 'active',
-      issued: 'Feb 1, 2026',
-      expires: 'Mar 3, 2026',
-      duration: '30 days',
-      earned: '$2.50',
-      rate: '$2.50/mo',
-      accessCount: 14,
-    },
-    {
-      id: 'AWX-2b8e1f7a',
-      advertiser: 'Spotify USA Inc',
-      logo: '🎙️',
-      logoBg: 'rgba(30,215,96,0.12)',
-      scope: 'podcast-listening · interest-targeting',
-      status: 'active',
-      issued: 'Feb 10, 2026',
-      expires: 'Mar 12, 2026',
-      duration: '30 days',
-      earned: '$1.70',
-      rate: '$1.70/mo',
-      accessCount: 9,
-    },
-    {
-      id: 'AWX-4c1d8b5e',
-      advertiser: 'RunnerBrand Co.',
-      logo: '🏃',
-      logoBg: 'rgba(255,165,0,0.12)',
-      scope: 'athletic-data · purchase-intent',
-      status: 'expired',
-      issued: 'Dec 1, 2025',
-      expires: 'Jan 30, 2026',
-      duration: '60 days',
-      earned: '$6.00',
-      rate: '$3.00/mo',
-      accessCount: 11,
-    },
-    {
-      id: 'AWX-9a3f2c8b',
-      advertiser: 'TechGadget Inc.',
-      logo: '💻',
-      logoBg: 'rgba(82,183,136,0.12)',
-      scope: 'device-usage · purchase-history',
-      status: 'expired',
-      issued: 'Jan 5, 2026',
-      expires: 'Feb 4, 2026',
-      duration: '30 days',
-      earned: '$2.80',
-      rate: '$2.80/mo',
-      accessCount: 8,
-    },
-    {
-      id: 'AWX-6d4e9f1a',
-      advertiser: 'ClearVPN Ltd.',
-      logo: '🔒',
-      logoBg: 'rgba(224,82,82,0.12)',
-      scope: 'browsing-patterns · privacy-interest',
-      status: 'revoked',
-      issued: 'Jan 20, 2026',
-      expires: 'Feb 3, 2026',
-      duration: '14 days',
-      earned: '$1.73',
-      rate: '(revoked on day 10)',
-      accessCount: 4,
-    },
-    {
-      id: 'AWX-3e7b0d2f',
-      advertiser: 'Advertiser Co.',
-      logo: '📢',
-      logoBg: 'rgba(255,255,255,0.06)',
-      scope: 'generic-targeting · demographics',
-      status: 'expired',
-      issued: 'Jan 1, 2026',
-      expires: 'Jan 8, 2026',
-      duration: '7 days',
-      earned: '$0.00',
-      rate: 'Free trial token',
-      accessCount: 2,
-    },
-  ];
+    // ── HEALTH CHECK ────────────────────────────────────────
+    async function checkHealth() {
+      try {
+        const res = await fetch(`${WORKER_URL}/health`);
+        if (res.ok) {
+          document.getElementById('status-dot').className = 'dot';
+          document.getElementById('status-text').textContent = 'API Live';
+        } else throw new Error();
+      } catch {
+        document.getElementById('status-dot').className = 'dot offline';
+        document.getElementById('status-text').textContent = 'API Offline';
+      }
+    }
 
-  const AUDIT = [
-    { type: 'payment',  time: 'Today 09:14',    event: 'Payment received from <span>Spotify USA Inc</span>', detail: 'AWX-7f3a9c2d · $1.25 deposited · music-listening scope' },
-    { type: 'blocked',  time: 'Yesterday 14:32', event: '<span class="amber">Access blocked</span> — scope violation', detail: 'AWX-7f3a9c2d · Spotify requested health-data — outside token scope' },
-    { type: 'payment',  time: 'Feb 25 11:00',   event: 'Payment received from <span>Spotify USA Inc</span>', detail: 'AWX-2b8e1f7a · $0.85 deposited · podcast-listening scope' },
-    { type: 'issued',   time: 'Feb 10 09:00',   event: 'Token issued to <span>Spotify USA Inc</span>', detail: 'AWX-2b8e1f7a · 30 days · podcast-listening · $1.70/mo' },
-    { type: 'enforced', time: 'Feb 5 08:45',    event: 'Deletion enforced — <span>ClearVPN Ltd.</span>', detail: 'AWX-6d4e9f1a · State-monitor detected data after revocation · RPE auto-filed' },
-    { type: 'revoked',  time: 'Jan 30 19:22',   event: 'Token revoked by you — <span class="red">ClearVPN Ltd.</span>', detail: 'AWX-6d4e9f1a · Access stopped immediately · deletion process initiated' },
-    { type: 'payment',  time: 'Jan 30 11:00',   event: 'Payment received from <span>RunnerBrand Co.</span>', detail: 'AWX-4c1d8b5e · $3.00 deposited · 60-day token final payment' },
-    { type: 'expired',  time: 'Jan 30 09:00',   event: 'Token expired — <span style="color:rgba(255,255,255,0.4)">RunnerBrand Co.</span>', detail: 'AWX-4c1d8b5e · 60-day window closed · access automatically revoked' },
-    { type: 'payment',  time: 'Jan 5 11:00',    event: 'Payment received from <span>TechGadget Inc.</span>', detail: 'AWX-9a3f2c8b · $2.80 deposited · 30-day token' },
-    { type: 'issued',   time: 'Dec 1 10:00',    event: 'Token issued to <span>RunnerBrand Co.</span>', detail: 'AWX-4c1d8b5e · 60 days · athletic-data · $3.00/mo' },
-  ];
+    function quickSearch(domain) {
+      document.getElementById('domain-input').value = domain;
+      analyzeDomain();
+    }
 
-  // ── RENDER TOKENS ─────────────────────────────────────────
-  let currentFilter = 'all';
+    // ── ANALYZE ─────────────────────────────────────────────
+    async function analyzeDomain() {
+      const input = document.getElementById('domain-input');
+      const domain = input.value.trim().replace(/^https?:\/\//, '').replace(/\/$/, '');
+      if (!domain) return;
 
-  function filterTokens(filter, btn) {
-    currentFilter = filter;
-    document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
-    btn.classList.add('active');
-    renderTokens();
-  }
+      const btn = document.getElementById('analyze-btn');
+      btn.disabled = true;
+      btn.textContent = 'Analyzing…';
 
-  function renderTokens() {
-    const filtered = currentFilter === 'all'
-      ? TOKENS
-      : TOKENS.filter(t => t.status === currentFilter);
+      hideError();
+      showLoading(domain);
+      hideMetrics();
+      hideSidePanels();
 
-    const html = filtered.map((t, i) => {
-      const statusLabel = { active: 'Active', expired: 'Expired', revoked: 'Revoked' }[t.status];
-      const actions = t.status === 'active'
-        ? `<button class="token-action-btn btn-revoke" onclick="demoAction('revoke','${t.id}')">Revoke</button>`
-        : t.status === 'expired'
-        ? `<button class="token-action-btn btn-renew" onclick="demoAction('renew','${t.id}')">Renew</button>`
-        : `<button class="token-action-btn btn-view" onclick="demoAction('view','${t.id}')">View Record</button>`;
+      try {
+        const res = await fetch(`${WORKER_URL}/ads?domain=${encodeURIComponent(domain)}`);
+        const data = await res.json();
+        if (!res.ok) throw new Error(data.error || 'Worker error');
+        renderResults(data);
+        addToHistory(domain, data.analysis?.privacyRiskScore);
+      } catch (err) {
+        showError(`Could not analyze ${domain}: ${err.message}. Make sure the Worker is deployed.`);
+        showEmptyState();
+      } finally {
+        btn.disabled = false;
+        btn.textContent = 'Analyze →';
+      }
+    }
 
-      return `
-        <div class="token-card" style="animation-delay:${i * 60}ms">
-          <div class="token-top">
-            <div class="token-advertiser">
-              <div class="token-logo" style="background:${t.logoBg}">${t.logo}</div>
-              <div>
-                <div class="token-name">${t.advertiser}</div>
-                <div class="token-scope">${t.scope}</div>
+    // ── RENDER ──────────────────────────────────────────────
+    function renderResults(data) {
+      const { domain, adCount, ads, analysis, privacyMeta } = data;
+
+      // Metrics
+      document.getElementById('m-ads').textContent = adCount || 0;
+      const risk  = analysis?.privacyRiskScore;
+      const trans = analysis?.transparencyScore;
+      const flags = analysis?.regulatoryFlags?.length || 0;
+
+      const riskEl  = document.getElementById('m-risk');
+      riskEl.textContent = risk ?? '—';
+      riskEl.style.color = risk >= 7 ? 'var(--red)' : risk >= 4 ? 'var(--amber)' : 'var(--green-accent)';
+
+      const transEl = document.getElementById('m-trans');
+      transEl.textContent = trans ?? '—';
+      transEl.style.color = trans >= 7 ? 'var(--green-accent)' : trans >= 4 ? 'var(--amber)' : 'var(--red)';
+
+      document.getElementById('m-flags').textContent = flags;
+      showMetrics();
+
+      document.getElementById('panel-domain').textContent = domain;
+      document.getElementById('panel-title').textContent = `Ads Found (${adCount})`;
+
+      let html = '';
+
+      // Score cards + consent gaps
+      if (analysis) {
+        html += `
+          <div class="scores-row">
+            <div class="score-card">
+              <div class="score-number ${scoreColor(risk, true)}">${risk ?? '—'}</div>
+              <div class="score-label">Privacy Risk</div>
+            </div>
+            <div class="score-card">
+              <div class="score-number ${scoreColor(trans, false)}">${trans ?? '—'}</div>
+              <div class="score-label">Transparency</div>
+            </div>
+          </div>`;
+
+        if (analysis.consentGaps?.length) {
+          html += '<div>';
+          analysis.consentGaps.slice(0, 4).forEach(gap => {
+            html += `
+              <div class="finding-item">
+                <div class="finding-icon red">⚠</div>
+                <div class="finding-text"><strong>Consent Gap</strong>${gap}</div>
+              </div>`;
+          });
+          html += '</div>';
+        }
+      }
+
+      // Ad list with PII badge
+      if (ads?.length) {
+        const anonymizedCount = privacyMeta?.anonymizedCount || 0;
+
+        html += `<div class="ads-section-header">
+          <span class="ads-section-label">Active Ads</span>
+          ${anonymizedCount > 0
+            ? `<span class="pii-notice"><span class="pii-notice-dot"></span>${anonymizedCount} name${anonymizedCount > 1 ? 's' : ''} anonymized · PII Protected</span>`
+            : ''}
+        </div>`;
+
+        ads.slice(0, 15).forEach(ad => {
+          const isAnon = ad.isAnonymized;
+          html += `
+            <div class="ad-item${isAnon ? ' is-anonymized' : ''}">
+              <div class="ad-meta">
+                <div class="ad-advertiser-row">
+                  <span class="ad-domain${isAnon ? ' anon' : ''}">${ad.advertiser || domain}</span>
+                  ${isAnon ? `<span class="pii-badge"><span class="pii-badge-icon">🔒</span> PII Protected</span>` : ''}
+                </div>
+                <span class="ad-format">${(ad.format || 'ad').toUpperCase()}</span>
               </div>
-            </div>
-            <div class="token-status status-${t.status}">
-              <span class="token-status-dot"></span>${statusLabel}
-            </div>
+              ${ad.text ? `<div class="ad-text">${ad.text.slice(0, 140)}${ad.text.length > 140 ? '…' : ''}</div>` : ''}
+              <div class="ad-footer">
+                ${ad.lastShown ? `<span>Last seen: ${ad.lastShown}</span>` : ''}
+                ${ad.totalDaysShown ? `<span>${ad.totalDaysShown} days running</span>` : ''}
+              </div>
+            </div>`;
+        });
+
+      } else {
+        html += `<div style="padding:2rem; text-align:center; color:var(--ink-30); font-size:0.85rem;">No ads returned for this domain. Try a major brand like apple.com or amazon.com.</div>`;
+      }
+
+      // CONSENT MOMENT — appears after ad list
+      // Tailored based on risk score
+      const riskLevel = risk >= 7 ? 'high' : risk >= 4 ? 'medium' : 'low';
+      const momentCopy = {
+        high: {
+          headline: `This is what your data looks like <em>without your consent.</em>`,
+          body: `You just watched <strong>${adCount} ads</strong> targeting real people — none of whom were asked, paid, or given the right to say no. A Privacy Risk Score of <strong>${risk}/10</strong> means the gaps are significant. Adworth's consent tokens would give users control over exactly this type of data use — and compensate them for it.`,
+        },
+        medium: {
+          headline: `You can see the problem. <em>Adworth is building the fix.</em>`,
+          body: `These <strong>${adCount} ads</strong> are running with limited transparency and no meaningful consent mechanism. The data that powers them belongs to real people who got nothing in return. Consent infrastructure changes that — cryptographically, automatically, and permanently.`,
+        },
+        low: {
+          headline: `Better than most — but <em>consent still isn't happening.</em>`,
+          body: `Even with a lower risk score, none of these <strong>${adCount} ads</strong> involve explicit user consent or compensation. That's the baseline Adworth is raising. When consent rails exist, even well-behaved advertisers operate more transparently and users get paid.`,
+        },
+      };
+
+      const copy = momentCopy[riskLevel];
+      html += `
+        <div class="consent-moment" id="consent-moment">
+          <div class="consent-moment-eyebrow">What This Means For You</div>
+          <div class="consent-moment-headline">${copy.headline}</div>
+          <div class="consent-moment-body">${copy.body}</div>
+          <div class="consent-actions">
+            <button class="btn-waitlist" onclick="toggleWaitlistForm()">Get Early Access →</button>
+            <a href="/" class="btn-learn">Learn how Adworth works ↗</a>
           </div>
-          <div class="token-body">
-            <div class="token-field">
-              <div class="token-field-label">Issued</div>
-              <div class="token-field-value">${t.issued}</div>
+
+          <!-- Inline waitlist form -->
+          <div class="waitlist-inline" id="waitlist-inline">
+            <div class="waitlist-inline-row">
+              <input class="waitlist-email-input" id="waitlist-email" type="email" placeholder="your@email.com">
+              <button class="btn-submit-waitlist" onclick="submitWaitlist()">Join Waitlist</button>
             </div>
-            <div class="token-field">
-              <div class="token-field-label">Expires</div>
-              <div class="token-field-value">${t.expires}</div>
-            </div>
-            <div class="token-field">
-              <div class="token-field-label">Earned</div>
-              <div class="token-field-value earned">${t.earned}</div>
-            </div>
-            <div class="token-field">
-              <div class="token-field-label">Rate</div>
-              <div class="token-field-value">${t.rate}</div>
-            </div>
-            <div class="token-field">
-              <div class="token-field-label">Access Count</div>
-              <div class="token-field-value">${t.accessCount}×</div>
-            </div>
-            <div class="token-field">
-              <div class="token-field-label">Duration</div>
-              <div class="token-field-value">${t.duration}</div>
-            </div>
+            <div class="waitlist-privacy-note">🔒 Your email stays private. We will not sell it — that's kind of the whole point.</div>
           </div>
-          <div class="token-id-bar">
-            <span class="token-id">${t.id} · cryptographically signed · HMAC-SHA256</span>
-            <div class="token-id-actions">${actions}</div>
+
+          <div class="consent-moment-note">
+            Adworth℠ is currently raising a $1.5M seed round to build the full consent marketplace.
+            Founding members get early access and priority support.
+            <a href="/enterprise.html" style="color:rgba(82,183,136,0.6); text-decoration:none;"> Investor overview →</a>
           </div>
         </div>`;
-    }).join('');
 
-    document.getElementById('token-list').innerHTML = html ||
-      `<div style="padding:2rem; text-align:center; color:rgba(255,255,255,0.25); font-size:0.85rem;">No ${currentFilter} tokens</div>`;
-  }
+      document.getElementById('panel-body').innerHTML = html;
 
-  // ── RENDER AUDIT LOG ──────────────────────────────────────
-  function renderAuditLog() {
-    const icons = { issued:'✦', payment:'$', blocked:'⊘', revoked:'✕', enforced:'⚡', expired:'○' };
-    const html = AUDIT.map((entry, i) => `
-      <div class="audit-entry" style="animation-delay:${i * 40}ms">
-        <div class="audit-line"></div>
-        <div class="audit-dot-wrap">
-          <div class="audit-dot ${entry.type}">${icons[entry.type] || '·'}</div>
-        </div>
-        <div class="audit-content">
-          <div class="audit-event">${entry.event}</div>
-          <div class="audit-detail">${entry.detail}</div>
-        </div>
-        <div class="audit-time">${entry.time}</div>
-      </div>`).join('');
+      // Side panels
+      if (analysis) {
+        document.getElementById('adworth-value-text').textContent = analysis.adworthValue || '';
+        document.getElementById('top-finding').textContent = analysis.topFinding || '';
+        document.getElementById('finding-panel').style.display = 'block';
 
-    document.getElementById('audit-log').innerHTML = html;
-  }
+        if (analysis.dataTypesInferred?.length) {
+          document.getElementById('tags-list').innerHTML =
+            analysis.dataTypesInferred.map(t => `<span class="tag tag-amber">${t}</span>`).join('');
+          document.getElementById('tags-panel').style.display = 'block';
+        }
 
-  // ── DEMO ACTION HANDLERS ──────────────────────────────────
-  function demoAction(action, tokenId) {
-    const messages = {
-      revoke: `In the real Adworth marketplace, revoking ${tokenId} would:\n\n1. Instantly invalidate the token\n2. Block all future access attempts\n3. Record CONSENT_REVOKED to your ledger\n4. Trigger the State-Persistence Monitor to verify deletion\n5. Auto-file a legal removal notice if the advertiser still holds your data\n\nThis is a preview — join the waitlist to use real tokens.`,
-      renew:  `Renewing ${tokenId} would issue a new cryptographic token with a fresh time window and updated payment terms. Your previous earnings remain on the ledger permanently.\n\nThis is a preview — join the waitlist to use real tokens.`,
-      view:   `In the full ledger, you'd see the complete cryptographic audit trail for ${tokenId} — every access request, payment, block event, and the final deletion confirmation.\n\nThis is a preview — join the waitlist to use real tokens.`,
-    };
-    alert(messages[action]);
-  }
-
-  // ── WAITLIST SUBMIT ───────────────────────────────────────
-  async function submitLedgerWaitlist() {
-    const input = document.getElementById('cta-email');
-    const btn = document.querySelector('.btn-waitlist-submit');
-    const email = input?.value.trim();
-    if (!email || !email.includes('@')) {
-      input.style.borderColor = 'var(--red)';
-      return;
+        if (analysis.regulatoryFlags?.length) {
+          document.getElementById('reg-body').innerHTML =
+            analysis.regulatoryFlags.map(f => `
+              <div class="finding-item">
+                <div class="finding-icon red">⚖</div>
+                <div class="finding-text">${f}</div>
+              </div>`).join('');
+          document.getElementById('reg-panel').style.display = 'block';
+        }
+      }
     }
-    input.style.borderColor = '';
-    btn.textContent = 'Joining…';
-    btn.disabled = true;
 
-    try {
-      const res = await fetch('https://formspree.io/f/mlgwgndk', {
-        method: 'POST',
-        headers: { 'Accept': 'application/json', 'Content-Type': 'application/json' },
-        body: JSON.stringify({ email, source: 'ledger-page-cta' }),
-      });
-      if (res.ok) {
-        btn.textContent = '✓ You\'re on the list!';
-        btn.style.background = 'var(--green-accent)';
-        btn.style.color = 'var(--ink)';
-        input.value = '';
-      } else {
+    // ── WAITLIST FORM ────────────────────────────────────────
+    function toggleWaitlistForm() {
+      const form = document.getElementById('waitlist-inline');
+      if (!form) return;
+      form.classList.toggle('open');
+      if (form.classList.contains('open')) {
+        setTimeout(() => document.getElementById('waitlist-email')?.focus(), 100);
+      }
+    }
+
+    async function submitWaitlist() {
+      const emailInput = document.getElementById('waitlist-email');
+      const btn = document.querySelector('.btn-submit-waitlist');
+      const email = emailInput?.value.trim();
+      if (!email || !email.includes('@')) {
+        emailInput.style.borderColor = 'var(--red)';
+        return;
+      }
+      emailInput.style.borderColor = '';
+      btn.textContent = 'Joining…';
+      btn.disabled = true;
+
+      try {
+        const res = await fetch('https://formspree.io/f/mlgwgndk', {
+          method: 'POST',
+          headers: { 'Accept': 'application/json', 'Content-Type': 'application/json' },
+          body: JSON.stringify({ email, source: 'dashboard-consent-moment' }),
+        });
+        if (res.ok) {
+          btn.textContent = '✓ You\'re on the list!';
+          btn.style.background = 'var(--green-accent)';
+          btn.style.color = 'var(--ink)';
+          emailInput.value = '';
+        } else {
+          btn.textContent = 'Try again';
+          btn.disabled = false;
+        }
+      } catch {
         btn.textContent = 'Try again';
         btn.disabled = false;
       }
-    } catch {
-      btn.textContent = 'Try again';
-      btn.disabled = false;
     }
-  }
 
-  // ── INIT ─────────────────────────────────────────────────
-  renderTokens();
-  renderAuditLog();
-</script>
+    // ── HISTORY ─────────────────────────────────────────────
+    function addToHistory(domain, riskScore) {
+      if (!domainHistory.find(d => d.domain === domain)) {
+        domainHistory.unshift({ domain, riskScore });
+        if (domainHistory.length > 8) domainHistory.pop();
+      }
+      renderHistory();
+    }
+
+    function renderHistory() {
+      if (!domainHistory.length) return;
+      document.getElementById('history-list').innerHTML =
+        domainHistory.map(item => `
+          <div class="history-item" onclick="quickSearch('${item.domain}')">
+            <span class="history-domain">${item.domain}</span>
+            ${item.riskScore != null ? `
+              <span class="history-score" style="background:${item.riskScore >= 7 ? 'rgba(224,82,82,0.15)' : 'rgba(82,183,136,0.15)'}; color:${item.riskScore >= 7 ? '#f09090' : 'var(--green-accent)'}">
+                Risk ${item.riskScore}/10
+              </span>` : ''}
+          </div>`).join('');
+    }
+
+    // ── HELPERS ─────────────────────────────────────────────
+    function scoreColor(score, invertHigh) {
+      if (!score) return '';
+      if (invertHigh) return score >= 7 ? 'score-risk' : score >= 4 ? 'score-medium' : 'score-safe';
+      return score >= 7 ? 'score-safe' : score >= 4 ? 'score-medium' : 'score-risk';
+    }
+
+    function showLoading(domain) {
+      document.getElementById('panel-body').innerHTML = `
+        <div class="loading-state">
+          <div class="spinner"></div>
+          <div class="loading-text">Analyzing ${domain}</div>
+          <div class="loading-steps">
+            <div class="loading-step" style="animation-delay:0.3s">→ Pulling ads from Google Transparency Center</div>
+            <div class="loading-step" style="animation-delay:1.2s">→ Anonymizing individual advertiser names</div>
+            <div class="loading-step" style="animation-delay:2.2s">→ Running AI privacy analysis</div>
+            <div class="loading-step" style="animation-delay:3.0s">→ Scoring consent gaps &amp; regulatory flags</div>
+          </div>
+        </div>`;
+    }
+
+    function showEmptyState() {
+      document.getElementById('panel-body').innerHTML = `
+        <div class="empty-state">
+          <div class="empty-icon">⚠️</div>
+          <div class="empty-title">Analysis Failed</div>
+          <div class="empty-sub">Check that your Worker is deployed and secrets are set</div>
+        </div>`;
+    }
+
+    function showMetrics()  { document.getElementById('metrics-row').style.display = 'grid'; }
+    function hideMetrics()  { document.getElementById('metrics-row').style.display = 'none'; }
+    function showError(msg) { const el = document.getElementById('error-banner'); el.textContent = msg; el.style.display = 'block'; }
+    function hideError()    { document.getElementById('error-banner').style.display = 'none'; }
+    function hideSidePanels() {
+      ['finding-panel','tags-panel','reg-panel'].forEach(id => {
+        document.getElementById(id).style.display = 'none';
+      });
+    }
+
+    // ── METRIC MODALS ────────────────────────────────────────
+    const modalData = {
+      ads: {
+        tag: 'Data Source', title: 'Ads Found',
+        body: `<p>This count reflects unique ads retrieved from Google's Ads Transparency Center for the domain you entered. We retrieve up to <strong style="color:rgba(255,255,255,0.85)">40 ads per query</strong>. A domain may have more — this is a representative sample.</p>
+               <p>Individual advertiser names (personal names rather than business names) are automatically anonymized before display, consistent with our privacy-first approach.</p>`,
+        scale: null,
+        disclaimer: "Ad counts reflect publicly available data from Google's Ads Transparency Center via SerpApi. Results may be incomplete. This count does not imply any wrongdoing."
+      },
+      risk: {
+        tag: 'AI Scoring Methodology', title: 'Privacy Risk Score',
+        body: `<p>The Privacy Risk Score is generated by Anthropic's Claude AI, which analyzes publicly available ad data. The AI evaluates advertiser opacity, ad format risk, campaign longevity, targeting transparency, and consent signal presence.</p>`,
+        scale: {
+          title: 'Score Interpretation',
+          rows: [
+            { range: '1 – 3', cls: 'scale-low',  desc: 'Low risk — strong disclosure, clear advertiser identities, consent signals present' },
+            { range: '4 – 6', cls: 'scale-mid',  desc: 'Moderate risk — some opacity, limited consent visibility, mixed disclosure quality' },
+            { range: '7 – 10', cls: 'scale-high', desc: 'High risk — opaque advertisers, image-only formats, no verifiable consent signals' }
+          ]
+        },
+        disclaimer: "AI-generated probabilistic assessment for informational purposes only. Not a legal determination or allegation of wrongdoing."
+      },
+      trans: {
+        tag: 'AI Scoring Methodology', title: 'Transparency Score',
+        body: `<p>The Transparency Score measures the quality of a domain's ad disclosure practices. Higher is better. The AI evaluates advertiser clarity, content legibility, disclosure completeness, and regulatory alignment across GDPR, CCPA, and DSA standards.</p>`,
+        scale: {
+          title: 'Score Interpretation',
+          rows: [
+            { range: '8 – 10', cls: 'scale-low',  desc: 'High transparency — strong disclosures, named advertisers, regulation-aligned' },
+            { range: '4 – 7',  cls: 'scale-mid',  desc: 'Partial transparency — some disclosures present but gaps exist' },
+            { range: '1 – 3',  cls: 'scale-high', desc: 'Low transparency — limited disclosure, opaque ecosystem, consent signals absent' }
+          ]
+        },
+        disclaimer: "AI-generated probabilistic assessment for informational purposes only. Not a legal determination or allegation of wrongdoing."
+      },
+      flags: {
+        tag: 'Regulatory Framework', title: 'Regulatory Flags',
+        body: `<p>Flags indicate areas where a domain's ad practices may warrant attention under GDPR (lawful basis, right to object), CCPA (opt-out rights, data disclosure), and DSA Article 26 (ad labeling, targeting parameter disclosure). These are AI observations, not legal findings.</p>`,
+        scale: null,
+        disclaimer: "Regulatory flags are AI-generated observations for informational purposes only. They do not constitute a legal finding or allegation of any regulatory violation."
+      }
+    };
+
+    function openModal(type) {
+      const d = modalData[type];
+      if (!d) return;
+      document.getElementById('modal-tag').textContent = d.tag;
+      document.getElementById('modal-title').textContent = d.title;
+      let bodyHtml = d.body;
+      if (d.scale) {
+        bodyHtml += `<div class="metric-modal-scale">
+          <div class="metric-modal-scale-title">${d.scale.title}</div>
+          ${d.scale.rows.map(r => `<div class="scale-row"><span class="scale-range ${r.cls}">${r.range}</span><span class="scale-desc">${r.desc}</span></div>`).join('')}
+        </div>`;
+      }
+      if (d.disclaimer) bodyHtml += `<div class="metric-modal-disclaimer">${d.disclaimer}</div>`;
+      document.getElementById('modal-body').innerHTML = bodyHtml;
+      document.getElementById('modal-overlay').classList.add('open');
+      document.body.style.overflow = 'hidden';
+    }
+
+    function closeModal() {
+      document.getElementById('modal-overlay').classList.remove('open');
+      document.body.style.overflow = '';
+    }
+
+    function closeModalOutside(e) {
+      if (e.target === document.getElementById('modal-overlay')) closeModal();
+    }
+
+    document.addEventListener('keydown', e => { if (e.key === 'Escape') closeModal(); });
+    document.getElementById('domain-input').addEventListener('keydown', e => { if (e.key === 'Enter') analyzeDomain(); });
+
+    checkHealth();
+  </script>
 
 </body>
 </html>
