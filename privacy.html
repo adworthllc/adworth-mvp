@@ -166,6 +166,16 @@
         </ul>
         <p>No personal user data is transmitted to SerpApi or Anthropic as part of dashboard analysis. The pipeline processes publicly available advertiser data only. Results may be cached temporarily in Cloudflare Workers KV (<code>AD_CACHE</code> namespace) for up to 2 hours.</p>
 
+        <h3>Information displayed on the CCPA Enforcement Gap page</h3>
+        <p>Our CCPA Enforcement Gap page (<code>adworth.app/ccpa-gap</code>) displays aggregated data from publicly available CCPA transparency reports published by other companies. This data is:</p>
+        <ul>
+            <li>Sourced exclusively from reports that companies are required to publish under California Civil Code &sect; 1798.185(a)(7)</li>
+            <li>Stored in Cloudflare Workers KV (<code>CCPA_DATA</code> namespace) and served via the <code>adworth-ccpa-gap</code> Cloudflare Worker</li>
+            <li>Updated annually after companies publish their reports (by July 1 each year)</li>
+            <li>Aggregate compliance metrics only &mdash; no personal information of any individual consumer is collected, stored, or displayed</li>
+        </ul>
+        <p>Adworth is not affiliated with any company listed on the CCPA Enforcement Gap page. All data is sourced from each company&rsquo;s own publicly available reports. No data on this page is obtained through scraping protected content, accessing private systems, or any non-public source.</p>
+        
         <h3>PII Advertiser Name Classifier (adworth-ads v4 &mdash; March 2026)</h3>
         <p>As of March 2026, the <code>adworth-ads</code> worker includes a PII Advertiser Name Classifier. This component:</p>
         <ul>
