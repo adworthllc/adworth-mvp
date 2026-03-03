@@ -1,0 +1,942 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>My Consent Ledger — Adworth℠</title>
+  <meta name="description" content="See what your data consent ledger would look like with Adworth. Every token issued, every payment earned, every deletion enforced — on your terms.">
+  <link rel="icon" type="image/x-icon" href="/favicon.ico">
+  <link rel="preconnect" href="https://adworth-fonts.adworthllc.workers.dev">
+  <link href="https://adworth-fonts.adworthllc.workers.dev/css2?family=Poppins:wght@300;400;500;600;700;800;900&family=DM+Serif+Display:ital@0;1&display=swap" rel="stylesheet">
+  <style>
+    *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+
+    :root {
+      --green-deep:    #1a4a35;
+      --green-primary: #2d6a4f;
+      --green-accent:  #52b788;
+      --green-pale:    #d8f3dc;
+      --green-tint:    #f0faf3;
+      --off-white:     #fafaf8;
+      --ink:           #111410;
+      --ink-60:        #555a50;
+      --ink-30:        #b0b5aa;
+      --border:        #e2e8df;
+      --red:           #e05252;
+      --amber:         #d4930a;
+      --gold:          #c8a96a;
+      --gold-light:    rgba(200,169,106,0.15);
+      --mono:          'JetBrains Mono', monospace;
+      --surface:       rgba(255,255,255,0.04);
+      --rim:           rgba(82,183,136,0.15);
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: 'Poppins', sans-serif;
+      background: #0b1810;
+      color: var(--off-white);
+      min-height: 100vh;
+      overflow-x: hidden;
+    }
+
+    body::before {
+      content: '';
+      position: fixed; inset: 0;
+      background-image:
+        linear-gradient(rgba(82,183,136,0.03) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(82,183,136,0.03) 1px, transparent 1px);
+      background-size: 48px 48px;
+      pointer-events: none; z-index: 0;
+    }
+
+    /* ── HEADER ── */
+    header {
+      position: sticky; top: 0; z-index: 200;
+      background: rgba(11,24,16,0.94);
+      backdrop-filter: blur(20px);
+      border-bottom: 1px solid var(--rim);
+      padding: 0 2rem;
+    }
+    nav {
+      max-width: 1200px; margin: 0 auto;
+      display: flex; justify-content: space-between; align-items: center;
+      height: 60px;
+    }
+    .logo { display: flex; align-items: center; gap: 0.6rem; text-decoration: none; }
+    .logo-text { font-size: 1.3rem; font-weight: 800; color: var(--green-accent); }
+    .badge {
+      font-size: 0.6rem; font-weight: 700; text-transform: uppercase; letter-spacing: 1px;
+      background: rgba(82,183,136,0.12); color: var(--green-accent);
+      border: 1px solid rgba(82,183,136,0.25); padding: 0.2rem 0.5rem; border-radius: 100px;
+    }
+    .nav-right { display: flex; align-items: center; gap: 1rem; }
+    .nav-link { font-size: 0.8rem; color: rgba(255,255,255,0.4); text-decoration: none; transition: color 0.2s; }
+    .nav-link:hover { color: var(--green-accent); }
+    .nav-cta {
+      padding: 0.45rem 1rem; background: var(--green-primary); color: white;
+      border: none; border-radius: 6px; font-family: 'Poppins', sans-serif;
+      font-size: 0.75rem; font-weight: 700; cursor: pointer;
+      text-decoration: none; transition: all 0.2s;
+    }
+    .nav-cta:hover { background: var(--green-accent); color: var(--ink); }
+
+    /* ── MAIN ── */
+    .main {
+      max-width: 1200px; margin: 0 auto;
+      padding: 3rem 2rem 5rem;
+      position: relative; z-index: 1;
+    }
+
+    /* ── DEMO BANNER ── */
+    .demo-banner {
+      display: flex; align-items: center; gap: 0.75rem;
+      background: var(--gold-light);
+      border: 1px solid rgba(200,169,106,0.3);
+      border-radius: 10px; padding: 0.85rem 1.25rem;
+      margin-bottom: 2.5rem;
+      font-size: 0.82rem; color: rgba(255,255,255,0.6);
+    }
+    .demo-banner-icon { font-size: 1rem; flex-shrink: 0; }
+    .demo-banner strong { color: var(--gold); font-weight: 700; }
+    .demo-banner a { color: var(--gold); text-decoration: underline; text-underline-offset: 2px; }
+
+    /* ── PAGE HEADER ── */
+    .page-header { margin-bottom: 3rem; }
+    .page-eyebrow {
+      font-size: 0.7rem; font-weight: 700; text-transform: uppercase;
+      letter-spacing: 2px; color: var(--green-accent); margin-bottom: 0.75rem;
+    }
+    .page-headline {
+      font-family: 'DM Serif Display', serif;
+      font-size: clamp(2rem, 4vw, 3rem);
+      color: white; line-height: 1.1; margin-bottom: 0.75rem;
+    }
+    .page-headline em { font-style: italic; color: var(--green-accent); }
+    .page-sub {
+      font-size: 1rem; color: rgba(255,255,255,0.5);
+      max-width: 580px; line-height: 1.7;
+    }
+
+    /* ── EARNINGS HERO ── */
+    .earnings-hero {
+      background: linear-gradient(135deg, rgba(26,74,53,0.7), rgba(45,106,79,0.3));
+      border: 1px solid rgba(82,183,136,0.3);
+      border-radius: 20px; padding: 2.5rem 3rem;
+      margin-bottom: 2rem;
+      display: grid;
+      grid-template-columns: 1fr auto;
+      gap: 2rem; align-items: center;
+      position: relative; overflow: hidden;
+    }
+    .earnings-hero::before {
+      content: '';
+      position: absolute; top: 0; right: 0;
+      width: 300px; height: 100%;
+      background: radial-gradient(ellipse at right, rgba(82,183,136,0.12), transparent 70%);
+      pointer-events: none;
+    }
+    .earnings-label {
+      font-size: 0.7rem; font-weight: 700; text-transform: uppercase;
+      letter-spacing: 2px; color: var(--green-accent); margin-bottom: 0.5rem;
+    }
+    .earnings-total {
+      font-family: 'DM Serif Display', serif;
+      font-size: clamp(3rem, 6vw, 4.5rem);
+      color: white; line-height: 1;
+      margin-bottom: 0.5rem;
+    }
+    .earnings-total span { color: var(--green-accent); }
+    .earnings-sub { font-size: 0.85rem; color: rgba(255,255,255,0.45); line-height: 1.6; }
+    .earnings-sub strong { color: rgba(255,255,255,0.7); }
+
+    .earnings-stats {
+      display: flex; flex-direction: column; gap: 1rem;
+      text-align: right;
+    }
+    .estat { }
+    .estat-value {
+      font-family: 'DM Serif Display', serif;
+      font-size: 1.75rem; color: var(--green-accent); line-height: 1;
+    }
+    .estat-label { font-size: 0.72rem; color: rgba(255,255,255,0.4); margin-top: 0.2rem; }
+
+    /* ── STATS ROW ── */
+    .stats-row {
+      display: grid; grid-template-columns: repeat(4, 1fr);
+      gap: 1rem; margin-bottom: 2.5rem;
+    }
+    .stat-card {
+      background: var(--surface);
+      border: 1px solid rgba(82,183,136,0.1);
+      border-radius: 12px; padding: 1.25rem;
+      position: relative; overflow: hidden;
+      transition: border-color 0.2s;
+    }
+    .stat-card:hover { border-color: rgba(82,183,136,0.25); }
+    .stat-card::before {
+      content: ''; position: absolute; top: 0; left: 0; right: 0; height: 2px;
+      background: linear-gradient(90deg, var(--green-accent), transparent); opacity: 0.5;
+    }
+    .stat-card-label {
+      font-size: 0.68rem; font-weight: 700; text-transform: uppercase;
+      letter-spacing: 1.5px; color: var(--ink-30); margin-bottom: 0.5rem;
+    }
+    .stat-card-value {
+      font-family: 'DM Serif Display', serif; font-size: 1.75rem;
+      color: var(--green-accent); line-height: 1; margin-bottom: 0.25rem;
+    }
+    .stat-card-sub { font-size: 0.72rem; color: var(--ink-60); }
+
+    /* ── SECTION LABEL ── */
+    .section-label {
+      font-size: 0.7rem; font-weight: 700; text-transform: uppercase;
+      letter-spacing: 2px; color: var(--green-accent);
+      margin-bottom: 1rem; display: flex; align-items: center; gap: 0.75rem;
+    }
+    .section-label::after {
+      content: ''; flex: 1; height: 1px;
+      background: linear-gradient(90deg, rgba(82,183,136,0.2), transparent);
+    }
+
+    /* ── LAYOUT GRID ── */
+    .ledger-grid {
+      display: grid;
+      grid-template-columns: 1fr 340px;
+      gap: 1.5rem;
+    }
+
+    /* ── TOKEN TABLE ── */
+    .token-panel {
+      background: var(--surface);
+      border: 1px solid rgba(82,183,136,0.12);
+      border-radius: 16px; overflow: hidden;
+    }
+    .token-panel-header {
+      display: flex; justify-content: space-between; align-items: center;
+      padding: 1.25rem 1.5rem;
+      border-bottom: 1px solid rgba(82,183,136,0.08);
+    }
+    .token-panel-title {
+      font-size: 0.8rem; font-weight: 700; text-transform: uppercase;
+      letter-spacing: 1.5px; color: var(--green-accent);
+    }
+    .token-filter-row {
+      display: flex; gap: 0.4rem;
+    }
+    .filter-btn {
+      padding: 0.25rem 0.7rem; border-radius: 100px;
+      font-size: 0.68rem; font-weight: 600;
+      border: 1px solid rgba(255,255,255,0.1);
+      background: transparent; color: rgba(255,255,255,0.35);
+      cursor: pointer; font-family: 'Poppins', sans-serif;
+      transition: all 0.2s;
+    }
+    .filter-btn.active, .filter-btn:hover {
+      border-color: rgba(82,183,136,0.4);
+      color: var(--green-accent);
+      background: rgba(82,183,136,0.08);
+    }
+
+    /* Individual token card */
+    .token-card {
+      padding: 1.25rem 1.5rem;
+      border-bottom: 1px solid rgba(255,255,255,0.04);
+      transition: background 0.15s;
+      animation: tokenIn 0.3s ease both;
+    }
+    .token-card:last-child { border-bottom: none; }
+    .token-card:hover { background: rgba(82,183,136,0.04); }
+    @keyframes tokenIn { from{opacity:0;transform:translateY(8px)} to{opacity:1;transform:translateY(0)} }
+
+    .token-top {
+      display: flex; justify-content: space-between; align-items: flex-start;
+      margin-bottom: 0.75rem;
+    }
+    .token-advertiser {
+      display: flex; align-items: center; gap: 0.6rem;
+    }
+    .token-logo {
+      width: 32px; height: 32px; border-radius: 8px;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 1rem; flex-shrink: 0;
+    }
+    .token-name { font-weight: 700; font-size: 0.95rem; color: white; }
+    .token-scope { font-size: 0.72rem; color: rgba(255,255,255,0.4); margin-top: 0.1rem; font-family: var(--mono); }
+
+    .token-status {
+      display: inline-flex; align-items: center; gap: 0.35rem;
+      font-size: 0.65rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.8px;
+      padding: 0.25rem 0.65rem; border-radius: 100px; flex-shrink: 0;
+    }
+    .token-status-dot { width: 5px; height: 5px; border-radius: 50%; }
+    .status-active   { background: rgba(82,183,136,0.15);  color: var(--green-accent); border: 1px solid rgba(82,183,136,0.3); }
+    .status-active .token-status-dot   { background: var(--green-accent); animation: pulse 2s infinite; }
+    .status-expired  { background: rgba(255,255,255,0.06); color: rgba(255,255,255,0.35); border: 1px solid rgba(255,255,255,0.1); }
+    .status-expired .token-status-dot  { background: rgba(255,255,255,0.25); }
+    .status-revoked  { background: rgba(224,82,82,0.1);    color: #f09090; border: 1px solid rgba(224,82,82,0.2); }
+    .status-revoked .token-status-dot  { background: var(--red); }
+    @keyframes pulse { 0%,100%{opacity:1;transform:scale(1)} 50%{opacity:0.4;transform:scale(0.7)} }
+
+    .token-body {
+      display: grid; grid-template-columns: repeat(3, 1fr);
+      gap: 0.75rem; margin-bottom: 0.9rem;
+    }
+    .token-field { }
+    .token-field-label {
+      font-size: 0.62rem; font-weight: 600; text-transform: uppercase;
+      letter-spacing: 1px; color: var(--ink-30); margin-bottom: 0.2rem;
+    }
+    .token-field-value {
+      font-size: 0.82rem; color: rgba(255,255,255,0.75);
+      font-family: var(--mono);
+    }
+    .token-field-value.earned { color: var(--green-accent); font-weight: 700; }
+
+    /* Token ID bar */
+    .token-id-bar {
+      display: flex; justify-content: space-between; align-items: center;
+      background: rgba(0,0,0,0.3); border-radius: 6px;
+      padding: 0.5rem 0.75rem;
+    }
+    .token-id {
+      font-family: var(--mono); font-size: 0.68rem;
+      color: rgba(255,255,255,0.2); letter-spacing: 0.5px;
+    }
+    .token-id-actions { display: flex; gap: 0.5rem; }
+    .token-action-btn {
+      font-size: 0.65rem; font-weight: 600; text-transform: uppercase;
+      letter-spacing: 0.5px; padding: 0.2rem 0.6rem;
+      border-radius: 4px; border: none; cursor: pointer;
+      font-family: 'Poppins', sans-serif; transition: all 0.2s;
+    }
+    .btn-revoke { background: rgba(224,82,82,0.1); color: #f09090; }
+    .btn-revoke:hover { background: rgba(224,82,82,0.2); }
+    .btn-renew  { background: rgba(82,183,136,0.1); color: var(--green-accent); }
+    .btn-renew:hover  { background: rgba(82,183,136,0.2); }
+    .btn-view   { background: rgba(255,255,255,0.05); color: rgba(255,255,255,0.4); }
+    .btn-view:hover   { background: rgba(255,255,255,0.1); color: rgba(255,255,255,0.7); }
+
+    /* ── AUDIT LOG ── */
+    .audit-panel {
+      background: var(--surface);
+      border: 1px solid rgba(82,183,136,0.12);
+      border-radius: 16px; overflow: hidden;
+    }
+    .audit-header {
+      padding: 1.25rem 1.5rem;
+      border-bottom: 1px solid rgba(82,183,136,0.08);
+    }
+    .audit-title {
+      font-size: 0.8rem; font-weight: 700; text-transform: uppercase;
+      letter-spacing: 1.5px; color: var(--green-accent);
+    }
+    .audit-subtitle { font-size: 0.72rem; color: rgba(255,255,255,0.3); margin-top: 0.2rem; }
+
+    /* Timeline entries */
+    .audit-entry {
+      display: flex; gap: 0.9rem; padding: 0.9rem 1.5rem;
+      border-bottom: 1px solid rgba(255,255,255,0.04);
+      position: relative;
+    }
+    .audit-entry:last-child { border-bottom: none; }
+
+    .audit-line {
+      position: absolute; left: calc(1.5rem + 7px); top: 2.6rem;
+      width: 1px; bottom: 0;
+      background: linear-gradient(180deg, rgba(82,183,136,0.15), transparent);
+    }
+    .audit-entry:last-child .audit-line { display: none; }
+
+    .audit-dot-wrap { padding-top: 3px; flex-shrink: 0; }
+    .audit-dot {
+      width: 15px; height: 15px; border-radius: 50%;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 0.5rem;
+      flex-shrink: 0;
+    }
+    .audit-dot.issued   { background: rgba(82,183,136,0.2);  border: 1px solid rgba(82,183,136,0.5); color: var(--green-accent); }
+    .audit-dot.payment  { background: rgba(200,169,106,0.2); border: 1px solid rgba(200,169,106,0.5); color: var(--gold); }
+    .audit-dot.blocked  { background: rgba(212,147,10,0.15); border: 1px solid rgba(212,147,10,0.4); color: var(--amber); }
+    .audit-dot.revoked  { background: rgba(224,82,82,0.15);  border: 1px solid rgba(224,82,82,0.4);  color: var(--red); }
+    .audit-dot.enforced { background: rgba(82,183,136,0.15); border: 1px solid rgba(82,183,136,0.3); color: var(--green-accent); }
+    .audit-dot.expired  { background: rgba(255,255,255,0.05); border: 1px solid rgba(255,255,255,0.15); color: rgba(255,255,255,0.3); }
+
+    .audit-content { flex: 1; min-width: 0; }
+    .audit-event {
+      font-size: 0.78rem; color: rgba(255,255,255,0.75);
+      font-weight: 600; line-height: 1.4; margin-bottom: 0.15rem;
+    }
+    .audit-event span { color: var(--green-accent); }
+    .audit-event span.gold { color: var(--gold); }
+    .audit-event span.red { color: #f09090; }
+    .audit-event span.amber { color: #e8b860; }
+    .audit-detail {
+      font-size: 0.68rem; color: rgba(255,255,255,0.3);
+      font-family: var(--mono); line-height: 1.5;
+    }
+    .audit-time {
+      font-size: 0.62rem; color: rgba(255,255,255,0.2);
+      font-family: var(--mono); white-space: nowrap; padding-top: 3px;
+      flex-shrink: 0;
+    }
+
+    /* ── EARNINGS BREAKDOWN (sidebar below audit) ── */
+    .earnings-breakdown {
+      background: var(--surface);
+      border: 1px solid rgba(82,183,136,0.12);
+      border-radius: 16px; overflow: hidden;
+      margin-top: 1.5rem;
+    }
+    .eb-header {
+      padding: 1.25rem 1.5rem;
+      border-bottom: 1px solid rgba(82,183,136,0.08);
+    }
+    .eb-title {
+      font-size: 0.8rem; font-weight: 700; text-transform: uppercase;
+      letter-spacing: 1.5px; color: var(--green-accent);
+    }
+    .eb-row {
+      display: flex; justify-content: space-between; align-items: center;
+      padding: 0.85rem 1.5rem;
+      border-bottom: 1px solid rgba(255,255,255,0.04);
+      font-size: 0.82rem;
+    }
+    .eb-row:last-child { border-bottom: none; }
+    .eb-row-label { color: rgba(255,255,255,0.5); }
+    .eb-row-label small { display: block; font-size: 0.68rem; color: rgba(255,255,255,0.25); font-family: var(--mono); margin-top: 0.1rem; }
+    .eb-row-amount { font-weight: 700; font-family: var(--mono); }
+    .eb-row-amount.positive { color: var(--green-accent); }
+    .eb-row-amount.neutral  { color: rgba(255,255,255,0.4); }
+    .eb-total {
+      display: flex; justify-content: space-between; align-items: center;
+      padding: 1.1rem 1.5rem;
+      background: rgba(82,183,136,0.06);
+      border-top: 1px solid rgba(82,183,136,0.15);
+      font-size: 0.9rem; font-weight: 700;
+    }
+    .eb-total-label { color: rgba(255,255,255,0.6); }
+    .eb-total-amount { font-family: 'DM Serif Display', serif; font-size: 1.5rem; color: var(--green-accent); }
+
+    /* ── CTA BLOCK ── */
+    .ledger-cta {
+      margin-top: 3rem;
+      background: linear-gradient(135deg, rgba(26,74,53,0.6), rgba(45,106,79,0.25));
+      border: 1px solid rgba(82,183,136,0.3);
+      border-radius: 16px; padding: 2.5rem 3rem;
+      display: grid; grid-template-columns: 1fr auto;
+      gap: 2rem; align-items: center;
+    }
+    .ledger-cta-eyebrow {
+      font-size: 0.7rem; font-weight: 700; text-transform: uppercase;
+      letter-spacing: 2px; color: var(--green-accent); margin-bottom: 0.5rem;
+    }
+    .ledger-cta-headline {
+      font-family: 'DM Serif Display', serif;
+      font-size: 1.75rem; color: white; line-height: 1.2; margin-bottom: 0.6rem;
+    }
+    .ledger-cta-headline em { font-style: italic; color: var(--green-accent); }
+    .ledger-cta-sub { font-size: 0.875rem; color: rgba(255,255,255,0.5); line-height: 1.6; }
+    .ledger-cta-right { display: flex; flex-direction: column; gap: 0.75rem; align-items: flex-end; }
+    .btn-cta-primary {
+      padding: 0.9rem 2rem; background: var(--green-accent); color: var(--ink);
+      border: none; border-radius: 8px; font-family: 'Poppins', sans-serif;
+      font-weight: 700; font-size: 0.9rem; cursor: pointer;
+      text-decoration: none; transition: all 0.2s; white-space: nowrap;
+      display: inline-flex; align-items: center; gap: 0.4rem;
+    }
+    .btn-cta-primary:hover { background: #6dcfa0; transform: translateY(-1px); box-shadow: 0 6px 20px rgba(82,183,136,0.3); }
+    .btn-cta-secondary {
+      font-size: 0.78rem; color: rgba(255,255,255,0.35);
+      text-decoration: none; transition: color 0.2s; text-align: center;
+    }
+    .btn-cta-secondary:hover { color: var(--green-accent); }
+
+    /* ── WAITLIST FORM ── */
+    .waitlist-row { display: flex; gap: 0.6rem; }
+    .waitlist-input {
+      flex: 1; padding: 0.8rem 1rem;
+      background: rgba(255,255,255,0.07);
+      border: 1px solid rgba(82,183,136,0.3);
+      border-radius: 8px; color: white;
+      font-family: var(--mono); font-size: 0.875rem; outline: none;
+      transition: border-color 0.2s; min-width: 200px;
+    }
+    .waitlist-input:focus { border-color: var(--green-accent); }
+    .waitlist-input::placeholder { color: rgba(255,255,255,0.2); }
+    .btn-waitlist-submit {
+      padding: 0.8rem 1.25rem;
+      background: var(--green-primary); color: white;
+      border: none; border-radius: 8px;
+      font-family: 'Poppins', sans-serif; font-weight: 700; font-size: 0.82rem;
+      cursor: pointer; transition: all 0.2s; white-space: nowrap;
+    }
+    .btn-waitlist-submit:hover { background: var(--green-accent); color: var(--ink); }
+    .waitlist-note { font-size: 0.68rem; color: rgba(255,255,255,0.25); margin-top: 0.5rem; }
+
+    /* ── FOOTER ── */
+    footer {
+      text-align: center; padding: 3rem 2rem 2rem;
+      font-size: 0.75rem; color: rgba(255,255,255,0.2);
+      position: relative; z-index: 1;
+    }
+    footer a { color: rgba(255,255,255,0.3); text-decoration: none; }
+    footer a:hover { color: var(--green-accent); }
+
+    /* ── RESPONSIVE ── */
+    @media (max-width: 1000px) {
+      .ledger-grid { grid-template-columns: 1fr; }
+      .stats-row { grid-template-columns: repeat(2, 1fr); }
+      .earnings-hero { grid-template-columns: 1fr; }
+      .earnings-stats { flex-direction: row; text-align: left; }
+      .ledger-cta { grid-template-columns: 1fr; }
+      .ledger-cta-right { align-items: flex-start; }
+    }
+    @media (max-width: 600px) {
+      .stats-row { grid-template-columns: repeat(2, 1fr); }
+      .token-body { grid-template-columns: 1fr 1fr; }
+      .main { padding: 1.5rem 1rem 4rem; }
+      .earnings-hero { padding: 1.75rem; }
+      .ledger-cta { padding: 1.75rem; }
+      .waitlist-row { flex-direction: column; }
+    }
+  </style>
+</head>
+<body>
+
+<header>
+  <nav>
+    <a href="/" class="logo">
+      <span class="logo-text">Adworth℠</span>
+      <span class="badge">Consent Ledger</span>
+    </a>
+    <div class="nav-right">
+      <a href="/dashboard.html" class="nav-link">← Dashboard</a>
+      <a href="/" class="nav-link">Home</a>
+      <a href="/#waitlist" class="nav-cta">Join Waitlist →</a>
+    </div>
+  </nav>
+</header>
+
+<div class="main">
+
+  <!-- DEMO BANNER — always visible, clearly labels this as simulated -->
+  <div class="demo-banner">
+    <span class="demo-banner-icon">⚡</span>
+    <div>
+      <strong>Preview · Simulated Data</strong> — This is what your personal consent ledger would look like with Adworth. All advertiser names, token IDs, earnings figures, and events shown here are illustrative examples.
+      <a href="/#waitlist">Join the waitlist</a> to be notified when real ledgers launch.
+    </div>
+  </div>
+
+  <!-- PAGE HEADER -->
+  <div class="page-header">
+    <div class="page-eyebrow">My Consent Ledger</div>
+    <h1 class="page-headline">Your data. Your terms. <em>Your earnings.</em></h1>
+    <p class="page-sub">Every consent token you issue, every payment you receive, every deletion you enforce — recorded permanently on an append-only ledger that no one can modify, including us.</p>
+  </div>
+
+  <!-- EARNINGS HERO -->
+  <div class="earnings-hero">
+    <div>
+      <div class="earnings-label">Total Earned · All Time</div>
+      <div class="earnings-total"><span>$</span>14.73</div>
+      <div class="earnings-sub">
+        From <strong>6 consent tokens</strong> across 4 advertisers ·
+        <strong>$4.20/mo</strong> current active rate ·
+        <strong>2 tokens</strong> pending renewal
+      </div>
+    </div>
+    <div class="earnings-stats">
+      <div class="estat">
+        <div class="estat-value">6</div>
+        <div class="estat-label">Tokens issued</div>
+      </div>
+      <div class="estat">
+        <div class="estat-value">2</div>
+        <div class="estat-label">Active now</div>
+      </div>
+      <div class="estat">
+        <div class="estat-value">1</div>
+        <div class="estat-label">You revoked</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- STATS ROW -->
+  <div class="stats-row">
+    <div class="stat-card">
+      <div class="stat-card-label">Access Requests</div>
+      <div class="stat-card-value">41</div>
+      <div class="stat-card-sub">38 granted · 3 blocked</div>
+    </div>
+    <div class="stat-card">
+      <div class="stat-card-label">Violations Detected</div>
+      <div class="stat-card-value">1</div>
+      <div class="stat-card-sub">1 removal notice auto-sent</div>
+    </div>
+    <div class="stat-card">
+      <div class="stat-card-label">Adworth Fee (2%)</div>
+      <div class="stat-card-value" style="font-size:1.5rem;">$0.30</div>
+      <div class="stat-card-sub">on $14.73 earned · transparent</div>
+    </div>
+    <div class="stat-card">
+      <div class="stat-card-label">Ledger Entries</div>
+      <div class="stat-card-value">58</div>
+      <div class="stat-card-sub">append-only · tamper-evident</div>
+    </div>
+  </div>
+
+  <!-- MAIN LEDGER GRID -->
+  <div class="section-label">Consent Tokens</div>
+  <div class="ledger-grid">
+
+    <!-- LEFT: Token cards -->
+    <div>
+      <div class="token-panel">
+        <div class="token-panel-header">
+          <span class="token-panel-title">All Tokens</span>
+          <div class="token-filter-row">
+            <button class="filter-btn active" onclick="filterTokens('all', this)">All</button>
+            <button class="filter-btn" onclick="filterTokens('active', this)">Active</button>
+            <button class="filter-btn" onclick="filterTokens('expired', this)">Expired</button>
+            <button class="filter-btn" onclick="filterTokens('revoked', this)">Revoked</button>
+          </div>
+        </div>
+        <div id="token-list"></div>
+      </div>
+    </div>
+
+    <!-- RIGHT: Audit log + earnings breakdown -->
+    <div>
+
+      <div class="audit-panel">
+        <div class="audit-header">
+          <div class="audit-title">Invisibility Ledger</div>
+          <div class="audit-subtitle">Append-only · No one can modify this</div>
+        </div>
+        <div id="audit-log"></div>
+      </div>
+
+      <div class="earnings-breakdown">
+        <div class="eb-header">
+          <div class="eb-title">Earnings Breakdown</div>
+        </div>
+        <div class="eb-row">
+          <div class="eb-row-label">Spotify USA Inc<small>Music targeting · 30 days · Active</small></div>
+          <div class="eb-row-amount positive">+$2.50</div>
+        </div>
+        <div class="eb-row">
+          <div class="eb-row-label">Spotify USA Inc<small>Podcast targeting · 30 days · Active</small></div>
+          <div class="eb-row-amount positive">+$1.70</div>
+        </div>
+        <div class="eb-row">
+          <div class="eb-row-label">RunnerBrand Co.<small>Athletic data · 60 days · Expired</small></div>
+          <div class="eb-row-amount positive">+$6.00</div>
+        </div>
+        <div class="eb-row">
+          <div class="eb-row-label">TechGadget Inc.<small>Purchase intent · 30 days · Expired</small></div>
+          <div class="eb-row-amount positive">+$2.80</div>
+        </div>
+        <div class="eb-row">
+          <div class="eb-row-label">ClearVPN Ltd.<small>Privacy tools · 14 days · Revoked by you</small></div>
+          <div class="eb-row-amount neutral">$1.73 (partial)</div>
+        </div>
+        <div class="eb-row">
+          <div class="eb-row-label">Advertiser Co.<small>Generic targeting · 7 days · Expired</small></div>
+          <div class="eb-row-amount positive">+$0.00</div>
+        </div>
+        <div class="eb-row" style="border-top:1px solid rgba(82,183,136,0.1);">
+          <div class="eb-row-label" style="color:rgba(255,255,255,0.3); font-size:0.75rem;">Adworth platform fee (2%)</div>
+          <div class="eb-row-amount neutral" style="font-size:0.78rem;">−$0.30</div>
+        </div>
+        <div class="eb-total">
+          <span class="eb-total-label">Your net earnings</span>
+          <span class="eb-total-amount">$14.43</span>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- CTA BLOCK -->
+  <div class="ledger-cta">
+    <div>
+      <div class="ledger-cta-eyebrow">This Could Be Your Ledger</div>
+      <h2 class="ledger-cta-headline">The internet built a $700B industry on your data. <em>You got $0.</em></h2>
+      <p class="ledger-cta-sub">Adworth is building the consent infrastructure to change that — cryptographic tokens, real payments, deletion that's enforced not promised. Join the waitlist to be first when it launches.</p>
+    </div>
+    <div class="ledger-cta-right">
+      <div>
+        <div class="waitlist-row">
+          <input class="waitlist-input" id="cta-email" type="email" placeholder="your@email.com">
+          <button class="btn-waitlist-submit" onclick="submitLedgerWaitlist()">Join Waitlist</button>
+        </div>
+        <div class="waitlist-note">🔒 Your email is not shared. Not now, not ever. That's the point.</div>
+      </div>
+      <a href="/enterprise.html" class="btn-cta-secondary">Investor overview →</a>
+    </div>
+  </div>
+
+</div>
+
+<footer>
+  <p>© 2026 Adworth℠ LLC · Patent Pending · Charleston, SC</p>
+  <p style="margin-top:0.3rem;">
+    <a href="/privacy.html">Privacy Policy</a> ·
+    <a href="/terms.html">Terms of Service</a> ·
+    <a href="/dashboard.html">← Ad Dashboard</a> ·
+    <a href="/">Home</a>
+  </p>
+  <p style="margin-top:1rem; font-size:0.68rem; color:rgba(255,255,255,0.15); max-width:700px; margin-left:auto; margin-right:auto; line-height:1.7;">
+    All data shown on this page is simulated for illustrative purposes only. Advertiser names, token IDs, earnings figures, and ledger events are examples of what the Adworth consent marketplace will display when launched. No real user data, real transactions, or real consent tokens are represented here.
+  </p>
+</footer>
+
+<script>
+  // ── MOCK DATA ─────────────────────────────────────────────
+  const TOKENS = [
+    {
+      id: 'AWX-7f3a9c2d',
+      advertiser: 'Spotify USA Inc',
+      logo: '🎵',
+      logoBg: 'rgba(30,215,96,0.15)',
+      scope: 'music-listening · behavioral-targeting',
+      status: 'active',
+      issued: 'Feb 1, 2026',
+      expires: 'Mar 3, 2026',
+      duration: '30 days',
+      earned: '$2.50',
+      rate: '$2.50/mo',
+      accessCount: 14,
+    },
+    {
+      id: 'AWX-2b8e1f7a',
+      advertiser: 'Spotify USA Inc',
+      logo: '🎙️',
+      logoBg: 'rgba(30,215,96,0.12)',
+      scope: 'podcast-listening · interest-targeting',
+      status: 'active',
+      issued: 'Feb 10, 2026',
+      expires: 'Mar 12, 2026',
+      duration: '30 days',
+      earned: '$1.70',
+      rate: '$1.70/mo',
+      accessCount: 9,
+    },
+    {
+      id: 'AWX-4c1d8b5e',
+      advertiser: 'RunnerBrand Co.',
+      logo: '🏃',
+      logoBg: 'rgba(255,165,0,0.12)',
+      scope: 'athletic-data · purchase-intent',
+      status: 'expired',
+      issued: 'Dec 1, 2025',
+      expires: 'Jan 30, 2026',
+      duration: '60 days',
+      earned: '$6.00',
+      rate: '$3.00/mo',
+      accessCount: 11,
+    },
+    {
+      id: 'AWX-9a3f2c8b',
+      advertiser: 'TechGadget Inc.',
+      logo: '💻',
+      logoBg: 'rgba(82,183,136,0.12)',
+      scope: 'device-usage · purchase-history',
+      status: 'expired',
+      issued: 'Jan 5, 2026',
+      expires: 'Feb 4, 2026',
+      duration: '30 days',
+      earned: '$2.80',
+      rate: '$2.80/mo',
+      accessCount: 8,
+    },
+    {
+      id: 'AWX-6d4e9f1a',
+      advertiser: 'ClearVPN Ltd.',
+      logo: '🔒',
+      logoBg: 'rgba(224,82,82,0.12)',
+      scope: 'browsing-patterns · privacy-interest',
+      status: 'revoked',
+      issued: 'Jan 20, 2026',
+      expires: 'Feb 3, 2026',
+      duration: '14 days',
+      earned: '$1.73',
+      rate: '(revoked on day 10)',
+      accessCount: 4,
+    },
+    {
+      id: 'AWX-3e7b0d2f',
+      advertiser: 'Advertiser Co.',
+      logo: '📢',
+      logoBg: 'rgba(255,255,255,0.06)',
+      scope: 'generic-targeting · demographics',
+      status: 'expired',
+      issued: 'Jan 1, 2026',
+      expires: 'Jan 8, 2026',
+      duration: '7 days',
+      earned: '$0.00',
+      rate: 'Free trial token',
+      accessCount: 2,
+    },
+  ];
+
+  const AUDIT = [
+    { type: 'payment',  time: 'Today 09:14',    event: 'Payment received from <span>Spotify USA Inc</span>', detail: 'AWX-7f3a9c2d · $1.25 deposited · music-listening scope' },
+    { type: 'blocked',  time: 'Yesterday 14:32', event: '<span class="amber">Access blocked</span> — scope violation', detail: 'AWX-7f3a9c2d · Spotify requested health-data — outside token scope' },
+    { type: 'payment',  time: 'Feb 25 11:00',   event: 'Payment received from <span>Spotify USA Inc</span>', detail: 'AWX-2b8e1f7a · $0.85 deposited · podcast-listening scope' },
+    { type: 'issued',   time: 'Feb 10 09:00',   event: 'Token issued to <span>Spotify USA Inc</span>', detail: 'AWX-2b8e1f7a · 30 days · podcast-listening · $1.70/mo' },
+    { type: 'enforced', time: 'Feb 5 08:45',    event: 'Deletion enforced — <span>ClearVPN Ltd.</span>', detail: 'AWX-6d4e9f1a · State-monitor detected data after revocation · RPE auto-filed' },
+    { type: 'revoked',  time: 'Jan 30 19:22',   event: 'Token revoked by you — <span class="red">ClearVPN Ltd.</span>', detail: 'AWX-6d4e9f1a · Access stopped immediately · deletion process initiated' },
+    { type: 'payment',  time: 'Jan 30 11:00',   event: 'Payment received from <span>RunnerBrand Co.</span>', detail: 'AWX-4c1d8b5e · $3.00 deposited · 60-day token final payment' },
+    { type: 'expired',  time: 'Jan 30 09:00',   event: 'Token expired — <span style="color:rgba(255,255,255,0.4)">RunnerBrand Co.</span>', detail: 'AWX-4c1d8b5e · 60-day window closed · access automatically revoked' },
+    { type: 'payment',  time: 'Jan 5 11:00',    event: 'Payment received from <span>TechGadget Inc.</span>', detail: 'AWX-9a3f2c8b · $2.80 deposited · 30-day token' },
+    { type: 'issued',   time: 'Dec 1 10:00',    event: 'Token issued to <span>RunnerBrand Co.</span>', detail: 'AWX-4c1d8b5e · 60 days · athletic-data · $3.00/mo' },
+  ];
+
+  // ── RENDER TOKENS ─────────────────────────────────────────
+  let currentFilter = 'all';
+
+  function filterTokens(filter, btn) {
+    currentFilter = filter;
+    document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
+    btn.classList.add('active');
+    renderTokens();
+  }
+
+  function renderTokens() {
+    const filtered = currentFilter === 'all'
+      ? TOKENS
+      : TOKENS.filter(t => t.status === currentFilter);
+
+    const html = filtered.map((t, i) => {
+      const statusLabel = { active: 'Active', expired: 'Expired', revoked: 'Revoked' }[t.status];
+      const actions = t.status === 'active'
+        ? `<button class="token-action-btn btn-revoke" onclick="demoAction('revoke','${t.id}')">Revoke</button>`
+        : t.status === 'expired'
+        ? `<button class="token-action-btn btn-renew" onclick="demoAction('renew','${t.id}')">Renew</button>`
+        : `<button class="token-action-btn btn-view" onclick="demoAction('view','${t.id}')">View Record</button>`;
+
+      return `
+        <div class="token-card" style="animation-delay:${i * 60}ms">
+          <div class="token-top">
+            <div class="token-advertiser">
+              <div class="token-logo" style="background:${t.logoBg}">${t.logo}</div>
+              <div>
+                <div class="token-name">${t.advertiser}</div>
+                <div class="token-scope">${t.scope}</div>
+              </div>
+            </div>
+            <div class="token-status status-${t.status}">
+              <span class="token-status-dot"></span>${statusLabel}
+            </div>
+          </div>
+          <div class="token-body">
+            <div class="token-field">
+              <div class="token-field-label">Issued</div>
+              <div class="token-field-value">${t.issued}</div>
+            </div>
+            <div class="token-field">
+              <div class="token-field-label">Expires</div>
+              <div class="token-field-value">${t.expires}</div>
+            </div>
+            <div class="token-field">
+              <div class="token-field-label">Earned</div>
+              <div class="token-field-value earned">${t.earned}</div>
+            </div>
+            <div class="token-field">
+              <div class="token-field-label">Rate</div>
+              <div class="token-field-value">${t.rate}</div>
+            </div>
+            <div class="token-field">
+              <div class="token-field-label">Access Count</div>
+              <div class="token-field-value">${t.accessCount}×</div>
+            </div>
+            <div class="token-field">
+              <div class="token-field-label">Duration</div>
+              <div class="token-field-value">${t.duration}</div>
+            </div>
+          </div>
+          <div class="token-id-bar">
+            <span class="token-id">${t.id} · cryptographically signed · HMAC-SHA256</span>
+            <div class="token-id-actions">${actions}</div>
+          </div>
+        </div>`;
+    }).join('');
+
+    document.getElementById('token-list').innerHTML = html ||
+      `<div style="padding:2rem; text-align:center; color:rgba(255,255,255,0.25); font-size:0.85rem;">No ${currentFilter} tokens</div>`;
+  }
+
+  // ── RENDER AUDIT LOG ──────────────────────────────────────
+  function renderAuditLog() {
+    const icons = { issued:'✦', payment:'$', blocked:'⊘', revoked:'✕', enforced:'⚡', expired:'○' };
+    const html = AUDIT.map((entry, i) => `
+      <div class="audit-entry" style="animation-delay:${i * 40}ms">
+        <div class="audit-line"></div>
+        <div class="audit-dot-wrap">
+          <div class="audit-dot ${entry.type}">${icons[entry.type] || '·'}</div>
+        </div>
+        <div class="audit-content">
+          <div class="audit-event">${entry.event}</div>
+          <div class="audit-detail">${entry.detail}</div>
+        </div>
+        <div class="audit-time">${entry.time}</div>
+      </div>`).join('');
+
+    document.getElementById('audit-log').innerHTML = html;
+  }
+
+  // ── DEMO ACTION HANDLERS ──────────────────────────────────
+  function demoAction(action, tokenId) {
+    const messages = {
+      revoke: `In the real Adworth marketplace, revoking ${tokenId} would:\n\n1. Instantly invalidate the token\n2. Block all future access attempts\n3. Record CONSENT_REVOKED to your ledger\n4. Trigger the State-Persistence Monitor to verify deletion\n5. Auto-file a legal removal notice if the advertiser still holds your data\n\nThis is a preview — join the waitlist to use real tokens.`,
+      renew:  `Renewing ${tokenId} would issue a new cryptographic token with a fresh time window and updated payment terms. Your previous earnings remain on the ledger permanently.\n\nThis is a preview — join the waitlist to use real tokens.`,
+      view:   `In the full ledger, you'd see the complete cryptographic audit trail for ${tokenId} — every access request, payment, block event, and the final deletion confirmation.\n\nThis is a preview — join the waitlist to use real tokens.`,
+    };
+    alert(messages[action]);
+  }
+
+  // ── WAITLIST SUBMIT ───────────────────────────────────────
+  async function submitLedgerWaitlist() {
+    const input = document.getElementById('cta-email');
+    const btn = document.querySelector('.btn-waitlist-submit');
+    const email = input?.value.trim();
+    if (!email || !email.includes('@')) {
+      input.style.borderColor = 'var(--red)';
+      return;
+    }
+    input.style.borderColor = '';
+    btn.textContent = 'Joining…';
+    btn.disabled = true;
+
+    try {
+      const res = await fetch('https://formspree.io/f/mlgwgndk', {
+        method: 'POST',
+        headers: { 'Accept': 'application/json', 'Content-Type': 'application/json' },
+        body: JSON.stringify({ email, source: 'ledger-page-cta' }),
+      });
+      if (res.ok) {
+        btn.textContent = '✓ You\'re on the list!';
+        btn.style.background = 'var(--green-accent)';
+        btn.style.color = 'var(--ink)';
+        input.value = '';
+      } else {
+        btn.textContent = 'Try again';
+        btn.disabled = false;
+      }
+    } catch {
+      btn.textContent = 'Try again';
+      btn.disabled = false;
+    }
+  }
+
+  // ── INIT ─────────────────────────────────────────────────
+  renderTokens();
+  renderAuditLog();
+</script>
+
+</body>
+</html>
