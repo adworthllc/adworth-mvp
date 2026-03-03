@@ -37,9 +37,13 @@
         .page-hero p { font-size: 0.95rem; color: rgba(255,255,255,0.6); }
         .content-wrap { max-width: 860px; margin: 0 auto; padding: 4rem 2rem 6rem; }
         .toc { background: var(--white); border: 1.5px solid var(--border); border-radius: 12px; padding: 1.75rem 2rem; margin-bottom: 3rem; }
-        .toc h2 { font-size: 0.75rem; font-weight: 700; text-transform: uppercase; letter-spacing: 2px; color: var(--ink-30); margin-bottom: 1rem; }
-        .toc ol { padding-left: 1.25rem; display: grid; grid-template-columns: 1fr 1fr; gap: 0.4rem 2rem; }
-        .toc li { font-size: 0.875rem; }
+        .toc h2 { font-size: 0.75rem; font-weight: 700; text-transform: uppercase; letter-spacing: 2px; color: var(--ink-30); margin-bottom: 1.25rem; }
+        .toc-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 0 2.5rem; }
+        .toc-col { display: flex; flex-direction: column; gap: 0; }
+        .toc-row { display: grid; grid-template-columns: 1.75rem 1fr; align-items: baseline; padding: 0.3rem 0; border-bottom: 1px solid var(--border); }
+        .toc-row:last-child { border-bottom: none; }
+        .toc-num { font-size: 0.8rem; font-weight: 700; color: var(--ink-30); }
+        .toc-link { font-size: 0.875rem; }
         .toc a { color: var(--green-primary); text-decoration: none; font-weight: 500; }
         .toc a:hover { color: var(--green-deep); text-decoration: underline; }
         .policy-section { margin-bottom: 3rem; padding-bottom: 3rem; border-bottom: 1px solid var(--border); }
@@ -101,7 +105,7 @@
         <div class="inner">
             <span class="page-label">Legal</span>
             <h1>Terms of Service</h1>
-            <p>Last updated: March 2, 2026 &middot; Adworth&#8480; LLC &middot; Charleston, SC</p>
+            <p>Last updated: March 3, 2026 &middot; Adworth&#8480; LLC &middot; Charleston, SC</p>
         </div>
     </div>
 
@@ -109,53 +113,56 @@
 
         <div class="toc">
             <h2>Contents</h2>
-            <ol>
-                <li><a href="#acceptance">Acceptance of Terms</a></li>
-                <li><a href="#description">Description of Services</a></li>
-                <li><a href="#infrastructure">Infrastructure &amp; Third Parties</a></li>
-                <li><a href="#consent-api">Consent API &amp; Ledger Terms</a></li>
-                <li><a href="#state-monitor">State-Persistence Monitor &amp; RPE Terms</a></li>
-                <li><a href="#governance-engine">Privacy Governance Engine Terms</a></li>
-                <li><a href="#consent-widget">Consent Widget &amp; Advertiser Integration Terms</a></li>
-                <li><a href="#api-access">API Access &amp; Authentication</a></li>
-                <li><a href="#eligibility">Eligibility</a></li>
-                <li><a href="#accounts">Accounts &amp; Registration</a></li>
-                <li><a href="#acceptable-use">Acceptable Use</a></li>
-                <li><a href="#intellectual-property">Intellectual Property</a></li>
-                <li><a href="#disclaimer">Disclaimers</a></li>
-                <li><a href="#limitation">Limitation of Liability</a></li>
-                <li><a href="#termination">Termination</a></li>
-                <li><a href="#governing-law">Governing Law</a></li>
-                <li><a href="#changes">Changes to Terms</a></li>
-                <li><a href="#contact">Contact Us</a></li>
-            </ol>
+            <div class="toc-grid">
+                <div class="toc-col">
+                    <div class="toc-row"><span class="toc-num">1.</span><span class="toc-link"><a href="#acceptance">Acceptance of Terms</a></span></div>
+                    <div class="toc-row"><span class="toc-num">2.</span><span class="toc-link"><a href="#description">Description of Services</a></span></div>
+                    <div class="toc-row"><span class="toc-num">3.</span><span class="toc-link"><a href="#infrastructure">Infrastructure &amp; Third Parties</a></span></div>
+                    <div class="toc-row"><span class="toc-num">4.</span><span class="toc-link"><a href="#consent-api">Consent API &amp; Ledger Terms</a></span></div>
+                    <div class="toc-row"><span class="toc-num">5.</span><span class="toc-link"><a href="#state-monitor">State-Persistence Monitor &amp; RPE</a></span></div>
+                    <div class="toc-row"><span class="toc-num">6.</span><span class="toc-link"><a href="#governance-engine">Privacy Governance Engine Terms</a></span></div>
+                    <div class="toc-row"><span class="toc-num">7.</span><span class="toc-link"><a href="#consent-widget">Consent Widget &amp; Advertiser Integration</a></span></div>
+                    <div class="toc-row"><span class="toc-num">8.</span><span class="toc-link"><a href="#api-access">API Access &amp; Authentication</a></span></div>
+                    <div class="toc-row"><span class="toc-num">9.</span><span class="toc-link"><a href="#eligibility">Eligibility</a></span></div>
+                </div>
+                <div class="toc-col">
+                    <div class="toc-row"><span class="toc-num">10.</span><span class="toc-link"><a href="#accounts">Accounts &amp; Registration</a></span></div>
+                    <div class="toc-row"><span class="toc-num">11.</span><span class="toc-link"><a href="#acceptable-use">Acceptable Use</a></span></div>
+                    <div class="toc-row"><span class="toc-num">12.</span><span class="toc-link"><a href="#intellectual-property">Intellectual Property</a></span></div>
+                    <div class="toc-row"><span class="toc-num">13.</span><span class="toc-link"><a href="#disclaimer">Disclaimers</a></span></div>
+                    <div class="toc-row"><span class="toc-num">14.</span><span class="toc-link"><a href="#limitation">Limitation of Liability</a></span></div>
+                    <div class="toc-row"><span class="toc-num">15.</span><span class="toc-link"><a href="#termination">Termination</a></span></div>
+                    <div class="toc-row"><span class="toc-num">16.</span><span class="toc-link"><a href="#governing-law">Governing Law</a></span></div>
+                    <div class="toc-row"><span class="toc-num">17.</span><span class="toc-link"><a href="#changes">Changes to Terms</a></span></div>
+                    <div class="toc-row"><span class="toc-num">18.</span><span class="toc-link"><a href="#contact">Contact Us</a></span></div>
+                </div>
+            </div>
         </div>
-
+        <!-- UPDATED March 3 2026: adworth-ads worker, PII classifier, waitlist route, Vercel Analytics -->
         <div class="highlight-box">
-            <strong>The short version:</strong> Use Adworth legally and in good faith. Don&rsquo;t misuse the platform or infringe on our intellectual property. Consent tokens and ledger entries are governed by specific rules around immutability and data ownership. The State-Persistence Monitor and Removal Payload Engine currently operate in simulated mode for demonstration purposes. The Privacy Governance Engine enforces consent in real time. The Consent Widget and Advertiser Integration sandbox are proof-of-concept demonstrations. API access requires authentication. No third-party email services are used for waitlist management or communications. We&rsquo;re in early stages and provide the service as-is. If something goes wrong, our liability is limited. Questions? Reach us at <a href="mailto:hello@adworth.app">hello&#64;adworth.app</a>.
+            <strong>The short version:</strong> Use Adworth legally and in good faith. Don&rsquo;t misuse the platform or infringe on our intellectual property. The Ad Intelligence pipeline runs entirely through our own <code>adworth-ads</code> Cloudflare Worker, which includes a PII Advertiser Name Classifier that detects and anonymizes individual person names in public ad data before any response leaves the worker &mdash; only a non-reversible SHA-256 audit hash is retained. Consent tokens and ledger entries are governed by specific rules around immutability and data ownership. The State-Persistence Monitor and Removal Payload Engine currently operate in simulated mode for demonstration purposes. The Privacy Governance Engine enforces consent in real time. The Consent Widget and Advertiser Integration sandbox are proof-of-concept demonstrations. API access requires authentication; keys are stored in <code>sessionStorage</code> only and never persisted server-side. Waitlist submissions are processed entirely through our own Cloudflare Worker at <code>adworth.app/waitlist-submit</code> &mdash; no third-party form processors or email services are used. We&rsquo;re in early stages and provide the service as-is. Questions? <a href="mailto:hello@adworth.app">hello&#64;adworth.app</a>.
         </div>
-
         <!-- 01 -->
         <div class="policy-section" id="acceptance">
             <h2><span class="section-num">01</span> Acceptance of Terms</h2>
-            <p>By accessing or using any Adworth&#8480; service &mdash; including adworth.app, app.adworth.app, the Adworth Consent API, the Privacy Governance Engine, the State-Persistence Monitor, the Removal Payload Engine, the Invisibility Ledger, or any associated applications &mdash; you agree to be bound by these Terms of Service and our <a href="/privacy.html">Privacy Policy</a>.</p>
+            <p>By accessing or using any Adworth&#8480; service &mdash; including adworth.app, app.adworth.app, the Ad Intelligence pipeline, the Consent API, the Privacy Governance Engine, the State-Persistence Monitor, the Removal Payload Engine, the Invisibility Ledger, or any associated applications &mdash; you agree to be bound by these Terms of Service and our <a href="/privacy.html">Privacy Policy</a>.</p>
             <p>If you do not agree to these terms, please do not use our services.</p>
         </div>
-
-        <!-- 02 -->
+        <!-- 02 — UPDATED March 3 2026: adworth-ads pipeline + PII classifier + waitlist route -->
         <div class="policy-section" id="description">
             <h2><span class="section-num">02</span> Description of Services</h2>
             <p>Adworth&#8480; is a privacy technology platform currently providing:</p>
             <ul>
-                <li>An Ad Intelligence Dashboard with DSA compliance and ad transparency analysis (adworth.app/dashboard.html)</li>
+                <li>An Ad Intelligence pipeline (<code>adworth-ads</code> Cloudflare Worker v4) that retrieves publicly available advertiser data via SerpApi, analyzes it using Anthropic&rsquo;s Claude AI, and includes a PII Advertiser Name Classifier that detects and anonymizes individual person names before any response leaves the worker &mdash; logging only a non-reversible SHA-256 audit hash with 90-day retention</li>
+                <li>An Ad Intelligence Dashboard at adworth.app/dashboard.html powered by the above pipeline, providing DSA compliance and ad transparency analysis</li>
                 <li>A cryptographic consent token API for issuing, validating, and revoking data consent (Patent Component #1)</li>
-                <li>An append-only Invisibility Ledger recording all consent lifecycle events (Patent Component #3)</li>
+                <li>An append-only Invisibility Ledger recording all consent lifecycle and enforcement events (Patent Component #3)</li>
                 <li>A Privacy Governance Engine that enforces consent boundaries in real time by evaluating every data access request (Patent Component #2)</li>
                 <li>A State-Persistence Monitor that scans for unauthorized data retention after consent revocation or expiry (Patent Component #4)</li>
                 <li>A Removal Payload Engine that generates legally-cited deletion requests when violations are detected (Patent Component #5)</li>
                 <li>A Consent Widget for users to grant and revoke consent tokens through a visual interface (proof-of-concept demonstration)</li>
                 <li>An Advertiser Integration sandbox for testing data access requests against the Governance Engine (proof-of-concept demonstration)</li>
-                <li>A waitlist for our upcoming cryptographic consent marketplace, with an authenticated admin dashboard for waitlist management</li>
+                <li>A waitlist for our upcoming cryptographic consent marketplace, processed via our own Cloudflare Worker at <code>adworth.app/waitlist-submit</code>, with an authenticated admin dashboard for waitlist management</li>
                 <li>Informational content at adworth.app</li>
             </ul>
             <p>We are an early-stage company. Our services are actively being developed and may change, be interrupted, or be discontinued at any time. We will make reasonable efforts to notify users of significant changes.</p>
@@ -163,20 +170,19 @@
                 <strong>Current operational status:</strong> The State-Persistence Monitor and Removal Payload Engine are functional but currently operate using simulated data broker checks. No live connections to external data brokers exist at this time. Removal payloads are generated with real legal citations but are not transmitted to third parties. These components will transition to live operation as the platform matures, and these terms will be updated accordingly.
             </div>
         </div>
-
-        <!-- 03 -->
+        <!-- 03 — UPDATED March 3 2026: named worker fleet, Vercel Analytics disabled, PII classifier in SerpApi/Anthropic, waitlist route -->
         <div class="policy-section" id="infrastructure">
             <h2><span class="section-num">03</span> Infrastructure &amp; Third Parties</h2>
             <p>Adworth relies on the following infrastructure providers to deliver its services. By using our services, you acknowledge that your use is also subject to these providers&rsquo; applicable terms and privacy policies.</p>
 
             <h3>Cloudflare Workers</h3>
-            <p>All server-side logic runs on Cloudflare Workers edge infrastructure, including the Consent Token API, Privacy Governance Engine, State-Persistence Monitor, Removal Payload Engine, Invisibility Ledger, ad intelligence pipeline, font delivery, waitlist processing, and waitlist admin dashboard. Cloudflare processes request metadata as part of serving and securing our services. Cloudflare&rsquo;s terms: <a href="https://www.cloudflare.com/terms/" target="_blank" rel="noopener noreferrer">cloudflare.com/terms</a>.</p>
+            <p>All server-side logic runs on Cloudflare Workers edge infrastructure. Our complete active worker fleet: <code>adworth-ads</code> (Ad Intelligence pipeline and PII Advertiser Name Classifier), <code>adworth-consent-api</code> (Consent Token API), <code>adworth-bouncer</code> (Privacy Governance Engine), <code>adworth-ledger</code> (Invisibility Ledger read-only viewer), <code>adworth-state-monitor</code> (State-Persistence Monitor and Removal Payload Engine), <code>adworth-waitlist</code> (waitlist processing at adworth.app/waitlist-submit and admin dashboard), and <code>adworth-fonts</code> (self-hosted font delivery). Cloudflare processes request metadata as part of serving and securing our services. Cloudflare&rsquo;s terms: <a href="https://www.cloudflare.com/terms/" target="_blank" rel="noopener noreferrer">cloudflare.com/terms</a>.</p>
 
             <h3>Vercel</h3>
-            <p>Our primary website (adworth.app) is hosted and deployed via Vercel. Vercel may retain standard server access logs. Vercel&rsquo;s terms: <a href="https://vercel.com/legal/terms" target="_blank" rel="noopener noreferrer">vercel.com/legal/terms</a>.</p>
+            <p>Our primary website (adworth.app) is hosted and deployed via Vercel as part of a GitHub &rarr; Vercel &rarr; Cloudflare pipeline. Vercel may retain standard server access logs. <strong>Vercel Analytics is explicitly disabled on our deployment.</strong> Vercel&rsquo;s terms: <a href="https://vercel.com/legal/terms" target="_blank" rel="noopener noreferrer">vercel.com/legal/terms</a>.</p>
 
             <h3>IONOS</h3>
-            <p>IONOS is used for two purposes: (1) hosting the <code>app.adworth.app</code> subdomain served from IONOS webspace, and (2) routing system email from <code>no-reply&#64;adworth.app</code>. No user personal data is stored within IONOS infrastructure beyond standard server access logs. IONOS terms: <a href="https://www.ionos.com/terms-gtc/" target="_blank" rel="noopener noreferrer">ionos.com/terms-gtc</a>.</p>
+            <p>IONOS is used for two purposes: (1) hosting the <code>app.adworth.app</code> subdomain served from IONOS webspace (separate from the main adworth.app Vercel deployment), and (2) routing system email from <code>no-reply&#64;adworth.app</code>. No user personal data is stored within IONOS infrastructure beyond standard server access logs. IONOS terms: <a href="https://www.ionos.com/terms-gtc/" target="_blank" rel="noopener noreferrer">ionos.com/terms-gtc</a>.</p>
 
             <h3>GitHub</h3>
             <p>Source code is hosted in a private repository under the adworthllc organization on GitHub. GitHub stores code and deployment history only. No user data &mdash; including waitlist emails, consent tokens, ledger entries, or any personally identifiable information &mdash; is stored in or transmitted through GitHub. API secrets and environment variable values are never committed to version control. GitHub&rsquo;s terms: <a href="https://docs.github.com/en/site-policy/github-terms/github-terms-of-service" target="_blank" rel="noopener noreferrer">docs.github.com/terms</a>.</p>
@@ -185,15 +191,14 @@
             <p>Correspondence sent to <code>hello&#64;adworth.app</code> is handled via Proton Mail, which provides end-to-end encrypted email infrastructure. Email content you send to us is stored within Proton Mail and is not shared with third parties except as required by law. Waitlist broadcast communications are sent via Proton Mail using BCC to protect subscriber email addresses from other recipients. Proton Mail&rsquo;s terms: <a href="https://proton.me/legal/terms" target="_blank" rel="noopener noreferrer">proton.me/legal/terms</a>.</p>
 
             <h3>SerpApi</h3>
-            <p>The Ad Intelligence Dashboard uses SerpApi to retrieve public advertiser data from Google&rsquo;s Ads Transparency Center. When you submit a domain for analysis, that domain name is sent to SerpApi. No personal user data is transmitted to SerpApi. SerpApi&rsquo;s terms: <a href="https://serpapi.com/terms" target="_blank" rel="noopener noreferrer">serpapi.com/terms</a>.</p>
+            <p>The Ad Intelligence Dashboard uses SerpApi to retrieve public advertiser data from Google&rsquo;s Ads Transparency Center. All SerpApi calls are made exclusively from our <code>adworth-ads</code> Cloudflare Worker &mdash; no SerpApi requests originate from the user&rsquo;s browser. When you submit a domain for analysis, that domain name is sent to SerpApi. No personal user data is transmitted to SerpApi. Before any SerpApi response is returned to the dashboard, the PII Advertiser Name Classifier runs within <code>adworth-ads</code> to detect and anonymize any individual person names in the returned ad data. SerpApi&rsquo;s terms: <a href="https://serpapi.com/terms" target="_blank" rel="noopener noreferrer">serpapi.com/terms</a>.</p>
 
             <h3>Anthropic</h3>
-            <p>AI privacy analysis in the Ad Intelligence Dashboard is generated by Anthropic&rsquo;s Claude API. Only publicly available ad metadata (advertiser names, ad counts, formats) retrieved from SerpApi is transmitted to Anthropic. No personal user data, waitlist emails, or consent token data is sent to Anthropic. Anthropic&rsquo;s terms: <a href="https://www.anthropic.com/legal/consumer-terms" target="_blank" rel="noopener noreferrer">anthropic.com/legal/consumer-terms</a>.</p>
+            <p>AI privacy analysis in the Ad Intelligence Dashboard is generated by Anthropic&rsquo;s Claude API. All Anthropic calls are made from our <code>adworth-ads</code> Cloudflare Worker. Data transmitted to Anthropic is the already-anonymized ad metadata &mdash; any individual person names detected by the PII Advertiser Name Classifier have been replaced before this call is made. No personal user data, waitlist emails, or consent token data is sent to Anthropic. Anthropic&rsquo;s terms: <a href="https://www.anthropic.com/legal/consumer-terms" target="_blank" rel="noopener noreferrer">anthropic.com/legal/consumer-terms</a>.</p>
 
-            <h3>No third-party email services</h3>
-            <p>Adworth does not use any third-party email services, mailing list providers, or form processors for waitlist management or subscriber communications. Waitlist form submissions are processed entirely through our own Cloudflare Workers infrastructure. Email addresses are stored in Cloudflare Workers KV and are never transmitted to external email services for notification, marketing, or any other purpose.</p>
+            <h3>No third-party form processors or email services</h3>
+            <p>Adworth does not use any third-party form processors, mailing list providers, or email delivery services for waitlist management or subscriber communications. Waitlist form submissions are processed entirely through our own <code>adworth-waitlist</code> Cloudflare Worker at <code>adworth.app/waitlist-submit</code>. Email addresses are stored in Cloudflare Workers KV and are never transmitted to external services for any purpose.</p>
         </div>
-
         <!-- 04 -->
         <div class="policy-section" id="consent-api">
             <h2><span class="section-num">04</span> Consent API &amp; Ledger Terms</h2>
@@ -217,7 +222,8 @@
                 <li>This immutability is by design and serves as the tamper-evident audit trail for regulatory compliance and dispute resolution</li>
                 <li>Ledger entries contain only cryptographic identifiers, event types, and timestamps &mdash; not personally identifiable information</li>
                 <li>Ledger event types include <code>CONSENT_ISSUED</code>, <code>CONSENT_REVOKED</code>, <code>CONSENT_EXPIRED</code>, <code>ACCESS_CHECKED</code>, <code>VIOLATION_DETECTED</code>, and <code>RPE_GENERATED</code></li>
-                <li>Ledger entries are retained indefinitely as part of the consent audit trail, even if you request deletion of other personal data</li>
+                <li>Ledger entries are retained as part of the consent audit trail, even if you request deletion of other personal data</li>
+                <li>The Invisibility Ledger viewer (<code>adworth-ledger</code>) is read-only by architectural design &mdash; it cannot create, modify, or delete entries</li>
                 <li>You may request an export of your complete ledger history at any time by contacting <a href="mailto:hello@adworth.app">hello&#64;adworth.app</a></li>
             </ul>
 
@@ -291,7 +297,7 @@
             <p>The Consent Widget is a demonstration interface that allows users to grant and revoke consent tokens through a visual interface connected to the live Consent API. By using the Consent Widget, you acknowledge that:</p>
             <ul>
                 <li>Consent tokens issued through the widget are real and recorded in the Invisibility Ledger</li>
-                <li>Simulated advertiser names (Nike, Spotify, Whole Foods, Peloton) are used for demonstration purposes only and do not represent actual partnerships or data-sharing agreements</li>
+                <li>Simulated advertiser names are used for demonstration purposes only and do not represent actual partnerships or data-sharing agreements</li>
                 <li>Payment amounts displayed are simulated &mdash; no real financial transactions occur through the widget at this time</li>
                 <li>The widget is a proof-of-concept and may be modified, relocated, or removed without notice</li>
                 <li>Tokens issued through the widget are subject to the same lifecycle rules as all consent tokens (revocation, expiration, enforcement)</li>
@@ -310,12 +316,14 @@
             <h3>Invisibility Ledger Viewer</h3>
             <p>The Invisibility Ledger viewer (<code>adworth-ledger</code>) provides read-only access to the tamper-evident audit trail. By using the viewer, you acknowledge that:</p>
             <ul>
-                <li>The viewer is read-only &mdash; it cannot modify, delete, or create ledger entries</li>
-                <li>Ledger entries displayed represent real consent lifecycle and enforcement events</li>
+                <li>The viewer is strictly read-only &mdash; it cannot modify, delete, or create ledger entries by architectural design</li>
+                <li>Ledger entries displayed represent real consent lifecycle and enforcement events across all patent components</li>
                 <li>Access requires API key authentication; API keys are stored in <code>sessionStorage</code> only and cleared on tab or browser close</li>
                 <li>The viewer is a proof-of-concept and may be modified without notice</li>
             </ul>
-        </div>        <!-- 08 -->
+        </div>
+
+        <!-- 08 -->
         <div class="policy-section" id="api-access">
             <h2><span class="section-num">08</span> API Access &amp; Authentication</h2>
             <p>Access to the Adworth Consent API, Privacy Governance Engine, State-Persistence Monitor, and associated services is governed by the following terms:</p>
@@ -323,7 +331,7 @@
             <h3>Authentication requirements</h3>
             <ul>
                 <li>All protected API endpoints require a valid <code>X-API-Key</code> header or Bearer token in the HTTP <code>Authorization</code> header</li>
-                <li>Public endpoints (health checks, <code>/dashboard</code>) are accessible without authentication</li>
+                <li>Public endpoints (health checks) are accessible without authentication</li>
                 <li>Protected endpoints include consent token operations, access evaluation requests, scan initiation, scan history retrieval, and violation queries</li>
                 <li>API keys are issued by Adworth and are confidential &mdash; you must not share, publish, or embed API keys in client-side code or public repositories</li>
                 <li>You are responsible for all activity that occurs using your API key</li>
@@ -363,8 +371,7 @@
             </ul>
             <p>We reserve the right to suspend or terminate accounts that violate these terms.</p>
         </div>
-
-        <!-- 11 -->
+        <!-- 11 — UPDATED March 3 2026: PII classifier reverse-engineering and interception prohibited -->
         <div class="policy-section" id="acceptable-use">
             <h2><span class="section-num">11</span> Acceptable Use</h2>
             <p>You agree not to use Adworth services to:</p>
@@ -383,16 +390,17 @@
                 <li>Trigger excessive or abusive State-Persistence Monitor scans intended to degrade service performance</li>
                 <li>Misrepresent simulated monitor results as evidence of actual data broker violations in legal proceedings or regulatory filings</li>
                 <li>Use removal payload outputs to harass, threaten, or mislead data brokers or other third parties</li>
+                <li>Attempt to reverse, reconstruct, or de-anonymize SHA-256 audit hashes generated by the PII Advertiser Name Classifier in the <code>adworth-ads</code> worker</li>
+                <li>Attempt to extract, intercept, or access individual person names from the ad intelligence pipeline before or after anonymization</li>
             </ul>
             <p>We reserve the right to investigate and take appropriate action against violations, including API key revocation, account suspension or termination, and referral to law enforcement.</p>
         </div>
-
-        <!-- 12 -->
+        <!-- 12 — UPDATED March 3 2026: Ad Intelligence pipeline + PII classifier added to IP -->
         <div class="policy-section" id="intellectual-property">
             <h2><span class="section-num">12</span> Intellectual Property</h2>
 
             <h3>Our intellectual property</h3>
-            <p>All content, technology, and materials on the Adworth platform &mdash; including but not limited to the Privacy Governance and Cryptographic Consent Enforcement System (U.S. Provisional Patent Application, filed February 23, 2026), the Adworth&#8480; service mark, the consent token architecture, the Invisibility Ledger design, the State-Persistence Monitor, the Removal Payload Engine, the Privacy Governance Engine, website design, text, and software &mdash; are owned by Adworth LLC and protected by applicable intellectual property laws.</p>
+            <p>All content, technology, and materials on the Adworth platform &mdash; including but not limited to the Privacy Governance and Cryptographic Consent Enforcement System (U.S. Provisional Patent Application, filed February 23, 2026), the Adworth&#8480; service mark, the consent token architecture, the Invisibility Ledger design, the State-Persistence Monitor, the Removal Payload Engine, the Privacy Governance Engine, the Ad Intelligence pipeline, the PII Advertiser Name Classifier, website design, text, and software &mdash; are owned by Adworth LLC and protected by applicable intellectual property laws.</p>
             <p>You may not copy, reproduce, distribute, or create derivative works from our intellectual property without our express written permission.</p>
 
             <h3>Your content</h3>
@@ -401,23 +409,22 @@
             <h3>Your consent data</h3>
             <p>Consent tokens you issue and the consent decisions they represent remain under your control. You may revoke consent at any time, and Adworth will enforce that revocation through the consent system and, where applicable, through the State-Persistence Monitor and Removal Payload Engine. The cryptographic identifiers generated by the system are functional artifacts of the service and do not constitute your intellectual property or personal data.</p>
         </div>
-
-        <!-- 13 -->
+        <!-- 13 — UPDATED March 3 2026: PII classifier disclaimer added -->
         <div class="policy-section" id="disclaimer">
             <h2><span class="section-num">13</span> Disclaimers</h2>
             <p>Adworth services are provided <strong>&ldquo;as is&rdquo;</strong> and <strong>&ldquo;as available&rdquo;</strong> without warranties of any kind, either express or implied, including but not limited to warranties of merchantability, fitness for a particular purpose, or non-infringement.</p>
             <p>We do not warrant that our services will be uninterrupted, error-free, or free of viruses or other harmful components. As an early-stage platform, we make no guarantees about uptime, data preservation, or feature availability.</p>
+            <p>The PII Advertiser Name Classifier in <code>adworth-ads</code> is designed to detect and anonymize individual person names in publicly available ad data before any response leaves the worker. Adworth does not warrant that the classifier will detect every instance of a person name in all ad data, nor that anonymization will satisfy specific regulatory or legal requirements in any jurisdiction. The SHA-256 audit hashes generated are non-reversible by design; Adworth does not warrant that any specific person name was or was not present in any specific ad data set.</p>
             <p>The consent token system, Invisibility Ledger, State-Persistence Monitor, and Removal Payload Engine are provided as technical infrastructure. While designed for regulatory compliance support, Adworth does not guarantee that use of our system constitutes full legal compliance with any specific regulation (including GDPR, CCPA, or DSA). Users should consult qualified legal counsel for compliance determinations.</p>
             <p>Simulated broker check results do not represent actual data broker behavior or actual instances of unauthorized data retention. Removal payloads generated in simulated mode are for demonstration purposes and should not be relied upon as evidence of legal violations.</p>
             <p>The Privacy Governance Engine, Consent Widget, Advertiser Integration sandbox, and Invisibility Ledger viewer are provided as patent-pending proof-of-concept demonstrations. They are not covered by any service-level agreement. Adworth reserves the right to modify, suspend, or discontinue any demonstration feature without notice. Simulated features (including payment amounts, data broker checks, and removal payload delivery) do not represent live commercial operations.</p>
             <p>Nothing on this platform constitutes legal, financial, or investment advice.</p>
         </div>
-
-        <!-- 14 -->
+        <!-- 14 — UPDATED March 3 2026: PII classifier detection failures added to liability scope -->
         <div class="policy-section" id="limitation">
             <h2><span class="section-num">14</span> Limitation of Liability</h2>
             <p>To the maximum extent permitted by applicable law, Adworth LLC and its founders, officers, and agents shall not be liable for any indirect, incidental, special, consequential, or punitive damages arising from your use of &mdash; or inability to use &mdash; our services.</p>
-            <p>This includes, without limitation, damages arising from: consent token validation failures, ledger entry delays or inconsistencies, API downtime or authentication errors, State-Persistence Monitor scan failures or inaccurate detection results, Removal Payload Engine generation errors or delivery failures, Privacy Governance Engine blocking decisions, or failure of third-party systems (including Cloudflare Workers KV, Vercel, IONOS, GitHub, Proton Mail, SerpApi, or Anthropic) on which our infrastructure depends.</p>
+            <p>This includes, without limitation, damages arising from: consent token validation failures, ledger entry delays or inconsistencies, API downtime or authentication errors, State-Persistence Monitor scan failures or inaccurate detection results, Removal Payload Engine generation errors or delivery failures, Privacy Governance Engine blocking decisions, PII Advertiser Name Classifier detection failures or false positives, or failure of third-party systems (including Cloudflare Workers KV, Vercel, IONOS, GitHub, Proton Mail, SerpApi, or Anthropic) on which our infrastructure depends.</p>
             <p>Adworth is not liable for any consequences arising from third-party data brokers&rsquo; failure to comply with removal payloads, whether simulated or live. Adworth is not liable for any legal, financial, or reputational consequences arising from reliance on simulated monitor results.</p>
             <p>Our total liability to you for any claims arising under these terms shall not exceed the greater of $100 or the amount you paid to Adworth in the 12 months preceding the claim.</p>
         </div>
