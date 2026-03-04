@@ -3,6 +3,10 @@ const API_BASE = 'https://adworth-ingestion-api.adworthllc.workers.dev';
 document.addEventListener('DOMContentLoaded', async () => {
   await updateStatus();
   await loadMetadata();
+  
+  // Add event listeners (fixes CSP violation)
+  document.getElementById('setupBtn').addEventListener('click', handleSetup);
+  document.getElementById('syncBtn').addEventListener('click', handleSync);
 });
 
 async function updateStatus() {
@@ -81,7 +85,6 @@ async function handleSetup() {
     if (!uploadRes.ok) throw new Error('Public key upload failed: ' + uploadRes.statusText);
     
     // Step 6: Store setup data locally
-    // Private key is stored by browser automatically (non-extractable)
     await chrome.storage.local.set({
       user_id: userId,
       setup_complete: true,
