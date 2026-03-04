@@ -3,9 +3,11 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>CCPA Enforcement Gap — Adworth℠</title>
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800;900&family=DM+Serif+Display:ital@0;1&display=swap" rel="stylesheet">
+    <title>CCPA Enforcement Gap &mdash; Adworth&#8480;</title>
+    <meta name="description" content="Every major company reports CCPA deletion request volumes. Not one can cryptographically prove the data was actually removed. See the enforcement gap.">
+    <link rel="icon" type="image/x-icon" href="/favicon.ico">
+    <link rel="preconnect" href="https://adworth-fonts.adworthllc.workers.dev">
+    <link href="https://adworth-fonts.adworthllc.workers.dev/css2?family=Poppins:wght@300;400;500;600;700;800;900&amp;family=DM+Serif+Display:ital@0;1&amp;display=swap" rel="stylesheet">
     <style>
         *,*::before,*::after{margin:0;padding:0;box-sizing:border-box}
         :root{
@@ -21,7 +23,7 @@
         .serif{font-family:'DM Serif Display',Georgia,serif}
         .container{max-width:1160px;margin:0 auto;padding:0 2rem}
 
-        /* HEADER */
+        /* HEADER — matches terms.html */
         header{position:sticky;top:0;z-index:100;background:rgba(250,250,248,0.92);backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px);border-bottom:1px solid var(--border)}
         nav{display:flex;justify-content:space-between;align-items:center;padding:1.25rem 0}
         .logo{display:flex;align-items:center;gap:.75rem;text-decoration:none}
@@ -30,7 +32,10 @@
         nav ul{list-style:none;display:flex;gap:2.25rem;align-items:center}
         nav a{text-decoration:none;font-size:.875rem;font-weight:500;color:var(--ink-60);transition:color .2s}
         nav a:hover{color:var(--green-primary)}
-        .nav-cta{background:var(--green-primary)!important;color:#fff!important;padding:.6rem 1.25rem!important;border-radius:6px!important;font-weight:600!important}
+        .nav-enterprise{color:var(--gold)!important;font-weight:600!important}
+        .nav-enterprise:hover{color:#a88a4a!important}
+        .nav-cta{background:var(--green-primary)!important;color:#fff!important;padding:.6rem 1.25rem!important;border-radius:6px!important;font-weight:600!important;transition:background .2s,transform .2s!important}
+        .nav-cta:hover{background:var(--green-deep)!important;transform:translateY(-1px)!important}
 
         /* PAGE HERO */
         .page-hero{padding:4rem 0 3rem;text-align:center;position:relative;overflow:hidden}
@@ -63,8 +68,14 @@
 
         /* COMPANY TABLE */
         .table-wrap{background:var(--white);border:1.5px solid var(--border);border-radius:16px;overflow:hidden}
-        .table-header{display:grid;grid-template-columns:2fr 1.2fr 1.2fr 1fr .8fr 1fr;padding:1rem 1.75rem;background:var(--green-deep);color:rgba(255,255,255,.85);font-size:.72rem;font-weight:700;text-transform:uppercase;letter-spacing:1.5px;gap:1rem}
-        .table-row{display:grid;grid-template-columns:2fr 1.2fr 1.2fr 1fr .8fr 1fr;padding:1.1rem 1.75rem;border-bottom:1px solid var(--border);align-items:center;gap:1rem;transition:background .15s}
+        .table-header{display:grid;grid-template-columns:2fr 1.2fr 1.2fr 1fr .8fr 1fr;padding:1rem 1.75rem;background:var(--green-deep);color:rgba(255,255,255,.85);font-size:.72rem;font-weight:700;text-transform:uppercase;letter-spacing:1.5px;gap:0;text-align:center}
+        .table-header>div:first-child{text-align:left}
+        .table-header>div{padding:0 .75rem}
+        .table-header>div+div{border-left:1px solid rgba(255,255,255,.15)}
+        .table-row{display:grid;grid-template-columns:2fr 1.2fr 1.2fr 1fr .8fr 1fr;padding:1.1rem 1.75rem;border-bottom:1px solid var(--border);align-items:center;gap:0;transition:background .15s}
+        .table-row>div{padding:0 .75rem;text-align:center}
+        .table-row>div:first-child{text-align:left}
+        .table-row>div+div{border-left:1px solid var(--border)}
         .table-row:last-child{border-bottom:none}
         .table-row:hover{background:var(--green-tint)}
         .company-cell{display:flex;align-items:center;gap:.75rem}
@@ -72,6 +83,7 @@
         .company-name{font-weight:700;font-size:.9rem;color:var(--ink)}
         .company-sector{font-size:.72rem;color:var(--ink-30);font-weight:500}
         .num-cell{font-family:'DM Serif Display',serif;font-size:1.15rem;color:var(--ink)}
+        .num-note{font-family:'Poppins',sans-serif;font-size:.65rem;color:var(--ink-30)}
         .days-cell{font-weight:600;font-size:.85rem}
         .days-fast{color:var(--green-primary)}
         .days-mid{color:var(--amber)}
@@ -109,9 +121,17 @@
         .method-note h4{font-size:.85rem;font-weight:700;color:var(--green-primary);margin-bottom:.5rem;text-transform:uppercase;letter-spacing:1px}
         .method-note p{font-size:.82rem;color:var(--ink-60);line-height:1.7}
 
-        /* FOOTER */
-        footer{background:var(--white);border-top:1px solid var(--border);padding:2.5rem 0}
-        .footer-bottom{display:flex;justify-content:space-between;align-items:center;font-size:.8rem;color:var(--ink-30)}
+        /* FOOTER — matches terms.html */
+        footer{background:var(--white);border-top:1px solid var(--border);padding:3.5rem 0 2rem}
+        .footer-grid{display:grid;grid-template-columns:2fr 1fr 1fr 1fr;gap:3rem;margin-bottom:3rem}
+        .footer-brand-name{font-size:1.4rem;font-weight:800;color:var(--green-primary);margin-bottom:.6rem}
+        .footer-tagline{font-size:.85rem;color:var(--ink-60);line-height:1.6;max-width:260px}
+        .footer-transparency{font-size:.78rem;color:var(--ink-30);line-height:1.6;margin-top:1rem;padding-top:1rem;border-top:1px solid var(--border);max-width:260px}
+        .footer-links h4{font-size:.75rem;font-weight:700;text-transform:uppercase;letter-spacing:1.5px;color:var(--ink);margin-bottom:1rem}
+        .footer-links ul{list-style:none}
+        .footer-links a{display:block;font-size:.875rem;color:var(--ink-60);text-decoration:none;margin-bottom:.6rem;transition:color .2s}
+        .footer-links a:hover{color:var(--green-primary)}
+        .footer-bottom{padding-top:2rem;border-top:1px solid var(--border);display:flex;justify-content:space-between;align-items:center;font-size:.8rem;color:var(--ink-30)}
 
         /* ANIMATIONS */
         .fade-up{opacity:0;transform:translateY(24px);transition:opacity .6s ease,transform .6s ease}
@@ -120,34 +140,38 @@
         /* RESPONSIVE */
         @media(max-width:1000px){
             .table-header,.table-row{grid-template-columns:1.5fr 1fr 1fr .8fr .7fr .8fr;padding:1rem;font-size:.7rem}
+            .table-header>div,.table-row>div{padding:0 .5rem}
             .stats-row{grid-template-columns:repeat(2,1fr)}
             .stat-box+.stat-box{border-left:none}
             .insight-grid{grid-template-columns:1fr}
+            .footer-grid{grid-template-columns:1fr 1fr}
         }
         @media(max-width:640px){
             nav ul{display:none}
             .table-header,.table-row{grid-template-columns:1fr 1fr;gap:.5rem}
             .table-header>:nth-child(n+3),.table-row>:nth-child(n+3){display:none}
             .gap-banner{flex-direction:column;text-align:center;padding:2rem}
+            .footer-grid{grid-template-columns:1fr}
             .footer-bottom{flex-direction:column;gap:.5rem;text-align:center}
         }
     </style>
 </head>
 <body>
 
-<!-- HEADER -->
+<!-- HEADER — matches terms.html nav structure -->
 <header>
     <div class="container">
         <nav>
             <a href="/" class="logo">
-                <span class="logo-mark">Adworth℠</span>
+                <span class="logo-mark">Adworth&#8480;</span>
                 <span class="patent-pill">Patent Pending</span>
             </a>
             <ul>
                 <li><a href="/#problem">Problem</a></li>
                 <li><a href="/#how-it-works">How It Works</a></li>
-                <li><a href="/dashboard.html">Dashboard</a></li>
+                <li><a href="/#founder">Founder</a></li>
                 <li><a href="/#investors">Investors</a></li>
+                <li><a href="/enterprise.html" class="nav-enterprise">Enterprise</a></li>
                 <li><a href="/#waitlist" class="nav-cta">Join Waitlist</a></li>
             </ul>
         </nav>
@@ -187,14 +211,14 @@
     </div>
 </section>
 
-<!-- GAP BANNER -->
+<!-- GAP BANNER + TABLE -->
 <section class="section">
     <div class="container">
         <div class="gap-banner fade-up">
-            <div class="gap-icon">🔓</div>
+            <div class="gap-icon">&#128275;</div>
             <div>
                 <h3>The Enforcement Gap</h3>
-                <p>CCPA requires companies processing 10M+ California residents' data to publish annual transparency metrics. They must report request volumes, compliance rates, and response times. But the law has no mechanism to verify that deletion actually occurred. Companies self-report — and users have zero cryptographic proof their data is gone. That's the gap Adworth's State-Persistence Monitor and Invisibility Ledger are designed to close.</p>
+                <p>CCPA requires companies processing 10M+ California residents&rsquo; data to publish annual transparency metrics. They must report request volumes, compliance rates, and response times. But the law has no mechanism to verify that deletion actually occurred. Companies self-report &mdash; and users have zero cryptographic proof their data is gone. That&rsquo;s the gap Adworth&rsquo;s State-Persistence Monitor and Invisibility Ledger are designed to close.</p>
             </div>
         </div>
 
@@ -209,66 +233,72 @@
                 <div>Verified?</div>
             </div>
 
+            <!-- Google -->
             <div class="table-row">
                 <div class="company-cell">
                     <div class="company-logo">G</div>
                     <div><div class="company-name">Google</div><div class="company-sector">Big Tech</div></div>
                 </div>
-                <div class="num-cell">3M+ <span style="font-family:Poppins;font-size:.65rem;color:var(--ink-30)">(self-svc)</span></div>
-                <div class="num-cell">15M+ <span style="font-family:Poppins;font-size:.65rem;color:var(--ink-30)">(self-svc)</span></div>
-                <div class="num-cell">—</div>
+                <div class="num-cell">3M+ <span class="num-note">(self-svc)</span></div>
+                <div class="num-cell">15M+ <span class="num-note">(self-svc)</span></div>
+                <div class="num-cell">&mdash;</div>
                 <div class="days-cell days-slow">21</div>
                 <div class="verified-cell"><span class="badge badge-none">None</span></div>
             </div>
 
+            <!-- Meta -->
             <div class="table-row">
                 <div class="company-cell">
                     <div class="company-logo" style="background:#e3f2fd;color:#1565c0">M</div>
                     <div><div class="company-name">Meta</div><div class="company-sector">Big Tech</div></div>
                 </div>
-                <div class="num-cell">—</div>
-                <div class="num-cell">—</div>
+                <div class="num-cell">&mdash;</div>
+                <div class="num-cell">&mdash;</div>
                 <div class="num-cell">2.76%</div>
                 <div class="days-cell days-fast">1</div>
                 <div class="verified-cell"><span class="badge badge-none">None</span></div>
             </div>
 
+            <!-- Apple -->
             <div class="table-row">
                 <div class="company-cell">
                     <div class="company-logo" style="background:#f3e8ff;color:#7c3aed">A</div>
                     <div><div class="company-name">Apple</div><div class="company-sector">Big Tech</div></div>
                 </div>
                 <div class="num-cell">Highest</div>
-                <div class="num-cell">—</div>
-                <div class="num-cell">—</div>
+                <div class="num-cell">&mdash;</div>
+                <div class="num-cell">&mdash;</div>
                 <div class="days-cell days-fast">&lt;1</div>
                 <div class="verified-cell"><span class="badge badge-none">None</span></div>
             </div>
 
+            <!-- Amazon -->
             <div class="table-row">
                 <div class="company-cell">
                     <div class="company-logo" style="background:#fff3e0;color:#e65100">A</div>
                     <div><div class="company-name">Amazon</div><div class="company-sector">Big Tech</div></div>
                 </div>
-                <div class="num-cell">—</div>
+                <div class="num-cell">&mdash;</div>
                 <div class="num-cell">Highest</div>
-                <div class="num-cell">—</div>
+                <div class="num-cell">&mdash;</div>
                 <div class="days-cell days-slow">26.5</div>
                 <div class="verified-cell"><span class="badge badge-none">None</span></div>
             </div>
 
+            <!-- Microsoft -->
             <div class="table-row">
                 <div class="company-cell">
                     <div class="company-logo" style="background:#e8f5e9;color:#2e7d32">MS</div>
                     <div><div class="company-name">Microsoft</div><div class="company-sector">Big Tech</div></div>
                 </div>
-                <div class="num-cell">—</div>
-                <div class="num-cell">—</div>
+                <div class="num-cell">&mdash;</div>
+                <div class="num-cell">&mdash;</div>
                 <div class="num-cell">16</div>
                 <div class="days-cell days-fast">&lt;1</div>
                 <div class="verified-cell"><span class="badge badge-none">None</span></div>
             </div>
 
+            <!-- Intuit -->
             <div class="table-row">
                 <div class="company-cell">
                     <div class="company-logo" style="background:#e0f2f1;color:#00695c">IN</div>
@@ -277,10 +307,11 @@
                 <div class="num-cell">124,744</div>
                 <div class="num-cell">184,024</div>
                 <div class="num-cell">8,585</div>
-                <div class="days-cell days-fast">2–8</div>
+                <div class="days-cell days-fast">2&ndash;8</div>
                 <div class="verified-cell"><span class="badge badge-none">None</span></div>
             </div>
 
+            <!-- Airbnb -->
             <div class="table-row">
                 <div class="company-cell">
                     <div class="company-logo" style="background:#fce4ec;color:#c62828">AB</div>
@@ -288,105 +319,125 @@
                 </div>
                 <div class="num-cell">31,971</div>
                 <div class="num-cell">138,864</div>
-                <div class="num-cell">—</div>
+                <div class="num-cell">&mdash;</div>
                 <div class="days-cell days-slow">18.2</div>
                 <div class="verified-cell"><span class="badge badge-none">None</span></div>
             </div>
 
+            <!-- Slack -->
             <div class="table-row">
                 <div class="company-cell">
                     <div class="company-logo" style="background:#ede7f6;color:#4527a0">SL</div>
                     <div><div class="company-name">Slack</div><div class="company-sector">SaaS</div></div>
                 </div>
-                <div class="num-cell">—</div>
-                <div class="num-cell">—</div>
-                <div class="num-cell">—</div>
-                <div class="days-cell days-fast">—</div>
+                <div class="num-cell">&mdash;</div>
+                <div class="num-cell">&mdash;</div>
+                <div class="num-cell">&mdash;</div>
+                <div class="days-cell">&mdash;</div>
                 <div class="verified-cell"><span class="badge badge-none">None</span></div>
             </div>
 
+            <!-- Capital One -->
             <div class="table-row">
                 <div class="company-cell">
                     <div class="company-logo" style="background:#e3f2fd;color:#0d47a1">C1</div>
                     <div><div class="company-name">Capital One</div><div class="company-sector">Finance</div></div>
                 </div>
-                <div class="num-cell">—</div>
-                <div class="num-cell">—</div>
+                <div class="num-cell">&mdash;</div>
+                <div class="num-cell">&mdash;</div>
                 <div class="num-cell">High*</div>
-                <div class="days-cell days-mid">—</div>
+                <div class="days-cell days-mid">&mdash;</div>
                 <div class="verified-cell"><span class="badge badge-none">None</span></div>
             </div>
 
+            <!-- TransUnion -->
             <div class="table-row">
                 <div class="company-cell">
                     <div class="company-logo" style="background:#e8eaf6;color:#283593">TU</div>
                     <div><div class="company-name">TransUnion</div><div class="company-sector">Data Broker</div></div>
                 </div>
-                <div class="num-cell">—</div>
-                <div class="num-cell">—</div>
-                <div class="num-cell">—</div>
-                <div class="days-cell days-mid">—</div>
+                <div class="num-cell">&mdash;</div>
+                <div class="num-cell">&mdash;</div>
+                <div class="num-cell">&mdash;</div>
+                <div class="days-cell">&mdash;</div>
                 <div class="verified-cell"><span class="badge badge-none">None</span></div>
             </div>
 
+            <!-- Walmart -->
             <div class="table-row">
                 <div class="company-cell">
                     <div class="company-logo" style="background:#fff8e1;color:#f57f17">WM</div>
                     <div><div class="company-name">Walmart</div><div class="company-sector">Retail</div></div>
                 </div>
-                <div class="num-cell">—</div>
-                <div class="num-cell">—</div>
-                <div class="num-cell">—</div>
-                <div class="days-cell days-slow">—</div>
+                <div class="num-cell">47,445</div>
+                <div class="num-cell">6,194</div>
+                <div class="num-cell">&mdash;</div>
+                <div class="days-cell">&mdash;</div>
                 <div class="verified-cell"><span class="badge badge-none">None</span></div>
             </div>
 
+            <!-- Square -->
             <div class="table-row">
                 <div class="company-cell">
                     <div class="company-logo" style="background:#e8f5e9;color:#1b5e20">SQ</div>
                     <div><div class="company-name">Square</div><div class="company-sector">FinTech</div></div>
                 </div>
-                <div class="num-cell">—</div>
-                <div class="num-cell">—</div>
-                <div class="num-cell">—</div>
-                <div class="days-cell days-mid">—</div>
+                <div class="num-cell">&mdash;</div>
+                <div class="num-cell">&mdash;</div>
+                <div class="num-cell">&mdash;</div>
+                <div class="days-cell">&mdash;</div>
                 <div class="verified-cell"><span class="badge badge-none">None</span></div>
             </div>
 
+            <!-- LinkedIn -->
             <div class="table-row">
                 <div class="company-cell">
                     <div class="company-logo" style="background:#e0f7fa;color:#006064">LI</div>
                     <div><div class="company-name">LinkedIn</div><div class="company-sector">Big Tech</div></div>
                 </div>
-                <div class="num-cell">—</div>
-                <div class="num-cell">—</div>
-                <div class="num-cell">—</div>
-                <div class="days-cell days-mid">—</div>
+                <div class="num-cell">&mdash;</div>
+                <div class="num-cell">&mdash;</div>
+                <div class="num-cell">&mdash;</div>
+                <div class="days-cell">&mdash;</div>
                 <div class="verified-cell"><span class="badge badge-none">None</span></div>
             </div>
 
+            <!-- TikTok -->
+            <div class="table-row">
+                <div class="company-cell">
+                    <div class="company-logo" style="background:#f3e8ff;color:#7c3aed">TT</div>
+                    <div><div class="company-name">TikTok</div><div class="company-sector">Social Media</div></div>
+                </div>
+                <div class="num-cell">&mdash;</div>
+                <div class="num-cell">&mdash;</div>
+                <div class="num-cell">&mdash;</div>
+                <div class="days-cell">&mdash;</div>
+                <div class="verified-cell"><span class="badge badge-none">None</span></div>
+            </div>
+
+            <!-- ADWORTH — highlighted row -->
             <div class="table-row" style="background:var(--green-tint);border:2px solid var(--green-accent);border-radius:0">
                 <div class="company-cell">
-                    <div class="company-logo" style="background:var(--green-primary);color:#fff;font-size:.6rem">A℠</div>
-                    <div><div class="company-name" style="color:var(--green-primary)">Adworth℠</div><div class="company-sector" style="color:var(--green-mid)">Consent Infrastructure</div></div>
+                    <div class="company-logo" style="background:var(--green-primary);color:#fff;font-size:.6rem">A&#8480;</div>
+                    <div><div class="company-name" style="color:var(--green-primary)">Adworth&#8480;</div><div class="company-sector" style="color:var(--green-mid)">Consent Infrastructure</div></div>
                 </div>
-                <div class="num-cell" style="color:var(--green-primary)">—</div>
-                <div class="num-cell" style="color:var(--green-primary)">—</div>
-                <div class="num-cell" style="color:var(--green-primary)">—</div>
+                <div class="num-cell" style="color:var(--green-primary)">&mdash;</div>
+                <div class="num-cell" style="color:var(--green-primary)">&mdash;</div>
+                <div class="num-cell" style="color:var(--green-primary)">&mdash;</div>
                 <div class="days-cell days-fast">Instant</div>
-                <div class="verified-cell"><span class="badge" style="background:var(--green-pale);color:var(--green-deep)">✓ Crypto</span></div>
+                <div class="verified-cell"><span class="badge" style="background:var(--green-pale);color:var(--green-deep)">&#10003; Crypto</span></div>
             </div>
         </div>
 
         <p style="font-size:.75rem;color:var(--ink-30);margin-top:1rem;padding:0 .5rem">
-            * GLBA-exempt institutions typically deny more requests. — = data not broken out in published report. Self-svc = includes self-service tool usage, not CCPA-specific requests only. All data from publicly available 2024 CCPA transparency reports.
+            * GLBA-exempt institutions typically deny more requests. &mdash; = data not broken out in published report. Self-svc = includes self-service tool usage, not CCPA-specific requests only. All data from publicly available 2024 CCPA transparency reports.
         </p>
 
-        <!-- METHODOLOGY NOTE -->
+        <!-- METHODOLOGY NOTE + LEGAL DISCLAIMER -->
         <div class="method-note fade-up">
-            <h4>Data Source & Methodology</h4>
-            <p>All figures are sourced from publicly available CCPA transparency reports published by each company as required by California Civil Code § 1798.185(a)(7), covering calendar year 2024 (January 1 – December 31, 2024). The CCPA metrics reporting obligation applies to businesses that process personal information of 10 million or more California residents. Companies are required to publish these metrics by July 1 each year. Some companies report California-specific data; others report all U.S. requests. Where companies include self-service tool usage alongside CCPA-specific requests, this is noted.</p>
-            <p style="font-size:.82rem;color:var(--ink-60);line-height:1.7;margin-top:.75rem"><strong>Disclaimer:</strong> Adworth℠ LLC is not affiliated with, endorsed by, or partnered with any company listed on this page. All data is sourced from each company's own publicly available CCPA transparency reports. "Verified?" reflects whether the company provides cryptographic or independently auditable proof that deletion was actually executed across all systems and third-party processors — not whether the company responded to CCPA requests within the required timeframe. This page is intended for educational and research purposes consistent with the California Attorney General's stated goal of enabling public analysis of CCPA compliance data. Nothing on this page should be construed as legal advice or an accusation of non-compliance by any listed company.</p>
+            <h4>Data Source &amp; Methodology</h4>
+            <p>All figures are sourced from publicly available CCPA transparency reports published by each company, covering calendar year 2024 (January 1 &ndash; December 31, 2024). The CCPA metrics reporting obligation applies to businesses that process personal information of 10 million or more California residents annually, as required by California Civil Code &sect;&nbsp;1798.185(a)(7). Companies are required to publish these metrics by July 1 each year. Some companies report California-specific data; others report all U.S. requests. Where companies include self-service tool usage alongside CCPA-specific requests, this is noted. &ldquo;Verified?&rdquo; indicates whether the company provides any cryptographic or independently auditable proof that deletion was executed &mdash; not merely that a request was acknowledged.</p>
+            <p style="margin-top:1rem"><strong>Disclaimer:</strong> Adworth&#8480; LLC is not affiliated with any company listed on this page. All data is sourced from publicly available CCPA transparency reports that companies are required to publish under California Civil Code &sect;&nbsp;1798.185(a)(7). &ldquo;Verified?&rdquo; reflects whether the company provides cryptographic or independently auditable proof of deletion execution &mdash; not whether the company complied with CCPA response requirements. This page is for informational and research purposes only and does not constitute legal advice.</p>
         </div>
     </div>
 </section>
@@ -395,27 +446,27 @@
 <section class="section section--alt">
     <div class="container">
         <p class="label fade-up" style="color:var(--green-accent)">Key Findings</p>
-        <h2 class="serif fade-up" style="font-size:clamp(1.75rem,3.5vw,2.75rem);margin-bottom:.5rem">What the reports don't tell you</h2>
+        <h2 class="serif fade-up" style="font-size:clamp(1.75rem,3.5vw,2.75rem);margin-bottom:.5rem">What the reports don&rsquo;t tell you</h2>
         <p class="fade-up" style="font-size:1rem;color:var(--ink-60);max-width:640px;line-height:1.7">Every company below passed the compliance checkbox. None of them can prove your data is actually gone.</p>
 
         <div class="insight-grid">
             <div class="insight-card fade-up">
-                <div class="insight-icon red">🗑️</div>
+                <div class="insight-icon red">&#128465;&#65039;</div>
                 <div class="insight-stat red">0%</div>
                 <h3>Deletion Verification Rate</h3>
-                <p>Across all reporting companies, not a single one provides cryptographic proof that data was actually removed from their systems or third-party processors. "Complied with" means they acknowledged the request — not that they can prove it was executed.</p>
+                <p>Across all reporting companies, not a single one provides cryptographic proof that data was actually removed from their systems or third-party processors. &ldquo;Complied with&rdquo; means they acknowledged the request &mdash; not that they can prove it was executed.</p>
             </div>
             <div class="insight-card fade-up" style="transition-delay:80ms">
-                <div class="insight-icon amber">⚠️</div>
+                <div class="insight-icon amber">&#9888;&#65039;</div>
                 <div class="insight-stat amber">37,536</div>
-                <h3>Intuit's "Other Grounds" Denials</h3>
-                <p>Intuit denied 37,536 requests on "other grounds" — explained only as cases where the customer had continued account activity. That's a massive number with a vague justification, and there's no third-party audit to verify it.</p>
+                <h3>Intuit&rsquo;s &ldquo;Other Grounds&rdquo; Denials</h3>
+                <p>Intuit denied 37,536 requests on &ldquo;other grounds&rdquo; &mdash; explained only as cases where the customer had continued account activity. That&rsquo;s a massive number with a vague justification, and there&rsquo;s no third-party audit to verify it.</p>
             </div>
             <div class="insight-card fade-up" style="transition-delay:160ms">
-                <div class="insight-icon green">🔑</div>
-                <div class="insight-stat">5 Patents</div>
-                <h3>Adworth's Answer</h3>
-                <p>The Cryptographic Consent Token, Invisibility Ledger, State-Persistence Monitor, Privacy Governance Engine, and Removal Payload Engine — five patent-pending components that make verification automatic, cryptographic, and independent.</p>
+                <div class="insight-icon green">&#128273;</div>
+                <div class="insight-stat">5 Components</div>
+                <h3>Adworth&rsquo;s Answer</h3>
+                <p>The Cryptographic Consent Token, Invisibility Ledger, State-Persistence Monitor, Privacy Governance Engine, and Removal Payload Engine &mdash; five patent-pending components that make verification automatic, cryptographic, and independent.</p>
             </div>
         </div>
     </div>
@@ -426,32 +477,66 @@
     <div class="container">
         <p class="label" style="color:var(--green-accent)">The Solution</p>
         <h2>Intuit told 145,000 people they<br>deleted their data. How many<br>can prove it? <em style="color:var(--green-accent)">Zero.</em></h2>
-        <p>That's why we built the State-Persistence Monitor. Cryptographic proof of deletion — not promises. Patent-pending technology that works after data leaves the original platform.</p>
-        <a href="/#waitlist" class="btn btn-white">Join the Waitlist →</a>
+        <p>That&rsquo;s why we built the State-Persistence Monitor. Cryptographic proof of deletion &mdash; not promises. Patent-pending technology that works after data leaves the original platform.</p>
+        <a href="/#waitlist" class="btn btn-white">Join the Waitlist &rarr;</a>
     </div>
 </section>
 
-<!-- FOOTER -->
+<!-- FOOTER — matches terms.html footer structure -->
 <footer>
     <div class="container">
+        <div class="footer-grid">
+            <div>
+                <div class="footer-brand-name">Adworth&#8480;</div>
+                <p class="footer-tagline">Cryptographic consent infrastructure for digital advertising. Privacy for people, compliance for platforms.</p>
+                <p class="footer-transparency">We earn 2&ndash;5% when advertisers pay you for your data. That&rsquo;s our only revenue model. No hidden fees. No data sales. It&rsquo;s on the ledger.</p>
+            </div>
+            <div class="footer-links">
+                <h4>Product</h4>
+                <ul>
+                    <li><a href="/#problem">The Problem</a></li>
+                    <li><a href="/#how-it-works">How It Works</a></li>
+                    <li><a href="/dashboard.html">Consumer Demo</a></li>
+                    <li><a href="/enterprise.html">Enterprise</a></li>
+                    <li><a href="/#waitlist">Join Waitlist</a></li>
+                </ul>
+            </div>
+            <div class="footer-links">
+                <h4>Company</h4>
+                <ul>
+                    <li><a href="/#founder">Founder</a></li>
+                    <li><a href="/#investors">Investors</a></li>
+                    <li><a href="mailto:hello@adworth.app">Contact</a></li>
+                </ul>
+            </div>
+            <div class="footer-links">
+                <h4>Legal</h4>
+                <ul>
+                    <li><a href="/privacy.html">Privacy Policy</a></li>
+                    <li><a href="/terms.html">Terms of Service</a></li>
+                </ul>
+            </div>
+        </div>
         <div class="footer-bottom">
-            <span>© 2026 Adworth℠ LLC · Patent Pending · Charleston, SC</span>
-            <span>Data sourced from public CCPA transparency reports · Updated annually</span>
+            <span>&copy; 2026 Adworth&#8480; LLC &middot; Patent Pending &middot; Charleston, SC</span>
+            <span>Data sourced from public CCPA transparency reports &middot; Updated annually</span>
         </div>
     </div>
 </footer>
 
 <script>
-    const observer = new IntersectionObserver((entries) => {
-        entries.forEach(entry => {
+    var observer = new IntersectionObserver(function(entries) {
+        entries.forEach(function(entry) {
             if (entry.isIntersecting) {
                 entry.target.classList.add('visible');
                 observer.unobserve(entry.target);
             }
         });
     }, { threshold: 0.1, rootMargin: '0px 0px -40px 0px' });
-    document.querySelectorAll('.fade-up').forEach(el => observer.observe(el));
+    document.querySelectorAll('.fade-up').forEach(function(el) { observer.observe(el); });
 </script>
+
+<!-- No third-party tracking scripts. No analytics. No pixels. That's kind of the whole point. -->
 
 </body>
 </html>
