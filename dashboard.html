@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Adworth℠ — Ad Transparency Dashboard</title>
+  <title>Adworth&#8480; &#8212; Ad Transparency Dashboard</title>
   <link rel="icon" type="image/x-icon" href="/favicon.ico">
   <link rel="preconnect" href="https://adworth-fonts.adworthllc.workers.dev">
   <link href="https://adworth-fonts.adworthllc.workers.dev/css2?family=Poppins:wght@300;400;500;600;700;800;900&family=DM+Serif+Display:ital@0;1&display=swap" rel="stylesheet">
@@ -40,7 +40,6 @@
       overflow-x: hidden;
     }
 
-    /* ── GRID BACKGROUND ── */
     body::before {
       content: '';
       position: fixed; inset: 0;
@@ -51,7 +50,6 @@
       pointer-events: none; z-index: 0;
     }
 
-    /* ── HEADER ── */
     header {
       position: sticky; top: 0; z-index: 200;
       background: rgba(11,24,16,0.94);
@@ -88,13 +86,11 @@
     }
     .nav-waitlist-btn:hover { background: var(--green-accent); color: var(--ink); }
 
-    /* ── MAIN ── */
     .main {
       max-width: 1400px; margin: 0 auto;
       padding: 2rem; position: relative; z-index: 1;
     }
 
-    /* ── CONTEXT BANNER ── */
     .context-banner {
       background: linear-gradient(135deg, rgba(26,74,53,0.5), rgba(45,106,79,0.2));
       border: 1px solid rgba(82,183,136,0.25);
@@ -106,7 +102,6 @@
       gap: 1.5rem;
       align-items: center;
     }
-    .context-banner-left {}
     .context-banner-eyebrow {
       font-size: 0.65rem; font-weight: 700; text-transform: uppercase;
       letter-spacing: 2px; color: var(--green-accent); margin-bottom: 0.5rem;
@@ -133,7 +128,6 @@
     }
     .context-banner-link:hover { color: var(--green-accent); }
 
-    /* ── SEARCH ── */
     .search-section {
       background: var(--surface);
       border: 1px solid var(--rim);
@@ -176,7 +170,6 @@
     }
     .quick-chip:hover { border-color: var(--green-accent); color: var(--green-accent); background: rgba(82,183,136,0.08); }
 
-    /* ── METRICS ROW ── */
     .metrics-row {
       display: grid; grid-template-columns: repeat(4, 1fr);
       gap: 1rem; margin-bottom: 2rem;
@@ -209,7 +202,6 @@
     .metric-value { font-family: 'DM Serif Display', serif; font-size: 2.25rem; color: var(--green-accent); line-height: 1; margin-bottom: 0.3rem; }
     .metric-sub { font-size: 0.75rem; color: var(--ink-60); }
 
-    /* ── METRIC MODAL ── */
     .metric-modal-overlay {
       display: none; position: fixed; inset: 0;
       background: rgba(0,0,0,0.78); backdrop-filter: blur(4px);
@@ -247,10 +239,8 @@
     .scale-desc { color: rgba(255,255,255,0.5); line-height: 1.4; }
     .metric-modal-disclaimer { margin-top: 1.25rem; font-size: 0.72rem; color: rgba(255,255,255,0.25); line-height: 1.6; font-style: italic; }
 
-    /* ── CONTENT GRID ── */
     .content-grid { display: grid; grid-template-columns: 1fr 380px; gap: 1.5rem; }
 
-    /* ── PANELS ── */
     .panel {
       background: var(--surface);
       border: 1px solid rgba(82,183,136,0.12);
@@ -263,7 +253,6 @@
     .panel-title { font-size: 0.8rem; font-weight: 700; text-transform: uppercase; letter-spacing: 1.5px; color: var(--green-accent); }
     .panel-body { padding: 1.5rem; }
 
-    /* ── SCORE CARDS ── */
     .scores-row { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; margin-bottom: 1.5rem; }
     .score-card { background: rgba(0,0,0,0.25); border-radius: 12px; padding: 1.25rem; text-align: center; }
     .score-number { font-family: 'DM Serif Display', serif; font-size: 3rem; line-height: 1; margin-bottom: 0.3rem; }
@@ -272,7 +261,6 @@
     .score-medium { color: var(--amber); }
     .score-safe   { color: var(--green-accent); }
 
-    /* ── FINDINGS ── */
     .finding-item { display: flex; gap: 0.75rem; padding: 0.9rem 0; border-bottom: 1px solid rgba(255,255,255,0.05); align-items: flex-start; }
     .finding-item:last-child { border-bottom: none; }
     .finding-icon { width: 28px; height: 28px; min-width: 28px; border-radius: 6px; display: flex; align-items: center; justify-content: center; font-size: 0.75rem; margin-top: 1px; }
@@ -282,7 +270,6 @@
     .finding-text { font-size: 0.85rem; color: rgba(255,255,255,0.7); line-height: 1.5; }
     .finding-text strong { color: var(--off-white); font-weight: 600; display: block; margin-bottom: 0.1rem; }
 
-    /* ── AD LIST ── */
     .ads-section-header {
       display: flex; justify-content: space-between; align-items: center;
       margin: 1.75rem 0 0.9rem;
@@ -305,19 +292,15 @@
     }
     .ad-item:hover { border-color: rgba(82,183,136,0.25); }
     .ad-item.is-anonymized { border-color: rgba(82,183,136,0.18); }
-
     .ad-meta { display: flex; justify-content: space-between; align-items: center; margin-bottom: 0.5rem; gap: 0.5rem; flex-wrap: wrap; }
     .ad-advertiser-row { display: flex; align-items: center; gap: 0.5rem; flex-wrap: wrap; }
     .ad-domain { font-family: var(--mono); font-size: 0.78rem; color: var(--green-accent); }
     .ad-domain.anon { color: rgba(82,183,136,0.6); font-style: italic; }
-
     .ad-format {
       font-size: 0.65rem; font-weight: 600; text-transform: uppercase; letter-spacing: 1px;
       background: rgba(82,183,136,0.1); color: var(--green-accent);
       border: 1px solid rgba(82,183,136,0.2); padding: 0.15rem 0.5rem; border-radius: 100px;
     }
-
-    /* PII PROTECTED BADGE */
     .pii-badge {
       display: inline-flex; align-items: center; gap: 0.3rem;
       font-size: 0.6rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.8px;
@@ -325,20 +308,15 @@
       border: 1px solid rgba(82,183,136,0.2); padding: 0.12rem 0.45rem; border-radius: 100px;
     }
     .pii-badge-icon { font-size: 0.55rem; }
-
     .ad-text { font-size: 0.85rem; color: rgba(255,255,255,0.55); line-height: 1.5; margin-bottom: 0.5rem; }
     .ad-footer { display: flex; gap: 0.75rem; font-size: 0.7rem; color: var(--ink-30); font-family: var(--mono); flex-wrap: wrap; }
 
-    /* ── CONSENT MOMENT ── */
-    /* Appears after results render — slides in below the ad list */
     .consent-moment {
       margin-top: 2rem;
       background: linear-gradient(135deg, rgba(26,74,53,0.6), rgba(45,106,79,0.25));
       border: 1px solid rgba(82,183,136,0.35);
-      border-radius: 14px;
-      padding: 2rem;
-      position: relative;
-      overflow: hidden;
+      border-radius: 14px; padding: 2rem;
+      position: relative; overflow: hidden;
       animation: slideUp 0.5s 0.3s ease both;
     }
     @keyframes slideUp { from{opacity:0;transform:translateY(20px)} to{opacity:1;transform:translateY(0)} }
@@ -384,17 +362,11 @@
       border-top: 1px solid rgba(255,255,255,0.06); padding-top: 1rem;
     }
 
-    /* ── WAITLIST INLINE FORM ── */
-    .waitlist-inline {
-      display: none;
-      margin-top: 1.25rem;
-      animation: slideUp 0.3s ease both;
-    }
+    .waitlist-inline { display: none; margin-top: 1.25rem; animation: slideUp 0.3s ease both; }
     .waitlist-inline.open { display: block; }
     .waitlist-inline-row { display: flex; gap: 0.6rem; }
     .waitlist-email-input {
-      flex: 1;
-      padding: 0.75rem 1rem;
+      flex: 1; padding: 0.75rem 1rem;
       background: rgba(255,255,255,0.07);
       border: 1px solid rgba(82,183,136,0.3);
       border-radius: 8px; color: white;
@@ -413,7 +385,6 @@
     .btn-submit-waitlist:hover { background: var(--green-accent); color: var(--ink); }
     .waitlist-privacy-note { font-size: 0.7rem; color: rgba(255,255,255,0.3); margin-top: 0.6rem; }
 
-    /* ── SIDE PANELS ── */
     .side-stack { display: flex; flex-direction: column; gap: 1.5rem; }
 
     .adworth-value {
@@ -429,19 +400,14 @@
     .tag-amber { background: rgba(212,147,10,0.1); border-color: rgba(212,147,10,0.3); color: #e8b860; }
     .tag-green { background: rgba(82,183,136,0.1); border-color: rgba(82,183,136,0.3); color: var(--green-accent); }
 
-    /* ── WHAT IS ADWORTH PANEL ── */
     .explainer-panel {
       background: linear-gradient(160deg, rgba(26,74,53,0.45), rgba(11,24,16,0.6));
       border: 1px solid rgba(82,183,136,0.2); border-radius: 16px; overflow: hidden;
     }
-    .explainer-header {
-      padding: 1.25rem 1.5rem; border-bottom: 1px solid rgba(82,183,136,0.1);
-    }
+    .explainer-header { padding: 1.25rem 1.5rem; border-bottom: 1px solid rgba(82,183,136,0.1); }
     .explainer-title { font-size: 0.8rem; font-weight: 700; text-transform: uppercase; letter-spacing: 1.5px; color: var(--green-accent); }
     .explainer-body { padding: 1.5rem; }
-    .explainer-step {
-      display: flex; gap: 0.9rem; margin-bottom: 1.1rem; align-items: flex-start;
-    }
+    .explainer-step { display: flex; gap: 0.9rem; margin-bottom: 1.1rem; align-items: flex-start; }
     .explainer-step:last-child { margin-bottom: 0; }
     .explainer-num {
       width: 24px; height: 24px; min-width: 24px;
@@ -451,13 +417,9 @@
     }
     .explainer-text { font-size: 0.82rem; color: rgba(255,255,255,0.6); line-height: 1.55; }
     .explainer-text strong { color: rgba(255,255,255,0.85); font-weight: 600; }
-    .explainer-cta {
-      margin-top: 1.5rem; padding-top: 1.25rem;
-      border-top: 1px solid rgba(82,183,136,0.1);
-    }
+    .explainer-cta { margin-top: 1.5rem; padding-top: 1.25rem; border-top: 1px solid rgba(82,183,136,0.1); }
     .explainer-cta-btn {
-      display: block; width: 100%; text-align: center;
-      padding: 0.75rem;
+      display: block; width: 100%; text-align: center; padding: 0.75rem;
       background: rgba(82,183,136,0.12); color: var(--green-accent);
       border: 1px solid rgba(82,183,136,0.25); border-radius: 8px;
       font-family: 'Poppins', sans-serif; font-size: 0.78rem; font-weight: 700;
@@ -465,7 +427,6 @@
     }
     .explainer-cta-btn:hover { background: rgba(82,183,136,0.2); border-color: rgba(82,183,136,0.4); }
 
-    /* ── HISTORY ── */
     .history-item {
       display: flex; justify-content: space-between; align-items: center;
       padding: 0.75rem 1.5rem; border-bottom: 1px solid rgba(255,255,255,0.04);
@@ -475,7 +436,6 @@
     .history-domain { font-family: var(--mono); font-size: 0.82rem; color: var(--off-white); }
     .history-score { font-size: 0.75rem; font-weight: 700; padding: 0.2rem 0.6rem; border-radius: 100px; }
 
-    /* ── LOADING ── */
     .loading-state { text-align: center; padding: 4rem 2rem; color: var(--ink-30); }
     .spinner { width: 40px; height: 40px; border: 3px solid rgba(82,183,136,0.1); border-top-color: var(--green-accent); border-radius: 50%; animation: spin 0.8s linear infinite; margin: 0 auto 1.5rem; }
     @keyframes spin { to { transform: rotate(360deg); } }
@@ -484,7 +444,6 @@
     .loading-step { font-size: 0.75rem; color: var(--ink-30); padding: 0.25rem 0; opacity: 0; animation: fadeIn 0.4s forwards; }
     @keyframes fadeIn { to { opacity: 1; } }
 
-    /* ── EMPTY / ERROR ── */
     .empty-state { text-align: center; padding: 5rem 2rem; }
     .empty-icon { font-size: 3rem; margin-bottom: 1rem; opacity: 0.4; }
     .empty-title { font-family: 'DM Serif Display', serif; font-size: 1.5rem; color: var(--off-white); margin-bottom: 0.5rem; opacity: 0.6; }
@@ -495,7 +454,6 @@
       color: #f09090; margin-bottom: 1.5rem; display: none;
     }
 
-    /* ── FOOTER ── */
     footer {
       text-align: center; padding: 3rem 2rem 2rem;
       font-size: 0.75rem; color: var(--ink-30); position: relative; z-index: 1;
@@ -503,7 +461,6 @@
     footer a { color: var(--ink-30); text-decoration: none; }
     footer a:hover { color: var(--green-accent); }
 
-    /* ── RESPONSIVE ── */
     @media (max-width: 1100px) {
       .content-grid { grid-template-columns: 1fr; }
       .metrics-row { grid-template-columns: repeat(2, 1fr); }
@@ -524,46 +481,46 @@
   <header>
     <nav>
       <a href="/" class="logo">
-        <span class="logo-text">Adworth℠</span>
+        <span class="logo-text">Adworth&#8480;</span>
         <span class="badge">Ad Transparency</span>
       </a>
       <div class="nav-right">
         <div class="status-dot" id="api-status">
           <span class="dot" id="status-dot"></span>
-          <span id="status-text">Connecting…</span>
+          <span id="status-text">Connecting&#8230;</span>
         </div>
-        <a href="/#waitlist" class="nav-waitlist-btn">Join Waitlist →</a>
+        <a href="javascript:void(0)" class="nav-waitlist-btn" onclick="document.querySelector('.explainer-panel').scrollIntoView({behavior:'smooth'}); setTimeout(toggleExplainerWaitlist, 400);">Join Waitlist &#8594;</a>
       </div>
     </nav>
   </header>
 
   <div class="main">
 
-    <!-- Context banner — sets the stage before any search -->
     <div class="context-banner">
       <div class="context-banner-left">
-        <div class="context-banner-eyebrow">What You're Looking At</div>
+        <div class="context-banner-eyebrow">What You&#8217;re Looking At</div>
         <div class="context-banner-headline">
           Real ads. Real data. <em>Zero consent from you.</em>
         </div>
         <div class="context-banner-sub">
-          This tool pulls live advertising data from Google's Ads Transparency Center — the same ads targeting people right now. Enter any domain to see who's running ads, how long they've been running, and what your data is worth to them. Then see what Adworth would do about it.
+          This tool pulls live advertising data from Google&#8217;s Ads Transparency Center &#8212; the same ads targeting people right now. Enter any domain to see who&#8217;s running ads, how long they&#8217;ve been running, and what your data is worth to them. Then see what Adworth would do about it.
         </div>
       </div>
       <div class="context-banner-right">
         <div class="live-pill"><span class="dot"></span> Live Data</div>
-        <a href="/enterprise.html" class="context-banner-link">Investor Overview →</a>
-        <a href="/" class="context-banner-link">← Back to Home</a>
+        <a href="/enterprise.html" class="context-banner-link">Investor Overview &#8594;</a>
+        <a href="/enterprise.html#rpe-demo" class="context-banner-link">RPE Compliance Demo &#8594;</a>
+        <a href="/ccpa-gap.html" class="context-banner-link">CCPA Enforcement Gap &#8594;</a>
+        <a href="/" class="context-banner-link">&#8592; Back to Home</a>
       </div>
     </div>
 
-    <!-- Search -->
     <div class="search-section">
       <span class="search-label">Analyze Any Advertiser</span>
       <div class="search-row">
         <input class="domain-input" id="domain-input" type="text"
-          placeholder="Enter domain — e.g. nike.com" autocomplete="off" spellcheck="false">
-        <button class="btn-analyze" id="analyze-btn" onclick="analyzeDomain()">Analyze →</button>
+          placeholder="Enter domain &#8212; e.g. nike.com" autocomplete="off" spellcheck="false">
+        <button class="btn-analyze" id="analyze-btn" onclick="analyzeDomain()">Analyze &#8594;</button>
       </div>
       <div class="quick-domains">
         <span class="search-label" style="margin:0; align-self:center;">Try:</span>
@@ -575,34 +532,31 @@
       </div>
     </div>
 
-    <!-- Error banner -->
     <div class="error-banner" id="error-banner"></div>
 
-    <!-- Metrics -->
     <div class="metrics-row" id="metrics-row" style="display:none;">
       <div class="metric-card">
         <div class="metric-label">Ads Found <button class="metric-info-btn" onclick="openModal('ads')" title="How is this counted?">i</button></div>
-        <div class="metric-value" id="m-ads">—</div>
+        <div class="metric-value" id="m-ads">&#8212;</div>
         <div class="metric-sub">from transparency center</div>
       </div>
       <div class="metric-card">
         <div class="metric-label">Privacy Risk <button class="metric-info-btn" onclick="openModal('risk')" title="How is this scored?">i</button></div>
-        <div class="metric-value" id="m-risk" style="color:var(--red)">—</div>
-        <div class="metric-sub">AI-scored 1–10</div>
+        <div class="metric-value" id="m-risk" style="color:var(--red)">&#8212;</div>
+        <div class="metric-sub">AI-scored 1&#8211;10</div>
       </div>
       <div class="metric-card">
         <div class="metric-label">Transparency Score <button class="metric-info-btn" onclick="openModal('trans')" title="How is this scored?">i</button></div>
-        <div class="metric-value" id="m-trans" style="color:var(--amber)">—</div>
+        <div class="metric-value" id="m-trans" style="color:var(--amber)">&#8212;</div>
         <div class="metric-sub">disclosure quality</div>
       </div>
       <div class="metric-card">
         <div class="metric-label">Regulatory Flags <button class="metric-info-btn" onclick="openModal('flags')" title="What are these?">i</button></div>
-        <div class="metric-value" id="m-flags" style="color:var(--amber)">—</div>
+        <div class="metric-value" id="m-flags" style="color:var(--amber)">&#8212;</div>
         <div class="metric-sub">GDPR / CCPA / DSA</div>
       </div>
     </div>
 
-    <!-- Metric modals -->
     <div class="metric-modal-overlay" id="modal-overlay" onclick="closeModalOutside(event)">
       <div class="metric-modal" id="modal-box">
         <button class="metric-modal-close" onclick="closeModal()">&#10005;</button>
@@ -612,10 +566,7 @@
       </div>
     </div>
 
-    <!-- Content grid -->
     <div class="content-grid">
-
-      <!-- Left column -->
       <div>
         <div class="panel" id="main-panel">
           <div class="panel-header">
@@ -624,22 +575,17 @@
           </div>
           <div class="panel-body" id="panel-body">
             <div class="empty-state">
-              <div class="empty-icon">🔍</div>
+              <div class="empty-icon">&#128269;</div>
               <div class="empty-title">Enter a domain to begin</div>
-              <div class="empty-sub">See exactly who's buying access to people's attention — and why it matters</div>
+              <div class="empty-sub">See exactly who&#8217;s buying access to people&#8217;s attention &#8212; and why it matters</div>
             </div>
           </div>
         </div>
       </div>
 
-      <!-- Right sidebar -->
       <div class="side-stack">
-
-        <!-- AI Finding -->
         <div class="panel" id="finding-panel" style="display:none;">
-          <div class="panel-header">
-            <span class="panel-title">Adworth AI Finding</span>
-          </div>
+          <div class="panel-header"><span class="panel-title">Adworth AI Finding</span></div>
           <div class="panel-body">
             <div class="adworth-value" id="adworth-value">
               <strong>Why Adworth Matters Here</strong>
@@ -649,21 +595,16 @@
           </div>
         </div>
 
-        <!-- Data Types -->
         <div class="panel" id="tags-panel" style="display:none;">
-          <div class="panel-header">
-            <span class="panel-title">Data Types Inferred</span>
-          </div>
+          <div class="panel-header"><span class="panel-title">Data Types Inferred</span></div>
           <div class="tags-list" id="tags-list"></div>
         </div>
 
-        <!-- Regulatory Flags -->
         <div class="panel" id="reg-panel" style="display:none;">
           <div class="panel-header"><span class="panel-title">Regulatory Flags</span></div>
           <div class="panel-body" id="reg-body"></div>
         </div>
 
-        <!-- What is Adworth — always visible, explains the solution -->
         <div class="explainer-panel">
           <div class="explainer-header">
             <div class="explainer-title">What Adworth Would Change</div>
@@ -671,60 +612,73 @@
           <div class="explainer-body">
             <div class="explainer-step">
               <div class="explainer-num">1</div>
-              <div class="explainer-text"><strong>You control who gets your data</strong> — with a cryptographic token bound to a specific advertiser, data type, and time window. They can't fake it or extend it.</div>
+              <div class="explainer-text"><strong>You control who gets your data</strong> &#8212; with a cryptographic token bound to a specific advertiser, data type, and time window. They can&#8217;t fake it or extend it.</div>
             </div>
             <div class="explainer-step">
               <div class="explainer-num">2</div>
-              <div class="explainer-text"><strong>You get paid when they use it</strong> — advertisers pay a fee, you receive a portion automatically when your token is verified.</div>
+              <div class="explainer-text"><strong>You get paid when they use it</strong> &#8212; advertisers pay a fee, you receive a portion automatically when your token is verified.</div>
             </div>
             <div class="explainer-step">
               <div class="explainer-num">3</div>
-              <div class="explainer-text"><strong>Deletion is enforced, not promised</strong> — when you revoke consent, our system actively monitors and sends legally-cited removal requests if companies still hold your data.</div>
+              <div class="explainer-text"><strong>Deletion is enforced, not promised</strong> &#8212; when you revoke consent, our system actively monitors and sends legally-cited removal requests if companies still hold your data.</div>
             </div>
             <div class="explainer-step">
               <div class="explainer-num">4</div>
-              <div class="explainer-text"><strong>Everything above is recorded</strong> — an append-only audit ledger that neither you nor we can modify. Your consent history is yours forever.</div>
+              <div class="explainer-text"><strong>Everything above is recorded</strong> &#8212; an append-only audit ledger that neither you nor we can modify. Your consent history is yours forever.</div>
             </div>
             <div class="explainer-cta">
-              <a href="/#waitlist" class="explainer-cta-btn">Be first when consent starts paying →</a>
+              <button class="explainer-cta-btn" onclick="toggleExplainerWaitlist()" id="explainer-cta-btn">Be first when consent starts paying &#8594;</button>
+              <div id="explainer-waitlist" style="display:none; margin-top:1rem; animation: slideUp 0.3s ease both;">
+                <div style="display:flex; gap:0.5rem;">
+                  <input type="email" id="explainer-email" placeholder="your@email.com"
+                    style="flex:1; padding:0.65rem 0.85rem; background:rgba(255,255,255,0.07); border:1px solid rgba(82,183,136,0.3); border-radius:6px; color:white; font-family:var(--mono); font-size:0.82rem; outline:none;">
+                  <button onclick="submitExplainerWaitlist()" id="explainer-submit-btn"
+                    style="padding:0.65rem 1rem; background:var(--green-primary); color:white; border:none; border-radius:6px; font-family:'Poppins',sans-serif; font-weight:700; font-size:0.78rem; cursor:pointer; white-space:nowrap;">Join</button>
+                </div>
+                <div style="font-size:0.68rem; color:rgba(255,255,255,0.3); margin-top:0.5rem;">&#128274; Processed by our own Worker. Zero third parties.</div>
+              </div>
             </div>
           </div>
         </div>
 
-        <!-- Domain History -->
         <div class="panel" id="history-panel">
           <div class="panel-header"><span class="panel-title">Recently Analyzed</span></div>
           <div id="history-list">
             <div style="padding:1.5rem; text-align:center; color:var(--ink-30); font-size:0.8rem;">Analyzed domains appear here</div>
           </div>
         </div>
-
       </div>
     </div>
   </div>
 
   <footer>
-    <p>© 2026 Adworth℠ LLC · Patent Pending · Charleston, SC</p>
+    <p>&#169; 2026 Adworth&#8480; LLC &#183; Patent Pending &#183; Charleston, SC</p>
     <p style="margin-top:0.3rem;">
-      <a href="/privacy.html">Privacy Policy</a> ·
-      <a href="/terms.html">Terms of Service</a> ·
-      <a href="/">← Back to Home</a>
+      <a href="/privacy.html">Privacy Policy</a> &#183;
+      <a href="/terms.html">Terms of Service</a> &#183;
+      <a href="/ledger.html">Consent Ledger</a> &#183;
+      <a href="/ccpa-gap.html">CCPA Enforcement Gap</a> &#183;
+      <a href="/enterprise.html">Enterprise</a> &#183;
+      <a href="/">&#8592; Back to Home</a>
     </p>
     <p style="margin-top:1rem; padding-top:1rem; border-top:1px solid rgba(255,255,255,0.06); font-size:0.72rem; color:rgba(255,255,255,0.22); line-height:1.7; max-width:760px; margin-left:auto; margin-right:auto;">
       <strong style="color:rgba(255,255,255,0.32); font-weight:600;">Disclosure:</strong>
-      This tool retrieves publicly available ad data from Google's Ads Transparency Center via SerpApi and displays a maximum of 40 results per query. Results may not represent complete advertising activity. Individual advertiser names that appear to identify persons are automatically anonymized and displayed as "Individual Advertiser" per GDPR Art. 5(1)(c).
-      All privacy risk scores, transparency scores, regulatory flags, and AI findings are produced by Anthropic's Claude AI for informational and educational purposes only. This analysis does not constitute legal advice, a compliance determination, or a finding of wrongdoing. No inference of illegal activity or regulatory violation should be drawn from any score or flag displayed here.
+      This tool retrieves publicly available ad data from Google&#8217;s Ads Transparency Center via SerpApi and displays a maximum of 40 results per query. Results may not represent complete advertising activity. Individual advertiser names that appear to identify persons are automatically anonymized and displayed as &#8220;Individual Advertiser&#8221; per GDPR Art. 5(1)(c).
+      All privacy risk scores, transparency scores, regulatory flags, and AI findings are produced by Anthropic&#8217;s Claude AI for informational and educational purposes only. This analysis does not constitute legal advice, a compliance determination, or a finding of wrongdoing. No inference of illegal activity or regulatory violation should be drawn from any score or flag displayed here.
     </p>
   </footer>
 
+
+
   <script>
     const WORKER_URL = 'https://adworth-ads.adworthllc.workers.dev';
+    const WAITLIST_URL = 'https://adworth-waitlist.adworthllc.workers.dev';
     const domainHistory = [];
 
     // ── HEALTH CHECK ────────────────────────────────────────
     async function checkHealth() {
       try {
-        const res = await fetch(`${WORKER_URL}/health`);
+        const res = await fetch(WORKER_URL + '/health');
         if (res.ok) {
           document.getElementById('status-dot').className = 'dot';
           document.getElementById('status-text').textContent = 'API Live';
@@ -748,7 +702,7 @@
 
       const btn = document.getElementById('analyze-btn');
       btn.disabled = true;
-      btn.textContent = 'Analyzing…';
+      btn.textContent = 'Analyzing\u2026';
 
       hideError();
       showLoading(domain);
@@ -756,151 +710,137 @@
       hideSidePanels();
 
       try {
-        const res = await fetch(`${WORKER_URL}/ads?domain=${encodeURIComponent(domain)}`);
+        const res = await fetch(WORKER_URL + '/ads?domain=' + encodeURIComponent(domain));
         const data = await res.json();
         if (!res.ok) throw new Error(data.error || 'Worker error');
         renderResults(data);
         addToHistory(domain, data.analysis?.privacyRiskScore);
       } catch (err) {
-        showError(`Could not analyze ${domain}: ${err.message}. Make sure the Worker is deployed.`);
+        showError('Could not analyze ' + domain + ': ' + err.message + '. Make sure the Worker is deployed.');
         showEmptyState();
       } finally {
         btn.disabled = false;
-        btn.textContent = 'Analyze →';
+        btn.textContent = 'Analyze \u2192';
       }
     }
 
     // ── RENDER ──────────────────────────────────────────────
     function renderResults(data) {
-      const { domain, adCount, ads, analysis, privacyMeta } = data;
+      var domain = data.domain;
+      var adCount = data.adCount;
+      var ads = data.ads;
+      var analysis = data.analysis;
+      var privacyMeta = data.privacyMeta;
 
       // Metrics
       document.getElementById('m-ads').textContent = adCount || 0;
-      const risk  = analysis?.privacyRiskScore;
-      const trans = analysis?.transparencyScore;
-      const flags = analysis?.regulatoryFlags?.length || 0;
+      var risk  = analysis ? analysis.privacyRiskScore : null;
+      var trans = analysis ? analysis.transparencyScore : null;
+      var flags = (analysis && analysis.regulatoryFlags) ? analysis.regulatoryFlags.length : 0;
 
-      const riskEl  = document.getElementById('m-risk');
-      riskEl.textContent = risk ?? '—';
+      var riskEl  = document.getElementById('m-risk');
+      riskEl.textContent = risk != null ? risk : '\u2014';
       riskEl.style.color = risk >= 7 ? 'var(--red)' : risk >= 4 ? 'var(--amber)' : 'var(--green-accent)';
 
-      const transEl = document.getElementById('m-trans');
-      transEl.textContent = trans ?? '—';
+      var transEl = document.getElementById('m-trans');
+      transEl.textContent = trans != null ? trans : '\u2014';
       transEl.style.color = trans >= 7 ? 'var(--green-accent)' : trans >= 4 ? 'var(--amber)' : 'var(--red)';
 
       document.getElementById('m-flags').textContent = flags;
       showMetrics();
 
       document.getElementById('panel-domain').textContent = domain;
-      document.getElementById('panel-title').textContent = `Ads Found (${adCount})`;
+      document.getElementById('panel-title').textContent = 'Ads Found (' + adCount + ')';
 
-      let html = '';
+      var html = '';
 
       // Score cards + consent gaps
       if (analysis) {
-        html += `
-          <div class="scores-row">
-            <div class="score-card">
-              <div class="score-number ${scoreColor(risk, true)}">${risk ?? '—'}</div>
-              <div class="score-label">Privacy Risk</div>
-            </div>
-            <div class="score-card">
-              <div class="score-number ${scoreColor(trans, false)}">${trans ?? '—'}</div>
-              <div class="score-label">Transparency</div>
-            </div>
-          </div>`;
+        html += '<div class="scores-row">' +
+          '<div class="score-card"><div class="score-number ' + scoreColor(risk, true) + '">' + (risk != null ? risk : '\u2014') + '</div><div class="score-label">Privacy Risk</div></div>' +
+          '<div class="score-card"><div class="score-number ' + scoreColor(trans, false) + '">' + (trans != null ? trans : '\u2014') + '</div><div class="score-label">Transparency</div></div>' +
+          '</div>';
 
-        if (analysis.consentGaps?.length) {
+        if (analysis.consentGaps && analysis.consentGaps.length) {
           html += '<div>';
-          analysis.consentGaps.slice(0, 4).forEach(gap => {
-            html += `
-              <div class="finding-item">
-                <div class="finding-icon red">⚠</div>
-                <div class="finding-text"><strong>Consent Gap</strong>${gap}</div>
-              </div>`;
+          analysis.consentGaps.slice(0, 4).forEach(function(gap) {
+            html += '<div class="finding-item"><div class="finding-icon red">\u26a0</div><div class="finding-text"><strong>Consent Gap</strong>' + gap + '</div></div>';
           });
           html += '</div>';
         }
       }
 
       // Ad list with PII badge
-      if (ads?.length) {
-        const anonymizedCount = privacyMeta?.anonymizedCount || 0;
+      if (ads && ads.length) {
+        var anonymizedCount = privacyMeta ? (privacyMeta.anonymizedCount || 0) : 0;
 
-        html += `<div class="ads-section-header">
-          <span class="ads-section-label">Active Ads</span>
-          ${anonymizedCount > 0
-            ? `<span class="pii-notice"><span class="pii-notice-dot"></span>${anonymizedCount} name${anonymizedCount > 1 ? 's' : ''} anonymized · PII Protected</span>`
-            : ''}
-        </div>`;
+        html += '<div class="ads-section-header">' +
+          '<span class="ads-section-label">Active Ads</span>';
+        if (anonymizedCount > 0) {
+          html += '<span class="pii-notice"><span class="pii-notice-dot"></span>' + anonymizedCount + ' name' + (anonymizedCount > 1 ? 's' : '') + ' anonymized \u00b7 PII Protected</span>';
+        }
+        html += '</div>';
 
-        ads.slice(0, 15).forEach(ad => {
-          const isAnon = ad.isAnonymized;
-          html += `
-            <div class="ad-item${isAnon ? ' is-anonymized' : ''}">
-              <div class="ad-meta">
-                <div class="ad-advertiser-row">
-                  <span class="ad-domain${isAnon ? ' anon' : ''}">${ad.advertiser || domain}</span>
-                  ${isAnon ? `<span class="pii-badge"><span class="pii-badge-icon">🔒</span> PII Protected</span>` : ''}
-                </div>
-                <span class="ad-format">${(ad.format || 'ad').toUpperCase()}</span>
-              </div>
-              ${ad.text ? `<div class="ad-text">${ad.text.slice(0, 140)}${ad.text.length > 140 ? '…' : ''}</div>` : ''}
-              <div class="ad-footer">
-                ${ad.lastShown ? `<span>Last seen: ${ad.lastShown}</span>` : ''}
-                ${ad.totalDaysShown ? `<span>${ad.totalDaysShown} days running</span>` : ''}
-              </div>
-            </div>`;
+        ads.slice(0, 15).forEach(function(ad) {
+          var isAnon = ad.isAnonymized;
+          html += '<div class="ad-item' + (isAnon ? ' is-anonymized' : '') + '">' +
+            '<div class="ad-meta"><div class="ad-advertiser-row">' +
+            '<span class="ad-domain' + (isAnon ? ' anon' : '') + '">' + (ad.advertiser || domain) + '</span>';
+          if (isAnon) {
+            html += '<span class="pii-badge"><span class="pii-badge-icon">\ud83d\udd12</span> PII Protected</span>';
+          }
+          html += '</div><span class="ad-format">' + ((ad.format || 'ad').toUpperCase()) + '</span></div>';
+          if (ad.text) {
+            html += '<div class="ad-text">' + ad.text.slice(0, 140) + (ad.text.length > 140 ? '\u2026' : '') + '</div>';
+          }
+          html += '<div class="ad-footer">';
+          if (ad.lastShown) html += '<span>Last seen: ' + ad.lastShown + '</span>';
+          if (ad.totalDaysShown) html += '<span>' + ad.totalDaysShown + ' days running</span>';
+          html += '</div></div>';
         });
 
       } else {
-        html += `<div style="padding:2rem; text-align:center; color:var(--ink-30); font-size:0.85rem;">No ads returned for this domain. Try a major brand like apple.com or amazon.com.</div>`;
+        html += '<div style="padding:2rem; text-align:center; color:var(--ink-30); font-size:0.85rem;">No ads returned for this domain. Try a major brand like apple.com or amazon.com.</div>';
       }
 
       // CONSENT MOMENT — appears after ad list
-      // Tailored based on risk score
-      const riskLevel = risk >= 7 ? 'high' : risk >= 4 ? 'medium' : 'low';
-      const momentCopy = {
+      var riskLevel = risk >= 7 ? 'high' : risk >= 4 ? 'medium' : 'low';
+      var momentCopy = {
         high: {
-          headline: `This is what your data looks like <em>without your consent.</em>`,
-          body: `You just watched <strong>${adCount} ads</strong> targeting real people — none of whom were asked, paid, or given the right to say no. A Privacy Risk Score of <strong>${risk}/10</strong> means the gaps are significant. Adworth's consent tokens would give users control over exactly this type of data use — and compensate them for it.`,
+          headline: 'This is what your data looks like <em>without your consent.</em>',
+          body: 'You just watched <strong>' + adCount + ' ads</strong> targeting real people \u2014 none of whom were asked, paid, or given the right to say no. A Privacy Risk Score of <strong>' + risk + '/10</strong> means the gaps are significant. Adworth\u2019s consent tokens would give users control over exactly this type of data use \u2014 and compensate them for it.'
         },
         medium: {
-          headline: `You can see the problem. <em>Adworth is building the fix.</em>`,
-          body: `These <strong>${adCount} ads</strong> are running with limited transparency and no meaningful consent mechanism. The data that powers them belongs to real people who got nothing in return. Consent infrastructure changes that — cryptographically, automatically, and permanently.`,
+          headline: 'You can see the problem. <em>Adworth is building the fix.</em>',
+          body: 'These <strong>' + adCount + ' ads</strong> are running with limited transparency and no meaningful consent mechanism. The data that powers them belongs to real people who got nothing in return. Consent infrastructure changes that \u2014 cryptographically, automatically, and permanently.'
         },
         low: {
-          headline: `Better than most — but <em>consent still isn't happening.</em>`,
-          body: `Even with a lower risk score, none of these <strong>${adCount} ads</strong> involve explicit user consent or compensation. That's the baseline Adworth is raising. When consent rails exist, even well-behaved advertisers operate more transparently and users get paid.`,
-        },
+          headline: 'Better than most \u2014 but <em>consent still isn\u2019t happening.</em>',
+          body: 'Even with a lower risk score, none of these <strong>' + adCount + ' ads</strong> involve explicit user consent or compensation. That\u2019s the baseline Adworth is raising. When consent rails exist, even well-behaved advertisers operate more transparently and users get paid.'
+        }
       };
 
-      const copy = momentCopy[riskLevel];
-      html += `
-        <div class="consent-moment" id="consent-moment">
-          <div class="consent-moment-eyebrow">What This Means For You</div>
-          <div class="consent-moment-headline">${copy.headline}</div>
-          <div class="consent-moment-body">${copy.body}</div>
-          <div class="consent-actions">
-            <button class="btn-waitlist" onclick="toggleWaitlistForm()">Get Early Access →</button>
-            <a href="/" class="btn-learn">Learn how Adworth works ↗</a>
-          </div>
-
-          <!-- Inline waitlist form -->
-          <div class="waitlist-inline" id="waitlist-inline">
-            <div class="waitlist-inline-row">
-              <input class="waitlist-email-input" id="waitlist-email" type="email" placeholder="your@email.com">
-              <button class="btn-submit-waitlist" onclick="submitWaitlist()">Join Waitlist</button>
-            </div>
-            <div class="waitlist-privacy-note">🔒 Your email stays private. We will not sell it — that's kind of the whole point.</div>
-          </div>
-
-          <div class="consent-moment-note">
-            Adworth℠ is currently raising a $1.5M seed round to build the full consent marketplace.
-            Founding members get early access and priority support.
-            <a href="/enterprise.html" style="color:rgba(82,183,136,0.6); text-decoration:none;"> Investor overview →</a>
-          </div>
-        </div>`;
+      var copy = momentCopy[riskLevel];
+      html += '<div class="consent-moment" id="consent-moment">' +
+        '<div class="consent-moment-eyebrow">What This Means For You</div>' +
+        '<div class="consent-moment-headline">' + copy.headline + '</div>' +
+        '<div class="consent-moment-body">' + copy.body + '</div>' +
+        '<div class="consent-actions">' +
+        '<button class="btn-waitlist" onclick="toggleWaitlistForm()">Get Early Access \u2192</button>' +
+        '<a href="/" class="btn-learn">Learn how Adworth works \u2197</a>' +
+        '</div>' +
+        '<div class="waitlist-inline" id="waitlist-inline">' +
+        '<div class="waitlist-inline-row">' +
+        '<input class="waitlist-email-input" id="waitlist-email" type="email" placeholder="your@email.com">' +
+        '<button class="btn-submit-waitlist" onclick="submitWaitlist()">Join Waitlist</button>' +
+        '</div>' +
+        '<div class="waitlist-privacy-note">\ud83d\udd12 Your email stays private. We will not sell it \u2014 that\u2019s kind of the whole point.</div>' +
+        '</div>' +
+        '<div class="consent-moment-note">' +
+        'Adworth\u2120 is currently raising a $1.5M seed round to build the full consent marketplace. ' +
+        'Founding members get early access and priority support. ' +
+        '<a href="/enterprise.html" style="color:rgba(82,183,136,0.6); text-decoration:none;"> Investor overview \u2192</a>' +
+        '</div></div>';
 
       document.getElementById('panel-body').innerHTML = html;
 
@@ -910,62 +850,125 @@
         document.getElementById('top-finding').textContent = analysis.topFinding || '';
         document.getElementById('finding-panel').style.display = 'block';
 
-        if (analysis.dataTypesInferred?.length) {
+        if (analysis.dataTypesInferred && analysis.dataTypesInferred.length) {
           document.getElementById('tags-list').innerHTML =
-            analysis.dataTypesInferred.map(t => `<span class="tag tag-amber">${t}</span>`).join('');
+            analysis.dataTypesInferred.map(function(t) { return '<span class="tag tag-amber">' + t + '</span>'; }).join('');
           document.getElementById('tags-panel').style.display = 'block';
         }
 
-        if (analysis.regulatoryFlags?.length) {
+        if (analysis.regulatoryFlags && analysis.regulatoryFlags.length) {
           document.getElementById('reg-body').innerHTML =
-            analysis.regulatoryFlags.map(f => `
-              <div class="finding-item">
-                <div class="finding-icon red">⚖</div>
-                <div class="finding-text">${f}</div>
-              </div>`).join('');
+            analysis.regulatoryFlags.map(function(f) {
+              return '<div class="finding-item"><div class="finding-icon red">\u2696</div><div class="finding-text">' + f + '</div></div>';
+            }).join('');
           document.getElementById('reg-panel').style.display = 'block';
         }
       }
     }
 
     // ── WAITLIST FORM ────────────────────────────────────────
+    // FIX: Now posts to adworth-waitlist Worker (zero third-party)
+    // Previously used Formspree — that dependency has been removed.
+
     function toggleWaitlistForm() {
-      const form = document.getElementById('waitlist-inline');
+      var form = document.getElementById('waitlist-inline');
       if (!form) return;
       form.classList.toggle('open');
       if (form.classList.contains('open')) {
-        setTimeout(() => document.getElementById('waitlist-email')?.focus(), 100);
+        setTimeout(function() {
+          var el = document.getElementById('waitlist-email');
+          if (el) el.focus();
+        }, 100);
       }
     }
 
     async function submitWaitlist() {
-      const emailInput = document.getElementById('waitlist-email');
-      const btn = document.querySelector('.btn-submit-waitlist');
-      const email = emailInput?.value.trim();
-      if (!email || !email.includes('@')) {
-        emailInput.style.borderColor = 'var(--red)';
+      var emailInput = document.getElementById('waitlist-email');
+      var btn = document.querySelector('.btn-submit-waitlist');
+      var email = emailInput ? emailInput.value.trim() : '';
+      if (!email || email.indexOf('@') === -1) {
+        if (emailInput) emailInput.style.borderColor = 'var(--red)';
         return;
       }
-      emailInput.style.borderColor = '';
-      btn.textContent = 'Joining…';
+      if (emailInput) emailInput.style.borderColor = '';
+      btn.textContent = 'Joining\u2026';
       btn.disabled = true;
 
       try {
-        const res = await fetch('https://formspree.io/f/mlgwgndk', {
+        var res = await fetch(WAITLIST_URL + '/submit', {
           method: 'POST',
-          headers: { 'Accept': 'application/json', 'Content-Type': 'application/json' },
-          body: JSON.stringify({ email, source: 'dashboard-consent-moment' }),
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({
+            email: email,
+            source: 'dashboard-consent-moment',
+            hp_field: ''
+          })
         });
         if (res.ok) {
-          btn.textContent = '✓ You\'re on the list!';
+          btn.textContent = '\u2713 You\u2019re on the list!';
           btn.style.background = 'var(--green-accent)';
           btn.style.color = 'var(--ink)';
-          emailInput.value = '';
+          if (emailInput) emailInput.value = '';
         } else {
           btn.textContent = 'Try again';
           btn.disabled = false;
         }
-      } catch {
+      } catch (e) {
+        btn.textContent = 'Try again';
+        btn.disabled = false;
+      }
+    }
+
+    // ── EXPLAINER PANEL WAITLIST ─────────────────────────────
+    // "Be first when consent starts paying" button in sidebar
+
+    function toggleExplainerWaitlist() {
+      var panel = document.getElementById('explainer-waitlist');
+      if (!panel) return;
+      if (panel.style.display === 'none') {
+        panel.style.display = 'block';
+        setTimeout(function() {
+          var el = document.getElementById('explainer-email');
+          if (el) el.focus();
+        }, 100);
+      } else {
+        panel.style.display = 'none';
+      }
+    }
+
+    async function submitExplainerWaitlist() {
+      var emailInput = document.getElementById('explainer-email');
+      var btn = document.getElementById('explainer-submit-btn');
+      var email = emailInput ? emailInput.value.trim() : '';
+      if (!email || email.indexOf('@') === -1) {
+        if (emailInput) emailInput.style.borderColor = 'var(--red)';
+        return;
+      }
+      if (emailInput) emailInput.style.borderColor = '';
+      btn.textContent = 'Joining\u2026';
+      btn.disabled = true;
+      try {
+        var res = await fetch(WAITLIST_URL + '/submit', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({
+            email: email,
+            source: 'dashboard-explainer-panel',
+            hp_field: ''
+          })
+        });
+        if (res.ok) {
+          btn.textContent = '\u2713 You\u2019re in!';
+          btn.style.background = 'var(--green-accent)';
+          btn.style.color = 'var(--ink)';
+          if (emailInput) emailInput.value = '';
+          var ctaBtn = document.getElementById('explainer-cta-btn');
+          if (ctaBtn) { ctaBtn.textContent = '\u2713 You\u2019re on the list!'; ctaBtn.style.background = 'rgba(82,183,136,0.25)'; }
+        } else {
+          btn.textContent = 'Try again';
+          btn.disabled = false;
+        }
+      } catch (e) {
         btn.textContent = 'Try again';
         btn.disabled = false;
       }
@@ -973,8 +976,8 @@
 
     // ── HISTORY ─────────────────────────────────────────────
     function addToHistory(domain, riskScore) {
-      if (!domainHistory.find(d => d.domain === domain)) {
-        domainHistory.unshift({ domain, riskScore });
+      if (!domainHistory.find(function(d) { return d.domain === domain; })) {
+        domainHistory.unshift({ domain: domain, riskScore: riskScore });
         if (domainHistory.length > 8) domainHistory.pop();
       }
       renderHistory();
@@ -983,14 +986,14 @@
     function renderHistory() {
       if (!domainHistory.length) return;
       document.getElementById('history-list').innerHTML =
-        domainHistory.map(item => `
-          <div class="history-item" onclick="quickSearch('${item.domain}')">
-            <span class="history-domain">${item.domain}</span>
-            ${item.riskScore != null ? `
-              <span class="history-score" style="background:${item.riskScore >= 7 ? 'rgba(224,82,82,0.15)' : 'rgba(82,183,136,0.15)'}; color:${item.riskScore >= 7 ? '#f09090' : 'var(--green-accent)'}">
-                Risk ${item.riskScore}/10
-              </span>` : ''}
-          </div>`).join('');
+        domainHistory.map(function(item) {
+          var bg = item.riskScore >= 7 ? 'rgba(224,82,82,0.15)' : 'rgba(82,183,136,0.15)';
+          var col = item.riskScore >= 7 ? '#f09090' : 'var(--green-accent)';
+          return '<div class="history-item" onclick="quickSearch(\'' + item.domain + '\')">' +
+            '<span class="history-domain">' + item.domain + '</span>' +
+            (item.riskScore != null ? '<span class="history-score" style="background:' + bg + '; color:' + col + '">Risk ' + item.riskScore + '/10</span>' : '') +
+            '</div>';
+        }).join('');
     }
 
     // ── HELPERS ─────────────────────────────────────────────
@@ -1001,94 +1004,92 @@
     }
 
     function showLoading(domain) {
-      document.getElementById('panel-body').innerHTML = `
-        <div class="loading-state">
-          <div class="spinner"></div>
-          <div class="loading-text">Analyzing ${domain}</div>
-          <div class="loading-steps">
-            <div class="loading-step" style="animation-delay:0.3s">→ Pulling ads from Google Transparency Center</div>
-            <div class="loading-step" style="animation-delay:1.2s">→ Anonymizing individual advertiser names</div>
-            <div class="loading-step" style="animation-delay:2.2s">→ Running AI privacy analysis</div>
-            <div class="loading-step" style="animation-delay:3.0s">→ Scoring consent gaps &amp; regulatory flags</div>
-          </div>
-        </div>`;
+      document.getElementById('panel-body').innerHTML =
+        '<div class="loading-state">' +
+        '<div class="spinner"></div>' +
+        '<div class="loading-text">Analyzing ' + domain + '</div>' +
+        '<div class="loading-steps">' +
+        '<div class="loading-step" style="animation-delay:0.3s">\u2192 Pulling ads from Google Transparency Center</div>' +
+        '<div class="loading-step" style="animation-delay:1.2s">\u2192 Anonymizing individual advertiser names</div>' +
+        '<div class="loading-step" style="animation-delay:2.2s">\u2192 Running AI privacy analysis</div>' +
+        '<div class="loading-step" style="animation-delay:3.0s">\u2192 Scoring consent gaps &amp; regulatory flags</div>' +
+        '</div></div>';
     }
 
     function showEmptyState() {
-      document.getElementById('panel-body').innerHTML = `
-        <div class="empty-state">
-          <div class="empty-icon">⚠️</div>
-          <div class="empty-title">Analysis Failed</div>
-          <div class="empty-sub">Check that your Worker is deployed and secrets are set</div>
-        </div>`;
+      document.getElementById('panel-body').innerHTML =
+        '<div class="empty-state">' +
+        '<div class="empty-icon">\u26a0\ufe0f</div>' +
+        '<div class="empty-title">Analysis Failed</div>' +
+        '<div class="empty-sub">Check that your Worker is deployed and secrets are set</div>' +
+        '</div>';
     }
 
     function showMetrics()  { document.getElementById('metrics-row').style.display = 'grid'; }
     function hideMetrics()  { document.getElementById('metrics-row').style.display = 'none'; }
-    function showError(msg) { const el = document.getElementById('error-banner'); el.textContent = msg; el.style.display = 'block'; }
+    function showError(msg) { var el = document.getElementById('error-banner'); el.textContent = msg; el.style.display = 'block'; }
     function hideError()    { document.getElementById('error-banner').style.display = 'none'; }
     function hideSidePanels() {
-      ['finding-panel','tags-panel','reg-panel'].forEach(id => {
+      ['finding-panel','tags-panel','reg-panel'].forEach(function(id) {
         document.getElementById(id).style.display = 'none';
       });
     }
 
     // ── METRIC MODALS ────────────────────────────────────────
-    const modalData = {
+    var modalData = {
       ads: {
         tag: 'Data Source', title: 'Ads Found',
-        body: `<p>This count reflects unique ads retrieved from Google's Ads Transparency Center for the domain you entered. We retrieve up to <strong style="color:rgba(255,255,255,0.85)">40 ads per query</strong>. A domain may have more — this is a representative sample.</p>
-               <p>Individual advertiser names (personal names rather than business names) are automatically anonymized before display, consistent with our privacy-first approach.</p>`,
+        body: '<p>This count reflects unique ads retrieved from Google\u2019s Ads Transparency Center for the domain you entered. We retrieve up to <strong style="color:rgba(255,255,255,0.85)">40 ads per query</strong>. A domain may have more \u2014 this is a representative sample.</p>' +
+              '<p>Individual advertiser names (personal names rather than business names) are automatically anonymized before display, consistent with our privacy-first approach.</p>',
         scale: null,
-        disclaimer: "Ad counts reflect publicly available data from Google's Ads Transparency Center via SerpApi. Results may be incomplete. This count does not imply any wrongdoing."
+        disclaimer: "Ad counts reflect publicly available data from Google\u2019s Ads Transparency Center via SerpApi. Results may be incomplete. This count does not imply any wrongdoing."
       },
       risk: {
         tag: 'AI Scoring Methodology', title: 'Privacy Risk Score',
-        body: `<p>The Privacy Risk Score is generated by Anthropic's Claude AI, which analyzes publicly available ad data. The AI evaluates advertiser opacity, ad format risk, campaign longevity, targeting transparency, and consent signal presence.</p>`,
+        body: '<p>The Privacy Risk Score is generated by Anthropic\u2019s Claude AI, which analyzes publicly available ad data. The AI evaluates advertiser opacity, ad format risk, campaign longevity, targeting transparency, and consent signal presence.</p>',
         scale: {
           title: 'Score Interpretation',
           rows: [
-            { range: '1 – 3', cls: 'scale-low',  desc: 'Low risk — strong disclosure, clear advertiser identities, consent signals present' },
-            { range: '4 – 6', cls: 'scale-mid',  desc: 'Moderate risk — some opacity, limited consent visibility, mixed disclosure quality' },
-            { range: '7 – 10', cls: 'scale-high', desc: 'High risk — opaque advertisers, image-only formats, no verifiable consent signals' }
+            { range: '1 \u2013 3', cls: 'scale-low',  desc: 'Low risk \u2014 strong disclosure, clear advertiser identities, consent signals present' },
+            { range: '4 \u2013 6', cls: 'scale-mid',  desc: 'Moderate risk \u2014 some opacity, limited consent visibility, mixed disclosure quality' },
+            { range: '7 \u2013 10', cls: 'scale-high', desc: 'High risk \u2014 opaque advertisers, image-only formats, no verifiable consent signals' }
           ]
         },
         disclaimer: "AI-generated probabilistic assessment for informational purposes only. Not a legal determination or allegation of wrongdoing."
       },
       trans: {
         tag: 'AI Scoring Methodology', title: 'Transparency Score',
-        body: `<p>The Transparency Score measures the quality of a domain's ad disclosure practices. Higher is better. The AI evaluates advertiser clarity, content legibility, disclosure completeness, and regulatory alignment across GDPR, CCPA, and DSA standards.</p>`,
+        body: '<p>The Transparency Score measures the quality of a domain\u2019s ad disclosure practices. Higher is better. The AI evaluates advertiser clarity, content legibility, disclosure completeness, and regulatory alignment across GDPR, CCPA, and DSA standards.</p>',
         scale: {
           title: 'Score Interpretation',
           rows: [
-            { range: '8 – 10', cls: 'scale-low',  desc: 'High transparency — strong disclosures, named advertisers, regulation-aligned' },
-            { range: '4 – 7',  cls: 'scale-mid',  desc: 'Partial transparency — some disclosures present but gaps exist' },
-            { range: '1 – 3',  cls: 'scale-high', desc: 'Low transparency — limited disclosure, opaque ecosystem, consent signals absent' }
+            { range: '8 \u2013 10', cls: 'scale-low',  desc: 'High transparency \u2014 strong disclosures, named advertisers, regulation-aligned' },
+            { range: '4 \u2013 7',  cls: 'scale-mid',  desc: 'Partial transparency \u2014 some disclosures present but gaps exist' },
+            { range: '1 \u2013 3',  cls: 'scale-high', desc: 'Low transparency \u2014 limited disclosure, opaque ecosystem, consent signals absent' }
           ]
         },
         disclaimer: "AI-generated probabilistic assessment for informational purposes only. Not a legal determination or allegation of wrongdoing."
       },
       flags: {
         tag: 'Regulatory Framework', title: 'Regulatory Flags',
-        body: `<p>Flags indicate areas where a domain's ad practices may warrant attention under GDPR (lawful basis, right to object), CCPA (opt-out rights, data disclosure), and DSA Article 26 (ad labeling, targeting parameter disclosure). These are AI observations, not legal findings.</p>`,
+        body: '<p>Flags indicate areas where a domain\u2019s ad practices may warrant attention under GDPR (lawful basis, right to object), CCPA (opt-out rights, data disclosure), and DSA Article 26 (ad labeling, targeting parameter disclosure). These are AI observations, not legal findings.</p>',
         scale: null,
         disclaimer: "Regulatory flags are AI-generated observations for informational purposes only. They do not constitute a legal finding or allegation of any regulatory violation."
       }
     };
 
     function openModal(type) {
-      const d = modalData[type];
+      var d = modalData[type];
       if (!d) return;
       document.getElementById('modal-tag').textContent = d.tag;
       document.getElementById('modal-title').textContent = d.title;
-      let bodyHtml = d.body;
+      var bodyHtml = d.body;
       if (d.scale) {
-        bodyHtml += `<div class="metric-modal-scale">
-          <div class="metric-modal-scale-title">${d.scale.title}</div>
-          ${d.scale.rows.map(r => `<div class="scale-row"><span class="scale-range ${r.cls}">${r.range}</span><span class="scale-desc">${r.desc}</span></div>`).join('')}
-        </div>`;
+        bodyHtml += '<div class="metric-modal-scale"><div class="metric-modal-scale-title">' + d.scale.title + '</div>' +
+          d.scale.rows.map(function(r) { return '<div class="scale-row"><span class="scale-range ' + r.cls + '">' + r.range + '</span><span class="scale-desc">' + r.desc + '</span></div>'; }).join('') +
+          '</div>';
       }
-      if (d.disclaimer) bodyHtml += `<div class="metric-modal-disclaimer">${d.disclaimer}</div>`;
+      if (d.disclaimer) bodyHtml += '<div class="metric-modal-disclaimer">' + d.disclaimer + '</div>';
       document.getElementById('modal-body').innerHTML = bodyHtml;
       document.getElementById('modal-overlay').classList.add('open');
       document.body.style.overflow = 'hidden';
@@ -1103,11 +1104,13 @@
       if (e.target === document.getElementById('modal-overlay')) closeModal();
     }
 
-    document.addEventListener('keydown', e => { if (e.key === 'Escape') closeModal(); });
-    document.getElementById('domain-input').addEventListener('keydown', e => { if (e.key === 'Enter') analyzeDomain(); });
+    document.addEventListener('keydown', function(e) { if (e.key === 'Escape') closeModal(); });
+    document.getElementById('domain-input').addEventListener('keydown', function(e) { if (e.key === 'Enter') analyzeDomain(); });
 
     checkHealth();
   </script>
+
+  <!-- No third-party tracking scripts. No analytics. No advertising pixels. No behavioral trackers. Zero external data processors. -->
 
 </body>
 </html>
