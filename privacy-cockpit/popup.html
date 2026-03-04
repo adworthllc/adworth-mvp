@@ -1,0 +1,183 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Adworth Privacy Cockpit</title>
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    
+    :root {
+      --green-deep: #1a4a35;
+      --green-primary: #2d6a4f;
+      --green-accent: #52b788;
+      --off-white: #fafaf8;
+      --ink: #111410;
+    }
+    
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+      width: 400px;
+      background: var(--off-white);
+      color: var(--ink);
+      padding: 1.5rem;
+    }
+    
+    .header {
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+      margin-bottom: 1.5rem;
+      border-bottom: 2px solid var(--green-primary);
+      padding-bottom: 1rem;
+    }
+    
+    .header h1 {
+      font-size: 1.25rem;
+      font-weight: 700;
+      color: var(--green-deep);
+    }
+    
+    .logo {
+      width: 32px;
+      height: 32px;
+      background: var(--green-primary);
+      border-radius: 6px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: white;
+      font-weight: 700;
+      font-size: 0.9rem;
+    }
+    
+    .status {
+      background: white;
+      border: 1.5px solid #e2e8df;
+      border-radius: 8px;
+      padding: 1rem;
+      margin-bottom: 1rem;
+    }
+    
+    .status-label {
+      font-size: 0.75rem;
+      font-weight: 600;
+      color: #555a50;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      margin-bottom: 0.5rem;
+    }
+    
+    .status-value {
+      font-size: 1rem;
+      font-weight: 600;
+      color: var(--ink);
+    }
+    
+    .status.ready .status-value { color: var(--green-accent); }
+    .status.error .status-value { color: #e05252; }
+    
+    .button-group {
+      display: flex;
+      flex-direction: column;
+      gap: 0.75rem;
+    }
+    
+    button {
+      padding: 0.75rem 1rem;
+      border: none;
+      border-radius: 6px;
+      font-weight: 600;
+      font-size: 0.85rem;
+      cursor: pointer;
+      font-family: inherit;
+      transition: all 0.2s;
+    }
+    
+    .btn-primary {
+      background: var(--green-primary);
+      color: white;
+    }
+    
+    .btn-primary:hover {
+      background: var(--green-deep);
+    }
+    
+    .btn-primary:disabled {
+      background: #ccc;
+      cursor: not-allowed;
+    }
+    
+    .btn-secondary {
+      background: white;
+      color: var(--green-primary);
+      border: 1.5px solid var(--green-primary);
+    }
+    
+    .btn-secondary:hover {
+      background: #f0faf3;
+    }
+    
+    .btn-secondary:disabled {
+      opacity: 0.5;
+      cursor: not-allowed;
+    }
+    
+    .message {
+      margin-top: 1rem;
+      padding: 0.75rem;
+      border-radius: 6px;
+      font-size: 0.85rem;
+    }
+    
+    .message.success {
+      background: #d8f3dc;
+      color: #1a4a35;
+      border: 1px solid #52b788;
+    }
+    
+    .message.error {
+      background: #fef3f2;
+      color: #e05252;
+      border: 1px solid #e05252;
+    }
+    
+    .metadata {
+      font-size: 0.75rem;
+      color: #555a50;
+      margin-top: 1rem;
+      padding-top: 1rem;
+      border-top: 1px solid #e2e8df;
+    }
+  </style>
+</head>
+<body>
+  <div class="header">
+    <div class="logo">AC</div>
+    <h1>Privacy Cockpit</h1>
+  </div>
+  
+  <div class="status" id="status">
+    <div class="status-label">Status</div>
+    <div class="status-value" id="statusValue">Checking...</div>
+  </div>
+  
+  <div class="button-group">
+    <button class="btn-primary" id="setupBtn" onclick="handleSetup()">
+      Setup Extension
+    </button>
+    <button class="btn-secondary" id="syncBtn" onclick="handleSync()" disabled>
+      Sync Dashboard Data
+    </button>
+  </div>
+  
+  <div id="message"></div>
+  
+  <div class="metadata" id="metadata">
+    <p>Device: <span id="device">—</span></p>
+    <p>Ingestions: <span id="ingestions">0</span></p>
+  </div>
+  
+  <script src="popup.js"></script>
+</body>
+</html>
