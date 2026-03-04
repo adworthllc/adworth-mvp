@@ -94,7 +94,6 @@
     .step-icon { width: 40px; height: 40px; background: var(--green-pale); border-radius: 10px; display: flex; align-items: center; justify-content: center; font-size: 1.1rem; margin-bottom: 1.25rem; }
     .step h3 { font-size: 1.1rem; font-weight: 700; color: var(--green-primary); margin-bottom: 0.75rem; }
     .step p { font-size: 0.9rem; color: var(--ink-60); line-height: 1.7; }
-    /* ── Competitive table ── */
     .moat-table-wrap { overflow-x: auto; margin-top: 2rem; }
     .moat-table { width: 100%; border-collapse: collapse; border: 1px solid rgba(255,255,255,0.12); border-radius: 12px; overflow: hidden; }
     .moat-table thead th { background: rgba(255,255,255,0.08); font-size: 0.72rem; font-weight: 700; text-transform: uppercase; letter-spacing: 1.5px; color: var(--green-accent); padding: 0.9rem 1.25rem; text-align: left; border-bottom: 1px solid rgba(255,255,255,0.1); }
@@ -108,7 +107,6 @@
     .row-adworth td:first-child { font-weight: 700; color: var(--green-accent); }
     .moat-table td:not(:first-child) { text-align: center; }
     .moat-table th:not(:first-child) { text-align: center; }
-    /* ── Raise section ── */
     .raise-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 1.5rem; margin-bottom: 3.5rem; }
     .raise-card { background: rgba(255,255,255,0.07); border: 1px solid rgba(255,255,255,0.12); border-radius: 12px; padding: 2rem; }
     .raise-card h4 { font-size: 0.72rem; font-weight: 700; text-transform: uppercase; letter-spacing: 2px; color: var(--green-accent); margin-bottom: 1.25rem; }
@@ -125,7 +123,6 @@
     .timeline-phase { font-size: 0.65rem; color: var(--green-accent); text-transform: uppercase; letter-spacing: 2px; margin-bottom: 0.5rem; font-weight: 700; }
     .timeline-title { font-size: 0.95rem; font-weight: 700; color: white; margin-bottom: 0.5rem; }
     .timeline-desc { font-size: 0.8rem; color: rgba(255,255,255,0.45); line-height: 1.6; }
-    /* ── Founder ── */
     .founder-card { max-width: 760px; margin: 0 auto; background: var(--white); border: 1.5px solid var(--border); border-radius: 16px; padding: 3.5rem; position: relative; }
     .founder-card::before { content: '\201C'; font-family: 'DM Serif Display', serif; font-size: 8rem; color: var(--green-pale); position: absolute; top: -1rem; left: 2.5rem; line-height: 1; }
     .founder-body { font-size: 1rem; color: var(--ink-60); line-height: 1.8; }
@@ -135,14 +132,12 @@
     .founder-avatar { width: 52px; height: 52px; background: var(--green-pale); border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 1.25rem; font-weight: 800; color: var(--green-primary); flex-shrink: 0; }
     .founder-sig-text strong { display: block; font-weight: 700; font-size: 0.95rem; color: var(--ink); }
     .founder-sig-text small { font-size: 0.8rem; color: var(--ink-60); }
-    /* ── Contact ── */
-    .contact-grid { display: grid; grid-template-columns: repeat(3,1fr); gap: 1.5rem; margin-top: 3rem; }
+    .contact-grid { display: grid; grid-template-columns: repeat(2,1fr); gap: 1.5rem; margin-top: 3rem; }
     .contact-card { background: var(--white); border: 1.5px solid var(--border); border-radius: 12px; padding: 2rem; text-decoration: none; transition: all 0.2s; }
     .contact-card:hover { border-color: var(--green-primary); transform: translateY(-3px); box-shadow: 0 12px 32px rgba(10,15,12,0.08); }
     .contact-card-label { font-size: 0.65rem; font-weight: 700; text-transform: uppercase; letter-spacing: 2px; color: var(--green-mid); margin-bottom: 0.5rem; }
     .contact-card-title { font-size: 1.05rem; font-weight: 700; color: var(--ink); margin-bottom: 0.25rem; }
     .contact-card-sub { font-size: 0.8rem; color: var(--ink-60); }
-    /* ── Footer ── */
     footer { background: var(--white); border-top: 1px solid var(--border); padding: 3.5rem 0 2rem; }
     .footer-grid { display: grid; grid-template-columns: 2fr 1fr 1fr 1fr; gap: 3rem; margin-bottom: 3rem; }
     .footer-brand-name { font-size: 1.4rem; font-weight: 800; color: var(--green-primary); margin-bottom: 0.6rem; }
@@ -153,6 +148,52 @@
     .footer-links a { display: block; font-size: 0.875rem; color: var(--ink-60); text-decoration: none; margin-bottom: 0.6rem; transition: color 0.2s; }
     .footer-links a:hover { color: var(--green-primary); }
     .footer-bottom { padding-top: 2rem; border-top: 1px solid var(--border); display: flex; justify-content: space-between; align-items: center; font-size: 0.8rem; color: var(--ink-30); }
+
+    /* ── RPE DEMO SECTION ─────────────────────────────────────── */
+    .rpe-section { padding: 6rem 0; background: var(--off-white); }
+    .rpe-demo-frame { background: #0d1117; border: 1.5px solid #21262d; border-radius: 16px; overflow: hidden; margin-top: 2.5rem; }
+    .rpe-frame-bar { background: #161b22; border-bottom: 1px solid #21262d; padding: 0.75rem 1.25rem; display: flex; align-items: center; justify-content: space-between; }
+    .rpe-frame-dots { display: flex; gap: 6px; }
+    .rpe-frame-dots span { width: 10px; height: 10px; border-radius: 50%; }
+    .rpe-frame-dots span:nth-child(1) { background: #ff5f57; }
+    .rpe-frame-dots span:nth-child(2) { background: #febc2e; }
+    .rpe-frame-dots span:nth-child(3) { background: #28c840; }
+    .rpe-frame-url { font-size: 0.72rem; color: #8b949e; font-family: 'SF Mono', 'Fira Code', monospace; }
+    .rpe-frame-badge { font-size: 0.6rem; font-weight: 700; text-transform: uppercase; letter-spacing: 1.5px; color: #f0883e; background: rgba(240,136,62,0.12); border: 1px solid rgba(240,136,62,0.25); padding: 0.2rem 0.6rem; border-radius: 100px; }
+    .rpe-frame-body { padding: 2.5rem; }
+    .rpe-demo-banner { background: rgba(240,136,62,0.08); border: 1px solid rgba(240,136,62,0.25); border-radius: 8px; padding: 0.85rem 1.25rem; margin-bottom: 2rem; display: flex; align-items: flex-start; gap: 0.75rem; }
+    .rpe-demo-banner-icon { font-size: 1.1rem; line-height: 1; flex-shrink: 0; margin-top: 2px; }
+    .rpe-demo-banner p { font-size: 0.78rem; color: #f0883e; line-height: 1.5; margin: 0; }
+    .rpe-demo-banner strong { color: #f0883e; font-weight: 700; }
+    .rpe-form-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 1.25rem; margin-bottom: 1.5rem; }
+    .rpe-form-group label { display: block; font-size: 0.68rem; font-weight: 700; text-transform: uppercase; letter-spacing: 1px; color: #8b949e; margin-bottom: 0.4rem; }
+    .rpe-form-group input, .rpe-form-group select { width: 100%; padding: 0.65rem 0.85rem; background: #161b22; border: 1.5px solid #30363d; border-radius: 6px; color: #e6edf3; font-size: 0.88rem; font-family: inherit; transition: border-color 0.15s; }
+    .rpe-form-group input::placeholder { color: #484f58; }
+    .rpe-form-group input:focus, .rpe-form-group select:focus { outline: none; border-color: var(--green-accent); }
+    .rpe-form-group select { appearance: none; background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 12 12'%3E%3Cpath fill='%238b949e' d='M6 8L1 3h10z'/%3E%3C/svg%3E"); background-repeat: no-repeat; background-position: right 0.85rem center; padding-right: 2rem; }
+    .rpe-form-group select option { background: #161b22; color: #e6edf3; }
+    .rpe-generate-btn { display: inline-flex; align-items: center; gap: 0.5rem; padding: 0.75rem 1.5rem; background: var(--green-primary); color: white; border: none; border-radius: 6px; font-weight: 700; font-size: 0.88rem; cursor: pointer; font-family: inherit; transition: all 0.15s; }
+    .rpe-generate-btn:hover { background: var(--green-deep); transform: translateY(-1px); }
+    .rpe-generate-btn:disabled { opacity: 0.5; cursor: not-allowed; transform: none; }
+    .rpe-result { display: none; margin-top: 2rem; border-top: 1px solid #21262d; padding-top: 2rem; }
+    .rpe-result.show { display: block; }
+    .rpe-result-header { display: flex; align-items: center; justify-content: space-between; margin-bottom: 1.25rem; }
+    .rpe-result-header h4 { font-size: 0.95rem; color: #e6edf3; font-weight: 700; }
+    .rpe-result-badge { font-size: 0.6rem; font-weight: 700; text-transform: uppercase; letter-spacing: 1.5px; padding: 0.2rem 0.6rem; border-radius: 100px; }
+    .rpe-badge-active { color: var(--green-accent); background: rgba(82,183,136,0.12); border: 1px solid rgba(82,183,136,0.25); }
+    .rpe-meta-grid { display: grid; grid-template-columns: 140px 1fr; gap: 0.4rem 1rem; margin-bottom: 1.5rem; }
+    .rpe-meta-key { font-size: 0.75rem; font-weight: 600; color: #8b949e; text-transform: uppercase; letter-spacing: 0.5px; }
+    .rpe-meta-val { font-size: 0.82rem; color: #e6edf3; word-break: break-all; }
+    .rpe-meta-val code { font-family: 'SF Mono', 'Fira Code', monospace; font-size: 0.75rem; background: #161b22; padding: 0.1rem 0.35rem; border-radius: 3px; color: var(--green-accent); }
+    .rpe-meta-val a { color: var(--green-accent); text-decoration: none; font-weight: 600; font-size: 0.78rem; }
+    .rpe-meta-val a:hover { text-decoration: underline; }
+    .rpe-notice-preview { background: #161b22; border: 1px solid #21262d; border-radius: 8px; padding: 1.25rem; font-family: 'SF Mono', 'Fira Code', monospace; font-size: 0.72rem; line-height: 1.65; color: #8b949e; white-space: pre-wrap; word-break: break-all; max-height: 320px; overflow-y: auto; }
+    .rpe-notice-preview::-webkit-scrollbar { width: 6px; }
+    .rpe-notice-preview::-webkit-scrollbar-thumb { background: #30363d; border-radius: 3px; }
+    .rpe-integrity-row { display: flex; align-items: center; gap: 0.5rem; margin-top: 1rem; padding: 0.6rem 0.85rem; background: rgba(82,183,136,0.06); border: 1px solid rgba(82,183,136,0.15); border-radius: 6px; }
+    .rpe-integrity-row .check { color: var(--green-accent); font-weight: 700; font-size: 0.9rem; }
+    .rpe-integrity-row span { font-size: 0.75rem; color: var(--green-accent); font-weight: 600; }
+
     @keyframes fadeInDown { from{opacity:0;transform:translateY(-12px)} to{opacity:1;transform:translateY(0)} }
     @keyframes fadeInUp { from{opacity:0;transform:translateY(16px)} to{opacity:1;transform:translateY(0)} }
     .fade-up { opacity:1; transform:none; transition: opacity 0.6s ease, transform 0.6s ease; }
@@ -168,6 +209,8 @@
       .footer-grid { grid-template-columns: 1fr 1fr; }
       .demo-metrics { grid-template-columns: repeat(2,1fr); }
       .moat-table-wrap { overflow-x: auto; }
+      .rpe-form-grid { grid-template-columns: 1fr; }
+      .rpe-meta-grid { grid-template-columns: 1fr; }
     }
     @media (max-width: 640px) {
       nav ul { display: none; }
@@ -176,6 +219,7 @@
       .demo-metrics { grid-template-columns: repeat(2,1fr); }
       .footer-grid { grid-template-columns: 1fr; }
       .footer-bottom { flex-direction: column; gap: 0.5rem; text-align: center; }
+      .rpe-frame-url { display: none; }
     }
   </style>
 </head>
@@ -335,6 +379,77 @@
             <p>Advertisers pay for verified access. Users receive direct payment when tokens are validated. Revoke consent, payments stop. Deletion is enforced. Fair exchange.</p>
           </div>
         </div>
+      </div>
+    </section>
+
+    <!-- RPE DEMO -->
+    <section class="rpe-section" id="rpe-demo">
+      <div class="container">
+        <p class="label fade-up">Removal Payload Engine</p>
+        <h2 class="section-title fade-up">Patent Component #5. <em>Working now.</em></h2>
+        <p class="section-lead fade-up">Generate a legally-cited, cryptographically signed compliance notice in seconds &mdash; what used to require a lawyer, a certified letter, and 5 business days.</p>
+        <div class="rpe-demo-frame fade-up">
+          <div class="rpe-frame-bar">
+            <div class="rpe-frame-dots"><span></span><span></span><span></span></div>
+            <span class="rpe-frame-url">adworth-rpe.adworthllc.workers.dev</span>
+            <span class="rpe-frame-badge">Demo Only</span>
+          </div>
+          <div class="rpe-frame-body">
+            <div class="rpe-demo-banner">
+              <span class="rpe-demo-banner-icon">&#9888;&#65039;</span>
+              <p>
+                <strong>This is a demonstration only.</strong> No notices are sent to any company. No real compliance actions are initiated.
+                This demo generates a sample notice to show the format, legal citations, and cryptographic signing that the Removal Payload Engine produces.
+                Generated notices are stored for verification purposes only and carry no legal effect.
+              </p>
+            </div>
+            <div class="rpe-form-grid">
+              <div class="rpe-form-group">
+                <label>Target Domain</label>
+                <input type="text" id="rpe-domain" placeholder="e.g. nike.com" />
+              </div>
+              <div class="rpe-form-group">
+                <label>Regulation</label>
+                <select id="rpe-regulation">
+                  <option value="">Select regulation&hellip;</option>
+                  <option value="gdpr-17">GDPR Article 17 &mdash; Right to Erasure</option>
+                  <option value="ccpa-1798">CCPA &sect; 1798.105 &mdash; Right to Deletion</option>
+                  <option value="dsa-26">DSA Article 26 &mdash; Advertising Transparency</option>
+                  <option value="cpra-1798-100">CPRA &sect; 1798.100 &mdash; Right to Know</option>
+                  <option value="gdpr-15">GDPR Article 15 &mdash; Right of Access</option>
+                </select>
+              </div>
+              <div class="rpe-form-group">
+                <label>Data Types (optional)</label>
+                <input type="text" id="rpe-datatypes" placeholder="e.g. browsing_history, location_data" />
+              </div>
+              <div class="rpe-form-group">
+                <label>Consent Token ID (optional)</label>
+                <input type="text" id="rpe-token" placeholder="e.g. CCT-2026-ABCDEF" />
+              </div>
+            </div>
+            <button class="rpe-generate-btn" id="rpe-generate" onclick="generateRPE()">&#9889; Generate Demo Notice</button>
+            <div class="rpe-result" id="rpe-result">
+              <div class="rpe-result-header">
+                <h4 id="rpe-result-title">Notice Generated</h4>
+                <span class="rpe-result-badge rpe-badge-active" id="rpe-result-badge">DEMO &mdash; NOT SENT</span>
+              </div>
+              <div class="rpe-meta-grid" id="rpe-meta"></div>
+              <div class="rpe-notice-preview" id="rpe-notice-text"></div>
+              <div class="rpe-integrity-row" id="rpe-integrity">
+                <span class="check">&#10003;</span>
+                <span>HMAC-SHA256 signed &middot; SHA-256 content hash verified &middot; Integrity valid</span>
+              </div>
+            </div>
+          </div>
+        </div>
+        <p style="font-size: 0.78rem; color: var(--ink-30); margin-top: 1.25rem; line-height: 1.6; max-width: 720px;" class="fade-up">
+          This demonstration generates sample compliance notices using Adworth&rsquo;s patent-pending Removal Payload Engine infrastructure.
+          No notices are delivered to any third party. No real compliance actions are initiated. All generated notices are clearly marked as demonstrations
+          and carry no legal effect. Cryptographic signatures and verification URLs are real &mdash; the signing infrastructure is production-grade even in demo mode.
+          See our <a href="/privacy.html" style="color: var(--green-primary);">Privacy Policy</a> and
+          <a href="/terms.html" style="color: var(--green-primary);">Terms of Service</a> for full details.
+        </p>
       </div>
     </section>
 
@@ -512,6 +627,11 @@
             <div class="contact-card-title">See What Control Looks Like</div>
             <div class="contact-card-sub">Token lifecycle &middot; Enforcement &middot; Audit trail</div>
           </a>
+          <a href="/ccpa-gap.html" class="contact-card">
+            <div class="contact-card-label">CCPA Enforcement Gap</div>
+            <div class="contact-card-title">30+ Companies. Zero Verified Deletion.</div>
+            <div class="contact-card-sub">Real transparency metrics &middot; Public data</div>
+          </a>
         </div>
       </div>
     </section>
@@ -532,6 +652,7 @@
           <ul>
             <li><a href="/">Home</a></li>
             <li><a href="/dashboard.html">Consumer Demo</a></li>
+            <li><a href="/ccpa-gap.html">CCPA Enforcement Gap</a></li>
             <li><a href="/ledger.html">Consent Ledger</a></li>
             <li><a href="/enterprise.html">Enterprise</a></li>
           </ul>
@@ -577,6 +698,74 @@
         observer.observe(card);
       });
     });
+
+    // RPE Demo — Generates sample compliance notices via the live Worker
+    // NO notices are sent to any company. This is for demonstration only.
+    const RPE_API = 'https://adworth-rpe.adworthllc.workers.dev';
+
+    async function generateRPE() {
+      const domain = document.getElementById('rpe-domain').value.trim();
+      const regulation = document.getElementById('rpe-regulation').value;
+      const datatypes = document.getElementById('rpe-datatypes').value.trim();
+      const token = document.getElementById('rpe-token').value.trim();
+      const btn = document.getElementById('rpe-generate');
+      if (!domain || !regulation) { alert('Please enter a domain and select a regulation.'); return; }
+      btn.textContent = 'Generating\u2026';
+      btn.disabled = true;
+      try {
+        const body = { target_domain: domain, regulation: regulation, reason: 'DEMO \u2014 This is a sample compliance notice generated for demonstration purposes only. No real compliance action is initiated.' };
+        if (datatypes) body.data_types = datatypes.split(',').map(s => s.trim());
+        if (token) body.consent_token_id = token;
+        const res = await fetch(RPE_API + '/generate', { method: 'POST', headers: { 'Content-Type': 'application/json', 'X-API-Key': 'demo-public-readonly' }, body: JSON.stringify(body) });
+        if (!res.ok) throw new Error('API returned ' + res.status);
+        const data = await res.json();
+        const result = document.getElementById('rpe-result');
+        result.classList.add('show');
+        document.getElementById('rpe-result-title').textContent = 'Notice ' + data.notice_id;
+        const meta = document.getElementById('rpe-meta');
+        const deadline = new Date(data.compliance_deadline).toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric' });
+        meta.innerHTML = metaRow('Notice ID', '<code>' + data.notice_id + '</code>') + metaRow('Target', data.target_domain) + metaRow('Regulation', data.regulation) + metaRow('Deadline', deadline) + metaRow('Content Hash', '<code>' + data.content_hash.substring(0, 32) + '\u2026</code>') + metaRow('Verify', '<a href="' + data.verification_url + '" target="_blank" rel="noopener">' + data.verification_url + '</a>');
+        const verifyRes = await fetch(data.verification_url);
+        if (verifyRes.ok) {
+          const verifyData = await verifyRes.json();
+          document.getElementById('rpe-integrity').querySelector('span:last-child').textContent = 'Verified: ' + (verifyData.integrity_valid ? '\u2713 Integrity valid' : '\u2717 Integrity check failed') + ' \u00b7 HMAC-SHA256 signed \u00b7 SHA-256 content hash: ' + verifyData.content_hash.substring(0, 24) + '\u2026';
+        }
+        const noticeText = buildNoticePreview(data, domain, regulation, datatypes, token);
+        document.getElementById('rpe-notice-text').textContent = noticeText;
+        result.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+      } catch (err) { alert('Demo notice generation failed. The RPE Worker may be temporarily unavailable. Error: ' + err.message); }
+      btn.innerHTML = '\u26a1 Generate Demo Notice';
+      btn.disabled = false;
+    }
+
+    function metaRow(key, value) { return '<span class="rpe-meta-key">' + key + '</span><span class="rpe-meta-val">' + value + '</span>'; }
+
+    function buildNoticePreview(data, domain, regulation, datatypes, token) {
+      const regNames = { 'gdpr-17': 'GDPR Article 17 \u2014 Right to Erasure', 'ccpa-1798': 'CCPA \u00a7 1798.105 \u2014 Right to Deletion', 'dsa-26': 'DSA Article 26 \u2014 Advertising Transparency', 'cpra-1798-100': 'CPRA \u00a7 1798.100 \u2014 Right to Know', 'gdpr-15': 'GDPR Article 15 \u2014 Right of Access' };
+      const citations = { 'gdpr-17': 'Regulation (EU) 2016/679, Article 17(1)', 'ccpa-1798': 'Cal. Civ. Code \u00a7 1798.105(a)', 'dsa-26': 'Regulation (EU) 2022/2065, Article 26', 'cpra-1798-100': 'Cal. Civ. Code \u00a7 1798.100(a)', 'gdpr-15': 'Regulation (EU) 2016/679, Article 15(1)' };
+      const deadline = new Date(data.compliance_deadline).toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric' });
+      const today = new Date().toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric' });
+      const types = datatypes ? datatypes : 'personal_data';
+      let t = '\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\n';
+      t += 'DEMO \u2014 THIS NOTICE CARRIES NO LEGAL EFFECT\n';
+      t += '\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\n\n';
+      t += 'COMPLIANCE NOTICE \u2014 ' + (regNames[regulation] || regulation) + '\n';
+      t += 'Notice ID: ' + data.notice_id + '\nDate: ' + today + '\n\n';
+      t += 'To: Data Controller at ' + domain + '\n\n';
+      t += 'This is an automated compliance notice generated by\nthe Adworth\u2120 Removal Payload Engine.\n\n';
+      t += 'DATA CATEGORIES: ' + types + '\n';
+      if (token) t += 'CONSENT TOKEN: ' + token + ' (REVOKED)\n';
+      t += '\nLEGAL BASIS:\nCitation: ' + (citations[regulation] || regulation) + '\n\n';
+      t += 'REQUEST:\nComplete erasure/deletion of all personal data\nheld by ' + domain + ' within the compliance window.\n\n';
+      t += 'COMPLIANCE DEADLINE: ' + deadline + '\n\n';
+      t += 'VERIFICATION:\nContent Hash: ' + data.content_hash.substring(0, 32) + '\u2026\n';
+      t += 'Verify: ' + data.verification_url + '\n\n';
+      t += '\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\n';
+      t += 'DEMO ONLY \u2014 NOT SENT TO ANY COMPANY\n';
+      t += 'Generated by Adworth\u2120 RPE \u00b7 Patent Pending\n';
+      t += '\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550';
+      return t;
+    }
   </script>
 
   <!-- No third-party tracking scripts. This page loads no analytics, advertising pixels, or behavioral trackers. -->
