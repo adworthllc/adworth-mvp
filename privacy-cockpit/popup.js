@@ -41,35 +41,26 @@ async function handleSetup() {
   messageEl.textContent = 'Setting up...';
 
   try {
-    // Step 1: Register with Adworth
     const userId = 'user_' + Math.random().toString(36).substring(7);
     const registerRes = await fetch(`${API_BASE}/extension/register`, {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({
-        user_id: userId,
-        action: 'generate_keypair'
-      })
+      body: JSON.stringify({ user_id: userId, action: 'generate_keypair' })
     });
 
     if (!registerRes.ok) throw new Error('Registration failed: ' + registerRes.statusText);
     const { setup_token } = await registerRes.json();
 
-    // Step 2: Generate Ed25519 keypair locally
     const keyPair = await crypto.subtle.generateKey(
       { name: 'Ed25519' },
-      false, // non-extractable — private key never leaves device
+      false,
       ['sign', 'verify']
     );
 
-    // Step 3: Export public key
     const publicKeyBuffer = await crypto.subtle.exportKey('raw', keyPair.publicKey);
     const publicKeyBase64 = btoa(String.fromCharCode(...new Uint8Array(publicKeyBuffer)));
-
-    // Step 4: Generate device fingerprint
     const deviceFingerprint = generateDeviceFingerprint();
 
-    // Step 5: Upload public key
     const uploadRes = await fetch(`${API_BASE}/extension/upload-pubkey`, {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
@@ -83,7 +74,6 @@ async function handleSetup() {
 
     if (!uploadRes.ok) throw new Error('Public key upload failed: ' + uploadRes.statusText);
 
-    // Step 6: Store setup data locally
     await chrome.storage.local.set({
       user_id: userId,
       setup_complete: true,
@@ -94,10 +84,6 @@ async function handleSetup() {
       private_key_ref: 'stored_in_crypto_api'
     });
 
-    // Step 7: Send private key to background service worker
-    // NOTE: If the service worker restarts (MV3 behaviour), the key will be lost.
-    // The user will need to click Setup again. This is by design — the key is never
-    // written to disk, which is the privacy guarantee.
     chrome.runtime.sendMessage({
       action: 'storePrivateKey',
       userId: userId,
@@ -123,15 +109,27 @@ async function handleSync() {
   messageEl.textContent = 'Syncing data...';
 
   try {
-    // Get active tab
     const tabs = await chrome.tabs.query({ active: true, currentWindow: true });
     const tab = tabs[0];
 
     if (!tab) throw new Error('No active tab found');
 
-    // FIX: Wrap sendMessage in a promise with proper error handling
-    // This is the main cause of "Could not establish connection" —
-    // content script wasn't loaded yet (now fixed via document_idle in manifest)
+    // FIX: Programmatically inject content script into the tab
+    // This is more reliable than manifest declaration for MV3
+    try {
+      await chrome.scripting.executeScript({
+        target: { tabId: tab.id },
+        files: ['content-script.js']
+      });
+    } catch (injectErr) {
+      // Script may already be injected — that is fine, continue
+      console.log('Script injection note:', injectErr.message);
+    }
+
+    // Small delay to ensure script is registered and listening
+    await new Promise(resolve => setTimeout(resolve, 200));
+
+    // Now send message to content script
     let response;
     try {
       response = await new Promise((resolve, reject) => {
@@ -144,27 +142,24 @@ async function handleSync() {
         });
       });
     } catch (err) {
-      throw new Error('Could not reach content script. Make sure you are on a supported dashboard page (Google Ads, Facebook Ads, or adworth.app).');
+      throw new Error('Could not reach content script: ' + err.message);
     }
 
     if (!response || !response.data) {
-      throw new Error('No data found on this page. Navigate to a supported dashboard first.');
+      throw new Error('No data found on this page. Navigate to adworth.app first.');
     }
 
-    // Get stored data
     const stored = await chrome.storage.local.get(['user_id', 'device_fingerprint', 'ingestion_count']);
     const userId = stored.user_id;
 
     if (!userId) throw new Error('Not setup yet. Click Setup Extension first.');
 
-    // Prepare payload
     const timestamp = new Date().toISOString();
     const messageToSign = JSON.stringify({
       ...response.data,
       timestamp: timestamp
     });
 
-    // Sign via background service worker
     const signatureBase64 = await new Promise((resolve, reject) => {
       chrome.runtime.sendMessage({
         action: 'signData',
@@ -174,15 +169,13 @@ async function handleSync() {
         if (chrome.runtime.lastError) {
           reject(new Error(chrome.runtime.lastError.message));
         } else if (!sig) {
-          // FIX: Detect service worker key loss and give clear guidance
-          reject(new Error('Session expired — private key was lost when the browser restarted. Please click Setup Extension again.'));
+          reject(new Error('Session expired — please click Setup Extension again.'));
         } else {
           resolve(sig);
         }
       });
     });
 
-    // Send to Adworth ingestion worker
     const ingestRes = await fetch(`${API_BASE}/extension/ingest`, {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
@@ -198,7 +191,6 @@ async function handleSync() {
 
     const result = await ingestRes.json();
 
-    // Update counter
     const newCount = (stored.ingestion_count || 0) + 1;
     await chrome.storage.local.set({ ingestion_count: newCount });
 
