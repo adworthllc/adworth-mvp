@@ -1,26 +1,28 @@
 // Service Worker for Privacy Cockpit
 // Manages Ed25519 private key (keeps it secure, non-extractable)
 
-let userPrivateKeys = {}; // In-memory storage (per session)
+let userPrivateKeys = {}; // In-memory storage (resets when service worker sleeps — handled below)
 
 chrome.runtime.onMessage.addListener((request, sender, sendResponse) => {
+
   if (request.action === 'storePrivateKey') {
-    // Store private key reference (it's non-extractable, so we just keep the object)
+    // Store private key reference (it's non-extractable, so we just keep the CryptoKey object)
     userPrivateKeys[request.userId] = request.privateKey;
     sendResponse({ success: true });
+    return true; // FIX: keep message port open for async
   }
-  
+
   if (request.action === 'signData') {
-    // Sign data with user's private key
     const userId = request.userId;
     const message = request.message;
     const privateKey = userPrivateKeys[userId];
-    
+
+    // FIX: If service worker restarted and lost key, tell popup to re-setup
     if (!privateKey) {
       sendResponse(null);
-      return;
+      return true;
     }
-    
+
     crypto.subtle.sign(
       'Ed25519',
       privateKey,
@@ -32,10 +34,10 @@ chrome.runtime.onMessage.addListener((request, sender, sendResponse) => {
       console.error('Signing error:', err);
       sendResponse(null);
     });
-    
-    // Return true to indicate we'll send response asynchronously
-    return true;
+
+    return true; // Keep message port open for async response
   }
+
 });
 
 chrome.runtime.onInstalled.addListener(() => {
