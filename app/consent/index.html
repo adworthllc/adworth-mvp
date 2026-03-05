@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Adworth&#8480; — My Data Consent</title>
+  <title>Adworth℠ — My Data Consent</title>
   <meta name="description" content="Control your data. Grant consent on your terms. Get paid when you share.">
   <link rel="preconnect" href="https://adworth-fonts.adworthllc.workers.dev">
   <link href="https://adworth-fonts.adworthllc.workers.dev/css2?family=Poppins:wght@300;400;500;600;700;800;900&family=DM+Serif+Display:ital@0;1&display=swap" rel="stylesheet">
@@ -46,6 +46,58 @@
     .header .wallet span { color: white; font-size: 1.1rem; }
 
     .container { max-width: 900px; margin: 0 auto; padding: 2rem; }
+
+    /* Beta banner */
+    .beta-banner {
+      background: var(--gold-bg);
+      border-bottom: 1px solid rgba(200,169,106,0.3);
+      padding: 0.6rem 2rem;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 0.5rem;
+      font-size: 0.75rem;
+      color: #7a5c2e;
+      font-weight: 500;
+    }
+    .beta-banner .beta-tag {
+      font-size: 0.6rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      background: var(--gold);
+      color: white;
+      padding: 0.15rem 0.45rem;
+      border-radius: 4px;
+    }
+
+    /* Security warning banner */
+    .security-banner {
+      background: var(--red-bg);
+      border: 1px solid rgba(224,82,82,0.3);
+      border-radius: 10px;
+      padding: 1rem 1.25rem;
+      margin-bottom: 1.5rem;
+      font-size: 0.78rem;
+      color: #7a3a3a;
+      line-height: 1.6;
+    }
+    .security-banner strong { color: #e05252; }
+
+    /* Data privacy banner */
+    .privacy-banner {
+      background: var(--green-tint);
+      border: 1px solid rgba(82,183,136,0.3);
+      border-radius: 10px;
+      padding: 1rem 1.25rem;
+      margin-bottom: 1.5rem;
+      font-size: 0.78rem;
+      color: #555a50;
+      line-height: 1.6;
+    }
+    .privacy-banner strong { color: var(--green-deep); }
+    .privacy-banner a { color: var(--green-primary); text-decoration: none; font-weight: 600; }
+    .privacy-banner a:hover { text-decoration: underline; }
 
     /* Setup bar */
     .setup-bar {
@@ -113,6 +165,7 @@
     .mini-stat .val { font-size: 1.5rem; font-weight: 800; color: var(--green-primary); }
     .mini-stat .val.earnings { color: var(--gold); }
     .mini-stat .lbl { font-size: 0.7rem; color: var(--ink-60); font-weight: 500; margin-top: 0.2rem; }
+    .mini-stat .sublbl { font-size: 0.65rem; color: var(--ink-30); margin-top: 0.2rem; font-style: italic; }
 
     /* Section titles */
     .section-title {
@@ -299,31 +352,21 @@
       font-size: 0.78rem;
       color: var(--ink-60);
       line-height: 1.6;
+      margin-bottom: 2rem;
     }
+    .disclosure strong { color: var(--green-deep); }
+    .disclosure a { color: var(--green-primary); text-decoration: none; font-weight: 600; }
+    .disclosure a:hover { text-decoration: underline; }
 
-    /* Beta banner */
-    .beta-banner {
-      background: var(--gold-bg);
-      border-bottom: 1px solid rgba(200,169,106,0.3);
-      padding: 0.6rem 2rem;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      gap: 0.5rem;
-      font-size: 0.75rem;
-      color: #7a5c2e;
-      font-weight: 500;
+    footer {
+      text-align: center;
+      padding: 1rem 2rem;
+      font-size: 0.7rem;
+      color: var(--ink-30);
+      border-top: 1px solid var(--border);
     }
-    .beta-banner .beta-tag {
-      font-size: 0.6rem;
-      font-weight: 700;
-      text-transform: uppercase;
-      letter-spacing: 1px;
-      background: var(--gold);
-      color: white;
-      padding: 0.15rem 0.45rem;
-      border-radius: 4px;
-    }
+    footer a { color: var(--green-primary); text-decoration: none; }
+    footer a:hover { text-decoration: underline; }
 
     @media (max-width: 640px) {
       .setup-bar { flex-direction: column; }
@@ -340,13 +383,27 @@
   </div>
   <div class="header">
     <div class="header-left">
-      <h1>Adworth&#8480;</h1>
+      <h1>Adworth℠</h1>
       <span class="user-badge" id="userBadge">Not connected</span>
     </div>
-    <div class="wallet">Earned: <span id="walletBalance">$0.00</span></div>
+    <div class="wallet">Earned: <span id="walletBalance">$0.00</span> <span style="font-size:0.7rem;color:rgba(255,255,255,0.5);">(simulated)</span></div>
   </div>
 
   <div class="container">
+
+    <!-- Security Warning -->
+    <div class="security-banner">
+      <strong>⚠️ Security Warning:</strong> Never use a real API key in this browser interface. 
+      Use a <strong>test key only</strong>. API keys entered here are stored in browser memory only for this session and are cleared when you close the page. 
+      For production use, authenticate server-side. Learn more in our <a href="/terms.html" style="color:#e05252;font-weight:600;">Terms of Service</a>.
+    </div>
+
+    <!-- Data Privacy Banner -->
+    <div class="privacy-banner">
+      <strong>🔒 Data Privacy:</strong> No personal data is stored in consent tokens or ledger entries. 
+      All consent records are append-only and cryptographically signed. You can revoke consent at any time. 
+      Revoked data triggers automatic deletion monitoring. See our <a href="/privacy.html">Privacy Policy</a> for full details.
+    </div>
 
     <!-- Setup -->
     <div class="setup-bar">
@@ -355,8 +412,8 @@
         <input type="text" id="apiEndpoint" value="https://adworth-consent-api.adworthllc.workers.dev" style="width:360px">
       </div>
       <div>
-        <label>API Key</label>
-        <input type="password" id="apiKey" placeholder="Your API key" style="width:200px">
+        <label>API Key (test only)</label>
+        <input type="password" id="apiKey" placeholder="Your test API key" style="width:200px">
       </div>
       <div>
         <label>User ID</label>
@@ -367,9 +424,19 @@
 
     <!-- Stats -->
     <div class="stats-row">
-      <div class="mini-stat"><div class="val" id="activeCount">—</div><div class="lbl">Active Consents</div></div>
-      <div class="mini-stat"><div class="val" id="revokedCount">—</div><div class="lbl">Revoked</div></div>
-      <div class="mini-stat"><div class="val earnings" id="totalEarnings">—</div><div class="lbl">Total Earned (simulated)</div></div>
+      <div class="mini-stat">
+        <div class="val" id="activeCount">—</div>
+        <div class="lbl">Active Consents</div>
+      </div>
+      <div class="mini-stat">
+        <div class="val" id="revokedCount">—</div>
+        <div class="lbl">Revoked</div>
+      </div>
+      <div class="mini-stat">
+        <div class="val earnings" id="totalEarnings">—</div>
+        <div class="lbl">Total Earned</div>
+        <div class="sublbl">(simulated · for demo only)</div>
+      </div>
     </div>
 
     <!-- Incoming Request -->
@@ -377,7 +444,7 @@
     <div class="request-card">
       <div class="request-header">
         <span class="advertiser-name" id="reqAdvertiserName">Nike</span>
-        <span class="request-badge">New Request</span>
+        <span class="request-badge">Demo Request</span>
       </div>
       <div class="request-body">
         <div class="request-details">
@@ -390,7 +457,7 @@
             <div class="detail-value" id="reqDuration">30 days</div>
           </div>
           <div class="detail-item">
-            <div class="detail-label">Your Payment</div>
+            <div class="detail-label">Your Payment (simulated)</div>
             <div class="detail-value money" id="reqPayment">$0.50/month</div>
           </div>
         </div>
@@ -428,15 +495,25 @@
       </div>
     </div>
 
-    <!-- Disclosure -->
+    <!-- Complete Disclosure -->
     <div class="disclosure">
-      <strong>Transparency Disclosure:</strong> This consent interface connects to the Adworth Consent API
-      (Patent Component #1) to issue and manage cryptographic consent tokens. All consent actions are recorded
-      in the Invisibility Ledger (Component #3) as tamper-evident entries. Payment amounts shown are simulated
-      for demonstration purposes — the consent marketplace with real payments is under development.
-      No personally identifiable information is stored in consent tokens or ledger entries.
+      <strong>Complete Demo & Legal Disclosure:</strong> 
+      This consent interface is a <strong>demonstration only</strong> of the Adworth Consent API (Patent Component #1). 
+      <strong>All payment amounts shown are simulated for demonstration purposes</strong> — no real transactions occur. 
+      The real consent marketplace with cryptographic payments is under development. 
+      API key entry is for demo purposes only — never use production credentials in a browser. 
+      All consent actions are recorded in the Invisibility Ledger (Component #3) as tamper-evident, cryptographically signed entries. 
+      No personally identifiable information (PII) is stored in consent tokens or ledger records. 
+      This is not legal advice, financial advice, or an investment prospectus. 
+      See our <a href="/privacy.html">Privacy Policy</a>, <a href="/terms.html">Terms of Service</a>, and <a href="/">Home</a> for complete information.
     </div>
+
   </div>
+
+  <footer>
+    <p>© 2026 Adworth℠ LLC · Patent Pending · Charleston, SC · <a href="/privacy.html">Privacy</a> · <a href="/terms.html">Terms</a> · <a href="/">Home</a></p>
+    <p style="margin-top:0.5rem;color:var(--ink-30);">This demonstration does not constitute an offer to sell or buy securities, provide financial services, or represent a functional product.</p>
+  </footer>
 
   <script>
     var BASE = '';
@@ -484,23 +561,41 @@
       API_KEY = document.getElementById('apiKey').value;
       USER_ID = document.getElementById('userId').value;
 
+      // Security check: require HTTPS
+      if (!BASE.startsWith('https://')) {
+        alert('⚠️ Security Error: API endpoint must use HTTPS (https://...)');
+        addEvent('❌', 'Connection failed: HTTPS required');
+        return;
+      }
+
+      // Validate inputs
+      if (!API_KEY || !USER_ID) {
+        alert('⚠️ Please enter API key and User ID');
+        return;
+      }
+
       try {
         var res = await fetch(BASE + '/health');
         if (!res.ok) throw new Error('API unreachable');
         document.getElementById('userBadge').textContent = USER_ID;
-        addEvent('✅', 'Connected to Consent API');
+        addEvent('✅', 'Connected to Consent API (demo mode)');
 
         await loadConsents();
         showRequest();
       } catch (err) {
         alert('Connection failed: ' + err.message);
+        addEvent('❌', 'Connection failed: ' + err.message);
       }
     }
 
     async function loadConsents() {
       try {
         var res = await fetch(BASE + '/ledger/' + encodeURIComponent(USER_ID), { headers: getHeaders() });
-        if (res.status === 401) { alert('Invalid API key'); return; }
+        if (res.status === 401) { 
+          alert('⚠️ Invalid API key');
+          addEvent('❌', 'Authentication failed: Invalid API key');
+          return; 
+        }
 
         var data = await res.json();
         var entries = data.entries || data.ledger || [];
@@ -614,7 +709,7 @@
         if (res.ok && (data.tokenId || (data.token && data.token.tokenId))) {
           var tid = data.tokenId || data.token.tokenId;
           addEvent('🔑', '<strong>Consent granted</strong> to ' + req.name + ' — Token: <code>' + tid.substring(0, 12) + '...</code>');
-          addEvent('💰', '<strong>Payment activated:</strong> $' + req.payment.toFixed(2) + '/month from ' + req.name);
+          addEvent('💰', '<strong>Payment simulated:</strong> $' + req.payment.toFixed(2) + '/month from ' + req.name + ' (demo only)');
 
           currentRequest++;
           showRequest();
