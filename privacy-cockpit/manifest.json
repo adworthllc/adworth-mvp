@@ -5,13 +5,13 @@
   "description": "Extract and protect your marketing data with Ed25519 cryptography",
   "permissions": [
     "storage",
-    "activeTab"
+    "activeTab",
+    "scripting"
   ],
   "host_permissions": [
     "https://ads.google.com/*",
     "https://business.facebook.com/*",
-    "https://adworth.app/demo/*",
-    "file://*/*"
+    "https://adworth.app/*"
   ],
   "background": {
     "service_worker": "background.js"
@@ -30,8 +30,7 @@
       "matches": [
         "https://ads.google.com/*",
         "https://business.facebook.com/*",
-        "https://adworth.app/demo/*",
-        "file://*/*"
+        "https://adworth.app/*"
       ],
       "js": ["content-script.js"],
       "run_at": "document_start"
