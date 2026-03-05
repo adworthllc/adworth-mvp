@@ -3,8 +3,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Adworth&#8480; &#8212; Own Your Data. Get Paid.</title>
-    <meta name="description" content="Patent-pending cryptographic consent infrastructure for digital advertising. Control your data, get paid when you share it. Join the waitlist.">
+    <title>Adworth℠ — Own Your Data. Get Paid.</title>
+    <meta name="description" content="Patent-pending cryptographic consent infrastructure for digital advertising. Control your data, get paid when you share it. Two-sided marketplace. 2% fee on revenue.">
     <link rel="icon" type="image/x-icon" href="/favicon.ico">
     <link rel="preconnect" href="https://adworth-fonts.adworthllc.workers.dev">
     <link href="https://adworth-fonts.adworthllc.workers.dev/css2?family=Poppins:wght@300;400;500;600;700;800;900&family=DM+Serif+Display:ital@0;1&display=swap" rel="stylesheet">
@@ -15,16 +15,11 @@
             --green-accent: #52b788; --green-pale: #d8f3dc; --green-tint: #f0faf3;
             --off-white: #fafaf8; --white: #ffffff; --ink: #111410; --ink-60: #555a50;
             --ink-30: #b0b5aa; --border: #e2e8df; --gold: #c8a96a; --gold-light: #f5e9d3;
-            --mono: 'JetBrains Mono', monospace;
         }
         html { scroll-behavior: smooth; }
         body { font-family: 'Poppins', sans-serif; background: var(--off-white); color: var(--ink); line-height: 1.6; overflow-x: hidden; }
-        .serif { font-family: 'DM Serif Display', Georgia, serif; }
         .container { max-width: 1160px; margin: 0 auto; padding: 0 2rem; }
-        .container--narrow { max-width: 780px; margin: 0 auto; padding: 0 2rem; }
-
-        /* ── HEADER ── */
-        header { position: sticky; top: 0; z-index: 100; background: rgba(250,250,248,0.92); backdrop-filter: blur(12px); -webkit-backdrop-filter: blur(12px); border-bottom: 1px solid var(--border); }
+        header { position: sticky; top: 0; z-index: 100; background: rgba(250,250,248,0.92); backdrop-filter: blur(12px); border-bottom: 1px solid var(--border); }
         nav { display: flex; justify-content: space-between; align-items: center; padding: 1.25rem 0; }
         .logo { display: flex; align-items: center; gap: 0.75rem; text-decoration: none; }
         .logo-mark { font-family: 'Poppins', sans-serif; font-size: 1.4rem; font-weight: 800; color: var(--green-primary); letter-spacing: -0.5px; }
@@ -32,10 +27,8 @@
         nav ul { list-style: none; display: flex; gap: 1.5rem; align-items: center; }
         nav a { text-decoration: none; font-size: 0.8rem; font-weight: 500; color: var(--ink-60); transition: color 0.2s; white-space: nowrap; }
         nav a:hover { color: var(--green-primary); }
-        .nav-cta { background: var(--green-primary) !important; color: white !important; padding: 0.55rem 1rem !important; border-radius: 6px !important; font-weight: 600 !important; transition: background 0.2s, transform 0.2s !important; white-space: nowrap; }
-        .nav-cta:hover { background: var(--green-deep) !important; transform: translateY(-1px) !important; }
-
-        /* ── HERO ── */
+        .nav-cta { background: var(--green-primary) !important; color: white !important; padding: 0.55rem 1rem !important; border-radius: 6px !important; font-weight: 600 !important; white-space: nowrap; }
+        .nav-cta:hover { background: var(--green-deep) !important; }
         .hero { position: relative; padding: 7rem 0 6rem; overflow: hidden; }
         .hero::before { content: ''; position: absolute; inset: 0; background-image: linear-gradient(var(--border) 1px, transparent 1px), linear-gradient(90deg, var(--border) 1px, transparent 1px); background-size: 48px 48px; opacity: 0.5; z-index: 0; }
         .hero::after { content: ''; position: absolute; inset: 0; background: radial-gradient(ellipse 70% 60% at 50% 0%, var(--green-tint) 0%, transparent 70%); z-index: 0; }
@@ -50,947 +43,388 @@
         .hero-cta-group { display: flex; gap: 1rem; justify-content: center; flex-wrap: wrap; animation: fadeInUp 0.7s 0.3s ease both; }
         .btn { display: inline-flex; align-items: center; gap: 0.5rem; padding: 0.9rem 1.75rem; border-radius: 8px; font-weight: 600; font-size: 0.95rem; text-decoration: none; transition: all 0.2s; border: 1.5px solid transparent; cursor: pointer; font-family: 'Poppins', sans-serif; }
         .btn-primary { background: var(--green-primary); color: white; border-color: var(--green-primary); box-shadow: 0 4px 14px rgba(45,106,79,0.3); }
-        .btn-primary:hover { background: var(--green-deep); border-color: var(--green-deep); transform: translateY(-2px); box-shadow: 0 8px 20px rgba(45,106,79,0.35); }
+        .btn-primary:hover { background: var(--green-deep); transform: translateY(-2px); box-shadow: 0 8px 20px rgba(45,106,79,0.35); }
         .btn-ghost { background: transparent; color: var(--green-primary); border-color: var(--green-accent); }
         .btn-ghost:hover { background: var(--green-tint); border-color: var(--green-primary); }
-        .btn-ghost-gold { background: transparent; color: var(--gold); border: 1.5px solid var(--gold); border-radius: 8px; padding: 0.9rem 1.75rem; font-weight: 600; font-size: 0.95rem; text-decoration: none; transition: all 0.2s; display: inline-flex; align-items: center; gap: 0.5rem; font-family: 'Poppins', sans-serif; }
-        .btn-ghost-gold:hover { background: var(--gold-light); transform: translateY(-2px); }
-        .btn-white { background: white; color: var(--green-primary); border-color: white; box-shadow: 0 4px 14px rgba(0,0,0,0.12); }
+        .btn-white { background: white; color: var(--green-primary); border: 1.5px solid white; box-shadow: 0 4px 14px rgba(0,0,0,0.12); }
         .btn-white:hover { transform: translateY(-2px); box-shadow: 0 8px 24px rgba(0,0,0,0.18); }
         .hero-trust { margin-top: 3rem; font-size: 0.8rem; color: var(--ink-30); font-weight: 500; letter-spacing: 0.5px; animation: fadeInUp 0.7s 0.4s ease both; }
-
-        /* ── AUDIENCE SPLIT ── */
-        .audience-split { background: var(--white); border-top: 1px solid var(--border); border-bottom: 1px solid var(--border); padding: 2rem 0; }
-        .audience-split-inner { display: grid; grid-template-columns: 1fr auto 1fr; gap: 0; align-items: stretch; max-width: 860px; margin: 0 auto; padding: 0 2rem; }
-        .audience-card { padding: 1.75rem 2rem; border-radius: 10px; display: flex; flex-direction: column; gap: 0.75rem; }
-        .audience-card:hover { background: var(--off-white); }
-        .audience-label { font-size: 0.65rem; font-weight: 700; text-transform: uppercase; letter-spacing: 2px; color: var(--ink-30); }
-        .audience-title { font-family: 'DM Serif Display', Georgia, serif; font-size: 1.2rem; color: var(--ink); line-height: 1.2; }
-        .audience-desc { font-size: 0.82rem; color: var(--ink-60); line-height: 1.6; }
-        .audience-divider { width: 1px; background: var(--border); margin: 1rem 0; align-self: stretch; }
-
-        /* ── STATS ── */
         .stats-bar { background: var(--white); border-top: 1px solid var(--border); border-bottom: 1px solid var(--border); padding: 3.5rem 0; }
         .stats-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 2rem; text-align: center; }
         .stat-item { padding: 0 1rem; }
         .stat-item + .stat-item { border-left: 1px solid var(--border); }
         .stat-value { font-family: 'DM Serif Display', Georgia, serif; font-size: 2.75rem; color: var(--green-primary); line-height: 1; margin-bottom: 0.4rem; }
         .stat-label { font-size: 0.85rem; color: var(--ink-60); font-weight: 500; line-height: 1.4; }
-
-        /* ── SECTIONS ── */
         .section { padding: 6rem 0; }
         .section--alt { background: var(--white); }
+        .section--dark { background: var(--green-deep); }
         .label { display: inline-block; font-size: 0.72rem; font-weight: 700; text-transform: uppercase; letter-spacing: 2px; color: var(--green-accent); margin-bottom: 1rem; }
         .section-title { font-family: 'DM Serif Display', Georgia, serif; font-size: clamp(2rem, 4vw, 3.25rem); line-height: 1.15; color: var(--ink); margin-bottom: 1rem; }
+        .section-title em { font-style: italic; color: var(--green-primary); }
         .section-lead { font-size: 1.1rem; color: var(--ink-60); max-width: 640px; line-height: 1.7; margin-bottom: 3.5rem; }
-
-        /* ── PROBLEM ── */
-        .problem-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.5px; background: var(--border); border: 1.5px solid var(--border); border-radius: 12px; overflow: hidden; }
-        .problem-card { background: var(--white); padding: 2.25rem; transition: background 0.2s; }
-        .problem-card:hover { background: var(--green-tint); }
-        .problem-icon { width: 44px; height: 44px; background: #fef3f2; border-radius: 10px; display: flex; align-items: center; justify-content: center; font-size: 1.25rem; margin-bottom: 1.25rem; }
-        .problem-card h3 { font-size: 1.05rem; font-weight: 700; color: var(--ink); margin-bottom: 0.75rem; }
-        .problem-card p { font-size: 0.9rem; color: var(--ink-60); line-height: 1.7; }
-
-        /* ── HOW IT WORKS ── */
-        .how-it-works { counter-reset: steps; }
-        .steps { display: grid; grid-template-columns: repeat(2, 1fr); gap: 1.5rem; margin-top: 1rem; }
-        .step { background: var(--off-white); border: 1.5px solid var(--border); border-radius: 12px; padding: 2.25rem; position: relative; overflow: hidden; transition: border-color 0.2s, transform 0.2s; }
+        .section--dark .section-title { color: white; }
+        .section--dark .section-lead { color: rgba(255,255,255,0.65); }
+        .section--dark .label { color: var(--green-accent); }
+        .steps { display: grid; grid-template-columns: repeat(2, 1fr); gap: 1.5rem; margin-top: 2rem; }
+        .step { background: var(--off-white); border: 1.5px solid var(--border); border-radius: 12px; padding: 2.25rem; transition: all 0.2s; }
         .step:hover { border-color: var(--green-accent); transform: translateY(-3px); }
-        .step::before { counter-increment: steps; content: "0" counter(steps); position: absolute; top: 1.5rem; right: 1.75rem; font-family: 'DM Serif Display', serif; font-size: 3.5rem; color: var(--green-pale); line-height: 1; }
-        .step-icon { width: 40px; height: 40px; background: var(--green-pale); border-radius: 10px; display: flex; align-items: center; justify-content: center; font-size: 1.1rem; margin-bottom: 1.25rem; }
-        .step h3 { font-size: 1.1rem; font-weight: 700; color: var(--green-primary); margin-bottom: 0.75rem; }
-        .step p { font-size: 0.9rem; color: var(--ink-60); line-height: 1.7; }
-
-        /* ── MARKETPLACE FLOW ── */
-        .split { display: grid; grid-template-columns: 1fr 1fr; gap: 4rem; align-items: center; }
-        .split-text .section-lead { margin-bottom: 2rem; }
-        .split-visual { background: var(--green-tint); border: 1.5px solid var(--border); border-radius: 16px; padding: 2.5rem; }
-        .flow-item { display: flex; align-items: flex-start; gap: 1rem; padding: 1rem 0; }
-        .flow-item + .flow-item { border-top: 1px solid var(--border); }
-        .flow-num { width: 28px; height: 28px; min-width: 28px; background: var(--green-primary); color: white; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 0.75rem; font-weight: 700; margin-top: 2px; }
-        .flow-text strong { display: block; font-size: 0.9rem; font-weight: 700; color: var(--ink); margin-bottom: 0.2rem; }
-        .flow-text span { font-size: 0.85rem; color: var(--ink-60); }
-
-        /* ── LEDGER PREVIEW (light-theme adapted) ── */
-        .ledger-preview-section {
-            background: var(--green-deep);
-            padding: 6rem 0;
-            position: relative;
-            overflow: hidden;
-        }
-        .ledger-preview-section::before {
-            content: '';
-            position: absolute; inset: 0;
-            background-image:
-                linear-gradient(rgba(82,183,136,0.06) 1px, transparent 1px),
-                linear-gradient(90deg, rgba(82,183,136,0.06) 1px, transparent 1px);
-            background-size: 48px 48px;
-            pointer-events: none;
-        }
-        .ledger-preview-section::after {
-            content: '';
-            position: absolute; inset: 0;
-            background: radial-gradient(ellipse 60% 50% at 50% 100%, rgba(82,183,136,0.12) 0%, transparent 70%);
-            pointer-events: none;
-        }
-        .ledger-preview-inner {
-            position: relative; z-index: 1;
-            display: grid; grid-template-columns: 1fr 400px;
-            gap: 4rem; align-items: center;
-            max-width: 1160px; margin: 0 auto; padding: 0 2rem;
-        }
-        .lps-text .section-label {
-            font-size: 0.72rem; font-weight: 700; text-transform: uppercase;
-            letter-spacing: 2px; color: var(--green-accent); margin-bottom: 1rem;
-            display: block;
-        }
-        .lps-text .section-headline {
-            font-family: 'DM Serif Display', Georgia, serif;
-            font-size: clamp(2rem, 3.5vw, 2.75rem);
-            color: white; line-height: 1.15; margin-bottom: 1.25rem;
-        }
-        .lps-text .section-headline em { font-style: italic; color: var(--green-accent); }
-        .lps-text .section-body {
-            font-size: 1rem; color: rgba(255,255,255,0.55);
-            line-height: 1.8; margin-bottom: 2rem; max-width: 480px;
-        }
-        .lps-text .section-body strong { color: rgba(255,255,255,0.8); font-weight: 600; }
-        .lps-note {
-            font-size: 0.75rem; color: rgba(255,255,255,0.28);
-            margin-top: 0.85rem; line-height: 1.6;
-        }
-
-        /* ── Ledger preview card — adapted for dark section ── */
-        .ledger-preview {
-            background: rgba(11,24,16,0.75);
-            border: 1px solid rgba(82,183,136,0.22);
-            border-radius: 16px;
-            overflow: hidden;
-            backdrop-filter: blur(12px);
-        }
-        .lp-header {
-            display: flex; justify-content: space-between; align-items: center;
-            padding: 1rem 1.4rem;
-            border-bottom: 1px solid rgba(82,183,136,0.1);
-        }
-        .lp-title {
-            font-size: 0.75rem; font-weight: 700; text-transform: uppercase;
-            letter-spacing: 1.5px; color: var(--green-accent);
-            font-family: 'Poppins', sans-serif;
-        }
-        .lp-preview-pill {
-            font-size: 0.57rem; font-weight: 700; text-transform: uppercase;
-            letter-spacing: 0.8px; color: rgba(200,169,106,0.8);
-            background: rgba(200,169,106,0.1); border: 1px solid rgba(200,169,106,0.22);
-            padding: 0.15rem 0.5rem; border-radius: 100px;
-            font-family: 'Poppins', sans-serif;
-        }
-
-        /* Consent control row — #1 visually */
-        .lp-control-row {
-            display: grid; grid-template-columns: repeat(3, 1fr);
-            gap: 1px; background: rgba(82,183,136,0.1);
-            border-bottom: 1px solid rgba(82,183,136,0.08);
-        }
-        .lp-ctrl {
-            background: rgba(11,24,16,0.9); padding: 0.9rem 1rem;
-            text-align: center; position: relative;
-        }
-        .lp-ctrl::before {
-            content: ''; position: absolute;
-            top: 0; left: 0; right: 0; height: 2px;
-        }
-        .lp-ctrl.c-active::before   { background: linear-gradient(90deg, var(--green-accent), transparent); }
-        .lp-ctrl.c-enforced::before { background: linear-gradient(90deg, #e05252, transparent); opacity: 0.65; }
-        .lp-ctrl.c-blocked::before  { background: linear-gradient(90deg, #d4930a, transparent); opacity: 0.65; }
-
-        .lp-ctrl-label {
-            font-size: 0.55rem; font-weight: 700; text-transform: uppercase;
-            letter-spacing: 1px; margin-bottom: 0.3rem;
-            font-family: 'Poppins', sans-serif;
-        }
-        .lp-ctrl-label.green { color: var(--green-accent); }
-        .lp-ctrl-label.red   { color: #f09090; }
-        .lp-ctrl-label.amber { color: #e8b860; }
-        .lp-ctrl-count {
-            font-family: 'DM Serif Display', serif;
-            font-size: 1.75rem; color: white; line-height: 1; margin-bottom: 0.2rem;
-        }
-        .lp-ctrl-sub { font-size: 0.57rem; color: rgba(255,255,255,0.28); line-height: 1.3; font-family: 'Poppins', sans-serif; }
-
-        /* Token rows — status leads, earned follows */
-        .lp-token {
-            display: flex; justify-content: space-between; align-items: center;
-            padding: 0.7rem 1.4rem;
-            border-bottom: 1px solid rgba(255,255,255,0.04);
-            transition: background 0.15s; gap: 0.5rem;
-        }
-        .lp-token:last-of-type { border-bottom: none; }
-        .lp-token:hover { background: rgba(82,183,136,0.04); }
-        .lp-token-left { display: flex; align-items: center; gap: 0.55rem; min-width: 0; }
-        .lp-token-icon {
-            width: 26px; height: 26px; border-radius: 6px;
-            display: flex; align-items: center; justify-content: center;
-            font-size: 0.75rem; flex-shrink: 0;
-        }
-        .lp-token-name { font-size: 0.75rem; font-weight: 600; color: rgba(255,255,255,0.78); font-family: 'Poppins', sans-serif; }
-        .lp-token-scope {
-            font-size: 0.58rem; color: rgba(255,255,255,0.25);
-            font-family: var(--mono); margin-top: 0.1rem;
-            white-space: nowrap; overflow: hidden; text-overflow: ellipsis; max-width: 140px;
-        }
-        .lp-token-right { text-align: right; flex-shrink: 0; }
-        .lp-status {
-            font-size: 0.58rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.5px;
-            padding: 0.15rem 0.5rem; border-radius: 100px; margin-bottom: 0.2rem;
-            display: inline-block; font-family: 'Poppins', sans-serif;
-        }
-        .lp-status.active  { background: rgba(82,183,136,0.14); color: var(--green-accent); border: 1px solid rgba(82,183,136,0.3); }
-        .lp-status.expired { background: rgba(255,255,255,0.04); color: rgba(255,255,255,0.28); border: 1px solid rgba(255,255,255,0.1); }
-        .lp-status.revoked { background: rgba(224,82,82,0.1); color: #f09090; border: 1px solid rgba(224,82,82,0.22); }
-        /* Earned: white + bold as requested, secondary to status */
-        .lp-earned {
-            font-size: 0.72rem; font-weight: 700; color: white;
-            font-family: var(--mono); display: block;
-        }
-
-        /* Audit event — #3 */
-        .lp-audit-event {
-            padding: 0.75rem 1.4rem;
-            background: rgba(0,0,0,0.22);
-            border-top: 1px solid rgba(82,183,136,0.07);
-            display: flex; align-items: flex-start; gap: 0.5rem;
-        }
-        .lp-audit-tag {
-            font-family: var(--mono); font-size: 0.57rem; font-weight: 700;
-            text-transform: uppercase; letter-spacing: 0.3px;
-            background: rgba(82,183,136,0.12); color: var(--green-accent);
-            padding: 0.1rem 0.35rem; border-radius: 3px; flex-shrink: 0; margin-top: 1px;
-        }
-        .lp-audit-tag.violation { background: rgba(224,82,82,0.12); color: #f09090; }
-        .lp-audit-desc { font-size: 0.68rem; color: rgba(255,255,255,0.32); line-height: 1.45; font-family: 'Poppins', sans-serif; }
-
-        /* Earnings row — #4, quiet */
-        .lp-earnings-row {
-            display: flex; justify-content: space-between; align-items: center;
-            padding: 0.75rem 1.4rem;
-            border-top: 1px solid rgba(82,183,136,0.08);
-            background: rgba(82,183,136,0.04);
-        }
-        .lp-earnings-label { font-size: 0.65rem; color: rgba(255,255,255,0.3); font-family: 'Poppins', sans-serif; }
-        .lp-earnings-label small { display: block; font-size: 0.57rem; color: rgba(255,255,255,0.15); margin-top: 0.1rem; }
-        /* White + bold earnings total */
-        .lp-earnings-total { font-size: 0.88rem; font-weight: 700; color: white; font-family: var(--mono); }
-
-        /* CTA row */
-        .lp-cta {
-            display: flex; justify-content: space-between; align-items: center;
-            padding: 0.85rem 1.4rem;
-            border-top: 1px solid rgba(82,183,136,0.1);
-            gap: 0.75rem;
-        }
-        .lp-cta-text { font-size: 0.67rem; color: rgba(255,255,255,0.28); line-height: 1.45; font-family: 'Poppins', sans-serif; }
-        .lp-cta-text strong { color: rgba(255,255,255,0.5); }
-        .lp-cta-btn {
-            display: inline-flex; align-items: center; gap: 0.3rem; flex-shrink: 0;
-            padding: 0.42rem 0.85rem;
-            background: rgba(82,183,136,0.12); color: var(--green-accent);
-            border: 1px solid rgba(82,183,136,0.25); border-radius: 6px;
-            font-size: 0.68rem; font-weight: 700; text-decoration: none;
-            font-family: 'Poppins', sans-serif; transition: all 0.2s;
-        }
-        .lp-cta-btn:hover { background: rgba(82,183,136,0.22); border-color: rgba(82,183,136,0.4); }
-
-        /* ── TRANSPARENCY ── */
-        .transparency-section { background: var(--white); padding: 6rem 0; border-top: 1px solid var(--border); border-bottom: 1px solid var(--border); }
-        .transparency-inner { max-width: 860px; margin: 0 auto; }
-        .transparency-header { text-align: center; margin-bottom: 3rem; }
-        .transparency-body { font-size: 1.05rem; color: var(--ink-60); line-height: 1.85; margin-bottom: 2rem; }
-        .transparency-body p + p { margin-top: 1.25rem; }
-        .transparency-statement { font-family: 'DM Serif Display', Georgia, serif; font-size: 1.4rem; font-style: italic; color: var(--green-primary); border-left: 3px solid var(--green-accent); padding: 1.25rem 1.75rem; margin: 2.5rem 0; line-height: 1.5; background: var(--green-tint); border-radius: 0 8px 8px 0; }
-        .transparency-rows { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.5px; background: var(--border); border: 1.5px solid var(--border); border-radius: 12px; overflow: hidden; margin-top: 2.5rem; }
-        .transparency-row { background: var(--off-white); padding: 1.75rem; transition: background 0.2s; }
-        .transparency-row:hover { background: var(--green-tint); }
-        .transparency-row-icon { font-size: 1.5rem; margin-bottom: 0.75rem; }
-        .transparency-row h4 { font-size: 0.875rem; font-weight: 700; color: var(--ink); margin-bottom: 0.5rem; }
-        .transparency-row p { font-size: 0.85rem; color: var(--ink-60); line-height: 1.6; }
-        .transparency-row .amount { font-family: 'DM Serif Display', serif; font-size: 1.5rem; color: var(--green-primary); margin-bottom: 0.25rem; }
-        .transparency-closing { font-size: 0.95rem; color: var(--ink-60); line-height: 1.85; margin-top: 2rem; font-style: italic; }
-
-        /* ── FOUNDER ── */
-        .founder-card { max-width: 760px; margin: 0 auto; background: var(--white); border: 1.5px solid var(--border); border-radius: 16px; padding: 3.5rem; position: relative; }
-        .founder-card::before { content: '\201C'; font-family: 'DM Serif Display', serif; font-size: 8rem; color: var(--green-pale); position: absolute; top: -1rem; left: 2.5rem; line-height: 1; }
-        .founder-body { font-size: 1rem; color: var(--ink-60); line-height: 1.8; }
-        .founder-body p + p { margin-top: 1.25rem; }
-        .founder-pullquote { font-family: 'DM Serif Display', serif; font-size: 1.5rem; font-style: italic; color: var(--green-primary); border-left: 3px solid var(--green-accent); padding-left: 1.5rem; margin: 2rem 0; line-height: 1.4; }
-        .founder-transparency-note { background: var(--green-tint); border: 1px solid rgba(45,106,79,0.2); border-radius: 8px; padding: 1.25rem 1.5rem; margin-top: 1.5rem; font-size: 0.9rem; color: var(--ink-60); line-height: 1.7; }
-        .founder-transparency-note strong { color: var(--green-primary); font-weight: 700; }
-        .founder-sig { margin-top: 2.5rem; padding-top: 2rem; border-top: 1px solid var(--border); display: flex; align-items: center; gap: 1rem; }
-        .founder-avatar { width: 52px; height: 52px; background: var(--green-pale); border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 1.25rem; font-weight: 800; color: var(--green-primary); flex-shrink: 0; }
-        .founder-sig-text strong { display: block; font-weight: 700; font-size: 0.95rem; color: var(--ink); }
-        .founder-sig-text small { font-size: 0.8rem; color: var(--ink-60); }
-
-        /* ── INVESTOR ── */
-        .investor-section { background: var(--green-deep); padding: 6rem 0; text-align: center; position: relative; overflow: hidden; }
-        .investor-section::before { content: ''; position: absolute; inset: 0; background-image: radial-gradient(circle at 20% 50%, rgba(82,183,136,0.15) 0%, transparent 50%), radial-gradient(circle at 80% 50%, rgba(82,183,136,0.1) 0%, transparent 50%); }
-        .investor-section .container { position: relative; z-index: 1; }
-        .investor-section .label { color: var(--green-accent); }
-        .investor-section .section-title { color: white; }
-        .investor-lead { font-size: 1.1rem; color: rgba(255,255,255,0.7); max-width: 580px; margin: 0 auto 3.5rem; line-height: 1.7; }
-        .investor-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 1.5rem; max-width: 740px; margin: 0 auto 3.5rem; text-align: left; }
-        .investor-card { background: rgba(255,255,255,0.07); border: 1px solid rgba(255,255,255,0.12); border-radius: 12px; padding: 1.75rem; }
-        .investor-card h4 { font-size: 0.75rem; font-weight: 700; text-transform: uppercase; letter-spacing: 1.5px; color: var(--green-accent); margin-bottom: 1rem; }
-        .investor-card ul { list-style: none; }
-        .investor-card li { font-size: 0.875rem; color: rgba(255,255,255,0.8); padding: 0.4rem 0; padding-left: 1.25rem; position: relative; line-height: 1.5; }
-        .investor-card li::before { content: '✓'; position: absolute; left: 0; color: var(--green-accent); font-size: 0.75rem; top: 0.45rem; }
-        .moat-table-wrap { max-width: 860px; margin: 0 auto 3.5rem; }
-        .moat-table-label { font-size: 0.72rem; font-weight: 700; text-transform: uppercase; letter-spacing: 2px; color: var(--green-accent); margin-bottom: 1.25rem; text-align: left; }
-        .moat-grid { display: grid; grid-template-columns: 160px 180px 1fr 100px; border: 1px solid rgba(255,255,255,0.12); border-radius: 12px; overflow: hidden; }
-        .moat-header { background: rgba(255,255,255,0.08); font-size: 0.72rem; font-weight: 700; text-transform: uppercase; letter-spacing: 1.5px; color: var(--green-accent); padding: 0.9rem 1.25rem; border-bottom: 1px solid rgba(255,255,255,0.1); }
-        .moat-grid > div:not(.moat-header) { padding: 1.1rem 1.25rem; font-size: 0.875rem; color: rgba(255,255,255,0.8); line-height: 1.5; border-top: 1px solid rgba(255,255,255,0.06); display: flex; align-items: center; }
-        .moat-grid > div:not(.moat-header):hover { background: rgba(255,255,255,0.04); }
-        .moat-center { justify-content: center; text-align: center; }
-        .td-moat { font-weight: 600; color: white; }
-        .td-revenue { color: var(--green-accent); font-weight: 600; }
-        .td-detail { color: rgba(255,255,255,0.6); font-size: 0.8rem; }
-        .moat-timeline { display: inline-flex; align-items: center; justify-content: center; font-size: 0.68rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.5px; padding: 0.3rem 0.75rem; border-radius: 100px; white-space: nowrap; min-width: 58px; text-align: center; }
-        .moat-timeline--now  { background: rgba(82,183,136,0.2);   color: var(--green-accent); border: 1px solid rgba(82,183,136,0.4); }
-        .moat-timeline--soon { background: rgba(200,169,106,0.15); color: #c8a96a; border: 1px solid rgba(200,169,106,0.3); }
-        .moat-timeline--later{ background: rgba(255,255,255,0.07); color: rgba(255,255,255,0.5); border: 1px solid rgba(255,255,255,0.12); }
-
-        /* ── WAITLIST ── */
-        .waitlist-section { padding: 6rem 0; background: var(--off-white); text-align: center; }
-        .waitlist-form { max-width: 480px; margin: 0 auto; }
-        .input-group { display: flex; gap: 0.75rem; margin-bottom: 1rem; }
-        .waitlist-form input[type="email"] { flex: 1; padding: 0.9rem 1.25rem; border: 1.5px solid var(--border); border-radius: 8px; font-size: 0.95rem; font-family: 'Poppins', sans-serif; background: white; color: var(--ink); transition: border-color 0.2s; }
-        .waitlist-form input[type="email"]:focus { outline: none; border-color: var(--green-primary); }
-        .waitlist-form button { background: var(--green-primary); color: white; padding: 0.9rem 1.5rem; border: none; border-radius: 8px; font-weight: 700; font-size: 0.95rem; cursor: pointer; font-family: 'Poppins', sans-serif; transition: all 0.2s; white-space: nowrap; }
-        .waitlist-form button:hover { background: var(--green-deep); transform: translateY(-1px); }
-        .waitlist-note { font-size: 0.8rem; color: var(--ink-30); margin-top: 0.75rem; }
-        .founding-badge { display: inline-flex; align-items: center; gap: 0.4rem; background: var(--gold-light); color: #7a5c2e; border: 1px solid rgba(200,169,106,0.3); border-radius: 100px; padding: 0.35rem 0.9rem; font-size: 0.75rem; font-weight: 600; margin-bottom: 1.5rem; }
-
-        /* ── FOOTER ── */
+        .step-icon { font-size: 1.5rem; margin-bottom: 0.75rem; }
+        .step h4 { font-size: 0.95rem; font-weight: 700; color: var(--ink); margin-bottom: 0.5rem; }
+        .step p { font-size: 0.85rem; color: var(--ink-60); line-height: 1.6; }
         footer { background: var(--white); border-top: 1px solid var(--border); padding: 3.5rem 0 2rem; }
         .footer-grid { display: grid; grid-template-columns: 2fr 1fr 1fr 1fr; gap: 3rem; margin-bottom: 3rem; }
         .footer-brand-name { font-size: 1.4rem; font-weight: 800; color: var(--green-primary); margin-bottom: 0.6rem; }
         .footer-tagline { font-size: 0.85rem; color: var(--ink-60); line-height: 1.6; max-width: 260px; margin-bottom: 0.75rem; }
-        .footer-transparency-note { font-size: 0.78rem; color: var(--ink-30); line-height: 1.6; max-width: 260px; border-top: 1px solid var(--border); padding-top: 0.75rem; margin-top: 0.25rem; }
+        .footer-note { font-size: 0.78rem; color: var(--ink-30); line-height: 1.6; max-width: 260px; border-top: 1px solid var(--border); padding-top: 0.75rem; margin-top: 0.25rem; }
         .footer-links h4 { font-size: 0.75rem; font-weight: 700; text-transform: uppercase; letter-spacing: 1.5px; color: var(--ink); margin-bottom: 1rem; }
         .footer-links ul { list-style: none; }
         .footer-links a { display: block; font-size: 0.875rem; color: var(--ink-60); text-decoration: none; margin-bottom: 0.6rem; transition: color 0.2s; }
         .footer-links a:hover { color: var(--green-primary); }
         .footer-bottom { padding-top: 2rem; border-top: 1px solid var(--border); display: flex; justify-content: space-between; align-items: center; font-size: 0.8rem; color: var(--ink-30); }
-
-        /* ── ANIMATIONS ── */
         @keyframes fadeInDown { from { opacity: 0; transform: translateY(-12px); } to { opacity: 1; transform: translateY(0); } }
         @keyframes fadeInUp { from { opacity: 0; transform: translateY(16px); } to { opacity: 1; transform: translateY(0); } }
-        .fade-up { opacity: 1; transform: none; transition: opacity 0.6s ease, transform 0.6s ease; }
-        .js-ready .fade-up { opacity: 0; transform: translateY(24px); }
-        .js-ready .fade-up.visible { opacity: 1; transform: none; }
-
-        /* ── RESPONSIVE ── */
-        @media (max-width: 960px) {
-            .ledger-preview-inner { grid-template-columns: 1fr; gap: 3rem; }
-        }
         @media (max-width: 900px) {
             .stats-grid { grid-template-columns: repeat(2, 1fr); }
             .stat-item + .stat-item { border-left: none; }
-            .problem-grid { grid-template-columns: 1fr; gap: 1px; }
             .steps { grid-template-columns: 1fr; }
-            .split { grid-template-columns: 1fr; gap: 3rem; }
-            .investor-grid { grid-template-columns: 1fr; }
             .footer-grid { grid-template-columns: 1fr 1fr; }
-            .transparency-rows { grid-template-columns: 1fr; gap: 1px; }
-            .moat-table-wrap { overflow-x: auto; }
-            .moat-grid { grid-template-columns: 1fr 1fr 2fr 80px; }
-            .audience-split-inner { grid-template-columns: 1fr; }
-            .audience-divider { width: 100%; height: 1px; margin: 0; }
         }
         @media (max-width: 640px) {
             nav ul { display: none; }
             .hero { padding: 5rem 0 4rem; }
             .hero h1 { font-size: 2.75rem; }
-            .stats-grid { grid-template-columns: repeat(2, 1fr); }
-            .input-group { flex-direction: column; }
             .footer-grid { grid-template-columns: 1fr; }
             .footer-bottom { flex-direction: column; gap: 0.5rem; text-align: center; }
-            .lp-control-row { grid-template-columns: repeat(3, 1fr); }
         }
     </style>
 </head>
 <body>
 
-    <header>
-        <div class="container">
-            <nav>
-                <a href="/" class="logo">
-                    <span class="logo-mark">Adworth&#8480;</span>
-                    <span class="patent-pill">Patent Pending</span>
-                </a>
-                <ul>
-                    <li><a href="#problem">Problem</a></li>
-                    <li><a href="#how-it-works">How It Works</a></li>
-                    <li><a href="#transparency">How We Make Money</a></li>
-                    <li><a href="#founder">Founder</a></li>
-                    <li><a href="#investors">Investors</a></li>
-                    <li><a href="/enterprise.html" style="color: var(--gold); font-weight: 600;">Enterprise</a></li>
-                    <li><a href="#waitlist" class="nav-cta">Join Waitlist</a></li>
-                </ul>
-            </nav>
+  <header>
+    <div class="container">
+      <nav>
+        <a href="/" class="logo">
+          <span class="logo-mark">Adworth℠</span>
+          <span class="patent-pill">Patent Pending</span>
+        </a>
+        <ul>
+          <li><a href="#problem">Problem</a></li>
+          <li><a href="#how-it-works">How It Works</a></li>
+          <li><a href="#transparency">How We Make Money</a></li>
+          <li><a href="#founder">Founder</a></li>
+          <li><a href="#investors">Investors</a></li>
+          <li><a href="/enterprise.html" style="color: var(--gold); font-weight: 600;">Enterprise</a></li>
+          <li><a href="#waitlist" class="nav-cta">Join Waitlist</a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+
+  <main>
+
+    <!-- HERO -->
+    <section class="hero">
+      <div class="container">
+        <div class="hero-eyebrow">
+          <span class="dot"></span>
+          Two-Sided Marketplace · Free Forever · 2% on Revenue
         </div>
-    </header>
-
-    <main>
-
-        <!-- ── HERO ── -->
-        <section class="hero">
-            <div class="container">
-                <div class="hero-eyebrow">
-                    <span class="dot"></span>
-                    Seed Round Open &middot; $1.5M
-                </div>
-                <h1>Your data is worth<br><em>billions</em>. You get<br>none of it.</h1>
-                <p class="hero-sub">
-                    Adworth is <strong>cryptographic consent infrastructure</strong> for digital advertising &mdash;
-                    where you control who gets your data, for how long, and get paid every time you share it.
-                </p>
-                <div class="hero-cta-group">
-                    <a href="#waitlist" class="btn btn-primary">Join the Waitlist &rarr;</a>
-                    <a href="/dashboard.html" class="btn btn-ghost">Consumer Demo &rarr;</a>
-                    <a href="/enterprise.html" class="btn-ghost-gold">Enterprise Preview &rarr;</a>
-                </div>
-                <p class="hero-trust">Patent-pending technology &middot; AI transparency now &middot; Consent marketplace coming</p>
-            </div>
-        </section>
-
-        <!-- ── AUDIENCE SPLIT ── -->
-        <section class="audience-split">
-            <div class="audience-split-inner">
-                <div class="audience-card">
-                    <div class="audience-label">For Consumers</div>
-                    <div class="audience-title">See who&rsquo;s targeting you.<br>Take back control.</div>
-                    <div class="audience-desc">Our DSA transparency tool shows you exactly which AI platforms are running ads on you &mdash; and what they aren&rsquo;t disclosing. Free to use today.</div>
-                    <a href="/dashboard.html" class="btn btn-ghost" style="width: fit-content; margin-top: 0.25rem; padding: 0.65rem 1.25rem; font-size: 0.85rem;">Try Consumer Demo &rarr;</a>
-                </div>
-                <div class="audience-divider"></div>
-                <div class="audience-card">
-                    <div class="audience-label">For Enterprise</div>
-                    <div class="audience-title">Verify spend. Eliminate waste.<br>Stay compliant.</div>
-                    <div class="audience-desc">Our enterprise dashboard gives advertisers real-time ad spend verification, discrepancy detection, and DSA compliance monitoring across all platforms.</div>
-                    <a href="/enterprise.html" class="btn-ghost-gold" style="width: fit-content; margin-top: 0.25rem; padding: 0.65rem 1.25rem; font-size: 0.85rem;">See Enterprise Preview &rarr;</a>
-                </div>
-            </div>
-        </section>
-
-        <!-- ── STATS ── -->
-        <section class="stats-bar">
-            <div class="container">
-                <div class="stats-grid">
-                    <div class="stat-item">
-                        <div class="stat-value">$700B+</div>
-                        <div class="stat-label">Digital ad market built on your data</div>
-                    </div>
-                    <div class="stat-item">
-                        <div class="stat-value">$0</div>
-                        <div class="stat-label">Your current share of that</div>
-                    </div>
-                    <div class="stat-item">
-                        <div class="stat-value">0%</div>
-                        <div class="stat-label">AI platform ad disclosure requirements</div>
-                    </div>
-                    <div class="stat-item">
-                        <div class="stat-value">Feb &rsquo;26</div>
-                        <div class="stat-label">Patent filed &mdash; core tech protected</div>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <!-- ── PROBLEM ── -->
-        <section class="section" id="problem">
-            <div class="container">
-                <p class="label fade-up">The Problem</p>
-                <h2 class="section-title fade-up">The internet was built on<br>your attention. You never consented.</h2>
-                <p class="section-lead fade-up">AI platforms like ChatGPT and Perplexity are now running ads &mdash; with zero transparency requirements. It&rsquo;s Facebook 2007 all over again, but the stakes are higher.</p>
-                <div class="problem-grid">
-                    <div class="problem-card">
-                        <div class="problem-icon">&#128269;</div>
-                        <h3>Surveillance by Default</h3>
-                        <p>Companies collect what you click, search, buy, and think &mdash; without meaningful consent. You have no visibility into who&rsquo;s targeting you or why.</p>
-                    </div>
-                    <div class="problem-card">
-                        <div class="problem-icon">&#128176;</div>
-                        <h3>You Earn $0 From Your Own Data</h3>
-                        <p>Google made $238B in ad revenue last year. Facebook made $116B. You got none of it &mdash; despite being the product they&rsquo;re selling.</p>
-                    </div>
-                    <div class="problem-card">
-                        <div class="problem-icon">&#129302;</div>
-                        <h3>AI Ads = Zero Transparency</h3>
-                        <p>ChatGPT. Perplexity. Meta AI. All running ads with no disclosure rules. The regulatory gap is wide open and growing.</p>
-                    </div>
-                    <div class="problem-card">
-                        <div class="problem-icon">&#128465;</div>
-                        <h3>&ldquo;Deleted&rdquo; Doesn&rsquo;t Mean Gone</h3>
-                        <p>Request deletion and companies promise compliance. But there&rsquo;s no verification. Your data lives on in third-party systems you&rsquo;ll never know about.</p>
-                    </div>
-                    <div class="problem-card">
-                        <div class="problem-icon">&#128275;</div>
-                        <h3>Consent Is Theater</h3>
-                        <p>Cookie banners are dark patterns. &ldquo;I agree&rdquo; means nothing. There&rsquo;s no cryptographic binding &mdash; companies can ignore your preferences at will.</p>
-                    </div>
-                    <div class="problem-card">
-                        <div class="problem-icon">&#9878;</div>
-                        <h3>Regulations Are Coming</h3>
-                        <p>GDPR, CCPA, and the DSA are already here. AI ad transparency rules are next. Companies need compliant infrastructure &mdash; now.</p>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <!-- ── HOW IT WORKS ── -->
-        <section class="section section--alt how-it-works" id="how-it-works">
-            <div class="container">
-                <p class="label fade-up">The Solution</p>
-                <h2 class="section-title fade-up">Consent that can&rsquo;t be faked.<br>Deletion that can be proved.</h2>
-                <p class="section-lead fade-up">Adworth replaces empty privacy promises with cryptographic enforcement. Five interconnected components make it automatic, auditable, and unstoppable.</p>
-                <div class="steps">
-                    <div class="step fade-up">
-                        <div class="step-icon">&#128273;</div>
-                        <h3>Cryptographic Consent Tokens</h3>
-                        <p>You sign a digital permission &mdash; bound to a specific advertiser, data type, and time window. They can&rsquo;t fake it, extend it, or transfer it. It&rsquo;s mathematically yours.</p>
-                    </div>
-                    <div class="step fade-up">
-                        <div class="step-icon">&#128737;</div>
-                        <h3>Privacy Governance Engine</h3>
-                        <p>Every data access request is intercepted and checked automatically. No valid token? Blocked. Expired window? Blocked. No manual review needed.</p>
-                    </div>
-                    <div class="step fade-up">
-                        <div class="step-icon">&#128214;</div>
-                        <h3>Invisibility Ledger</h3>
-                        <p>Every consent, revocation, and deletion is recorded in an append-only, tamper-evident ledger. Companies can&rsquo;t claim they didn&rsquo;t know.</p>
-                    </div>
-                    <div class="step fade-up">
-                        <div class="step-icon">&#128270;</div>
-                        <h3>State-Persistence Monitor</h3>
-                        <p>After you delete, the monitor keeps checking. It crawls data brokers, third-party processors, and cloud systems to detect unauthorized persistence.</p>
-                    </div>
-                    <div class="step fade-up">
-                        <div class="step-icon">&#9889;</div>
-                        <h3>Removal Payload Engine</h3>
-                        <p>Detect a violation? The engine auto-generates a legally-cited deletion notice &mdash; signed with cryptographic proof &mdash; and sends it without you lifting a finger.</p>
-                    </div>
-                    <div class="step fade-up">
-                        <div class="step-icon">&#128176;</div>
-                        <h3>Consent Marketplace</h3>
-                        <p>Advertisers pay for access. You receive direct payment when your token is verified. Revoke consent, payments stop. Deletion is enforced. Fair exchange, finally.</p>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <!-- ── MARKETPLACE FLOW ── -->
-        <section class="section">
-            <div class="container">
-                <div class="split">
-                    <div class="split-text fade-up">
-                        <p class="label">The Marketplace</p>
-                        <h2 class="section-title">Like Stripe built payment rails. We&rsquo;re building consent rails.</h2>
-                        <p class="section-lead">Instead of companies <em>taking</em> your data, you <em>lend</em> it &mdash; with a cryptographic contract you control. Advertisers get compliant, verified data. You get paid.</p>
-                        <a href="#waitlist" class="btn btn-primary">Join the Waitlist &rarr;</a>
-                    </div>
-                    <div class="split-visual fade-up">
-                        <div class="flow-item">
-                            <div class="flow-num">1</div>
-                            <div class="flow-text"><strong>Advertiser requests access</strong><span>Nike wants your running data for shoe ads</span></div>
-                        </div>
-                        <div class="flow-item">
-                            <div class="flow-num">2</div>
-                            <div class="flow-text"><strong>You issue a Consent Token</strong><span>30 days, shoes only, $0.50/month</span></div>
-                        </div>
-                        <div class="flow-item">
-                            <div class="flow-num">3</div>
-                            <div class="flow-text"><strong>Token verified, payment released</strong><span>Funds hit your wallet automatically</span></div>
-                        </div>
-                        <div class="flow-item">
-                            <div class="flow-num">4</div>
-                            <div class="flow-text"><strong>Day 31 &mdash; token expires</strong><span>Access revoked. Payments stop. Deletion enforced.</span></div>
-                        </div>
-                        <div class="flow-item">
-                            <div class="flow-num">5</div>
-                            <div class="flow-text"><strong>Monitor verifies deletion</strong><span>If Nike still has your data, the RPE files automatically</span></div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <!-- ── LEDGER PREVIEW ── -->
-        <!-- Positioned after the marketplace flow: you've seen how it works, now see what it looks like -->
-        <section class="ledger-preview-section fade-up" id="ledger-preview">
-            <div class="ledger-preview-inner">
-
-                <!-- Left: narrative text -->
-                <div class="lps-text">
-                    <span class="section-label">Your Consent Ledger</span>
-                    <h2 class="section-headline">This is what control <em>looks like.</em></h2>
-                    <p class="section-body">
-                        Every token you issue, every access request blocked, every deletion enforced &mdash;
-                        recorded permanently in an append-only ledger that only you control.
-                        <strong>The money is a consequence of consent working correctly. Not the point of it.</strong>
-                    </p>
-                    <a href="/ledger.html" class="btn btn-white" style="display: inline-flex; align-items: center; gap: 0.5rem; padding: 0.85rem 1.5rem; font-size: 0.9rem;">
-                        See Full Ledger Preview &rarr;
-                    </a>
-                    <p class="lps-note">
-                        &#9889; Simulated data for illustration &mdash; all advertiser names, token IDs, and earnings figures are examples only.
-                        See our <a href="/privacy.html" style="color: rgba(255,255,255,0.35); text-decoration: underline; text-underline-offset: 2px;">Privacy Policy</a> and
-                        <a href="/terms.html" style="color: rgba(255,255,255,0.35); text-decoration: underline; text-underline-offset: 2px;">Terms of Service</a> for full details.
-                    </p>
-                </div>
-
-                <!-- Right: ledger preview card -->
-                <div class="ledger-preview">
-
-                    <div class="lp-header">
-                        <span class="lp-title">Your Consent Ledger</span>
-                        <span class="lp-preview-pill">&#9889; Simulated Preview</span>
-                    </div>
-
-                    <!-- #1 Consent control — most prominent -->
-                    <div class="lp-control-row">
-                        <div class="lp-ctrl c-active">
-                            <div class="lp-ctrl-label green">Active</div>
-                            <div class="lp-ctrl-count">2</div>
-                            <div class="lp-ctrl-sub">tokens you control</div>
-                        </div>
-                        <div class="lp-ctrl c-enforced">
-                            <div class="lp-ctrl-label red">Enforced</div>
-                            <div class="lp-ctrl-count">1</div>
-                            <div class="lp-ctrl-sub">deletion auto-filed</div>
-                        </div>
-                        <div class="lp-ctrl c-blocked">
-                            <div class="lp-ctrl-label amber">Blocked</div>
-                            <div class="lp-ctrl-count">3</div>
-                            <div class="lp-ctrl-sub">bad requests denied</div>
-                        </div>
-                    </div>
-
-                    <!-- Token rows — status leads, earned follows -->
-                    <div class="lp-token">
-                        <div class="lp-token-left">
-                            <div class="lp-token-icon" style="background:rgba(30,215,96,0.12)">&#127925;</div>
-                            <div>
-                                <div class="lp-token-name">Spotify USA Inc</div>
-                                <div class="lp-token-scope">music-listening &middot; 30 days</div>
-                            </div>
-                        </div>
-                        <div class="lp-token-right">
-                            <span class="lp-status active">Active</span>
-                            <span class="lp-earned">$2.50</span>
-                        </div>
-                    </div>
-
-                    <div class="lp-token">
-                        <div class="lp-token-left">
-                            <div class="lp-token-icon" style="background:rgba(255,165,0,0.1)">&#127939;</div>
-                            <div>
-                                <div class="lp-token-name">RunnerBrand Co.</div>
-                                <div class="lp-token-scope">athletic-data &middot; 60 days</div>
-                            </div>
-                        </div>
-                        <div class="lp-token-right">
-                            <span class="lp-status expired">Expired</span>
-                            <span class="lp-earned">$6.00</span>
-                        </div>
-                    </div>
-
-                    <div class="lp-token">
-                        <div class="lp-token-left">
-                            <div class="lp-token-icon" style="background:rgba(224,82,82,0.1)">&#128274;</div>
-                            <div>
-                                <div class="lp-token-name">ClearVPN Ltd.</div>
-                                <div class="lp-token-scope">browsing-patterns &middot; revoked</div>
-                            </div>
-                        </div>
-                        <div class="lp-token-right">
-                            <span class="lp-status revoked">Revoked</span>
-                            <span class="lp-earned" style="color:rgba(255,255,255,0.3); font-weight:400;">$1.73</span>
-                        </div>
-                    </div>
-
-                    <!-- #3 Latest audit event -->
-                    <div class="lp-audit-event">
-                        <span class="lp-audit-tag violation">RPE_GENERATED</span>
-                        <span class="lp-audit-desc">ClearVPN still held your data after revocation &mdash; removal notice auto-filed under GDPR Art. 17.</span>
-                    </div>
-
-                    <!-- #4 Earnings — white + bold, clearly secondary -->
-                    <div class="lp-earnings-row">
-                        <div class="lp-earnings-label">
-                            Total earned &middot; simulated data
-                            <small>After 2% Adworth fee &middot; 6 tokens &middot; 4 advertisers</small>
-                        </div>
-                        <div class="lp-earnings-total">$14.43</div>
-                    </div>
-
-                    <!-- CTA -->
-                    <div class="lp-cta">
-                        <div class="lp-cta-text"><strong>Infrastructure, not just an app.</strong><br>Consent rails. Cryptographic enforcement.</div>
-                        <a href="/ledger.html" class="lp-cta-btn">Full Preview &rarr;</a>
-                    </div>
-
-                </div>
-            </div>
-        </section>
-
-        <!-- ── HOW WE MAKE MONEY ── -->
-        <section class="transparency-section" id="transparency">
-            <div class="container">
-                <div class="transparency-inner">
-                    <div class="transparency-header">
-                        <p class="label fade-up">How We Make Money</p>
-                        <h2 class="section-title fade-up">Radical honesty about<br>our business model.</h2>
-                    </div>
-                    <div class="transparency-body fade-up">
-                        <p>Most companies hide how they make money because it conflicts with what they claim to stand for. We&rsquo;re building infrastructure for privacy &mdash; so hiding our business model would make us no different from everyone else.</p>
-                        <p>Here&rsquo;s exactly how Adworth makes money. No footnotes. No fine print.</p>
-                    </div>
-                    <div class="transparency-statement fade-up">
-                        &ldquo;When an advertiser pays you for your data, we take a small transaction fee &mdash; visible to you, recorded on the ledger, non-negotiable. We don&rsquo;t make money unless you do.&rdquo;
-                    </div>
-                    <div class="transparency-rows">
-                        <div class="transparency-row">
-                            <div class="transparency-row-icon">&#128179;</div>
-                            <div class="amount">2&ndash;5%</div>
-                            <h4>Transaction Fee</h4>
-                            <p>When an advertiser pays you for data access, Adworth takes a small percentage. You see the full amount, our cut, and your payout &mdash; always.</p>
-                        </div>
-                        <div class="transparency-row">
-                            <div class="transparency-row-icon">&#128683;</div>
-                            <div class="amount">$0</div>
-                            <h4>From Your Data</h4>
-                            <p>We never sell your data. We never have a hidden revenue stream from your information. If we did, we&rsquo;d be the problem we&rsquo;re trying to fix.</p>
-                        </div>
-                        <div class="transparency-row">
-                            <div class="transparency-row-icon">&#127885;</div>
-                            <div class="amount">Coming</div>
-                            <h4>Elite Certification</h4>
-                            <p>Brands pay for automated zero-knowledge compliance audits to prove transparent practices. Users pay nothing. The ledger proves everything.</p>
-                        </div>
-                    </div>
-                    <p class="transparency-closing fade-up">
-                        That&rsquo;s not a promise. That&rsquo;s the architecture &mdash; enforced cryptographically, recorded on the ledger, visible to everyone on the platform.
-                    </p>
-                </div>
-            </div>
-        </section>
-
-        <!-- ── DEMO BRIDGE ── -->
-        <section class="section section--alt">
-            <div class="container--narrow" style="text-align: center;">
-                <p class="label fade-up">Right Now</p>
-                <h2 class="section-title fade-up">See the product before it launches</h2>
-                <p class="section-lead fade-up" style="margin: 1rem auto 2.5rem;">We have two live demos &mdash; one for consumers to see who&rsquo;s targeting them, and one for enterprise to preview the verification dashboard.</p>
-                <div class="fade-up" style="display: flex; gap: 1rem; justify-content: center; flex-wrap: wrap;">
-                    <a href="/dashboard.html" class="btn btn-primary">Try the Consumer Demo &rarr;</a>
-                    <a href="/enterprise.html" class="btn-ghost-gold">See Enterprise UI Preview &rarr;</a>
-                </div>
-            </div>
-        </section>
-
-        <!-- ── FOUNDER ── -->
-        <section class="section" id="founder">
-            <div class="container">
-                <p class="label fade-up" style="text-align:center;">The Story Behind It</p>
-                <h2 class="section-title fade-up" style="text-align:center; margin-bottom: 3rem;">Built by someone who saw<br>the problem from the inside.</h2>
-                <div class="founder-card fade-up">
-                    <div class="founder-body">
-                        <p>I left Verizon in December 2025 after 18 years &mdash; the last 15 as a supervisor managing large technical support teams.</p>
-                        <p>For 15 of those years I listened to escalated calls. I read the messages. I sat with customers who had been financially hurt, legally exposed, emotionally devastated &mdash; almost always because of what happened to their data. Most of the time the solution wasn&rsquo;t compensation or a fix. It was someone to listen.</p>
-                        <p>I listened. And over 15 years I realized something: technology has always been driven by advertising. And advertising has always been driven by your data. And you never had a choice.</p>
-                        <div class="founder-pullquote">
-                            &ldquo;What if users could lend their data &mdash; on their terms, with cryptographic enforcement, and get paid for it?&rdquo;
-                        </div>
-                        <p>If the only real solution to privacy is ownership &mdash; giving people a cryptographic token that proves their data is theirs &mdash; then the moat isn&rsquo;t the app. It isn&rsquo;t the broker, the corporation, or the government. The moat is the infrastructure.</p>
-                        <p>I built it with a high school diploma, 20 years of corporate experience, and AI as my co-founder. That&rsquo;s what AI should do. Work with us. Not instead of us.</p>
-                        <p>The patent was filed February 23, 2026. Now I&rsquo;m raising $1.5M to build it properly.</p>
-                        <p>Just as we build net worth. Just as we build self worth. It&rsquo;s time we built our <strong>Adworth</strong>.</p>
-                        <div class="founder-transparency-note">
-                            <strong>On how Adworth makes money:</strong> I want you to know exactly &mdash; because if I&rsquo;m building infrastructure for privacy, hiding our business model would make us no different from everyone else. We take a small fee from advertisers when they pay you. You see it. It&rsquo;s on the ledger. Always.
-                        </div>
-                    </div>
-                    <div class="founder-sig">
-                        <div class="founder-avatar">NJ</div>
-                        <div class="founder-sig-text">
-                            <strong>Nick Johnson</strong>
-                            <small>Founder &amp; CEO, Adworth&#8480; LLC &middot; Charleston, SC &middot; Patent Filed Feb 2026</small>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <!-- ── INVESTOR ── -->
-        <section class="investor-section" id="investors">
-            <div class="container">
-                <p class="label fade-up">For Investors</p>
-                <h2 class="section-title fade-up">$1.5M seed round.<br>18 months to marketplace.</h2>
-                <p class="investor-lead fade-up">18 months to a working two-sided marketplace. The timing window &mdash; AI advertising boom, regulatory gap, no patent-protected competitor &mdash; won&rsquo;t be open forever.</p>
-                <div class="investor-grid fade-up">
-                    <div class="investor-card">
-                        <h4>What We Have Today</h4>
-                        <ul>
-                            <li>Provisional patent filed Feb 23, 2026 &mdash; 11 claims</li>
-                            <li>Live ad intelligence pipeline &mdash; real data, AI privacy scoring</li>
-                            <li>Working cryptographic consent validation API</li>
-                            <li>Cloudflare Workers infrastructure &mdash; scalable from day one</li>
-                            <li>Service mark protection (Adworth&#8480;)</li>
-                            <li>SCRA pitch accepted &middot; SC Research Authority</li>
-                        </ul>
-                    </div>
-                    <div class="investor-card">
-                        <h4>What $1.5M Builds</h4>
-                        <ul>
-                            <li>Full cryptographic consent infrastructure</li>
-                            <li>Two-sided marketplace (users + advertisers)</li>
-                            <li>Transaction fee model &mdash; Stripe for consent</li>
-                            <li>Enterprise compliance licensing ($15K&ndash;$50K/yr)</li>
-                            <li>Adworth Elite Certification program</li>
-                        </ul>
-                    </div>
-                </div>
-                <div class="moat-table-wrap fade-up">
-                    <p class="moat-table-label">How the moat becomes the money</p>
-                    <div class="moat-grid">
-                        <div class="moat-header">Moat Layer</div>
-                        <div class="moat-header">Revenue Expression</div>
-                        <div class="moat-header">Model</div>
-                        <div class="moat-header moat-center">Timeline</div>
-
-                        <div class="td-moat">Cryptographic patent</div>
-                        <div class="td-revenue">Enterprise licensing</div>
-                        <div class="td-detail">$15K&ndash;$50K/yr per enterprise client &mdash; companies pay to use the patented infrastructure for verifiable consent compliance</div>
-                        <div class="moat-center"><span class="moat-timeline moat-timeline--soon">2026</span></div>
-
-                        <div class="td-moat">Infrastructure position</div>
-                        <div class="td-revenue">Transaction fees</div>
-                        <div class="td-detail">2&ndash;5% of every consent exchange on the marketplace &mdash; scales automatically with volume, no per-transaction selling required</div>
-                        <div class="moat-center"><span class="moat-timeline moat-timeline--soon">18 MO</span></div>
-
-                        <div class="td-moat">Regulatory foresight</div>
-                        <div class="td-revenue">DSA compliance SaaS</div>
-                        <div class="td-detail">Recurring subscription for DSA repository monitoring and AI ad transparency auditing &mdash; recurring revenue that compounds with each new regulation</div>
-                        <div class="moat-center"><span class="moat-timeline moat-timeline--soon">2026</span></div>
-
-                        <div class="td-moat">Network effects</div>
-                        <div class="td-revenue">Marketplace flywheel</div>
-                        <div class="td-detail">More users &rarr; more valuable to advertisers &rarr; higher fees &rarr; more users. The moat deepens with scale in a way no competitor can buy their way into</div>
-                        <div class="moat-center"><span class="moat-timeline moat-timeline--later">3&ndash;5 YR</span></div>
-                    </div>
-                </div>
-                <div class="fade-up">
-                    <a href="mailto:hello&#64;adworth.app" class="btn btn-white">Schedule a Meeting &rarr;</a>
-                </div>
-            </div>
-        </section>
-
-        <!-- ── WAITLIST ── -->
-        <section class="waitlist-section" id="waitlist">
-            <div class="container--narrow">
-                <span class="founding-badge">&#11088; Founding Member Offer</span>
-                <h2 class="section-title fade-up">Be first when consent<br>starts paying</h2>
-                <p class="section-lead fade-up" style="margin: 1rem auto 2.5rem;">First 1,000 users get early marketplace access, founding member status, and priority support. No spam. No irony.</p>
-                <form class="waitlist-form fade-up" id="waitlist-form" action="https://adworth-waitlist.adworthllc.workers.dev" method="POST">
-                    <input type="text" name="website" value="" style="display:none !important; position:absolute; left:-9999px;" tabindex="-1" autocomplete="off">
-                    <div class="input-group">
-                        <input type="email" name="email" placeholder="your@email.com" required>
-                        <button type="submit">Join Waitlist</button>
-                    </div>
-                    <p class="waitlist-note">Your data stays yours &mdash; stored on our own infrastructure, never shared with third parties.</p>
-                </form>
-            </div>
-        </section>
-
-    </main>
-
-    <!-- ── FOOTER ── -->
-    <footer>
-        <div class="container">
-            <div class="footer-grid">
-                <div>
-                    <div class="footer-brand-name">Adworth&#8480;</div>
-                    <p class="footer-tagline">Cryptographic consent infrastructure for digital advertising. Privacy for people, compliance for platforms.</p>
-                    <p class="footer-transparency-note">We earn 2&ndash;5% when advertisers pay you. That&rsquo;s our only revenue source. Always visible. Always on the ledger. No exceptions.</p>
-                </div>
-                <div class="footer-links">
-                    <h4>Product</h4>
-                    <ul>
-                        <li><a href="#problem">The Problem</a></li>
-                        <li><a href="#how-it-works">How It Works</a></li>
-                        <li><a href="#ledger-preview">Consent Ledger</a></li>
-                        <li><a href="#transparency">How We Make Money</a></li>
-                        <li><a href="/dashboard.html">Consumer Demo</a></li>
-                        <li><a href="/ccpa-gap.html">CCPA Enforcement Gap</a></li>
-                        <li><a href="/enterprise.html">Enterprise Preview</a></li>
-                        <li><a href="#waitlist">Join Waitlist</a></li>
-                    </ul>
-                </div>
-                <div class="footer-links">
-                    <h4>Company</h4>
-                    <ul>
-                        <li><a href="#founder">Founder</a></li>
-                        <li><a href="#investors">Investors</a></li>
-                        <li><a href="mailto:hello&#64;adworth.app">Contact</a></li>
-                    </ul>
-                </div>
-                <div class="footer-links">
-                    <h4>Legal</h4>
-                    <ul>
-                        <li><a href="/privacy.html">Privacy Policy</a></li>
-                        <li><a href="/terms.html">Terms of Service</a></li>
-                        <li><a href="/ledger.html">Ledger Preview</a></li>
-                    </ul>
-                </div>
-            </div>
-            <div class="footer-bottom">
-                <span>&copy; 2026 Adworth&#8480; LLC &middot; Patent Pending &middot; Charleston, SC</span>
-                <span>Built in public &middot; Raising seed round &middot; <a href="/enterprise.html" style="color: var(--gold); text-decoration: none;">Investor Overview &rarr;</a></span>
-            </div>
+        <h1>Your data is worth<br><em>billions</em>. You get<br>none of it.</h1>
+        <p class="hero-sub">
+          Adworth is <strong>cryptographic consent infrastructure</strong> for digital advertising —
+          where you control who gets your data, for how long, and get paid every time you share it.
+        </p>
+        <div class="hero-cta-group">
+          <a href="#waitlist" class="btn btn-primary">Join Waitlist →</a>
+          <a href="/dashboard.html" class="btn btn-ghost">Consumer Demo →</a>
+          <a href="/enterprise.html" class="btn btn-ghost">Enterprise Preview →</a>
         </div>
-    </footer>
+        <p class="hero-trust">Patent-pending technology · AI transparency now · Consent marketplace coming</p>
+      </div>
+    </section>
 
-    <script>
-        document.body.classList.add('js-ready');
+    <!-- STATS -->
+    <section class="stats-bar">
+      <div class="container">
+        <div class="stats-grid">
+          <div class="stat-item">
+            <div class="stat-value">$700B+</div>
+            <div class="stat-label">Digital ad market built on your data</div>
+          </div>
+          <div class="stat-item">
+            <div class="stat-value">$0</div>
+            <div class="stat-label">Your current share of that</div>
+          </div>
+          <div class="stat-item">
+            <div class="stat-value">2%</div>
+            <div class="stat-label">Adworth marketplace fee (only on revenue)</div>
+          </div>
+          <div class="stat-item">
+            <div class="stat-value">Feb '26</div>
+            <div class="stat-label">Patent filed — 11 independent claims</div>
+          </div>
+        </div>
+      </div>
+    </section>
 
-        const observer = new IntersectionObserver((entries) => {
-            entries.forEach(entry => {
-                if (entry.isIntersecting) {
-                    entry.target.classList.add('visible');
-                    observer.unobserve(entry.target);
-                }
-            });
-        }, { threshold: 0.1, rootMargin: '0px 0px -40px 0px' });
+    <!-- PROBLEM -->
+    <section class="section" id="problem">
+      <div class="container">
+        <p class="label">The Problem</p>
+        <h2 class="section-title">The internet was built on<br>your attention. <em>You never consented.</em></h2>
+        <p class="section-lead">AI platforms like ChatGPT and Perplexity are now running ads — with zero transparency requirements. It's Facebook 2007 all over again, but the stakes are higher.</p>
+        <div class="steps">
+          <div class="step">
+            <div class="step-icon">🔍</div>
+            <h4>Surveillance by Default</h4>
+            <p>Companies collect what you click, search, buy, and think — without meaningful consent. Zero visibility into who's targeting you or why.</p>
+          </div>
+          <div class="step">
+            <div class="step-icon">💰</div>
+            <h4>You Earn $0 From Your Own Data</h4>
+            <p>Google made $238B in ad revenue last year. You got none of it — despite being the product they're selling.</p>
+          </div>
+          <div class="step">
+            <div class="step-icon">🤖</div>
+            <h4>AI Ads = Zero Transparency</h4>
+            <p>ChatGPT, Perplexity, Meta AI. All running ads with no disclosure rules. The regulatory gap is wide open.</p>
+          </div>
+          <div class="step">
+            <div class="step-icon">📝</div>
+            <h4>"Deleted" Doesn't Mean Gone</h4>
+            <p>Request deletion and companies promise compliance. But there's no verification. Your data lives on in third-party systems.</p>
+          </div>
+          <div class="step">
+            <div class="step-icon">🔐</div>
+            <h4>Consent Is Theater</h4>
+            <p>Cookie banners are dark patterns. "I agree" means nothing. No cryptographic binding — companies can ignore your preferences.</p>
+          </div>
+          <div class="step">
+            <div class="step-icon">⚖️</div>
+            <h4>Regulations Are Coming</h4>
+            <p>GDPR, CCPA, and DSA are here. AI ad transparency rules are next. Companies need compliant infrastructure — now.</p>
+          </div>
+        </div>
+      </div>
+    </section>
 
-        document.querySelectorAll('.fade-up').forEach(el => observer.observe(el));
+    <!-- HOW IT WORKS -->
+    <section class="section section--alt" id="how-it-works">
+      <div class="container">
+        <p class="label">The Solution</p>
+        <h2 class="section-title">Consent that can't be faked.<br><em>Deletion that can be proved.</em></h2>
+        <p class="section-lead">Adworth replaces empty privacy promises with cryptographic enforcement. Five interconnected components make it automatic, auditable, and unstoppable.</p>
+        <div class="steps">
+          <div class="step">
+            <div class="step-icon">🔐</div>
+            <h4>Cryptographic Consent Tokens</h4>
+            <p>You sign a digital permission — bound to a specific advertiser, data type, and time window. They can't fake it, extend it, or transfer it.</p>
+          </div>
+          <div class="step">
+            <div class="step-icon">🛡️</div>
+            <h4>Privacy Governance Engine</h4>
+            <p>Every data access request is checked automatically. No valid token? Blocked. Expired window? Blocked. No manual review needed.</p>
+          </div>
+          <div class="step">
+            <div class="step-icon">📖</div>
+            <h4>Invisibility Ledger</h4>
+            <p>Every consent, revocation, and deletion is recorded in an append-only, tamper-evident ledger. Companies can't claim they didn't know.</p>
+          </div>
+          <div class="step">
+            <div class="step-icon">🔍</div>
+            <h4>State-Persistence Monitor</h4>
+            <p>After you delete, the monitor keeps checking. It crawls data brokers and third-party systems to detect unauthorized persistence.</p>
+          </div>
+          <div class="step">
+            <div class="step-icon">⚡</div>
+            <h4>Removal Payload Engine</h4>
+            <p>Detect a violation? Auto-generates a legally-cited deletion notice — signed with cryptographic proof — and sends it without you lifting a finger.</p>
+          </div>
+          <div class="step">
+            <div class="step-icon">💸</div>
+            <h4>Consent Marketplace</h4>
+            <p>Advertisers pay for access. You get paid when your token is verified. Revoke consent, payments stop. Fair exchange.</p>
+          </div>
+        </div>
+      </div>
+    </section>
 
-        document.querySelectorAll('.problem-grid, .steps, .investor-grid, .transparency-rows').forEach(grid => {
-            grid.querySelectorAll('.problem-card, .step, .investor-card, .transparency-row').forEach((card, i) => {
-                card.classList.add('fade-up');
-                card.style.transitionDelay = `${i * 80}ms`;
-                observer.observe(card);
-            });
-        });
+    <!-- HOW WE MAKE MONEY -->
+    <section class="section section--dark" id="transparency">
+      <div class="container">
+        <p class="label">How We Make Money</p>
+        <h2 class="section-title">Radical honesty about<br>our <em>business model.</em></h2>
+        <p class="section-lead" style="color: rgba(255,255,255,0.65);">We're building infrastructure for privacy — so hiding our business model would make us no different from everyone else. Here's exactly how Adworth makes money.</p>
+        
+        <div style="background: rgba(255,255,255,0.07); border: 1px solid rgba(255,255,255,0.12); border-radius: 12px; padding: 2.5rem; margin: 2rem 0; text-align: center;">
+          <p style="font-size: 1.1rem; color: rgba(255,255,255,0.85); line-height: 1.8; margin: 0;">
+            <strong>"When an advertiser pays you for your data, we take exactly 2% — visible to you, recorded on the ledger, non-negotiable. We don't make money unless you do."</strong>
+          </p>
+        </div>
 
-        document.getElementById('waitlist-form').addEventListener('submit', function() {
-            var btn = this.querySelector('button');
-            btn.textContent = 'Submitting\u2026';
-            btn.disabled = true;
-        });
-    </script>
+        <div style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.5rem; margin-top: 2rem;">
+          <div style="background: rgba(255,255,255,0.07); border: 1px solid rgba(255,255,255,0.12); border-radius: 12px; padding: 2rem;">
+            <div style="font-size: 0.75rem; font-weight: 700; text-transform: uppercase; letter-spacing: 2px; color: var(--green-accent); margin-bottom: 1rem;">Revenue Model</div>
+            <div style="font-family: 'DM Serif Display', serif; font-size: 2rem; color: white; margin-bottom: 0.5rem;">2%</div>
+            <p style="font-size: 0.9rem; color: rgba(255,255,255,0.7);">Transaction fee when advertisers pay you. You see it. It's on the ledger. Always.</p>
+          </div>
 
-    <!-- No third-party tracking scripts. This page loads no analytics, advertising pixels, or behavioral trackers. -->
+          <div style="background: rgba(255,255,255,0.07); border: 1px solid rgba(255,255,255,0.12); border-radius: 12px; padding: 2rem;">
+            <div style="font-size: 0.75rem; font-weight: 700; text-transform: uppercase; letter-spacing: 2px; color: var(--green-accent); margin-bottom: 1rem;">What We Don't Do</div>
+            <div style="font-family: 'DM Serif Display', serif; font-size: 2rem; color: white; margin-bottom: 0.5rem;">$0</div>
+            <p style="font-size: 0.9rem; color: rgba(255,255,255,0.7);">We never sell your data. We never have a hidden revenue stream. If we did, we'd be the problem.</p>
+          </div>
+
+          <div style="background: rgba(255,255,255,0.07); border: 1px solid rgba(255,255,255,0.12); border-radius: 12px; padding: 2rem;">
+            <div style="font-size: 0.75rem; font-weight: 700; text-transform: uppercase; letter-spacing: 2px; color: var(--green-accent); margin-bottom: 1rem;">Alignment</div>
+            <div style="font-family: 'DM Serif Display', serif; font-size: 2rem; color: white; margin-bottom: 0.5rem;">100%</div>
+            <p style="font-size: 0.9rem; color: rgba(255,255,255,0.7);">We only make money when you make money. Network effects drive growth. That's sustainable.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- FOUNDER -->
+    <section class="section" id="founder">
+      <div class="container">
+        <p class="label" style="text-align: center;">The Founder</p>
+        <h2 class="section-title" style="text-align: center; margin-bottom: 3rem;">Built by someone who saw the problem<br>from <em>the inside.</em></h2>
+        
+        <div style="max-width: 760px; margin: 0 auto; background: var(--white); border: 1.5px solid var(--border); border-radius: 16px; padding: 3.5rem; position: relative;">
+          <div style="font-family: 'DM Serif Display', serif; font-size: 6rem; color: var(--green-pale); position: absolute; top: -1rem; left: 2.5rem; line-height: 1;">"</div>
+          <div style="font-size: 1rem; color: var(--ink-60); line-height: 1.8;">
+            <p>I left Verizon in December 2025 after 18 years — the last 15 as a supervisor managing large technical support teams.</p>
+            <p style="margin-top: 1.25rem;">For 15 of those years I listened to escalated calls. I read the messages. I sat with customers who had been financially hurt, legally exposed, emotionally devastated — almost always because of what happened to their data. Most of the time the solution wasn't compensation or a fix. It was someone to listen.</p>
+            <p style="margin-top: 1.25rem;">I listened. And over 15 years I realized something: technology has always been driven by advertising. And advertising has always been driven by your data. And you never had a choice.</p>
+            <p style="margin-top: 1.25rem;">My understanding of copyright law and music publishing taught me this pattern early. Ownership extraction follows the same playbook across industries. Taylor Swift had to re-record her entire catalog just to own what she created. You don't own your data either. Adworth changes that.</p>
+            <div style="font-family: 'DM Serif Display', serif; font-size: 1.5rem; font-style: italic; color: var(--green-primary); border-left: 3px solid var(--green-accent); padding-left: 1.5rem; margin: 2rem 0; line-height: 1.4;">
+              "What if users could lend their data — on their terms, with cryptographic enforcement, and get paid for it?"
+            </div>
+            <p>If the only real solution to privacy is ownership — giving people a cryptographic token that proves their data is theirs — then the moat isn't the app. It isn't the broker, the corporation, or the government. The moat is the infrastructure.</p>
+            <p style="margin-top: 1.25rem;">I built it with a high school diploma, 20 years of corporate experience, and AI as my co-founder. That's what AI should do. Work with us. Not instead of us.</p>
+            <p style="margin-top: 1.25rem;">The patent was filed February 23, 2026. Now I'm raising $1.5M to build it properly.</p>
+            <p style="margin-top: 1.25rem;">Just as we build net worth. Just as we build self worth. It's time we built our <strong>Adworth</strong>.</p>
+            <div style="background: var(--green-tint); border: 1px solid rgba(45,106,79,0.2); border-radius: 8px; padding: 1.25rem 1.5rem; margin-top: 1.5rem; font-size: 0.9rem; color: var(--ink-60); line-height: 1.7;">
+              <strong style="color: var(--green-primary);">On how Adworth makes money:</strong> I want you to know exactly — because if I'm building infrastructure for privacy, hiding our business model would make us no different from everyone else. We take a small fee from advertisers when they pay you. You see it. It's on the ledger. Always.
+            </div>
+          </div>
+          <div style="margin-top: 2.5rem; padding-top: 2rem; border-top: 1px solid var(--border); display: flex; align-items: center; gap: 1rem;">
+            <div style="width: 52px; height: 52px; background: var(--green-pale); border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 1.25rem; font-weight: 800; color: var(--green-primary); flex-shrink: 0;">NJ</div>
+            <div>
+              <strong style="display: block; font-weight: 700; font-size: 0.95rem; color: var(--ink);">Nick Johnson</strong>
+              <small style="font-size: 0.8rem; color: var(--ink-60);">Founder & CEO, Adworth℠ LLC · Charleston, SC · Patent Filed Feb 2026</small>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- INVESTORS -->
+    <section class="section section--dark" id="investors">
+      <div class="container" style="text-align: center;">
+        <p class="label">For Investors</p>
+        <h2 class="section-title">$1.5M seed round.<br>18 months to <em>marketplace.</em></h2>
+        <p class="section-lead" style="color: rgba(255,255,255,0.65); margin: 0 auto;">The timing window — AI advertising boom, regulatory gap, no patent-protected competitor — won't stay open forever. This is infrastructure that needs to exist.</p>
+        
+        <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 1.5rem; max-width: 740px; margin: 3rem auto; text-align: left;">
+          <div style="background: rgba(255,255,255,0.07); border: 1px solid rgba(255,255,255,0.12); border-radius: 12px; padding: 1.75rem;">
+            <h4 style="font-size: 0.75rem; font-weight: 700; text-transform: uppercase; letter-spacing: 1.5px; color: var(--green-accent); margin-bottom: 1rem;">What We Have Today</h4>
+            <ul style="list-style: none;">
+              <li style="font-size: 0.875rem; color: rgba(255,255,255,0.8); padding: 0.4rem 0; padding-left: 1.25rem; position: relative; line-height: 1.5;"><span style="position: absolute; left: 0; color: var(--green-accent);">✓</span>Provisional patent filed Feb 23, 2026 — 11 claims</li>
+              <li style="font-size: 0.875rem; color: rgba(255,255,255,0.8); padding: 0.4rem 0; padding-left: 1.25rem; position: relative; line-height: 1.5;"><span style="position: absolute; left: 0; color: var(--green-accent);">✓</span>Live ad intelligence pipeline</li>
+              <li style="font-size: 0.875rem; color: rgba(255,255,255,0.8); padding: 0.4rem 0; padding-left: 1.25rem; position: relative; line-height: 1.5;"><span style="position: absolute; left: 0; color: var(--green-accent);">✓</span>Working cryptographic consent API</li>
+              <li style="font-size: 0.875rem; color: rgba(255,255,255,0.8); padding: 0.4rem 0; padding-left: 1.25rem; position: relative; line-height: 1.5;"><span style="position: absolute; left: 0; color: var(--green-accent);">✓</span>Cloudflare Workers infrastructure</li>
+              <li style="font-size: 0.875rem; color: rgba(255,255,255,0.8); padding: 0.4rem 0; padding-left: 1.25rem; position: relative; line-height: 1.5;"><span style="position: absolute; left: 0; color: var(--green-accent);">✓</span>Service mark protection (Adworth℠)</li>
+            </ul>
+          </div>
+          <div style="background: rgba(255,255,255,0.07); border: 1px solid rgba(255,255,255,0.12); border-radius: 12px; padding: 1.75rem;">
+            <h4 style="font-size: 0.75rem; font-weight: 700; text-transform: uppercase; letter-spacing: 1.5px; color: var(--green-accent); margin-bottom: 1rem;">What $1.5M Builds</h4>
+            <ul style="list-style: none;">
+              <li style="font-size: 0.875rem; color: rgba(255,255,255,0.8); padding: 0.4rem 0; padding-left: 1.25rem; position: relative; line-height: 1.5;"><span style="position: absolute; left: 0; color: var(--green-accent);">✓</span>Full cryptographic consent infrastructure</li>
+              <li style="font-size: 0.875rem; color: rgba(255,255,255,0.8); padding: 0.4rem 0; padding-left: 1.25rem; position: relative; line-height: 1.5;"><span style="position: absolute; left: 0; color: var(--green-accent);">✓</span>Two-sided marketplace (users + advertisers)</li>
+              <li style="font-size: 0.875rem; color: rgba(255,255,255,0.8); padding: 0.4rem 0; padding-left: 1.25rem; position: relative; line-height: 1.5;"><span style="position: absolute; left: 0; color: var(--green-accent);">✓</span>2% transaction fee model at scale</li>
+              <li style="font-size: 0.875rem; color: rgba(255,255,255,0.8); padding: 0.4rem 0; padding-left: 1.25rem; position: relative; line-height: 1.5;"><span style="position: absolute; left: 0; color: var(--green-accent);">✓</span>Privacy Cockpit Extension (consumer app)</li>
+              <li style="font-size: 0.875rem; color: rgba(255,255,255,0.8); padding: 0.4rem 0; padding-left: 1.25rem; position: relative; line-height: 1.5;"><span style="position: absolute; left: 0; color: var(--green-accent);">✓</span>Non-provisional patent filing by Feb 2027</li>
+            </ul>
+          </div>
+        </div>
+
+        <div style="margin-top: 2rem;">
+          <a href="mailto:hello&#64;adworth.app" class="btn btn-white">Schedule a Meeting →</a>
+        </div>
+      </div>
+    </section>
+
+    <!-- WAITLIST -->
+    <section class="section" id="waitlist">
+      <div class="container" style="max-width: 480px; text-align: center;">
+        <h2 class="section-title">Be first when consent<br>starts <em>paying.</em></h2>
+        <p class="section-lead" style="margin: 1rem auto 2.5rem;">First 1,000 users get early marketplace access, founding member status, and priority support. No spam. No irony.</p>
+        <form action="https://adworth-waitlist.adworthllc.workers.dev" method="POST" style="display: flex; gap: 0.75rem;">
+          <input type="text" name="website" value="" style="display:none !important; position:absolute; left:-9999px;" tabindex="-1" autocomplete="off">
+          <input type="email" name="email" placeholder="your@email.com" required style="flex: 1; padding: 0.9rem 1.25rem; border: 1.5px solid var(--border); border-radius: 8px; font-size: 0.95rem; font-family: 'Poppins', sans-serif;">
+          <button type="submit" style="background: var(--green-primary); color: white; padding: 0.9rem 1.5rem; border: none; border-radius: 8px; font-weight: 700; font-size: 0.95rem; cursor: pointer; font-family: 'Poppins', sans-serif; white-space: nowrap;">Join Waitlist</button>
+        </form>
+        <p style="font-size: 0.8rem; color: var(--ink-30); margin-top: 0.75rem;">Your data stays yours — stored on our own infrastructure, never shared.</p>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- FOOTER -->
+  <footer>
+    <div class="container">
+      <div class="footer-grid">
+        <div>
+          <div class="footer-brand-name">Adworth℠</div>
+          <p class="footer-tagline">Cryptographic consent infrastructure for digital advertising. Privacy for people, compliance for platforms.</p>
+          <p class="footer-note">We earn exactly 2% when advertisers pay you for verified consent. That's our only revenue source. Always visible. Always on the ledger. No exceptions.</p>
+        </div>
+        <div class="footer-links">
+          <h4>Product</h4>
+          <ul>
+            <li><a href="#problem">Problem</a></li>
+            <li><a href="#how-it-works">How It Works</a></li>
+            <li><a href="#transparency">How We Make Money</a></li>
+            <li><a href="/dashboard.html">Consumer Demo</a></li>
+            <li><a href="/enterprise.html">Enterprise</a></li>
+          </ul>
+        </div>
+        <div class="footer-links">
+          <h4>Company</h4>
+          <ul>
+            <li><a href="#founder">Founder</a></li>
+            <li><a href="#investors">Investors</a></li>
+            <li><a href="mailto:hello&#64;adworth.app">Contact</a></li>
+          </ul>
+        </div>
+        <div class="footer-links">
+          <h4>Legal</h4>
+          <ul>
+            <li><a href="/privacy.html">Privacy Policy</a></li>
+            <li><a href="/terms.html">Terms of Service</a></li>
+          </ul>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <span>© 2026 Adworth℠ LLC · Patent Pending · Charleston, SC</span>
+        <span>Built in public · Raising seed round · <a href="/enterprise.html" style="color: var(--gold); text-decoration: none;">Investor Overview →</a></span>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    document.body.classList.add('js-ready');
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('visible');
+          observer.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.1, rootMargin: '0px 0px -40px 0px' });
+    document.querySelectorAll('.step').forEach(el => observer.observe(el));
+  </script>
 
 </body>
 </html>
-
