@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>CCPA Enforcement Gap &mdash; Adworth&#8480;</title>
-    <meta name="description" content="Every major company reports CCPA deletion request volumes. Not one can cryptographically prove the data was actually removed. See the enforcement gap.">
+    <meta name="description" content="Every major company reports CCPA deletion request volumes. Not one can cryptographically verify the data was actually removed. See the enforcement gap.">
     <link rel="icon" type="image/x-icon" href="/favicon.ico">
     <link rel="preconnect" href="https://adworth-fonts.adworthllc.workers.dev">
     <link href="https://adworth-fonts.adworthllc.workers.dev/css2?family=Poppins:wght@300;400;500;600;700;800;900&amp;family=DM+Serif+Display:ital@0;1&amp;display=swap" rel="stylesheet">
@@ -181,8 +181,8 @@
 <!-- PAGE HERO -->
 <section class="page-hero">
     <div class="container">
-        <p class="label">CCPA Enforcement Gap Report</p>
-        <h1>Everyone reports volume.<br>No one proves <em>deletion</em>.</h1>
+        <p class="label">CCPA ENFORCEMENT GAP REPORT</p>
+        <h1>Everyone reports volume.<br>No one <em>cryptographically verifies</em> it.</h1>
         <p class="lead">We analyzed every major company that publishes CCPA transparency metrics. They report how many deletion requests they received and how fast they responded. Not one can cryptographically verify the data was actually removed.</p>
     </div>
 </section>
@@ -205,7 +205,7 @@
             </div>
             <div class="stat-box">
                 <div class="stat-num red">0</div>
-                <div class="stat-desc">Companies that cryptographically verify deletion</div>
+                <div class="stat-desc">Companies with cryptographic verification</div>
             </div>
         </div>
     </div>
@@ -218,7 +218,7 @@
             <div class="gap-icon">&#128275;</div>
             <div>
                 <h3>The Enforcement Gap</h3>
-                <p>CCPA requires companies processing 10M+ California residents&rsquo; data to publish annual transparency metrics. They must report request volumes, compliance rates, and response times. But the law has no mechanism to verify that deletion actually occurred. Companies self-report &mdash; and users have zero cryptographic proof their data is gone. That&rsquo;s the gap Adworth&rsquo;s State-Persistence Monitor and Invisibility Ledger are designed to close.</p>
+                <p><strong>CCPA Requirement:</strong> Report deletion request volumes and response times.<br><strong>CCPA Does NOT Require:</strong> Cryptographically prove deletions actually happened.<br><strong>The Result:</strong> Self-reported metrics. Zero independent verification. Companies self-report — and users have zero cryptographic proof their data is gone. That's the gap Adworth's State-Persistence Monitor and Invisibility Ledger are designed to close.</p>
             </div>
         </div>
 
@@ -295,19 +295,6 @@
                 <div class="num-cell">&mdash;</div>
                 <div class="num-cell">16</div>
                 <div class="days-cell days-fast">&lt;1</div>
-                <div class="verified-cell"><span class="badge badge-none">None</span></div>
-            </div>
-
-            <!-- Intuit -->
-            <div class="table-row">
-                <div class="company-cell">
-                    <div class="company-logo" style="background:#e0f2f1;color:#00695c">IN</div>
-                    <div><div class="company-name">Intuit</div><div class="company-sector">FinTech</div></div>
-                </div>
-                <div class="num-cell">124,744</div>
-                <div class="num-cell">184,024</div>
-                <div class="num-cell">8,585</div>
-                <div class="days-cell days-fast">2&ndash;8</div>
                 <div class="verified-cell"><span class="badge badge-none">None</span></div>
             </div>
 
@@ -453,20 +440,20 @@
             <div class="insight-card fade-up">
                 <div class="insight-icon red">&#128465;&#65039;</div>
                 <div class="insight-stat red">0%</div>
-                <h3>Deletion Verification Rate</h3>
-                <p>Across all reporting companies, not a single one provides cryptographic proof that data was actually removed from their systems or third-party processors. &ldquo;Complied with&rdquo; means they acknowledged the request &mdash; not that they can prove it was executed.</p>
+                <h3>Verification Rate</h3>
+                <p>Not a single company provides cryptographic proof that data was actually removed. &ldquo;Complied with&rdquo; means they acknowledged the request &mdash; not that they can prove it was executed.</p>
             </div>
             <div class="insight-card fade-up" style="transition-delay:80ms">
                 <div class="insight-icon amber">&#9888;&#65039;</div>
-                <div class="insight-stat amber">37,536</div>
-                <h3>Intuit&rsquo;s &ldquo;Other Grounds&rdquo; Denials</h3>
-                <p>Intuit denied 37,536 requests on &ldquo;other grounds&rdquo; &mdash; explained only as cases where the customer had continued account activity. That&rsquo;s a massive number with a vague justification, and there&rsquo;s no third-party audit to verify it.</p>
+                <div class="insight-stat amber">Thousands</div>
+                <h3>Denials on Vague Grounds</h3>
+                <p>Across all reporting companies, denials citing "other grounds" or unclear justifications are common. No independent audit exists to verify these claims industry-wide.</p>
             </div>
             <div class="insight-card fade-up" style="transition-delay:160ms">
                 <div class="insight-icon green">&#128273;</div>
-                <div class="insight-stat">5 Components</div>
+                <div class="insight-stat">5 Systems</div>
                 <h3>Adworth&rsquo;s Answer</h3>
-                <p>The Cryptographic Consent Token, Invisibility Ledger, State-Persistence Monitor, Privacy Governance Engine, and Removal Payload Engine &mdash; five patent-pending components that make verification automatic, cryptographic, and independent.</p>
+                <p>The State-Persistence Monitor, Invisibility Ledger, Consent API, Governance Engine, and Removal Payload Engine &mdash; five patent-pending systems that make verification automatic and cryptographic.</p>
             </div>
         </div>
     </div>
@@ -476,8 +463,8 @@
 <section class="cta-strip">
     <div class="container">
         <p class="label" style="color:var(--green-accent)">The Solution</p>
-        <h2>A major tax software company told 145,000 people they deleted their data. How many can prove it? Zero.
-        <p>That&rsquo;s why we built the State-Persistence Monitor. Cryptographic proof of deletion &mdash; not promises. Patent-pending technology that works after data leaves the original platform.</p>
+        <h2>Deletion claims are self-reported.<br>We make them cryptographically verifiable.</h2>
+        <p>Regulators don't accept "we trust them." They want proof. We provide it — mathematically.</p>
         <a href="/#waitlist" class="btn btn-white">Join the Waitlist &rarr;</a>
     </div>
 </section>
