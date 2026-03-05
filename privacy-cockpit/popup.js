@@ -3,8 +3,7 @@ const API_BASE = 'https://adworth-ingestion-api.adworthllc.workers.dev';
 document.addEventListener('DOMContentLoaded', async () => {
   await updateStatus();
   await loadMetadata();
-  
-  // Add event listeners (fixes CSP violation)
+
   document.getElementById('setupBtn').addEventListener('click', handleSetup);
   document.getElementById('syncBtn').addEventListener('click', handleSync);
 });
@@ -15,7 +14,7 @@ async function updateStatus() {
   const statusValue = document.getElementById('statusValue');
   const setupBtn = document.getElementById('setupBtn');
   const syncBtn = document.getElementById('syncBtn');
-  
+
   if (data.setup_complete) {
     statusEl.className = 'status ready';
     statusValue.textContent = '✓ Ready';
@@ -31,7 +30,7 @@ async function updateStatus() {
 
 async function loadMetadata() {
   const data = await chrome.storage.local.get(['device_fingerprint', 'ingestion_count']);
-  document.getElementById('device').textContent = 
+  document.getElementById('device').textContent =
     data.device_fingerprint ? data.device_fingerprint.substring(0, 12) + '...' : '—';
   document.getElementById('ingestions').textContent = data.ingestion_count || 0;
 }
@@ -40,7 +39,7 @@ async function handleSetup() {
   const messageEl = document.getElementById('message');
   messageEl.className = '';
   messageEl.textContent = 'Setting up...';
-  
+
   try {
     // Step 1: Register with Adworth
     const userId = 'user_' + Math.random().toString(36).substring(7);
@@ -52,24 +51,24 @@ async function handleSetup() {
         action: 'generate_keypair'
       })
     });
-    
+
     if (!registerRes.ok) throw new Error('Registration failed: ' + registerRes.statusText);
     const { setup_token } = await registerRes.json();
-    
+
     // Step 2: Generate Ed25519 keypair locally
     const keyPair = await crypto.subtle.generateKey(
       { name: 'Ed25519' },
-      false,
+      false, // non-extractable — private key never leaves device
       ['sign', 'verify']
     );
-    
+
     // Step 3: Export public key
     const publicKeyBuffer = await crypto.subtle.exportKey('raw', keyPair.publicKey);
     const publicKeyBase64 = btoa(String.fromCharCode(...new Uint8Array(publicKeyBuffer)));
-    
+
     // Step 4: Generate device fingerprint
     const deviceFingerprint = generateDeviceFingerprint();
-    
+
     // Step 5: Upload public key
     const uploadRes = await fetch(`${API_BASE}/extension/upload-pubkey`, {
       method: 'POST',
@@ -81,9 +80,9 @@ async function handleSetup() {
         device_fingerprint: deviceFingerprint
       })
     });
-    
+
     if (!uploadRes.ok) throw new Error('Public key upload failed: ' + uploadRes.statusText);
-    
+
     // Step 6: Store setup data locally
     await chrome.storage.local.set({
       user_id: userId,
@@ -94,20 +93,23 @@ async function handleSetup() {
       ingestion_count: 0,
       private_key_ref: 'stored_in_crypto_api'
     });
-    
-    // Store reference to private key
+
+    // Step 7: Send private key to background service worker
+    // NOTE: If the service worker restarts (MV3 behaviour), the key will be lost.
+    // The user will need to click Setup again. This is by design — the key is never
+    // written to disk, which is the privacy guarantee.
     chrome.runtime.sendMessage({
       action: 'storePrivateKey',
       userId: userId,
       privateKey: keyPair.privateKey
     });
-    
+
     messageEl.className = 'message success';
     messageEl.textContent = '✓ Setup complete! Ready to sync data.';
-    
+
     await updateStatus();
     await loadMetadata();
-    
+
   } catch (err) {
     console.error('Setup error:', err);
     messageEl.className = 'message error';
@@ -119,78 +121,92 @@ async function handleSync() {
   const messageEl = document.getElementById('message');
   messageEl.className = '';
   messageEl.textContent = 'Syncing data...';
-  
+
   try {
     // Get active tab
     const tabs = await chrome.tabs.query({ active: true, currentWindow: true });
     const tab = tabs[0];
-    
+
     if (!tab) throw new Error('No active tab found');
-    
-    // Send message to content script to extract data
-    const response = await chrome.tabs.sendMessage(tab.id, {
-      action: 'extractMetrics'
-    });
-    
-    if (!response || !response.data) {
-      throw new Error('No data found on dashboard');
+
+    // FIX: Wrap sendMessage in a promise with proper error handling
+    // This is the main cause of "Could not establish connection" —
+    // content script wasn't loaded yet (now fixed via document_idle in manifest)
+    let response;
+    try {
+      response = await new Promise((resolve, reject) => {
+        chrome.tabs.sendMessage(tab.id, { action: 'extractMetrics' }, (res) => {
+          if (chrome.runtime.lastError) {
+            reject(new Error(chrome.runtime.lastError.message));
+          } else {
+            resolve(res);
+          }
+        });
+      });
+    } catch (err) {
+      throw new Error('Could not reach content script. Make sure you are on a supported dashboard page (Google Ads, Facebook Ads, or adworth.app).');
     }
-    
+
+    if (!response || !response.data) {
+      throw new Error('No data found on this page. Navigate to a supported dashboard first.');
+    }
+
     // Get stored data
     const stored = await chrome.storage.local.get(['user_id', 'device_fingerprint', 'ingestion_count']);
     const userId = stored.user_id;
-    
+
     if (!userId) throw new Error('Not setup yet. Click Setup Extension first.');
-    
-    // Prepare data
+
+    // Prepare payload
     const timestamp = new Date().toISOString();
     const messageToSign = JSON.stringify({
       ...response.data,
       timestamp: timestamp
     });
-    
-    // Get private key from background
-    return new Promise((resolve, reject) => {
+
+    // Sign via background service worker
+    const signatureBase64 = await new Promise((resolve, reject) => {
       chrome.runtime.sendMessage({
         action: 'signData',
         userId: userId,
         message: messageToSign
-      }, async (signatureBase64) => {
-        if (!signatureBase64) {
-          reject(new Error('Failed to sign data'));
-          return;
+      }, (sig) => {
+        if (chrome.runtime.lastError) {
+          reject(new Error(chrome.runtime.lastError.message));
+        } else if (!sig) {
+          // FIX: Detect service worker key loss and give clear guidance
+          reject(new Error('Session expired — private key was lost when the browser restarted. Please click Setup Extension again.'));
+        } else {
+          resolve(sig);
         }
-        
-        // Send to Adworth
-        const ingestRes = await fetch(`${API_BASE}/extension/ingest`, {
-          method: 'POST',
-          headers: { 'Content-Type': 'application/json' },
-          body: JSON.stringify({
-            user_id: userId,
-            timestamp: timestamp,
-            data: response.data,
-            signature: signatureBase64
-          })
-        });
-        
-        if (!ingestRes.ok) {
-          throw new Error('Data ingest failed: ' + ingestRes.statusText);
-        }
-        
-        const result = await ingestRes.json();
-        
-        // Update counter
-        const newCount = (stored.ingestion_count || 0) + 1;
-        await chrome.storage.local.set({ ingestion_count: newCount });
-        
-        messageEl.className = 'message success';
-        messageEl.textContent = `✓ Data synced! ID: ${result.ingestion_id.substring(0, 8)}...`;
-        
-        await loadMetadata();
-        resolve();
       });
     });
-    
+
+    // Send to Adworth ingestion worker
+    const ingestRes = await fetch(`${API_BASE}/extension/ingest`, {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({
+        user_id: userId,
+        timestamp: timestamp,
+        data: response.data,
+        signature: signatureBase64
+      })
+    });
+
+    if (!ingestRes.ok) throw new Error('Data ingest failed: ' + ingestRes.statusText);
+
+    const result = await ingestRes.json();
+
+    // Update counter
+    const newCount = (stored.ingestion_count || 0) + 1;
+    await chrome.storage.local.set({ ingestion_count: newCount });
+
+    messageEl.className = 'message success';
+    messageEl.textContent = `✓ Data synced! ID: ${result.ingestion_id.substring(0, 8)}...`;
+
+    await loadMetadata();
+
   } catch (err) {
     console.error('Sync error:', err);
     messageEl.className = 'message error';
@@ -206,7 +222,7 @@ function generateDeviceFingerprint() {
     timezone: Intl.DateTimeFormat().resolvedOptions().timeZone,
     language: navigator.language
   };
-  
+
   const str = JSON.stringify(data);
   let hash = 0;
   for (let i = 0; i < str.length; i++) {
