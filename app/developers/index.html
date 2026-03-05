@@ -3,8 +3,8 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Adworth&#8480; — Advertiser Integration</title>
-  <meta name="description" content="Integrate Adworth's cryptographic consent infrastructure into your advertising pipeline. Verifiable consent, automatic compliance.">
+  <title>Adworth℠ — Cryptographic Consent Marketplace</title>
+  <meta name="description" content="Two-sided consent marketplace. Free for everyone. 2% fee on revenue you generate. Advertisers verify consent. Consumers earn for data.">
   <link rel="preconnect" href="https://adworth-fonts.adworthllc.workers.dev">
   <link href="https://adworth-fonts.adworthllc.workers.dev/css2?family=Poppins:wght@300;400;500;600;700;800;900&family=DM+Serif+Display:ital@0;1&display=swap" rel="stylesheet">
   <style>
@@ -90,6 +90,54 @@
       margin-bottom: 2rem;
       max-width: 700px;
       line-height: 1.7;
+    }
+
+    /* Two-sided marketplace */
+    .two-sided-flow {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 2rem;
+      margin-bottom: 2rem;
+      align-items: start;
+    }
+    .marketplace-side {
+      background: var(--white);
+      border: 1.5px solid var(--border);
+      border-radius: 14px;
+      padding: 2rem;
+    }
+    .marketplace-side h3 {
+      font-size: 1rem;
+      font-weight: 700;
+      color: var(--green-deep);
+      margin-bottom: 0.75rem;
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+    .marketplace-side .subtitle {
+      font-size: 0.8rem;
+      color: var(--ink-60);
+      margin-bottom: 1.25rem;
+      font-style: italic;
+    }
+    .marketplace-side ul {
+      list-style: none;
+    }
+    .marketplace-side li {
+      font-size: 0.85rem;
+      color: var(--ink-60);
+      padding: 0.5rem 0;
+      padding-left: 1.5rem;
+      position: relative;
+      line-height: 1.6;
+    }
+    .marketplace-side li::before {
+      content: '✓';
+      position: absolute;
+      left: 0;
+      color: var(--green-accent);
+      font-weight: 700;
     }
 
     /* Flow diagram */
@@ -375,6 +423,8 @@
       line-height: 1.6;
       margin-top: 2rem;
     }
+    .disclosure strong { color: var(--green-deep); }
+    .disclosure a { color: var(--green-primary); font-weight: 600; }
 
     /* Beta banner */
     .beta-banner {
@@ -401,6 +451,7 @@
     }
 
     @media (max-width: 768px) {
+      .two-sided-flow { grid-template-columns: 1fr; }
       .flow-steps { flex-direction: column; align-items: center; }
       .flow-arrow { transform: rotate(90deg); padding: 0.5rem 0; }
       .features-grid { grid-template-columns: 1fr; }
@@ -411,12 +462,12 @@
 <body>
   <div class="beta-banner">
     <span class="beta-tag">Beta</span>
-    This is a patent-pending proof of concept. Advertiser integration and enterprise licensing are under development.
+    This is a patent-pending proof of concept. Full marketplace integration and enterprise licensing are under development.
   </div>
   <div class="header">
     <div>
-      <h1>Adworth&#8480; for Advertisers</h1>
-      <div class="subtitle">Integration Guide &middot; API Reference &middot; Live Sandbox</div>
+      <h1>Adworth℠ — Consent Marketplace</h1>
+      <div class="subtitle">Free for everyone · 2% fee on revenue · API Reference · Live Sandbox</div>
     </div>
     <span class="badge">Patent Pending</span>
   </div>
@@ -425,11 +476,44 @@
 
     <!-- Hero -->
     <div class="integration-hero">
-      <h2>Stop hoping users consented.<br><em>Verify it cryptographically.</em></h2>
-      <p>One API call before you access user data. If they consented — you're in. If not — you're blocked. No guesswork. No compliance risk. No lawsuits.</p>
+      <h2>Cryptographic consent<br><em>for both sides of the market.</em></h2>
+      <p>Consumers earn for data. Advertisers verify consent cryptographically. Adworth takes 2% marketplace fee when revenue is generated. Free forever. No minimums. No gatekeeping.</p>
     </div>
 
-    <!-- Integration Flow -->
+    <!-- Two-Sided Marketplace -->
+    <div class="section">
+      <div class="section-label">The Marketplace</div>
+      <div class="section-title">How both sides work together</div>
+      <div class="section-desc">Adworth is a two-sided consent marketplace. Consumers own their data and sell consent. Advertisers verify compliance and buy access. We take 2% when revenue flows.</div>
+
+      <div class="two-sided-flow">
+        <div class="marketplace-side">
+          <h3>🧑 Consumers</h3>
+          <div class="subtitle">Privacy Cockpit Extension</div>
+          <ul>
+            <li><strong>Access cost:</strong> Free forever</li>
+            <li><strong>What you do:</strong> Grant consent to advertisers for your data</li>
+            <li><strong>What you earn:</strong> Direct payment per consent token</li>
+            <li><strong>How Adworth gets paid:</strong> 2% of your earnings (only taken when you make money)</li>
+            <li><strong>Example:</strong> Nike pays $1.00 for your data. You get $0.98. Adworth takes $0.02.</li>
+          </ul>
+        </div>
+
+        <div class="marketplace-side">
+          <h3>🏢 Advertisers</h3>
+          <div class="subtitle">Bouncer API + Governance Engine</div>
+          <ul>
+            <li><strong>Access cost:</strong> Free to verify consent</li>
+            <li><strong>What you do:</strong> Call /evaluate before accessing data</li>
+            <li><strong>What you get:</strong> Cryptographic proof of consent (or block reason)</li>
+            <li><strong>How Adworth gets paid:</strong> 2% of marketplace transactions (via consumer pool)</li>
+            <li><strong>Premium tiers:</strong> Analytics, priority support, white-label ($99+/mo)</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+
+    <!-- Consent Verification Flow -->
     <div class="section">
       <div class="section-label">How It Works</div>
       <div class="section-title">Five-step consent verification</div>
@@ -676,30 +760,27 @@
     <!-- Pricing -->
     <div class="section">
       <div class="section-label">Pricing</div>
-      <div class="section-title">Transaction fee model</div>
-      <div class="section-desc">Like Stripe charges per payment, Adworth charges per consent transaction. No seat licenses. No enterprise minimums during beta.</div>
+      <div class="section-title">2% marketplace model. That's it.</div>
+      <div class="section-desc">No seat licenses. No minimums. No gatekeeping. Everyone starts free. Adworth takes 2% when revenue flows through the marketplace.</div>
 
       <div class="pricing-card">
-        <div class="section-label">Marketplace Fee</div>
-        <div class="price">2–5%</div>
-        <div class="price-sub">per consent transaction</div>
+        <div class="section-label">Fair Market</div>
+        <div class="price">2%</div>
+        <div class="price-sub">marketplace fee on revenue</div>
         <ul class="pricing-features">
           <li>Unlimited API calls to /evaluate endpoint</li>
           <li>Real-time consent verification</li>
           <li>Automatic ledger recording</li>
-          <li>Compliance documentation</li>
+          <li>Cryptographic proof of compliance</li>
           <li>Block reason analytics</li>
-          <li>Enterprise licensing available (2026)</li>
+          <li>Premium tiers available (analytics, support)</li>
         </ul>
       </div>
     </div>
 
     <!-- Disclosure -->
     <div class="disclosure">
-      <strong>Transparency Disclosure:</strong> This integration guide connects to the live Adworth Privacy Governance
-      Engine (Patent Component #2). The API sandbox sends real requests and records real decisions in the Invisibility
-      Ledger. Pricing is indicative and subject to change. Enterprise licensing ($15K–$50K/year) will be available in
-      2026. The consent marketplace with user payments is under development.
+      <strong>Complete Transparency Disclosure:</strong> This integration guide connects to the live Adworth Privacy Governance Engine (Patent Component #2). The API sandbox sends real requests and records real decisions in the Invisibility Ledger. <strong>Adworth takes exactly 2% marketplace fee</strong> — no hidden charges, no enterprise gatekeeping. Both consumers and advertisers start free. We only make money when marketplace revenue flows. The consent marketplace is live. Premium tiers (analytics, priority support, white-label) are under development. See <a href="/privacy.html">Privacy Policy</a> and <a href="/terms.html">Terms of Service</a> for complete details.
     </div>
   </div>
 
