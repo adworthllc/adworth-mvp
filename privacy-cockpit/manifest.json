@@ -3,22 +3,19 @@
   "name": "Adworth Privacy Cockpit",
   "version": "1.0.0",
   "description": "Extract and protect your marketing data with Ed25519 cryptography",
-
   "permissions": [
     "storage",
     "activeTab"
   ],
-
   "host_permissions": [
     "https://ads.google.com/*",
     "https://business.facebook.com/*",
-    "https://adworth.app/demo/*"
+    "https://adworth.app/demo/*",
+    "file://*/*"
   ],
-
   "background": {
     "service_worker": "background.js"
   },
-
   "action": {
     "default_popup": "popup.html",
     "default_icon": {
@@ -28,13 +25,13 @@
     },
     "default_title": "Adworth Privacy Cockpit"
   },
-
   "content_scripts": [
     {
       "matches": [
         "https://ads.google.com/*",
         "https://business.facebook.com/*",
-        "https://adworth.app/demo/*"
+        "https://adworth.app/demo/*",
+        "file://*/*"
       ],
       "js": ["content-script.js"],
       "run_at": "document_start"
