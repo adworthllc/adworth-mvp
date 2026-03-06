@@ -1,1 +1,268 @@
+{
+  "schema_version": "1.0.0",
+  "schema_id": "adworth-regulation-rules",
+  "effective_date": "2026-03-05",
+  "maintained_by": "Adworth LLC",
+  "description": "Machine-readable regulation rules table for the Removal Payload Engine (RPE). Deterministic at runtime — no fuzzy interpretation. Evaluated against consent token metadata to generate legally-cited deletion requests.",
+  "audit_note": "This file is version-controlled in GitHub (adworthllc/adworth-mvp). Changes require a pull request. The KV-synced copy (adworth-rules-kv) is what the RPE reads at runtime. GitHub is source of truth.",
 
+  "regulations": [
+
+    {
+      "id": "GDPR",
+      "version": "1.0.0",
+      "name": "General Data Protection Regulation",
+      "jurisdiction": "EU",
+      "jurisdiction_scope": "global_if_eu_data_subject",
+      "enacted": "2018-05-25",
+      "status": "active",
+      "enforcement_body": "Supervisory Authority (member-state specific)",
+      "base_penalty_currency": "EUR",
+      "penalty_tiers": [
+        {
+          "tier": 1,
+          "max_amount": 10000000,
+          "max_percent_global_turnover": 2,
+          "applies_to": "procedural_violations"
+        },
+        {
+          "tier": 2,
+          "max_amount": 20000000,
+          "max_percent_global_turnover": 4,
+          "applies_to": "substantive_violations_including_deletion_failure"
+        }
+      ],
+      "rights": [
+        {
+          "right_id": "GDPR-ART17",
+          "name": "Right to Erasure (Right to be Forgotten)",
+          "article": "Article 17",
+          "full_citation": "Regulation (EU) 2016/679, Article 17 — Right to erasure ('right to be forgotten')",
+          "trigger_conditions": [
+            "consent_revoked",
+            "token_expired",
+            "purpose_fulfilled",
+            "data_unlawfully_processed"
+          ],
+          "controller_obligation": "Erase personal data without undue delay upon valid request",
+          "response_deadline_days": 30,
+          "response_deadline_extendable_days": 60,
+          "extension_requires": "complexity_or_volume_justification",
+          "applies_to_third_parties": true,
+          "third_party_obligation": "Controller must inform processors and third parties of erasure request where technically feasible",
+          "third_party_citation": "Article 17(2)",
+          "exceptions": [
+            "freedom_of_expression",
+            "legal_obligation",
+            "public_interest",
+            "legal_claims"
+          ],
+          "rpe_payload_fields": [
+            "data_subject_id",
+            "consent_token_id",
+            "revocation_timestamp",
+            "ledger_entry_id",
+            "cryptographic_proof_hash",
+            "controller_name",
+            "deletion_deadline_iso"
+          ]
+        },
+        {
+          "right_id": "GDPR-ART7",
+          "name": "Conditions for Consent",
+          "article": "Article 7",
+          "full_citation": "Regulation (EU) 2016/679, Article 7 — Conditions for consent",
+          "trigger_conditions": [
+            "consent_not_freely_given",
+            "consent_not_specific",
+            "consent_not_informed",
+            "consent_not_unambiguous"
+          ],
+          "controller_obligation": "Demonstrate that data subject gave valid consent; cease processing if consent withdrawn",
+          "response_deadline_days": 30,
+          "applies_to_third_parties": false,
+          "rpe_payload_fields": [
+            "consent_token_id",
+            "consent_grant_timestamp",
+            "consent_scope",
+            "consent_advertiser_id",
+            "ledger_entry_id"
+          ]
+        }
+      ]
+    },
+
+    {
+      "id": "CCPA_CPRA",
+      "version": "1.0.0",
+      "name": "California Consumer Privacy Act / California Privacy Rights Act",
+      "jurisdiction": "US-CA",
+      "jurisdiction_scope": "california_residents_and_businesses_above_threshold",
+      "enacted": "2020-01-01",
+      "amended": "2023-01-01",
+      "status": "active",
+      "enforcement_body": "California Privacy Protection Agency (CPPA)",
+      "base_penalty_currency": "USD",
+      "penalty_tiers": [
+        {
+          "tier": 1,
+          "max_amount_per_violation": 2500,
+          "applies_to": "unintentional_violations"
+        },
+        {
+          "tier": 2,
+          "max_amount_per_violation": 7500,
+          "applies_to": "intentional_violations_or_minors_data"
+        }
+      ],
+      "applicability_thresholds": {
+        "annual_gross_revenue_usd": 25000000,
+        "consumers_data_bought_sold_annually": 100000,
+        "revenue_from_selling_data_percent": 50
+      },
+      "rights": [
+        {
+          "right_id": "CCPA-1798105",
+          "name": "Right to Delete",
+          "article": "§ 1798.105",
+          "full_citation": "California Civil Code § 1798.105 — Right to delete personal information",
+          "trigger_conditions": [
+            "consent_revoked",
+            "token_expired",
+            "consumer_deletion_request"
+          ],
+          "controller_obligation": "Delete consumer personal information upon verified request; direct service providers to do the same",
+          "response_deadline_days": 45,
+          "response_deadline_extendable_days": 45,
+          "extension_requires": "notice_to_consumer",
+          "applies_to_third_parties": true,
+          "third_party_obligation": "Business must direct service providers, contractors, and third parties to delete consumer data",
+          "third_party_citation": "§ 1798.105(c)",
+          "exceptions": [
+            "complete_transaction",
+            "security_incident_detection",
+            "legal_obligation",
+            "free_speech",
+            "research",
+            "internal_uses_reasonably_aligned_with_consumer_expectations"
+          ],
+          "rpe_payload_fields": [
+            "consumer_id",
+            "consent_token_id",
+            "revocation_timestamp",
+            "ledger_entry_id",
+            "cryptographic_proof_hash",
+            "business_name",
+            "deletion_deadline_iso",
+            "service_provider_notice_required"
+          ]
+        },
+        {
+          "right_id": "CCPA-1798120",
+          "name": "Right to Opt-Out of Sale or Sharing",
+          "article": "§ 1798.120",
+          "full_citation": "California Civil Code § 1798.120 — Right to opt-out of sale or sharing of personal information",
+          "trigger_conditions": [
+            "opt_out_signal_received",
+            "consent_revoked",
+            "gpc_signal_detected"
+          ],
+          "controller_obligation": "Stop selling or sharing personal information upon opt-out; honor Global Privacy Control signal",
+          "response_deadline_days": 15,
+          "applies_to_third_parties": true,
+          "third_party_obligation": "Third parties may not sell personal information received after opt-out without new consent",
+          "rpe_payload_fields": [
+            "consumer_id",
+            "consent_token_id",
+            "opt_out_timestamp",
+            "ledger_entry_id",
+            "gpc_signal_present"
+          ]
+        }
+      ]
+    },
+
+    {
+      "id": "DSA",
+      "version": "1.0.0",
+      "name": "Digital Services Act",
+      "jurisdiction": "EU",
+      "jurisdiction_scope": "platforms_offering_services_in_eu",
+      "enacted": "2024-02-17",
+      "status": "active",
+      "enforcement_body": "European Commission (VLOPs/VLOSEs); National Digital Services Coordinators",
+      "base_penalty_currency": "EUR",
+      "penalty_tiers": [
+        {
+          "tier": 1,
+          "max_percent_global_turnover": 6,
+          "applies_to": "non_compliance"
+        },
+        {
+          "tier": 2,
+          "max_percent_global_turnover": 1,
+          "applies_to": "incorrect_incomplete_misleading_information"
+        }
+      ],
+      "platform_tiers": {
+        "intermediary_services": "all_providers",
+        "hosting_services": "subset",
+        "online_platforms": "subset",
+        "vlop_vlose": "very_large_platforms_45m_plus_eu_users"
+      },
+      "rights": [
+        {
+          "right_id": "DSA-ART26",
+          "name": "Transparency of Advertising",
+          "article": "Article 26",
+          "full_citation": "Regulation (EU) 2022/2065, Article 26 — Transparency of online advertising",
+          "trigger_conditions": [
+            "ad_shown_without_disclosure",
+            "targeting_parameters_not_disclosed",
+            "advertiser_identity_not_disclosed"
+          ],
+          "controller_obligation": "Label ads clearly; disclose advertiser identity, that it is advertising, and main targeting parameters; do not use sensitive categories for targeting",
+          "response_deadline_days": null,
+          "applies_to_third_parties": false,
+          "rpe_payload_fields": [
+            "platform_name",
+            "ad_id",
+            "advertiser_id",
+            "targeting_parameters_observed",
+            "disclosure_present",
+            "ledger_entry_id",
+            "scan_timestamp"
+          ]
+        },
+        {
+          "right_id": "DSA-ART25",
+          "name": "Prohibition of Dark Patterns",
+          "article": "Article 25",
+          "full_citation": "Regulation (EU) 2022/2065, Article 25 — Online interface design and organisation",
+          "trigger_conditions": [
+            "deceptive_consent_ui_detected",
+            "dark_pattern_consent_flow",
+            "consent_not_freely_given_due_to_interface"
+          ],
+          "controller_obligation": "Do not design interfaces that deceive or manipulate users; do not make opt-out harder than opt-in",
+          "response_deadline_days": null,
+          "applies_to_third_parties": false,
+          "rpe_payload_fields": [
+            "platform_name",
+            "interface_element_description",
+            "dark_pattern_type",
+            "ledger_entry_id",
+            "scan_timestamp"
+          ]
+        }
+      ]
+    }
+
+  ],
+
+  "extensibility": {
+    "planned_v1_1": ["LGPD_BR", "UK_GDPR", "CAN_SPAM"],
+    "planned_v1_2": ["VCDPA_VA", "CPA_CO", "CTDPA_CT"],
+    "add_regulation_instructions": "Add a new top-level object to the regulations array following the schema pattern above. Bump schema_version minor. Open a PR. After merge and tag, sync to KV using the adworth-rules Worker /admin/sync endpoint."
+  }
+}
