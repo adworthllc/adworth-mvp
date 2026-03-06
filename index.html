@@ -113,7 +113,7 @@
           <li><a href="#transparency">How We Make Money</a></li>
           <li><a href="#founder">Founder</a></li>
           <li><a href="#investors">Investors</a></li>
-          <li><a href="/enterprise.html" style="color: var(--gold); font-weight: 600;">Enterprise</a></li>
+          <li><a href="/enterprise.html">Enterprise</a></li>
           <li><a href="#waitlist" class="nav-cta">Join Waitlist</a></li>
         </ul>
       </nav>
@@ -350,7 +350,7 @@
         </div>
 
         <div style="margin-top: 2rem;">
-          <a href="mailto:hello&#64;adworth.app" class="btn btn-white">Schedule a Meeting →</a>
+          <a href="mailto:hello@adworth.app" class="btn btn-white">Schedule a Meeting &rarr;</a>
         </div>
       </div>
     </section>
@@ -387,7 +387,10 @@
             <li><a href="#how-it-works">How It Works</a></li>
             <li><a href="#transparency">How We Make Money</a></li>
             <li><a href="/dashboard.html">Consumer Demo</a></li>
+            <li><a href="/ccpa-gap.html">CCPA Enforcement Gap</a></li>
+            <li><a href="/ledger.html">Consent Ledger</a></li>
             <li><a href="/enterprise.html">Enterprise</a></li>
+            <li><a href="#waitlist">Join Waitlist</a></li>
           </ul>
         </div>
         <div class="footer-links">
@@ -395,7 +398,7 @@
           <ul>
             <li><a href="#founder">Founder</a></li>
             <li><a href="#investors">Investors</a></li>
-            <li><a href="mailto:hello&#64;adworth.app">Contact</a></li>
+            <li><a href="mailto:hello@adworth.app">hello@adworth.app</a></li>
           </ul>
         </div>
         <div class="footer-links">
@@ -408,7 +411,7 @@
       </div>
       <div class="footer-bottom">
         <span>© 2026 Adworth℠ LLC · Patent Pending · Charleston, SC</span>
-        <span>Built in public · Raising seed round · <a href="/enterprise.html" style="color: var(--gold); text-decoration: none;">Investor Overview →</a></span>
+        <span>Built in public · Raising seed round</span>
       </div>
     </div>
   </footer>
@@ -423,7 +426,9 @@
         }
       });
     }, { threshold: 0.1, rootMargin: '0px 0px -40px 0px' });
-    document.querySelectorAll('.step').forEach(el => observer.observe(el));
+    document.querySelectorAll('.step').forEach((el, i) => {
+        el.style.transitionDelay = `${i * 60}ms`;
+    });
   </script>
 
 </body>
