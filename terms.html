@@ -7,7 +7,7 @@
     <meta name="description" content="Adworth Terms of Service &mdash; the rules governing your use of our platform.">
     <link rel="icon" type="image/x-icon" href="/favicon.ico">
     <link rel="preconnect" href="https://adworth-fonts.adworthllc.workers.dev">
-    <link href="https://adworth-fonts.adworthllc.workers.dev/css2?family=Poppins:wght@300;400;500;600;700;800;900&amp;family=DM+Serif+Display:ital@0;1&amp;display=swap" rel="stylesheet">
+    <link href="https://adworth-fonts.adworthllc.workers.dev/css2?family=Poppins:wght@300;400;500;600;700;800;900&family=DM+Serif+Display:ital@0;1&display=swap" rel="stylesheet">
     <style>
         *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
         :root {
@@ -105,7 +105,7 @@
         <div class="inner">
             <span class="page-label">Legal</span>
             <h1>Terms of Service</h1>
-            <p>Last updated: March 4, 2026 &middot; Adworth&#8480; LLC &middot; Charleston, SC</p>
+            <p>Last updated: March 6, 2026 &middot; Adworth&#8480; LLC &middot; Charleston, SC</p>
         </div>
     </div>
 
@@ -119,6 +119,7 @@
                     <div class="toc-row"><span class="toc-num">2.</span><span class="toc-link"><a href="#description">Description of Services</a></span></div>
                     <div class="toc-row"><span class="toc-num">3.</span><span class="toc-link"><a href="#infrastructure">Infrastructure &amp; Third Parties</a></span></div>
                     <div class="toc-row"><span class="toc-num">3a.</span><span class="toc-link"><a href="#ingestion-api">Ingestion API &amp; Privacy Cockpit Extension</a></span></div>
+                    <div class="toc-row"><span class="toc-num">3b.</span><span class="toc-link"><a href="#regulation-rules">Regulation Rules Table</a></span></div>
                     <div class="toc-row"><span class="toc-num">4.</span><span class="toc-link"><a href="#consent-api">Consent API &amp; Ledger Terms</a></span></div>
                     <div class="toc-row"><span class="toc-num">5.</span><span class="toc-link"><a href="#state-monitor">State-Persistence Monitor &amp; RPE</a></span></div>
                     <div class="toc-row"><span class="toc-num">6.</span><span class="toc-link"><a href="#governance-engine">Privacy Governance Engine Terms</a></span></div>
@@ -140,15 +141,15 @@
             </div>
         </div>
 
-        <!-- UPDATED March 4 2026: adworth-rpe standalone worker, /submit JSON endpoint, dashboard inline waitlist, footer links, ingestion API + Privacy Cockpit, founding member definition, indicative pricing, DPA path -->
+        <!-- Updated March 6 2026: adworth-rules Worker #11, RPE v2.0.0 runtime rule evaluation, regulation rules table v1.0.0 -->
         <div class="highlight-box">
-            <strong>The short version:</strong> Use Adworth legally and in good faith. Don&rsquo;t misuse the platform or infringe on our intellectual property. The Ad Intelligence pipeline runs entirely through our own <code>adworth-ads</code> Cloudflare Worker, which includes a PII Advertiser Name Classifier that detects and anonymizes individual person names in public ad data before any response leaves the worker &mdash; only a non-reversible SHA-256 audit hash is retained. Consent tokens and ledger entries are governed by specific rules around immutability and data ownership. The State-Persistence Monitor and Removal Payload Engine currently operate in simulated mode for demonstration purposes; the RPE also runs as a standalone worker (<code>adworth-rpe</code>) with public verification URLs and a demo mode for the enterprise page. The Privacy Governance Engine enforces consent in real time. The Consent Widget and Advertiser Integration sandbox are proof-of-concept demonstrations. The Ingestion API (<code>adworth-ingestion-api</code>) and Privacy Cockpit Chrome extension allow advertisers to securely submit cryptographically signed marketing data &mdash; private keys are generated on-device and never transmitted to Adworth. API access requires authentication; keys are stored in <code>sessionStorage</code> only and never persisted server-side. Waitlist submissions are processed entirely through our own Cloudflare Worker &mdash; no third-party form processors or email services are used. We&rsquo;re in early stages and provide the service as-is. Enterprise pricing and program details are indicative and subject to change. Questions? <a href="mailto:hello@adworth.app">hello&#64;adworth.app</a>.
+            <strong>The short version:</strong> Use Adworth legally and in good faith. Don&rsquo;t misuse the platform or infringe on our intellectual property. The Ad Intelligence pipeline runs entirely through our own <code>adworth-ads</code> Cloudflare Worker, which includes a PII Advertiser Name Classifier that detects and anonymizes individual person names in public ad data before any response leaves the worker &mdash; only a non-reversible SHA-256 audit hash is retained. Consent tokens and ledger entries are governed by specific rules around immutability and data ownership. The State-Persistence Monitor and Removal Payload Engine currently operate in simulated mode for demonstration purposes. The RPE runs as a standalone worker (<code>adworth-rpe</code> v2.0.0) and now evaluates regulation rules at runtime from a versioned, machine-readable regulation rules table (<code>adworth-rules</code> Worker, rules v1.0.0, effective March 5, 2026) &mdash; legal citations, deadlines, and obligations are no longer hardcoded but are fetched deterministically from version-controlled JSON. The Privacy Governance Engine enforces consent in real time. The Ingestion API (<code>adworth-ingestion-api</code>) and Privacy Cockpit Chrome extension allow advertisers to securely submit cryptographically signed marketing data &mdash; private keys are generated on-device and never transmitted to Adworth. API access requires authentication; keys are stored in <code>sessionStorage</code> only and never persisted server-side. Waitlist submissions are processed through our own Cloudflare Worker. Enterprise pricing is indicative. Questions? <a href="mailto:hello@adworth.app">hello@adworth.app</a>.
         </div>
 
         <!-- 01 -->
         <div class="policy-section" id="acceptance">
             <h2><span class="section-num">01</span> Acceptance of Terms</h2>
-            <p>By accessing or using any Adworth&#8480; service &mdash; including adworth.app, app.adworth.app, the Ad Intelligence pipeline, the Consent API, the Privacy Governance Engine, the State-Persistence Monitor, the Removal Payload Engine, the Invisibility Ledger, the Ingestion API, the Privacy Cockpit Chrome extension, or any associated applications &mdash; you agree to be bound by these Terms of Service and our <a href="/privacy.html">Privacy Policy</a>.</p>
+            <p>By accessing or using any Adworth&#8480; service &mdash; including adworth.app, app.adworth.app, the Ad Intelligence pipeline, the Consent API, the Privacy Governance Engine, the State-Persistence Monitor, the Removal Payload Engine, the Invisibility Ledger, the Regulation Rules Worker, the Ingestion API, the Privacy Cockpit Chrome extension, or any associated applications &mdash; you agree to be bound by these Terms of Service and our <a href="/privacy.html">Privacy Policy</a>.</p>
             <p>If you do not agree to these terms, please do not use our services.</p>
         </div>
 
@@ -163,18 +164,19 @@
                 <li>An append-only Invisibility Ledger recording all consent lifecycle and enforcement events (Patent Component #3)</li>
                 <li>A Privacy Governance Engine that enforces consent boundaries in real time by evaluating every data access request (Patent Component #2)</li>
                 <li>A State-Persistence Monitor that scans for unauthorized data retention after consent revocation or expiry (Patent Component #4)</li>
-                <li>A Removal Payload Engine available both within the State-Persistence Monitor and as a standalone worker (<code>adworth-rpe</code>) that generates legally-cited, HMAC-SHA256-signed deletion requests when violations are detected (Patent Component #5) &mdash; includes public verification URLs, a demo mode on the enterprise page, and support for five regulatory frameworks (GDPR Article 17, GDPR Article 15, CCPA &sect; 1798.105, CPRA &sect; 1798.100, DSA Article 26)</li>
+                <li>A Removal Payload Engine (<code>adworth-rpe</code> v2.0.0) available both within the State-Persistence Monitor and as a standalone Cloudflare Worker that generates legally-cited, HMAC-SHA256-signed deletion requests when violations are detected (Patent Component #5). As of March 6, 2026, the RPE evaluates regulation rules at runtime from the <code>adworth-rules</code> Worker rather than using hardcoded citations &mdash; supported rights include <code>GDPR-ART17</code> (Right to Erasure), <code>GDPR-ART7</code> (Conditions for Consent), <code>CCPA-1798105</code> (Right to Delete), <code>CCPA-1798120</code> (Right to Opt-Out), <code>DSA-ART26</code> (Transparency of Advertising), and <code>DSA-ART25</code> (Prohibition of Dark Patterns)</li>
+                <li>A Regulation Rules Worker (<code>adworth-rules</code>) that serves a versioned, machine-readable JSON regulation rules table to the RPE at runtime. Rules are version-controlled in GitHub, stored in an isolated Cloudflare KV namespace (<code>ADWORTH_RULES</code>), and evaluated deterministically &mdash; no fuzzy interpretation. Current version: v1.0.0, effective March 5, 2026</li>
                 <li>An Ingestion API (<code>adworth-ingestion-api</code> Cloudflare Worker) that receives, cryptographically verifies, and stores Ed25519-signed marketing data submitted by the Privacy Cockpit Chrome extension &mdash; private keys are generated on user devices and never transmitted to Adworth</li>
                 <li>A Privacy Cockpit Chrome extension (Manifest V3) that extracts campaign-level metrics from advertising platform dashboards, strips all PII client-side, signs the sanitized data with a device-native Ed25519 keypair, and submits it to the Ingestion API</li>
                 <li>A Consent Widget for users to grant and revoke consent tokens through a visual interface (proof-of-concept demonstration)</li>
                 <li>An Advertiser Integration sandbox for testing data access requests against the Governance Engine (proof-of-concept demonstration)</li>
-                <li>A waitlist for our upcoming cryptographic consent marketplace, processed via our own Cloudflare Worker with an authenticated admin dashboard for waitlist management</li>
+                <li>A waitlist for our upcoming cryptographic consent marketplace, processed via our own Cloudflare Worker with an authenticated admin dashboard</li>
                 <li>A CCPA Enforcement Gap page (<code>adworth.app/ccpa-gap</code>) displaying aggregated data from publicly available CCPA transparency reports under California Civil Code &sect; 1798.185(a)(7)</li>
                 <li>Informational content at adworth.app</li>
             </ul>
             <p>We are an early-stage company. Our services are actively being developed and may change, be interrupted, or be discontinued at any time. We will make reasonable efforts to notify users of significant changes.</p>
             <div class="demo-notice">
-                <strong>Current operational status:</strong> The State-Persistence Monitor and Removal Payload Engine are functional but currently operate using simulated data broker checks. No live connections to external data brokers exist at this time. The Ingestion API and Privacy Cockpit extension are in active development for investor demonstration and user testing. Demo-mode notices generated via the enterprise page carry no legal effect. These components will transition to live operation as the platform matures, and these terms will be updated accordingly.
+                <strong>Current operational status:</strong> The State-Persistence Monitor and Removal Payload Engine are functional but currently operate using simulated data broker checks. No live connections to external data brokers exist at this time. The Ingestion API and Privacy Cockpit extension are in active development for investor demonstration and user testing. Demo-mode notices generated via the enterprise page carry no legal effect. The Regulation Rules Worker (<code>adworth-rules</code>) is live and serving v1.0.0 rules to the RPE in production. These components will transition to live operation as the platform matures, and these terms will be updated accordingly.
             </div>
         </div>
 
@@ -184,19 +186,19 @@
             <p>Adworth relies on the following infrastructure providers to deliver its services. By using our services, you acknowledge that your use is also subject to these providers&rsquo; applicable terms and privacy policies.</p>
 
             <h3>Cloudflare Workers</h3>
-            <p>All server-side logic runs on Cloudflare Workers edge infrastructure. Our complete active worker fleet: <code>adworth-ads</code> (Ad Intelligence pipeline and PII Advertiser Name Classifier), <code>adworth-consent-api</code> (Consent Token API), <code>adworth-bouncer</code> (Privacy Governance Engine), <code>adworth-ledger</code> (Invisibility Ledger read-only viewer), <code>adworth-state-monitor</code> (State-Persistence Monitor), <code>adworth-rpe</code> (standalone Removal Payload Engine with public verification endpoints and demo mode), <code>adworth-waitlist</code> (waitlist processing and authenticated admin dashboard), <code>adworth-ccpa-gap</code> (CCPA Enforcement Gap public API and admin dashboard), <code>adworth-ingestion-api</code> (Ed25519 signature verification, public key management, and ingestion data storage for the Privacy Cockpit extension), and <code>adworth-fonts</code> (self-hosted font delivery). Cloudflare processes request metadata as part of serving and securing our services. Cloudflare&rsquo;s terms: <a href="https://www.cloudflare.com/terms/" target="_blank" rel="noopener noreferrer">cloudflare.com/terms</a>.</p>
+            <p>All server-side logic runs on Cloudflare Workers edge infrastructure. Our complete active worker fleet (11 Workers): <code>adworth-ads</code> (Ad Intelligence pipeline and PII Advertiser Name Classifier), <code>adworth-consent-api</code> (Consent Token API), <code>adworth-bouncer</code> (Privacy Governance Engine), <code>adworth-ledger</code> (Invisibility Ledger read-only viewer), <code>adworth-state-monitor</code> (State-Persistence Monitor), <code>adworth-rpe</code> (standalone Removal Payload Engine v2.0.0 with runtime rule evaluation and public verification endpoints), <code>adworth-rules</code> (Regulation Rules Worker serving versioned machine-readable regulation rules table from isolated <code>ADWORTH_RULES</code> KV namespace), <code>adworth-waitlist</code> (waitlist processing and authenticated admin dashboard), <code>adworth-ccpa-gap</code> (CCPA Enforcement Gap public API and admin dashboard), <code>adworth-ingestion-api</code> (Ed25519 signature verification, public key management, and ingestion data storage for the Privacy Cockpit extension), and <code>adworth-fonts</code> (self-hosted font delivery). All Workers use a shared <code>API_SECRET_KEY</code> environment variable for authentication, stored encrypted in Cloudflare&rsquo;s environment variable system. Cloudflare processes request metadata as part of serving and securing our services. Cloudflare&rsquo;s terms: <a href="https://www.cloudflare.com/terms/" target="_blank" rel="noopener noreferrer">cloudflare.com/terms</a>.</p>
 
             <h3>Vercel</h3>
             <p>Our primary website (adworth.app) is hosted and deployed via Vercel as part of a GitHub &rarr; Vercel &rarr; Cloudflare pipeline. Vercel may retain standard server access logs. <strong>Vercel Analytics is explicitly disabled on our deployment.</strong> Vercel&rsquo;s terms: <a href="https://vercel.com/legal/terms" target="_blank" rel="noopener noreferrer">vercel.com/legal/terms</a>.</p>
 
             <h3>IONOS</h3>
-            <p>IONOS is used for two purposes: (1) hosting the <code>app.adworth.app</code> subdomain served from IONOS webspace (separate from the main adworth.app Vercel deployment), and (2) routing system email from <code>no-reply&#64;adworth.app</code>. No user personal data is stored within IONOS infrastructure beyond standard server access logs. IONOS terms: <a href="https://www.ionos.com/terms-gtc/" target="_blank" rel="noopener noreferrer">ionos.com/terms-gtc</a>.</p>
+            <p>IONOS is used for two purposes: (1) hosting the <code>app.adworth.app</code> subdomain served from IONOS webspace (separate from the main adworth.app Vercel deployment), and (2) routing system email from <code>no-reply@adworth.app</code>. No user personal data is stored within IONOS infrastructure beyond standard server access logs. IONOS terms: <a href="https://www.ionos.com/terms-gtc/" target="_blank" rel="noopener noreferrer">ionos.com/terms-gtc</a>.</p>
 
             <h3>GitHub</h3>
-            <p>Source code is hosted in a private repository under the adworthllc organization on GitHub. GitHub stores code and deployment history only. No user data &mdash; including waitlist emails, consent tokens, ledger entries, ingestion records, or any personally identifiable information &mdash; is stored in or transmitted through GitHub. API secrets and environment variable values are never committed to version control. GitHub&rsquo;s terms: <a href="https://docs.github.com/en/site-policy/github-terms/github-terms-of-service" target="_blank" rel="noopener noreferrer">docs.github.com/terms</a>.</p>
+            <p>Source code is hosted in a private repository under the adworthllc organization on GitHub. The <code>adworth-rules.json</code> regulation rules table is version-controlled in GitHub as the source of truth for all legal citations evaluated by the RPE &mdash; changes require a commit and are synced to Cloudflare KV before taking effect at runtime. No user data &mdash; including waitlist emails, consent tokens, ledger entries, ingestion records, or any personally identifiable information &mdash; is stored in or transmitted through GitHub. API secrets and environment variable values are never committed to version control. GitHub&rsquo;s terms: <a href="https://docs.github.com/en/site-policy/github-terms/github-terms-of-service" target="_blank" rel="noopener noreferrer">docs.github.com/terms</a>.</p>
 
             <h3>Proton Mail</h3>
-            <p>Correspondence sent to <code>hello&#64;adworth.app</code> is handled via Proton Mail, which provides end-to-end encrypted email infrastructure. Email content you send to us is stored within Proton Mail and is not shared with third parties except as required by law. Waitlist broadcast communications are sent via Proton Mail using BCC to protect subscriber email addresses from other recipients. Proton Mail&rsquo;s terms: <a href="https://proton.me/legal/terms" target="_blank" rel="noopener noreferrer">proton.me/legal/terms</a>.</p>
+            <p>Correspondence sent to <code>hello@adworth.app</code> is handled via Proton Mail, which provides end-to-end encrypted email infrastructure. Email content you send to us is stored within Proton Mail and is not shared with third parties except as required by law. Waitlist broadcast communications are sent via Proton Mail using BCC to protect subscriber email addresses from other recipients. Proton Mail&rsquo;s terms: <a href="https://proton.me/legal/terms" target="_blank" rel="noopener noreferrer">proton.me/legal/terms</a>.</p>
 
             <h3>SerpApi</h3>
             <p>The Ad Intelligence Dashboard uses SerpApi to retrieve public advertiser data from Google&rsquo;s Ads Transparency Center. All SerpApi calls are made exclusively from our <code>adworth-ads</code> Cloudflare Worker &mdash; no SerpApi requests originate from the user&rsquo;s browser. When you submit a domain for analysis, that domain name is sent to SerpApi. No personal user data is transmitted to SerpApi. Before any SerpApi response is returned to the dashboard, the PII Advertiser Name Classifier runs within <code>adworth-ads</code> to detect and anonymize any individual person names in the returned ad data. SerpApi&rsquo;s terms: <a href="https://serpapi.com/terms" target="_blank" rel="noopener noreferrer">serpapi.com/terms</a>.</p>
@@ -208,7 +210,7 @@
             <p>Adworth does not use any third-party form processors, mailing list providers, or email delivery services for waitlist management or subscriber communications. Waitlist form submissions are processed entirely through our own <code>adworth-waitlist</code> Cloudflare Worker. Email addresses are stored in Cloudflare Workers KV and are never transmitted to external services for any purpose.</p>
         </div>
 
-        <!-- 03a — NEW: Ingestion API & Privacy Cockpit -->
+        <!-- 03a -->
         <div class="policy-section" id="ingestion-api">
             <h2><span class="section-num">03a</span> Ingestion API &amp; Privacy Cockpit Extension</h2>
             <p>The following terms govern your use of the Adworth Ingestion API (<code>adworth-ingestion-api</code>) and the Privacy Cockpit Chrome extension.</p>
@@ -221,7 +223,7 @@
                 <li>Only your <strong>public key</strong> is uploaded to Adworth&rsquo;s Ingestion API and stored in Cloudflare KV under the key pattern <code>user:{user_id}:pubkey:{device}</code></li>
                 <li>Adworth uses your public key solely to verify the cryptographic signature on each data submission, confirming the data originated from your registered device</li>
                 <li>Each device you register generates its own keypair &mdash; multi-device support is provided by design</li>
-                <li>If your device is lost, compromised, or decommissioned, you may request key revocation by contacting <a href="mailto:hello@adworth.app">hello&#64;adworth.app</a> &mdash; revocation invalidates that device&rsquo;s ability to submit further data but does not affect previously verified ingestion records</li>
+                <li>If your device is lost, compromised, or decommissioned, you may request key revocation by contacting <a href="mailto:hello@adworth.app">hello@adworth.app</a> &mdash; revocation invalidates that device&rsquo;s ability to submit further data but does not affect previously verified ingestion records</li>
                 <li>Setup tokens issued during the registration flow are single-use and expire after five minutes &mdash; they cannot be reused or replayed</li>
             </ul>
 
@@ -229,17 +231,49 @@
             <p>The Privacy Cockpit extension extracts campaign-level metrics from advertising platform dashboards (including Google Ads and Meta Ads) that you are actively viewing in your browser. By using the extension, you acknowledge that:</p>
             <ul>
                 <li>Data extraction occurs client-side within your browser &mdash; Adworth never receives raw dashboard content</li>
-                <li>The extension strips all personally identifiable information (including advertiser billing names, email addresses, and billing addresses) before transmission &mdash; only campaign-level metrics are retained (campaign identifiers, spend figures, conversion counts, ROAS, CPC, and similar performance data)</li>
+                <li>The extension strips all personally identifiable information (including advertiser billing names, email addresses, and billing addresses) before transmission &mdash; only campaign-level metrics are retained</li>
                 <li>Sanitized data is cryptographically signed with your device&rsquo;s private key before transmission, proving authenticity without exposing private key material</li>
                 <li>You are responsible for ensuring you have appropriate authorization to extract and submit data from the advertising dashboards you access using the extension</li>
                 <li>The extension uses a MutationObserver to detect dashboard updates and may trigger automatic data submissions when dashboard content changes</li>
             </ul>
 
             <h3>Ingestion data storage</h3>
-            <p>Verified ingestion records are stored in Cloudflare Workers KV under the key pattern <code>ingestion:{user_id}:{ingestion_id}</code>. Each record contains: sanitized campaign metrics, submission timestamp, device identifier, and a <code>signature_verified: true</code> flag. No personally identifiable information is present in stored ingestion records. All operations against the Ingestion API are audit-logged. Ingestion records are retained for the duration of your account and may be accessed via the authenticated admin dashboard. You may request deletion of your ingestion records by contacting <a href="mailto:hello@adworth.app">hello&#64;adworth.app</a>.</p>
+            <p>Verified ingestion records are stored in Cloudflare Workers KV under the key pattern <code>ingestion:{user_id}:{ingestion_id}</code>. Each record contains: sanitized campaign metrics, submission timestamp, device identifier, and a <code>signature_verified: true</code> flag. No personally identifiable information is present in stored ingestion records. You may request deletion of your ingestion records by contacting <a href="mailto:hello@adworth.app">hello@adworth.app</a>.</p>
 
             <div class="demo-notice">
-                <strong>Current status:</strong> The Ingestion API and Privacy Cockpit extension are in active development for investor demonstration and user testing. The architecture described above represents the implemented design. Features, endpoints, and behaviors may change as the platform matures. The extension is currently distributed as a developer build and has not been published to the Chrome Web Store.
+                <strong>Current status:</strong> The Ingestion API and Privacy Cockpit extension are in active development for investor demonstration and user testing. The extension is currently distributed as a developer build and has not been published to the Chrome Web Store.
+            </div>
+        </div>
+
+        <!-- 03b NEW: Regulation Rules Table -->
+        <div class="policy-section" id="regulation-rules">
+            <h2><span class="section-num">03b</span> Regulation Rules Table</h2>
+            <p>The following terms govern the <code>adworth-rules</code> Cloudflare Worker and the machine-readable regulation rules table it serves to the Removal Payload Engine at runtime.</p>
+
+            <h3>Purpose and architecture</h3>
+            <p>The Regulation Rules Worker (<code>adworth-rules</code>) is patent-supporting infrastructure that replaces hardcoded legal citations in the RPE with deterministic, runtime-evaluated rules. By using any Adworth service that depends on the RPE, you acknowledge that:</p>
+            <ul>
+                <li>Legal citations, compliance deadlines, penalty tiers, controller obligations, and third-party notification requirements included in RPE-generated removal payloads are evaluated at runtime from the versioned rules table served by <code>adworth-rules</code>, not from static strings embedded in the RPE Worker</li>
+                <li>The current rules version is <strong>v1.0.0</strong>, effective March 5, 2026, covering: <code>GDPR-ART17</code> (Right to Erasure), <code>GDPR-ART7</code> (Conditions for Consent), <code>CCPA-1798105</code> (Right to Delete), <code>CCPA-1798120</code> (Right to Opt-Out), <code>DSA-ART26</code> (Transparency of Advertising), and <code>DSA-ART25</code> (Prohibition of Dark Patterns)</li>
+                <li>Rules are evaluated deterministically &mdash; the same input will always produce the same legal citation, deadline, and payload fields for a given rules version. No fuzzy interpretation occurs at runtime</li>
+            </ul>
+
+            <h3>Version control and audit trail</h3>
+            <ul>
+                <li>The regulation rules table (<code>adworth-rules.json</code>) is version-controlled in the adworthllc/adworth-mvp GitHub repository as the source of truth. Every change is a committed, timestamped, and attributed diff</li>
+                <li>Rules are synced from GitHub to the isolated <code>ADWORTH_RULES</code> Cloudflare KV namespace before taking effect at runtime. The sync constitutes a deliberate human checkpoint between GitHub approval and live enforcement logic</li>
+                <li>The <code>schema_version</code> and <code>effective_date</code> fields in the rules table are recorded in every RPE-generated notice, providing a permanent audit link between any notice and the exact rules version that produced it</li>
+                <li>Each RPE notice stores the <code>rules_version</code> it was generated under. If you later dispute the legal basis of a notice, the rules version embedded in the notice can be retrieved from GitHub commit history to reconstruct the exact ruleset that was applied</li>
+            </ul>
+
+            <h3>Extensibility</h3>
+            <p>The rules table is designed to be extended without requiring RPE code changes. Planned additions include Brazil LGPD, UK GDPR, CAN-SPAM, and U.S. state laws (Virginia VCDPA, Colorado CPA, Connecticut CTDPA). When new regulations are added, these terms will be updated and waitlist members will be notified.</p>
+
+            <h3>Public endpoints</h3>
+            <p>The <code>adworth-rules</code> Worker exposes public, unauthenticated read endpoints for the rules table: <code>GET /rules</code> (full table), <code>GET /rules/:regulation_id</code> (single regulation), and <code>GET /rules/:regulation_id/:right_id</code> (single right). These endpoints are publicly accessible to support transparency, third-party verification, and regulatory audit. Write and sync endpoints (<code>POST /admin/sync</code>) require API key authentication. No personal data is served by or transmitted to this Worker.</p>
+
+            <div class="demo-notice">
+                <strong>Current status:</strong> <code>adworth-rules</code> is live in production at adworth-rules.adworthllc.workers.dev serving rules v1.0.0. The RPE (<code>adworth-rpe</code> v2.0.0) is wired to fetch rules from this Worker at runtime with a 5-minute in-memory cache. Admin sync operations currently require manual KV entry; GitHub Actions CI-triggered sync is planned for a future release.
             </div>
         </div>
 
@@ -268,7 +302,7 @@
                 <li>Ledger event types include <code>CONSENT_ISSUED</code>, <code>CONSENT_REVOKED</code>, <code>CONSENT_EXPIRED</code>, <code>ACCESS_CHECKED</code>, <code>VIOLATION_DETECTED</code>, and <code>RPE_GENERATED</code></li>
                 <li>Ledger entries are retained as part of the consent audit trail, even if you request deletion of other personal data</li>
                 <li>The Invisibility Ledger viewer (<code>adworth-ledger</code>) is read-only by architectural design &mdash; it cannot create, modify, or delete entries</li>
-                <li>You may request an export of your complete ledger history at any time by contacting <a href="mailto:hello@adworth.app">hello&#64;adworth.app</a></li>
+                <li>You may request an export of your complete ledger history at any time by contacting <a href="mailto:hello@adworth.app">hello@adworth.app</a></li>
             </ul>
 
             <h3>Data ownership</h3>
@@ -294,24 +328,26 @@
                 <strong>Current status:</strong> Broker checks are currently simulated against a representative registry of eight data brokers. The monitor does not connect to live broker APIs and does not transmit any data externally. Simulated results are generated for system validation, investor demonstration, and proof-of-concept purposes only.
             </div>
 
-            <h3>Removal Payload Engine</h3>
-            <p>The Removal Payload Engine generates legally-cited deletion requests when violations are detected. It operates both within the State-Persistence Monitor and as a standalone Cloudflare Worker (<code>adworth-rpe</code>). By using or benefiting from this service, you acknowledge that:</p>
+            <h3>Removal Payload Engine (v2.0.0)</h3>
+            <p>The Removal Payload Engine generates legally-cited deletion requests when violations are detected. It operates both within the State-Persistence Monitor and as a standalone Cloudflare Worker (<code>adworth-rpe</code> v2.0.0). As of March 6, 2026, the RPE evaluates all legal citations, deadlines, and obligations at runtime from the <code>adworth-rules</code> Regulation Rules Worker rather than from hardcoded strings. By using or benefiting from this service, you acknowledge that:</p>
             <ul>
-                <li>Removal payloads are generated automatically based on violation detection results and applicable legal citations across five supported regulatory frameworks: GDPR Article 17 (Right to Erasure), GDPR Article 15 (Right of Access), CCPA &sect; 1798.105 (Right to Delete), CPRA &sect; 1798.100 (Right to Know), and DSA Article 26 (Transparency of Online Advertising)</li>
+                <li>Removal payloads are generated based on violation detection results and regulation rules evaluated at runtime from the versioned rules table (current version: v1.0.0). Supported right IDs: <code>GDPR-ART17</code>, <code>GDPR-ART7</code>, <code>CCPA-1798105</code>, <code>CCPA-1798120</code>, <code>DSA-ART26</code>, <code>DSA-ART25</code></li>
+                <li>Each removal payload includes the <code>rules_version</code> and <code>rules_effective_date</code> under which it was generated, creating a permanent audit link to the exact regulatory ruleset applied</li>
+                <li>Legacy regulation keys (e.g. <code>gdpr-17</code>, <code>ccpa-1798</code>) are mapped to current right IDs for backwards compatibility</li>
                 <li>Each removal payload is cryptographically signed using HMAC-SHA256 with a server-side secret key, and includes a SHA-256 content hash for tamper detection</li>
                 <li>Notice IDs follow the format <code>RPE-YYYY-XXXXXX</code> and are unique, non-sequential identifiers</li>
                 <li>Payload generation events are recorded in the Invisibility Ledger as <code>RPE_GENERATED</code> entries</li>
                 <li>Removal payloads contain only opaque identifiers, timestamps, legal citations, and broker references &mdash; no personally identifiable information</li>
-                <li>The standalone <code>adworth-rpe</code> worker provides public verification endpoints allowing any party to independently verify the integrity and authenticity of a generated notice using its Notice ID, without authentication</li>
+                <li>The <code>adworth-rpe</code> worker provides public verification endpoints allowing any party to independently verify the integrity and authenticity of a generated notice using its Notice ID, without authentication</li>
                 <li>Adworth does not guarantee that removal payloads constitute legally sufficient deletion requests under any specific jurisdiction; users should consult qualified legal counsel for compliance determinations</li>
-                <li>The legal citations included in removal payloads are informational references and do not constitute legal advice</li>
+                <li>The legal citations included in removal payloads are informational references derived from the versioned rules table and do not constitute legal advice</li>
             </ul>
             <div class="demo-notice">
-                <strong>Current status:</strong> Removal payloads are generated with real legal citations, HMAC-SHA256 signatures, and complete data structures, but are not transmitted to actual data brokers. All payloads generated via the State-Persistence Monitor are marked with delivery status <code>SIMULATED</code>. The enterprise page includes an RPE demo that generates clearly-marked demonstration notices prefixed with &ldquo;DEMO &mdash; THIS NOTICE CARRIES NO LEGAL EFFECT / NO COMPANY WILL RECEIVE THIS NOTICE&rdquo;. No deletion requests have been sent to any third party.
+                <strong>Current status:</strong> Removal payloads are generated with real legal citations, HMAC-SHA256 signatures, and complete data structures, but are not transmitted to actual data brokers. All payloads generated via the State-Persistence Monitor are marked with delivery status <code>SIMULATED</code>. The enterprise page includes an RPE demo that generates clearly-marked demonstration notices. No deletion requests have been sent to any third party.
             </div>
 
             <h3>Public verification</h3>
-            <p>The <code>adworth-rpe</code> worker exposes public endpoints that allow anyone with a Notice ID to verify that a removal notice was generated by Adworth and has not been tampered with. Verification checks the HMAC signature and content hash against the stored original. Demo-mode notices are clearly identified in verification responses.</p>
+            <p>The <code>adworth-rpe</code> worker exposes public endpoints that allow anyone with a Notice ID to verify that a removal notice was generated by Adworth and has not been tampered with. Verification responses include the <code>rules_version</code> under which the notice was generated. Demo-mode notices are clearly identified in verification responses.</p>
 
             <h3>No guarantee of enforcement</h3>
             <p>Adworth&rsquo;s State-Persistence Monitor and Removal Payload Engine are designed to assist with post-consent enforcement, but Adworth does not guarantee that all instances of unauthorized data retention will be detected, that data brokers will comply with removal payloads, or that detection or enforcement actions will satisfy specific regulatory requirements. These tools are provided as technical infrastructure to support your data rights. They do not replace legal counsel, regulatory filings, or direct communication with data processors.</p>
@@ -332,7 +368,9 @@
             </ul>
         </div>
 
-        <!-- 07 — UPDATED: founding member definition added -->
+<!-- ═══════════════════════════════════════════════════════
+
+        <!-- 07 -->
         <div class="policy-section" id="consent-widget">
             <h2><span class="section-num">07</span> Consent Widget &amp; Advertiser Integration Terms</h2>
 
@@ -379,30 +417,30 @@
         <!-- 08 -->
         <div class="policy-section" id="api-access">
             <h2><span class="section-num">08</span> API Access &amp; Authentication</h2>
-            <p>Access to the Adworth Consent API, Privacy Governance Engine, State-Persistence Monitor, Removal Payload Engine, Ingestion API, and associated services is governed by the following terms:</p>
+            <p>Access to the Adworth Consent API, Privacy Governance Engine, State-Persistence Monitor, Removal Payload Engine, Regulation Rules Worker, Ingestion API, and associated services is governed by the following terms:</p>
 
             <h3>Authentication requirements</h3>
             <ul>
                 <li>All protected API endpoints require a valid <code>X-API-Key</code> header or Bearer token in the HTTP <code>Authorization</code> header</li>
-                <li>Public endpoints (health checks, RPE notice verification, regulation listings) are accessible without authentication</li>
-                <li>Protected endpoints include consent token operations, access evaluation requests, scan initiation, scan history retrieval, violation queries, RPE notice generation, ingestion submissions, public key registration, and waitlist admin operations</li>
+                <li>Public endpoints (health checks, RPE notice verification, regulation listings, rules table reads at <code>/rules</code> and <code>/rules/:id</code>) are accessible without authentication</li>
+                <li>Protected endpoints include consent token operations, access evaluation requests, scan initiation, scan history retrieval, violation queries, RPE notice generation, rules sync operations (<code>POST /admin/sync</code>), ingestion submissions, public key registration, and waitlist admin operations</li>
                 <li>API keys are issued by Adworth and are confidential &mdash; you must not share, publish, or embed API keys in client-side code or public repositories</li>
                 <li>You are responsible for all activity that occurs using your API key</li>
             </ul>
 
             <h3>API key security</h3>
             <ul>
-                <li>API keys are encrypted at rest within Cloudflare&rsquo;s environment variable system and never stored in source code or version control</li>
+                <li>API keys are encrypted at rest within Cloudflare&rsquo;s environment variable system and never stored in source code or version control. All 11 active Workers share a standardized <code>API_SECRET_KEY</code> environment variable name for consistency</li>
                 <li>When entered in any Adworth dashboard, API keys are stored only in browser <code>sessionStorage</code> &mdash; cleared automatically when you close the tab or browser, never written to <code>localStorage</code>, cookies, or any server-side log</li>
-                <li>If you suspect your API key has been compromised, contact us immediately at <a href="mailto:hello@adworth.app">hello&#64;adworth.app</a> for key rotation</li>
+                <li>If you suspect your API key has been compromised, contact us immediately at <a href="mailto:hello@adworth.app">hello@adworth.app</a> for key rotation</li>
                 <li>Adworth reserves the right to revoke or rotate API keys at any time for security purposes</li>
             </ul>
 
             <h3>Rate limits &amp; fair use</h3>
-            <p>API access is subject to reasonable rate limits. We reserve the right to throttle or suspend access for any usage patterns that are excessive, abusive, or that degrade service quality for other users. Current rate limits are determined by the Cloudflare Workers tier applicable to your usage. State-Persistence Monitor scans process the full ledger on each invocation and should be triggered at reasonable intervals. Ingestion API setup tokens are rate-limited by design to prevent registration abuse.</p>
+            <p>API access is subject to reasonable rate limits. We reserve the right to throttle or suspend access for any usage patterns that are excessive, abusive, or that degrade service quality for other users. The <code>adworth-rules</code> Worker implements a 5-minute in-memory cache on regulation rule fetches to minimize inter-Worker request load. State-Persistence Monitor scans process the full ledger on each invocation and should be triggered at reasonable intervals. Ingestion API setup tokens are rate-limited by design to prevent registration abuse.</p>
 
             <h3>API availability</h3>
-            <p>All Adworth APIs are provided on an &ldquo;as available&rdquo; basis. While we strive for high availability, we do not guarantee uptime or response times. APIs may be temporarily unavailable due to maintenance, updates, or circumstances beyond our control.</p>
+            <p>All Adworth APIs are provided on an &ldquo;as available&rdquo; basis. While we strive for high availability, we do not guarantee uptime or response times. If the <code>adworth-rules</code> Worker is temporarily unavailable, the RPE will reject notice generation requests with a <code>503</code> error rather than fall back to hardcoded citations &mdash; this is by design to ensure no notice is generated with unverified legal data.</p>
         </div>
 
         <!-- 09 -->
@@ -420,7 +458,7 @@
                 <li>Provide accurate and complete information</li>
                 <li>Keep your credentials (including API keys and device-registered Ed25519 public keys) secure and confidential</li>
                 <li>Notify us immediately of any unauthorized access to your account, API key, or registered device</li>
-                <li>Be responsible for all activity that occurs under your account or API key, including consent token operations, monitor scans, RPE notice generation, ingestion submissions, and any resulting enforcement actions</li>
+                <li>Be responsible for all activity that occurs under your account or API key, including consent token operations, monitor scans, RPE notice generation, regulation rules sync operations, ingestion submissions, and any resulting enforcement actions</li>
             </ul>
             <p>We reserve the right to suspend or terminate accounts that violate these terms.</p>
         </div>
@@ -454,6 +492,8 @@
                 <li>Register device public keys under another user&rsquo;s account without their authorization</li>
                 <li>Submit falsified or manipulated marketing data through the Ingestion API or Privacy Cockpit extension</li>
                 <li>Use the Privacy Cockpit extension to extract data from advertising dashboards you are not authorized to access</li>
+                <li>Attempt to modify, corrupt, or overwrite the <code>ADWORTH_RULES</code> KV namespace or the <code>adworth-rules.json</code> regulation rules table without authorization</li>
+                <li>Submit fabricated or legally incorrect regulation data to the <code>POST /admin/sync</code> endpoint with the intent to produce notices with false legal citations</li>
             </ul>
             <p>We reserve the right to investigate and take appropriate action against violations, including API key revocation, device key revocation, account suspension or termination, and referral to law enforcement.</p>
         </div>
@@ -463,7 +503,7 @@
             <h2><span class="section-num">12</span> Intellectual Property</h2>
 
             <h3>Our intellectual property</h3>
-            <p>All content, technology, and materials on the Adworth platform &mdash; including but not limited to the Privacy Governance and Cryptographic Consent Enforcement System (U.S. Provisional Patent Application, filed February 23, 2026), the Adworth&#8480; service mark, the consent token architecture, the Invisibility Ledger design, the State-Persistence Monitor, the Removal Payload Engine (including the standalone <code>adworth-rpe</code> worker, its HMAC-SHA256 signing system, public verification endpoints, and demo mode), the Privacy Governance Engine, the Ad Intelligence pipeline, the PII Advertiser Name Classifier, the Ingestion API, the Privacy Cockpit Chrome extension, the Ed25519 signing architecture, website design, text, and software &mdash; are owned by Adworth LLC and protected by applicable intellectual property laws.</p>
+            <p>All content, technology, and materials on the Adworth platform &mdash; including but not limited to the Privacy Governance and Cryptographic Consent Enforcement System (U.S. Provisional Patent Application, filed February 23, 2026), the Adworth&#8480; service mark, the consent token architecture, the Invisibility Ledger design, the State-Persistence Monitor, the Removal Payload Engine (including the standalone <code>adworth-rpe</code> v2.0.0 Worker, its HMAC-SHA256 signing system, runtime regulation rule evaluation, public verification endpoints, and demo mode), the Regulation Rules Worker (<code>adworth-rules</code>) and its machine-readable versioned rules table, the Privacy Governance Engine, the Ad Intelligence pipeline, the PII Advertiser Name Classifier, the Ingestion API, the Privacy Cockpit Chrome extension, the Ed25519 signing architecture, website design, text, and software &mdash; are owned by Adworth LLC and protected by applicable intellectual property laws.</p>
             <p>You may not copy, reproduce, distribute, or create derivative works from our intellectual property without our express written permission.</p>
 
             <h3>Your content</h3>
@@ -473,19 +513,22 @@
             <p>Consent tokens you issue and the consent decisions they represent remain under your control. You may revoke consent at any time, and Adworth will enforce that revocation through the consent system and, where applicable, through the State-Persistence Monitor and Removal Payload Engine. The cryptographic identifiers generated by the system are functional artifacts of the service and do not constitute your intellectual property or personal data.</p>
         </div>
 
-        <!-- 13 — UPDATED: indicative pricing disclaimer added -->
+        <!-- 13 -->
         <div class="policy-section" id="disclaimer">
             <h2><span class="section-num">13</span> Disclaimers</h2>
             <p>Adworth services are provided <strong>&ldquo;as is&rdquo;</strong> and <strong>&ldquo;as available&rdquo;</strong> without warranties of any kind, either express or implied, including but not limited to warranties of merchantability, fitness for a particular purpose, or non-infringement.</p>
             <p>We do not warrant that our services will be uninterrupted, error-free, or free of viruses or other harmful components. As an early-stage platform, we make no guarantees about uptime, data preservation, or feature availability.</p>
 
             <h3>Indicative pricing and forward-looking features</h3>
-            <p>Any pricing figures referenced on adworth.app or associated pages &mdash; including but not limited to enterprise licensing ranges, transaction fee percentages, and certification program costs &mdash; are <strong>indicative projections only</strong> and are subject to change without notice. They do not constitute binding price commitments, offers, or contractual terms. Similarly, features described as &ldquo;coming,&rdquo; &ldquo;2026,&rdquo; or &ldquo;Phase 2&rdquo; represent development roadmap intentions, not guaranteed deliverables. Enterprise customers should contact <a href="mailto:hello@adworth.app">hello&#64;adworth.app</a> for current pricing and availability.</p>
+            <p>Any pricing figures referenced on adworth.app or associated pages &mdash; including but not limited to enterprise licensing ranges, transaction fee percentages, and certification program costs &mdash; are <strong>indicative projections only</strong> and are subject to change without notice. They do not constitute binding price commitments, offers, or contractual terms. Similarly, features described as &ldquo;coming,&rdquo; &ldquo;2026,&rdquo; or &ldquo;Phase 2&rdquo; represent development roadmap intentions, not guaranteed deliverables. Enterprise customers should contact <a href="mailto:hello@adworth.app">hello@adworth.app</a> for current pricing and availability.</p>
+
+            <h3>Regulation rules table</h3>
+            <p>The regulation rules table served by <code>adworth-rules</code> contains legal citations, deadlines, and obligations derived from publicly available regulatory texts. Adworth does not warrant that the rules table is complete, current, or legally accurate in every jurisdiction. Legal frameworks change; Adworth will make reasonable efforts to update the rules table when material regulatory changes occur, but does not guarantee real-time accuracy. The rules table is informational infrastructure and does not constitute legal advice. Users should consult qualified legal counsel for compliance determinations.</p>
 
             <h3>Cryptographic systems</h3>
             <p>The PII Advertiser Name Classifier in <code>adworth-ads</code> is designed to detect and anonymize individual person names in publicly available ad data before any response leaves the worker. Adworth does not warrant that the classifier will detect every instance of a person name in all ad data, nor that anonymization will satisfy specific regulatory or legal requirements in any jurisdiction.</p>
-            <p>The Ingestion API uses Ed25519 (FIPS 186-5 approved) to verify data authenticity. Adworth does not warrant that Ed25519 verification satisfies specific regulatory, legal, or compliance requirements in any particular jurisdiction. The cryptographic architecture is designed to prove data origin and integrity, not to constitute legally binding authentication under any specific statutory framework.</p>
-            <p>The standalone Removal Payload Engine (<code>adworth-rpe</code>) generates notices with HMAC-SHA256 cryptographic signatures and content hashes. Adworth does not warrant that these signatures will be accepted as legally sufficient proof in any jurisdiction, nor that public verification endpoint availability will be uninterrupted. Demo-mode notices carry no legal effect regardless of their content or formatting.</p>
+            <p>The Ingestion API uses Ed25519 (FIPS 186-5 approved) to verify data authenticity. Adworth does not warrant that Ed25519 verification satisfies specific regulatory, legal, or compliance requirements in any particular jurisdiction.</p>
+            <p>The standalone Removal Payload Engine (<code>adworth-rpe</code> v2.0.0) generates notices with HMAC-SHA256 cryptographic signatures and content hashes, with legal citations evaluated at runtime from the versioned rules table. Adworth does not warrant that these signatures will be accepted as legally sufficient proof in any jurisdiction, nor that public verification endpoint availability will be uninterrupted. Demo-mode notices carry no legal effect regardless of their content or formatting.</p>
 
             <h3>General</h3>
             <p>The consent token system, Invisibility Ledger, State-Persistence Monitor, and Removal Payload Engine are provided as technical infrastructure. While designed for regulatory compliance support, Adworth does not guarantee that use of our system constitutes full legal compliance with any specific regulation (including GDPR, CCPA, CPRA, or DSA). Users should consult qualified legal counsel for compliance determinations.</p>
@@ -497,15 +540,15 @@
         <div class="policy-section" id="limitation">
             <h2><span class="section-num">14</span> Limitation of Liability</h2>
             <p>To the maximum extent permitted by applicable law, Adworth LLC and its founders, officers, and agents shall not be liable for any indirect, incidental, special, consequential, or punitive damages arising from your use of &mdash; or inability to use &mdash; our services.</p>
-            <p>This includes, without limitation, damages arising from: consent token validation failures, ledger entry delays or inconsistencies, API downtime or authentication errors, State-Persistence Monitor scan failures or inaccurate detection results, Removal Payload Engine generation errors or delivery failures, RPE public verification endpoint unavailability or incorrect verification results, RPE HMAC signature validation failures, Privacy Governance Engine blocking decisions, PII Advertiser Name Classifier detection failures or false positives, Ingestion API signature verification failures, Ed25519 keypair generation or registration errors, Privacy Cockpit extension data extraction failures, or failure of third-party systems (including Cloudflare Workers KV, Vercel, IONOS, GitHub, Proton Mail, SerpApi, or Anthropic) on which our infrastructure depends.</p>
-            <p>Adworth is not liable for any consequences arising from third-party data brokers&rsquo; failure to comply with removal payloads, whether simulated, demo, or live. Adworth is not liable for any legal, financial, or reputational consequences arising from reliance on simulated or demo-mode results, indicative pricing figures, or forward-looking feature descriptions.</p>
+            <p>This includes, without limitation, damages arising from: consent token validation failures, ledger entry delays or inconsistencies, API downtime or authentication errors, State-Persistence Monitor scan failures or inaccurate detection results, Removal Payload Engine generation errors or delivery failures, RPE public verification endpoint unavailability or incorrect verification results, RPE HMAC signature validation failures, regulation rules fetch failures or temporary unavailability of the <code>adworth-rules</code> Worker, rules table inaccuracies or outdated legal citations, Privacy Governance Engine blocking decisions, PII Advertiser Name Classifier detection failures or false positives, Ingestion API signature verification failures, Ed25519 keypair generation or registration errors, Privacy Cockpit extension data extraction failures, or failure of third-party systems (including Cloudflare Workers KV, Vercel, IONOS, GitHub, Proton Mail, SerpApi, or Anthropic) on which our infrastructure depends.</p>
+            <p>Adworth is not liable for any consequences arising from third-party data brokers&rsquo; failure to comply with removal payloads, whether simulated, demo, or live. Adworth is not liable for any legal, financial, or reputational consequences arising from reliance on simulated or demo-mode results, indicative pricing figures, forward-looking feature descriptions, or regulation rules table contents.</p>
             <p>Our total liability to you for any claims arising under these terms shall not exceed the greater of $100 or the amount you paid to Adworth in the 12 months preceding the claim.</p>
         </div>
 
         <!-- 15 -->
         <div class="policy-section" id="termination">
             <h2><span class="section-num">15</span> Termination</h2>
-            <p>You may stop using our services at any time. You may request deletion of your account and data by contacting us at <a href="mailto:hello@adworth.app">hello&#64;adworth.app</a>.</p>
+            <p>You may stop using our services at any time. You may request deletion of your account and data by contacting us at <a href="mailto:hello@adworth.app">hello@adworth.app</a>.</p>
             <p>We reserve the right to suspend or terminate your access to our services at any time, with or without notice, for any reason, including violation of these terms. This includes revocation of API keys, revocation of device-registered Ed25519 public keys, and suspension of monitor scan access.</p>
             <p>Upon termination, your right to use our services ceases immediately. Provisions that by their nature should survive termination &mdash; including intellectual property, disclaimers, limitation of liability, and ledger immutability &mdash; will survive.</p>
             <p>Note that consent ledger entries, access decision records, violation detection records, and removal payload records (which contain no personally identifiable information) are retained as part of the immutable audit trail even after account termination, as they serve as proof of consent actions and enforcement for all parties involved.</p>
@@ -522,22 +565,22 @@
         <div class="policy-section" id="changes">
             <h2><span class="section-num">17</span> Changes to Terms</h2>
             <p>We may update these Terms of Service at any time. When we make material changes, we will notify waitlist members and registered users by email at least 14 days before the changes take effect. The &ldquo;Last updated&rdquo; date at the top of this page will always reflect when the terms were last revised. Your continued use of Adworth services after changes are posted constitutes your acceptance of the updated terms.</p>
-            <p>In particular, these terms will be updated when: (1) the State-Persistence Monitor and Removal Payload Engine transition from simulated to live operation, as this change materially affects the scope of data processing and third-party communications; (2) the Privacy Cockpit extension is published to the Chrome Web Store; and (3) the consent marketplace launches. When any of these transitions occur, we will notify users by email in advance of the change taking effect.</p>
+            <p>In particular, these terms will be updated when: (1) the State-Persistence Monitor and Removal Payload Engine transition from simulated to live operation, as this change materially affects the scope of data processing and third-party communications; (2) the Privacy Cockpit extension is published to the Chrome Web Store; (3) the consent marketplace launches; and (4) new regulations are added to the <code>adworth-rules</code> regulation rules table (LGPD, UK GDPR, U.S. state laws). When any of these transitions occur, we will notify users by email in advance of the change taking effect.</p>
         </div>
 
-        <!-- 18 — UPDATED: DPA path added -->
+        <!-- 18 -->
         <div class="policy-section" id="contact">
             <h2><span class="section-num">18</span> Contact Us</h2>
             <p>If you have questions or concerns about these Terms of Service, please contact us:</p>
             <div class="highlight-box">
                 <strong>Adworth&#8480; LLC</strong><br>
                 Charleston, SC, United States<br>
-                <a href="mailto:hello@adworth.app">hello&#64;adworth.app</a>
+                <a href="mailto:hello@adworth.app">hello@adworth.app</a>
             </div>
             <p>For information about how we handle your data, please see our <a href="/privacy.html">Privacy Policy</a>.</p>
 
             <h3>Enterprise &amp; Data Processing Agreements</h3>
-            <p>Enterprise customers requiring a Data Processing Agreement (DPA) under GDPR Article 28, a Business Associate Agreement (BAA), or other data governance documentation should contact <a href="mailto:hello@adworth.app">hello&#64;adworth.app</a> with the subject line &ldquo;DPA Request.&rdquo; We will respond to DPA inquiries within five business days. Note that formal DPA templates are in development as part of our enterprise readiness roadmap; availability may vary based on current stage of platform maturity.</p>
+            <p>Enterprise customers requiring a Data Processing Agreement (DPA) under GDPR Article 28, a Business Associate Agreement (BAA), or other data governance documentation should contact <a href="mailto:hello@adworth.app">hello@adworth.app</a> with the subject line &ldquo;DPA Request.&rdquo; We will respond to DPA inquiries within five business days. Note that formal DPA templates are in development as part of our enterprise readiness roadmap; availability may vary based on current stage of platform maturity.</p>
         </div>
 
     </div>
@@ -580,12 +623,10 @@
             </div>
             <div class="footer-bottom">
                 <span>&copy; 2026 Adworth&#8480; LLC &middot; Patent Pending &middot; Charleston, SC</span>
-                <span>Built in public &middot; Raising seed round &middot; <a href="/enterprise.html" style="color: var(--gold); text-decoration: none;">Investor Overview &rarr;</a></span>
+                <span>Built in public &middot; Raising seed round</span>
             </div>
         </div>
     </footer>
-
-    <!-- No third-party tracking scripts. This page loads no analytics, advertising pixels, or behavioral trackers. -->
 
 </body>
 </html>
