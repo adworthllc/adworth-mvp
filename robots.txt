@@ -1,0 +1,25 @@
+# robots.txt — adworth.app
+# https://adworth.app/robots.txt
+
+User-agent: *
+
+# Public pages — allow
+Allow: /
+Allow: /dashboard.html
+Allow: /enterprise.html
+Allow: /ccpa-gap.html
+Allow: /ledger.html
+Allow: /privacy.html
+Allow: /terms.html
+
+# Waitlist confirmation — no indexing needed
+Disallow: /thanks.html
+
+# Admin and API routes — never index
+Disallow: /admin/
+Disallow: /waitlist-submit
+Disallow: /submit
+Disallow: /api/
+
+# Sitemap
+Sitemap: https://adworth.app/sitemap.xml
