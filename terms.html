@@ -65,7 +65,7 @@
         .footer-grid { display: grid; grid-template-columns: 2fr 1fr 1fr 1fr; gap: 3rem; margin-bottom: 3rem; }
         .footer-brand-name { font-size: 1.4rem; font-weight: 800; color: var(--green-primary); margin-bottom: 0.6rem; }
         .footer-tagline { font-size: 0.85rem; color: var(--ink-60); line-height: 1.6; max-width: 260px; margin-bottom: 0.75rem; }
-        .footer-transparency-note { font-size: 0.78rem; color: var(--ink-30); line-height: 1.6; max-width: 260px; border-top: 1px solid var(--border); padding-top: 0.75rem; margin-top: 0.25rem; }
+        .footer-note { font-size: 0.78rem; color: var(--ink-30); line-height: 1.6; max-width: 260px; border-top: 1px solid var(--border); padding-top: 0.75rem; margin-top: 0.25rem; }
         .footer-links h4 { font-size: 0.75rem; font-weight: 700; text-transform: uppercase; letter-spacing: 1.5px; color: var(--ink); margin-bottom: 1rem; }
         .footer-links ul { list-style: none; }
         .footer-links a { display: block; font-size: 0.875rem; color: var(--ink-60); text-decoration: none; margin-bottom: 0.6rem; transition: color 0.2s; }
@@ -83,23 +83,24 @@
 <body>
 
     <header>
-        <div class="container">
-            <nav>
-                <a href="/" class="logo">
-                    <span class="logo-mark">Adworth&#8480;</span>
-                    <span class="patent-pill">Patent Pending</span>
-                </a>
-                <ul>
-                    <li><a href="/#problem">Problem</a></li>
-                    <li><a href="/#how-it-works">How It Works</a></li>
-                    <li><a href="/#founder">Founder</a></li>
-                    <li><a href="/#investors">Investors</a></li>
-                    <li><a href="/enterprise.html">Enterprise</a></li>
-                    <li><a href="/#waitlist" class="nav-cta">Join Waitlist</a></li>
-                </ul>
-            </nav>
-        </div>
-    </header>
+    <div class="container">
+      <nav>
+        <a href="/" class="logo">
+          <span class="logo-mark">Adworth&#8480;</span>
+          <span class="patent-pill">Patent Pending</span>
+        </a>
+        <ul>
+          <li><a href="/#problem">Problem</a></li>
+          <li><a href="/#how-it-works">How It Works</a></li>
+          <li><a href="/#transparency">How We Make Money</a></li>
+          <li><a href="/#founder">Founder</a></li>
+          <li><a href="/#investors">Investors</a></li>
+          <li><a href="/enterprise.html">Enterprise</a></li>
+          <li><a href="/#waitlist" class="nav-cta">Join Waitlist</a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
 
     <div class="page-hero">
         <div class="inner">
@@ -194,7 +195,7 @@
             <p>Our primary website (adworth.app) is hosted and deployed via Vercel as part of a GitHub &rarr; Vercel &rarr; Cloudflare pipeline. Vercel may retain standard server access logs. <strong>Vercel Analytics is explicitly disabled on our deployment.</strong> Vercel&rsquo;s terms: <a href="https://vercel.com/legal/terms" target="_blank" rel="noopener noreferrer">vercel.com/legal/terms</a>.</p>
 
             <h3>IONOS</h3>
-            <p>IONOS is used for two purposes: (1) hosting the <code>app.adworth.app</code> subdomain served from IONOS webspace (separate from the main adworth.app Vercel deployment), and (2) routing system email from <a href="mailto:hello@adworth.app">hello@adworth.app</a>. No user personal data is stored within IONOS infrastructure beyond standard server access logs. IONOS terms: <a href="https://www.ionos.com/terms-gtc/" target="_blank" rel="noopener noreferrer">ionos.com/terms-gtc</a>.</p>
+            <p>IONOS is used for two purposes: (1) hosting the <code>app.adworth.app</code> subdomain served from IONOS webspace (separate from the main adworth.app Vercel deployment), and (2) routing system email from <a href="mailto:no-reply@adworth.app">no-reply@adworth.app</a>. No user personal data is stored within IONOS infrastructure beyond standard server access logs. IONOS terms: <a href="https://www.ionos.com/terms-gtc/" target="_blank" rel="noopener noreferrer">ionos.com/terms-gtc</a>.</p>
 
             <h3>GitHub</h3>
             <p>Source code is hosted in a private repository under the adworthllc organization on GitHub. The <code>adworth-rules.json</code> regulation rules table is version-controlled in GitHub as the source of truth for all legal citations evaluated by the RPE &mdash; changes require a commit and are synced to Cloudflare KV before taking effect at runtime. No user data &mdash; including waitlist emails, consent tokens, ledger entries, ingestion records, or any personally identifiable information &mdash; is stored in or transmitted through GitHub. API secrets and environment variable values are never committed to version control. GitHub&rsquo;s terms: <a href="https://docs.github.com/en/site-policy/github-terms/github-terms-of-service" target="_blank" rel="noopener noreferrer">docs.github.com/terms</a>.</p>
@@ -648,48 +649,49 @@
 
     </div><!-- end .content-wrap -->
 
-    <footer>
-        <div class="container">
-            <div class="footer-grid">
-                <div>
-                    <div class="footer-brand-name">Adworth&#8480;</div>
-                    <p class="footer-tagline">Cryptographic consent infrastructure for digital advertising. Privacy for people, compliance for platforms.</p>
-                    <p class="footer-transparency-note">We earn exactly 2% when advertisers pay you for verified consent. That&rsquo;s our only revenue source. Always visible. Always on the ledger. No exceptions.</p>
-                </div>
-                <div class="footer-links">
-                    <h4>Product</h4>
-                    <ul>
-                        <li><a href="/#problem">Problem</a></li>
-                        <li><a href="/#how-it-works">How It Works</a></li>
-                        <li><a href="/dashboard.html">Consumer Demo</a></li>
-                        <li><a href="/ccpa-gap.html">CCPA Enforcement Gap</a></li>
-                        <li><a href="/ledger.html">Consent Ledger</a></li>
-                        <li><a href="/enterprise.html">Enterprise</a></li>
-                        <li><a href="/#waitlist">Join Waitlist</a></li>
-                    </ul>
-                </div>
-                <div class="footer-links">
-                    <h4>Company</h4>
-                    <ul>
-                        <li><a href="/#founder">Founder</a></li>
-                        <li><a href="/#investors">Investors</a></li>
-                        <li><a href="mailto:hello@adworth.app">Contact</a></li>
-                    </ul>
-                </div>
-                <div class="footer-links">
-                    <h4>Legal</h4>
-                    <ul>
-                        <li><a href="/privacy.html">Privacy Policy</a></li>
-                        <li><a href="/terms.html">Terms of Service</a></li>
-                    </ul>
-                </div>
-            </div>
-            <div class="footer-bottom">
-                <span>&copy; 2026 Adworth&#8480; LLC &middot; Patent Pending &middot; Charleston, SC</span>
-                <span>Built in public &middot; Raising seed round</span>
-            </div>
+<footer>
+    <div class="container">
+      <div class="footer-grid">
+        <div>
+          <div class="footer-brand-name">Adworth&#8480;</div>
+          <p class="footer-tagline">Cryptographic consent infrastructure for digital advertising. Privacy for people, compliance for platforms.</p>
+          <p class="footer-note">We earn exactly 2% when advertisers pay you for verified consent. That's our only revenue source. Always visible. Always on the ledger. No exceptions.</p>
         </div>
-    </footer>
+        <div class="footer-links">
+          <h4>Product</h4>
+          <ul>
+            <li><a href="/#problem">Problem</a></li>
+            <li><a href="/#how-it-works">How It Works</a></li>
+            <li><a href="/#transparency">How We Make Money</a></li>
+            <li><a href="/dashboard.html">Consumer Demo</a></li>
+            <li><a href="/ccpa-gap.html">CCPA Enforcement Gap</a></li>
+            <li><a href="/ledger.html">Consent Ledger</a></li>
+            <li><a href="/enterprise.html">Enterprise</a></li>
+            <li><a href="/#waitlist">Join Waitlist</a></li>
+          </ul>
+        </div>
+        <div class="footer-links">
+          <h4>Company</h4>
+          <ul>
+            <li><a href="/#founder">Founder</a></li>
+            <li><a href="/#investors">Investors</a></li>
+            <li><a href="mailto:hello@adworth.app">hello@adworth.app</a></li>
+          </ul>
+        </div>
+        <div class="footer-links">
+          <h4>Legal</h4>
+          <ul>
+            <li><a href="/privacy.html">Privacy Policy</a></li>
+            <li><a href="/terms.html">Terms of Service</a></li>
+          </ul>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <span>&#169; 2026 Adworth&#8480; LLC &middot; Patent Pending &middot; Charleston, SC</span>
+        <span>Built in public &middot; Raising seed round</span>
+      </div>
+    </div>
+  </footer>
 
 </body>
 </html>
