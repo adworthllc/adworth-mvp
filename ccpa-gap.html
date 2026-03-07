@@ -27,15 +27,15 @@
         header{position:sticky;top:0;z-index:100;background:rgba(250,250,248,0.92);backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px);border-bottom:1px solid var(--border)}
         nav{display:flex;justify-content:space-between;align-items:center;padding:1.25rem 0}
         .logo{display:flex;align-items:center;gap:.75rem;text-decoration:none}
-        .logo-mark{font-size:1.6rem;font-weight:800;color:var(--green-primary);letter-spacing:-.5px}
-        .patent-pill{font-size:.6rem;font-weight:700;text-transform:uppercase;letter-spacing:1px;background:var(--green-pale);color:var(--green-deep);padding:.2rem .55rem;border-radius:100px;border:1px solid rgba(45,106,79,.2)}
-        nav ul{list-style:none;display:flex;gap:2.25rem;align-items:center}
-        nav a{text-decoration:none;font-size:.875rem;font-weight:500;color:var(--ink-60);transition:color .2s}
+        .logo-mark { font-family: 'Poppins', sans-serif; font-size: 1.4rem; font-weight: 800; color: var(--green-primary); letter-spacing: -0.5px; }
+        .patent-pill { font-size: 0.55rem; font-weight: 700; text-transform: uppercase; letter-spacing: 1px; background: var(--green-pale); color: var(--green-deep); padding: 0.15rem 0.45rem; border-radius: 100px; border: 1px solid rgba(45,106,79,0.2); white-space: nowrap; }
+        nav ul { list-style: none; display: flex; gap: 1.5rem; align-items: center; }
+        nav a { text-decoration: none; font-size: 0.8rem; font-weight: 500; color: var(--ink-60); transition: color 0.2s; white-space: nowrap; }
         nav a:hover{color:var(--green-primary)}
-        .nav-enterprise{color:var(--gold)!important;font-weight:600!important}
-        .nav-enterprise:hover{color:#a88a4a!important}
-        .nav-cta{background:var(--green-primary)!important;color:#fff!important;padding:.6rem 1.25rem!important;border-radius:6px!important;font-weight:600!important;transition:background .2s,transform .2s!important}
-        .nav-cta:hover{background:var(--green-deep)!important;transform:translateY(-1px)!important}
+        
+        
+        .nav-cta { background: var(--green-primary) !important; color: white !important; padding: 0.55rem 1rem !important; border-radius: 6px !important; font-weight: 600 !important; white-space: nowrap; }
+        .nav-cta:hover { background: var(--green-deep) !important; }
 
         /* PAGE HERO */
         .page-hero{padding:4rem 0 3rem;text-align:center;position:relative;overflow:hidden}
@@ -125,8 +125,8 @@
         footer{background:var(--white);border-top:1px solid var(--border);padding:3.5rem 0 2rem}
         .footer-grid{display:grid;grid-template-columns:2fr 1fr 1fr 1fr;gap:3rem;margin-bottom:3rem}
         .footer-brand-name{font-size:1.4rem;font-weight:800;color:var(--green-primary);margin-bottom:.6rem}
-        .footer-tagline{font-size:.85rem;color:var(--ink-60);line-height:1.6;max-width:260px}
-        .footer-transparency{font-size:.78rem;color:var(--ink-30);line-height:1.6;margin-top:1rem;padding-top:1rem;border-top:1px solid var(--border);max-width:260px}
+        .footer-tagline { font-size: 0.85rem; color: var(--ink-60); line-height: 1.6; max-width: 260px; margin-bottom: 0.75rem; }
+        .footer-note { font-size: 0.78rem; color: var(--ink-30); line-height: 1.6; max-width: 260px; border-top: 1px solid var(--border); padding-top: 0.75rem; margin-top: 0.25rem; }
         .footer-links h4{font-size:.75rem;font-weight:700;text-transform:uppercase;letter-spacing:1.5px;color:var(--ink);margin-bottom:1rem}
         .footer-links ul{list-style:none}
         .footer-links a{display:block;font-size:.875rem;color:var(--ink-60);text-decoration:none;margin-bottom:.6rem;transition:color .2s}
@@ -161,22 +161,23 @@
 <!-- HEADER — matches terms.html nav structure -->
 <header>
     <div class="container">
-        <nav>
-            <a href="/" class="logo">
-                <span class="logo-mark">Adworth&#8480;</span>
-                <span class="patent-pill">Patent Pending</span>
-            </a>
-            <ul>
-                <li><a href="/#problem">Problem</a></li>
-                <li><a href="/#how-it-works">How It Works</a></li>
-                <li><a href="/#founder">Founder</a></li>
-                <li><a href="/#investors">Investors</a></li>
-                <li><a href="/enterprise.html" class="nav-enterprise">Enterprise</a></li>
-                <li><a href="/#waitlist" class="nav-cta">Join Waitlist</a></li>
-            </ul>
-        </nav>
+      <nav>
+        <a href="/" class="logo">
+          <span class="logo-mark">Adworth℠</span>
+          <span class="patent-pill">Patent Pending</span>
+        </a>
+        <ul>
+          <li><a href="/#problem">Problem</a></li>
+          <li><a href="/#how-it-works">How It Works</a></li>
+          <li><a href="/#transparency">How We Make Money</a></li>
+          <li><a href="/#founder">Founder</a></li>
+          <li><a href="/#investors">Investors</a></li>
+          <li><a href="/enterprise.html">Enterprise</a></li>
+          <li><a href="/#waitlist" class="nav-cta">Join Waitlist</a></li>
+        </ul>
+      </nav>
     </div>
-</header>
+  </header>
 
 <!-- PAGE HERO -->
 <section class="page-hero">
@@ -470,60 +471,62 @@
 </section>
 
 <!-- FOOTER — matches terms.html footer structure -->
+
 <footer>
     <div class="container">
-        <div class="footer-grid">
-            <div>
-                <div class="footer-brand-name">Adworth&#8480;</div>
-                <p class="footer-tagline">Cryptographic consent infrastructure for digital advertising. Privacy for people, compliance for platforms.</p>
-                <p class="footer-transparency">We earn 2&ndash;5% when advertisers pay you for your data. That&rsquo;s our only revenue model. No hidden fees. No data sales. It&rsquo;s on the ledger.</p>
-            </div>
-            <div class="footer-links">
-                <h4>Product</h4>
-                <ul>
-                    <li><a href="/#problem">The Problem</a></li>
-                    <li><a href="/#how-it-works">How It Works</a></li>
-                    <li><a href="/dashboard.html">Consumer Demo</a></li>
-                    <li><a href="/enterprise.html">Enterprise</a></li>
-                    <li><a href="/#waitlist">Join Waitlist</a></li>
-                </ul>
-            </div>
-            <div class="footer-links">
-                <h4>Company</h4>
-                <ul>
-                    <li><a href="/#founder">Founder</a></li>
-                    <li><a href="/#investors">Investors</a></li>
-                    <li><a href="mailto:hello@adworth.app">Contact</a></li>
-                </ul>
-            </div>
-            <div class="footer-links">
-                <h4>Legal</h4>
-                <ul>
-                    <li><a href="/privacy.html">Privacy Policy</a></li>
-                    <li><a href="/terms.html">Terms of Service</a></li>
-                </ul>
-            </div>
+      <div class="footer-grid">
+        <div>
+          <div class="footer-brand-name">Adworth℠</div>
+          <p class="footer-tagline">Cryptographic consent infrastructure for digital advertising. Privacy for people, compliance for platforms.</p>
+          <p class="footer-note">We earn exactly 2% when advertisers pay you for verified consent. That's our only revenue source. Always visible. Always on the ledger. No exceptions.</p>
         </div>
-        <div class="footer-bottom">
-            <span>&copy; 2026 Adworth&#8480; LLC &middot; Patent Pending &middot; Charleston, SC</span>
-            <span>Data sourced from public CCPA transparency reports &middot; Updated annually</span>
+        <div class="footer-links">
+          <h4>Product</h4>
+          <ul>
+            <li><a href="/#problem">Problem</a></li>
+            <li><a href="/#how-it-works">How It Works</a></li>
+            <li><a href="/#transparency">How We Make Money</a></li>
+            <li><a href="/dashboard.html">Consumer Demo</a></li>
+            <li><a href="/ccpa-gap.html">CCPA Enforcement Gap</a></li>
+            <li><a href="/ledger.html">Consent Ledger</a></li>
+            <li><a href="/enterprise.html">Enterprise</a></li>
+            <li><a href="/#waitlist">Join Waitlist</a></li>
+          </ul>
         </div>
+        <div class="footer-links">
+          <h4>Company</h4>
+          <ul>
+            <li><a href="/#founder">Founder</a></li>
+            <li><a href="/#investors">Investors</a></li>
+            <li><a href="mailto:hello@adworth.app">hello@adworth.app</a></li>
+          </ul>
+        </div>
+        <div class="footer-links">
+          <h4>Legal</h4>
+          <ul>
+            <li><a href="/privacy.html">Privacy Policy</a></li>
+            <li><a href="/terms.html">Terms of Service</a></li>
+          </ul>
+        </div>
+      </div>
+            <div class="footer-bottom">
+        <span>© 2026 Adworth℠ LLC · Patent Pending · Charleston, SC</span>
+        <span>Built in public · Raising seed round</span>
+      </div>
     </div>
-</footer>
+  </footer>
 
-<script>
+  <script>
     var observer = new IntersectionObserver(function(entries) {
-        entries.forEach(function(entry) {
-            if (entry.isIntersecting) {
-                entry.target.classList.add('visible');
-                observer.unobserve(entry.target);
-            }
-        });
+      entries.forEach(function(entry) {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('visible');
+          observer.unobserve(entry.target);
+        }
+      });
     }, { threshold: 0.1, rootMargin: '0px 0px -40px 0px' });
     document.querySelectorAll('.fade-up').forEach(function(el) { observer.observe(el); });
-</script>
-
-<!-- No third-party tracking scripts. No analytics. No pixels. That's kind of the whole point. -->
+  </script>
 
 </body>
 </html>
