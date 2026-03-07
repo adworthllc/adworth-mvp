@@ -894,7 +894,7 @@
     input.style.borderColor = '';
     btn.textContent = 'Joining…'; btn.disabled = true;
     try {
-      const res = await fetch('https://formspree.io/f/mlgwgndk', {
+      const res = await fetch('https://adworth-waitlist.adworthllc.workers.dev/submit', {
         method: 'POST',
         headers: { 'Accept':'application/json','Content-Type':'application/json' },
         body: JSON.stringify({ email, source: 'ledger-page' }),
