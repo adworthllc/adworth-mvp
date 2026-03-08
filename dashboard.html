@@ -715,13 +715,13 @@
       try {
         const res = await fetch(WORKER_URL + '/analyze', {
           method: 'POST',
-          headers: { 'Content-Type': 'application/json', 'X-API-Key': '' },
+          headers: { 'Content-Type': 'application/json' },
           body: JSON.stringify({ domain })
         });
         const data = await res.json();
         if (!res.ok) throw new Error(data.error || 'Worker error');
         renderResults(data);
-        addToHistory(domain, data.analysis?.privacyRiskScore);
+        addToHistory(domain, data.privacy_analysis?.risk_score);
       } catch (err) {
         showError('Could not analyze ' + domain + ': ' + err.message + '. Make sure the Worker is deployed.');
         showEmptyState();
@@ -734,16 +734,17 @@
     // ── RENDER ──────────────────────────────────────────────
     function renderResults(data) {
       var domain = data.domain;
-      var adCount = data.adCount;
-      var ads = data.ads;
-      var analysis = data.analysis;
-      var privacyMeta = data.privacyMeta;
+      var adCount = data.ad_count || (data.ad_creatives ? data.ad_creatives.length : 0);
+      var ads = data.ad_creatives || [];
+      var analysis = data.privacy_analysis || null;
+
+      // Normalize risk score: Worker returns 0-100, dashboard uses 0-10
+      var risk  = analysis && analysis.risk_score != null ? Math.round(analysis.risk_score / 10) : null;
+      var trans = risk != null ? Math.max(0, 10 - risk) : null;
+      var flags = (analysis && analysis.regulatory_flags) ? analysis.regulatory_flags.length : 0;
 
       // Metrics
       document.getElementById('m-ads').textContent = adCount || 0;
-      var risk  = analysis ? analysis.privacyRiskScore : null;
-      var trans = analysis ? analysis.transparencyScore : null;
-      var flags = (analysis && analysis.regulatoryFlags) ? analysis.regulatoryFlags.length : 0;
 
       var riskEl  = document.getElementById('m-risk');
       riskEl.textContent = risk != null ? risk : '\u2014';
@@ -768,41 +769,35 @@
           '<div class="score-card"><div class="score-number ' + scoreColor(trans, false) + '">' + (trans != null ? trans : '\u2014') + '</div><div class="score-label">Transparency</div></div>' +
           '</div>';
 
-        if (analysis.consentGaps && analysis.consentGaps.length) {
+        var gaps = analysis.findings || analysis.consentGaps || [];
+        if (gaps.length) {
           html += '<div>';
-          analysis.consentGaps.slice(0, 4).forEach(function(gap) {
-            html += '<div class="finding-item"><div class="finding-icon red">\u26a0</div><div class="finding-text"><strong>Consent Gap</strong>' + gap + '</div></div>';
+          gaps.slice(0, 4).forEach(function(gap) {
+            html += '<div class="finding-item"><div class="finding-icon red">\u26a0</div><div class="finding-text"><strong>Finding: </strong>' + gap + '</div></div>';
           });
           html += '</div>';
         }
       }
 
-      // Ad list with PII badge
+      // Ad list
       if (ads && ads.length) {
-        var anonymizedCount = privacyMeta ? (privacyMeta.anonymizedCount || 0) : 0;
-
         html += '<div class="ads-section-header">' +
-          '<span class="ads-section-label">Active Ads</span>';
-        if (anonymizedCount > 0) {
-          html += '<span class="pii-notice"><span class="pii-notice-dot"></span>' + anonymizedCount + ' name' + (anonymizedCount > 1 ? 's' : '') + ' anonymized \u00b7 PII Protected</span>';
-        }
-        html += '</div>';
+          '<span class="ads-section-label">Active Ads</span>' +
+          '</div>';
 
         ads.slice(0, 15).forEach(function(ad) {
-          var isAnon = ad.isAnonymized;
-          html += '<div class="ad-item' + (isAnon ? ' is-anonymized' : '') + '">' +
+          var advertiserName = (ad.advertiser && ad.advertiser.name) ? ad.advertiser.name : (ad.advertiser || domain);
+          var adText = ad.headline || ad.description || ad.text || '';
+          var lastSeen = ad.last_shown || ad.lastShown || '';
+          html += '<div class="ad-item">' +
             '<div class="ad-meta"><div class="ad-advertiser-row">' +
-            '<span class="ad-domain' + (isAnon ? ' anon' : '') + '">' + (ad.advertiser || domain) + '</span>';
-          if (isAnon) {
-            html += '<span class="pii-badge"><span class="pii-badge-icon">\ud83d\udd12</span> PII Protected</span>';
-          }
-          html += '</div><span class="ad-format">' + ((ad.format || 'ad').toUpperCase()) + '</span></div>';
-          if (ad.text) {
-            html += '<div class="ad-text">' + ad.text.slice(0, 140) + (ad.text.length > 140 ? '\u2026' : '') + '</div>';
+            '<span class="ad-domain">' + advertiserName + '</span>' +
+            '</div><span class="ad-format">' + ((ad.format || 'ad').toUpperCase()) + '</span></div>';
+          if (adText) {
+            html += '<div class="ad-text">' + adText.slice(0, 140) + (adText.length > 140 ? '\u2026' : '') + '</div>';
           }
           html += '<div class="ad-footer">';
-          if (ad.lastShown) html += '<span>Last seen: ' + ad.lastShown + '</span>';
-          if (ad.totalDaysShown) html += '<span>' + ad.totalDaysShown + ' days running</span>';
+          if (lastSeen) html += '<span>Last seen: ' + lastSeen + '</span>';
           html += '</div></div>';
         });
 
@@ -863,9 +858,10 @@
           document.getElementById('tags-panel').style.display = 'block';
         }
 
-        if (analysis.regulatoryFlags && analysis.regulatoryFlags.length) {
+        var regFlags = (analysis.regulatory_flags || analysis.regulatoryFlags || []);
+        if (regFlags.length) {
           document.getElementById('reg-body').innerHTML =
-            analysis.regulatoryFlags.map(function(f) {
+            regFlags.map(function(f) {
               return '<div class="finding-item"><div class="finding-icon red">\u2696</div><div class="finding-text">' + f + '</div></div>';
             }).join('');
           document.getElementById('reg-panel').style.display = 'block';
