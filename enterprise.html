@@ -271,7 +271,7 @@
             "Apple.com hosts persistent multi-year ad campaigns from opaque entities using image-only formats that bypass user inspection, creating unverifiable consent and targeting opacity. Adworth consent tokens would enforce granular opt-in for each advertiser entity and targeting dataset, with cryptographic proof of user authorization tied to specific ad placements."
           </div>
           <div class="demo-disclaimer">
-            This analysis is based on publicly available data from Google's Ads Transparency Center via SerpApi and AI analysis by Anthropic Claude. Results represent a sample of up to 40 ads and are for informational and educational purposes only. This does not constitute a finding of wrongdoing, regulatory violation, or legal determination of any kind. Try the live tool below to run your own query.
+            This analysis is based on publicly available data from Google's Ads Transparency Center via DataForSEO and AI analysis by Anthropic Claude. Results represent a sample of up to 40 ads and are for informational and educational purposes only. This does not constitute a finding of wrongdoing, regulatory violation, or legal determination of any kind. Try the live tool below to run your own query.
           </div>
           <div class="demo-cta-bar">
             <a href="/dashboard.html" class="btn btn-primary">Try Live Demo — Enter Any Domain →</a>
@@ -429,7 +429,7 @@
             <div class="founder-avatar">NJ</div>
             <div class="founder-sig-text">
               <strong>Nick Johnson</strong>
-              <small>Founder & CEO, Adworth℠ LLC · Charleston, SC · Patent Filed Feb 2026 · hello@adworth.app</small>
+              <small>Founder &amp; CEO, Adworth℠ LLC &middot; Charleston, SC &middot; Patent Filed Feb 2026 &middot; hello@adworth.app</small>
             </div>
           </div>
         </div>
@@ -495,7 +495,7 @@
           <ul>
             <li><a href="#founder">Founder</a></li>
             <li><a href="#raise">Investors</a></li>
-            <li>hello@adworth.app</li>
+            <li><a href="mailto:hello@adworth.app">hello@adworth.app</a></li>
           </ul>
         </div>
         <div class="footer-links">
@@ -507,14 +507,24 @@
         </div>
       </div>
       <div class="footer-bottom">
-        <span>© 2026 Adworth℠ LLC · Patent Pending · Charleston, SC</span>
-        <span>Built in public · Raising seed round</span>
+        <span>&copy; 2026 Adworth&#8480; LLC &middot; Patent Pending &middot; Charleston, SC</span>
+        <span>Built in public &middot; Raising seed round</span>
       </div>
     </div>
   </footer>
 
   <script>
     document.body.classList.add('js-ready');
-    const observer = new IntersectionObserver((ent
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('visible');
+          observer.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.1, rootMargin: '0px 0px -40px 0px' });
+    document.querySelectorAll('.fade-up').forEach(el => observer.observe(el));
+  </script>
+
 </body>
 </html>
