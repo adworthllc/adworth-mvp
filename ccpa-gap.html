@@ -3,6 +3,9 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-Content-Type-Options" content="nosniff">
+    <meta http-equiv="X-Frame-Options" content="DENY">
+    <meta name="referrer" content="strict-origin-when-cross-origin">
     <title>CCPA Enforcement Gap &mdash; Adworth&#8480;</title>
     <meta name="description" content="Every major company reports CCPA deletion request volumes. Not one can cryptographically verify the data was actually removed. See the enforcement gap.">
     <link rel="icon" type="image/x-icon" href="/favicon.ico">
@@ -498,7 +501,7 @@
           <ul>
             <li><a href="/#founder">Founder</a></li>
             <li><a href="/#investors">Investors</a></li>
-            <li><a href="mailto:hello@adworth.app">hello@adworth.app</a></li>
+            <li>hello@adworth.app</li>
           </ul>
         </div>
         <div class="footer-links">
@@ -525,8 +528,17 @@
         }
       });
     }, { threshold: 0.1, rootMargin: '0px 0px -40px 0px' });
-    document.querySelectorAll('.fade-up').forEach(function(el) { observer.observe(el); });
-  </script>
 
+    document.querySelectorAll('.fade-up').forEach(function(el) {
+      observer.observe(el);
+    });
+
+    // Stagger insight grid children
+    document.querySelectorAll('.insight-grid').forEach(function(grid) {
+      grid.querySelectorAll('.insight-card').forEach(function(card, i) {
+        card.style.transitionDelay = (i * 80) + 'ms';
+      });
+    });
+  </script>
 </body>
 </html>
