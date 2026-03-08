@@ -681,7 +681,7 @@
     // ── HEALTH CHECK ────────────────────────────────────────
     async function checkHealth() {
       try {
-        const res = await fetch(WORKER_URL + '/health');
+        const res = await fetch(WORKER_URL + '/');
         if (res.ok) {
           document.getElementById('status-dot').className = 'dot';
           document.getElementById('status-text').textContent = 'API Live';
@@ -713,7 +713,11 @@
       hideSidePanels();
 
       try {
-        const res = await fetch(WORKER_URL + '/ads?domain=' + encodeURIComponent(domain));
+        const res = await fetch(WORKER_URL + '/analyze', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json', 'X-API-Key': '' },
+          body: JSON.stringify({ domain })
+        });
         const data = await res.json();
         if (!res.ok) throw new Error(data.error || 'Worker error');
         renderResults(data);
