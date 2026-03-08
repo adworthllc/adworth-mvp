@@ -721,7 +721,7 @@
         const data = await res.json();
         if (!res.ok) throw new Error(data.error || 'Worker error');
         renderResults(data);
-        addToHistory(domain, data.privacy_analysis?.risk_score);
+        addToHistory(domain, data.privacy_analysis?.risk_score != null ? Math.round(data.privacy_analysis.risk_score / 10) : null);
       } catch (err) {
         showError('Could not analyze ' + domain + ': ' + err.message + '. Make sure the Worker is deployed.');
         showEmptyState();
