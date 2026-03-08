@@ -266,7 +266,7 @@
 
     .finding-item { display: flex; gap: 0.75rem; padding: 0.9rem 0; border-bottom: 1px solid rgba(255,255,255,0.05); align-items: flex-start; }
     .finding-item:last-child { border-bottom: none; }
-    .finding-icon { width: 28px; height: 28px; min-width: 28px; border-radius: 6px; display: flex; align-items: center; justify-content: center; font-size: 0.75rem; margin-top: 1px; }
+    .finding-icon { width: 28px; height: 28px; min-width: 28px; border-radius: 6px; display: flex; align-items: center; justify-content: center; font-size: 0.85rem; margin-top: 1px; background: rgba(82,183,136,0.15); color: var(--green-accent); }
     .finding-icon.red   { background: rgba(224,82,82,0.15); }
     .finding-icon.amber { background: rgba(212,147,10,0.15); }
     .finding-icon.green { background: rgba(82,183,136,0.15); }
@@ -773,7 +773,7 @@
         if (gaps.length) {
           html += '<div>';
           gaps.slice(0, 4).forEach(function(gap) {
-            html += '<div class="finding-item"><div class="finding-icon red">\u26a0</div><div class="finding-text"><strong>Finding: </strong>' + gap + '</div></div>';
+            html += '<div class="finding-item"><div class="finding-icon">\u2139</div><div class="finding-text"><strong>Consent Gap: </strong>' + gap + '</div></div>';
           });
           html += '</div>';
         }
@@ -789,13 +789,17 @@
           var advertiserName = (ad.advertiser && ad.advertiser.name) ? ad.advertiser.name : (ad.advertiser || domain);
           var adText = ad.headline || ad.description || ad.text || '';
           var lastSeen = ad.last_shown || ad.lastShown || '';
+          // Only show format badge if it's a real ad type, not a SERP result type
+          var serpNoise = ['ORGANIC','PERSPECTIVES','PEOPLE_ALSO_ASK','POPULAR_PRODUCTS','KNOWLEDGE_GRAPH','RELATED_SEARCHES','LOCAL_PACK','IMAGES','VIDEOS','NEWS'];
+          var rawFormat = (ad.format || '').toUpperCase();
+          var showFormat = rawFormat && serpNoise.indexOf(rawFormat) === -1;
+          var formatLabel = showFormat ? rawFormat : 'AD';
+          if (!adText) return; // skip entries with no content
           html += '<div class="ad-item">' +
             '<div class="ad-meta"><div class="ad-advertiser-row">' +
             '<span class="ad-domain">' + advertiserName + '</span>' +
-            '</div><span class="ad-format">' + ((ad.format || 'ad').toUpperCase()) + '</span></div>';
-          if (adText) {
-            html += '<div class="ad-text">' + adText.slice(0, 140) + (adText.length > 140 ? '\u2026' : '') + '</div>';
-          }
+            '</div><span class="ad-format">' + formatLabel + '</span></div>';
+          html += '<div class="ad-text">' + adText.slice(0, 140) + (adText.length > 140 ? '\u2026' : '') + '</div>';
           html += '<div class="ad-footer">';
           if (lastSeen) html += '<span>Last seen: ' + lastSeen + '</span>';
           html += '</div></div>';
@@ -848,8 +852,11 @@
 
       // Side panels
       if (analysis) {
-        document.getElementById('adworth-value-text').textContent = analysis.adworthValue || '';
-        document.getElementById('top-finding').textContent = analysis.topFinding || '';
+        document.getElementById('adworth-value-text').textContent = analysis.adworth_value || analysis.adworthValue || analysis.summary || '';
+        var allFindings = analysis.findings || [];
+        document.getElementById('top-finding').innerHTML = allFindings.length
+          ? allFindings.map(function(f) { return '<div style="margin-bottom:0.5rem;">&#8226; ' + f + '</div>'; }).join('')
+          : '';
         document.getElementById('finding-panel').style.display = 'block';
 
         if (analysis.dataTypesInferred && analysis.dataTypesInferred.length) {
@@ -862,7 +869,11 @@
         if (regFlags.length) {
           document.getElementById('reg-body').innerHTML =
             regFlags.map(function(f) {
-              return '<div class="finding-item"><div class="finding-icon red">\u2696</div><div class="finding-text">' + f + '</div></div>';
+              var parts = f.split(/^([^:]+):/);
+              var flagHtml = parts.length >= 3
+                ? '<strong style="color:rgba(255,255,255,0.85);">' + parts[1].trim() + '</strong><span style="color:rgba(255,255,255,0.55);">:</span> ' + parts[2].trim()
+                : f;
+              return '<div class="finding-item"><div class="finding-icon" style="background:rgba(200,169,106,0.15);color:#c8a96a;">\u2696</div><div class="finding-text">' + flagHtml + '</div></div>';
             }).join('');
           document.getElementById('reg-panel').style.display = 'block';
         }
