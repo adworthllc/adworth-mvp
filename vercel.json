@@ -8,6 +8,5 @@
         { "source": "/thanks", "destination": "/thanks.html" },
         { "source": "/ccpa-gap", "destination": "/ccpa-gap.html" },
         { "source": "/app", "destination": "/app/index.html" },
-        { "source": "/waitlist-submit", "destination": "https://adworth-waitlist.adworthllc.workers.dev" }
     ]
 }
