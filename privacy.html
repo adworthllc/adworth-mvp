@@ -105,7 +105,7 @@
     <div class="inner">
         <span class="page-label">Legal</span>
         <h1>Privacy Policy</h1>
-        <p>Last updated: March 6, 2026 &middot; Adworth&#8480; LLC &middot; Charleston, SC</p>
+        <p>Last updated: March 8, 2026 &middot; Adworth&#8480; LLC &middot; Charleston, SC</p>
     </div>
 </div>
 
@@ -424,7 +424,7 @@
     <!-- 06 -->
     <div class="policy-section" id="governance-engine">
         <h2><span class="section-num">06</span> Privacy Governance Engine</h2>
-        <p>The Privacy Governance Engine (<code>adworth-bouncer.adworthllc.workers.dev</code>) is a real-time consent enforcement system. Every data access request is evaluated against active consent tokens before any data can be reached.</p>
+        <p>The Privacy Governance Engine (<code>adworth-bouncer.adworthllc.workers.dev</code>, v2.1.0) is a real-time consent enforcement system. Every data access request is evaluated against active consent tokens before any data can be reached.</p>
 
         <h3>Six-point validation</h3>
         <ol>
@@ -438,10 +438,13 @@
         <p>Any failed check triggers an immediate block. The decision is final and cannot be overridden. Every decision is recorded in both <code>GOVERNANCE_LOG</code> and <code>ADWORTH_LEDGER</code>. No PII is stored in any decision record.</p>
 
         <h3>Block reason codes</h3>
-        <p>Blocked responses include one of: <code>TOKEN_NOT_FOUND</code>, <code>TOKEN_REVOKED</code>, <code>TOKEN_EXPIRED</code>, <code>ADVERTISER_MISMATCH</code>, <code>SCOPE_MISMATCH</code>, <code>SIGNATURE_INVALID</code>, <code>MINOR_SHIELD_ACTIVE</code>, or <code>INVALID_REQUEST</code>.</p>
+        <p>Blocked responses include one of: <code>TOKEN_NOT_FOUND</code>, <code>TOKEN_REVOKED</code>, <code>TOKEN_EXPIRED</code>, <code>ADVERTISER_MISMATCH</code>, <code>SCOPE_MISMATCH</code>, <code>SIGNATURE_INVALID</code>, <code>MINOR_SHIELD_ACTIVE</code>, <code>GPC_OPT_OUT</code>, or <code>INVALID_REQUEST</code>.</p>
 
         <h3>Minor Shield</h3>
         <p>When a consent token carries <code>user_type: minor</code> metadata, the Governance Engine enters a High-Shield state and blocks <strong>all</strong> advertising-related data access requests regardless of scope, advertiser, or token validity. A <code>MINOR_SHIELD_ACTIVE</code> event is recorded in the Invisibility Ledger. No long-term profile is built for minor users. See Section 8 for the complete Minor Shield protocol.</p>
+
+        <h3>Global Privacy Control (GPC)</h3>
+        <p>Adworth honors <code>Sec-GPC: 1</code> browser signals as valid opt-outs of data sale and sharing under CPRA &sect;&nbsp;1798.135(d). When a user&rsquo;s browser sends this header, the Governance Engine immediately blocks the access request and returns a <code>GPC_OPT_OUT</code> block reason. This check runs after Minor Shield but before any token lookup &mdash; no consent token can override a GPC opt-out signal. The block is recorded in both <code>GOVERNANCE_LOG</code> and <code>ADWORTH_LEDGER</code>.</p>
 
         <h3>Dashboard</h3>
         <p>The Governance Engine dashboard displays the real-time decision log, block reason breakdown, and validation stats. API key stored in <code>sessionStorage</code> only. No third-party scripts. No cookies.</p>
@@ -559,6 +562,7 @@
             <li><strong>Enforcement history:</strong> Request a copy of all violation detection and removal payload records associated with your opaque user identifier</li>
             <li><strong>Device key revocation:</strong> Request revocation of any registered Ed25519 public key to prevent further submissions from that device</li>
             <li><strong>Minor Shield inquiry:</strong> Request confirmation of whether Minor Shield is active on any consent token associated with your account</li>
+            <li><strong>Global Privacy Control:</strong> If your browser sends a <code>Sec-GPC: 1</code> signal, Adworth automatically honors it as a valid opt-out of data sale and sharing under CPRA &sect;&nbsp;1798.135(d) &mdash; no additional action required on your part</li>
         </ul>
         <p>To exercise any of these rights, contact us at <a href="mailto:hello@adworth.app">hello@adworth.app</a>. We will respond within 30 days.</p>
     </div>
@@ -653,11 +657,7 @@
         <ul>
           <li><a href="/#problem">Problem</a></li>
           <li><a href="/#how-it-works">How It Works</a></li>
-          <li><a href="/#transparency">How We Make Money</a></li>
-          <li><a href="/dashboard.html">Consumer Demo</a></li>
-          <li><a href="/ccpa-gap.html">CCPA Enforcement Gap</a></li>
-          <li><a href="/ledger.html">Consent Ledger</a></li>
-          <li><a href="/enterprise.html">Enterprise</a></li>
+          <li><a href="https://app.adworth.app">Transparency Demo</a></li>
           <li><a href="/#waitlist">Join Waitlist</a></li>
         </ul>
       </div>
@@ -666,7 +666,7 @@
         <ul>
           <li><a href="/#founder">Founder</a></li>
           <li><a href="/#investors">Investors</a></li>
-          <li><a href="mailto:hello@adworth.app">hello@adworth.app</a></li>
+          <li><a href="mailto:hello@adworth.app">Contact</a></li>
         </ul>
       </div>
       <div class="footer-links">
