@@ -1,0 +1,118 @@
+Copyright (c) 2026 Adworth LLC. All rights reserved.
+
+PROPRIETARY AND CONFIDENTIAL
+
+This repository and all of its contents — including but not limited to source
+code, configuration files, documentation, design assets, and infrastructure
+definitions — are the exclusive property of Adworth LLC ("Adworth"),
+a limited liability company organized under the laws of South Carolina,
+United States of America.
+
+-------------------------------------------------------------------------------
+PATENT NOTICE
+-------------------------------------------------------------------------------
+
+One or more inventions disclosed in this repository are the subject of a
+pending United States patent application:
+
+  Title:    Privacy Governance and Cryptographic Consent Enforcement System
+  Filed:    February 23, 2026
+  Status:   Provisional application pending
+
+Protected components include but are not limited to:
+
+  - Cryptographic Consent Token (CCT) generation, signing, and verification
+  - Privacy Governance Engine (Bouncer) — automated consent enforcement
+  - Invisibility Ledger — tamper-evident consent audit trail
+  - State-Persistence Monitor — post-revocation data detection
+  - Removal Payload Engine (RPE) — automated legal deletion enforcement
+
+All patent rights are reserved. Nothing in this repository shall be construed
+as granting, by implication, estoppel, or otherwise, any license under any
+patent, patent application, or other intellectual property right of Adworth.
+
+-------------------------------------------------------------------------------
+SERVICE MARK NOTICE
+-------------------------------------------------------------------------------
+
+Adworth℠ is a service mark of Adworth LLC, with application pending before
+the South Carolina Secretary of State. Unauthorized use of the Adworth name,
+mark, or logo is strictly prohibited.
+
+-------------------------------------------------------------------------------
+RESTRICTIONS
+-------------------------------------------------------------------------------
+
+Except as expressly authorized in writing by Adworth LLC, no person or entity
+may:
+
+  1. Use, copy, reproduce, or distribute any portion of this repository or its
+     contents, in whole or in part, for any purpose;
+
+  2. Modify, adapt, translate, reverse engineer, decompile, disassemble, or
+     create derivative works based on any portion of this repository;
+
+  3. Sublicense, sell, resell, rent, lease, transfer, assign, or otherwise
+     commercially exploit any portion of this repository;
+
+  4. Use any portion of this repository to build a competing product or
+     service, or to replicate the ideas, features, functions, or architecture
+     described herein;
+
+  5. Remove, alter, or obscure any proprietary notices, labels, or marks
+     contained in this repository;
+
+  6. Use the Adworth name, service mark, or branding in any manner without
+     prior written consent.
+
+-------------------------------------------------------------------------------
+NO WARRANTY
+-------------------------------------------------------------------------------
+
+THIS SOFTWARE AND ALL ASSOCIATED MATERIALS ARE PROVIDED "AS IS" WITHOUT
+WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO
+WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE, OR
+NON-INFRINGEMENT. ADWORTH LLC MAKES NO REPRESENTATIONS REGARDING THE
+ACCURACY, COMPLETENESS, OR SUITABILITY OF THIS SOFTWARE FOR ANY PURPOSE.
+
+-------------------------------------------------------------------------------
+LIMITATION OF LIABILITY
+-------------------------------------------------------------------------------
+
+IN NO EVENT SHALL ADWORTH LLC, ITS OFFICERS, DIRECTORS, EMPLOYEES, OR AGENTS
+BE LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, CONSEQUENTIAL, OR
+PUNITIVE DAMAGES ARISING OUT OF OR RELATED TO ACCESS TO OR USE OF THIS
+REPOSITORY, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGES.
+
+-------------------------------------------------------------------------------
+AUTHORIZED ACCESS
+-------------------------------------------------------------------------------
+
+Access to this repository is granted solely for purposes explicitly authorized
+by Adworth LLC in writing, which may include investor due diligence, legal
+review, or authorized development under a separate agreement. Such access does
+not constitute a license to use, copy, or distribute any contents herein.
+
+-------------------------------------------------------------------------------
+GOVERNING LAW
+-------------------------------------------------------------------------------
+
+This license and any disputes arising from or related to this repository shall
+be governed by the laws of the State of South Carolina, United States of
+America, without regard to its conflict of law provisions.
+
+-------------------------------------------------------------------------------
+CONTACT
+-------------------------------------------------------------------------------
+
+For licensing inquiries, authorized use requests, or questions regarding this
+repository:
+
+  Adworth LLC
+  Charleston, South Carolina
+  hello@adworth.app
+  https://adworth.app
+
+-------------------------------------------------------------------------------
+
+© 2026 Adworth LLC. Patent Pending. All Rights Reserved.
