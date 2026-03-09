@@ -105,7 +105,7 @@
     <div class="inner">
         <span class="page-label">Legal</span>
         <h1>Privacy Policy</h1>
-        <p>Last updated: March 8, 2026 &middot; Adworth&#8480; LLC &middot; Charleston, SC</p>
+        <p>Last updated: March 9, 2026 &middot; Adworth&#8480; LLC &middot; Charleston, SC</p>
     </div>
 </div>
 
@@ -137,7 +137,7 @@
 
     <!-- Updated March 6 2026: Advanced Privacy Protocols added — Ledger Chaff, Differential Privacy, Location Grid Quantization, Minor Shield, Nashville Offline Protocol (roadmap) -->
     <div class="highlight-box">
-        <strong>The short version:</strong> Adworth is built on the principle that your data belongs to you. We collect only what we need to operate the service, we never sell your data, and you can delete it at any time. Our Ad Intelligence pipeline runs entirely through our own <code>adworth-ads</code> Cloudflare Worker, which includes a PII Advertiser Name Classifier that anonymizes person names before any response leaves the worker &mdash; only a non-reversible SHA-256 audit hash is retained. Our Ingestion API (<code>adworth-ingestion-api</code>) and Privacy Cockpit Chrome extension allow secure submission of cryptographically signed marketing data &mdash; your private Ed25519 key is generated on your device and never transmitted to Adworth. Our consent token API uses opaque identifiers only &mdash; no PII in tokens or ledger entries. Our Privacy Governance Engine enforces consent in real time. Our State-Persistence Monitor scans for unauthorized data retention after revocation. As of March 6, 2026, our Removal Payload Engine (<code>adworth-rpe</code> v2.0.0) fetches legal citations, deadlines, and obligations at runtime from a versioned, machine-readable regulation rules table served by the <code>adworth-rules</code> Worker (rules v1.0.0, effective March 5, 2026). Our Advanced Privacy Protocols (described in Section 8) add Ledger Chaff noise injection, Local Differential Privacy (2% fuzz), Location Grid Quantization (1&nbsp;km&sup2; precision), and a Minor Shield protocol &mdash; all of which are built to protect you from external surveillance, not to obscure your own rights. No hardcoded legal strings, every notice carries a <code>rules_version</code> for permanent audit linkage. Both the monitor and RPE currently operate in simulated mode. All API access is authenticated. API keys are stored in <code>sessionStorage</code> only. Vercel Analytics is disabled. No third-party trackers, advertising pixels, or analytics services. That&rsquo;s kind of the whole point.
+        <strong>The short version:</strong> Adworth is built on the principle that your data belongs to you. We collect only what we need to operate the service, we never sell your data, and you can delete it at any time. Our Ad Intelligence pipeline runs entirely through our own <code>adworth-ads</code> Cloudflare Worker (v5.0.0, powered by DataForSEO), which includes a PII Advertiser Name Classifier that anonymizes person names before any response leaves the worker &mdash; only a non-reversible SHA-256 audit hash is retained. Our Ingestion API (<code>adworth-ingestion-api</code>) and Privacy Cockpit Chrome extension allow secure submission of cryptographically signed marketing data &mdash; your private Ed25519 key is generated on your device and never transmitted to Adworth. Our consent token API uses opaque identifiers only &mdash; no PII in tokens or ledger entries. Our Privacy Governance Engine enforces consent in real time. Our State-Persistence Monitor scans for unauthorized data retention after revocation. As of March 6, 2026, our Removal Payload Engine (<code>adworth-rpe</code> v2.0.0) fetches legal citations, deadlines, and obligations at runtime from a versioned, machine-readable regulation rules table served by the <code>adworth-rules</code> Worker (rules v1.0.0, effective March 5, 2026). Our Advanced Privacy Protocols (described in Section 8) add Ledger Chaff noise injection, Local Differential Privacy (2% fuzz), Location Grid Quantization (1&nbsp;km&sup2; precision), and a Minor Shield protocol &mdash; all of which are built to protect you from external surveillance, not to obscure your own rights. No hardcoded legal strings, every notice carries a <code>rules_version</code> for permanent audit linkage. Both the monitor and RPE currently operate in simulated mode. All API access is authenticated. API keys are stored in <code>sessionStorage</code> only. Vercel Analytics is disabled. No third-party trackers, advertising pixels, or analytics services. That&rsquo;s kind of the whole point.
     </div>
 
     <!-- 01 -->
@@ -182,10 +182,10 @@
         <p>When you use our Ad Intelligence Dashboard (adworth.app/dashboard.html), all processing runs through our own <code>adworth-ads</code> Cloudflare Worker. The following data is processed:</p>
         <ul>
             <li>The domain name you enter for analysis (e.g. <code>apple.com</code>)</li>
-            <li>Publicly available ad data retrieved from Google&rsquo;s Ads Transparency Center via SerpApi &mdash; this includes advertiser names, ad creative IDs, formats, campaign dates, and targeting domains</li>
+            <li>Publicly available ad data retrieved from Google&rsquo;s Ads Transparency Center via DataForSEO &mdash; this includes advertiser names, ad creative IDs, formats, campaign dates, and targeting domains</li>
             <li>AI-generated analysis of that public ad data, produced by Anthropic&rsquo;s Claude API</li>
         </ul>
-        <p>No personal user data is transmitted to SerpApi or Anthropic as part of dashboard analysis. The pipeline processes publicly available advertiser data only. Results may be cached temporarily in Cloudflare Workers KV (<code>AD_CACHE</code> namespace) for up to 2 hours.</p>
+        <p>No personal user data is transmitted to DataForSEO or Anthropic as part of dashboard analysis. The pipeline processes publicly available advertiser data only. Results are cached in Cloudflare Workers KV (<code>ADWORTH_ADS_CACHE</code> namespace) for six hours.</p>
 
         <h3>Information displayed on the CCPA Enforcement Gap page</h3>
         <p>Our CCPA Enforcement Gap page (<code>adworth.app/ccpa-gap</code>) displays aggregated data from publicly available CCPA transparency reports published by other companies. This data is:</p>
@@ -197,10 +197,10 @@
         </ul>
         <p>Adworth is not affiliated with any company listed on the CCPA Enforcement Gap page. No data on this page is obtained through scraping protected content, accessing private systems, or any non-public source.</p>
 
-        <h3>PII Advertiser Name Classifier (adworth-ads v4)</h3>
+        <h3>PII Advertiser Name Classifier (adworth-ads v5.0.0)</h3>
         <p>The <code>adworth-ads</code> worker includes a PII Advertiser Name Classifier. This component:</p>
         <ul>
-            <li>Scans all advertiser names returned from SerpApi before any response leaves the worker</li>
+            <li>Scans all advertiser names returned from DataForSEO before any response leaves the worker</li>
             <li>Detects individual person names embedded in ad data (e.g. a sole trader advertising under their own name)</li>
             <li>Anonymizes detected person names &mdash; replacing them with a generic placeholder &mdash; before the response is returned to the dashboard or any downstream system</li>
             <li>Logs a non-reversible SHA-256 audit hash of each detected name to Cloudflare Workers KV with a 90-day retention period &mdash; the hash cannot be used to reconstruct the original name</li>
@@ -303,16 +303,16 @@
         <h2><span class="section-num">03</span> Third-Party Data Processing</h2>
         <p>Our Ad Intelligence pipeline uses two third-party APIs. All calls to these services are made exclusively from our <code>adworth-ads</code> Cloudflare Worker &mdash; no third-party API calls originate from the user&rsquo;s browser.</p>
 
-        <h3>SerpApi &mdash; ad data retrieval</h3>
-        <p>Ad data is retrieved from Google&rsquo;s Ads Transparency Center via <strong>SerpApi</strong> (<a href="https://serpapi.com" target="_blank" rel="noopener noreferrer">serpapi.com</a>). The <code>adworth-ads</code> worker sends the domain name you entered; SerpApi returns publicly available advertiser names, ad creative IDs, formats, campaign date ranges, and targeting domains. No personal user data is transmitted to SerpApi. Before any SerpApi response is returned to the dashboard, the PII Advertiser Name Classifier runs to detect and anonymize individual person names. Results are cached in <code>AD_CACHE</code> KV for up to 2 hours. SerpApi&rsquo;s privacy policy: <a href="https://serpapi.com/privacy" target="_blank" rel="noopener noreferrer">serpapi.com/privacy</a>.</p>
+        <h3>DataForSEO &mdash; ad data retrieval</h3>
+        <p>Ad data is retrieved from Google&rsquo;s Ads Transparency Center via <strong>DataForSEO</strong> (<a href="https://dataforseo.com" target="_blank" rel="noopener noreferrer">dataforseo.com</a>) using the <code>POST /v3/serp/google/organic/live/advanced</code> endpoint. All DataForSEO calls are made exclusively from our <code>adworth-ads</code> Cloudflare Worker &mdash; the domain name you entered is transmitted using Basic Auth credentials stored as encrypted Cloudflare Worker secrets. No personal user data is transmitted to DataForSEO. Before any DataForSEO response is returned to the dashboard, the PII Advertiser Name Classifier runs to detect and anonymize individual person names. Results are cached in <code>ADWORTH_ADS_CACHE</code> KV for six hours. DataForSEO&rsquo;s privacy policy: <a href="https://dataforseo.com/privacy-policy" target="_blank" rel="noopener noreferrer">dataforseo.com/privacy-policy</a>.</p>
 
         <h3>Anthropic API &mdash; AI privacy analysis</h3>
-        <p>Privacy risk scores, transparency scores, regulatory flags, and AI findings are generated by <strong>Anthropic&rsquo;s Claude AI</strong> via the Anthropic API. Data transmitted to Anthropic is the already-anonymized ad metadata from SerpApi &mdash; any person names have been replaced by the PII classifier before this call is made. No personal user data, waitlist emails, consent token data, or ingestion records are transmitted to Anthropic. Anthropic&rsquo;s privacy policy: <a href="https://www.anthropic.com/legal/privacy" target="_blank" rel="noopener noreferrer">anthropic.com/legal/privacy</a>.</p>
+        <p>Privacy risk scores, transparency scores, regulatory flags, and AI findings are generated by <strong>Anthropic&rsquo;s Claude AI</strong> via the Anthropic API. Data transmitted to Anthropic is the already-anonymized ad metadata from DataForSEO &mdash; any person names have been replaced by the PII classifier before this call is made. No personal user data, waitlist emails, consent token data, or ingestion records are transmitted to Anthropic. Anthropic&rsquo;s privacy policy: <a href="https://www.anthropic.com/legal/privacy" target="_blank" rel="noopener noreferrer">anthropic.com/legal/privacy</a>.</p>
 
         <h3>Cloudflare Workers &mdash; complete worker fleet (28 Workers)</h3>
         <p>All server-side logic runs on <strong>Cloudflare Workers</strong> edge infrastructure. Our complete active worker fleet:</p>
         <ul>
-            <li><code>adworth-ads.adworthllc.workers.dev</code> &mdash; Ad Intelligence Worker v4: SerpApi integration, Anthropic AI analysis, PII Advertiser Name Classifier, AD_CACHE KV storage</li>
+            <li><code>adworth-ads.adworthllc.workers.dev</code> &mdash; Ad Intelligence Worker v5.0.0: DataForSEO integration (<code>POST /v3/serp/google/organic/live/advanced</code>), Anthropic AI analysis, PII Advertiser Name Classifier, <code>ADWORTH_ADS_CACHE</code> KV storage (6-hour TTL)</li>
             <li><code>adworth-consent-api.adworthllc.workers.dev</code> &mdash; Consent Token API and management dashboard (Patent Components #1, #3)</li>
             <li><code>adworth-bouncer.adworthllc.workers.dev</code> &mdash; Privacy Governance Engine and dashboard (Patent Component #2); applies Minor Shield blocking when <code>user_type: minor</code> is detected in token metadata</li>
             <li><code>adworth-ledger.adworthllc.workers.dev</code> &mdash; Invisibility Ledger read-only viewer and dashboard (Patent Component #3) &mdash; reads ADWORTH_LEDGER, never writes; ledger entries include synthetic chaff events (see Section 8)</li>
@@ -657,7 +657,11 @@
         <ul>
           <li><a href="/#problem">Problem</a></li>
           <li><a href="/#how-it-works">How It Works</a></li>
-          <li><a href="https://app.adworth.app">Transparency Demo</a></li>
+          <li><a href="/#transparency">How We Make Money</a></li>
+          <li><a href="/dashboard.html">Consumer Demo</a></li>
+          <li><a href="/ccpa-gap.html">CCPA Enforcement Gap</a></li>
+          <li><a href="/ledger.html">Consent Ledger</a></li>
+          <li><a href="/enterprise.html">Enterprise</a></li>
           <li><a href="/#waitlist">Join Waitlist</a></li>
         </ul>
       </div>
@@ -666,7 +670,7 @@
         <ul>
           <li><a href="/#founder">Founder</a></li>
           <li><a href="/#investors">Investors</a></li>
-          <li><a href="mailto:hello@adworth.app">Contact</a></li>
+          <li><a href="mailto:hello@adworth.app">hello@adworth.app</a></li>
         </ul>
       </div>
       <div class="footer-links">
@@ -674,6 +678,7 @@
         <ul>
           <li><a href="/privacy.html">Privacy Policy</a></li>
           <li><a href="/terms.html">Terms of Service</a></li>
+          <li><a href="https://adworth-consent-api.adworthllc.workers.dev/optout" id="do-not-sell">Do Not Sell or Share My Personal Information</a></li>
         </ul>
       </div>
     </div>
