@@ -7,6 +7,6 @@
         { "source": "/ledger", "destination": "/ledger.html" },
         { "source": "/thanks", "destination": "/thanks.html" },
         { "source": "/ccpa-gap", "destination": "/ccpa-gap.html" },
-        { "source": "/app", "destination": "/app/index.html" },
+        { "source": "/app", "destination": "/app/index.html" }
     ]
 }
