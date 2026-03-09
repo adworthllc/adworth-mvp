@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Adworth℠ — Own Your Data. Get Paid.</title>
+    <title>Adworth&#8480; &#8212; Own Your Data. Get Paid.</title>
     <meta name="description" content="Patent-pending cryptographic consent infrastructure for digital advertising. Control your data, get paid when you share it. Two-sided marketplace. 2% fee on revenue.">
     <meta http-equiv="X-Content-Type-Options" content="nosniff">
     <meta http-equiv="X-Frame-Options" content="DENY">
@@ -23,7 +23,7 @@
         html { scroll-behavior: smooth; }
         body { font-family: 'Poppins', sans-serif; background: var(--off-white); color: var(--ink); line-height: 1.6; overflow-x: hidden; }
         .container { max-width: 1160px; margin: 0 auto; padding: 0 2rem; }
-        header { position: sticky; top: 0; z-index: 100; background: rgba(250,250,248,0.92); backdrop-filter: blur(12px); border-bottom: 1px solid var(--border); }
+        header { position: sticky; top: 0; z-index: 100; background: rgba(250,250,248,0.92); backdrop-filter: blur(12px); -webkit-backdrop-filter: blur(12px); border-bottom: 1px solid var(--border); }
         nav { display: flex; justify-content: space-between; align-items: center; padding: 1.25rem 0; }
         .logo { display: flex; align-items: center; gap: 0.75rem; text-decoration: none; }
         .logo-mark { font-family: 'Poppins', sans-serif; font-size: 1.4rem; font-weight: 800; color: var(--green-primary); letter-spacing: -0.5px; }
@@ -87,6 +87,12 @@
         .footer-bottom { padding-top: 2rem; border-top: 1px solid var(--border); display: flex; justify-content: space-between; align-items: center; font-size: 0.8rem; color: var(--ink-30); }
         @keyframes fadeInDown { from { opacity: 0; transform: translateY(-12px); } to { opacity: 1; transform: translateY(0); } }
         @keyframes fadeInUp { from { opacity: 0; transform: translateY(16px); } to { opacity: 1; transform: translateY(0); } }
+        .waitlist-form-wrap { display: flex; gap: 0.75rem; }
+        .waitlist-email-input { flex: 1; padding: 0.9rem 1.25rem; border: 1.5px solid var(--border); border-radius: 8px; font-size: 0.95rem; font-family: 'Poppins', sans-serif; background: white; color: var(--ink); transition: border-color 0.2s; outline: none; }
+        .waitlist-email-input:focus { border-color: var(--green-primary); }
+        .waitlist-submit-btn { background: var(--green-primary); color: white; padding: 0.9rem 1.5rem; border: none; border-radius: 8px; font-weight: 700; font-size: 0.95rem; cursor: pointer; font-family: 'Poppins', sans-serif; white-space: nowrap; transition: background 0.2s, transform 0.2s; }
+        .waitlist-submit-btn:hover { background: var(--green-deep); transform: translateY(-1px); }
+        .waitlist-submit-btn:disabled { opacity: 0.7; cursor: not-allowed; transform: none; }
         @media (max-width: 900px) {
             .stats-grid { grid-template-columns: repeat(2, 1fr); }
             .stat-item + .stat-item { border-left: none; }
@@ -97,6 +103,7 @@
             nav ul { display: none; }
             .hero { padding: 5rem 0 4rem; }
             .hero h1 { font-size: 2.75rem; }
+            .waitlist-form-wrap { flex-direction: column; }
             .footer-grid { grid-template-columns: 1fr; }
             .footer-bottom { flex-direction: column; gap: 0.5rem; text-align: center; }
         }
@@ -104,6 +111,7 @@
 </head>
 <body>
 
+  <!-- HEADER -->
   <header>
     <div class="container">
       <nav>
@@ -217,7 +225,7 @@
       <div class="container">
         <p class="label">The Solution</p>
         <h2 class="section-title">Consent that can&rsquo;t be faked.<br><em>Deletion that can be proved.</em></h2>
-        <p class="section-lead">Adworth replaces empty privacy promises with cryptographic enforcement. Five interconnected components make it automatic, auditable, and unstoppable.</p>
+        <p class="section-lead">Adworth replaces empty privacy promises with cryptographic enforcement. Five interconnected components make it automatic, auditable, and unstoppable. Unlike services that ask nicely for your data to be removed, Adworth enforces cryptographically.</p>
         <div class="steps">
           <div class="step">
             <div class="step-icon">&#128272;</div>
@@ -247,7 +255,7 @@
           <div class="step">
             <div class="step-icon">&#128184;</div>
             <h4>Consent Marketplace</h4>
-            <p>Advertisers pay for access. You get paid when your token is verified. Revoke consent, payments stop. Fair exchange.</p>
+            <p>Advertisers pay for access. You get paid when your token is verified. Revoke consent, payments stop. Fair exchange, finally.</p>
           </div>
         </div>
       </div>
@@ -326,9 +334,9 @@
       <div class="container" style="text-align: center;">
         <p class="label">For Investors</p>
         <h2 class="section-title">$1.5M seed round.<br>18 months to <em>marketplace.</em></h2>
-        <p class="section-lead" style="color: rgba(255,255,255,0.65); margin: 0 auto;">The timing window &mdash; AI advertising boom, regulatory gap, no patent-protected competitor &mdash; won&rsquo;t stay open forever. This is infrastructure that needs to exist.</p>
+        <p class="section-lead" style="color: rgba(255,255,255,0.65); margin: 0 auto 3rem;">The timing window &mdash; AI advertising boom, regulatory gap, no patent-protected competitor &mdash; won&rsquo;t stay open forever. This is infrastructure that needs to exist.</p>
 
-        <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 1.5rem; max-width: 740px; margin: 3rem auto; text-align: left;">
+        <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 1.5rem; max-width: 740px; margin: 0 auto 3rem; text-align: left;">
           <div style="background: rgba(255,255,255,0.07); border: 1px solid rgba(255,255,255,0.12); border-radius: 12px; padding: 1.75rem;">
             <h4 style="font-size: 0.75rem; font-weight: 700; text-transform: uppercase; letter-spacing: 1.5px; color: var(--green-accent); margin-bottom: 1rem;">What We Have Today</h4>
             <ul style="list-style: none;">
@@ -351,9 +359,7 @@
           </div>
         </div>
 
-        <div style="margin-top: 2rem;">
-          <a href="mailto:hello@adworth.app" class="btn btn-white">Schedule a Meeting &rarr;</a>
-        </div>
+        <a href="mailto:hello@adworth.app" class="btn btn-white">Schedule a Meeting &rarr;</a>
       </div>
     </section>
 
@@ -362,12 +368,11 @@
       <div class="container" style="max-width: 480px; text-align: center;">
         <h2 class="section-title">Be first when consent<br>starts <em>paying.</em></h2>
         <p class="section-lead" style="margin: 1rem auto 2.5rem;">First 1,000 users get early marketplace access, founding member status, and priority support. No spam. No irony.</p>
-        <form action="https://adworth-waitlist.adworthllc.workers.dev" method="POST" style="display: flex; gap: 0.75rem;">
-          <input type="text" name="website" value="" style="display:none !important; position:absolute; left:-9999px;" tabindex="-1" autocomplete="off">
-          <input type="email" name="email" placeholder="your@email.com" required style="flex: 1; padding: 0.9rem 1.25rem; border: 1.5px solid var(--border); border-radius: 8px; font-size: 0.95rem; font-family: 'Poppins', sans-serif;">
-          <button type="submit" style="background: var(--green-primary); color: white; padding: 0.9rem 1.5rem; border: none; border-radius: 8px; font-weight: 700; font-size: 0.95rem; cursor: pointer; font-family: 'Poppins', sans-serif; white-space: nowrap;">Join Waitlist</button>
-        </form>
-        <p style="font-size: 0.8rem; color: var(--ink-30); margin-top: 0.75rem;">Your data stays yours &mdash; stored on our own infrastructure, never shared.</p>
+        <div class="waitlist-form-wrap">
+          <input type="email" id="waitlist-email" class="waitlist-email-input" placeholder="your@email.com" required autocomplete="email">
+          <button type="button" id="waitlist-btn" class="waitlist-submit-btn">Join Waitlist</button>
+        </div>
+        <p id="waitlist-msg" style="font-size: 0.8rem; color: var(--ink-30); margin-top: 0.75rem;">Your data stays yours &mdash; stored on our own infrastructure, never shared.</p>
       </div>
     </section>
 
@@ -419,16 +424,75 @@
   </footer>
 
   <script>
+    // Scroll animations
     document.body.classList.add('js-ready');
     const observer = new IntersectionObserver((entries) => {
       entries.forEach(entry => {
         if (entry.isIntersecting) {
-          entry.target.classList.add('visible');
+          entry.target.style.opacity = '1';
+          entry.target.style.transform = 'translateY(0)';
           observer.unobserve(entry.target);
         }
       });
-    }, { threshold: 0.1 });
-    document.querySelectorAll('.step').forEach(el => observer.observe(el));
+    }, { threshold: 0.1, rootMargin: '0px 0px -40px 0px' });
+
+    document.querySelectorAll('.step').forEach((el, i) => {
+      el.style.opacity = '0';
+      el.style.transform = 'translateY(20px)';
+      el.style.transition = `opacity 0.5s ${i * 60}ms ease, transform 0.5s ${i * 60}ms ease`;
+      observer.observe(el);
+    });
+
+    // Waitlist — posts to adworth-waitlist Worker
+    document.getElementById('waitlist-btn').addEventListener('click', async function () {
+      const emailInput = document.getElementById('waitlist-email');
+      const msg = document.getElementById('waitlist-msg');
+      const btn = this;
+      const email = emailInput.value.trim();
+
+      if (!email || !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
+        msg.style.color = '#c0392b';
+        msg.textContent = 'Please enter a valid email address.';
+        return;
+      }
+
+      btn.textContent = 'Submitting\u2026';
+      btn.disabled = true;
+      msg.style.color = 'var(--ink-30)';
+      msg.textContent = 'Your data stays yours \u2014 stored on our own infrastructure, never shared.';
+
+      try {
+        const res = await fetch('https://adworth-waitlist.adworthllc.workers.dev/submit', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ email: email })
+        });
+
+        if (res.ok) {
+          btn.textContent = '\u2713 You\u2019re on the list!';
+          btn.style.background = '#52b788';
+          emailInput.value = '';
+          msg.style.color = 'var(--green-primary)';
+          msg.textContent = 'Welcome. We\u2019ll be in touch when the marketplace opens.';
+        } else {
+          throw new Error('Server error');
+        }
+      } catch (err) {
+        btn.textContent = 'Try again';
+        btn.style.background = '#c0392b';
+        btn.disabled = false;
+        msg.style.color = '#c0392b';
+        msg.textContent = 'Something went wrong. Please try again or email hello@adworth.app';
+      }
+    });
+
+    // Allow Enter key on email input
+    document.getElementById('waitlist-email').addEventListener('keydown', function (e) {
+      if (e.key === 'Enter') {
+        e.preventDefault();
+        document.getElementById('waitlist-btn').click();
+      }
+    });
   </script>
 
 </body>
