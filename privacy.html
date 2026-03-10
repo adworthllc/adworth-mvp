@@ -105,7 +105,7 @@
     <div class="inner">
         <span class="page-label">Legal</span>
         <h1>Privacy Policy</h1>
-        <p>Last updated: March 9, 2026 &middot; Adworth&#8480; LLC &middot; Charleston, SC</p>
+        <p>Last updated: March 10, 2026 &middot; Adworth&#8480; LLC &middot; Charleston, SC</p>
     </div>
 </div>
 
@@ -326,7 +326,7 @@
             <li><code>adworth-consent-widget.adworthllc.workers.dev</code> &mdash; Investor demo shell serving hosted UI for the Consent Token lifecycle. No KV bindings, no data storage, no secrets. All API calls go directly from the user&rsquo;s browser to <code>adworth-consent-api</code>. No personal data is processed or stored by this Worker.</li>
             <li><code>adworth-auth-guard.adworthllc.workers.dev</code> &mdash; Sovereign key protection: rate limiting, brute force blocking, and authentication audit log for the Worker fleet. Stores IP addresses temporarily in the <code>ADWORTH_AUTH_GUARD</code> KV namespace for rate limit enforcement only. Rolling window: 300 seconds. Block duration: 900 seconds. IP data is used solely for security purposes and is not shared with third parties. Audit log retains the last 500 entries.</li>
             <li><code>adworth-social</code> &mdash; LinkedIn content draft queue and social scheduling. Stores drafts in <code>ADWORTH_SOCIAL</code> KV. No user PII stored.</li>
-            <li><code>adworth-comms</code> &mdash; Internal communications metadata log. Metadata-only logging; no message body storage. Uses <code>RESEND_API_KEY</code> for transactional email delivery and <code>ADWORTH_COMMS</code> KV for metadata. No user personal data stored.</li>
+            <li><code>adworth-comms</code> &mdash; Internal communications metadata log. Metadata-only logging; no message body storage. Stores metadata in <code>ADWORTH_COMMS</code> KV. All email delivery is handled directly through Proton Mail. No user personal data stored.</li>
             <li><code>adworth-changelog</code> &mdash; Infrastructure change log. Append-only record of all Worker deployments and configuration changes stored in <code>ADWORTH_CHANGELOG</code> KV. No user data.</li>
             <li><code>adworth-expenses</code> &mdash; Internal operational expense tracker. No user data. Stores cost records in <code>ADWORTH_EXPENSES</code> KV.</li>
             <li><code>adworth-dsr</code> &mdash; Data Subject Request processor. Handles GDPR/CCPA deletion and access requests. Stores DSR records in <code>ADWORTH_DSR_LOG</code> KV with verification token TTL of 3600 seconds. Confirmation sent to requester via <code>adworth-comms</code>.</li>
@@ -369,7 +369,7 @@
         <p>Cloudflare&rsquo;s privacy policy: <a href="https://www.cloudflare.com/privacypolicy/" target="_blank" rel="noopener noreferrer">cloudflare.com/privacypolicy</a>.</p>
 
         <h3>Waitlist management &mdash; no third-party services</h3>
-        <p>Waitlist submissions are processed entirely through our own <code>adworth-waitlist</code> Cloudflare Worker. No third-party form processors, mailing list providers, or email delivery services are used. Email addresses are never transmitted to external services. Waitlist communications are sent manually by the founder via Proton Mail using BCC to protect subscriber privacy.</p>
+        <p>Waitlist submissions are processed entirely through our own <code>adworth-waitlist</code> Cloudflare Worker. No third-party form processors, mailing list providers, or email delivery services are used. Email addresses are never transmitted to external services. Waitlist communications are sent directly via Proton Mail using BCC to protect subscriber privacy. No message body content is stored by any Adworth system.</p>
 
         <h3>Simulated data broker checks &mdash; current status</h3>
         <div class="demo-notice">
@@ -387,6 +387,8 @@
             <li><strong>Vercel</strong> &mdash; adworth.app is hosted via Vercel (GitHub &rarr; Vercel &rarr; Cloudflare pipeline). Vercel may retain standard server access logs. <strong>Vercel Analytics is explicitly disabled.</strong> <a href="https://vercel.com/legal/privacy-policy" target="_blank" rel="noopener noreferrer">vercel.com/legal/privacy-policy</a></li>
             <li><strong>GitHub</strong> &mdash; Source code hosted in a private repository under the adworthllc organization. The <code>adworth-rules.json</code> regulation rules table is version-controlled in GitHub as the source of truth. No user personal data of any kind is stored in or transmitted through GitHub. API secrets are never committed to version control. <a href="https://docs.github.com/en/site-policy/privacy-policies/github-general-privacy-statement" target="_blank" rel="noopener noreferrer">docs.github.com/privacy</a></li>
             <li><strong>Cloudflare</strong> &mdash; DNS management, DDoS protection, traffic routing, and Workers edge compute for all adworth.app and adworthllc.workers.dev infrastructure.</li>
+            <li><strong>DataForSEO</strong> &mdash; Ad data is retrieved from Google&rsquo;s Ads Transparency Center via DataForSEO (<a href="https://dataforseo.com" target="_blank" rel="noopener noreferrer">dataforseo.com</a>) exclusively from the <code>adworth-ads</code> Cloudflare Worker using the <code>POST /v3/serp/google/organic/live/advanced</code> endpoint. Credentials stored as encrypted Cloudflare Worker secrets. No personal user data is transmitted to DataForSEO &mdash; only the domain name entered for analysis. Results are cached in <code>ADWORTH_ADS_CACHE</code> KV for six hours. <a href="https://dataforseo.com/privacy-policy" target="_blank" rel="noopener noreferrer">dataforseo.com/privacy-policy</a></li>
+            <li><strong>Anthropic</strong> &mdash; AI-generated privacy risk scores and ad analysis are produced via the Anthropic API. Only already-anonymized ad metadata from DataForSEO is transmitted &mdash; no personal user data, waitlist emails, consent token data, or ingestion records are sent to Anthropic. <a href="https://www.anthropic.com/legal/privacy" target="_blank" rel="noopener noreferrer">anthropic.com/legal/privacy</a></li>
             <li><strong>IONOS</strong> &mdash; Hosts the <code>app.adworth.app</code> subdomain and handles system email routing for <a href="mailto:hello@adworth.app">hello@adworth.app</a>. Standard server access logs may be retained. <a href="https://www.ionos.com/terms-gtc/privacy-policy/" target="_blank" rel="noopener noreferrer">ionos.com/terms-gtc/privacy-policy</a></li>
             <li><strong>Proton Mail</strong> &mdash; Inbound correspondence to <a href="mailto:hello@adworth.app">hello@adworth.app</a> is handled via Proton Mail with end-to-end encryption. Waitlist broadcasts are sent via BCC to protect subscriber addresses. <a href="https://proton.me/legal/privacy" target="_blank" rel="noopener noreferrer">proton.me/legal/privacy</a></li>
         </ul>
@@ -659,10 +661,6 @@
           <li><a href="/#how-it-works">How It Works</a></li>
           <li><a href="/#transparency">How We Make Money</a></li>
           <li><a href="/dashboard.html">Consumer Demo</a></li>
-          <li><a href="/ccpa-gap.html">CCPA Enforcement Gap</a></li>
-          <li><a href="/ledger.html">Consent Ledger</a></li>
-          <li><a href="/enterprise.html">Enterprise</a></li>
-          <li><a href="/#waitlist">Join Waitlist</a></li>
         </ul>
       </div>
       <div class="footer-links">
@@ -670,7 +668,8 @@
         <ul>
           <li><a href="/#founder">Founder</a></li>
           <li><a href="/#investors">Investors</a></li>
-          <li><a href="mailto:hello@adworth.app">hello@adworth.app</a></li>
+          <li><a href="/enterprise.html">Enterprise</a></li>
+          <li><a href="mailto:hello@adworth.app">Contact</a></li>
         </ul>
       </div>
       <div class="footer-links">
@@ -678,7 +677,6 @@
         <ul>
           <li><a href="/privacy.html">Privacy Policy</a></li>
           <li><a href="/terms.html">Terms of Service</a></li>
-          <li><a href="https://adworth-consent-api.adworthllc.workers.dev/optout" id="do-not-sell">Do Not Sell or Share My Personal Information</a></li>
         </ul>
       </div>
     </div>
