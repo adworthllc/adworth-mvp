@@ -544,7 +544,11 @@
         btn.style.background = '#c0392b';
         btn.disabled = false;
         msg.style.color = '#c0392b';
-        msg.textContent = 'Something went wrong. Please try again or email hello@adworth.app';    // Allow Enter key on waitlist input
+        msg.textContent = 'Something went wrong. Please try again or email hello@adworth.app';
+      }
+    });
+
+    // Allow Enter key on waitlist input
     document.getElementById('waitlist-email').addEventListener('keydown', function(e) {
       if (e.key === 'Enter') {
         document.getElementById('waitlist-btn').click();
