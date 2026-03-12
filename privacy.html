@@ -105,7 +105,7 @@
     <div class="inner">
         <span class="page-label">Legal</span>
         <h1>Privacy Policy</h1>
-        <p>Last updated: March 10, 2026 &middot; Adworth&#8480; LLC &middot; Charleston, SC</p>
+        <p>Last updated: March 11, 2026 &middot; Adworth&#8480; LLC &middot; Charleston, SC</p>
     </div>
 </div>
 
@@ -137,7 +137,7 @@
 
     <!-- Updated March 6 2026: Advanced Privacy Protocols added — Ledger Chaff, Differential Privacy, Location Grid Quantization, Minor Shield, Nashville Offline Protocol (roadmap) -->
     <div class="highlight-box">
-        <strong>The short version:</strong> Adworth is built on the principle that your data belongs to you. We collect only what we need to operate the service, we never sell your data, and you can delete it at any time. Our Ad Intelligence pipeline runs entirely through our own <code>adworth-ads</code> Cloudflare Worker (v5.0.0, powered by DataForSEO), which includes a PII Advertiser Name Classifier that anonymizes person names before any response leaves the worker &mdash; only a non-reversible SHA-256 audit hash is retained. Our Ingestion API (<code>adworth-ingestion-api</code>) and Privacy Cockpit Chrome extension allow secure submission of cryptographically signed marketing data &mdash; your private Ed25519 key is generated on your device and never transmitted to Adworth. Our consent token API uses opaque identifiers only &mdash; no PII in tokens or ledger entries. Our Privacy Governance Engine enforces consent in real time. Our State-Persistence Monitor scans for unauthorized data retention after revocation. As of March 6, 2026, our Removal Payload Engine (<code>adworth-rpe</code> v2.0.0) fetches legal citations, deadlines, and obligations at runtime from a versioned, machine-readable regulation rules table served by the <code>adworth-rules</code> Worker (rules v1.0.0, effective March 5, 2026). Our Advanced Privacy Protocols (described in Section 8) add Ledger Chaff noise injection, Local Differential Privacy (2% fuzz), Location Grid Quantization (1&nbsp;km&sup2; precision), and a Minor Shield protocol &mdash; all of which are built to protect you from external surveillance, not to obscure your own rights. No hardcoded legal strings, every notice carries a <code>rules_version</code> for permanent audit linkage. Both the monitor and RPE currently operate in simulated mode. All API access is authenticated. API keys are stored in <code>sessionStorage</code> only. Vercel Analytics is disabled. No third-party trackers, advertising pixels, or analytics services. That&rsquo;s kind of the whole point.
+        <strong>The short version:</strong> Adworth is built on the principle that your data belongs to you. We collect only what we need to operate the service, we never sell your data, and you can delete it at any time. Our Ad Intelligence pipeline runs entirely through our own <code>adworth-ads</code> Cloudflare Worker (v5.2.0, powered by DataForSEO), which includes a PII Advertiser Name Classifier that anonymizes person names before any response leaves the worker &mdash; only a non-reversible SHA-256 audit hash is retained. The public <code>/analyze</code> endpoint is rate-limited to 10 requests per IP per hour to prevent abuse. Our Ingestion API (<code>adworth-ingestion-api</code>) and Privacy Cockpit Chrome extension allow secure submission of cryptographically signed marketing data &mdash; your private Ed25519 key is generated on your device and never transmitted to Adworth. Our consent token API (v3.2.0) uses opaque identifiers only &mdash; no PII in tokens or ledger entries. Our Privacy Governance Engine (v2.2.0) enforces consent in real time. Our State-Persistence Monitor scans for unauthorized data retention after revocation. As of March 11, 2026, our Removal Payload Engine (<code>adworth-rpe</code> v2.2.0) fetches legal citations, deadlines, and obligations at runtime from a versioned, machine-readable regulation rules table served by the <code>adworth-rules</code> Worker via a Cloudflare Service Binding (rules v1.0.0, effective March 5, 2026). Our Advanced Privacy Protocols (described in Section 8) add Ledger Chaff noise injection, Local Differential Privacy (2% fuzz), Location Grid Quantization (1&nbsp;km&sup2; precision), and a Minor Shield protocol &mdash; all of which are built to protect you from external surveillance, not to obscure your own rights. No hardcoded legal strings, every notice carries a <code>rules_version</code> for permanent audit linkage. Both the monitor and RPE currently operate in simulated mode. As of the March 11, 2026 security audit, all Workers use constant-time HMAC-SHA256 API key comparison via <code>crypto.subtle</code>, strict CORS origin allowlists (no wildcards), and self-hosted fonts via <code>adworth-fonts</code> Worker. All API access is authenticated. API keys entered in dashboards are held in memory for the session only and never written to persistent browser storage, cookies, or server-side logs. Vercel Analytics is disabled. No third-party trackers, advertising pixels, or analytics services. That&rsquo;s kind of the whole point.
     </div>
 
     <!-- 01 -->
@@ -197,7 +197,7 @@
         </ul>
         <p>Adworth is not affiliated with any company listed on the CCPA Enforcement Gap page. No data on this page is obtained through scraping protected content, accessing private systems, or any non-public source.</p>
 
-        <h3>PII Advertiser Name Classifier (adworth-ads v5.0.0)</h3>
+        <h3>PII Advertiser Name Classifier (adworth-ads v5.2.0)</h3>
         <p>The <code>adworth-ads</code> worker includes a PII Advertiser Name Classifier. This component:</p>
         <ul>
             <li>Scans all advertiser names returned from DataForSEO before any response leaves the worker</li>
@@ -225,7 +225,7 @@
         <p>The <code>adworth-rules</code> Cloudflare Worker serves a versioned, machine-readable regulation rules table to the RPE at runtime. No personal data is processed by or transmitted to this Worker. The data it serves consists exclusively of publicly available regulatory text (GDPR, CCPA/CPRA, DSA articles), structured as a version-controlled JSON schema. The rules table is stored in the isolated <code>ADWORTH_RULES</code> Cloudflare KV namespace and is publicly readable at <code>GET /rules</code> and sub-paths. Write access (<code>POST /admin/sync</code>) requires API key authentication.</p>
 
         <h3>Information processed through the standalone Removal Payload Engine</h3>
-        <p>The standalone RPE worker (<code>adworth-rpe.adworthllc.workers.dev</code> v2.0.0) generates legally-cited deletion notices. As of March 6, 2026, all legal citations, deadlines, and obligations are fetched at runtime from the <code>adworth-rules</code> Worker rather than hardcoded strings. When a notice is generated, the following data is created and stored:</p>
+        <p>The standalone RPE worker (<code>adworth-rpe.adworthllc.workers.dev</code> v2.2.0) generates legally-cited deletion notices. As of March 11, 2026, all legal citations, deadlines, and obligations are fetched at runtime from the <code>adworth-rules</code> Worker via a Cloudflare Service Binding (direct worker-to-worker communication, no public network hop) rather than hardcoded strings. When a notice is generated, the following data is created and stored:</p>
         <ul>
             <li>Notice ID in the format <code>RPE-YYYY-XXXXXX</code> (unique, non-sequential)</li>
             <li>Target domain (the company the notice is addressed to)</li>
@@ -245,10 +245,10 @@
         <p>The <code>adworth-rpe</code> worker provides public verification endpoints accessible without authentication. Verification responses include notice status, target domain, regulation, right ID, <code>rules_version</code>, jurisdiction, compliance deadline, generation timestamp, content hash, HMAC signature, and integrity verification result. No PII is disclosed. Demo-mode notices are clearly identified in verification responses.</p>
 
         <h3>Information processed through the Consent API Dashboard</h3>
-        <p>The Consent API dashboard requires API key authentication. API keys are stored in <code>sessionStorage</code> only, cleared automatically on tab or browser close, and never written to <code>localStorage</code>, cookies, or any server-side log. The dashboard loads no third-party scripts and sets no cookies.</p>
+        <p>The Consent API dashboard requires API key authentication via constant-time HMAC-SHA256 verification. API keys are held in JavaScript memory for the active session only, never written to <code>localStorage</code>, <code>sessionStorage</code>, cookies, or any server-side log. The dashboard loads no third-party scripts, uses self-hosted fonts, and sets no cookies.</p>
 
         <h3>Information processed through the Invisibility Ledger dashboard</h3>
-        <p>The Invisibility Ledger dashboard is a read-only viewer of the unified tamper-evident audit trail. It reads from <code>ADWORTH_LEDGER</code> KV and never writes to it. It displays the complete event timeline across all five patent components with filtering by event type and user. The same sessionStorage-only API key handling applies as all other Adworth dashboards.</p>
+        <p>The Invisibility Ledger dashboard is a read-only viewer of the unified tamper-evident audit trail. It reads from <code>ADWORTH_LEDGER</code> KV and never writes to it. It displays the complete event timeline across all five patent components with filtering by event type and user. The same in-memory-only API key handling applies as all other Adworth dashboards.</p>
 
         <h3>Information processed through the State-Persistence Monitor</h3>
         <p>When the State-Persistence Monitor runs a scan, it processes revoked and expired consent token identifiers from the Invisibility Ledger, associated opaque user IDs, advertiser IDs, consent scope data, and scan metadata including violation detection results and removal payload records.</p>
@@ -267,7 +267,7 @@
         </ul>
 
         <h3>Information we do not collect</h3>
-        <p>We do not collect government IDs, financial account numbers, or health data. We do not use Formspree or any third-party form processing service &mdash; all form submissions are handled exclusively by our own <code>adworth-waitlist</code> Cloudflare Worker. Private Ed25519 keys generated by the Privacy Cockpit extension are never transmitted to or stored by Adworth. API keys used to access Adworth dashboards are held in <code>sessionStorage</code> only and are never retained on our servers. No personal data flows through or is stored by the <code>adworth-rules</code> Regulation Rules Worker.</p>
+        <p>We do not collect government IDs, financial account numbers, or health data. We do not use Formspree or any third-party form processing service &mdash; all form submissions are handled exclusively by our own <code>adworth-waitlist</code> Cloudflare Worker (v2.1.0). Private Ed25519 keys generated by the Privacy Cockpit extension are never transmitted to or stored by Adworth. API keys used to access Adworth dashboards are held in memory for the session only and are never written to persistent browser storage, cookies, or server-side logs. No personal data flows through or is stored by the <code>adworth-rules</code> Regulation Rules Worker.</p>
     </div>
 
     <!-- 02 -->
@@ -286,7 +286,7 @@
             <li>Record all access decisions (granted and blocked) in the Governance Log and Invisibility Ledger for audit purposes</li>
             <li>Scan for unauthorized data persistence after consent revocation or expiry (State-Persistence Monitor)</li>
             <li>Evaluate applicable regulation rules at runtime from the versioned <code>adworth-rules</code> rules table to determine the correct legal citations, deadlines, and obligations for each enforcement action</li>
-            <li>Generate legally-cited, HMAC-SHA256-signed deletion requests when unauthorized data retention is detected (Removal Payload Engine v2.0.0, both integrated and standalone)</li>
+            <li>Generate legally-cited, HMAC-SHA256-signed deletion requests when unauthorized data retention is detected (Removal Payload Engine v2.2.0, both integrated and standalone)</li>
             <li>Embed a <code>rules_version</code> reference in each RPE notice to create a permanent, auditable link between the notice and the exact regulatory ruleset applied</li>
             <li>Provide public verification endpoints allowing any party to independently verify the integrity of RPE-generated notices</li>
             <li>Run the PII Advertiser Name Classifier to detect, anonymize, and audit-hash person names in public ad data before surfacing results</li>
@@ -312,19 +312,19 @@
         <h3>Cloudflare Workers &mdash; complete worker fleet (28 Workers)</h3>
         <p>All server-side logic runs on <strong>Cloudflare Workers</strong> edge infrastructure. Our complete active worker fleet:</p>
         <ul>
-            <li><code>adworth-ads.adworthllc.workers.dev</code> &mdash; Ad Intelligence Worker v5.0.0: DataForSEO integration (<code>POST /v3/serp/google/organic/live/advanced</code>), Anthropic AI analysis, PII Advertiser Name Classifier, <code>ADWORTH_ADS_CACHE</code> KV storage (6-hour TTL)</li>
-            <li><code>adworth-consent-api.adworthllc.workers.dev</code> &mdash; Consent Token API and management dashboard (Patent Components #1, #3)</li>
-            <li><code>adworth-bouncer.adworthllc.workers.dev</code> &mdash; Privacy Governance Engine and dashboard (Patent Component #2); applies Minor Shield blocking when <code>user_type: minor</code> is detected in token metadata</li>
+            <li><code>adworth-ads.adworthllc.workers.dev</code> &mdash; Ad Intelligence Worker v5.2.0: DataForSEO integration (<code>POST /v3/serp/google/organic/live/advanced</code>), Anthropic AI analysis, PII Advertiser Name Classifier, <code>ADWORTH_ADS_CACHE</code> KV storage (6-hour TTL). Public <code>/analyze</code> endpoint rate-limited to 10 requests per IP per hour. Strict CORS origin allowlist. Constant-time HMAC API key authentication. <code>/debug</code> endpoint removed.</li>
+            <li><code>adworth-consent-api.adworthllc.workers.dev</code> &mdash; Consent Token API v3.2.0 and management dashboard (Patent Components #1, #3). Strict CORS origin allowlist. Constant-time HMAC API key authentication. Self-hosted fonts via <code>adworth-fonts</code> Worker.</li>
+            <li><code>adworth-bouncer.adworthllc.workers.dev</code> &mdash; Privacy Governance Engine v2.2.0 and dashboard (Patent Component #2); applies Minor Shield blocking when <code>user_type: minor</code> is detected in token metadata. Strict CORS origin allowlist. Constant-time HMAC API key authentication. Self-hosted fonts via <code>adworth-fonts</code> Worker. Inline error banners replace <code>alert()</code> dialogs.</li>
             <li><code>adworth-ledger.adworthllc.workers.dev</code> &mdash; Invisibility Ledger read-only viewer and dashboard (Patent Component #3) &mdash; reads ADWORTH_LEDGER, never writes; ledger entries include synthetic chaff events (see Section 8)</li>
             <li><code>adworth-state-monitor.adworthllc.workers.dev</code> &mdash; State-Persistence Monitor and dashboard (Patent Component #4)</li>
-            <li><code>adworth-rpe.adworthllc.workers.dev</code> &mdash; Standalone Removal Payload Engine v2.0.0 (Patent Component #5): fetches regulation rules at runtime from adworth-rules, generates HMAC-SHA256-signed deletion notices with embedded rules_version, provides public verification endpoints, includes demo mode, stores notices in RPE_NOTICES KV</li>
+            <li><code>adworth-rpe.adworthllc.workers.dev</code> &mdash; Standalone Removal Payload Engine v2.2.0 (Patent Component #5): fetches regulation rules at runtime from <code>adworth-rules</code> via Cloudflare Service Binding (<code>RULES_WORKER</code>), generates HMAC-SHA256-signed deletion notices with embedded <code>rules_version</code>, provides public verification endpoints, demo mode requires authentication (no hardcoded demo key), stores notices in <code>RPE_DATA</code> KV. Strict CORS origin allowlist. Constant-time HMAC API key authentication. Self-hosted fonts via <code>adworth-fonts</code> Worker.</li>
             <li><code>adworth-rules.adworthllc.workers.dev</code> &mdash; Regulation Rules Worker: serves versioned machine-readable regulation rules table (v1.0.0, effective March 5, 2026) from isolated ADWORTH_RULES KV namespace. Public read endpoints at /rules and sub-paths. No personal data processed or stored.</li>
             <li><code>adworth-ingestion-api.adworthllc.workers.dev</code> &mdash; Ingestion API: receives Ed25519-signed marketing data from the Privacy Cockpit Chrome extension, verifies signatures using stored public keys, stores verified ingestion records. Manages device keypair registration via single-use setup tokens. Stores data in USER_KEYS KV (public keys by device) and INGESTION_DATA KV (verified ingestion records).</li>
-            <li><code>adworth-waitlist</code> &mdash; Waitlist form processing via redirect at <code>adworth.app/waitlist-submit</code> (homepage) and JSON response at <code>/submit</code> endpoint (dashboard inline forms), admin dashboard, and CSV export (authenticated). All waitlist submissions are handled exclusively by this worker; no third-party form processors are used.</li>
+            <li><code>adworth-waitlist</code> &mdash; Waitlist Worker v2.1.0: form processing via redirect at <code>adworth.app/waitlist-submit</code> (homepage) and JSON response at <code>/submit</code> endpoint (dashboard inline forms), admin dashboard, and CSV export (authenticated). All waitlist submissions are handled exclusively by this worker; no third-party form processors are used. Strict CORS origin allowlist (localhost and file:// origins removed). Constant-time HMAC API key authentication. Self-hosted fonts via <code>adworth-fonts</code> Worker. Internal UUIDs are no longer returned to public callers.</li>
             <li><code>adworth-ccpa-gap</code> &mdash; CCPA Enforcement Gap public API and admin dashboard, CCPA_DATA KV storage</li>
             <li><code>adworth-fonts.adworthllc.workers.dev</code> &mdash; Self-hosted font delivery. No requests are made to Google Fonts or any third-party font service.</li>
             <li><code>adworth-consent-widget.adworthllc.workers.dev</code> &mdash; Investor demo shell serving hosted UI for the Consent Token lifecycle. No KV bindings, no data storage, no secrets. All API calls go directly from the user&rsquo;s browser to <code>adworth-consent-api</code>. No personal data is processed or stored by this Worker.</li>
-            <li><code>adworth-auth-guard.adworthllc.workers.dev</code> &mdash; Sovereign key protection: rate limiting, brute force blocking, and authentication audit log for the Worker fleet. Stores IP addresses temporarily in the <code>ADWORTH_AUTH_GUARD</code> KV namespace for rate limit enforcement only. Rolling window: 300 seconds. Block duration: 900 seconds. IP data is used solely for security purposes and is not shared with third parties. Audit log retains the last 500 entries.</li>
+            <li><code>adworth-auth-guard.adworthllc.workers.dev</code> &mdash; Auth Guard v1.1.0: Sovereign key protection: rate limiting, brute force blocking, and authentication audit log for the Worker fleet. Stores IP addresses temporarily in the <code>ADWORTH_AUTH_GUARD</code> KV namespace for rate limit enforcement only. Rolling window: 300 seconds. Block duration: 900 seconds. IP data is used solely for security purposes and is not shared with third parties. Audit log retains the last 500 entries. Strict CORS origin allowlist. Constant-time HMAC API key authentication.</li>
             <li><code>adworth-social</code> &mdash; LinkedIn content draft queue and social scheduling. Stores drafts in <code>ADWORTH_SOCIAL</code> KV. No user PII stored.</li>
             <li><code>adworth-comms</code> &mdash; Internal communications metadata log. Metadata-only logging; no message body storage. Stores metadata in <code>ADWORTH_COMMS</code> KV. All email delivery is handled directly through Proton Mail. No user personal data stored.</li>
             <li><code>adworth-changelog</code> &mdash; Infrastructure change log. Append-only record of all Worker deployments and configuration changes stored in <code>ADWORTH_CHANGELOG</code> KV. No user data.</li>
@@ -349,7 +349,7 @@
             <li><code>ADWORTH_LEDGER</code> &mdash; Append-only tamper-evident audit trail across all five patent components; includes synthetic chaff entries generated by the Ledger Chaff protocol (Section 8)</li>
             <li><code>MONITOR_STATE</code> &mdash; State-Persistence Monitor scan results, violation records</li>
             <li><code>GOVERNANCE_LOG</code> &mdash; Privacy Governance Engine access decisions; includes MINOR_SHIELD_ACTIVE events</li>
-            <li><code>RPE_NOTICES</code> &mdash; Removal Payload Engine notices with HMAC signatures, content hashes, and rules_version references</li>
+            <li><code>RPE_DATA</code> &mdash; Removal Payload Engine notices with HMAC signatures, content hashes, and rules_version references</li>
             <li><code>ADWORTH_RULES</code> &mdash; Versioned regulation rules table served by the adworth-rules Worker. Isolated namespace; no personal data. Source of truth for all legal citations evaluated by the RPE at runtime.</li>
             <li><code>USER_KEYS</code> &mdash; Ed25519 public keys registered by Privacy Cockpit extension users, keyed by device identifier</li>
             <li><code>INGESTION_DATA</code> &mdash; Verified ingestion records from Privacy Cockpit extension submissions, containing sanitized campaign metrics and signature verification status</li>
@@ -411,7 +411,7 @@
         <p>The Consent Token API (<code>adworth-consent-api.adworthllc.workers.dev</code>) manages the complete lifecycle of cryptographic consent tokens. On issuance, a 128-bit cryptographically random token is generated via the Web Crypto API and bound to a specific advertiser, data scope, and time window via HMAC-SHA256 signature. Validation performs six sequential checks: token existence, revocation status, expiration, advertiser match, scope match, and cryptographic signature verification. Revocation is immediate and irreversible. Expired tokens are auto-purged by Cloudflare KV TTL with a 24-hour audit buffer.</p>
 
         <h3>API authentication</h3>
-        <p>All protected endpoints require an <code>X-API-Key</code> header or Bearer token. Keys are stored as encrypted Cloudflare environment secrets, never in source code or version control. When entered in dashboards, keys are held in <code>sessionStorage</code> only &mdash; cleared on tab close, never written to <code>localStorage</code> or cookies. Unauthenticated requests receive <code>401 Unauthorized</code> with no data disclosure.</p>
+        <p>All protected endpoints require an <code>X-API-Key</code> header or Bearer token. As of the March 11, 2026 security audit, all Workers use constant-time HMAC-SHA256 comparison via <code>crypto.subtle</code> to verify API keys, preventing timing-based side-channel attacks. Keys are stored as encrypted Cloudflare environment secrets, never in source code or version control. When entered in dashboards, keys are held in memory for the session only &mdash; never written to <code>localStorage</code>, <code>sessionStorage</code>, cookies, or any server-side log. Unauthenticated requests receive <code>401 Unauthorized</code> with no data disclosure.</p>
 
         <h3>Invisibility Ledger</h3>
         <p>The Invisibility Ledger (<code>ADWORTH_LEDGER</code> KV namespace) is an append-only, tamper-evident log of all consent lifecycle events across all five patent components. Each entry records: entry ID, event type, token ID, advertiser ID, consent scope, decision result and reason code where applicable, and UTC timestamp. No email addresses, names, IP addresses, or PII of any kind is stored. Entries are written once and never overwritten. The ledger retains the most recent 500 events in rolling storage; indefinite retention is configurable for compliance deployments.</p>
@@ -420,13 +420,13 @@
         <p>The Invisibility Ledger intentionally contains synthetic &ldquo;chaff&rdquo; entries alongside real consent events. These are decoy records injected to prevent external parties from performing pattern-of-life analysis against your consent history. Only your Sovereign Key can distinguish real entries from chaff. Chaff entries are mathematically indistinguishable to any observer who does not hold your key. <strong>This is a privacy protection, not an inaccuracy.</strong> The presence of chaff entries does not affect the accuracy or enforceability of your real consent records, and does not affect any payout calculations in the consent marketplace.</p>
 
         <h3>Data isolation</h3>
-        <p>All KV namespaces (<code>ADWORTH_TOKENS</code>, <code>ADWORTH_LEDGER</code>, <code>MONITOR_STATE</code>, <code>GOVERNANCE_LOG</code>, <code>RPE_NOTICES</code>, <code>WAITLIST</code>, <code>AD_CACHE</code>, <code>CCPA_DATA</code>, <code>USER_KEYS</code>, <code>INGESTION_DATA</code>, <code>ADWORTH_RULES</code>) are fully isolated. There is no cross-namespace access between systems. The <code>ADWORTH_RULES</code> namespace is read-only to all Workers except the authenticated sync operation on <code>adworth-rules</code>.</p>
+        <p>All KV namespaces (<code>ADWORTH_TOKENS</code>, <code>ADWORTH_LEDGER</code>, <code>MONITOR_STATE</code>, <code>GOVERNANCE_LOG</code>, <code>RPE_DATA</code>, <code>WAITLIST</code>, <code>ADWORTH_ADS_CACHE</code>, <code>CCPA_DATA</code>, <code>USER_KEYS</code>, <code>INGESTION_DATA</code>, <code>ADWORTH_RULES</code>, <code>ADWORTH_AUTH_GUARD</code>) are fully isolated. There is no cross-namespace access between systems. The <code>ADWORTH_RULES</code> namespace is read-only to all Workers except the authenticated sync operation on <code>adworth-rules</code>. The RPE accesses <code>adworth-rules</code> via a Cloudflare Service Binding (<code>RULES_WORKER</code>) for direct worker-to-worker communication without traversing the public network.</p>
     </div>
 
     <!-- 06 -->
     <div class="policy-section" id="governance-engine">
         <h2><span class="section-num">06</span> Privacy Governance Engine</h2>
-        <p>The Privacy Governance Engine (<code>adworth-bouncer.adworthllc.workers.dev</code>, v2.1.0) is a real-time consent enforcement system. Every data access request is evaluated against active consent tokens before any data can be reached.</p>
+        <p>The Privacy Governance Engine (<code>adworth-bouncer.adworthllc.workers.dev</code>, v2.2.0) is a real-time consent enforcement system. Every data access request is evaluated against active consent tokens before any data can be reached.</p>
 
         <h3>Six-point validation</h3>
         <ol>
@@ -449,7 +449,7 @@
         <p>Adworth honors <code>Sec-GPC: 1</code> browser signals as valid opt-outs of data sale and sharing under CPRA &sect;&nbsp;1798.135(d). When a user&rsquo;s browser sends this header, the Governance Engine immediately blocks the access request and returns a <code>GPC_OPT_OUT</code> block reason. This check runs after Minor Shield but before any token lookup &mdash; no consent token can override a GPC opt-out signal. The block is recorded in both <code>GOVERNANCE_LOG</code> and <code>ADWORTH_LEDGER</code>.</p>
 
         <h3>Dashboard</h3>
-        <p>The Governance Engine dashboard displays the real-time decision log, block reason breakdown, and validation stats. API key stored in <code>sessionStorage</code> only. No third-party scripts. No cookies.</p>
+        <p>The Governance Engine dashboard displays the real-time decision log, block reason breakdown, and validation stats. API key held in JavaScript memory for the session only. No third-party scripts. Self-hosted fonts. No cookies.</p>
     </div>
 
     <!-- 07 -->
@@ -462,19 +462,19 @@
             <strong>Current status:</strong> Broker checks are currently simulated against eight representative brokers. The monitor does not yet connect to live broker APIs or transmit any data externally. Simulated results are used for system validation and investor demonstration only.
         </div>
 
-        <h3>Removal Payload Engine v2.0.0 (Patent Component #5)</h3>
-        <p>As of March 6, 2026, the RPE (<code>adworth-rpe</code> v2.0.0) fetches all regulation rules at runtime from the <code>adworth-rules</code> Worker rather than using hardcoded legal citations. This means legal citations, deadlines, controller obligations, penalty tiers, and third-party notification requirements are evaluated deterministically from versioned JSON &mdash; no fuzzy interpretation. The RPE operates in two modes:</p>
+        <h3>Removal Payload Engine v2.2.0 (Patent Component #5)</h3>
+        <p>As of March 11, 2026, the RPE (<code>adworth-rpe</code> v2.2.0) fetches all regulation rules at runtime from the <code>adworth-rules</code> Worker via a Cloudflare Service Binding rather than using hardcoded legal citations. This means legal citations, deadlines, controller obligations, penalty tiers, and third-party notification requirements are evaluated deterministically from versioned JSON &mdash; no fuzzy interpretation. The RPE operates in two modes:</p>
         <ul>
             <li><strong>Integrated mode:</strong> Within the State-Persistence Monitor, triggered automatically when violations are detected during scans</li>
             <li><strong>Standalone mode:</strong> As a dedicated Cloudflare Worker with its own dashboard, public verification endpoints, and demo mode</li>
         </ul>
-        <p>Each removal payload contains a Notice ID, target domain, right ID and regulation evaluated from the rules table, <code>rules_version</code> and <code>rules_effective_date</code>, opaque data subject reference, data categories, legal citations, compliance deadline, HMAC-SHA256 cryptographic signature, SHA-256 content hash, and full legal notice text. Notices generated by the standalone RPE worker are stored in the dedicated <code>RPE_NOTICES</code> Cloudflare Workers KV namespace with the <code>rules_version</code> under which they were generated. Demo-mode notices are stored with a <code>demo</code> status flag and clearly identified in all verification responses.</p>
+        <p>Each removal payload contains a Notice ID, target domain, right ID and regulation evaluated from the rules table, <code>rules_version</code> and <code>rules_effective_date</code>, opaque data subject reference, data categories, legal citations, compliance deadline, HMAC-SHA256 cryptographic signature, SHA-256 content hash, and full legal notice text. Notices generated by the standalone RPE worker are stored in the dedicated <code>RPE_DATA</code> Cloudflare Workers KV namespace with the <code>rules_version</code> under which they were generated. Demo-mode notices are stored with a <code>demo</code> status flag and clearly identified in all verification responses.</p>
 
         <h3>Public verification endpoints</h3>
         <p>The standalone <code>adworth-rpe</code> worker provides public endpoints accessible without authentication. Verification checks the stored HMAC signature and content hash against the original notice data, and returns the <code>rules_version</code> embedded in the notice. No PII is disclosed through verification endpoints.</p>
 
         <h3>Demo mode</h3>
-        <p>Demo-mode notices are generated using a public demo key, stored with status <code>demo</code>, prefixed with &ldquo;DEMO &mdash; THIS NOTICE CARRIES NO LEGAL EFFECT / NO COMPANY WILL RECEIVE THIS NOTICE&rdquo;, and carry no legal effect. No company named in a demo notice will receive any communication from Adworth.</p>
+        <p>Demo-mode notices require full API key authentication (no public demo key exists) and are generated with a <code>demo: true</code> flag in the request body, stored with status <code>demo</code>, prefixed with &ldquo;DEMO &mdash; THIS NOTICE CARRIES NO LEGAL EFFECT / NO COMPANY WILL RECEIVE THIS NOTICE&rdquo;, and carry no legal effect. No company named in a demo notice will receive any communication from Adworth.</p>
 
         <div class="demo-notice">
             <strong>Current status:</strong> All removal payloads are generated with real legal citations (fetched live from <code>adworth-rules</code>) and HMAC-SHA256 signatures but are not transmitted to actual data brokers. No deletion requests have been sent to any third party. This policy will be updated before live delivery begins.
@@ -542,7 +542,7 @@
             <li><strong>Consent ledger entries</strong> &mdash; retained on a rolling basis of the most recent 500 events in <code>ADWORTH_LEDGER</code> KV. Entries contain only cryptographic identifiers and timestamps &mdash; no PII. Ledger entries include both real consent events and synthetic chaff entries (see Section 8); both are retained equally.</li>
             <li><strong>Monitor scan results</strong> &mdash; stored in <code>MONITOR_STATE</code> KV for audit and compliance purposes. No PII.</li>
             <li><strong>Governance Engine decisions</strong> &mdash; stored in <code>GOVERNANCE_LOG</code> KV for audit and compliance purposes. Includes <code>MINOR_SHIELD_ACTIVE</code> events. No PII.</li>
-            <li><strong>Standalone RPE notices</strong> &mdash; stored in <code>RPE_NOTICES</code> KV for audit, compliance, and public verification purposes. Each notice includes the <code>rules_version</code> under which it was generated. No PII. Active and voided notices are retained indefinitely for verification integrity.</li>
+            <li><strong>Standalone RPE notices</strong> &mdash; stored in <code>RPE_DATA</code> KV for audit, compliance, and public verification purposes. Each notice includes the <code>rules_version</code> under which it was generated. No PII. Active and voided notices are retained indefinitely for verification integrity.</li>
             <li><strong>Regulation rules table</strong> &mdash; stored in <code>ADWORTH_RULES</code> KV. Contains only publicly available regulatory text structured as versioned JSON. No personal data. Updated via authenticated admin sync from GitHub source of truth; previous versions accessible via GitHub commit history for audit purposes.</li>
             <li><strong>CCPA Enforcement Gap data</strong> &mdash; stored in <code>CCPA_DATA</code> KV. Updated annually. No individual consumer data.</li>
         </ul>
@@ -586,16 +586,21 @@
             <li>Minor Shield protocol blocking all advertising data access when minor user status is detected (Section 8)</li>
             <li>Versioned, machine-readable regulation rules table (<code>adworth-rules</code> v1.0.0) evaluated at runtime by the RPE &mdash; every notice embeds a <code>rules_version</code> creating a permanent, auditable link between legal citations and the specific ruleset version applied; rules changes require a GitHub commit and authenticated KV sync before taking effect</li>
             <li>Public verification endpoints allowing any party to independently confirm RPE notice integrity without authentication</li>
+            <li>Constant-time HMAC-SHA256 API key comparison via <code>crypto.subtle</code> on all protected endpoints across the entire worker fleet (28 Workers), preventing timing-based side-channel attacks</li>
+            <li>Strict CORS origin allowlists on all Workers &mdash; no wildcard (<code>*</code>) origins, no <code>localhost</code> or <code>127.0.0.1</code> origins in production</li>
+            <li>IP-based rate limiting on public-facing endpoints (e.g. <code>adworth-ads /analyze</code>: 10 requests per IP per hour via KV) to prevent credential-free abuse</li>
+            <li>Cloudflare Service Binding (<code>RULES_WORKER</code>) for RPE-to-rules worker communication &mdash; direct worker-to-worker calls without traversing the public network</li>
             <li>Bearer token / <code>X-API-Key</code> authentication on all protected API endpoints across the entire worker fleet (28 Workers)</li>
             <li>API secret keys stored as encrypted Cloudflare environment secrets &mdash; never in source code or version control</li>
-            <li>API keys entered in dashboards stored only in browser <code>sessionStorage</code> &mdash; cleared on tab close, never written to <code>localStorage</code> or cookies</li>
+            <li>API keys entered in dashboards held in memory for the session only &mdash; never written to <code>localStorage</code>, <code>sessionStorage</code>, cookies, or any server-side log</li>
             <li>PII Advertiser Name Classifier anonymizing person names before any data leaves the <code>adworth-ads</code> worker; only a non-reversible SHA-256 audit hash is retained</li>
             <li>Append-only ledger design preventing tampering with consent history, violation records, and enforcement actions</li>
-            <li>Complete KV namespace isolation across all 11 data stores including the isolated <code>ADWORTH_RULES</code> namespace</li>
+            <li>Complete KV namespace isolation across all data stores including the isolated <code>ADWORTH_RULES</code> namespace</li>
             <li>Six-point cryptographic validation on every data access request</li>
             <li>Real-time consent enforcement via the Privacy Governance Engine</li>
+            <li>Self-hosted web fonts served exclusively via <code>adworth-fonts.adworthllc.workers.dev</code> &mdash; no requests to Google Fonts or any third-party font service from any Worker dashboard</li>
             <li>Waitlist form protected by origin validation, honeypot bot detection, duplicate checking, and email format validation</li>
-            <li>RPE demo mode isolated from production notices via distinct status flags and key validation</li>
+            <li>RPE demo mode requires full API authentication (no hardcoded public demo key); demo notices isolated from production via distinct status flags</li>
         </ul>
         <p>No method of transmission over the internet is 100% secure. If you believe your information has been compromised, contact us immediately at <a href="mailto:hello@adworth.app">hello@adworth.app</a>.</p>
     </div>
@@ -607,7 +612,7 @@
         <p>Cloudflare may set a <code>__cf_bm</code> cookie for bot management and security. This cookie does not track you across sites and is not used for advertising.</p>
 
         <h3>Dashboard API key handling</h3>
-        <p>All Adworth dashboards (Consent API, Privacy Governance Engine, State-Persistence Monitor, Removal Payload Engine, Invisibility Ledger, Ingestion API, Regulation Rules Admin, Waitlist Admin, CCPA Enforcement Gap Admin) handle API keys identically: stored in <code>sessionStorage</code> only, cleared automatically on tab or browser close, never written to <code>localStorage</code>, cookies, or any server-side log, transmitted only to the specific authenticated Worker endpoint over HTTPS.</p>
+        <p>All Adworth dashboards (Consent API, Privacy Governance Engine, State-Persistence Monitor, Removal Payload Engine, Invisibility Ledger, Ingestion API, Regulation Rules Admin, Waitlist Admin, CCPA Enforcement Gap Admin) handle API keys identically: held in JavaScript memory for the active session only, never written to <code>localStorage</code>, <code>sessionStorage</code>, cookies, or any server-side log, transmitted only to the specific authenticated Worker endpoint over HTTPS, and discarded when the page is closed.</p>
 
         <h3>Consent token injector</h3>
         <p>The Adworth consent token injector script, when deployed, may store consent state in <code>localStorage</code> under the key <code>adworth_consent_state</code>. This data stays entirely on your device and is never transmitted to our servers unless you explicitly initiate a consent action. You can clear this at any time through your browser settings.</p>
