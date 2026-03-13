@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Adworth&#8480; &mdash; Privacy Cockpit Demo</title>
+<meta http-equiv="X-Content-Type-Options" content="nosniff">
+<meta http-equiv="X-Frame-Options" content="DENY">
+<meta http-equiv="Referrer-Policy" content="strict-origin-when-cross-origin">
+<meta name="robots" content="noindex, nofollow">
+<link rel="icon" type="image/x-icon" href="/favicon.ico">
+<link rel="preconnect" href="https://adworth-fonts.adworthllc.workers.dev">
+<link href="https://adworth-fonts.adworthllc.workers.dev/css2?family=Poppins:wght@300;400;500;600;700;800;900&family=DM+Serif+Display:ital@0;1&display=swap" rel="stylesheet">
+<style>
+*, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+:root {
+    --green-deep: #1a4a35; --green-primary: #2d6a4f; --green-accent: #52b788;
+    --green-pale: #d8f3dc; --green-tint: #f0faf3; --off-white: #fafaf8;
+    --white: #ffffff; --ink: #111410; --ink-60: #555a50; --ink-30: #b0b5aa;
+    --border: #e2e8df; --gold: #c8a96a;
+}
+html { scroll-behavior: smooth; }
+body { font-family: 'Poppins', sans-serif; background: var(--off-white); color: var(--ink); line-height: 1.7; }
+.container { max-width: 960px; margin: 0 auto; padding: 0 2rem; }
+header { background: var(--green-deep); padding: 1.5rem 2rem; }
+header .inner { max-width: 960px; margin: 0 auto; display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 1rem; }
+.logo { font-size: 1.3rem; font-weight: 800; color: var(--green-accent); text-decoration: none; }
+.logo span { color: rgba(255,255,255,0.5); font-size: 0.75rem; font-weight: 400; margin-left: 0.5rem; }
+.demo-badge { font-size: 0.65rem; font-weight: 700; text-transform: uppercase; letter-spacing: 1.5px; background: var(--gold); color: #3a2800; padding: 0.25rem 0.75rem; border-radius: 100px; }
+main { max-width: 960px; margin: 0 auto; padding: 3rem 2rem; }
+h1 { font-family: 'DM Serif Display', Georgia, serif; font-size: 2rem; color: var(--green-deep); margin-bottom: 0.5rem; }
+.subtitle { font-size: 0.9rem; color: var(--ink-60); margin-bottom: 2.5rem; line-height: 1.6; }
+.demo-notice { background: #fef9ee; border: 1.5px solid var(--gold); border-radius: 10px; padding: 1rem 1.25rem; margin-bottom: 2rem; font-size: 0.82rem; color: #6b5a30; }
+.demo-notice strong { color: #4a3d1a; }
+.section-label { font-size: 0.65rem; font-weight: 700; text-transform: uppercase; letter-spacing: 2px; color: var(--ink-30); margin-bottom: 1rem; display: block; }
+.card { background: var(--white); border: 1.5px solid var(--border); border-radius: 12px; padding: 0; margin-bottom: 2rem; overflow: hidden; }
+table { width: 100%; border-collapse: collapse; font-size: 0.85rem; }
+th { text-align: left; padding: 0.75rem 1.25rem; background: var(--green-tint); color: var(--green-deep); font-size: 0.68rem; text-transform: uppercase; letter-spacing: 1.5px; white-space: nowrap; border-bottom: 2px solid var(--border); }
+td { padding: 0.75rem 1.25rem; border-bottom: 1px solid var(--border); vertical-align: middle; }
+tr:last-child td { border-bottom: none; }
+tr:hover td { background: var(--green-tint); }
+.amount { font-weight: 700; font-family: 'Consolas', 'Monaco', monospace; font-size: 0.9rem; color: var(--green-deep); }
+.steps { margin-top: 2.5rem; }
+.step { display: flex; gap: 1rem; margin-bottom: 1.5rem; align-items: flex-start; }
+.step-num { flex-shrink: 0; width: 2rem; height: 2rem; background: var(--green-primary); color: white; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-weight: 700; font-size: 0.85rem; }
+.step-text { flex: 1; }
+.step-text strong { display: block; font-size: 0.9rem; margin-bottom: 0.15rem; }
+.step-text p { font-size: 0.82rem; color: var(--ink-60); }
+.kpi-row { display: grid; grid-template-columns: repeat(4, 1fr); gap: 1rem; margin-bottom: 2rem; }
+.kpi { background: var(--white); border: 1.5px solid var(--border); border-radius: 10px; padding: 1.25rem; text-align: center; }
+.kpi-val { font-family: 'DM Serif Display', serif; font-size: 1.75rem; color: var(--green-primary); line-height: 1; }
+.kpi-label { font-size: 0.68rem; color: var(--ink-30); margin-top: 0.35rem; text-transform: uppercase; letter-spacing: 1px; }
+footer { text-align: center; padding: 2rem; font-size: 0.75rem; color: var(--ink-30); border-top: 1px solid var(--border); margin-top: 2rem; }
+footer a { color: var(--green-primary); text-decoration: none; }
+@media (max-width: 768px) { .kpi-row { grid-template-columns: 1fr 1fr; } }
+</style>
+</head>
+<body>
+
+<header>
+    <div class="inner">
+        <a href="/" class="logo">Adworth<span>Privacy Cockpit Demo</span></a>
+        <span class="demo-badge">Simulated Data</span>
+    </div>
+</header>
+
+<main>
+    <h1>Privacy Cockpit Demo Dashboard</h1>
+    <p class="subtitle">The Privacy Cockpit extension lets advertisers securely upload their own campaign data from advertising platform dashboards (Google Ads, Meta Ads, etc.) to Adworth &mdash; signed with Ed25519 cryptography so every submission is tamper-evident and provably authentic.<br>This page contains simulated campaign metrics for testing the extension workflow.</p>
+
+    <div class="demo-notice">
+        <strong>SIMULATED DATA &mdash; FOR DEMONSTRATION ONLY.</strong> The metrics below are fictional sample data standing in for the advertiser's own campaign dashboard. In production, the extension reads metrics directly from the advertiser's logged-in advertising platform &mdash; no data is shared without the advertiser's explicit action. The private signing key never leaves the advertiser's device.
+    </div>
+
+    <div class="kpi-row">
+        <div class="kpi"><div class="kpi-val">5</div><div class="kpi-label">Campaigns</div></div>
+        <div class="kpi"><div class="kpi-val">$16,751</div><div class="kpi-label">Total Spend</div></div>
+        <div class="kpi"><div class="kpi-val">757</div><div class="kpi-label">Conversions</div></div>
+        <div class="kpi"><div class="kpi-val">3.42</div><div class="kpi-label">Avg ROAS</div></div>
+    </div>
+
+    <span class="section-label">Campaign Performance (Simulated)</span>
+    <div class="card">
+        <table>
+            <thead>
+                <tr>
+                    <th>Metric</th>
+                    <th>Value</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr><td>Campaign</td><td>demo-brand-awareness-q1</td></tr>
+                <tr><td>Spend</td><td class="amount">$4,250.00</td></tr>
+                <tr><td>Conversions</td><td>187</td></tr>
+                <tr><td>Impressions</td><td>84,200</td></tr>
+                <tr><td>ROAS</td><td>3.8</td></tr>
+            </tbody>
+        </table>
+    </div>
+
+    <div class="steps">
+        <span class="section-label">How to Test</span>
+        <div class="step">
+            <div class="step-num">1</div>
+            <div class="step-text">
+                <strong>Install the extension</strong>
+                <p>Load the Privacy Cockpit extension from chrome://extensions (developer mode).</p>
+            </div>
+        </div>
+        <div class="step">
+            <div class="step-num">2</div>
+            <div class="step-text">
+                <strong>Click Setup Extension</strong>
+                <p>Generates an Ed25519 keypair on your device. Your private key never leaves your browser.</p>
+            </div>
+        </div>
+        <div class="step">
+            <div class="step-num">3</div>
+            <div class="step-text">
+                <strong>Click Sync Dashboard Data</strong>
+                <p>The extension extracts the simulated metrics above (standing in for your real advertising dashboard), signs them with your device's private key, and sends the signed payload to the Adworth Ingestion API for cryptographic verification and storage.</p>
+            </div>
+        </div>
+        <div class="step">
+            <div class="step-num">4</div>
+            <div class="step-text">
+                <strong>Verify in the admin dashboard</strong>
+                <p>Visit <a href="https://adworth-ingestion-api.adworthllc.workers.dev/dashboard" style="color:var(--green-primary);">adworth-ingestion-api.adworthllc.workers.dev/dashboard</a> to see the ingested, signature-verified data.</p>
+            </div>
+        </div>
+    </div>
+</main>
+
+<footer>
+    <p>&copy; 2026 Adworth&#8480; LLC &middot; Patent Pending &middot; Charleston, SC &middot; <a href="/privacy.html">Privacy</a> &middot; <a href="/terms.html">Terms</a></p>
+</footer>
+
+</body>
+</html>
