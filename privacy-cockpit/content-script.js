@@ -10,15 +10,16 @@ chrome.runtime.onMessage.addListener((request, sender, sendResponse) => {
 
 function extractDashboardMetrics() {
   const hostname = window.location.hostname;
-  
+  const href = window.location.href;
+
   if (hostname.includes('ads.google.com')) {
     return extractGoogleAdsMetrics();
   } else if (hostname.includes('business.facebook.com')) {
     return extractFacebookMetrics();
-  } else if (hostname.includes('adworth.app/demo')) {
+  } else if (hostname.includes('adworth.app') && href.includes('/demo')) {
     return extractDemoMetrics();
   }
-  
+
   return null;
 }
 
