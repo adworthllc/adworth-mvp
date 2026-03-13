@@ -51,9 +51,11 @@ async function handleSetup() {
     if (!registerRes.ok) throw new Error('Registration failed: ' + registerRes.statusText);
     const { setup_token } = await registerRes.json();
 
+    // extractable: true so we can export the public key
+    // Private key stays as non-exportable CryptoKey object in service worker memory
     const keyPair = await crypto.subtle.generateKey(
       { name: 'Ed25519' },
-      false,
+      true,
       ['sign', 'verify']
     );
 
