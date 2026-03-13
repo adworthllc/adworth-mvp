@@ -11,7 +11,8 @@
   "host_permissions": [
     "https://ads.google.com/*",
     "https://business.facebook.com/*",
-    "https://adworth.app/*"
+    "https://adworth.app/*",
+    "https://adworth-ingestion-api.adworthllc.workers.dev/*"
   ],
   "background": {
     "service_worker": "background.js"
