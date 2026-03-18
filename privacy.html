@@ -334,7 +334,7 @@
             <li><code>adworth-retention</code> &mdash; Automated data retention enforcement. Runs on a daily cron trigger at 03:00&nbsp;UTC. Purges expired consent tokens, stale KV entries beyond retention window, and stale monitor state. No user data retained beyond policy windows.</li>
             <li><code>adworth-breach</code> &mdash; Breach detection and notification. Logs security events in <code>ADWORTH_BREACH_LOG</code> KV. Sends email alert to <span class="email-link" data-u="hello" data-d="adworth.app"></span> on new breach events. Triggers SC &sect;&nbsp;39-1-90 notification workflow when threshold conditions are met.</li>
             <li><code>adworth-age-gate</code> &mdash; Age certification enforcement. Stores age certifications in <code>ADWORTH_AGE_GATE</code> KV. Enforces Minor Shield eligibility at the platform front door before any advertising data access is permitted.</li>
-            <li><code>adworth-healthcheck</code> &mdash; Fleet health monitoring. Runs on a daily cron trigger at 06:00&nbsp;UTC. Pings all 28 Worker <code>/health</code> endpoints and logs availability. No user data.</li>
+            <li><code>adworth-healthcheck</code> &mdash; Fleet health monitoring. Runs on a daily cron trigger at 06:00&nbsp;UTC. Pings all 29 Worker <code>/health</code> endpoints and logs availability. No user data.</li>
             <li><code>adworth-audit-export</code> &mdash; Audit trail export. Generates user-facing exports of real ledger entries, excluding synthetic chaff. Exports contain no PII. Used to fulfill GDPR Art.&nbsp;15 access requests.</li>
             <li><code>adworth-consent-receipt</code> &mdash; Consent receipt delivery. Generates and delivers cryptographically signed consent receipts to users upon token issuance. No PII stored server-side.</li>
             <li><code>adworth-key-rotation</code> &mdash; API key rotation log. Stores rotation events and key fingerprints in <code>ADWORTH_KEY_ROTATION_LOG</code> KV. Key values are never stored &mdash; fingerprints only.</li>
@@ -678,15 +678,27 @@
       <div>
         <div class="footer-brand-name">Adworth&#8480;</div>
         <p class="footer-tagline">Cryptographic consent infrastructure for digital advertising. Privacy for people, compliance for platforms.</p>
-        <p class="footer-note">We earn exactly 2% when advertisers pay you for verified consent. That&rsquo;s our only revenue source. Always visible. Always on the ledger.</p>
+        <p class="footer-note">We earn exactly 2% when advertisers pay you for verified consent. That&rsquo;s our only revenue source. Always visible. Always on the ledger. No exceptions.</p>
       </div>
       <div class="footer-links">
         <h4>Product</h4>
         <ul>
+          <li><a href="/#problem">Problem</a></li>
           <li><a href="/#how-it-works">How It Works</a></li>
           <li><a href="/#transparency">How We Make Money</a></li>
-          <li><a href="/#founder">Founder</a></li>
+          <li><a href="/dashboard.html">Consumer Demo</a></li>
+          <li><a href="/ccpa-gap.html">CCPA Enforcement Gap</a></li>
+          <li><a href="/dashboard.html">Consent Ledger</a></li>
           <li><a href="/enterprise.html">Enterprise</a></li>
+          <li><a href="/#waitlist">Join Waitlist</a></li>
+        </ul>
+      </div>
+      <div class="footer-links">
+        <h4>Company</h4>
+        <ul>
+          <li><a href="/#founder">Founder</a></li>
+          <li><a href="/#investors">Investors</a></li>
+          <li><a id="footer-email-link" href="#">hello@adworth.app</a></li>
         </ul>
       </div>
       <div class="footer-links">
@@ -694,21 +706,17 @@
         <ul>
           <li><a href="/privacy.html">Privacy Policy</a></li>
           <li><a href="/terms.html">Terms of Service</a></li>
-          <li><a href="/ccpa-gap.html">CCPA Enforcement Gap</a></li>
+          <li style="border-top: 1px solid var(--border); padding-top: 0.75rem; margin-top: 0.25rem;">
+            <a href="/ccpa-gap.html">Do Not Sell or Share My Personal Information</a>
+            <p style="font-size:0.78rem; color: var(--ink-30); line-height:1.5; margin-top:0.3rem;">Required by CCPA/CPRA. We don&rsquo;t sell your data &mdash; this link lets you assert that right on record.</p>
+          </li>
           <li><a href="/.well-known/security.txt">Security Disclosure</a></li>
-        </ul>
-      </div>
-      <div class="footer-links">
-        <h4>Connect</h4>
-        <ul>
-          <li><a href="/#waitlist">Join Waitlist</a></li>
-          <li><a id="footer-email-link" href="#">hello@adworth.app</a></li>
         </ul>
       </div>
     </div>
     <div class="footer-bottom">
-      <span>&copy; 2026 Adworth&#8480; LLC. All rights reserved. Patent Pending &mdash; Provisional No.&nbsp;63/988,435.</span>
-      <span>Charleston, SC &middot; <a href="/privacy.html" style="color:inherit;">Privacy</a> &middot; <a href="/terms.html" style="color:inherit;">Terms</a></span>
+      <span>&copy; 2026 Adworth&#8480; LLC &middot; Patent Pending &middot; Charleston, SC</span>
+      <span>Built in public &middot; Raising seed round</span>
     </div>
   </div>
 </footer>
@@ -724,7 +732,6 @@
     a.textContent = addr;
     el.parentNode.replaceChild(a, el);
   });
-  // Footer email link
   var fel = document.getElementById('footer-email-link');
   if (fel) { fel.href = 'mailto:hello@adworth.app'; }
 </script>
