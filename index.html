@@ -416,7 +416,7 @@
         </div>
 
         <div style="margin-top: 3rem;">
-          <a href="mailto:hello@adworth.app" class="btn btn-white">Schedule a Meeting &rarr;</a>
+          <a href="#" id="schedule-meeting-btn" class="btn btn-white">Schedule a Meeting &rarr;</a>
         </div>
       </div>
     </section>
@@ -463,7 +463,7 @@
           <ul>
             <li><a href="#founder">Founder</a></li>
             <li><a href="#investors">Investors</a></li>
-            <li><a href="mailto:hello@adworth.app">hello@adworth.app</a></li>
+            <li><span class="email-link" data-u="hello" data-d="adworth.app"></span></li>
           </ul>
         </div>
         <div class="footer-links">
@@ -475,6 +475,7 @@
               <a href="https://adworth-consent-api.adworthllc.workers.dev/optout" id="do-not-sell">Do Not Sell or Share My Personal Information</a>
               <span style="display: block; font-size: 0.72rem; color: var(--ink-30); line-height: 1.4; margin-top: 0.2rem;">Required by CCPA/CPRA. We don&rsquo;t sell your data &mdash; this link lets you assert that right on record.</span>
             </li>
+            <li><a href="/.well-known/security.txt">Security Disclosure</a></li>
           </ul>
         </div>
       </div>
@@ -486,6 +487,18 @@
   </footer>
 
   <script>
+    // Runtime email builder — prevents Cloudflare obfuscation and harvesting
+    document.querySelectorAll('.email-link').forEach(function(el) {
+      var u = el.getAttribute('data-u');
+      var d = el.getAttribute('data-d');
+      var addr = u + '@' + d;
+      var a = document.createElement('a');
+      a.href = 'mailto:' + addr;
+      a.textContent = addr;
+      el.parentNode.replaceChild(a, el);
+    });
+    var smb = document.getElementById('schedule-meeting-btn');
+    if (smb) { smb.href = 'mailto:hello@adworth.app?subject=Meeting%20Request'; }
     // Scroll animations
     document.body.classList.add('js-ready');
     const observer = new IntersectionObserver((entries) => {
@@ -546,14 +559,7 @@
         msg.style.color = '#c0392b';
         msg.textContent = 'Something went wrong. Please try again or email hello@adworth.app';
       }
-    });
-
-    // Allow Enter key on waitlist input
-    document.getElementById('waitlist-email').addEventListener('keydown', function(e) {
-      if (e.key === 'Enter') {
-        document.getElementById('waitlist-btn').click();
-      }
-    });
+    
   </script>
 
 </body>
