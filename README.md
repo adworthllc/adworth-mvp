@@ -8,7 +8,7 @@ Adworth℠ is a privacy-tech company building consent rails for the digital adve
 
 ## Status
 
-Private repository. Pre-release. Patent pending.
+Public repository. Pre-release. Patent pending.
 
 ---
 
