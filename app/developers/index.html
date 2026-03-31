@@ -3,22 +3,52 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Adworth℠ — Cryptographic Consent Marketplace</title>
+  <title>Developer Docs &mdash; Adworth&#8480;</title>
   <meta name="description" content="Two-sided consent marketplace. Free for everyone. 2% fee on revenue you generate. Advertisers verify consent. Consumers earn for data.">
+  <meta http-equiv="X-Content-Type-Options" content="nosniff">
+  <meta http-equiv="X-Frame-Options" content="DENY">
+  <meta http-equiv="Referrer-Policy" content="strict-origin-when-cross-origin">
+  <meta name="robots" content="index, follow">
+  <link rel="icon" type="image/x-icon" href="/favicon.ico">
   <link rel="preconnect" href="https://adworth-fonts.adworthllc.workers.dev">
   <link href="https://adworth-fonts.adworthllc.workers.dev/css2?family=Poppins:wght@300;400;500;600;700;800;900&family=DM+Serif+Display:ital@0;1&display=swap" rel="stylesheet">
   <style>
     *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
     :root {
-      --green-deep: #1a4a35; --green-primary: #2d6a4f; --green-accent: #52b788;
-      --green-pale: #d8f3dc; --green-tint: #f0faf3; --off-white: #fafaf8;
-      --white: #ffffff; --ink: #111410; --ink-60: #555a50; --ink-30: #b0b5aa;
-      --border: #e2e8df; --red: #e05252; --red-bg: #fef3f2;
-      --gold: #c8a96a; --gold-bg: #fff8ee;
+      --green-deep: #1a4a35; --green-primary: #2d6a4f; --green-mid: #1B7A4E;
+      --green-accent: #52b788; --green-pale: #d8f3dc; --green-tint: #f0faf3;
+      --off-white: #fafaf8; --white: #ffffff; --ink: #111410; --ink-60: #555a50;
+      --ink-30: #b0b5aa; --border: #e2e8df; --red: #e05252; --red-bg: #fef3f2;
+      --gold: #c8a96a; --gold-bg: #fff8ee; --gold-light: #f5e9d3;
       --code-bg: #1e1e2e; --code-text: #cdd6f4; --code-green: #a6e3a1;
       --code-blue: #89b4fa; --code-yellow: #f9e2af; --code-red: #f38ba8;
       --code-purple: #cba6f7; --code-comment: #6c7086;
     }
+    /* ── SITE NAV ── */
+    .site-header { position: sticky; top: 0; z-index: 100; background: rgba(250,250,248,0.92); backdrop-filter: blur(12px); -webkit-backdrop-filter: blur(12px); border-bottom: 1px solid var(--border); }
+    .site-nav { display: flex; justify-content: space-between; align-items: center; padding: 1.25rem 2rem; max-width: 1160px; margin: 0 auto; }
+    .logo { display: flex; align-items: center; gap: 0.75rem; text-decoration: none; }
+    .logo-mark { font-family: 'Poppins', sans-serif; font-size: 1.4rem; font-weight: 800; color: var(--green-primary); letter-spacing: -0.5px; }
+    .patent-pill { font-size: 0.55rem; font-weight: 700; text-transform: uppercase; letter-spacing: 1px; background: var(--green-pale); color: var(--green-deep); padding: 0.15rem 0.45rem; border-radius: 100px; border: 1px solid rgba(45,106,79,0.2); white-space: nowrap; }
+    .site-nav ul { list-style: none; display: flex; gap: 1.5rem; align-items: center; }
+    .site-nav a { text-decoration: none; font-size: 0.8rem; font-weight: 500; color: var(--ink-60); transition: color 0.2s; white-space: nowrap; }
+    .site-nav a:hover { color: var(--green-primary); }
+    .nav-cta { background: var(--green-primary) !important; color: white !important; padding: 0.55rem 1rem !important; border-radius: 6px !important; font-weight: 600 !important; white-space: nowrap; }
+    .nav-cta:hover { background: var(--green-deep) !important; }
+    /* ── SITE FOOTER ── */
+    .site-footer { background: var(--white); border-top: 1px solid var(--border); padding: 3.5rem 0 2rem; margin-top: 4rem; }
+    .footer-inner { max-width: 1160px; margin: 0 auto; padding: 0 2rem; }
+    .footer-grid { display: grid; grid-template-columns: 2fr 1fr 1fr 1fr; gap: 3rem; margin-bottom: 3rem; }
+    .footer-brand-name { font-size: 1.4rem; font-weight: 800; color: var(--green-primary); margin-bottom: 0.6rem; }
+    .footer-tagline { font-size: 0.85rem; color: var(--ink-60); line-height: 1.6; max-width: 260px; margin-bottom: 0.75rem; }
+    .footer-note { font-size: 0.78rem; color: var(--ink-30); line-height: 1.6; max-width: 260px; border-top: 1px solid var(--border); padding-top: 0.75rem; margin-top: 0.25rem; }
+    .footer-links h4 { font-size: 0.75rem; font-weight: 700; text-transform: uppercase; letter-spacing: 1.5px; color: var(--ink); margin-bottom: 1rem; }
+    .footer-links ul { list-style: none; }
+    .footer-links a { display: block; font-size: 0.875rem; color: var(--ink-60); text-decoration: none; margin-bottom: 0.6rem; transition: color 0.2s; }
+    .footer-links a:hover { color: var(--green-primary); }
+    .footer-bottom { padding-top: 2rem; border-top: 1px solid var(--border); display: flex; justify-content: space-between; align-items: center; font-size: 0.8rem; color: var(--ink-30); }
+    @media (max-width: 900px) { .footer-grid { grid-template-columns: 1fr 1fr; } }
+    @media (max-width: 640px) { .site-nav ul { display: none; } .footer-grid { grid-template-columns: 1fr; } .footer-bottom { flex-direction: column; gap: 0.5rem; text-align: center; } }
     body { font-family: 'Poppins', sans-serif; background: var(--off-white); color: var(--ink); line-height: 1.6; }
 
     /* Header */
@@ -464,6 +494,25 @@
     <span class="beta-tag">Beta</span>
     This is a patent-pending proof of concept. Full marketplace integration and enterprise licensing are under development.
   </div>
+  <!-- SITE NAV — matches index.html exactly -->
+  <header class="site-header">
+    <nav class="site-nav">
+      <a href="/" class="logo">
+        <span class="logo-mark">Adworth&#8480;</span>
+        <span class="patent-pill">Patent Pending</span>
+      </a>
+      <ul>
+        <li><a href="/#problem">Problem</a></li>
+        <li><a href="/#how-it-works">How It Works</a></li>
+        <li><a href="/#transparency">How We Make Money</a></li>
+        <li><a href="/#founder">Founder</a></li>
+        <li><a href="/#investors">Investors</a></li>
+        <li><a href="/enterprise.html">Enterprise</a></li>
+        <li><a href="/#waitlist" class="nav-cta">Join Waitlist</a></li>
+      </ul>
+    </nav>
+  </header>
+
   <div class="header">
     <div>
       <h1>Adworth℠ — Consent Marketplace</h1>
@@ -783,6 +832,72 @@
       <strong>Complete Transparency Disclosure:</strong> This integration guide connects to the live Adworth Privacy Governance Engine (Patent Component #2). The API sandbox sends real requests and records real decisions in the Invisibility Ledger. <strong>Adworth takes exactly 2% marketplace fee</strong> — no hidden charges, no enterprise gatekeeping. Both consumers and advertisers start free. We only make money when marketplace revenue flows. The consent marketplace is live. Premium tiers (analytics, priority support, white-label) are under development. See <a href="/privacy.html">Privacy Policy</a> and <a href="/terms.html">Terms of Service</a> for complete details.
     </div>
   </div>
+
+  <!-- SITE FOOTER — matches index.html exactly -->
+  <footer class="site-footer">
+    <div class="footer-inner">
+      <div class="footer-grid">
+        <div>
+          <div class="footer-brand-name">Adworth&#8480;</div>
+          <p class="footer-tagline">Cryptographic consent infrastructure for digital advertising. Privacy for people, compliance for platforms.</p>
+          <p class="footer-note">We earn exactly 2% when advertisers pay you for verified consent. That&rsquo;s our only revenue source. Always visible. Always on the ledger. No exceptions.</p>
+        </div>
+        <div class="footer-links">
+          <h4>Product</h4>
+          <ul>
+            <li><a href="/#problem">Problem</a></li>
+            <li><a href="/#how-it-works">How It Works</a></li>
+            <li><a href="/#transparency">How We Make Money</a></li>
+            <li><a href="/app/consent/">How It Works for You</a></li>
+            <li><a href="/ledger.html">Consent Ledger</a></li>
+            <li><a href="/ccpa-gap.html">Ad Transparency Tool</a></li>
+            <li><a href="/app/developers/">Developer Docs</a></li>
+            <li><a href="/enterprise.html">Enterprise</a></li>
+            <li><a href="/#waitlist">Join Waitlist</a></li>
+          </ul>
+        </div>
+        <div class="footer-links">
+          <h4>Company</h4>
+          <ul>
+            <li><a href="/#founder">Founder</a></li>
+            <li><a href="/#investors">Investors</a></li>
+            <li><span class="email-link" data-u="hello" data-d="adworth.app"></span></li>
+          </ul>
+        </div>
+        <div class="footer-links">
+          <h4>Legal</h4>
+          <ul>
+            <li><a href="/privacy.html">Privacy Policy</a></li>
+            <li><a href="/terms.html">Terms of Service</a></li>
+            <li style="border-top: 1px solid var(--border); padding-top: 0.6rem; margin-top: 0.25rem;">
+              <a href="https://adworth-consent-widget.adworthllc.workers.dev/optout" id="do-not-sell">Do Not Sell or Share My Personal Information</a>
+              <span style="display: block; font-size: 0.72rem; color: var(--ink-30); line-height: 1.4; margin-top: 0.2rem;">Required by CCPA/CPRA. We don&rsquo;t sell your data &mdash; this link lets you assert that right on record.</span>
+            </li>
+            <li><a href="/.well-known/security.txt">Security Disclosure</a></li>
+          </ul>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <span>&copy; 2026 Adworth&#8480; LLC &middot; Patent Pending &middot; Charleston, SC</span>
+        <span>Built in public &middot; Raising seed round</span>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    // Runtime email builder — prevents Cloudflare obfuscation and harvesting
+    document.querySelectorAll('.email-link').forEach(function(el) {
+      var u = el.getAttribute('data-u');
+      var d = el.getAttribute('data-d');
+      var addr = u + '@' + d;
+      var a = document.createElement('a');
+      a.href = 'mailto:' + addr;
+      a.textContent = addr;
+      el.parentNode.replaceChild(a, el);
+    });
+  </script>
+
+  <script defer src="https://static.cloudflareinsights.com/beacon.min.js/v8c78df7c7c0f484497ecbca7046644da1771523124516" integrity="sha512-8DS7rgIrAmghBFwoOTujcf6D9rXvH8xm8JQ1Ja01h9QX8EzXldiszufYa4IFfKdLUKTTrnSFXLDkUEOTrZQ8Qg==" data-cf-beacon='{"version":"2024.11.0","token":"7a960585c0124d9eb1bd09e01230cdef","r":1,"server_timing":{"name":{"cfCacheStatus":true,"cfEdge":true,"cfExtPri":true,"cfL4":true,"cfOrigin":true,"cfSpeedBrain":true},"location_startswith":null}}' crossorigin="anonymous"></script>
 
   <script>
     function copyCode(id) {
