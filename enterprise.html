@@ -132,7 +132,7 @@
     .footer-grid { display: grid; grid-template-columns: 2fr 1fr 1fr 1fr; gap: 3rem; margin-bottom: 3rem; }
     .footer-brand-name { font-size: 1.4rem; font-weight: 800; color: var(--green-primary); margin-bottom: 0.6rem; }
     .footer-tagline { font-size: 0.85rem; color: var(--ink-60); line-height: 1.6; max-width: 260px; margin-bottom: 0.75rem; }
-    .footer-transparency-note { font-size: 0.78rem; color: var(--ink-30); line-height: 1.6; max-width: 260px; border-top: 1px solid var(--border); padding-top: 0.75rem; margin-top: 0.25rem; }
+    .footer-note { font-size: 0.78rem; color: var(--ink-30); line-height: 1.6; max-width: 260px; border-top: 1px solid var(--border); padding-top: 0.75rem; margin-top: 0.25rem; }
     .footer-links h4 { font-size: 0.75rem; font-weight: 700; text-transform: uppercase; letter-spacing: 1.5px; color: var(--ink); margin-bottom: 1rem; }
     .footer-links ul { list-style: none; }
     .footer-links a { display: block; font-size: 0.875rem; color: var(--ink-60); text-decoration: none; margin-bottom: 0.6rem; transition: color 0.2s; }
@@ -178,7 +178,7 @@
           <li><a href="#raise">The Raise</a></li>
           <li><a href="#founder">Founder</a></li>
           <li><a href="/">← Home</a></li>
-          <li><a href="mailto:hello@adworth.app" class="nav-cta">Schedule Meeting &rarr;</a></li>
+          <li><a href="#" id="schedule-meeting-btn" class="nav-cta">Schedule Meeting &rarr;</a></li>
         </ul>
       </nav>
     </div>
@@ -202,7 +202,7 @@
         <div class="hero-cta-group">
           <a href="#live-demo" class="btn btn-primary">See Live Demo ↓</a>
           <a href="#raise" class="btn btn-ghost">View the Raise</a>
-          <a href="mailto:hello@adworth.app" class="btn-ghost-gold">Schedule Meeting &rarr;</a>
+          <a href="#" id="schedule-meeting-hero-btn" class="btn-ghost-gold">Schedule Meeting &rarr;</a>
         </div>
         <p class="hero-trust">Patent-pending technology · Live AI transparency data · Two-sided marketplace with 2% fee</p>
       </div>
@@ -241,7 +241,7 @@
         <div class="demo-frame fade-up">
           <div class="demo-bar">
             <div class="demo-dots"><div class="demo-dot"></div><div class="demo-dot"></div><div class="demo-dot"></div></div>
-            <div class="demo-url">adworth.app/dashboard.html — apple.com analysis</div>
+            <div class="demo-url">adworth.app/demo &mdash; apple.com analysis</div>
             <div class="demo-live">Live Data</div>
           </div>
           <div class="demo-metrics">
@@ -274,7 +274,7 @@
             This analysis is based on publicly available data from Google's Ads Transparency Center via DataForSEO and AI analysis by Anthropic Claude. Results represent a sample of up to 40 ads and are for informational and educational purposes only. This does not constitute a finding of wrongdoing, regulatory violation, or legal determination of any kind. Try the live tool below to run your own query.
           </div>
           <div class="demo-cta-bar">
-            <a href="/dashboard.html" class="btn btn-primary">Try Live Demo — Enter Any Domain →</a>
+            <a href="/demo.html" class="btn btn-primary">Try Live Demo &mdash; Enter Any Domain &rarr;</a>
           </div>
         </div>
       </div>
@@ -362,49 +362,51 @@
       <div class="container">
         <p class="label fade-up">Seed Round</p>
         <div class="raise-amount fade-up">$1.5M</div>
-        <div class="raise-label fade-up">18-month runway · Two-sided marketplace</div>
-        <p class="section-lead fade-up">The timing window — AI advertising boom, regulatory gap, no patent-protected competitor — won't stay open. This is infrastructure that needs to exist.</p>
+        <div class="raise-label fade-up">Infrastructure built &middot; Ready to scale</div>
+        <p class="section-lead fade-up">The consent infrastructure is live. The patent is filed. The extension is in testing. We&rsquo;re not raising to build &mdash; we&rsquo;re raising to hire two people and scale what already works. The timing window &mdash; AI advertising boom, regulatory gap, no patent-protected competitor &mdash; won&rsquo;t stay open forever.</p>
         <div class="raise-grid fade-up">
           <div class="raise-card">
             <h4>What We Have Today</h4>
             <ul>
-              <li>Provisional patent filed Feb 23, 2026 — 11 claims</li>
-              <li>Live ad intelligence pipeline (real data, AI analysis)</li>
-              <li>Functional consent API — token issuance, validation, and revocation demonstrated</li>
-              <li>Cloudflare Workers infrastructure — scalable from day one</li>
-              <li>Service mark protection — Adworth℠</li>
+              <li>Patent pending &mdash; filed Feb 23, 2026, 11 claims (Confirmation #9128)</li>
+              <li>USPTO Trademark Serial No. 99678774 &middot; SC Service Mark approved</li>
+              <li>29 live Cloudflare Workers &mdash; consent, compliance, enforcement, monitoring</li>
+              <li>Complete GDPR &middot; CCPA &middot; HIPAA &middot; COPPA compliance stack</li>
+              <li>Privacy Cockpit extension (MV3) &mdash; in testing, Chrome Web Store ready</li>
+              <li>Ed25519 cryptographic consent API &mdash; live and verified</li>
+              <li>Consumer demo live &middot; Waitlist collecting &middot; Launching Q2 2026</li>
             </ul>
           </div>
           <div class="raise-card">
             <h4>What $1.5M Builds</h4>
             <ul>
-              <li>Full cryptographic consent infrastructure</li>
-              <li>Two-sided marketplace — consumers + advertisers</li>
-              <li>2% transaction fee model — transparent, aligned</li>
-              <li>Consumer Privacy Cockpit Extension</li>
-              <li>Non-provisional patent filing by Feb 2027</li>
+              <li>One engineer &mdash; ship Privacy Cockpit to Chrome Web Store, maintain infrastructure</li>
+              <li>One BD &amp; marketing hire &mdash; first advertiser pilots, user growth</li>
+              <li>Non-provisional patent filing by Feb 2027 &mdash; hard deadline, full IP protection</li>
+              <li>18 months runway &mdash; reach Series A from traction, not urgency</li>
+              <li>We don&rsquo;t make money unless you do &mdash; 2% only on verified consent transactions</li>
             </ul>
           </div>
         </div>
         <div class="timeline fade-up">
           <div class="timeline-item active">
-            <div class="timeline-phase">Now — Month 6</div>
-            <div class="timeline-title">Infrastructure & First Revenue</div>
-            <div class="timeline-desc">Full consent API, enterprise pilot contracts, DSA compliance SaaS launch, 2% marketplace live</div>
+            <div class="timeline-phase">Q2 2026 &mdash; Launch</div>
+            <div class="timeline-title">Ship &amp; Close</div>
+            <div class="timeline-desc">Privacy Cockpit to Chrome Web Store, public launch, waitlist converts, close seed round, hire engineer + BD</div>
           </div>
           <div class="timeline-item next">
-            <div class="timeline-phase">Month 6 — 12</div>
-            <div class="timeline-title">Marketplace Beta</div>
-            <div class="timeline-desc">Two-sided marketplace live, first user payments, advertiser network effects</div>
+            <div class="timeline-phase">Q3 2026</div>
+            <div class="timeline-title">First Traction</div>
+            <div class="timeline-desc">First advertiser pilot conversations, first real consent exchanges, first 2% fees collected, non-provisional patent begins</div>
           </div>
           <div class="timeline-item">
-            <div class="timeline-phase">Month 12 — 18</div>
-            <div class="timeline-title">Scale & Non-Provisional Patent</div>
-            <div class="timeline-desc">Real marketplace traction, 100K+ users, non-provisional filed, Series A positioning</div>
+            <div class="timeline-phase">Q4 2026 &mdash; Q2 2027</div>
+            <div class="timeline-title">Scale &amp; Series A</div>
+            <div class="timeline-desc">Open marketplace, real transaction volume, network effects building, non-provisional patent filed Feb 2027, Series A positioning</div>
           </div>
         </div>
         <div style="text-align:center; margin-top:3.5rem;" class="fade-up">
-          <a href="mailto:hello@adworth.app" class="btn btn-white">Schedule Investor Meeting &rarr;</a>
+          <a href="#" id="schedule-meeting-btn" class="btn btn-white">Schedule Investor Meeting &rarr;</a>
         </div>
       </div>
     </section>
@@ -416,18 +418,18 @@
         <h2 class="section-title fade-up" style="text-align:center; margin-bottom:3rem;">Why I Left After 18 Years</h2>
         <div class="founder-card fade-up">
           <div class="founder-body">
-            <p>I left Verizon in December 2025 after 18 years — the last 15 as a supervisor managing large technical support teams. For 15 of those years I listened to escalated calls from customers who had been financially hurt, legally exposed, emotionally devastated — almost always because of what happened to their data.</p>
-            <p>My understanding of copyright law and music publishing taught me this pattern early. Ownership extraction follows the same playbook across industries. Taylor Swift had to re-record her entire catalog just to own what she created. You don't own your data either. Adworth changes that.</p>
+            <p>I left my corporate career in December 2025 after 18 years &mdash; the last 15 as a supervisor managing large technical support teams. For 15 of those years I listened to escalated calls in corporate tech support from customers who had been financially hurt, legally exposed, emotionally devastated &mdash; almost always because of what happened to their data.</p>
+            <p>My understanding of copyright law and music publishing taught me this pattern early. Ownership extraction follows the same playbook across every industry. Artists have spent decades fighting just to own what they created. Your data is no different &mdash; someone else is holding the masters. Adworth changes that.</p>
             <div class="founder-pullquote">
               "What if users could lend their data — on their terms, with cryptographic enforcement, and get paid for it?"
             </div>
-            <p>I built it with a high school diploma, 20 years of corporate experience, and AI as my co-founder. The patent was filed February 23, 2026. Now I'm raising $1.5M to build it properly and launch the two-sided marketplace with the 2% fee model.</p>
+            <p>I built it with 20 years of corporate experience, AI as my co-founder, and the conviction that the knowledge needed to solve real problems doesn&rsquo;t come with a price tag. The patent was filed February 23, 2026. Now I&rsquo;m raising $1.5M to hire two people and scale what&rsquo;s already built.</p>
           </div>
           <div class="founder-sig">
             <div class="founder-avatar">NJ</div>
             <div class="founder-sig-text">
               <strong>Nick Johnson</strong>
-              <small>Founder &amp; CEO, Adworth℠ LLC &middot; Charleston, SC &middot; Patent Filed Feb 2026 &middot; <a href="mailto:hello@adworth.app">hello@adworth.app</a></small>
+              <small>Founder &amp; CEO, Adworth&#8480; LLC &middot; Charleston, SC &middot; Patent Filed Feb 2026 &middot; <span class="email-link" data-u="hello" data-d="adworth.app"></span></small>
             </div>
           </div>
         </div>
@@ -510,15 +512,15 @@
         <h2 class="section-title fade-up">Ready to talk?</h2>
         <p class="section-lead fade-up" style="margin: 1rem auto 0;">We're raising $1.5M to build the consent rails for a permission-based internet. The 2% marketplace model makes it work for everyone.</p>
         <div class="contact-grid fade-up">
-          <a href="mailto:hello@adworth.app" class="contact-card">
+          <a href="#" id="contact-email-card" class="contact-card">
             <div class="contact-card-label">Primary Contact</div>
-            <div class="contact-card-title">hello@adworth.app</div>
+            <div class="contact-card-title"><span class="email-link" data-u="hello" data-d="adworth.app"></span></div>
             <div class="contact-card-sub">Schedule a meeting or request a deck</div>
           </a>
-          <a href="/dashboard.html" class="contact-card">
+          <a href="/demo.html" class="contact-card">
             <div class="contact-card-label">Live Demo</div>
-            <div class="contact-card-title">Ad Intelligence Dashboard</div>
-            <div class="contact-card-sub">Real data · AI analysis · No login required</div>
+            <div class="contact-card-title">Campaign Data Dashboard</div>
+            <div class="contact-card-sub">Real data &middot; AI analysis &middot; No login required</div>
           </a>
           <a href="/ledger.html" class="contact-card">
             <div class="contact-card-label">Consent Ledger Preview</div>
@@ -526,9 +528,9 @@
             <div class="contact-card-sub">Token lifecycle · Enforcement · Audit trail</div>
           </a>
           <a href="/ccpa-gap.html" class="contact-card">
-            <div class="contact-card-label">CCPA Enforcement Gap</div>
+            <div class="contact-card-label">Ad Transparency Tool</div>
             <div class="contact-card-title">30+ Companies. Zero Verified Deletion.</div>
-            <div class="contact-card-sub">Real transparency metrics · Public data</div>
+            <div class="contact-card-sub">Real transparency metrics &middot; Public data</div>
           </a>
         </div>
       </div>
@@ -541,18 +543,20 @@
     <div class="container">
       <div class="footer-grid">
         <div>
-          <div class="footer-brand-name">Adworth℠</div>
+          <div class="footer-brand-name">Adworth&#8480;</div>
           <p class="footer-tagline">Cryptographic consent infrastructure for digital advertising. Privacy for people, compliance for platforms.</p>
-          <p class="footer-transparency-note">We earn exactly 2% when advertisers pay you for verified consent. That&rsquo;s our only revenue source. Always visible. Always on the ledger. No exceptions.</p>
+          <p class="footer-note">We earn exactly 2% when advertisers pay you for verified consent. That&rsquo;s our only revenue source. Always visible. Always on the ledger. No exceptions.</p>
         </div>
         <div class="footer-links">
           <h4>Product</h4>
           <ul>
             <li><a href="/#problem">Problem</a></li>
             <li><a href="/#how-it-works">How It Works</a></li>
-            <li><a href="/dashboard.html">Consumer Demo</a></li>
-            <li><a href="/ccpa-gap.html">CCPA Enforcement Gap</a></li>
+            <li><a href="/#transparency">How We Make Money</a></li>
+            <li><a href="/app/consent/">How It Works for You</a></li>
             <li><a href="/ledger.html">Consent Ledger</a></li>
+            <li><a href="/ccpa-gap.html">Ad Transparency Tool</a></li>
+            <li><a href="/app/developers/">Developer Docs</a></li>
             <li><a href="/enterprise.html">Enterprise</a></li>
             <li><a href="/#waitlist">Join Waitlist</a></li>
           </ul>
@@ -560,9 +564,9 @@
         <div class="footer-links">
           <h4>Company</h4>
           <ul>
-            <li><a href="#founder">Founder</a></li>
-            <li><a href="#raise">Investors</a></li>
-            <li><a href="mailto:hello@adworth.app">hello@adworth.app</a></li>
+            <li><a href="/#founder">Founder</a></li>
+            <li><a href="/#investors">Investors</a></li>
+            <li><span class="email-link" data-u="hello" data-d="adworth.app"></span></li>
           </ul>
         </div>
         <div class="footer-links">
@@ -570,6 +574,11 @@
           <ul>
             <li><a href="/privacy.html">Privacy Policy</a></li>
             <li><a href="/terms.html">Terms of Service</a></li>
+            <li style="border-top: 1px solid var(--border); padding-top: 0.6rem; margin-top: 0.25rem;">
+              <a href="https://adworth-consent-api.adworthllc.workers.dev/optout" id="do-not-sell">Do Not Sell or Share My Personal Information</a>
+              <span style="display: block; font-size: 0.72rem; color: var(--ink-30); line-height: 1.4; margin-top: 0.2rem;">Required by CCPA/CPRA. We don&rsquo;t sell your data &mdash; this link lets you assert that right on record.</span>
+            </li>
+            <li><a href="/.well-known/security.txt">Security Disclosure</a></li>
           </ul>
         </div>
       </div>
@@ -579,6 +588,29 @@
       </div>
     </div>
   </footer>
+
+  <script>
+    // Runtime email builder — prevents Cloudflare obfuscation and harvesting
+    document.querySelectorAll('.email-link').forEach(function(el) {
+      var u = el.getAttribute('data-u');
+      var d = el.getAttribute('data-d');
+      var addr = u + '@' + d;
+      var a = document.createElement('a');
+      a.href = 'mailto:' + addr;
+      a.textContent = addr;
+      el.parentNode.replaceChild(a, el);
+    });
+    // Schedule meeting buttons — all point to same mailto
+    ['schedule-meeting-btn', 'schedule-meeting-hero-btn'].forEach(function(id) {
+      var el = document.getElementById(id);
+      if (el) { el.href = 'mailto:hello@adworth.app?subject=Meeting%20Request'; }
+    });
+    // Contact email card
+    var cec = document.getElementById('contact-email-card');
+    if (cec) { cec.href = 'mailto:hello@adworth.app?subject=Investor%20Inquiry'; }
+  </script>
+
+  <script defer src="https://static.cloudflareinsights.com/beacon.min.js/v8c78df7c7c0f484497ecbca7046644da1771523124516" integrity="sha512-8DS7rgIrAmghBFwoOTujcf6D9rXvH8xm8JQ1Ja01h9QX8EzXldiszufYa4IFfKdLUKTTrnSFXLDkUEOTrZQ8Qg==" data-cf-beacon='{"version":"2024.11.0","token":"7a960585c0124d9eb1bd09e01230cdef","r":1,"server_timing":{"name":{"cfCacheStatus":true,"cfEdge":true,"cfExtPri":true,"cfL4":true,"cfOrigin":true,"cfSpeedBrain":true},"location_startswith":null}}' crossorigin="anonymous"></script>
 
 </body>
 </html>
