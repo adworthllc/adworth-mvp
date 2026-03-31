@@ -113,55 +113,107 @@ async function handleSync() {
   try {
     const tabs = await chrome.tabs.query({ active: true, currentWindow: true });
     const tab = tabs[0];
-
     if (!tab) throw new Error('No active tab found');
 
-    // FIX: Programmatically inject content script into the tab
-    // This is more reliable than manifest declaration for MV3
+    // ── Direct extraction — no message passing, no race condition ──
+    // executeScript with func: runs inline in page context and returns data immediately.
+    // No listener registration needed, no timing dependency.
+    let results;
     try {
-      await chrome.scripting.executeScript({
+      results = await chrome.scripting.executeScript({
         target: { tabId: tab.id },
-        files: ['content-script.js']
+        func: () => {
+          const hostname = window.location.hostname;
+          const href = window.location.href;
+          const metrics = {
+            page_url: hostname + window.location.pathname,
+            extracted_at: new Date().toISOString()
+          };
+
+          if (hostname.includes('adworth.app') && href.includes('/demo')) {
+            // demo.html — reads <tr><td> table structure
+            const rows = document.querySelectorAll('tr');
+            rows.forEach(row => {
+              const cells = row.querySelectorAll('td');
+              if (cells.length >= 2) {
+                const label = cells[0]?.textContent?.toLowerCase().trim() || '';
+                const value = cells[1]?.textContent?.trim() || '';
+                if (label.includes('campaign')) metrics.campaign_name = value;
+                if (label.includes('spend'))      metrics.spend = parseFloat(value.replace(/[$,]/g, '')) || 0;
+                if (label.includes('conversion')) metrics.conversions = parseInt(value.replace(/[^0-9]/g, '')) || 0;
+                if (label.includes('impression')) metrics.impressions = parseInt(value.replace(/[^0-9]/g, '')) || 0;
+                if (label.includes('roas'))       metrics.roas = parseFloat(value) || 0;
+              }
+            });
+            metrics.platform = 'adworth_demo';
+
+          } else if (hostname.includes('adworth.app')) {
+            // dashboard.html or any other adworth page — extract visible metric cards
+            const cards = document.querySelectorAll('[class*="metric"],[class*="stat"],[class*="result"],[class*="card"],[class*="val"]');
+            cards.forEach(card => {
+              const text = card.textContent?.toLowerCase() || '';
+              const num = parseInt(card.textContent?.replace(/[^0-9]/g, '')) || 0;
+              if (text.includes('ads found') || text.includes('ads_found')) metrics.ads_found = num;
+              if (text.includes('risk')) metrics.privacy_risk = card.textContent?.trim();
+              if (text.includes('flag'))  metrics.reg_flags = num;
+            });
+            // Also grab any domain that was analysed
+            const domainInput = document.querySelector('input[type="text"],input[placeholder*="domain"]');
+            if (domainInput?.value) metrics.analysed_domain = domainInput.value;
+            metrics.platform = 'adworth_dashboard';
+
+          } else if (hostname.includes('ads.google.com')) {
+            const rows = document.querySelectorAll('[role="row"]');
+            rows.forEach(row => {
+              const cells = row.querySelectorAll('[role="gridcell"]');
+              if (cells.length > 0) {
+                const text = cells[0]?.textContent?.toLowerCase() || '';
+                if (text.includes('spend') || text.includes('cost'))
+                  metrics.spend = parseFloat(cells[1]?.textContent?.replace(/[$,]/g, '')) || 0;
+                if (text.includes('impression'))
+                  metrics.impressions = parseInt(cells[1]?.textContent?.replace(/[^0-9]/g, '')) || 0;
+                if (text.includes('click') && !text.includes('rate'))
+                  metrics.clicks = parseInt(cells[1]?.textContent?.replace(/[^0-9]/g, '')) || 0;
+              }
+            });
+            metrics.platform = 'google_ads';
+
+          } else if (hostname.includes('business.facebook.com')) {
+            const cells = document.querySelectorAll('[data-testid*="metric"],[aria-label*="metric"]');
+            cells.forEach(cell => {
+              const label = (cell?.getAttribute('aria-label') || cell?.textContent || '').toLowerCase();
+              const value = cell?.nextElementSibling?.textContent || '';
+              if (label.includes('spend'))      metrics.spend = parseFloat(value.replace(/[$,]/g, '')) || 0;
+              if (label.includes('conversion')) metrics.conversions = parseInt(value.replace(/[^0-9]/g, '')) || 0;
+            });
+            metrics.platform = 'facebook';
+
+          } else {
+            // Any other page — capture basic page signal so demo still flows end-to-end
+            metrics.platform = 'web_page';
+            metrics.page_title = document.title?.substring(0, 80) || '';
+            metrics.ad_elements = document.querySelectorAll('[id*="ad"],[class*="ad"],[class*="sponsor"]').length;
+          }
+
+          return metrics;
+        }
       });
     } catch (injectErr) {
-      // Script may already be injected — that is fine, continue
-      console.log('Script injection note:', injectErr.message);
+      throw new Error('Could not access this page: ' + injectErr.message + '. Try adworth.app/demo.');
     }
 
-    // Small delay to ensure script is registered and listening
-    await new Promise(resolve => setTimeout(resolve, 200));
-
-    // Now send message to content script
-    let response;
-    try {
-      response = await new Promise((resolve, reject) => {
-        chrome.tabs.sendMessage(tab.id, { action: 'extractMetrics' }, (res) => {
-          if (chrome.runtime.lastError) {
-            reject(new Error(chrome.runtime.lastError.message));
-          } else {
-            resolve(res);
-          }
-        });
-      });
-    } catch (err) {
-      throw new Error('Could not reach content script: ' + err.message);
-    }
-
-    if (!response || !response.data) {
-      throw new Error('No data found on this page. Navigate to adworth.app first.');
-    }
+    const data = results?.[0]?.result;
+    if (!data) throw new Error('No data returned from page.');
 
     const stored = await chrome.storage.local.get(['user_id', 'device_fingerprint', 'ingestion_count']);
     const userId = stored.user_id;
-
     if (!userId) throw new Error('Not setup yet. Click Setup Extension first.');
 
     const timestamp = new Date().toISOString();
-    const messageToSign = JSON.stringify({
-      ...response.data,
-      timestamp: timestamp
-    });
+    const messageToSign = JSON.stringify({ ...data, timestamp });
 
+    // ── Sign with private key via background service worker ──
+    // If SW was terminated by Chrome, sendMessage will wake it back up.
     const signatureBase64 = await new Promise((resolve, reject) => {
       chrome.runtime.sendMessage({
         action: 'signData',
@@ -171,7 +223,7 @@ async function handleSync() {
         if (chrome.runtime.lastError) {
           reject(new Error(chrome.runtime.lastError.message));
         } else if (!sig) {
-          reject(new Error('Session expired — please click Setup Extension again.'));
+          reject(new Error('Session expired — please click Setup Extension again to regenerate your key.'));
         } else {
           resolve(sig);
         }
@@ -183,14 +235,13 @@ async function handleSync() {
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify({
         user_id: userId,
-        timestamp: timestamp,
-        data: response.data,
+        timestamp,
+        data,
         signature: signatureBase64
       })
     });
 
-    if (!ingestRes.ok) throw new Error('Data ingest failed: ' + ingestRes.statusText);
-
+    if (!ingestRes.ok) throw new Error('Ingest failed: ' + ingestRes.statusText);
     const result = await ingestRes.json();
 
     const newCount = (stored.ingestion_count || 0) + 1;
