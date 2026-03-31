@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -5,8 +6,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-Content-Type-Options" content="nosniff">
     <meta http-equiv="X-Frame-Options" content="DENY">
-    <meta name="referrer" content="strict-origin-when-cross-origin">
-    <title>CCPA Enforcement Gap &mdash; Adworth&#8480;</title>
+    <meta http-equiv="Referrer-Policy" content="strict-origin-when-cross-origin">
+    <title>Ad Transparency Tool &mdash; Adworth&#8480;</title>
     <meta name="description" content="Every major company reports CCPA deletion request volumes. Not one can cryptographically verify the data was actually removed. See the enforcement gap.">
     <link rel="icon" type="image/x-icon" href="/favicon.ico">
     <link rel="preconnect" href="https://adworth-fonts.adworthllc.workers.dev">
@@ -166,13 +167,14 @@
     <div class="container">
       <nav>
         <a href="/" class="logo">
-          <span class="logo-mark">Adworth℠</span>
+          <span class="logo-mark">Adworth&#8480;</span>
           <span class="patent-pill">Patent Pending</span>
         </a>
         <ul>
           <li><a href="/#problem">Problem</a></li>
           <li><a href="/#how-it-works">How It Works</a></li>
           <li><a href="/#transparency">How We Make Money</a></li>
+          <li><a href="/dashboard.html">See Who&rsquo;s Targeting You</a></li>
           <li><a href="/#founder">Founder</a></li>
           <li><a href="/#investors">Investors</a></li>
           <li><a href="/enterprise.html">Enterprise</a></li>
@@ -479,9 +481,9 @@
     <div class="container">
       <div class="footer-grid">
         <div>
-          <div class="footer-brand-name">Adworth℠</div>
+          <div class="footer-brand-name">Adworth&#8480;</div>
           <p class="footer-tagline">Cryptographic consent infrastructure for digital advertising. Privacy for people, compliance for platforms.</p>
-          <p class="footer-note">We earn exactly 2% when advertisers pay you for verified consent. That's our only revenue source. Always visible. Always on the ledger. No exceptions.</p>
+          <p class="footer-note">We earn exactly 2% when advertisers pay you for verified consent. That&rsquo;s our only revenue source. Always visible. Always on the ledger. No exceptions.</p>
         </div>
         <div class="footer-links">
           <h4>Product</h4>
@@ -489,9 +491,11 @@
             <li><a href="/#problem">Problem</a></li>
             <li><a href="/#how-it-works">How It Works</a></li>
             <li><a href="/#transparency">How We Make Money</a></li>
-            <li><a href="/dashboard.html">Consumer Demo</a></li>
-            <li><a href="/ccpa-gap.html">CCPA Enforcement Gap</a></li>
+            <li><a href="/app/consent/">How It Works for You</a></li>
+            <li><a href="/dashboard.html">See Who&rsquo;s Targeting You</a></li>
             <li><a href="/ledger.html">Consent Ledger</a></li>
+            <li><a href="/ccpa-gap.html">Ad Transparency Tool</a></li>
+            <li><a href="/app/developers/">Developer Docs</a></li>
             <li><a href="/enterprise.html">Enterprise</a></li>
             <li><a href="/#waitlist">Join Waitlist</a></li>
           </ul>
@@ -501,7 +505,7 @@
           <ul>
             <li><a href="/#founder">Founder</a></li>
             <li><a href="/#investors">Investors</a></li>
-            <li>hello@adworth.app</li>
+            <li><span class="email-link" data-u="hello" data-d="adworth.app"></span></li>
           </ul>
         </div>
         <div class="footer-links">
@@ -509,17 +513,33 @@
           <ul>
             <li><a href="/privacy.html">Privacy Policy</a></li>
             <li><a href="/terms.html">Terms of Service</a></li>
+            <li style="border-top: 1px solid var(--border); padding-top: 0.6rem; margin-top: 0.25rem;">
+              <a href="https://adworth-consent-widget.adworthllc.workers.dev/optout" id="do-not-sell">Do Not Sell or Share My Personal Information</a>
+              <span style="display: block; font-size: 0.72rem; color: var(--ink-30); line-height: 1.4; margin-top: 0.2rem;">Required by CCPA/CPRA. We don&rsquo;t sell your data &mdash; this link lets you assert that right on record.</span>
+            </li>
+            <li><a href="/.well-known/security.txt">Security Disclosure</a></li>
           </ul>
         </div>
       </div>
             <div class="footer-bottom">
-        <span>© 2026 Adworth℠ LLC · Patent Pending · Charleston, SC</span>
-        <span>Built in public · Raising seed round</span>
+        <span>&copy; 2026 Adworth&#8480; LLC &middot; Patent Pending &middot; Charleston, SC</span>
+        <span>Built in public &middot; Raising seed round</span>
       </div>
     </div>
   </footer>
 
   <script>
+    // Runtime email builder — prevents Cloudflare obfuscation and harvesting
+    document.querySelectorAll('.email-link').forEach(function(el) {
+      var u = el.getAttribute('data-u');
+      var d = el.getAttribute('data-d');
+      var addr = u + '@' + d;
+      var a = document.createElement('a');
+      a.href = 'mailto:' + addr;
+      a.textContent = addr;
+      el.parentNode.replaceChild(a, el);
+    });
+
     var observer = new IntersectionObserver(function(entries) {
       entries.forEach(function(entry) {
         if (entry.isIntersecting) {
@@ -535,10 +555,13 @@
 
     // Stagger insight grid children
     document.querySelectorAll('.insight-grid').forEach(function(grid) {
-      grid.querySelectorAll('.insight-card').forEach(function(card, i) {
-        card.style.transitionDelay = (i * 80) + 'ms';
+      Array.from(grid.children).forEach(function(child, i) {
+        child.style.transitionDelay = (i * 0.08) + 's';
       });
     });
   </script>
+
+  <script defer src="https://static.cloudflareinsights.com/beacon.min.js/v8c78df7c7c0f484497ecbca7046644da1771523124516" integrity="sha512-8DS7rgIrAmghBFwoOTujcf6D9rXvH8xm8JQ1Ja01h9QX8EzXldiszufYa4IFfKdLUKTTrnSFXLDkUEOTrZQ8Qg==" data-cf-beacon='{"version":"2024.11.0","token":"7a960585c0124d9eb1bd09e01230cdef","r":1,"server_timing":{"name":{"cfCacheStatus":true,"cfEdge":true,"cfExtPri":true,"cfL4":true,"cfOrigin":true,"cfSpeedBrain":true},"location_startswith":null}}' crossorigin="anonymous"></script>
+
 </body>
 </html>
