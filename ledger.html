@@ -119,9 +119,7 @@
     }
     .page-sub strong { color: rgba(255,255,255,0.62); font-weight: 600; }
 
-    /* ══════════════════════════════════════════════════════
-       #1 CONSENT CONTROL HERO — most prominent element
-       ══════════════════════════════════════════════════════ */
+    /* ── CONSENT HERO ── */
     .consent-hero {
       display: grid; grid-template-columns: repeat(3, 1fr);
       gap: 1px; background: rgba(82,183,136,0.1);
@@ -137,7 +135,6 @@
     .ch-cell.c-active::before   { background: linear-gradient(90deg, var(--green-accent), transparent); }
     .ch-cell.c-enforced::before { background: linear-gradient(90deg, #e05252, transparent); opacity: 0.7; }
     .ch-cell.c-blocked::before  { background: linear-gradient(90deg, #d4930a, transparent); opacity: 0.7; }
-
     .ch-eyebrow {
       font-size: 0.62rem; font-weight: 700; text-transform: uppercase;
       letter-spacing: 2px; margin-bottom: 0.75rem;
@@ -145,23 +142,14 @@
     .ch-eyebrow.green { color: var(--green-accent); }
     .ch-eyebrow.red   { color: #f09090; }
     .ch-eyebrow.amber { color: #e8b860; }
-
-    /* Large, white, bold count — this is the consent state, not money */
     .ch-count {
       font-family: 'DM Serif Display', serif;
-      font-size: 3.5rem; color: white; line-height: 1;
-      margin-bottom: 0.75rem;
+      font-size: 3.5rem; color: white; line-height: 1; margin-bottom: 0.75rem;
     }
-
-    .ch-desc {
-      font-size: 0.8rem; color: rgba(255,255,255,0.38);
-      line-height: 1.65;
-    }
+    .ch-desc { font-size: 0.8rem; color: rgba(255,255,255,0.38); line-height: 1.65; }
     .ch-desc strong { color: rgba(255,255,255,0.7); font-weight: 600; }
 
-    /* ══════════════════════════════════════════════════════
-       STATS ROW — earnings lives here, equal weight siblings
-       ══════════════════════════════════════════════════════ */
+    /* ── STATS ROW ── */
     .stats-row {
       display: grid; grid-template-columns: repeat(4, 1fr);
       gap: 1rem; margin-bottom: 2.5rem;
@@ -177,17 +165,8 @@
       font-size: 0.63rem; font-weight: 700; text-transform: uppercase;
       letter-spacing: 1.5px; color: rgba(255,255,255,0.25); margin-bottom: 0.5rem;
     }
-    /* All stat values: white, bold — same size, same weight */
-    .stat-value {
-      font-size: 1.6rem; font-weight: 700; color: white;
-      line-height: 1; margin-bottom: 0.3rem;
-    }
-    /* Earnings uses mono font and green tint — readable, not dominant */
-    .stat-value.earnings {
-      font-family: var(--mono);
-      font-size: 1.35rem;
-      color: var(--green-accent);
-    }
+    .stat-value { font-size: 1.6rem; font-weight: 700; color: white; line-height: 1; margin-bottom: 0.3rem; }
+    .stat-value.earnings { font-family: var(--mono); font-size: 1.35rem; color: var(--green-accent); }
     .stat-sub { font-size: 0.68rem; color: rgba(255,255,255,0.22); line-height: 1.5; }
 
     /* ── SECTION DIVIDER ── */
@@ -227,12 +206,9 @@
       cursor: pointer; font-family: 'Poppins', sans-serif; transition: all 0.2s;
     }
     .filter-btn.active, .filter-btn:hover {
-      border-color: rgba(82,183,136,0.35);
-      color: var(--green-accent);
+      border-color: rgba(82,183,136,0.35); color: var(--green-accent);
       background: rgba(82,183,136,0.07);
     }
-
-    /* Token card */
     .token-card {
       padding: 1.25rem 1.5rem;
       border-bottom: 1px solid rgba(255,255,255,0.04);
@@ -242,7 +218,6 @@
     @keyframes fadeUp { from{opacity:0;transform:translateY(6px)} to{opacity:1;transform:translateY(0)} }
     .token-card:last-child { border-bottom: none; }
     .token-card:hover { background: rgba(82,183,136,0.03); }
-
     .token-top {
       display: flex; justify-content: space-between; align-items: flex-start;
       margin-bottom: 1rem; gap: 0.75rem;
@@ -254,12 +229,7 @@
       font-size: 1rem; flex-shrink: 0;
     }
     .token-name { font-weight: 700; font-size: 0.92rem; color: white; }
-    .token-scope {
-      font-size: 0.67rem; color: rgba(255,255,255,0.3);
-      margin-top: 0.15rem; font-family: var(--mono);
-    }
-
-    /* Status badge — leading per-card signal */
+    .token-scope { font-size: 0.67rem; color: rgba(255,255,255,0.3); margin-top: 0.15rem; font-family: var(--mono); }
     .token-status {
       display: inline-flex; align-items: center; gap: 0.35rem;
       font-size: 0.63rem; font-weight: 700; text-transform: uppercase;
@@ -274,21 +244,13 @@
     .s-revoked { background: rgba(224,82,82,0.1); color: #f09090; border: 1px solid rgba(224,82,82,0.22); }
     .s-revoked .s-dot { background: var(--red); }
     @keyframes blink { 0%,100%{opacity:1;transform:scale(1)} 50%{opacity:0.35;transform:scale(0.7)} }
-
-    /* Token fields — scope and time window lead; earned is last, white + bold */
     .token-fields {
       display: grid; grid-template-columns: repeat(3, 1fr);
       gap: 0.75rem; margin-bottom: 0.9rem;
     }
-    .tf-label {
-      font-size: 0.58rem; font-weight: 700; text-transform: uppercase;
-      letter-spacing: 1px; color: rgba(255,255,255,0.22); margin-bottom: 0.2rem;
-    }
+    .tf-label { font-size: 0.58rem; font-weight: 700; text-transform: uppercase; letter-spacing: 1px; color: rgba(255,255,255,0.22); margin-bottom: 0.2rem; }
     .tf-value { font-size: 0.78rem; color: rgba(255,255,255,0.6); font-family: var(--mono); }
-    /* Earned: white and bold as requested — same size as siblings, clearly readable */
     .tf-value.earned { color: white; font-weight: 700; }
-
-    /* Last ledger event line */
     .token-event {
       display: flex; align-items: flex-start; gap: 0.5rem;
       background: rgba(0,0,0,0.22); border-radius: 6px;
@@ -306,8 +268,6 @@
     .te-tag.expired  { background: rgba(255,255,255,0.05);  color: rgba(255,255,255,0.28); }
     .te-tag.payment  { background: rgba(200,169,106,0.12);  color: var(--gold); }
     .te-desc { font-size: 0.7rem; color: rgba(255,255,255,0.32); line-height: 1.45; }
-
-    /* Actions */
     .token-actions { display: flex; gap: 0.5rem; }
     .t-btn {
       font-size: 0.63rem; font-weight: 700; text-transform: uppercase;
@@ -315,19 +275,17 @@
       border-radius: 5px; border: none; cursor: pointer;
       font-family: 'Poppins', sans-serif; transition: all 0.2s;
     }
-    .t-revoke  { background: rgba(224,82,82,0.1);    color: #f09090; }
+    .t-revoke  { background: rgba(224,82,82,0.1); color: #f09090; }
     .t-revoke:hover  { background: rgba(224,82,82,0.2); }
-    .t-renew   { background: rgba(82,183,136,0.1);   color: var(--green-accent); }
+    .t-renew   { background: rgba(82,183,136,0.1); color: var(--green-accent); }
     .t-renew:hover   { background: rgba(82,183,136,0.2); }
     .t-record  { background: rgba(255,255,255,0.05); color: rgba(255,255,255,0.32); }
     .t-record:hover  { background: rgba(255,255,255,0.09); color: rgba(255,255,255,0.6); }
 
-    /* ══════════════════════════════════════════════════════
-       RIGHT COLUMN
-       ══════════════════════════════════════════════════════ */
+    /* ── RIGHT COLUMN ── */
     .right-col { display: flex; flex-direction: column; gap: 1.5rem; }
 
-    /* ── #2 DELETION ENFORCEMENT PANEL ── */
+    /* ── ENFORCEMENT PANEL ── */
     .enforcement-panel {
       background: rgba(224,82,82,0.05);
       border: 1px solid rgba(224,82,82,0.18);
@@ -335,8 +293,7 @@
     }
     .enf-header {
       display: flex; align-items: center; gap: 0.6rem;
-      padding: 1rem 1.4rem;
-      border-bottom: 1px solid rgba(224,82,82,0.1);
+      padding: 1rem 1.4rem; border-bottom: 1px solid rgba(224,82,82,0.1);
     }
     .enf-icon {
       width: 26px; height: 26px; border-radius: 6px;
@@ -344,17 +301,11 @@
       display: flex; align-items: center; justify-content: center;
       font-size: 0.75rem; flex-shrink: 0;
     }
-    .enf-title {
-      font-size: 0.72rem; font-weight: 700; text-transform: uppercase;
-      letter-spacing: 1.5px; color: #f09090;
-    }
+    .enf-title { font-size: 0.72rem; font-weight: 700; text-transform: uppercase; letter-spacing: 1.5px; color: #f09090; }
     .enf-body { padding: 1.1rem 1.4rem; }
     .enf-event { margin-bottom: 1rem; padding-bottom: 1rem; border-bottom: 1px solid rgba(224,82,82,0.08); }
     .enf-event:last-child { margin-bottom: 0; padding-bottom: 0; border-bottom: none; }
-    .enf-tag {
-      font-family: var(--mono); font-size: 0.62rem; font-weight: 700;
-      color: #f09090; text-transform: uppercase; letter-spacing: 1px; margin-bottom: 0.35rem;
-    }
+    .enf-tag { font-family: var(--mono); font-size: 0.62rem; font-weight: 700; color: #f09090; text-transform: uppercase; letter-spacing: 1px; margin-bottom: 0.35rem; }
     .enf-desc { font-size: 0.77rem; color: rgba(255,255,255,0.5); line-height: 1.65; }
     .enf-desc strong { color: rgba(255,255,255,0.78); font-weight: 600; }
     .enf-meta { font-size: 0.63rem; color: rgba(255,255,255,0.22); font-family: var(--mono); margin-top: 0.3rem; }
@@ -366,21 +317,15 @@
       padding: 0.12rem 0.45rem; border-radius: 3px; letter-spacing: 0.5px;
     }
 
-    /* ── #3 AUDIT LOG ── */
+    /* ── AUDIT PANEL ── */
     .audit-panel {
       background: var(--surface);
       border: 1px solid rgba(82,183,136,0.09);
       border-radius: 14px; overflow: hidden;
     }
-    .audit-header {
-      padding: 1.1rem 1.4rem; border-bottom: 1px solid var(--rim-faint);
-    }
-    .audit-title {
-      font-size: 0.75rem; font-weight: 700; text-transform: uppercase;
-      letter-spacing: 1.5px; color: var(--green-accent);
-    }
+    .audit-header { padding: 1.1rem 1.4rem; border-bottom: 1px solid var(--rim-faint); }
+    .audit-title { font-size: 0.75rem; font-weight: 700; text-transform: uppercase; letter-spacing: 1.5px; color: var(--green-accent); }
     .audit-sub { font-size: 0.65rem; color: rgba(255,255,255,0.22); margin-top: 0.2rem; }
-
     .audit-entry {
       display: flex; gap: 0.75rem; padding: 0.82rem 1.4rem;
       border-bottom: 1px solid rgba(255,255,255,0.03);
@@ -393,65 +338,44 @@
       background: linear-gradient(180deg, rgba(82,183,136,0.1), transparent);
     }
     .audit-entry:last-child .a-line { display: none; }
-
     .a-dot-wrap { padding-top: 2px; flex-shrink: 0; }
     .a-dot {
       width: 13px; height: 13px; border-radius: 50%;
       display: flex; align-items: center; justify-content: center;
       font-size: 0.44rem; font-weight: 800; flex-shrink: 0;
     }
-    .a-dot.issued   { background: rgba(82,183,136,0.16); border: 1px solid rgba(82,183,136,0.4); color: var(--green-accent); }
+    .a-dot.issued   { background: rgba(82,183,136,0.16); border: 1px solid rgba(82,183,136,0.4);  color: var(--green-accent); }
     .a-dot.payment  { background: rgba(200,169,106,0.14); border: 1px solid rgba(200,169,106,0.38); color: var(--gold); }
-    .a-dot.blocked  { background: rgba(212,147,10,0.12);  border: 1px solid rgba(212,147,10,0.32); color: #e8b860; }
-    .a-dot.revoked  { background: rgba(224,82,82,0.12);   border: 1px solid rgba(224,82,82,0.32);  color: #f09090; }
-    .a-dot.enforced { background: rgba(82,183,136,0.12);  border: 1px solid rgba(82,183,136,0.28); color: var(--green-accent); }
-    .a-dot.expired  { background: rgba(255,255,255,0.04); border: 1px solid rgba(255,255,255,0.1); color: rgba(255,255,255,0.22); }
-
+    .a-dot.blocked  { background: rgba(212,147,10,0.12);  border: 1px solid rgba(212,147,10,0.32);  color: #e8b860; }
+    .a-dot.revoked  { background: rgba(224,82,82,0.12);   border: 1px solid rgba(224,82,82,0.32);   color: #f09090; }
+    .a-dot.enforced { background: rgba(82,183,136,0.12);  border: 1px solid rgba(82,183,136,0.28);  color: var(--green-accent); }
+    .a-dot.expired  { background: rgba(255,255,255,0.04); border: 1px solid rgba(255,255,255,0.1);  color: rgba(255,255,255,0.22); }
     .a-content { flex: 1; min-width: 0; }
-    .a-type {
-      font-family: var(--mono); font-size: 0.6rem; font-weight: 700;
-      text-transform: uppercase; letter-spacing: 0.3px; margin-bottom: 0.15rem;
-    }
+    .a-type { font-family: var(--mono); font-size: 0.6rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.3px; margin-bottom: 0.15rem; }
     .a-type.green { color: var(--green-accent); }
     .a-type.gold  { color: var(--gold); }
     .a-type.red   { color: #f09090; }
     .a-type.amber { color: #e8b860; }
     .a-type.muted { color: rgba(255,255,255,0.22); }
     .a-desc { font-size: 0.7rem; color: rgba(255,255,255,0.38); line-height: 1.45; }
-    .a-time {
-      font-size: 0.58rem; color: rgba(255,255,255,0.16);
-      font-family: var(--mono); white-space: nowrap; padding-top: 2px; flex-shrink: 0;
-    }
+    .a-time { font-size: 0.58rem; color: rgba(255,255,255,0.16); font-family: var(--mono); white-space: nowrap; padding-top: 2px; flex-shrink: 0; }
 
-    /* ══════════════════════════════════════════════════════
-       #4 EARNINGS — white + bold amounts, clearly readable,
-       visually equal to a supporting panel, not a hero
-       ══════════════════════════════════════════════════════ */
+    /* ── EARNINGS PANEL ── */
     .earnings-panel {
       background: var(--surface);
       border: 1px solid rgba(82,183,136,0.08);
       border-radius: 14px; overflow: hidden;
     }
-    .ep-header {
-      padding: 1.1rem 1.4rem; border-bottom: 1px solid var(--rim-faint);
-    }
-    .ep-title {
-      font-size: 0.75rem; font-weight: 700; text-transform: uppercase;
-      letter-spacing: 1.5px; color: var(--green-accent);
-    }
+    .ep-header { padding: 1.1rem 1.4rem; border-bottom: 1px solid var(--rim-faint); }
+    .ep-title { font-size: 0.75rem; font-weight: 700; text-transform: uppercase; letter-spacing: 1.5px; color: var(--green-accent); }
     .ep-sub { font-size: 0.65rem; color: rgba(255,255,255,0.2); margin-top: 0.2rem; }
-
     .ep-row {
       display: flex; justify-content: space-between; align-items: center;
       padding: 0.7rem 1.4rem; border-bottom: 1px solid rgba(255,255,255,0.03);
     }
     .ep-row:last-of-type { border-bottom: none; }
     .ep-advertiser { font-size: 0.77rem; color: rgba(255,255,255,0.52); }
-    .ep-advertiser small {
-      display: block; font-size: 0.6rem;
-      color: rgba(255,255,255,0.2); font-family: var(--mono); margin-top: 0.1rem;
-    }
-    /* White and bold — readable, honest, not a showpiece */
+    .ep-advertiser small { display: block; font-size: 0.6rem; color: rgba(255,255,255,0.2); font-family: var(--mono); margin-top: 0.1rem; }
     .ep-amount { font-size: 0.82rem; font-weight: 700; color: white; font-family: var(--mono); }
     .ep-amount.partial { color: rgba(255,255,255,0.35); font-weight: 400; }
     .ep-fee-row {
@@ -469,7 +393,6 @@
       border-top: 1px solid rgba(82,183,136,0.1);
     }
     .ep-total-label { font-size: 0.72rem; font-weight: 600; color: rgba(255,255,255,0.45); }
-    /* Total: white + bold, same scale as ep-amount — not a hero number */
     .ep-total-amount { font-size: 1rem; font-weight: 700; color: white; font-family: var(--mono); }
 
     /* ── CTA ── */
@@ -518,6 +441,123 @@
     footer a { color: rgba(255,255,255,0.22); text-decoration: none; }
     footer a:hover { color: var(--green-accent); }
 
+    /* ══════════════════════════════════════════════════════
+       MODAL SYSTEM
+       ══════════════════════════════════════════════════════ */
+    .modal-overlay {
+      position: fixed; inset: 0; z-index: 1000;
+      background: rgba(0,0,0,0.75);
+      backdrop-filter: blur(8px);
+      display: flex; align-items: center; justify-content: center;
+      padding: 1.5rem;
+      opacity: 0; pointer-events: none;
+      transition: opacity 0.2s ease;
+    }
+    .modal-overlay.open {
+      opacity: 1; pointer-events: all;
+    }
+    .modal {
+      background: #0f1f14;
+      border: 1px solid rgba(82,183,136,0.2);
+      border-radius: 16px;
+      width: 100%; max-width: 500px;
+      max-height: 90vh; overflow-y: auto;
+      transform: translateY(12px);
+      transition: transform 0.25s ease;
+      box-shadow: 0 24px 80px rgba(0,0,0,0.6);
+    }
+    .modal-overlay.open .modal {
+      transform: translateY(0);
+    }
+
+    /* Modal variants */
+    .modal.modal-revoke { border-color: rgba(224,82,82,0.3); }
+    .modal.modal-renew  { border-color: rgba(82,183,136,0.3); }
+    .modal.modal-record { border-color: rgba(82,183,136,0.2); }
+
+    .modal-header {
+      display: flex; justify-content: space-between; align-items: flex-start;
+      padding: 1.5rem 1.5rem 1.25rem; border-bottom: 1px solid rgba(255,255,255,0.06);
+    }
+    .modal-header-left { display: flex; align-items: center; gap: 0.75rem; }
+    .modal-icon {
+      width: 36px; height: 36px; border-radius: 10px;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 1rem; flex-shrink: 0;
+    }
+    .modal-icon.red   { background: rgba(224,82,82,0.15); }
+    .modal-icon.green { background: rgba(82,183,136,0.15); }
+    .modal-icon.blue  { background: rgba(82,183,136,0.1); }
+
+    .modal-title { font-weight: 700; font-size: 1rem; color: white; }
+    .modal-token-id { font-family: var(--mono); font-size: 0.68rem; color: rgba(255,255,255,0.3); margin-top: 0.15rem; }
+
+    .modal-close {
+      background: rgba(255,255,255,0.06); border: none; color: rgba(255,255,255,0.35);
+      width: 28px; height: 28px; border-radius: 6px;
+      display: flex; align-items: center; justify-content: center;
+      cursor: pointer; font-size: 1rem; flex-shrink: 0;
+      transition: all 0.15s;
+    }
+    .modal-close:hover { background: rgba(255,255,255,0.12); color: white; }
+
+    .modal-body { padding: 1.5rem; }
+
+    /* Step list for revoke modal */
+    .modal-steps { list-style: none; margin-bottom: 1.25rem; }
+    .modal-steps li {
+      display: flex; align-items: flex-start; gap: 0.75rem;
+      padding: 0.7rem 0; border-bottom: 1px solid rgba(255,255,255,0.04);
+      font-size: 0.82rem; color: rgba(255,255,255,0.55); line-height: 1.5;
+    }
+    .modal-steps li:last-child { border-bottom: none; }
+    .step-num {
+      width: 20px; height: 20px; border-radius: 50%;
+      background: rgba(224,82,82,0.15); border: 1px solid rgba(224,82,82,0.3);
+      color: #f09090; font-size: 0.6rem; font-weight: 700;
+      display: flex; align-items: center; justify-content: center; flex-shrink: 0;
+      margin-top: 1px;
+    }
+    .step-num.green { background: rgba(82,183,136,0.15); border-color: rgba(82,183,136,0.3); color: var(--green-accent); }
+    .modal-steps li strong { color: rgba(255,255,255,0.82); font-weight: 600; }
+
+    /* Record rows */
+    .record-row {
+      display: flex; justify-content: space-between; align-items: flex-start;
+      padding: 0.65rem 0; border-bottom: 1px solid rgba(255,255,255,0.04);
+      gap: 1rem;
+    }
+    .record-row:last-child { border-bottom: none; }
+    .record-label { font-size: 0.68rem; font-weight: 600; text-transform: uppercase; letter-spacing: 0.5px; color: rgba(255,255,255,0.25); flex-shrink: 0; }
+    .record-value { font-size: 0.78rem; color: rgba(255,255,255,0.6); font-family: var(--mono); text-align: right; }
+    .record-value.highlight { color: white; font-weight: 700; }
+    .record-value.green { color: var(--green-accent); }
+    .record-value.red   { color: #f09090; }
+
+    .modal-note {
+      background: rgba(0,0,0,0.25); border-radius: 8px;
+      padding: 0.85rem 1rem; margin-top: 1rem;
+      font-size: 0.75rem; color: rgba(255,255,255,0.3); line-height: 1.6;
+    }
+    .modal-note strong { color: rgba(255,255,255,0.5); font-weight: 600; }
+
+    .modal-footer {
+      padding: 1.25rem 1.5rem;
+      border-top: 1px solid rgba(255,255,255,0.06);
+      display: flex; gap: 0.75rem; justify-content: flex-end;
+    }
+    .modal-btn {
+      padding: 0.6rem 1.25rem; border-radius: 7px; border: none;
+      font-family: 'Poppins', sans-serif; font-weight: 700; font-size: 0.78rem;
+      cursor: pointer; transition: all 0.2s;
+    }
+    .modal-btn-secondary { background: rgba(255,255,255,0.07); color: rgba(255,255,255,0.45); }
+    .modal-btn-secondary:hover { background: rgba(255,255,255,0.12); color: white; }
+    .modal-btn-danger  { background: rgba(224,82,82,0.15); color: #f09090; border: 1px solid rgba(224,82,82,0.3); }
+    .modal-btn-danger:hover  { background: rgba(224,82,82,0.25); }
+    .modal-btn-primary { background: var(--green-primary); color: white; }
+    .modal-btn-primary:hover { background: var(--green-accent); color: #111; }
+
     /* ── RESPONSIVE ── */
     @media (max-width: 1000px) {
       .ledger-grid { grid-template-columns: 1fr; }
@@ -555,7 +595,6 @@
 
 <div class="main">
 
-  <!-- DEMO BANNER — legally precise and complete -->
   <div class="demo-banner">
     <span class="demo-icon">⚡</span>
     <div>
@@ -563,7 +602,6 @@
     </div>
   </div>
 
-  <!-- PAGE HEADER — consent and infrastructure framed first -->
   <div class="page-header">
     <div class="page-eyebrow">My Consent Ledger</div>
     <h1 class="page-headline">You decide who gets in. <em>And when they leave.</em></h1>
@@ -573,7 +611,6 @@
     </p>
   </div>
 
-  <!-- ═══ #1 CONSENT CONTROL HERO ═══ -->
   <div class="consent-hero">
     <div class="ch-cell c-active">
       <div class="ch-eyebrow green">Tokens Active</div>
@@ -592,7 +629,6 @@
     </div>
   </div>
 
-  <!-- STATS ROW — earnings lives here, equal weight to siblings -->
   <div class="stats-row">
     <div class="stat-card">
       <div class="stat-label">Total Access Requests</div>
@@ -619,8 +655,6 @@
   <div class="section-label">Consent Tokens</div>
 
   <div class="ledger-grid">
-
-    <!-- LEFT: Token cards -->
     <div>
       <div class="token-panel">
         <div class="tp-header">
@@ -636,10 +670,7 @@
       </div>
     </div>
 
-    <!-- RIGHT: Enforcement → Audit → Earnings -->
     <div class="right-col">
-
-      <!-- ═══ #2 DELETION ENFORCEMENT ═══ -->
       <div class="enforcement-panel">
         <div class="enf-header">
           <div class="enf-icon">⚡</div>
@@ -648,23 +679,18 @@
         <div class="enf-body">
           <div class="enf-event">
             <div class="enf-tag">VIOLATION_DETECTED</div>
-            <div class="enf-desc">
-              After you revoked <strong>ClearVPN Ltd.</strong>'s token, the State-Persistence Monitor detected their systems still held your browsing data <strong>5 days later.</strong>
-            </div>
+            <div class="enf-desc">After you revoked <strong>ClearVPN Ltd.</strong>'s token, the State-Persistence Monitor detected their systems still held your browsing data <strong>5 days later.</strong></div>
             <div class="enf-meta">AWX-6d4e9f1a · Feb 5, 2026 · 08:40 UTC</div>
           </div>
           <div class="enf-event">
             <div class="enf-tag">RPE_GENERATED</div>
-            <div class="enf-desc">
-              Adworth auto-generated a legally-cited removal notice under <strong>GDPR Article 17</strong> and <strong>CCPA §1798.105</strong> — signed with cryptographic proof from your ledger. <strong>You did nothing.</strong>
-            </div>
+            <div class="enf-desc">Adworth auto-generated a legally-cited removal notice under <strong>GDPR Article 17</strong> and <strong>CCPA §1798.105</strong> — signed with cryptographic proof from your ledger. <strong>You did nothing.</strong></div>
             <div class="enf-meta">Auto-sent · Feb 5, 2026 · 08:45 UTC · 30-day compliance window</div>
             <div class="enf-badge">✓ Removal notice filed</div>
           </div>
         </div>
       </div>
 
-      <!-- ═══ #3 AUDIT LOG ═══ -->
       <div class="audit-panel">
         <div class="audit-header">
           <div class="audit-title">Invisibility Ledger</div>
@@ -673,7 +699,6 @@
         <div id="audit-log"></div>
       </div>
 
-      <!-- ═══ #4 EARNINGS ═══ -->
       <div class="earnings-panel">
         <div class="ep-header">
           <div class="ep-title">Earnings Breakdown</div>
@@ -708,11 +733,9 @@
           <span class="ep-total-amount">$14.43</span>
         </div>
       </div>
-
     </div>
   </div>
 
-  <!-- CTA -->
   <div class="ledger-cta">
     <div>
       <div class="cta-eyebrow">This Is Your Ledger</div>
@@ -743,8 +766,28 @@
   </p>
 </footer>
 
+<!-- ══════════════════════════════════════════════════════
+     MODAL
+     ══════════════════════════════════════════════════════ -->
+<div class="modal-overlay" id="modalOverlay" onclick="handleOverlayClick(event)">
+  <div class="modal" id="modal">
+    <div class="modal-header" id="modalHeader">
+      <div class="modal-header-left">
+        <div class="modal-icon" id="modalIcon"></div>
+        <div>
+          <div class="modal-title" id="modalTitle"></div>
+          <div class="modal-token-id" id="modalTokenId"></div>
+        </div>
+      </div>
+      <button class="modal-close" onclick="closeModal()">✕</button>
+    </div>
+    <div class="modal-body" id="modalBody"></div>
+    <div class="modal-footer" id="modalFooter"></div>
+  </div>
+</div>
+
 <script>
-  // ── DATA ─────────────────────────────────────────────────
+  // ── DATA ────────────────────────────────────────────────
   const TOKENS = [
     {
       id: 'AWX-7f3a9c2d', advertiser: 'Spotify USA Inc',
@@ -808,7 +851,7 @@
     { type:'issued',   cls:'green', label:'CONSENT_ISSUED',     desc:'AWX-4c1d8b5e · RunnerBrand Co. · athletic-data · 60d · $3.00/mo.',                     time:'Dec 1 10:00' },
   ];
 
-  // ── RENDER ────────────────────────────────────────────────
+  // ── RENDER TOKENS ────────────────────────────────────────
   let activeFilter = 'all';
 
   function filterTokens(f, btn) {
@@ -825,7 +868,6 @@
         `<div style="padding:2rem;text-align:center;color:rgba(255,255,255,0.2);font-size:0.82rem;">No ${activeFilter} tokens</div>`;
       return;
     }
-
     document.getElementById('token-list').innerHTML = list.map((t, i) => {
       const sc = { active:'s-active', expired:'s-expired', revoked:'s-revoked' }[t.status];
       const sl = { active:'Active', expired:'Expired', revoked:'Revoked by you' }[t.status];
@@ -836,7 +878,6 @@
         ? `<button class="t-btn t-renew" onclick="demoAction('renew','${t.id}')">Renew Token</button>
            <button class="t-btn t-record" onclick="demoAction('history','${t.id}')">Full Record</button>`
         : `<button class="t-btn t-record" onclick="demoAction('history','${t.id}')">Enforcement Record</button>`;
-
       return `
         <div class="token-card" style="animation-delay:${i*55}ms">
           <div class="token-top">
@@ -866,6 +907,7 @@
     }).join('');
   }
 
+  // ── RENDER AUDIT ─────────────────────────────────────────
   function renderAudit() {
     const icons = { issued:'✦', payment:'$', blocked:'⊘', revoked:'✕', enforced:'⚡', expired:'○' };
     document.getElementById('audit-log').innerHTML = AUDIT.map((e, i) => `
@@ -880,15 +922,131 @@
       </div>`).join('');
   }
 
-  function demoAction(action, id) {
-    const msg = {
-      revoke:  `Revoking ${id} would:\n\n1. Instantly invalidate the token\n2. Block all future access automatically\n3. Record CONSENT_REVOKED to your permanent ledger\n4. Start the State-Persistence Monitor\n5. Auto-file a legal removal notice if data is retained\n\nPreview only — join the waitlist to use real tokens.`,
-      renew:   `Renewing ${id} would issue a new cryptographic token with a fresh time window. Previous earnings and audit history remain on the ledger permanently.\n\nPreview only — join the waitlist to use real tokens.`,
-      history: `The full record for ${id} includes every access granted, every access blocked, every payment, and the complete cryptographic proof chain — all append-only.\n\nPreview only — join the waitlist to use real tokens.`,
-    };
-    alert(msg[action]);
+  // ── MODAL SYSTEM ─────────────────────────────────────────
+  function openModal() {
+    document.getElementById('modalOverlay').classList.add('open');
+    document.body.style.overflow = 'hidden';
   }
 
+  function closeModal() {
+    document.getElementById('modalOverlay').classList.remove('open');
+    document.body.style.overflow = '';
+  }
+
+  function handleOverlayClick(e) {
+    if (e.target === document.getElementById('modalOverlay')) closeModal();
+  }
+
+  document.addEventListener('keydown', function(e) {
+    if (e.key === 'Escape') closeModal();
+  });
+
+  function demoAction(action, tokenId) {
+    const token = TOKENS.find(t => t.id === tokenId);
+    if (!token) return;
+
+    const icon = document.getElementById('modalIcon');
+    const title = document.getElementById('modalTitle');
+    const sub = document.getElementById('modalTokenId');
+    const body = document.getElementById('modalBody');
+    const footer = document.getElementById('modalFooter');
+    const modal = document.getElementById('modal');
+
+    // Reset classes
+    modal.className = 'modal';
+    icon.className = 'modal-icon';
+
+    if (action === 'revoke') {
+      modal.classList.add('modal-revoke');
+      icon.classList.add('red');
+      icon.textContent = '🚫';
+      title.textContent = 'Revoke Access';
+      sub.textContent = tokenId + ' · ' + token.advertiser;
+
+      body.innerHTML = `
+        <p style="font-size:0.82rem;color:rgba(255,255,255,0.45);line-height:1.65;margin-bottom:1.25rem;">
+          Revoking this token immediately ends <strong style="color:rgba(255,255,255,0.72);">${token.advertiser}</strong>'s access to your data.
+          Here's exactly what happens — in order, automatically, without you doing anything else.
+        </p>
+        <ul class="modal-steps">
+          <li><span class="step-num">1</span><div><strong>Token invalidated instantly</strong> — the cryptographic token is marked void. Any ad served after this moment without a valid Seal is a violation.</div></li>
+          <li><span class="step-num">2</span><div><strong>Access blocked at the edge</strong> — all future API calls from ${token.advertiser} using this token are rejected.</div></li>
+          <li><span class="step-num">3</span><div><strong>CONSENT_REVOKED written to your ledger</strong> — permanent, append-only, tamper-evident. The timestamp is cryptographically sealed.</div></li>
+          <li><span class="step-num">4</span><div><strong>State-Persistence Monitor activated</strong> — begins checking whether ${token.advertiser} has actually deleted your data within the required window.</div></li>
+          <li><span class="step-num">5</span><div><strong>If data persists, RPE fires</strong> — a legally-cited removal notice is auto-generated and filed under GDPR Article 17 and CCPA §1798.105. You do nothing.</div></li>
+        </ul>
+        <div class="modal-note">
+          <strong>Demo only.</strong> No real revocation occurs here. Join the waitlist to use real consent tokens when Adworth launches.
+        </div>`;
+
+      footer.innerHTML = `
+        <button class="modal-btn modal-btn-secondary" onclick="closeModal()">Cancel</button>
+        <button class="modal-btn modal-btn-danger" onclick="closeModal()">Revoke Access</button>`;
+
+    } else if (action === 'renew') {
+      modal.classList.add('modal-renew');
+      icon.classList.add('green');
+      icon.textContent = '🔄';
+      title.textContent = 'Renew Token';
+      sub.textContent = tokenId + ' · ' + token.advertiser;
+
+      body.innerHTML = `
+        <p style="font-size:0.82rem;color:rgba(255,255,255,0.45);line-height:1.65;margin-bottom:1.25rem;">
+          Renewing issues a <strong style="color:rgba(255,255,255,0.72);">new cryptographic token</strong> for ${token.advertiser} with a fresh time window.
+          Your full ledger history — every prior payment, every access record — remains permanently on-chain.
+        </p>
+        <ul class="modal-steps">
+          <li><span class="step-num green">1</span><div><strong>New token generated</strong> — a fresh Ed25519-signed consent token with a new expiry window.</div></li>
+          <li><span class="step-num green">2</span><div><strong>CONSENT_ISSUED written to your ledger</strong> — alongside all previous entries. The full history is preserved.</div></li>
+          <li><span class="step-num green">3</span><div><strong>${token.advertiser} notified</strong> — they receive the new token ID. Access resumes within the agreed scope only.</div></li>
+          <li><span class="step-num green">4</span><div><strong>Payments resume</strong> — at the same rate: ${token.rate}.</div></li>
+        </ul>
+        <div class="modal-note">
+          <strong>Demo only.</strong> No real renewal occurs here. Join the waitlist to use real consent tokens when Adworth launches.
+        </div>`;
+
+      footer.innerHTML = `
+        <button class="modal-btn modal-btn-secondary" onclick="closeModal()">Cancel</button>
+        <button class="modal-btn modal-btn-primary" onclick="closeModal()">Renew Token</button>`;
+
+    } else if (action === 'history') {
+      modal.classList.add('modal-record');
+      icon.classList.add(token.status === 'revoked' ? 'red' : 'green');
+      icon.textContent = token.status === 'revoked' ? '⚡' : '📋';
+      title.textContent = token.status === 'revoked' ? 'Enforcement Record' : 'Full Token Record';
+      sub.textContent = tokenId + ' · ' + token.advertiser;
+
+      const statusColor = { active: 'green', expired: '', revoked: 'red' }[token.status];
+      const statusLabel = { active: 'Active', expired: 'Expired', revoked: 'Revoked by you' }[token.status];
+
+      body.innerHTML = `
+        <div style="margin-bottom:1.25rem;">
+          <div class="record-row"><span class="record-label">Token ID</span><span class="record-value highlight">${token.id}</span></div>
+          <div class="record-row"><span class="record-label">Advertiser</span><span class="record-value highlight">${token.advertiser}</span></div>
+          <div class="record-row"><span class="record-label">Scope</span><span class="record-value">${token.scope}</span></div>
+          <div class="record-row"><span class="record-label">Status</span><span class="record-value ${statusColor}">${statusLabel}</span></div>
+          <div class="record-row"><span class="record-label">Issued</span><span class="record-value">${token.issued}</span></div>
+          <div class="record-row"><span class="record-label">Expiry</span><span class="record-value">${token.expires}</span></div>
+          <div class="record-row"><span class="record-label">Duration</span><span class="record-value">${token.duration}</span></div>
+          <div class="record-row"><span class="record-label">Access Count</span><span class="record-value">${token.access}× granted</span></div>
+          <div class="record-row"><span class="record-label">Earned</span><span class="record-value highlight">${token.earned}</span></div>
+          <div class="record-row"><span class="record-label">Cryptographic proof</span><span class="record-value green">Ed25519 · FIPS 186-5</span></div>
+          <div class="record-row"><span class="record-label">Ledger type</span><span class="record-value">Append-only · immutable · tamper-evident</span></div>
+        </div>
+        <div class="modal-note">
+          Every entry in this record is <strong>permanent and cryptographically signed</strong> — it cannot be altered, deleted, or disputed. This is the proof chain Adworth files if a legal removal is required.
+          <br><br><strong>Demo only.</strong> Join the waitlist for a real ledger.
+        </div>`;
+
+      footer.innerHTML = `
+        <button class="modal-btn modal-btn-secondary" onclick="closeModal()">Close</button>
+        <button class="modal-btn modal-btn-primary" onclick="closeModal();window.location='/#waitlist'">Join Waitlist →</button>`;
+    }
+
+    openModal();
+  }
+
+  // ── WAITLIST ─────────────────────────────────────────────
   async function submitWaitlist() {
     const input = document.getElementById('cta-email');
     const btn = document.querySelector('.btn-waitlist');
@@ -914,5 +1072,6 @@
   renderAudit();
 </script>
 
+<script defer src="https://static.cloudflareinsights.com/beacon.min.js/v8c78df7c7c0f484497ecbca7046644da1771523124516" integrity="sha512-8DS7rgIrAmghBFwoOTujcf6D9rXvH8xm8JQ1Ja01h9QX8EzXldiszufYa4IFfKdLUKTTrnSFXLDkUEOTrZQ8Qg==" data-cf-beacon='{"version":"2024.11.0","token":"7a960585c0124d9eb1bd09e01230cdef","r":1,"server_timing":{"name":{"cfCacheStatus":true,"cfEdge":true,"cfExtPri":true,"cfL4":true,"cfOrigin":true,"cfSpeedBrain":true},"location_startswith":null}}' crossorigin="anonymous"></script>
 </body>
 </html>
