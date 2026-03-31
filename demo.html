@@ -1,139 +1,528 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Adworth&#8480; &mdash; Privacy Cockpit Demo</title>
-<meta http-equiv="X-Content-Type-Options" content="nosniff">
-<meta http-equiv="X-Frame-Options" content="DENY">
-<meta http-equiv="Referrer-Policy" content="strict-origin-when-cross-origin">
-<meta name="robots" content="noindex, nofollow">
-<link rel="icon" type="image/x-icon" href="/favicon.ico">
-<link rel="preconnect" href="https://adworth-fonts.adworthllc.workers.dev">
-<link href="https://adworth-fonts.adworthllc.workers.dev/css2?family=Poppins:wght@300;400;500;600;700;800;900&family=DM+Serif+Display:ital@0;1&display=swap" rel="stylesheet">
-<style>
-*, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
-:root {
-    --green-deep: #1a4a35; --green-primary: #2d6a4f; --green-accent: #52b788;
-    --green-pale: #d8f3dc; --green-tint: #f0faf3; --off-white: #fafaf8;
-    --white: #ffffff; --ink: #111410; --ink-60: #555a50; --ink-30: #b0b5aa;
-    --border: #e2e8df; --gold: #c8a96a;
-}
-html { scroll-behavior: smooth; }
-body { font-family: 'Poppins', sans-serif; background: var(--off-white); color: var(--ink); line-height: 1.7; }
-.container { max-width: 960px; margin: 0 auto; padding: 0 2rem; }
-header { background: var(--green-deep); padding: 1.5rem 2rem; }
-header .inner { max-width: 960px; margin: 0 auto; display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 1rem; }
-.logo { font-size: 1.3rem; font-weight: 800; color: var(--green-accent); text-decoration: none; }
-.logo span { color: rgba(255,255,255,0.5); font-size: 0.75rem; font-weight: 400; margin-left: 0.5rem; }
-.demo-badge { font-size: 0.65rem; font-weight: 700; text-transform: uppercase; letter-spacing: 1.5px; background: var(--gold); color: #3a2800; padding: 0.25rem 0.75rem; border-radius: 100px; }
-main { max-width: 960px; margin: 0 auto; padding: 3rem 2rem; }
-h1 { font-family: 'DM Serif Display', Georgia, serif; font-size: 2rem; color: var(--green-deep); margin-bottom: 0.5rem; }
-.subtitle { font-size: 0.9rem; color: var(--ink-60); margin-bottom: 2.5rem; line-height: 1.6; }
-.demo-notice { background: #fef9ee; border: 1.5px solid var(--gold); border-radius: 10px; padding: 1rem 1.25rem; margin-bottom: 2rem; font-size: 0.82rem; color: #6b5a30; }
-.demo-notice strong { color: #4a3d1a; }
-.section-label { font-size: 0.65rem; font-weight: 700; text-transform: uppercase; letter-spacing: 2px; color: var(--ink-30); margin-bottom: 1rem; display: block; }
-.card { background: var(--white); border: 1.5px solid var(--border); border-radius: 12px; padding: 0; margin-bottom: 2rem; overflow: hidden; }
-table { width: 100%; border-collapse: collapse; font-size: 0.85rem; }
-th { text-align: left; padding: 0.75rem 1.25rem; background: var(--green-tint); color: var(--green-deep); font-size: 0.68rem; text-transform: uppercase; letter-spacing: 1.5px; white-space: nowrap; border-bottom: 2px solid var(--border); }
-td { padding: 0.75rem 1.25rem; border-bottom: 1px solid var(--border); vertical-align: middle; }
-tr:last-child td { border-bottom: none; }
-tr:hover td { background: var(--green-tint); }
-.amount { font-weight: 700; font-family: 'Consolas', 'Monaco', monospace; font-size: 0.9rem; color: var(--green-deep); }
-.steps { margin-top: 2.5rem; }
-.step { display: flex; gap: 1rem; margin-bottom: 1.5rem; align-items: flex-start; }
-.step-num { flex-shrink: 0; width: 2rem; height: 2rem; background: var(--green-primary); color: white; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-weight: 700; font-size: 0.85rem; }
-.step-text { flex: 1; }
-.step-text strong { display: block; font-size: 0.9rem; margin-bottom: 0.15rem; }
-.step-text p { font-size: 0.82rem; color: var(--ink-60); }
-.kpi-row { display: grid; grid-template-columns: repeat(4, 1fr); gap: 1rem; margin-bottom: 2rem; }
-.kpi { background: var(--white); border: 1.5px solid var(--border); border-radius: 10px; padding: 1.25rem; text-align: center; }
-.kpi-val { font-family: 'DM Serif Display', serif; font-size: 1.75rem; color: var(--green-primary); line-height: 1; }
-.kpi-label { font-size: 0.68rem; color: var(--ink-30); margin-top: 0.35rem; text-transform: uppercase; letter-spacing: 1px; }
-footer { text-align: center; padding: 2rem; font-size: 0.75rem; color: var(--ink-30); border-top: 1px solid var(--border); margin-top: 2rem; }
-footer a { color: var(--green-primary); text-decoration: none; }
-@media (max-width: 768px) { .kpi-row { grid-template-columns: 1fr 1fr; } }
-</style>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Adworth℠ — Campaign Data Demo</title>
+  <meta name="robots" content="noindex">
+  <link rel="preconnect" href="https://adworth-fonts.adworthllc.workers.dev">
+  <link href="https://adworth-fonts.adworthllc.workers.dev/css2?family=Poppins:wght@300;400;500;600;700;800&family=DM+Serif+Display:ital@0;1&display=swap" rel="stylesheet">
+  <style>
+    *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+    :root {
+      --green-deep: #1a4a35;
+      --green-primary: #2d6a4f;
+      --green-accent: #52b788;
+      --green-pale: #d8f3dc;
+      --green-tint: #f0faf3;
+      --off-white: #fafaf8;
+      --white: #ffffff;
+      --ink: #111410;
+      --ink-60: #555a50;
+      --ink-30: #b0b5aa;
+      --border: #e2e8df;
+      --gold: #c8a96a;
+      --gold-bg: #fff8ee;
+      --blue: #2563eb;
+      --blue-tint: #eff6ff;
+    }
+    body { font-family: 'Poppins', sans-serif; background: var(--off-white); color: var(--ink); min-height: 100vh; }
+
+    /* ── HEADER ── */
+    .header {
+      background: var(--green-deep);
+      padding: 1rem 2rem;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+    .header-left { display: flex; align-items: center; gap: 1rem; }
+    .brand { font-size: 1.15rem; font-weight: 800; color: var(--green-accent); letter-spacing: -0.3px; }
+    .brand span { color: rgba(255,255,255,0.5); font-weight: 400; font-size: 0.85rem; margin-left: 0.5rem; }
+    .header-right { display: flex; align-items: center; gap: 0.75rem; }
+    .account-badge {
+      background: rgba(82,183,136,0.15);
+      border: 1px solid rgba(82,183,136,0.3);
+      color: var(--green-accent);
+      font-size: 0.7rem;
+      font-weight: 600;
+      padding: 0.25rem 0.65rem;
+      border-radius: 100px;
+    }
+    .date-label { font-size: 0.72rem; color: rgba(255,255,255,0.4); }
+
+    /* ── DEMO BANNER ── */
+    .demo-banner {
+      background: var(--gold-bg);
+      border-bottom: 1px solid rgba(200,169,106,0.3);
+      padding: 0.6rem 2rem;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 0.6rem;
+      font-size: 0.75rem;
+      color: #7a5c2e;
+      font-weight: 500;
+    }
+    .demo-tag {
+      background: var(--gold);
+      color: white;
+      font-size: 0.6rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      padding: 0.15rem 0.5rem;
+      border-radius: 4px;
+    }
+
+    /* ── COCKPIT BANNER ── */
+    .cockpit-banner {
+      background: var(--green-tint);
+      border-bottom: 1px solid rgba(82,183,136,0.2);
+      padding: 0.65rem 2rem;
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+      font-size: 0.78rem;
+      color: var(--green-deep);
+    }
+    .cockpit-dot {
+      width: 8px; height: 8px;
+      background: var(--green-accent);
+      border-radius: 50%;
+      animation: pulse 2s infinite;
+    }
+    @keyframes pulse {
+      0%, 100% { opacity: 1; transform: scale(1); }
+      50% { opacity: 0.5; transform: scale(1.3); }
+    }
+    .cockpit-banner strong { font-weight: 700; }
+
+    /* ── LAYOUT ── */
+    .container { max-width: 1100px; margin: 0 auto; padding: 2rem; }
+
+    /* ── PAGE TITLE ── */
+    .page-header { margin-bottom: 2rem; }
+    .page-title {
+      font-family: 'DM Serif Display', serif;
+      font-size: 1.6rem;
+      color: var(--ink);
+      margin-bottom: 0.25rem;
+    }
+    .page-subtitle { font-size: 0.82rem; color: var(--ink-60); }
+
+    /* ── KPI ROW ── */
+    .kpi-row {
+      display: grid;
+      grid-template-columns: repeat(5, 1fr);
+      gap: 1rem;
+      margin-bottom: 2rem;
+    }
+    .kpi-card {
+      background: var(--white);
+      border: 1.5px solid var(--border);
+      border-radius: 12px;
+      padding: 1.25rem;
+      position: relative;
+      overflow: hidden;
+    }
+    .kpi-card::before {
+      content: '';
+      position: absolute;
+      top: 0; left: 0; right: 0;
+      height: 3px;
+      background: var(--green-accent);
+    }
+    .kpi-label { font-size: 0.68rem; font-weight: 600; color: var(--ink-30); text-transform: uppercase; letter-spacing: 1px; margin-bottom: 0.5rem; }
+    .kpi-value { font-family: 'DM Serif Display', serif; font-size: 1.7rem; color: var(--green-primary); line-height: 1; }
+    .kpi-delta { font-size: 0.68rem; color: var(--green-accent); font-weight: 600; margin-top: 0.35rem; }
+    .kpi-delta.neg { color: #e05252; }
+
+    /* ── SECTION ── */
+    .section-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 1.25rem;
+    }
+    .section-title {
+      font-family: 'DM Serif Display', serif;
+      font-size: 1.15rem;
+      color: var(--ink);
+    }
+    .section-badge {
+      font-size: 0.68rem;
+      font-weight: 600;
+      background: var(--green-pale);
+      color: var(--green-deep);
+      padding: 0.2rem 0.6rem;
+      border-radius: 100px;
+    }
+
+    /* ── CAMPAIGN TABLE ── */
+    .table-card {
+      background: var(--white);
+      border: 1.5px solid var(--border);
+      border-radius: 14px;
+      overflow: hidden;
+      margin-bottom: 2rem;
+    }
+    .table-card table {
+      width: 100%;
+      border-collapse: collapse;
+    }
+    .table-card th {
+      background: var(--green-tint);
+      font-size: 0.7rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.8px;
+      color: var(--green-deep);
+      padding: 0.85rem 1.25rem;
+      text-align: left;
+      border-bottom: 1.5px solid var(--border);
+    }
+    .table-card td {
+      padding: 0.9rem 1.25rem;
+      font-size: 0.82rem;
+      color: var(--ink);
+      border-bottom: 1px solid var(--border);
+      vertical-align: middle;
+    }
+    .table-card tr:last-child td { border-bottom: none; }
+    .table-card tr:hover td { background: #f9fdf9; }
+
+    .metric-label {
+      font-weight: 600;
+      color: var(--ink-60);
+      font-size: 0.78rem;
+    }
+    .metric-value {
+      font-weight: 700;
+      font-size: 0.9rem;
+      color: var(--ink);
+    }
+    .status-pill {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.35rem;
+      font-size: 0.68rem;
+      font-weight: 700;
+      padding: 0.2rem 0.65rem;
+      border-radius: 100px;
+    }
+    .status-active { background: var(--green-pale); color: var(--green-deep); }
+    .status-paused { background: #fff3cd; color: #7a5c2e; }
+    .status-dot { width: 6px; height: 6px; border-radius: 50%; background: currentColor; }
+
+    /* ── METRICS EXTRACT TABLE ── */
+    .extract-section {
+      background: var(--white);
+      border: 2px solid var(--green-accent);
+      border-radius: 14px;
+      overflow: hidden;
+      margin-bottom: 2rem;
+      box-shadow: 0 4px 20px rgba(45,106,79,0.08);
+    }
+    .extract-header {
+      background: var(--green-tint);
+      padding: 1rem 1.5rem;
+      border-bottom: 1.5px solid rgba(82,183,136,0.3);
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+    .extract-header-left { display: flex; align-items: center; gap: 0.75rem; }
+    .extract-title { font-weight: 700; font-size: 0.9rem; color: var(--green-deep); }
+    .extract-sub { font-size: 0.72rem; color: var(--ink-60); }
+    .cockpit-tag {
+      font-size: 0.65rem;
+      font-weight: 700;
+      background: var(--green-primary);
+      color: white;
+      padding: 0.2rem 0.6rem;
+      border-radius: 4px;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+    }
+
+    /* THIS IS THE TABLE extractDemoMetrics() READS */
+    #metrics-table { width: 100%; border-collapse: collapse; }
+    #metrics-table td {
+      padding: 0.9rem 1.5rem;
+      font-size: 0.85rem;
+      border-bottom: 1px solid var(--border);
+    }
+    #metrics-table tr:last-child td { border-bottom: none; }
+    #metrics-table tr:hover td { background: #f9fdf9; }
+    #metrics-table td:first-child {
+      font-weight: 600;
+      color: var(--ink-60);
+      width: 35%;
+      font-size: 0.78rem;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+    }
+    #metrics-table td:last-child {
+      font-weight: 700;
+      font-size: 1rem;
+      color: var(--ink);
+    }
+
+    /* ── BOTTOM GRID ── */
+    .bottom-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 1.5rem; margin-bottom: 2rem; }
+    .panel {
+      background: var(--white);
+      border: 1.5px solid var(--border);
+      border-radius: 12px;
+      padding: 1.5rem;
+    }
+    .panel-title { font-weight: 700; font-size: 0.82rem; color: var(--ink-60); text-transform: uppercase; letter-spacing: 0.8px; margin-bottom: 1.25rem; }
+    .bar-row { display: flex; align-items: center; gap: 0.75rem; margin-bottom: 0.75rem; }
+    .bar-name { font-size: 0.75rem; color: var(--ink-60); width: 110px; flex-shrink: 0; }
+    .bar-track { flex: 1; height: 6px; background: var(--border); border-radius: 3px; overflow: hidden; }
+    .bar-fill { height: 100%; background: var(--green-accent); border-radius: 3px; }
+    .bar-val { font-size: 0.72rem; font-weight: 700; color: var(--ink); width: 55px; text-align: right; }
+
+    .event-list { list-style: none; }
+    .event-item { display: flex; align-items: flex-start; gap: 0.75rem; padding: 0.6rem 0; border-bottom: 1px solid var(--border); font-size: 0.78rem; }
+    .event-item:last-child { border-bottom: none; }
+    .event-icon { font-size: 0.9rem; flex-shrink: 0; margin-top: 1px; }
+    .event-text { color: var(--ink-60); flex: 1; }
+    .event-text strong { color: var(--ink); font-weight: 600; }
+    .event-time { font-size: 0.68rem; color: var(--ink-30); flex-shrink: 0; }
+
+    /* ── FOOTER ── */
+    footer {
+      border-top: 1px solid var(--border);
+      padding: 1.25rem 2rem;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      font-size: 0.72rem;
+      color: var(--ink-30);
+    }
+    footer a { color: var(--green-primary); text-decoration: none; font-weight: 600; }
+
+    /* ── RESPONSIVE ── */
+    @media (max-width: 768px) {
+      .kpi-row { grid-template-columns: repeat(2, 1fr); }
+      .bottom-grid { grid-template-columns: 1fr; }
+    }
+  </style>
 </head>
 <body>
 
-<header>
-    <div class="inner">
-        <a href="/" class="logo">Adworth<span>Privacy Cockpit Demo</span></a>
-        <span class="demo-badge">Simulated Data</span>
+  <!-- HEADER -->
+  <header class="header">
+    <div class="header-left">
+      <div class="brand">Adworth℠ <span>Campaign Dashboard</span></div>
+      <div class="account-badge">Demo Account</div>
     </div>
-</header>
+    <div class="header-right">
+      <span class="date-label" id="currentDate"></span>
+    </div>
+  </header>
 
-<main>
-    <h1>Privacy Cockpit Demo Dashboard</h1>
-    <p class="subtitle">The Privacy Cockpit extension lets advertisers securely upload their own campaign data from advertising platform dashboards (Google Ads, Meta Ads, etc.) to Adworth &mdash; signed with Ed25519 cryptography so every submission is tamper-evident and provably authentic.<br>This page contains simulated campaign metrics for testing the extension workflow.</p>
+  <!-- DEMO BANNER -->
+  <div class="demo-banner">
+    <span class="demo-tag">Demo</span>
+    Simulated campaign data — used to demonstrate Privacy Cockpit extraction and Ed25519 signing
+  </div>
 
-    <div class="demo-notice">
-        <strong>SIMULATED DATA &mdash; FOR DEMONSTRATION ONLY.</strong> The metrics below are fictional sample data standing in for the advertiser's own campaign dashboard. In production, the extension reads metrics directly from the advertiser's logged-in advertising platform &mdash; no data is shared without the advertiser's explicit action. The private signing key never leaves the advertiser's device.
+  <!-- COCKPIT BANNER -->
+  <div class="cockpit-banner">
+    <div class="cockpit-dot"></div>
+    <span><strong>Privacy Cockpit ready.</strong> Open the extension and click <em>Sync Dashboard Data</em> to extract, sign, and ingest the metrics below.</span>
+  </div>
+
+  <div class="container">
+
+    <!-- PAGE HEADER -->
+    <div class="page-header">
+      <h1 class="page-title">Campaign Overview</h1>
+      <p class="page-subtitle">Q1 2026 · All campaigns · Last 30 days</p>
     </div>
 
+    <!-- KPI ROW -->
     <div class="kpi-row">
-        <div class="kpi"><div class="kpi-val">5</div><div class="kpi-label">Campaigns</div></div>
-        <div class="kpi"><div class="kpi-val">$16,751</div><div class="kpi-label">Total Spend</div></div>
-        <div class="kpi"><div class="kpi-val">757</div><div class="kpi-label">Conversions</div></div>
-        <div class="kpi"><div class="kpi-val">3.42</div><div class="kpi-label">Avg ROAS</div></div>
+      <div class="kpi-card">
+        <div class="kpi-label">Total Spend</div>
+        <div class="kpi-value">$12,450</div>
+        <div class="kpi-delta">↑ 8.3% vs prior period</div>
+      </div>
+      <div class="kpi-card">
+        <div class="kpi-label">Impressions</div>
+        <div class="kpi-value">2.34M</div>
+        <div class="kpi-delta">↑ 14.2% vs prior period</div>
+      </div>
+      <div class="kpi-card">
+        <div class="kpi-label">Clicks</div>
+        <div class="kpi-value">47,820</div>
+        <div class="kpi-delta">↑ 5.1% vs prior period</div>
+      </div>
+      <div class="kpi-card">
+        <div class="kpi-label">Conversions</div>
+        <div class="kpi-value">847</div>
+        <div class="kpi-delta">↑ 11.6% vs prior period</div>
+      </div>
+      <div class="kpi-card">
+        <div class="kpi-label">ROAS</div>
+        <div class="kpi-value">3.8x</div>
+        <div class="kpi-delta neg">↓ 0.2x vs prior period</div>
+      </div>
     </div>
 
-    <span class="section-label">Campaign Performance (Simulated)</span>
-    <div class="card">
-        <table>
-            <thead>
-                <tr>
-                    <th>Metric</th>
-                    <th>Value</th>
-                </tr>
-            </thead>
-            <tbody>
-                <tr><td>Campaign</td><td>demo-brand-awareness-q1</td></tr>
-                <tr><td>Spend</td><td class="amount">$4,250.00</td></tr>
-                <tr><td>Conversions</td><td>187</td></tr>
-                <tr><td>Impressions</td><td>84,200</td></tr>
-                <tr><td>ROAS</td><td>3.8</td></tr>
-            </tbody>
-        </table>
+    <!-- CAMPAIGN TABLE -->
+    <div class="section-header">
+      <div class="section-title">Active Campaigns</div>
+      <span class="section-badge">3 active</span>
+    </div>
+    <div class="table-card" style="margin-bottom:2rem;">
+      <table>
+        <thead>
+          <tr>
+            <th>Campaign Name</th>
+            <th>Status</th>
+            <th>Daily Budget</th>
+            <th>Spend (30d)</th>
+            <th>Impressions</th>
+            <th>CTR</th>
+            <th>Conv.</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><span class="metric-value">Summer Brand Awareness 2026</span></td>
+            <td><span class="status-pill status-active"><span class="status-dot"></span>Active</span></td>
+            <td>$650</td>
+            <td class="metric-value">$8,200</td>
+            <td>1,540,000</td>
+            <td>2.1%</td>
+            <td>541</td>
+          </tr>
+          <tr>
+            <td><span class="metric-value">Consent Awareness — Retargeting</span></td>
+            <td><span class="status-pill status-active"><span class="status-dot"></span>Active</span></td>
+            <td>$275</td>
+            <td class="metric-value">$3,100</td>
+            <td>620,000</td>
+            <td>1.8%</td>
+            <td>218</td>
+          </tr>
+          <tr>
+            <td><span class="metric-value">Privacy-First Display — Prospecting</span></td>
+            <td><span class="status-pill status-paused"><span class="status-dot"></span>Paused</span></td>
+            <td>$150</td>
+            <td class="metric-value">$1,150</td>
+            <td>180,000</td>
+            <td>0.9%</td>
+            <td>88</td>
+          </tr>
+        </tbody>
+      </table>
     </div>
 
-    <div class="steps">
-        <span class="section-label">How to Test</span>
-        <div class="step">
-            <div class="step-num">1</div>
-            <div class="step-text">
-                <strong>Install the extension</strong>
-                <p>Load the Privacy Cockpit extension from chrome://extensions (developer mode).</p>
-            </div>
-        </div>
-        <div class="step">
-            <div class="step-num">2</div>
-            <div class="step-text">
-                <strong>Click Setup Extension</strong>
-                <p>Generates an Ed25519 keypair on your device. Your private key never leaves your browser.</p>
-            </div>
-        </div>
-        <div class="step">
-            <div class="step-num">3</div>
-            <div class="step-text">
-                <strong>Click Sync Dashboard Data</strong>
-                <p>The extension extracts the simulated metrics above (standing in for your real advertising dashboard), signs them with your device's private key, and sends the signed payload to the Adworth Ingestion API for cryptographic verification and storage.</p>
-            </div>
-        </div>
-        <div class="step">
-            <div class="step-num">4</div>
-            <div class="step-text">
-                <strong>Verify in the admin dashboard</strong>
-                <p>Visit <a href="https://adworth-ingestion-api.adworthllc.workers.dev/dashboard" style="color:var(--green-primary);">adworth-ingestion-api.adworthllc.workers.dev/dashboard</a> to see the ingested, signature-verified data.</p>
-            </div>
-        </div>
+    <!-- METRICS EXTRACTION TABLE — this is what content-script.js reads -->
+    <div class="section-header">
+      <div class="extract-title" style="font-family:'DM Serif Display',serif;font-size:1.15rem;color:var(--ink);">Extractable Metrics</div>
+      <span class="cockpit-tag">Privacy Cockpit target</span>
     </div>
-</main>
+    <div class="extract-section">
+      <div class="extract-header">
+        <div class="extract-header-left">
+          <div>
+            <div class="extract-title">Aggregated Campaign Metrics</div>
+            <div class="extract-sub">These values are extracted, Ed25519-signed, and ingested by the Privacy Cockpit</div>
+          </div>
+        </div>
+        <div style="font-size:0.72rem;color:var(--ink-60);">Auto-updated · <span id="lastUpdated"></span></div>
+      </div>
 
-<footer>
-    <p>&copy; 2026 Adworth&#8480; LLC &middot; Patent Pending &middot; Charleston, SC &middot; <a href="/privacy.html">Privacy</a> &middot; <a href="/terms.html">Terms</a></p>
-</footer>
+      <!-- THIS TABLE IS PARSED BY extractDemoMetrics() — labels must match exactly -->
+      <table id="metrics-table">
+        <tr><td>Campaign</td><td>Summer Brand Awareness 2026</td></tr>
+        <tr><td>Spend</td><td>$12,450.00</td></tr>
+        <tr><td>Impressions</td><td>2,340,000</td></tr>
+        <tr><td>Clicks</td><td>47,820</td></tr>
+        <tr><td>Conversions</td><td>847</td></tr>
+        <tr><td>ROAS</td><td>3.8</td></tr>
+      </table>
+    </div>
+
+    <!-- BOTTOM GRID -->
+    <div class="bottom-grid">
+
+      <!-- SPEND BY CHANNEL -->
+      <div class="panel">
+        <div class="panel-title">Spend by channel</div>
+        <div class="bar-row">
+          <div class="bar-name">Search</div>
+          <div class="bar-track"><div class="bar-fill" style="width:66%"></div></div>
+          <div class="bar-val">$8,217</div>
+        </div>
+        <div class="bar-row">
+          <div class="bar-name">Display</div>
+          <div class="bar-track"><div class="bar-fill" style="width:25%"></div></div>
+          <div class="bar-val">$3,112</div>
+        </div>
+        <div class="bar-row">
+          <div class="bar-name">Video</div>
+          <div class="bar-track"><div class="bar-fill" style="width:9%"></div></div>
+          <div class="bar-val">$1,121</div>
+        </div>
+      </div>
+
+      <!-- RECENT EVENTS -->
+      <div class="panel">
+        <div class="panel-title">Recent activity</div>
+        <ul class="event-list">
+          <li class="event-item">
+            <span class="event-icon">🔑</span>
+            <span class="event-text"><strong>Consent token issued</strong> — user #u_7f3a approved purchase-history scope</span>
+            <span class="event-time">2m ago</span>
+          </li>
+          <li class="event-item">
+            <span class="event-icon">📋</span>
+            <span class="event-text"><strong>Ledger entry written</strong> — PING recorded, no return signal</span>
+            <span class="event-time">2m ago</span>
+          </li>
+          <li class="event-item">
+            <span class="event-icon">✅</span>
+            <span class="event-text"><strong>Ad served with Seal</strong> — cryptographic proof attached at impression level</span>
+            <span class="event-time">4m ago</span>
+          </li>
+          <li class="event-item">
+            <span class="event-icon">🚫</span>
+            <span class="event-text"><strong>Consent revoked</strong> — user #u_2b9d · deletion request queued</span>
+            <span class="event-time">11m ago</span>
+          </li>
+          <li class="event-item">
+            <span class="event-icon">🛡️</span>
+            <span class="event-text"><strong>Age gate passed</strong> — COPPA check cleared, session eligible</span>
+            <span class="event-time">18m ago</span>
+          </li>
+        </ul>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- FOOTER -->
+  <footer>
+    <span>Adworth℠ LLC · Charleston, SC · Demo environment — no real user data</span>
+    <span><a href="/privacy.html">Privacy</a> · <a href="/terms.html">Terms</a> · <a href="https://adworth-ingestion-api.adworthllc.workers.dev/extension/verify">API Status</a></span>
+  </footer>
+
+  <script>
+    // Set current date
+    document.getElementById('currentDate').textContent = new Date().toLocaleDateString('en-US', {
+      weekday: 'short', month: 'short', day: 'numeric', year: 'numeric'
+    });
+    document.getElementById('lastUpdated').textContent = new Date().toLocaleTimeString('en-US', {
+      hour: '2-digit', minute: '2-digit'
+    });
+  </script>
 
 </body>
 </html>
