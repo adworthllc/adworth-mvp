@@ -1,764 +1,554 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Adworth℠ — My Data Consent</title>
-  <meta name="description" content="Control your data. Grant consent on your terms. Get paid when you share.">
-  <link rel="preconnect" href="https://adworth-fonts.adworthllc.workers.dev">
-  <link href="https://adworth-fonts.adworthllc.workers.dev/css2?family=Poppins:wght@300;400;500;600;700;800;900&family=DM+Serif+Display:ital@0;1&display=swap" rel="stylesheet">
-  <style>
-    *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
-    :root {
-      --green-deep: #1a4a35; --green-primary: #2d6a4f; --green-accent: #52b788;
-      --green-pale: #d8f3dc; --green-tint: #f0faf3; --off-white: #fafaf8;
-      --white: #ffffff; --ink: #111410; --ink-60: #555a50; --ink-30: #b0b5aa;
-      --border: #e2e8df; --red: #e05252; --red-bg: #fef3f2;
-      --gold: #c8a96a; --gold-bg: #fff8ee;
-    }
-    body { font-family: 'Poppins', sans-serif; background: var(--off-white); color: var(--ink); line-height: 1.6; }
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>How It Works for You &mdash; Adworth&#8480;</title>
+    <meta name="description" content="Your data is being sold right now. Without your permission. Without paying you. Adworth changes that — with a lock on the door, not a burning house.">
+    <meta http-equiv="X-Content-Type-Options" content="nosniff">
+    <meta http-equiv="X-Frame-Options" content="DENY">
+    <meta http-equiv="Referrer-Policy" content="strict-origin-when-cross-origin">
+    <meta name="robots" content="index, follow">
+    <link rel="icon" type="image/x-icon" href="/favicon.ico">
+    <link rel="preconnect" href="https://adworth-fonts.adworthllc.workers.dev">
+    <link href="https://adworth-fonts.adworthllc.workers.dev/css2?family=Poppins:wght@300;400;500;600;700;800;900&family=DM+Serif+Display:ital@0;1&display=swap" rel="stylesheet">
+    <style>
+        /* ── SITE-WIDE CSS — matches index.html exactly ── */
+        *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+        :root {
+            --green-deep: #1a4a35; --green-primary: #2d6a4f; --green-mid: #1B7A4E;
+            --green-accent: #52b788; --green-pale: #d8f3dc; --green-tint: #f0faf3;
+            --off-white: #fafaf8; --white: #ffffff; --ink: #111410; --ink-60: #555a50;
+            --ink-30: #b0b5aa; --border: #e2e8df; --gold: #c8a96a; --gold-light: #f5e9d3;
+        }
+        html { scroll-behavior: smooth; }
+        body { font-family: 'Poppins', sans-serif; background: var(--off-white); color: var(--ink); line-height: 1.6; overflow-x: hidden; }
+        .container { max-width: 1160px; margin: 0 auto; padding: 0 2rem; }
+        header { position: sticky; top: 0; z-index: 100; background: rgba(250,250,248,0.92); backdrop-filter: blur(12px); -webkit-backdrop-filter: blur(12px); border-bottom: 1px solid var(--border); }
+        nav { display: flex; justify-content: space-between; align-items: center; padding: 1.25rem 0; }
+        .logo { display: flex; align-items: center; gap: 0.75rem; text-decoration: none; }
+        .logo-mark { font-family: 'Poppins', sans-serif; font-size: 1.4rem; font-weight: 800; color: var(--green-primary); letter-spacing: -0.5px; }
+        .patent-pill { font-size: 0.55rem; font-weight: 700; text-transform: uppercase; letter-spacing: 1px; background: var(--green-pale); color: var(--green-deep); padding: 0.15rem 0.45rem; border-radius: 100px; border: 1px solid rgba(45,106,79,0.2); white-space: nowrap; }
+        nav ul { list-style: none; display: flex; gap: 1.5rem; align-items: center; }
+        nav a { text-decoration: none; font-size: 0.8rem; font-weight: 500; color: var(--ink-60); transition: color 0.2s; white-space: nowrap; }
+        nav a:hover { color: var(--green-primary); }
+        .nav-cta { background: var(--green-primary) !important; color: white !important; padding: 0.55rem 1rem !important; border-radius: 6px !important; font-weight: 600 !important; white-space: nowrap; }
+        .nav-cta:hover { background: var(--green-deep) !important; }
+        footer { background: var(--white); border-top: 1px solid var(--border); padding: 3.5rem 0 2rem; }
+        .footer-grid { display: grid; grid-template-columns: 2fr 1fr 1fr 1fr; gap: 3rem; margin-bottom: 3rem; }
+        .footer-brand-name { font-size: 1.4rem; font-weight: 800; color: var(--green-primary); margin-bottom: 0.6rem; }
+        .footer-tagline { font-size: 0.85rem; color: var(--ink-60); line-height: 1.6; max-width: 260px; margin-bottom: 0.75rem; }
+        .footer-note { font-size: 0.78rem; color: var(--ink-30); line-height: 1.6; max-width: 260px; border-top: 1px solid var(--border); padding-top: 0.75rem; margin-top: 0.25rem; }
+        .footer-links h4 { font-size: 0.75rem; font-weight: 700; text-transform: uppercase; letter-spacing: 1.5px; color: var(--ink); margin-bottom: 1rem; }
+        .footer-links ul { list-style: none; }
+        .footer-links a { display: block; font-size: 0.875rem; color: var(--ink-60); text-decoration: none; margin-bottom: 0.6rem; transition: color 0.2s; }
+        .footer-links a:hover { color: var(--green-primary); }
+        .footer-bottom { padding-top: 2rem; border-top: 1px solid var(--border); display: flex; justify-content: space-between; align-items: center; font-size: 0.8rem; color: var(--ink-30); }
+        .waitlist-form-wrap { display: flex; gap: 0.75rem; }
+        .waitlist-email-input { flex: 1; padding: 0.9rem 1.25rem; border: 1.5px solid var(--border); border-radius: 8px; font-size: 0.95rem; font-family: 'Poppins', sans-serif; background: white; color: var(--ink); transition: border-color 0.2s; outline: none; }
+        .waitlist-email-input:focus { border-color: var(--green-primary); }
+        .waitlist-submit-btn { background: var(--green-primary); color: white; padding: 0.9rem 1.5rem; border: none; border-radius: 8px; font-weight: 700; font-size: 0.95rem; cursor: pointer; font-family: 'Poppins', sans-serif; white-space: nowrap; transition: background 0.2s, transform 0.2s; }
+        .waitlist-submit-btn:hover { background: var(--green-deep); transform: translateY(-1px); }
+        .waitlist-submit-btn:disabled { opacity: 0.7; cursor: not-allowed; transform: none; }
+        @media (max-width: 900px) { .footer-grid { grid-template-columns: 1fr 1fr; } }
+        @media (max-width: 640px) { nav ul { display: none; } .footer-grid { grid-template-columns: 1fr; } .footer-bottom { flex-direction: column; gap: 0.5rem; text-align: center; } }
 
-    /* Header */
-    .header {
-      background: var(--green-deep);
-      color: white;
-      padding: 1.25rem 2rem;
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-    }
-    .header-left { display: flex; align-items: center; gap: 1rem; }
-    .header h1 { font-size: 1.15rem; font-weight: 700; }
-    .header .user-badge {
-      font-size: 0.7rem;
-      background: rgba(82,183,136,0.2);
-      color: var(--green-accent);
-      padding: 0.2rem 0.6rem;
-      border-radius: 100px;
-      border: 1px solid rgba(82,183,136,0.3);
-      font-weight: 600;
-    }
-    .header .wallet {
-      font-size: 0.85rem;
-      color: var(--green-accent);
-      font-weight: 700;
-    }
-    .header .wallet span { color: white; font-size: 1.1rem; }
+        /* ── PAGE-SPECIFIC CSS ── */
+        @keyframes fadeDown { from{opacity:0;transform:translateY(-10px)} to{opacity:1;transform:translateY(0)} }
 
-    .container { max-width: 900px; margin: 0 auto; padding: 2rem; }
+        .st-container { max-width: 960px; margin: 0 auto; padding: 0 2rem; }
 
-    /* Beta banner */
-    .beta-banner {
-      background: var(--gold-bg);
-      border-bottom: 1px solid rgba(200,169,106,0.3);
-      padding: 0.6rem 2rem;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      gap: 0.5rem;
-      font-size: 0.75rem;
-      color: #7a5c2e;
-      font-weight: 500;
-    }
-    .beta-banner .beta-tag {
-      font-size: 0.6rem;
-      font-weight: 700;
-      text-transform: uppercase;
-      letter-spacing: 1px;
-      background: var(--gold);
-      color: white;
-      padding: 0.15rem 0.45rem;
-      border-radius: 4px;
-    }
+        /* Hero */
+        .st-hero { background: #0b1810; padding: 7rem 2rem 6rem; text-align: center; overflow: hidden; position: relative; }
+        .st-hero::before { content: ''; position: absolute; inset: 0; background-image: linear-gradient(rgba(82,183,136,0.028) 1px,transparent 1px),linear-gradient(90deg,rgba(82,183,136,0.028) 1px,transparent 1px); background-size: 48px 48px; pointer-events: none; }
+        .st-hero-inner { max-width: 720px; margin: 0 auto; position: relative; z-index: 1; }
+        .st-eyebrow { display: inline-block; font-size: 0.65rem; font-weight: 700; text-transform: uppercase; letter-spacing: 2.5px; color: var(--green-accent); background: rgba(82,183,136,0.1); border: 1px solid rgba(82,183,136,0.2); padding: 0.3rem 0.85rem; border-radius: 100px; margin-bottom: 2rem; animation: fadeDown 0.6s ease both; }
+        .st-headline { font-family: 'DM Serif Display', serif; font-size: clamp(2.4rem,6vw,3.8rem); color: white; line-height: 1.1; margin-bottom: 1.5rem; animation: fadeDown 0.6s 0.1s ease both; }
+        .st-headline em { font-style: italic; color: var(--green-accent); }
+        .st-sub { font-size: 1.05rem; color: rgba(255,255,255,0.45); line-height: 1.8; max-width: 560px; margin: 0 auto 2.5rem; animation: fadeDown 0.6s 0.2s ease both; }
+        .st-sub strong { color: rgba(255,255,255,0.75); font-weight: 600; }
+        .st-cta-row { display: flex; gap: 0.75rem; justify-content: center; flex-wrap: wrap; animation: fadeDown 0.6s 0.3s ease both; }
+        .btn-hero-primary { padding: 0.9rem 2rem; background: var(--green-primary); color: white; border: none; border-radius: 8px; font-family: 'Poppins', sans-serif; font-weight: 700; font-size: 0.9rem; cursor: pointer; transition: all 0.2s; text-decoration: none; display: inline-block; }
+        .btn-hero-primary:hover { background: var(--green-accent); color: #111; transform: translateY(-1px); }
+        .btn-hero-secondary { padding: 0.9rem 2rem; background: transparent; color: rgba(255,255,255,0.45); border: 1px solid rgba(255,255,255,0.15); border-radius: 8px; font-family: 'Poppins', sans-serif; font-weight: 600; font-size: 0.9rem; cursor: pointer; transition: all 0.2s; text-decoration: none; display: inline-block; }
+        .btn-hero-secondary:hover { color: white; border-color: rgba(255,255,255,0.35); }
 
-    /* Security warning banner */
-    .security-banner {
-      background: var(--red-bg);
-      border: 1px solid rgba(224,82,82,0.3);
-      border-radius: 10px;
-      padding: 1rem 1.25rem;
-      margin-bottom: 1.5rem;
-      font-size: 0.78rem;
-      color: #7a3a3a;
-      line-height: 1.6;
-    }
-    .security-banner strong { color: #e05252; }
+        /* Section labels */
+        .section-eyebrow { font-size: 0.65rem; font-weight: 700; text-transform: uppercase; letter-spacing: 2px; color: var(--green-accent); margin-bottom: 0.75rem; }
+        .section-headline { font-family: 'DM Serif Display', serif; font-size: clamp(1.8rem,4vw,2.5rem); color: var(--ink); line-height: 1.2; margin-bottom: 1.25rem; }
+        .section-headline em { font-style: italic; color: var(--green-primary); }
+        .section-body { font-size: 1rem; color: var(--ink-60); line-height: 1.85; max-width: 620px; margin-bottom: 3rem; }
+        .section-body strong { color: var(--ink); font-weight: 600; }
 
-    /* Data privacy banner */
-    .privacy-banner {
-      background: var(--green-tint);
-      border: 1px solid rgba(82,183,136,0.3);
-      border-radius: 10px;
-      padding: 1rem 1.25rem;
-      margin-bottom: 1.5rem;
-      font-size: 0.78rem;
-      color: #555a50;
-      line-height: 1.6;
-    }
-    .privacy-banner strong { color: var(--green-deep); }
-    .privacy-banner a { color: var(--green-primary); text-decoration: none; font-weight: 600; }
-    .privacy-banner a:hover { text-decoration: underline; }
+        /* Problem */
+        .problem { background: white; padding: 6rem 2rem; border-bottom: 1px solid var(--border); }
+        .data-timeline { display: flex; flex-direction: column; max-width: 620px; }
+        .timeline-item { display: flex; gap: 1.25rem; align-items: flex-start; padding: 1.25rem 0; border-bottom: 1px solid var(--border); opacity: 0; transform: translateX(-16px); transition: opacity 0.5s ease, transform 0.5s ease; }
+        .timeline-item.visible { opacity: 1; transform: translateX(0); }
+        .timeline-item:last-child { border-bottom: none; }
+        .tl-icon { width: 38px; height: 38px; border-radius: 10px; flex-shrink: 0; display: flex; align-items: center; justify-content: center; font-size: 1.1rem; }
+        .tl-icon.bad { background: #fef3f2; } .tl-icon.good { background: var(--green-tint); }
+        .tl-label { font-size: 0.65rem; font-weight: 700; text-transform: uppercase; letter-spacing: 1px; margin-bottom: 0.3rem; }
+        .tl-label.bad { color: #e05252; } .tl-label.good { color: var(--green-primary); }
+        .tl-text { font-size: 0.88rem; color: var(--ink-60); line-height: 1.6; }
+        .tl-text strong { color: var(--ink); font-weight: 600; }
 
-    /* Setup bar */
-    .setup-bar {
-      background: var(--white);
-      border: 1.5px solid var(--border);
-      border-radius: 12px;
-      padding: 1.25rem 1.5rem;
-      margin-bottom: 2rem;
-      display: flex;
-      gap: 1rem;
-      align-items: end;
-      flex-wrap: wrap;
-    }
-    .setup-bar label {
-      font-size: 0.75rem;
-      font-weight: 600;
-      color: var(--ink-60);
-      display: block;
-      margin-bottom: 0.3rem;
-    }
-    .setup-bar input {
-      padding: 0.6rem 0.9rem;
-      border: 1.5px solid var(--border);
-      border-radius: 8px;
-      font-family: 'Poppins', sans-serif;
-      font-size: 0.8rem;
-    }
-    .setup-bar input:focus { outline: none; border-color: var(--green-primary); }
+        /* Ownership analogy */
+        .ownership { background: var(--green-deep); padding: 6rem 2rem; }
+        .pull-quote { max-width: 720px; margin: 0 auto; text-align: center; }
+        .pq-mark { font-family: 'DM Serif Display', serif; font-size: 5rem; color: var(--green-accent); opacity: 0.3; line-height: 0.5; margin-bottom: 1.5rem; display: block; }
+        .pq-text { font-family: 'DM Serif Display', serif; font-size: clamp(1.4rem,3.5vw,2.2rem); color: white; line-height: 1.4; margin-bottom: 2rem; }
+        .pq-text em { font-style: italic; color: var(--green-accent); }
+        .pq-attr { font-size: 0.8rem; color: rgba(255,255,255,0.35); font-weight: 500; }
+        .pq-attr strong { color: rgba(255,255,255,0.6); font-weight: 600; }
 
-    .btn {
-      padding: 0.6rem 1.15rem;
-      border: none;
-      border-radius: 8px;
-      font-family: 'Poppins', sans-serif;
-      font-weight: 600;
-      font-size: 0.8rem;
-      cursor: pointer;
-      transition: all 0.2s;
-    }
-    .btn-primary { background: var(--green-primary); color: white; }
-    .btn-primary:hover { background: var(--green-deep); transform: translateY(-1px); }
-    .btn-sm { padding: 0.4rem 0.8rem; font-size: 0.75rem; }
-    .btn-grant { background: var(--green-primary); color: white; }
-    .btn-grant:hover { background: var(--green-deep); }
-    .btn-revoke { background: var(--red); color: white; }
-    .btn-revoke:hover { background: #c74444; }
-    .btn-outline { background: transparent; color: var(--green-primary); border: 1.5px solid var(--green-accent); }
-    .btn-outline:hover { background: var(--green-tint); }
-    .btn:disabled { opacity: 0.5; cursor: not-allowed; }
+        /* Three Questions */
+        .questions { background: var(--off-white); padding: 6rem 2rem; border-bottom: 1px solid var(--border); }
+        .questions-grid { display: grid; grid-template-columns: repeat(3,1fr); gap: 1.5rem; margin-top: 3rem; }
+        .q-card { background: white; border: 1.5px solid var(--border); border-radius: 14px; padding: 2rem; position: relative; overflow: hidden; opacity: 0; transform: translateY(20px); transition: opacity 0.5s ease, transform 0.5s ease; }
+        .q-card.visible { opacity: 1; transform: translateY(0); }
+        .q-card::before { content: ''; position: absolute; top: 0; left: 0; right: 0; height: 3px; background: var(--green-accent); }
+        .q-num { font-family: 'DM Serif Display', serif; font-size: 3rem; color: var(--green-pale); line-height: 1; margin-bottom: 1rem; }
+        .q-question { font-family: 'DM Serif Display', serif; font-size: 1.2rem; color: var(--ink); line-height: 1.3; margin-bottom: 0.75rem; }
+        .q-answer { font-size: 0.82rem; color: var(--ink-60); line-height: 1.7; }
+        .q-answer strong { color: var(--ink); font-weight: 600; }
+        .q-component { display: inline-block; margin-top: 1rem; font-size: 0.65rem; font-weight: 700; text-transform: uppercase; letter-spacing: 1px; background: var(--green-tint); color: var(--green-deep); border: 1px solid rgba(45,106,79,0.15); padding: 0.2rem 0.6rem; border-radius: 4px; }
 
-    /* Stats row */
-    .stats-row {
-      display: grid;
-      grid-template-columns: repeat(3, 1fr);
-      gap: 1rem;
-      margin-bottom: 2rem;
-    }
-    .mini-stat {
-      background: var(--white);
-      border: 1.5px solid var(--border);
-      border-radius: 10px;
-      padding: 1.25rem;
-      text-align: center;
-    }
-    .mini-stat .val { font-size: 1.5rem; font-weight: 800; color: var(--green-primary); }
-    .mini-stat .val.earnings { color: var(--gold); }
-    .mini-stat .lbl { font-size: 0.7rem; color: var(--ink-60); font-weight: 500; margin-top: 0.2rem; }
-    .mini-stat .sublbl { font-size: 0.65rem; color: var(--ink-30); margin-top: 0.2rem; font-style: italic; }
+        /* Proof */
+        .proof { background: white; padding: 6rem 2rem; border-bottom: 1px solid var(--border); }
+        .proof-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 3rem; align-items: center; margin-top: 3rem; }
+        .proof-items { display: flex; flex-direction: column; gap: 1.25rem; }
+        .proof-item { display: flex; gap: 1rem; align-items: flex-start; opacity: 0; transform: translateX(-12px); transition: opacity 0.4s ease, transform 0.4s ease; }
+        .proof-item.visible { opacity: 1; transform: translateX(0); }
+        .proof-check { width: 32px; height: 32px; border-radius: 8px; background: var(--green-tint); border: 1px solid rgba(82,183,136,0.3); display: flex; align-items: center; justify-content: center; color: var(--green-primary); font-size: 0.85rem; font-weight: 700; flex-shrink: 0; margin-top: 2px; }
+        .proof-label { font-weight: 700; font-size: 0.88rem; color: var(--ink); margin-bottom: 0.15rem; }
+        .proof-desc { font-size: 0.78rem; color: var(--ink-60); line-height: 1.6; }
+        .proof-desc strong { color: var(--ink); font-weight: 600; }
+        .proof-visual { background: #0b1810; border-radius: 16px; padding: 2rem; border: 1px solid rgba(82,183,136,0.15); }
+        .pv-label { font-size: 0.6rem; font-weight: 700; text-transform: uppercase; letter-spacing: 2px; color: rgba(82,183,136,0.5); margin-bottom: 1.25rem; }
+        .pv-token { background: rgba(82,183,136,0.06); border: 1px solid rgba(82,183,136,0.2); border-radius: 10px; padding: 1.25rem; margin-bottom: 1rem; }
+        .pv-token-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 0.9rem; }
+        .pv-advertiser { font-weight: 700; font-size: 0.85rem; color: white; }
+        .pv-status { font-size: 0.6rem; font-weight: 700; text-transform: uppercase; letter-spacing: 1px; background: rgba(82,183,136,0.15); color: var(--green-accent); border: 1px solid rgba(82,183,136,0.25); padding: 0.18rem 0.55rem; border-radius: 100px; display: flex; align-items: center; gap: 0.35rem; }
+        .pv-dot { width: 5px; height: 5px; border-radius: 50%; background: var(--green-accent); animation: blink 2s infinite; }
+        @keyframes blink { 0%,100%{opacity:1} 50%{opacity:0.3} }
+        .pv-row { display: flex; justify-content: space-between; font-size: 0.72rem; margin-bottom: 0.4rem; }
+        .pv-row:last-child { margin-bottom: 0; }
+        .pv-row-label { color: rgba(255,255,255,0.3); }
+        .pv-row-value { color: rgba(255,255,255,0.7); font-family: monospace; }
+        .pv-row-value.green { color: var(--green-accent); font-weight: 600; }
+        .pv-event { display: flex; align-items: center; gap: 0.6rem; font-size: 0.72rem; color: rgba(255,255,255,0.3); padding: 0.5rem 0; border-top: 1px solid rgba(255,255,255,0.05); }
+        .pv-event-dot { width: 6px; height: 6px; border-radius: 50%; flex-shrink: 0; }
+        .pv-event-dot.green { background: var(--green-accent); }
+        .pv-event-dot.red { background: #e05252; }
 
-    /* Section titles */
-    .section-title {
-      font-family: 'DM Serif Display', serif;
-      font-size: 1.35rem;
-      color: var(--ink);
-      margin-bottom: 1.25rem;
-      display: flex;
-      align-items: center;
-      gap: 0.5rem;
-    }
-    .section-title .count {
-      font-family: 'Poppins', sans-serif;
-      font-size: 0.7rem;
-      background: var(--green-pale);
-      color: var(--green-deep);
-      padding: 0.15rem 0.5rem;
-      border-radius: 100px;
-      font-weight: 600;
-    }
+        /* Simplicity */
+        .simple { background: var(--green-deep); padding: 6rem 2rem; }
+        .simple-inner { max-width: 640px; margin: 0 auto; text-align: center; }
+        .simple-headline { font-family: 'DM Serif Display', serif; font-size: clamp(1.8rem,4vw,2.6rem); color: white; line-height: 1.2; margin-bottom: 1.25rem; }
+        .simple-headline em { font-style: italic; color: var(--green-accent); }
+        .simple-body { font-size: 1rem; color: rgba(255,255,255,0.45); line-height: 1.85; margin-bottom: 3rem; }
+        .simple-body strong { color: rgba(255,255,255,0.75); font-weight: 600; }
+        .simple-steps { display: flex; flex-direction: column; text-align: left; margin-bottom: 3rem; }
+        .simple-step { display: flex; gap: 1.25rem; align-items: flex-start; padding: 1.25rem 0; border-bottom: 1px solid rgba(255,255,255,0.07); }
+        .simple-step:last-child { border-bottom: none; }
+        .ss-num { width: 32px; height: 32px; border-radius: 50%; flex-shrink: 0; background: rgba(82,183,136,0.15); border: 1px solid rgba(82,183,136,0.3); color: var(--green-accent); font-size: 0.78rem; font-weight: 700; display: flex; align-items: center; justify-content: center; }
+        .ss-text { font-size: 0.92rem; color: rgba(255,255,255,0.6); line-height: 1.65; padding-top: 0.35rem; }
+        .ss-text strong { color: white; font-weight: 700; }
 
-    /* Incoming request card */
-    .request-card {
-      background: var(--white);
-      border: 2px solid var(--green-accent);
-      border-radius: 14px;
-      padding: 0;
-      margin-bottom: 2rem;
-      overflow: hidden;
-      box-shadow: 0 4px 20px rgba(45,106,79,0.08);
-    }
-    .request-header {
-      background: var(--green-tint);
-      padding: 1rem 1.5rem;
-      border-bottom: 1px solid var(--border);
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-    }
-    .request-header .advertiser-name {
-      font-weight: 700;
-      font-size: 1rem;
-      color: var(--green-deep);
-    }
-    .request-header .request-badge {
-      font-size: 0.65rem;
-      font-weight: 700;
-      text-transform: uppercase;
-      letter-spacing: 1px;
-      background: var(--gold-bg);
-      color: #7a5c2e;
-      padding: 0.2rem 0.6rem;
-      border-radius: 100px;
-      border: 1px solid rgba(200,169,106,0.3);
-    }
-    .request-body { padding: 1.5rem; }
-    .request-details {
-      display: grid;
-      grid-template-columns: 1fr 1fr 1fr;
-      gap: 1.25rem;
-      margin-bottom: 1.5rem;
-    }
-    .detail-item .detail-label {
-      font-size: 0.65rem;
-      font-weight: 700;
-      text-transform: uppercase;
-      letter-spacing: 1px;
-      color: var(--ink-30);
-      margin-bottom: 0.25rem;
-    }
-    .detail-item .detail-value {
-      font-size: 0.9rem;
-      font-weight: 600;
-      color: var(--ink);
-    }
-    .detail-item .detail-value.money {
-      color: var(--gold);
-      font-size: 1.1rem;
-      font-weight: 800;
-    }
-    .request-terms {
-      background: var(--off-white);
-      border: 1px solid var(--border);
-      border-radius: 8px;
-      padding: 1rem;
-      margin-bottom: 1.5rem;
-      font-size: 0.8rem;
-      color: var(--ink-60);
-      line-height: 1.7;
-    }
-    .request-terms strong { color: var(--ink); }
-    .request-actions {
-      display: flex;
-      gap: 0.75rem;
-      justify-content: flex-end;
-    }
+        /* Waitlist section */
+        .waitlist-section { background: var(--off-white); padding: 7rem 2rem; text-align: center; }
+        .wl-inner { max-width: 560px; margin: 0 auto; }
+        .wl-headline { font-family: 'DM Serif Display', serif; font-size: clamp(2rem,4.5vw,3rem); color: var(--ink); line-height: 1.15; margin-bottom: 1rem; }
+        .wl-headline em { font-style: italic; color: var(--green-primary); }
+        .wl-sub { font-size: 0.95rem; color: var(--ink-60); line-height: 1.75; margin-bottom: 2.5rem; }
 
-    /* Active consents */
-    .consent-list { margin-bottom: 2rem; }
-    .consent-card {
-      background: var(--white);
-      border: 1.5px solid var(--border);
-      border-radius: 10px;
-      padding: 1.25rem 1.5rem;
-      margin-bottom: 0.75rem;
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      transition: border-color 0.2s;
-    }
-    .consent-card:hover { border-color: var(--green-accent); }
-    .consent-card.revoked {
-      border-color: var(--red);
-      background: var(--red-bg);
-      opacity: 0.7;
-    }
-    .consent-info { flex: 1; }
-    .consent-info .advertiser { font-weight: 700; font-size: 0.9rem; color: var(--ink); }
-    .consent-info .meta {
-      font-size: 0.75rem;
-      color: var(--ink-60);
-      margin-top: 0.2rem;
-      display: flex;
-      gap: 1rem;
-      flex-wrap: wrap;
-    }
-    .consent-info .meta code {
-      font-size: 0.7rem;
-      background: var(--green-pale);
-      color: var(--green-deep);
-      padding: 0.05rem 0.3rem;
-      border-radius: 3px;
-    }
-    .consent-status {
-      font-size: 0.7rem;
-      font-weight: 700;
-      padding: 0.2rem 0.5rem;
-      border-radius: 6px;
-      text-transform: uppercase;
-      letter-spacing: 0.5px;
-      margin-right: 1rem;
-    }
-    .consent-status.active { background: var(--green-pale); color: var(--green-deep); }
-    .consent-status.revoked-badge { background: var(--red-bg); color: var(--red); }
-    .consent-status.expired { background: var(--gold-bg); color: #7a5c2e; }
-
-    /* Event log */
-    .event-log {
-      background: var(--white);
-      border: 1.5px solid var(--border);
-      border-radius: 12px;
-      overflow: hidden;
-      margin-bottom: 2rem;
-    }
-    .event-log-header {
-      padding: 1rem 1.5rem;
-      border-bottom: 1px solid var(--border);
-      font-weight: 700;
-      font-size: 0.9rem;
-    }
-    .event-log-body {
-      max-height: 300px;
-      overflow-y: auto;
-    }
-    .event-item {
-      padding: 0.7rem 1.5rem;
-      border-bottom: 1px solid var(--border);
-      font-size: 0.8rem;
-      display: flex;
-      gap: 0.75rem;
-      align-items: center;
-    }
-    .event-item:last-child { border-bottom: none; }
-    .event-icon { font-size: 0.9rem; min-width: 20px; }
-    .event-text { color: var(--ink-60); flex: 1; }
-    .event-text strong { color: var(--ink); }
-    .event-time { color: var(--ink-30); font-size: 0.7rem; white-space: nowrap; }
-
-    .disclosure {
-      background: var(--green-tint);
-      border: 1px solid rgba(45,106,79,0.15);
-      border-radius: 8px;
-      padding: 1rem 1.25rem;
-      font-size: 0.78rem;
-      color: var(--ink-60);
-      line-height: 1.6;
-      margin-bottom: 2rem;
-    }
-    .disclosure strong { color: var(--green-deep); }
-    .disclosure a { color: var(--green-primary); text-decoration: none; font-weight: 600; }
-    .disclosure a:hover { text-decoration: underline; }
-
-    footer {
-      text-align: center;
-      padding: 1rem 2rem;
-      font-size: 0.7rem;
-      color: var(--ink-30);
-      border-top: 1px solid var(--border);
-    }
-    footer a { color: var(--green-primary); text-decoration: none; }
-    footer a:hover { text-decoration: underline; }
-
-    @media (max-width: 640px) {
-      .setup-bar { flex-direction: column; }
-      .request-details { grid-template-columns: 1fr; }
-      .stats-row { grid-template-columns: 1fr; }
-      .consent-card { flex-direction: column; align-items: flex-start; gap: 0.75rem; }
-    }
-  </style>
+        /* Responsive */
+        @media (max-width: 768px) {
+            .questions-grid { grid-template-columns: 1fr; }
+            .proof-grid { grid-template-columns: 1fr; }
+            .proof-visual { display: none; }
+            .st-cta-row { flex-direction: column; align-items: center; }
+            .waitlist-form-wrap { flex-direction: column; }
+        }
+        @media (max-width: 480px) { .st-hero { padding: 4rem 1.5rem; } }
+    </style>
 </head>
 <body>
-  <div class="beta-banner">
-    <span class="beta-tag">Beta</span>
-    This is a patent-pending proof of concept. The consent marketplace with real payments is under development.
-  </div>
-  <div class="header">
-    <div class="header-left">
-      <h1>Adworth℠</h1>
-      <span class="user-badge" id="userBadge">Not connected</span>
+
+  <!-- HEADER — exact match to index.html; anchors use /#section for homepage sections -->
+  <header>
+    <div class="container">
+      <nav>
+        <a href="/" class="logo">
+          <span class="logo-mark">Adworth&#8480;</span>
+          <span class="patent-pill">Patent Pending</span>
+        </a>
+        <ul>
+          <li><a href="/#problem">Problem</a></li>
+          <li><a href="/#how-it-works">How It Works</a></li>
+          <li><a href="/#transparency">How We Make Money</a></li>
+          <li><a href="/#founder">Founder</a></li>
+          <li><a href="/#investors">Investors</a></li>
+          <li><a href="/enterprise.html">Enterprise</a></li>
+          <li><a href="#waitlist" class="nav-cta">Join Waitlist</a></li>
+        </ul>
+      </nav>
     </div>
-    <div class="wallet">Earned: <span id="walletBalance">$0.00</span> <span style="font-size:0.7rem;color:rgba(255,255,255,0.5);">(simulated)</span></div>
-  </div>
+  </header>
 
-  <div class="container">
+  <main>
 
-    <!-- Security Warning -->
-    <div class="security-banner">
-      <strong>⚠️ Security Warning:</strong> Never use a real API key in this browser interface. 
-      Use a <strong>test key only</strong>. API keys entered here are stored in browser memory only for this session and are cleared when you close the page. 
-      For production use, authenticate server-side. Learn more in our <a href="/terms.html" style="color:#e05252;font-weight:600;">Terms of Service</a>.
-    </div>
+    <!-- HERO — dark, matches adworth.app dark pattern -->
+    <section class="st-hero">
+      <div class="st-hero-inner">
+        <div class="st-eyebrow">Own your data. Get paid.</div>
+        <h1 class="st-headline">Your data is being sold<br>right now. <em>Without you.</em></h1>
+        <p class="st-sub">
+          Every ad you see, every page you visit, every search you run &mdash;
+          <strong>someone is selling that information.</strong>
+          Not to you. About you. And you&rsquo;ve never seen a cent.
+        </p>
+        <div class="st-cta-row">
+          <a href="#waitlist" class="btn-hero-primary">Join the Waitlist</a>
+          <a href="#how" class="btn-hero-secondary">See how it works &darr;</a>
+        </div>
+      </div>
+    </section>
 
-    <!-- Data Privacy Banner -->
-    <div class="privacy-banner">
-      <strong>🔒 Data Privacy:</strong> No personal data is stored in consent tokens or ledger entries. 
-      All consent records are append-only and cryptographically signed. You can revoke consent at any time. 
-      Revoked data triggers automatic deletion monitoring. See our <a href="/privacy.html">Privacy Policy</a> for full details.
-    </div>
-
-    <!-- Setup -->
-    <div class="setup-bar">
-      <div>
-        <label>API Endpoint</label>
-        <input type="text" id="apiEndpoint" value="https://adworth-consent-api.adworthllc.workers.dev" style="width:360px">
-      </div>
-      <div>
-        <label>API Key (test only)</label>
-        <input type="password" id="apiKey" placeholder="Your test API key" style="width:200px">
-      </div>
-      <div>
-        <label>User ID</label>
-        <input type="text" id="userId" value="test-user-001" style="width:140px">
-      </div>
-      <button class="btn btn-primary" onclick="connectAndLoad()">Connect</button>
-    </div>
-
-    <!-- Stats -->
-    <div class="stats-row">
-      <div class="mini-stat">
-        <div class="val" id="activeCount">—</div>
-        <div class="lbl">Active Consents</div>
-      </div>
-      <div class="mini-stat">
-        <div class="val" id="revokedCount">—</div>
-        <div class="lbl">Revoked</div>
-      </div>
-      <div class="mini-stat">
-        <div class="val earnings" id="totalEarnings">—</div>
-        <div class="lbl">Total Earned</div>
-        <div class="sublbl">(simulated · for demo only)</div>
-      </div>
-    </div>
-
-    <!-- Incoming Request -->
-    <h2 class="section-title">📩 Incoming Data Request</h2>
-    <div class="request-card">
-      <div class="request-header">
-        <span class="advertiser-name" id="reqAdvertiserName">Nike</span>
-        <span class="request-badge">Demo Request</span>
-      </div>
-      <div class="request-body">
-        <div class="request-details">
-          <div class="detail-item">
-            <div class="detail-label">Data Requested</div>
-            <div class="detail-value" id="reqScope">Running & fitness activity</div>
+    <!-- PROBLEM -->
+    <section class="problem" id="problem">
+      <div class="st-container">
+        <div class="section-eyebrow">What&rsquo;s happening right now</div>
+        <h2 class="section-headline">You never said yes.<br><em>They never asked.</em></h2>
+        <p class="section-body">
+          For 15 years I took escalated calls in corporate tech support. I sat with customers who had been
+          financially hurt, legally exposed, emotionally devastated &mdash; almost always because
+          of what happened to their data.
+          <strong>The solution was never a better privacy policy. It was ownership.</strong>
+        </p>
+        <div class="data-timeline">
+          <div class="timeline-item">
+            <div class="tl-icon bad">&#128100;</div>
+            <div class="tl-content">
+              <div class="tl-label bad">Right now &mdash; without Adworth</div>
+              <div class="tl-text">You visit a website. <strong>Your browsing behavior is captured</strong> by tracking scripts you never agreed to and can&rsquo;t see.</div>
+            </div>
           </div>
-          <div class="detail-item">
-            <div class="detail-label">Duration</div>
-            <div class="detail-value" id="reqDuration">30 days</div>
+          <div class="timeline-item">
+            <div class="tl-icon bad">&#128260;</div>
+            <div class="tl-content">
+              <div class="tl-label bad">Seconds later</div>
+              <div class="tl-text">That data is <strong>packaged and sold</strong> to data brokers, ad networks, and advertisers. A bidding war happens in milliseconds.</div>
+            </div>
           </div>
-          <div class="detail-item">
-            <div class="detail-label">Your Payment (simulated)</div>
-            <div class="detail-value money" id="reqPayment">$0.50/month</div>
+          <div class="timeline-item">
+            <div class="tl-icon bad">&#128184;</div>
+            <div class="tl-content">
+              <div class="tl-label bad">The money flows &mdash; just not to you</div>
+              <div class="tl-text">Advertisers pay. Platforms profit. <strong>You get nothing.</strong> Not even the knowledge that it happened.</div>
+            </div>
           </div>
-        </div>
-        <div class="request-terms">
-          <strong>What this means:</strong> <span id="reqAdvertiser">Nike</span> will have access to your
-          <strong id="reqScopeText">running and fitness activity data</strong> for
-          <strong id="reqDurationText">30 days</strong>. They can use it
-          <strong>only for showing you shoe ads</strong> — not for health insurance, not for resale, not for anything else.
-          Your consent is cryptographically bound and cannot be extended, transferred, or falsified.
-          You can revoke at any time. If they keep your data after revocation, the system automatically detects it and
-          sends them a legally-cited deletion request.
-        </div>
-        <div class="request-actions">
-          <button class="btn btn-outline" onclick="denyRequest()">Deny</button>
-          <button class="btn btn-grant" id="grantBtn" onclick="grantConsent()">✓ Grant Consent</button>
+          <div class="timeline-item">
+            <div class="tl-icon bad">&#128683;</div>
+            <div class="tl-content">
+              <div class="tl-label bad">When you try to stop it</div>
+              <div class="tl-text">You can install an ad blocker &mdash; which <strong>burns the whole system down</strong> and breaks half the web. Or accept a 47-page cookie policy that changes nothing.</div>
+            </div>
+          </div>
+          <div class="timeline-item">
+            <div class="tl-icon good">&#128273;</div>
+            <div class="tl-content">
+              <div class="tl-label good">With Adworth &mdash; a lock on the door</div>
+              <div class="tl-text"><strong>You say yes or no. On your terms. With a cryptographic record that can&rsquo;t be faked.</strong> If an advertiser uses your data without a valid token &mdash; Adworth files the legal notice automatically. You do nothing.</div>
+            </div>
+          </div>
         </div>
       </div>
-    </div>
+    </section>
 
-    <!-- Active Consents -->
-    <h2 class="section-title">🔑 My Active Consents <span class="count" id="consentCount">0</span></h2>
-    <div class="consent-list" id="consentList">
-      <div style="text-align:center; padding:2rem; color:var(--ink-30);">Connect to load your consent history</div>
-    </div>
+    <!-- OWNERSHIP ANALOGY -->
+    <section class="ownership">
+      <div class="pull-quote">
+        <span class="pq-mark">&ldquo;</span>
+        <p class="pq-text">
+          Ownership extraction follows the same playbook across every industry.
+          Artists have spent decades fighting just to own what they created.
+          <em>Your data is no different &mdash; someone else is holding the masters.</em>
+          Adworth changes that.
+        </p>
+        <p class="pq-attr"><strong>Nick Johnson</strong> &middot; Founder &amp; CEO, Adworth&#8480; &middot; Former tech support supervisor, 18 years</p>
+      </div>
+    </section>
 
-    <!-- Event Log -->
-    <div class="event-log">
-      <div class="event-log-header">📋 Consent Activity Log</div>
-      <div class="event-log-body" id="eventLog">
-        <div class="event-item">
-          <span class="event-icon">📡</span>
-          <span class="event-text">Waiting for connection...</span>
-          <span class="event-time">—</span>
+    <!-- THREE QUESTIONS -->
+    <section class="questions" id="how">
+      <div class="st-container">
+        <div class="section-eyebrow">How Adworth works</div>
+        <h2 class="section-headline">Every ad has to answer<br><em>three questions.</em></h2>
+        <p class="section-body">
+          Before any ad is served on Adworth, three things have to be true.
+          If any one fails &mdash; <strong>the ad doesn&rsquo;t run.</strong> No exceptions. No workarounds.
+        </p>
+        <div class="questions-grid">
+          <div class="q-card">
+            <div class="q-num">1</div>
+            <div class="q-question">Did the user say yes?</div>
+            <div class="q-answer">You explicitly grant consent &mdash; <strong>on your terms, with a time window you choose.</strong> No buried checkbox. No pre-ticked opt-in. A real yes that you can revoke any time.</div>
+            <span class="q-component">The Seal</span>
+          </div>
+          <div class="q-card" style="transition-delay:0.1s">
+            <div class="q-num">2</div>
+            <div class="q-question">Is that yes still valid?</div>
+            <div class="q-answer">Consent expires. Adworth checks that the token is <strong>still active, still in scope, and hasn&rsquo;t been revoked.</strong> Stale consent is treated the same as no consent.</div>
+            <span class="q-component">The Warden</span>
+          </div>
+          <div class="q-card" style="transition-delay:0.2s">
+            <div class="q-num">3</div>
+            <div class="q-question">Can we prove it?</div>
+            <div class="q-answer">Every consent decision is <strong>cryptographically signed and written to a permanent ledger.</strong> The proof exists whether or not anyone ever asks for it.</div>
+            <span class="q-component">The Logbook</span>
+          </div>
         </div>
       </div>
-    </div>
+    </section>
 
-    <!-- Complete Disclosure -->
-    <div class="disclosure">
-      <strong>Complete Demo & Legal Disclosure:</strong> 
-      This consent interface is a <strong>demonstration only</strong> of the Adworth Consent API (Patent Component #1). 
-      <strong>All payment amounts shown are simulated for demonstration purposes</strong> — no real transactions occur. 
-      The real consent marketplace with cryptographic payments is under development. 
-      API key entry is for demo purposes only — never use production credentials in a browser. 
-      All consent actions are recorded in the Invisibility Ledger (Component #3) as tamper-evident, cryptographically signed entries. 
-      No personally identifiable information (PII) is stored in consent tokens or ledger records. 
-      This is not legal advice, financial advice, or an investment prospectus. 
-      See our <a href="/privacy.html">Privacy Policy</a>, <a href="/terms.html">Terms of Service</a>, and <a href="/">Home</a> for complete information.
-    </div>
+    <!-- PROOF -->
+    <section class="proof" id="proof">
+      <div class="st-container">
+        <div class="section-eyebrow">This isn&rsquo;t a concept</div>
+        <h2 class="section-headline">Built with 20 years of experience,<br><em>conviction, and AI.</em></h2>
+        <p class="section-body">
+          I left my corporate career in December 2025 to build this full-time.
+          The infrastructure is live. The patent is filed. The extension is in testing.
+          <strong>The knowledge needed to solve real problems doesn&rsquo;t come with a price tag.</strong>
+        </p>
+        <div class="proof-grid">
+          <div class="proof-items">
+            <div class="proof-item">
+              <div class="proof-check">&#10003;</div>
+              <div>
+                <div class="proof-label">Patent Pending</div>
+                <div class="proof-desc">Filed February 23, 2026. Confirmation #9128. <strong>Five patented components</strong> covering the full consent infrastructure stack.</div>
+              </div>
+            </div>
+            <div class="proof-item" style="transition-delay:0.08s">
+              <div class="proof-check">&#10003;</div>
+              <div>
+                <div class="proof-label">SC Service Mark + USPTO Trademark</div>
+                <div class="proof-desc">Adworth&#8480; service mark approved March 4, 2026. USPTO trademark Serial No. 99678774, Class 042.</div>
+              </div>
+            </div>
+            <div class="proof-item" style="transition-delay:0.16s">
+              <div class="proof-check">&#10003;</div>
+              <div>
+                <div class="proof-label">29 Live Cloudflare Workers</div>
+                <div class="proof-desc"><strong>Consent API, deletion enforcement, age verification, audit export, breach logging</strong> &mdash; 29 workers running at the edge, globally distributed.</div>
+              </div>
+            </div>
+            <div class="proof-item" style="transition-delay:0.24s">
+              <div class="proof-check">&#10003;</div>
+              <div>
+                <div class="proof-label">Ed25519 Cryptography</div>
+                <div class="proof-desc">FIPS 186-5 approved. The same standard used by <strong>Apple, AWS, Google, and OpenSSH.</strong> No trade-off between privacy and security.</div>
+              </div>
+            </div>
+            <div class="proof-item" style="transition-delay:0.32s">
+              <div class="proof-check">&#10003;</div>
+              <div>
+                <div class="proof-label">Privacy Cockpit Extension &mdash; In Testing</div>
+                <div class="proof-desc">MV3 Chrome extension. <strong>Private keys never leave your device.</strong> GDPR, CCPA, and HIPAA compliant architecture. Chrome Web Store submission ready.</div>
+              </div>
+            </div>
+          </div>
+          <div class="proof-visual">
+            <div class="pv-label">Live consent token preview</div>
+            <div class="pv-token">
+              <div class="pv-token-header">
+                <div class="pv-advertiser">Spotify USA Inc</div>
+                <div class="pv-status"><span class="pv-dot"></span>Active</div>
+              </div>
+              <div class="pv-row"><span class="pv-row-label">Token ID</span><span class="pv-row-value">AWX-7f3a9c2d</span></div>
+              <div class="pv-row"><span class="pv-row-label">Scope</span><span class="pv-row-value">music-listening</span></div>
+              <div class="pv-row"><span class="pv-row-label">Duration</span><span class="pv-row-value">30 days</span></div>
+              <div class="pv-row"><span class="pv-row-label">Signed with</span><span class="pv-row-value">Ed25519 &middot; FIPS 186-5</span></div>
+              <div class="pv-row"><span class="pv-row-label">Earned</span><span class="pv-row-value green">$2.50 / month</span></div>
+            </div>
+            <div class="pv-event"><span class="pv-event-dot green"></span>CONSENT_ISSUED &mdash; Feb 1, 2026 &middot; 09:00 UTC</div>
+            <div class="pv-event"><span class="pv-event-dot red"></span>ACCESS_BLOCKED &mdash; health-data scope violation &middot; auto-denied</div>
+            <div class="pv-event"><span class="pv-event-dot green"></span>PAYMENT_RECEIVED &mdash; $1.25 &middot; Feb 15, 2026</div>
+            <div style="margin-top:1.25rem;padding:0.85rem;background:rgba(82,183,136,0.06);border:1px solid rgba(82,183,136,0.15);border-radius:8px;font-size:0.7rem;color:rgba(255,255,255,0.3);line-height:1.6;">
+              <strong style="color:rgba(255,255,255,0.5);">Demo only.</strong> Simulated token for illustration. No real transaction.
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
 
-  </div>
+    <!-- SIMPLICITY -->
+    <section class="simple" id="simple">
+      <div class="simple-inner">
+        <h2 class="simple-headline">You don&rsquo;t manage anything.<br><em>Adworth does it for you.</em></h2>
+        <p class="simple-body">The most common question we hear: <strong>&ldquo;What do I have to do?&rdquo;</strong><br>Almost nothing. That&rsquo;s the point.</p>
+        <div class="simple-steps">
+          <div class="simple-step">
+            <div class="ss-num">1</div>
+            <div class="ss-text"><strong>Install the Privacy Cockpit extension.</strong> Takes 30 seconds. No account required to start.</div>
+          </div>
+          <div class="simple-step">
+            <div class="ss-num">2</div>
+            <div class="ss-text"><strong>Advertisers request access to your data.</strong> You see who, what scope, for how long, and how much they&rsquo;ll pay.</div>
+          </div>
+          <div class="simple-step">
+            <div class="ss-num">3</div>
+            <div class="ss-text"><strong>You say yes or no.</strong> One tap. No forms. No fine print. Your decision is cryptographically recorded &mdash; permanently.</div>
+          </div>
+          <div class="simple-step">
+            <div class="ss-num">4</div>
+            <div class="ss-text"><strong>If they violate your consent &mdash; Adworth handles it.</strong> Legal notice filed automatically. You do nothing. They have to prove compliance or face consequences.</div>
+          </div>
+        </div>
+        <p style="font-size:0.88rem;color:rgba(255,255,255,0.35);line-height:1.75;max-width:480px;margin:0 auto;">Ad blockers burn the house down. Adworth just puts a lock on the door &mdash; and <em style="color:rgba(255,255,255,0.55);">pays you rent for using it.</em></p>
+      </div>
+    </section>
 
+    <!-- WAITLIST — site-standard IDs and classes -->
+    <section class="waitlist-section" id="waitlist">
+      <div class="wl-inner">
+        <h2 class="wl-headline">
+          Just as we build net worth.<br>
+          Just as we build self worth.<br>
+          <em>It&rsquo;s time we built our Adworth.</em>
+        </h2>
+        <p class="wl-sub">First 1,000 users get founding member status, early marketplace access, and priority support. No spam. No irony.</p>
+        <div class="waitlist-form-wrap" style="max-width:420px;margin:0 auto 1rem;">
+          <input type="email" id="waitlist-email" class="waitlist-email-input" placeholder="your@email.com" required autocomplete="email">
+          <button type="button" id="waitlist-btn" class="waitlist-submit-btn">Join Waitlist</button>
+        </div>
+        <p id="waitlist-msg" style="font-size:0.8rem;color:var(--ink-30);text-align:center;">&#128274; Your data stays yours &mdash; stored on our own infrastructure, never shared. See our <a href="/privacy.html" style="color:var(--green-primary);font-weight:600;">Privacy Policy</a>.</p>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- FOOTER — exact match to index.html; anchors use /#section for homepage sections -->
   <footer>
-    <p>© 2026 Adworth℠ LLC · Patent Pending · Charleston, SC · <a href="/privacy.html">Privacy</a> · <a href="/terms.html">Terms</a> · <a href="/">Home</a></p>
-    <p style="margin-top:0.5rem;color:var(--ink-30);">This demonstration does not constitute an offer to sell or buy securities, provide financial services, or represent a functional product.</p>
+    <div class="container">
+      <div class="footer-grid">
+        <div>
+          <div class="footer-brand-name">Adworth&#8480;</div>
+          <p class="footer-tagline">Cryptographic consent infrastructure for digital advertising. Privacy for people, compliance for platforms.</p>
+          <p class="footer-note">We earn exactly 2% when advertisers pay you for verified consent. That&rsquo;s our only revenue source. Always visible. Always on the ledger. No exceptions.</p>
+        </div>
+        <div class="footer-links">
+          <h4>Product</h4>
+          <ul>
+            <li><a href="/#problem">Problem</a></li>
+            <li><a href="/#how-it-works">How It Works</a></li>
+            <li><a href="/#transparency">How We Make Money</a></li>
+            <li><a href="/app/consent/">How It Works for You</a></li>
+            <li><a href="/ledger.html">Consent Ledger</a></li>
+            <li><a href="/ccpa-gap.html">Ad Transparency Tool</a></li>
+            <li><a href="/app/developers/">Developer Docs</a></li>
+            <li><a href="/enterprise.html">Enterprise</a></li>
+            <li><a href="/#waitlist">Join Waitlist</a></li>
+          </ul>
+        </div>
+        <div class="footer-links">
+          <h4>Company</h4>
+          <ul>
+            <li><a href="/#founder">Founder</a></li>
+            <li><a href="/#investors">Investors</a></li>
+            <li><span class="email-link" data-u="hello" data-d="adworth.app"></span></li>
+          </ul>
+        </div>
+        <div class="footer-links">
+          <h4>Legal</h4>
+          <ul>
+            <li><a href="/privacy.html">Privacy Policy</a></li>
+            <li><a href="/terms.html">Terms of Service</a></li>
+            <li style="border-top: 1px solid var(--border); padding-top: 0.6rem; margin-top: 0.25rem;">
+              <a href="https://adworth-consent-api.adworthllc.workers.dev/optout" id="do-not-sell">Do Not Sell or Share My Personal Information</a>
+              <span style="display: block; font-size: 0.72rem; color: var(--ink-30); line-height: 1.4; margin-top: 0.2rem;">Required by CCPA/CPRA. We don&rsquo;t sell your data &mdash; this link lets you assert that right on record.</span>
+            </li>
+            <li><a href="/.well-known/security.txt">Security Disclosure</a></li>
+          </ul>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <span>&copy; 2026 Adworth&#8480; LLC &middot; Patent Pending &middot; Charleston, SC</span>
+        <span>Built in public &middot; Raising seed round</span>
+      </div>
+    </div>
   </footer>
 
   <script>
-    var BASE = '';
-    var API_KEY = '';
-    var USER_ID = '';
-    var consents = [];
-    var earnings = 0;
+    // Runtime email builder — prevents Cloudflare obfuscation and harvesting
+    document.querySelectorAll('.email-link').forEach(function(el) {
+      var u = el.getAttribute('data-u');
+      var d = el.getAttribute('data-d');
+      var addr = u + '@' + d;
+      var a = document.createElement('a');
+      a.href = 'mailto:' + addr;
+      a.textContent = addr;
+      el.parentNode.replaceChild(a, el);
+    });
 
-    // Simulated advertiser requests
-    var DEMO_REQUESTS = [
-      { advertiser_id: 'nike-ads', name: 'Nike', scope: 'running-data-shoe-ads', scopeLabel: 'Running & fitness activity', use: 'showing you shoe ads', duration: 30, payment: 0.50 },
-      { advertiser_id: 'spotify-ads', name: 'Spotify', scope: 'listening-data-music-ads', scopeLabel: 'Music listening habits', use: 'recommending playlists and audio ads', duration: 60, payment: 0.35 },
-      { advertiser_id: 'whole-foods-ads', name: 'Whole Foods', scope: 'purchase-data-grocery-ads', scopeLabel: 'Grocery purchase history', use: 'personalized grocery deals', duration: 14, payment: 0.75 },
-      { advertiser_id: 'peloton-ads', name: 'Peloton', scope: 'fitness-data-equipment-ads', scopeLabel: 'Workout frequency and type', use: 'equipment recommendations', duration: 30, payment: 0.60 },
-    ];
-    var currentRequest = 0;
-
-    function getHeaders() {
-      return { 'Content-Type': 'application/json', 'Authorization': 'Bearer ' + API_KEY };
-    }
-
-    function addEvent(icon, text) {
-      var log = document.getElementById('eventLog');
-      var time = new Date().toLocaleTimeString('en-US', { hour: '2-digit', minute: '2-digit', second: '2-digit' });
-      var item = document.createElement('div');
-      item.className = 'event-item';
-      item.innerHTML = '<span class="event-icon">' + icon + '</span><span class="event-text">' + text + '</span><span class="event-time">' + time + '</span>';
-      log.insertBefore(item, log.firstChild);
-    }
-
-    function showRequest() {
-      var req = DEMO_REQUESTS[currentRequest % DEMO_REQUESTS.length];
-      document.getElementById('reqAdvertiserName').textContent = req.name;
-      document.getElementById('reqAdvertiser').textContent = req.name;
-      document.getElementById('reqScope').textContent = req.scopeLabel;
-      document.getElementById('reqScopeText').textContent = req.scopeLabel.toLowerCase();
-      document.getElementById('reqDuration').textContent = req.duration + ' days';
-      document.getElementById('reqDurationText').textContent = req.duration + ' days';
-      document.getElementById('reqPayment').textContent = '$' + req.payment.toFixed(2) + '/month';
-      document.getElementById('grantBtn').disabled = false;
-    }
-
-    async function connectAndLoad() {
-      BASE = document.getElementById('apiEndpoint').value.replace(/\/$/, '');
-      API_KEY = document.getElementById('apiKey').value;
-      USER_ID = document.getElementById('userId').value;
-
-      // Security check: require HTTPS
-      if (!BASE.startsWith('https://')) {
-        alert('⚠️ Security Error: API endpoint must use HTTPS (https://...)');
-        addEvent('❌', 'Connection failed: HTTPS required');
-        return;
-      }
-
-      // Validate inputs
-      if (!API_KEY || !USER_ID) {
-        alert('⚠️ Please enter API key and User ID');
-        return;
-      }
-
-      try {
-        var res = await fetch(BASE + '/health');
-        if (!res.ok) throw new Error('API unreachable');
-        document.getElementById('userBadge').textContent = USER_ID;
-        addEvent('✅', 'Connected to Consent API (demo mode)');
-
-        await loadConsents();
-        showRequest();
-      } catch (err) {
-        alert('Connection failed: ' + err.message);
-        addEvent('❌', 'Connection failed: ' + err.message);
-      }
-    }
-
-    async function loadConsents() {
-      try {
-        var res = await fetch(BASE + '/ledger/' + encodeURIComponent(USER_ID), { headers: getHeaders() });
-        if (res.status === 401) { 
-          alert('⚠️ Invalid API key');
-          addEvent('❌', 'Authentication failed: Invalid API key');
-          return; 
+    // Scroll animations
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('visible');
+          observer.unobserve(entry.target);
         }
-
-        var data = await res.json();
-        var entries = data.entries || data.ledger || [];
-
-        // Build consent state from ledger
-        var tokens = {};
-        for (var i = 0; i < entries.length; i++) {
-          var e = entries[i];
-          var tid = e.tokenId || e.token_id;
-          if (!tid) continue;
-
-          if (e.event === 'CONSENT_ISSUED') {
-            tokens[tid] = {
-              token_id: tid,
-              advertiser_id: e.advertiserId || e.advertiser_id || 'unknown',
-              scope: e.scope || 'general',
-              issued_at: e.timestamp,
-              expires_at: (e.details && e.details.expiresAt) || null,
-              duration_days: (e.details && e.details.durationDays) || null,
-              status: 'active',
-            };
-          }
-          if (e.event === 'CONSENT_REVOKED' && tokens[tid]) {
-            tokens[tid].status = 'revoked';
-            tokens[tid].revoked_at = e.timestamp;
-          }
-        }
-
-        // Check for expired
-        var now = new Date();
-        Object.values(tokens).forEach(function(t) {
-          if (t.status === 'active' && t.expires_at && new Date(t.expires_at) < now) {
-            t.status = 'expired';
-          }
-        });
-
-        consents = Object.values(tokens).sort(function(a, b) {
-          return new Date(b.issued_at) - new Date(a.issued_at);
-        });
-
-        renderConsents();
-        addEvent('📋', 'Loaded ' + consents.length + ' consent records from ledger');
-      } catch (err) {
-        addEvent('❌', 'Failed to load consent history: ' + err.message);
-      }
-    }
-
-    function renderConsents() {
-      var active = consents.filter(function(c) { return c.status === 'active'; });
-      var revoked = consents.filter(function(c) { return c.status === 'revoked'; });
-      var expired = consents.filter(function(c) { return c.status === 'expired'; });
-
-      document.getElementById('activeCount').textContent = active.length;
-      document.getElementById('revokedCount').textContent = revoked.length + expired.length;
-      document.getElementById('consentCount').textContent = consents.length;
-
-      // Simulated earnings: $0.50 per active consent per month
-      earnings = active.length * 0.50;
-      document.getElementById('totalEarnings').textContent = '$' + earnings.toFixed(2);
-      document.getElementById('walletBalance').textContent = '$' + earnings.toFixed(2);
-
-      var html = '';
-      consents.forEach(function(c) {
-        var statusClass = c.status === 'active' ? 'active' : (c.status === 'revoked' ? 'revoked-badge' : 'expired');
-        var cardClass = c.status === 'revoked' ? ' revoked' : '';
-        var revokeBtn = c.status === 'active'
-          ? '<button class="btn btn-revoke btn-sm" onclick="revokeConsent(\'' + c.token_id + '\')">Revoke</button>'
-          : '';
-
-        html += '<div class="consent-card' + cardClass + '">' +
-          '<div class="consent-info">' +
-            '<div class="advertiser">' + c.advertiser_id + '</div>' +
-            '<div class="meta">' +
-              '<span>Scope: <code>' + c.scope + '</code></span>' +
-              '<span>Token: <code>' + c.token_id.substring(0, 12) + '...</code></span>' +
-              (c.expires_at ? '<span>Expires: ' + new Date(c.expires_at).toLocaleDateString() + '</span>' : '') +
-            '</div>' +
-          '</div>' +
-          '<span class="consent-status ' + statusClass + '">' + c.status + '</span>' +
-          revokeBtn +
-        '</div>';
       });
+    }, { threshold: 0.15 });
+    document.querySelectorAll('.timeline-item, .q-card, .proof-item').forEach(el => observer.observe(el));
 
-      if (consents.length === 0) {
-        html = '<div style="text-align:center;padding:2rem;color:var(--ink-30);">No consent records found for this user</div>';
+    // Waitlist — site-standard IDs, posts to adworth-waitlist Worker
+    document.getElementById('waitlist-btn').addEventListener('click', async function () {
+      const emailInput = document.getElementById('waitlist-email');
+      const msg = document.getElementById('waitlist-msg');
+      const btn = this;
+      const email = emailInput.value.trim();
+
+      if (!email || !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
+        msg.style.color = '#c0392b';
+        msg.textContent = 'Please enter a valid email address.';
+        return;
       }
 
-      document.getElementById('consentList').innerHTML = html;
-    }
-
-    async function grantConsent() {
-      var req = DEMO_REQUESTS[currentRequest % DEMO_REQUESTS.length];
-      var btn = document.getElementById('grantBtn');
+      btn.textContent = 'Submitting\u2026';
       btn.disabled = true;
-      btn.textContent = 'Issuing token...';
+      msg.style.color = 'var(--ink-30)';
+      msg.textContent = 'Your data stays yours \u2014 stored on our own infrastructure, never shared.';
 
       try {
-        var res = await fetch(BASE + '/consent/issue', {
+        const res = await fetch('https://adworth-waitlist.adworthllc.workers.dev/submit', {
           method: 'POST',
-          headers: getHeaders(),
-          body: JSON.stringify({
-            userId: USER_ID,
-            advertiserId: req.advertiser_id,
-            scope: req.scope,
-            durationDays: req.duration,
-          }),
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ email: email, source: 'consent-story' })
         });
-
-        var data = await res.json();
-
-        if (res.ok && (data.tokenId || (data.token && data.token.tokenId))) {
-          var tid = data.tokenId || data.token.tokenId;
-          addEvent('🔑', '<strong>Consent granted</strong> to ' + req.name + ' — Token: <code>' + tid.substring(0, 12) + '...</code>');
-          addEvent('💰', '<strong>Payment simulated:</strong> $' + req.payment.toFixed(2) + '/month from ' + req.name + ' (demo only)');
-
-          currentRequest++;
-          showRequest();
-          await loadConsents();
-        } else {
-          addEvent('❌', 'Grant failed: ' + (data.error || data.message || 'Unknown error'));
-          btn.disabled = false;
-          btn.textContent = '✓ Grant Consent';
-        }
-      } catch (err) {
-        addEvent('❌', 'Grant failed: ' + err.message);
-        btn.disabled = false;
-        btn.textContent = '✓ Grant Consent';
-      }
-
-      btn.textContent = '✓ Grant Consent';
-    }
-
-    async function revokeConsent(tokenId) {
-      try {
-        var res = await fetch(BASE + '/consent/revoke', {
-          method: 'POST',
-          headers: getHeaders(),
-          body: JSON.stringify({
-            userId: USER_ID,
-            tokenId: tokenId,
-          }),
-        });
-
-        var data = await res.json();
-
         if (res.ok) {
-          addEvent('🚫', '<strong>Consent revoked</strong> — Token: <code>' + tokenId.substring(0, 12) + '...</code>');
-          addEvent('⏹️', 'Payments stopped. Data deletion enforced.');
-          await loadConsents();
+          btn.textContent = '\u2713 You\u2019re on the list!';
+          btn.style.background = '#52b788';
+          emailInput.value = '';
+          msg.style.color = 'var(--green-primary)';
+          msg.textContent = 'Welcome. We\u2019ll be in touch when the marketplace opens.';
         } else {
-          addEvent('❌', 'Revoke failed: ' + (data.error || data.message || 'Unknown error'));
+          throw new Error('Server error');
         }
       } catch (err) {
-        addEvent('❌', 'Revoke failed: ' + err.message);
+        btn.textContent = 'Try again';
+        btn.style.background = '#c0392b';
+        btn.disabled = false;
+        msg.style.color = '#c0392b';
+        msg.textContent = 'Something went wrong. Please try again or email hello@adworth.app';
       }
-    }
-
-    function denyRequest() {
-      var req = DEMO_REQUESTS[currentRequest % DEMO_REQUESTS.length];
-      addEvent('🚫', 'Denied data request from <strong>' + req.name + '</strong> — no token issued, no data shared');
-      currentRequest++;
-      showRequest();
-    }
+    });
   </script>
+
+  <script defer src="https://static.cloudflareinsights.com/beacon.min.js/v8c78df7c7c0f484497ecbca7046644da1771523124516" integrity="sha512-8DS7rgIrAmghBFwoOTujcf6D9rXvH8xm8JQ1Ja01h9QX8EzXldiszufYa4IFfKdLUKTTrnSFXLDkUEOTrZQ8Qg==" data-cf-beacon='{"version":"2024.11.0","token":"7a960585c0124d9eb1bd09e01230cdef","r":1,"server_timing":{"name":{"cfCacheStatus":true,"cfEdge":true,"cfExtPri":true,"cfL4":true,"cfOrigin":true,"cfSpeedBrain":true},"location_startswith":null}}' crossorigin="anonymous"></script>
+
 </body>
 </html>
