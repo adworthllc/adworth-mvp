@@ -513,7 +513,7 @@
         <div class="live-pill"><span class="dot"></span> Live Data</div>
         <a href="/enterprise.html" class="context-banner-link">Investor Overview &#8594;</a>
         <a href="/enterprise.html#rpe-demo" class="context-banner-link">RPE Compliance Demo &#8594;</a>
-        <a href="/ccpa-gap.html" class="context-banner-link">CCPA Enforcement Gap &#8594;</a>
+        <a href="/ccpa-gap.html" class="context-banner-link">Ad Transparency Tool &#8594;</a>
         <a href="/" class="context-banner-link">&#8592; Back to Home</a>
       </div>
     </div>
@@ -660,7 +660,7 @@
       <a href="/privacy.html">Privacy Policy</a> &#183;
       <a href="/terms.html">Terms of Service</a> &#183;
       <a href="/ledger.html">Consent Ledger</a> &#183;
-      <a href="/ccpa-gap.html">CCPA Enforcement Gap</a> &#183;
+      <a href="/ccpa-gap.html">Ad Transparency Tool</a> &#183;
       <a href="/enterprise.html">Enterprise</a> &#183;
       <a href="/">&#8592; Back to Home</a>
     </p>
@@ -681,7 +681,7 @@
     // ── HEALTH CHECK ────────────────────────────────────────
     async function checkHealth() {
       try {
-        const res = await fetch(WORKER_URL + '/');
+        const res = await fetch(WORKER_URL + '/health');
         if (res.ok) {
           document.getElementById('status-dot').className = 'dot';
           document.getElementById('status-text').textContent = 'API Live';
