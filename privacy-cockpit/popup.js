@@ -51,16 +51,20 @@ async function handleSetup() {
     if (!registerRes.ok) throw new Error('Registration failed: ' + registerRes.statusText);
     const { setup_token } = await registerRes.json();
 
-    // extractable: true so we can export the public key
-    // Private key stays as non-exportable CryptoKey object in service worker memory
-    const keyPair = await crypto.subtle.generateKey(
-      { name: 'Ed25519' },
-      true,
-      ['sign', 'verify']
-    );
+    // Key generation happens in background.js service worker — CryptoKey objects
+    // cannot survive chrome.runtime.sendMessage serialization so we never pass them
+    const keyGenResult = await new Promise((resolve, reject) => {
+      chrome.runtime.sendMessage(
+        { action: 'generateKey', userId: userId },
+        (response) => {
+          if (chrome.runtime.lastError) reject(new Error(chrome.runtime.lastError.message));
+          else if (!response?.success) reject(new Error(response?.error || 'Key generation failed'));
+          else resolve(response);
+        }
+      );
+    });
 
-    const publicKeyBuffer = await crypto.subtle.exportKey('raw', keyPair.publicKey);
-    const publicKeyBase64 = btoa(String.fromCharCode(...new Uint8Array(publicKeyBuffer)));
+    const publicKeyBase64 = keyGenResult.publicKey;
     const deviceFingerprint = generateDeviceFingerprint();
 
     const uploadRes = await fetch(`${API_BASE}/extension/upload-pubkey`, {
@@ -86,11 +90,7 @@ async function handleSetup() {
       private_key_ref: 'stored_in_crypto_api'
     });
 
-    chrome.runtime.sendMessage({
-      action: 'storePrivateKey',
-      userId: userId,
-      privateKey: keyPair.privateKey
-    });
+    // Private key already stored inside background.js generateKey handler — nothing to pass here
 
     messageEl.className = 'message success';
     messageEl.textContent = '✓ Setup complete! Ready to sync data.';
