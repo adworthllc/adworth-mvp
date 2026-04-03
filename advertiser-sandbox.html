@@ -1,0 +1,891 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Advertiser Sandbox — Adworth℠</title>
+<meta name="robots" content="noindex">
+<link rel="preconnect" href="https://adworth-fonts.adworthllc.workers.dev">
+<link href="https://adworth-fonts.adworthllc.workers.dev/css2?family=Poppins:wght@300;400;500;600;700;800&family=DM+Serif+Display:ital@0;1&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --green:        #1a4a35;
+    --green-mid:    #2d6a4f;
+    --green-light:  #e8f4ee;
+    --green-pale:   #f0faf3;
+    --gold:         #c9a84c;
+    --gold-light:   #fdf3dc;
+    --granted:      #16a34a;
+    --granted-bg:   #dcfce7;
+    --blocked:      #dc2626;
+    --blocked-bg:   #fee2e2;
+    --white:        #ffffff;
+    --ink:          #111410;
+    --ink-60:       #555a50;
+    --ink-30:       #b0b5aa;
+    --border:       #e2e8df;
+    --bg:           #f4f7f5;
+    --code-bg:      #0f2419;
+  }
+
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+
+  body {
+    font-family: 'Poppins', sans-serif;
+    background: var(--bg);
+    color: var(--ink);
+    min-height: 100vh;
+  }
+
+  /* ── TOP BAR ── */
+  .topbar {
+    background: var(--green);
+    padding: 14px 32px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+  .topbar-logo {
+    font-size: 18px;
+    font-weight: 800;
+    color: white;
+    letter-spacing: -0.5px;
+  }
+  .topbar-logo span { color: var(--gold); }
+  .topbar-badge {
+    font-size: 10px;
+    font-weight: 700;
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+    background: rgba(201,168,76,0.2);
+    border: 1px solid var(--gold);
+    color: var(--gold);
+    padding: 4px 12px;
+    border-radius: 20px;
+  }
+  .topbar-right {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+  }
+  .connection-dot {
+    width: 8px; height: 8px;
+    border-radius: 50%;
+    background: #6b7280;
+    display: inline-block;
+    transition: background 0.3s;
+  }
+  .connection-dot.live { background: #22c55e; box-shadow: 0 0 6px #22c55e; }
+  .connection-label {
+    font-size: 12px;
+    color: rgba(255,255,255,0.6);
+    font-weight: 500;
+  }
+
+  /* ── HERO ── */
+  .hero {
+    background: var(--green);
+    padding: 0 32px 40px;
+    border-bottom: 1px solid rgba(255,255,255,0.08);
+  }
+  .hero-inner {
+    max-width: 1000px;
+    margin: 0 auto;
+  }
+  .hero h1 {
+    font-family: 'DM Serif Display', serif;
+    font-size: 36px;
+    color: white;
+    line-height: 1.2;
+    margin-bottom: 10px;
+  }
+  .hero h1 em { color: var(--gold); font-style: normal; }
+  .hero p {
+    color: rgba(255,255,255,0.65);
+    font-size: 14px;
+    max-width: 560px;
+    line-height: 1.7;
+  }
+
+  /* ── CONNECT BAR ── */
+  .connect-bar {
+    background: white;
+    border-bottom: 1px solid var(--border);
+    padding: 16px 32px;
+  }
+  .connect-inner {
+    max-width: 1000px;
+    margin: 0 auto;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    flex-wrap: wrap;
+  }
+  .connect-label {
+    font-size: 12px;
+    font-weight: 600;
+    color: var(--ink-60);
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    white-space: nowrap;
+  }
+  .connect-input {
+    flex: 1;
+    min-width: 200px;
+    max-width: 320px;
+    padding: 9px 14px;
+    border: 1.5px solid var(--border);
+    border-radius: 7px;
+    font-family: 'Poppins', sans-serif;
+    font-size: 13px;
+    outline: none;
+    transition: border-color 0.15s;
+  }
+  .connect-input:focus { border-color: var(--green); }
+  .btn {
+    padding: 9px 22px;
+    border-radius: 7px;
+    font-family: 'Poppins', sans-serif;
+    font-size: 13px;
+    font-weight: 600;
+    cursor: pointer;
+    border: none;
+    transition: all 0.15s;
+    white-space: nowrap;
+  }
+  .btn-primary {
+    background: var(--green);
+    color: white;
+  }
+  .btn-primary:hover { background: var(--green-mid); }
+  .btn-primary:disabled { background: var(--ink-30); cursor: not-allowed; }
+  .btn-granted {
+    background: var(--granted);
+    color: white;
+  }
+  .btn-granted:hover { opacity: 0.9; }
+  .btn-granted:disabled { background: var(--ink-30); cursor: not-allowed; }
+  .btn-blocked {
+    background: var(--blocked);
+    color: white;
+  }
+  .btn-blocked:hover { opacity: 0.9; }
+  .btn-blocked:disabled { background: var(--ink-30); cursor: not-allowed; }
+  .btn-outline {
+    background: white;
+    color: var(--green);
+    border: 1.5px solid var(--green);
+  }
+  .btn-outline:hover { background: var(--green-pale); }
+  .btn-outline:disabled { border-color: var(--ink-30); color: var(--ink-30); cursor: not-allowed; }
+  .connect-status {
+    font-size: 12px;
+    font-weight: 600;
+    padding: 4px 12px;
+    border-radius: 20px;
+    display: none;
+  }
+  .connect-status.ok { display: inline-block; background: var(--granted-bg); color: var(--granted); }
+  .connect-status.err { display: inline-block; background: var(--blocked-bg); color: var(--blocked); }
+
+  /* ── MAIN LAYOUT ── */
+  .main {
+    max-width: 1000px;
+    margin: 32px auto;
+    padding: 0 32px 80px;
+    display: grid;
+    grid-template-columns: 340px 1fr;
+    gap: 24px;
+    align-items: start;
+  }
+
+  /* ── PANEL ── */
+  .panel {
+    background: white;
+    border-radius: 12px;
+    border: 1px solid var(--border);
+    overflow: hidden;
+  }
+  .panel-header {
+    padding: 16px 20px;
+    border-bottom: 1px solid var(--border);
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  }
+  .panel-title {
+    font-size: 13px;
+    font-weight: 700;
+    color: var(--ink);
+    letter-spacing: 0.3px;
+  }
+  .panel-subtitle {
+    font-size: 11px;
+    color: var(--ink-60);
+    margin-top: 2px;
+  }
+  .panel-body { padding: 20px; }
+
+  /* ── FORM FIELDS ── */
+  .field { margin-bottom: 16px; }
+  .field:last-child { margin-bottom: 0; }
+  .field label {
+    display: block;
+    font-size: 11px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    color: var(--ink-60);
+    margin-bottom: 6px;
+  }
+  .field input, .field select {
+    width: 100%;
+    padding: 9px 12px;
+    border: 1.5px solid var(--border);
+    border-radius: 7px;
+    font-family: 'Poppins', sans-serif;
+    font-size: 13px;
+    color: var(--ink);
+    outline: none;
+    transition: border-color 0.15s;
+    background: white;
+  }
+  .field input:focus, .field select:focus { border-color: var(--green); }
+  .field-hint {
+    font-size: 11px;
+    color: var(--ink-30);
+    margin-top: 4px;
+    font-style: italic;
+  }
+
+  /* ── SCENARIO BUTTONS ── */
+  .scenario-row {
+    display: flex;
+    gap: 8px;
+    margin-bottom: 16px;
+  }
+  .scenario-btn {
+    flex: 1;
+    padding: 8px 10px;
+    border-radius: 7px;
+    font-family: 'Poppins', sans-serif;
+    font-size: 11px;
+    font-weight: 700;
+    cursor: pointer;
+    border: 1.5px solid;
+    text-align: center;
+    transition: all 0.15s;
+    line-height: 1.4;
+  }
+  .scenario-btn.granted-scenario {
+    background: var(--granted-bg);
+    border-color: var(--granted);
+    color: var(--granted);
+  }
+  .scenario-btn.granted-scenario:hover { background: #bbf7d0; }
+  .scenario-btn.blocked-scenario {
+    background: var(--blocked-bg);
+    border-color: var(--blocked);
+    color: var(--blocked);
+  }
+  .scenario-btn.blocked-scenario:hover { background: #fecaca; }
+  .scenario-btn:disabled { opacity: 0.4; cursor: not-allowed; }
+
+  .divider { height: 1px; background: var(--border); margin: 16px 0; }
+
+  /* ── RESULT PANEL ── */
+  .result-empty {
+    padding: 60px 20px;
+    text-align: center;
+    color: var(--ink-30);
+  }
+  .result-empty .icon { font-size: 48px; margin-bottom: 12px; }
+  .result-empty p { font-size: 13px; line-height: 1.6; }
+
+  /* ── DECISION BADGE ── */
+  .decision-banner {
+    padding: 28px 24px;
+    text-align: center;
+    border-bottom: 1px solid var(--border);
+    animation: fadeIn 0.3s ease;
+  }
+  .decision-banner.granted { background: var(--granted-bg); }
+  .decision-banner.blocked { background: var(--blocked-bg); }
+  .decision-word {
+    font-family: 'DM Serif Display', serif;
+    font-size: 52px;
+    line-height: 1;
+    margin-bottom: 6px;
+  }
+  .decision-word.granted { color: var(--granted); }
+  .decision-word.blocked { color: var(--blocked); }
+  .decision-tagline {
+    font-size: 13px;
+    font-weight: 600;
+  }
+  .decision-tagline.granted { color: var(--granted); }
+  .decision-tagline.blocked { color: var(--blocked); }
+  .decision-meta {
+    font-size: 11px;
+    color: var(--ink-60);
+    margin-top: 6px;
+    font-family: 'Courier New', monospace;
+  }
+
+  /* ── FEE BOX ── */
+  .fee-box {
+    background: var(--gold-light);
+    border: 2px solid var(--gold);
+    border-radius: 8px;
+    padding: 14px 18px;
+    margin: 16px 20px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    animation: fadeIn 0.4s ease;
+  }
+  .fee-label { font-size: 12px; font-weight: 600; color: var(--green); }
+  .fee-label span { display: block; font-size: 10px; color: var(--ink-60); font-weight: 400; margin-top: 2px; }
+  .fee-amount { font-family: 'DM Serif Display', serif; font-size: 28px; color: var(--green); }
+
+  /* ── CHECKS LIST ── */
+  .checks-section { padding: 16px 20px; }
+  .checks-title {
+    font-size: 11px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    color: var(--ink-60);
+    margin-bottom: 12px;
+  }
+  .check-item {
+    display: flex;
+    align-items: flex-start;
+    gap: 10px;
+    padding: 10px 0;
+    border-bottom: 1px solid var(--border);
+    animation: slideIn 0.2s ease both;
+  }
+  .check-item:last-child { border-bottom: none; }
+  .check-icon {
+    width: 22px; height: 22px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 11px;
+    font-weight: 700;
+    flex-shrink: 0;
+    margin-top: 1px;
+  }
+  .check-icon.pass { background: var(--granted-bg); color: var(--granted); }
+  .check-icon.fail { background: var(--blocked-bg); color: var(--blocked); }
+  .check-name {
+    font-size: 11px;
+    font-weight: 700;
+    color: var(--ink);
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    margin-bottom: 2px;
+  }
+  .check-detail { font-size: 12px; color: var(--ink-60); line-height: 1.5; }
+
+  /* ── TOKEN BOX ── */
+  .token-box {
+    margin: 0 20px 16px;
+    background: var(--green);
+    border-radius: 8px;
+    padding: 12px 16px;
+    animation: fadeIn 0.4s ease;
+  }
+  .token-label { font-size: 10px; font-weight: 700; text-transform: uppercase; letter-spacing: 1px; color: var(--gold); margin-bottom: 4px; }
+  .token-id { font-family: 'Courier New', monospace; font-size: 12px; color: rgba(255,255,255,0.85); word-break: break-all; }
+
+  /* ── STATS BAR ── */
+  .stats-bar {
+    background: white;
+    border-radius: 12px;
+    border: 1px solid var(--border);
+    padding: 16px 20px;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 0;
+    margin-bottom: 24px;
+  }
+  .stat-item { text-align: center; padding: 0 12px; }
+  .stat-item + .stat-item { border-left: 1px solid var(--border); }
+  .stat-num {
+    font-family: 'DM Serif Display', serif;
+    font-size: 28px;
+    color: var(--green);
+    line-height: 1;
+  }
+  .stat-num.granted { color: var(--granted); }
+  .stat-num.blocked { color: var(--blocked); }
+  .stat-label { font-size: 11px; color: var(--ink-60); font-weight: 600; margin-top: 4px; text-transform: uppercase; letter-spacing: 0.5px; }
+
+  /* ── BLOCK REASON ── */
+  .block-reason {
+    margin: 0 20px 16px;
+    background: var(--blocked-bg);
+    border: 1.5px solid var(--blocked);
+    border-radius: 8px;
+    padding: 12px 16px;
+    animation: fadeIn 0.3s ease;
+  }
+  .block-reason-label { font-size: 10px; font-weight: 700; text-transform: uppercase; letter-spacing: 1px; color: var(--blocked); margin-bottom: 4px; }
+  .block-reason-text { font-size: 13px; font-weight: 600; color: var(--blocked); }
+
+  /* ── LOADING ── */
+  .loading {
+    padding: 48px 20px;
+    text-align: center;
+  }
+  .spinner {
+    width: 36px; height: 36px;
+    border: 3px solid var(--border);
+    border-top-color: var(--green);
+    border-radius: 50%;
+    animation: spin 0.7s linear infinite;
+    margin: 0 auto 14px;
+  }
+  .loading p { font-size: 13px; color: var(--ink-60); }
+
+  /* ── PATENT NOTE ── */
+  .patent-note {
+    background: var(--gold-light);
+    border: 1px solid var(--gold);
+    border-radius: 8px;
+    padding: 10px 14px;
+    margin-top: 16px;
+    font-size: 11px;
+    color: var(--green);
+    font-weight: 500;
+    line-height: 1.6;
+  }
+
+  /* ── ANIMATIONS ── */
+  @keyframes fadeIn { from { opacity: 0; transform: translateY(6px); } to { opacity: 1; transform: none; } }
+  @keyframes slideIn { from { opacity: 0; transform: translateX(-8px); } to { opacity: 1; transform: none; } }
+  @keyframes spin { to { transform: rotate(360deg); } }
+
+  @media (max-width: 700px) {
+    .main { grid-template-columns: 1fr; padding: 0 16px 60px; }
+    .hero { padding: 0 16px 32px; }
+    .hero h1 { font-size: 28px; }
+    .connect-bar { padding: 14px 16px; }
+    .stats-bar { grid-template-columns: 1fr; }
+    .stat-item + .stat-item { border-left: none; border-top: 1px solid var(--border); padding-top: 12px; margin-top: 12px; }
+  }
+</style>
+</head>
+<body>
+
+<!-- TOP BAR -->
+<div class="topbar">
+  <div class="topbar-logo">Adworth<span>℠</span></div>
+  <div class="topbar-right">
+    <span class="topbar-badge">Advertiser Sandbox</span>
+    <span class="connection-dot" id="connDot"></span>
+    <span class="connection-label" id="connLabel">Not connected</span>
+  </div>
+</div>
+
+<!-- HERO -->
+<div class="hero">
+  <div class="hero-inner">
+    <h1>Privacy Governance <em>Engine</em></h1>
+    <p>Live advertiser access evaluation. Every ad request is verified against a cryptographic consent token before serving. No Seal, no serve.</p>
+  </div>
+</div>
+
+<!-- CONNECT BAR -->
+<div class="connect-bar">
+  <div class="connect-inner">
+    <span class="connect-label">API Key</span>
+    <input type="password" class="connect-input" id="apiKeyInput" placeholder="Enter API key to connect…">
+    <button class="btn btn-primary" id="connectBtn" onclick="connect()">Connect</button>
+    <span class="connect-status" id="connectStatus"></span>
+  </div>
+</div>
+
+<!-- MAIN -->
+<div class="main">
+
+  <!-- LEFT: CONTROLS -->
+  <div>
+
+    <!-- STATS -->
+    <div class="stats-bar" id="statsBar" style="display:none">
+      <div class="stat-item">
+        <div class="stat-num" id="statTotal">0</div>
+        <div class="stat-label">Total Evaluated</div>
+      </div>
+      <div class="stat-item">
+        <div class="stat-num granted" id="statGranted">0</div>
+        <div class="stat-label">Granted</div>
+      </div>
+      <div class="stat-item">
+        <div class="stat-num blocked" id="statBlocked">0</div>
+        <div class="stat-label">Blocked</div>
+      </div>
+    </div>
+
+    <!-- QUICK SCENARIOS -->
+    <div class="panel" style="margin-bottom:16px">
+      <div class="panel-header">
+        <div>
+          <div class="panel-title">🎬 Demo Scenarios</div>
+          <div class="panel-subtitle">Pre-built flows for investor recording</div>
+        </div>
+      </div>
+      <div class="panel-body">
+        <div class="scenario-row">
+          <button class="scenario-btn granted-scenario" id="btnGranted" onclick="runScenario('granted')" disabled>
+            ✓ GRANTED<br>Active Consent
+          </button>
+          <button class="scenario-btn blocked-scenario" id="btnBlocked" onclick="runScenario('blocked')" disabled>
+            ✗ BLOCKED<br>No Consent Token
+          </button>
+        </div>
+        <div class="scenario-row">
+          <button class="scenario-btn blocked-scenario" id="btnRevoked" onclick="runScenario('revoked')" disabled>
+            ✗ BLOCKED<br>Consent Revoked
+          </button>
+          <button class="scenario-btn blocked-scenario" id="btnMinor" onclick="runScenario('minor')" disabled>
+            ✗ BLOCKED<br>Minor Shield
+          </button>
+        </div>
+        <div class="patent-note">
+          Patent Pending #9128 · Privacy Governance Engine (Component #2) · All decisions logged to tamper-evident ledger
+        </div>
+      </div>
+    </div>
+
+    <!-- MANUAL EVALUATE -->
+    <div class="panel">
+      <div class="panel-header">
+        <div>
+          <div class="panel-title">Manual Evaluation</div>
+          <div class="panel-subtitle">Custom advertiser access request</div>
+        </div>
+      </div>
+      <div class="panel-body">
+        <div class="field">
+          <label>Advertiser ID</label>
+          <input type="text" id="fAdvertiser" value="nike-ads" placeholder="advertiser-id">
+          <div class="field-hint">Advertiser requesting data access</div>
+        </div>
+        <div class="field">
+          <label>User ID</label>
+          <input type="text" id="fUser" value="test-user-001" placeholder="user-id">
+          <div class="field-hint">User whose consent is being verified</div>
+        </div>
+        <div class="field">
+          <label>Data Scope</label>
+          <input type="text" id="fScope" value="running-data-shoe-ads" placeholder="e.g. behavioral_targeting">
+          <div class="field-hint">Type of data access being requested</div>
+        </div>
+        <div class="field">
+          <label>Request Reason</label>
+          <select id="fReason">
+            <option value="targeted_advertising">targeted_advertising</option>
+            <option value="data_access">data_access</option>
+            <option value="retargeting">retargeting</option>
+            <option value="lookalike_audience">lookalike_audience</option>
+          </select>
+        </div>
+        <div class="divider"></div>
+        <button class="btn btn-primary" id="evalBtn" onclick="evaluate()" disabled style="width:100%">
+          Evaluate Access Request →
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <!-- RIGHT: RESULT -->
+  <div id="resultPanel">
+    <div class="panel">
+      <div class="result-empty" id="emptyState">
+        <div class="icon">🛡️</div>
+        <p>Connect with your API key and run a scenario.<br>The Bouncer will evaluate consent in real time.</p>
+      </div>
+      <div id="loadingState" style="display:none">
+        <div class="loading">
+          <div class="spinner"></div>
+          <p>Evaluating consent token…</p>
+        </div>
+      </div>
+      <div id="resultState" style="display:none">
+        <!-- Decision banner -->
+        <div class="decision-banner" id="decisionBanner">
+          <div class="decision-word" id="decisionWord"></div>
+          <div class="decision-tagline" id="decisionTagline"></div>
+          <div class="decision-meta" id="decisionMeta"></div>
+        </div>
+
+        <!-- Fee box (GRANTED only) -->
+        <div class="fee-box" id="feeBox" style="display:none">
+          <div class="fee-label">
+            Adworth Transaction Fee
+            <span>2% on verified consent transaction · Stripe model</span>
+          </div>
+          <div class="fee-amount" id="feeAmount">$0.02</div>
+        </div>
+
+        <!-- Token used (GRANTED only) -->
+        <div class="token-box" id="tokenBox" style="display:none">
+          <div class="token-label">Consent Token Used</div>
+          <div class="token-id" id="tokenId"></div>
+        </div>
+
+        <!-- Block reason (BLOCKED only) -->
+        <div class="block-reason" id="blockReasonBox" style="display:none">
+          <div class="block-reason-label">Block Reason</div>
+          <div class="block-reason-text" id="blockReasonText"></div>
+        </div>
+
+        <!-- Checks -->
+        <div class="checks-section">
+          <div class="checks-title">Governance Engine — Check Pipeline</div>
+          <div id="checksList"></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+</div>
+
+<script>
+(function() {
+  const BASE = 'https://adworth-bouncer.adworthllc.workers.dev';
+  let apiKey = '';
+  let connected = false;
+
+  // ── CONNECT ──────────────────────────────────────────────────────────────
+  window.connect = async function() {
+    const input = document.getElementById('apiKeyInput');
+    const key = input.value.trim();
+    if (!key) { showConnectStatus('Enter an API key', 'err'); return; }
+
+    const btn = document.getElementById('connectBtn');
+    btn.disabled = true; btn.textContent = 'Connecting…';
+
+    try {
+      const res = await fetch(BASE + '/stats', {
+        headers: { 'X-API-Key': key, 'Content-Type': 'application/json' }
+      });
+      if (res.status === 401) {
+        showConnectStatus('Invalid API key', 'err');
+        btn.disabled = false; btn.textContent = 'Connect';
+        return;
+      }
+      const stats = await res.json();
+      apiKey = key;
+      input.value = '';
+      connected = true;
+
+      // Update UI
+      document.getElementById('connDot').className = 'connection-dot live';
+      document.getElementById('connLabel').textContent = 'Live — Bouncer v2.3.0';
+      showConnectStatus('✓ Connected', 'ok');
+      btn.textContent = '✓ Connected';
+      btn.style.background = '#16a34a';
+
+      // Enable controls
+      ['btnGranted','btnBlocked','btnRevoked','btnMinor','evalBtn'].forEach(id => {
+        document.getElementById(id).disabled = false;
+      });
+
+      // Show stats
+      renderStats(stats);
+    } catch(err) {
+      showConnectStatus('Connection failed', 'err');
+      btn.disabled = false; btn.textContent = 'Connect';
+    }
+  };
+
+  function showConnectStatus(msg, type) {
+    const el = document.getElementById('connectStatus');
+    el.textContent = msg;
+    el.className = 'connect-status ' + type;
+  }
+
+  function renderStats(stats) {
+    document.getElementById('statTotal').textContent   = stats.totalRequests || 0;
+    document.getElementById('statGranted').textContent = stats.totalGranted  || 0;
+    document.getElementById('statBlocked').textContent = stats.totalBlocked  || 0;
+    document.getElementById('statsBar').style.display = 'grid';
+  }
+
+  // ── SCENARIO PRESETS ─────────────────────────────────────────────────────
+  const SCENARIOS = {
+    granted: {
+      advertiserId:  'nike-ads',
+      userId:        'test-user-001',
+      dataScope:     'running-data-shoe-ads',
+      requestReason: 'targeted_advertising',
+      cpmUsd:        1.00
+    },
+    blocked: {
+      advertiserId:  'unknown-advertiser',
+      userId:        'user-no-consent-' + Math.random().toString(36).substr(2,6),
+      dataScope:     'behavioral_targeting',
+      requestReason: 'targeted_advertising',
+      cpmUsd:        1.00
+    },
+    revoked: {
+      advertiserId:  'meta-ads',
+      userId:        'test-revoked-user',
+      dataScope:     'social_retargeting',
+      requestReason: 'retargeting',
+      cpmUsd:        0.75
+    },
+    minor: {
+      advertiserId:  'google-ads',
+      userId:        'test-minor-user',
+      dataScope:     'behavioral_targeting',
+      requestReason: 'targeted_advertising',
+      cpmUsd:        1.50
+    }
+  };
+
+  window.runScenario = async function(type) {
+    const s = SCENARIOS[type];
+    // Pre-fill form for transparency during demo
+    document.getElementById('fAdvertiser').value = s.advertiserId;
+    document.getElementById('fUser').value       = s.userId;
+    document.getElementById('fScope').value      = s.dataScope;
+    document.getElementById('fReason').value     = s.requestReason;
+    await callEvaluate(s.advertiserId, s.userId, s.dataScope, s.requestReason, s.cpmUsd);
+  };
+
+  window.evaluate = async function() {
+    const advertiserId  = document.getElementById('fAdvertiser').value.trim();
+    const userId        = document.getElementById('fUser').value.trim();
+    const dataScope     = document.getElementById('fScope').value.trim();
+    const requestReason = document.getElementById('fReason').value;
+    if (!advertiserId || !userId) return;
+    await callEvaluate(advertiserId, userId, dataScope, requestReason, 1.00);
+  };
+
+  // ── CORE EVALUATE ────────────────────────────────────────────────────────
+  async function callEvaluate(advertiserId, userId, dataScope, requestReason, cpmUsd) {
+    showLoading();
+    try {
+      const res = await fetch(BASE + '/evaluate', {
+        method: 'POST',
+        headers: { 'X-API-Key': apiKey, 'Content-Type': 'application/json' },
+        body: JSON.stringify({ advertiserId, userId, dataScope, requestReason })
+      });
+      const data = await res.json();
+      renderResult(data, cpmUsd || 1.00);
+
+      // Refresh stats
+      fetch(BASE + '/stats', { headers: { 'X-API-Key': apiKey } })
+        .then(r => r.json()).then(renderStats).catch(() => {});
+    } catch(err) {
+      showError('Evaluation failed: ' + err.message);
+    }
+  }
+
+  // ── RENDER RESULT ────────────────────────────────────────────────────────
+  function renderResult(data, cpmUsd) {
+    const granted = data.decision === 'GRANTED';
+
+    // Banner
+    const banner = document.getElementById('decisionBanner');
+    banner.className = 'decision-banner ' + (granted ? 'granted' : 'blocked');
+
+    const word = document.getElementById('decisionWord');
+    word.textContent = data.decision;
+    word.className = 'decision-word ' + (granted ? 'granted' : 'blocked');
+
+    const tagline = document.getElementById('decisionTagline');
+    tagline.textContent = granted
+      ? 'Consent verified — ad transaction authorized'
+      : 'No Seal, no serve — ad blocked';
+    tagline.className = 'decision-tagline ' + (granted ? 'granted' : 'blocked');
+
+    document.getElementById('decisionMeta').textContent =
+      'eval:' + (data.evaluationId || '').substring(0, 16) + '… · ' +
+      new Date(data.evaluatedAt || Date.now()).toLocaleTimeString();
+
+    // Fee box
+    const feeBox = document.getElementById('feeBox');
+    if (granted) {
+      const fee = (cpmUsd * 0.02).toFixed(2);
+      document.getElementById('feeAmount').textContent = '$' + fee;
+      feeBox.style.display = 'flex';
+    } else {
+      feeBox.style.display = 'none';
+    }
+
+    // Token box
+    const tokenBox = document.getElementById('tokenBox');
+    if (granted && data.tokenUsed) {
+      document.getElementById('tokenId').textContent = data.tokenUsed.tokenId || 'token issued';
+      tokenBox.style.display = 'block';
+    } else {
+      tokenBox.style.display = 'none';
+    }
+
+    // Block reason
+    const blockBox = document.getElementById('blockReasonBox');
+    if (!granted && data.blockReason) {
+      document.getElementById('blockReasonText').textContent =
+        data.blockReason.replace(/_/g, ' ');
+      blockBox.style.display = 'block';
+    } else {
+      blockBox.style.display = 'none';
+    }
+
+    // Checks
+    const list = document.getElementById('checksList');
+    list.innerHTML = (data.checks || []).map((c, i) => {
+      const pass = c.status === 'PASS';
+      return `<div class="check-item" style="animation-delay:${i * 0.06}s">
+        <div class="check-icon ${pass ? 'pass' : 'fail'}">${pass ? '✓' : '✗'}</div>
+        <div>
+          <div class="check-name">${esc(c.check || '')}</div>
+          <div class="check-detail">${esc(c.detail || '')}</div>
+        </div>
+      </div>`;
+    }).join('');
+
+    showResult();
+  }
+
+  // ── UI STATE ─────────────────────────────────────────────────────────────
+  function showLoading() {
+    document.getElementById('emptyState').style.display   = 'none';
+    document.getElementById('loadingState').style.display = 'block';
+    document.getElementById('resultState').style.display  = 'none';
+  }
+  function showResult() {
+    document.getElementById('emptyState').style.display   = 'none';
+    document.getElementById('loadingState').style.display = 'none';
+    document.getElementById('resultState').style.display  = 'block';
+  }
+  function showError(msg) {
+    document.getElementById('loadingState').style.display = 'none';
+    document.getElementById('emptyState').style.display   = 'block';
+    document.getElementById('emptyState').innerHTML =
+      '<div class="icon">⚠️</div><p>' + esc(msg) + '</p>';
+  }
+
+  function esc(s) {
+    return String(s)
+      .replace(/&/g,'&amp;').replace(/</g,'&lt;')
+      .replace(/>/g,'&gt;').replace(/"/g,'&quot;');
+  }
+
+  // Allow Enter key on API key field
+  document.getElementById('apiKeyInput').addEventListener('keydown', function(e) {
+    if (e.key === 'Enter') window.connect();
+  });
+})();
+</script>
+
+</body>
+</html>
