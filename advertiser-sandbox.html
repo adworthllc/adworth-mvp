@@ -531,7 +531,26 @@
       </div>
     </div>
 
-    <!-- QUICK SCENARIOS -->
+    <!-- LIVE SYNC BRIDGE -->
+    <div class="panel" style="margin-bottom:16px; border: 2px solid var(--granted);">
+      <div class="panel-header" style="background:var(--granted-bg)">
+        <div>
+          <div class="panel-title" style="color:var(--granted)">🔗 Wire to Live Sync</div>
+          <div class="panel-subtitle">Paste the userId from Privacy Cockpit Scene 1 to close the loop</div>
+        </div>
+      </div>
+      <div class="panel-body">
+        <div class="field">
+          <label>Live User ID from Privacy Cockpit Sync</label>
+          <input type="text" id="liveUserId" placeholder="e.g. user_a3q66j (from extension popup)"
+            oninput="applyLiveUser()">
+          <div class="field-hint">Paste the userId shown in the extension after Sync — this wires Scene 1 token directly to the Bouncer evaluation</div>
+        </div>
+        <div id="liveUserStatus" style="display:none; font-size:12px; font-weight:600; color:var(--granted); margin-top:6px;">
+          ✓ Live userId applied to all scenarios
+        </div>
+      </div>
+    </div>
     <div class="panel" style="margin-bottom:16px">
       <div class="panel-header">
         <div>
@@ -661,6 +680,29 @@
   const BASE = 'https://adworth-bouncer.adworthllc.workers.dev';
   let apiKey = '';
   let connected = false;
+
+  // ── LIVE USER BRIDGE ─────────────────────────────────────────────
+  window.applyLiveUser = function() {
+    const liveId = document.getElementById('liveUserId').value.trim();
+    if (liveId) {
+      // Apply to GRANTED scenario
+      SCENARIOS.granted.userId = liveId;
+      // Apply to manual form
+      document.getElementById('fUser').value = liveId;
+      // Show confirmation
+      document.getElementById('liveUserStatus').style.display = 'block';
+    }
+  };
+
+  // Check URL param on load (allows demo.html to pass userId via link)
+  const urlParams = new URLSearchParams(window.location.search);
+  const urlUserId = urlParams.get('userId');
+  if (urlUserId) {
+    document.getElementById('liveUserId').value = urlUserId;
+    SCENARIOS.granted.userId = urlUserId;
+    document.getElementById('fUser').value = urlUserId;
+    document.getElementById('liveUserStatus').style.display = 'block';
+  }
 
   // ── CONNECT ──────────────────────────────────────────────────────────────
   window.connect = async function() {
