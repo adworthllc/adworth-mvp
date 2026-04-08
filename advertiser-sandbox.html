@@ -585,25 +585,34 @@
     <div class="panel">
       <div class="panel-header">
         <div>
-          <div class="panel-title">Manual Evaluation</div>
-          <div class="panel-subtitle">Custom advertiser access request</div>
+          <div class="panel-title">Try Any Request</div>
+          <div class="panel-subtitle">Enter any combination — the Bouncer evaluates against the live consent ledger in real time</div>
         </div>
       </div>
       <div class="panel-body">
+
+        <!-- ADVERTISER ID EXPLAINER -->
+        <div style="background:#f8f9fa; border:1px solid var(--border); border-radius:8px; padding:12px 14px; margin-bottom:16px; font-size:12px; line-height:1.6; color:var(--ink-60);">
+          <div style="font-size:11px; font-weight:700; text-transform:uppercase; letter-spacing:1px; color:var(--green); margin-bottom:6px;">💡 How Advertiser IDs Work</div>
+          <p style="margin-bottom:6px;">An <strong style="color:var(--ink)">Advertiser ID</strong> is issued by Adworth when an advertiser registers on the platform — the same model as Stripe issuing merchant IDs. It uniquely identifies who is requesting access to a user's data.</p>
+          <p style="margin-bottom:6px;">When a user grants consent, their token names the <strong style="color:var(--ink)">specific advertiser</strong> they're authorizing. The Bouncer enforces that match cryptographically — no other advertiser can use that token.</p>
+          <p>Try any advertiser ID below. If a matching consent token exists for that user + advertiser + scope combination, the Bouncer GRANTs. If not, it BLOCKs. <strong style="color:var(--green)">Every decision is logged to the tamper-evident ledger.</strong></p>
+        </div>
+
         <div class="field">
           <label>Advertiser ID</label>
-          <input type="text" id="fAdvertiser" value="nike-ads" placeholder="advertiser-id">
-          <div class="field-hint">Advertiser requesting data access</div>
+          <input type="text" id="fAdvertiser" value="nike-ads" placeholder="e.g. nike-ads, meta-ads, your-brand">
+          <div class="field-hint">Issued by Adworth on registration — like a Stripe merchant ID. Must match the advertiserId named in the user's consent token exactly.</div>
         </div>
         <div class="field">
           <label>User ID</label>
-          <input type="text" id="fUser" value="test-user-001" placeholder="user-id">
-          <div class="field-hint">User whose consent is being verified</div>
+          <input type="text" id="fUser" value="test-user-001" placeholder="user-id from Privacy Cockpit sync">
+          <div class="field-hint">The user whose consent ledger is being checked. Paste the live userId from the Wire to Live Sync field above to evaluate the real token.</div>
         </div>
         <div class="field">
           <label>Data Scope</label>
-          <input type="text" id="fScope" value="running-data-shoe-ads" placeholder="e.g. behavioral_targeting">
-          <div class="field-hint">Type of data access being requested</div>
+          <input type="text" id="fScope" value="running-data-shoe-ads" placeholder="e.g. behavioral_targeting, retargeting">
+          <div class="field-hint">The category of data access being requested. Must match the scope named in the consent token — scope mismatches are blocked automatically.</div>
         </div>
         <div class="field">
           <label>Request Reason</label>
@@ -615,6 +624,12 @@
           </select>
         </div>
         <div class="divider"></div>
+
+        <!-- WHAT TO EXPECT NOTE -->
+        <div style="background:var(--green-light); border-radius:8px; padding:10px 14px; margin-bottom:14px; font-size:12px; color:var(--green); font-weight:500; line-height:1.5;">
+          <strong>What will happen:</strong> The Bouncer runs 6 checks against the live ledger in real time. GRANTED means a valid consent token was found for this exact user + advertiser + scope. BLOCKED means no token, wrong scope, revoked, expired, or Minor Shield active. Every evaluation is logged permanently.
+        </div>
+
         <button class="btn btn-primary" id="evalBtn" onclick="evaluate()" disabled style="width:100%">
           Evaluate Access Request →
         </button>
