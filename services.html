@@ -1,0 +1,473 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Services &mdash; Adworth&#8480;</title>
+    <meta name="description" content="Adworth Services &mdash; cryptographic consent infrastructure, ad intelligence, and privacy enforcement for digital advertising.">
+    <meta http-equiv="X-Content-Type-Options" content="nosniff">
+    <meta http-equiv="X-Frame-Options" content="DENY">
+    <meta http-equiv="Referrer-Policy" content="strict-origin-when-cross-origin">
+    <meta name="robots" content="index, follow">
+    <link rel="icon" type="image/x-icon" href="/favicon.ico">
+    <link rel="preconnect" href="https://adworth-fonts.adworthllc.workers.dev">
+    <link href="https://adworth-fonts.adworthllc.workers.dev/css2?family=Poppins:wght@300;400;500;600;700;800;900&family=DM+Serif+Display:ital@0;1&display=swap" rel="stylesheet">
+    <style>
+        *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+        :root {
+            --green-deep: #1a4a35; --green-primary: #2d6a4f; --green-mid: #1B7A4E;
+            --green-accent: #52b788; --green-pale: #d8f3dc; --green-tint: #f0faf3;
+            --off-white: #fafaf8; --white: #ffffff; --ink: #111410; --ink-60: #555a50;
+            --ink-30: #b0b5aa; --border: #e2e8df; --gold: #c8a96a; --gold-light: #f5e9d3;
+        }
+        html { scroll-behavior: smooth; }
+        body { font-family: 'Poppins', sans-serif; background: var(--off-white); color: var(--ink); line-height: 1.7; overflow-x: hidden; }
+        .container { max-width: 1160px; margin: 0 auto; padding: 0 2rem; }
+        header { position: sticky; top: 0; z-index: 100; background: rgba(250,250,248,0.92); backdrop-filter: blur(12px); -webkit-backdrop-filter: blur(12px); border-bottom: 1px solid var(--border); }
+        nav { display: flex; justify-content: space-between; align-items: center; padding: 1.25rem 0; }
+        .logo { display: flex; align-items: center; gap: 0.75rem; text-decoration: none; }
+        .logo-mark { font-family: 'Poppins', sans-serif; font-size: 1.4rem; font-weight: 800; color: var(--green-primary); letter-spacing: -0.5px; }
+        .patent-pill { font-size: 0.55rem; font-weight: 700; text-transform: uppercase; letter-spacing: 1px; background: var(--green-pale); color: var(--green-deep); padding: 0.15rem 0.45rem; border-radius: 100px; border: 1px solid rgba(45,106,79,0.2); white-space: nowrap; }
+        nav ul { list-style: none; display: flex; gap: 1.5rem; align-items: center; }
+        nav a { text-decoration: none; font-size: 0.8rem; font-weight: 500; color: var(--ink-60); transition: color 0.2s; white-space: nowrap; }
+        nav a:hover { color: var(--green-primary); }
+        .nav-cta { background: var(--green-primary) !important; color: white !important; padding: 0.55rem 1rem !important; border-radius: 6px !important; font-weight: 600 !important; transition: background 0.2s, transform 0.2s !important; white-space: nowrap; }
+        .nav-cta:hover { background: var(--green-deep) !important; transform: translateY(-1px) !important; }
+        .page-hero { background: var(--green-deep); padding: 4rem 0 3.5rem; position: relative; overflow: hidden; }
+        .page-hero::before { content: ''; position: absolute; inset: 0; background-image: radial-gradient(circle at 80% 50%, rgba(82,183,136,0.12) 0%, transparent 60%); }
+        .page-hero .inner { max-width: 860px; margin: 0 auto; padding: 0 2rem; position: relative; z-index: 1; }
+        .page-label { font-size: 0.72rem; font-weight: 700; text-transform: uppercase; letter-spacing: 2px; color: var(--green-accent); margin-bottom: 0.75rem; display: block; }
+        .page-hero h1 { font-family: 'DM Serif Display', Georgia, serif; font-size: clamp(2rem, 4vw, 3rem); color: white; line-height: 1.15; margin-bottom: 1rem; }
+        .page-hero p { font-size: 0.95rem; color: rgba(255,255,255,0.6); }
+        .content-wrap { max-width: 860px; margin: 0 auto; padding: 4rem 2rem 6rem; }
+        .toc { background: var(--white); border: 1.5px solid var(--border); border-radius: 12px; padding: 1.75rem 2rem; margin-bottom: 3rem; }
+        .toc h2 { font-size: 0.75rem; font-weight: 700; text-transform: uppercase; letter-spacing: 2px; color: var(--ink-30); margin-bottom: 1.25rem; }
+        .toc-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 0 2.5rem; }
+        .toc-col { display: flex; flex-direction: column; gap: 0; }
+        .toc-row { display: grid; grid-template-columns: 1.75rem 1fr; align-items: baseline; padding: 0.3rem 0; border-bottom: 1px solid var(--border); }
+        .toc-row:last-child { border-bottom: none; }
+        .toc-num { font-size: 0.8rem; font-weight: 700; color: var(--ink-30); }
+        .toc-link { font-size: 0.875rem; }
+        .toc a { color: var(--green-primary); text-decoration: none; font-weight: 500; }
+        .toc a:hover { color: var(--green-deep); text-decoration: underline; }
+        .policy-section { margin-bottom: 3rem; padding-bottom: 3rem; border-bottom: 1px solid var(--border); }
+        .policy-section:last-child { border-bottom: none; margin-bottom: 0; }
+        .policy-section h2 { font-family: 'DM Serif Display', Georgia, serif; font-size: 1.6rem; color: var(--green-primary); margin-bottom: 1rem; display: flex; align-items: center; gap: 0.75rem; }
+        .section-num { font-size: 0.7rem; font-weight: 700; background: var(--green-pale); color: var(--green-deep); padding: 0.2rem 0.55rem; border-radius: 100px; }
+        .policy-section h3 { font-size: 1rem; font-weight: 700; color: var(--ink); margin: 1.5rem 0 0.5rem; }
+        .policy-section h4 { font-size: 0.78rem; font-weight: 700; text-transform: uppercase; letter-spacing: 1.5px; color: var(--green-primary); margin: 1.5rem 0 0.6rem; }
+        .policy-section p { font-size: 0.95rem; color: var(--ink-60); margin-bottom: 1rem; }
+        .policy-section ul, .policy-section ol { padding-left: 1.5rem; margin-bottom: 1rem; }
+        .policy-section li { font-size: 0.95rem; color: var(--ink-60); margin-bottom: 0.4rem; }
+        .highlight-box { background: var(--green-tint); border: 1.5px solid rgba(45,106,79,0.2); border-radius: 10px; padding: 1.25rem 1.5rem; margin: 1.25rem 0; font-size: 0.9rem; color: var(--green-deep); font-weight: 500; line-height: 1.7; }
+        .highlight-box strong { color: var(--green-primary); }
+        .highlight-box a { color: var(--green-primary); }
+        .policy-section a { color: var(--green-primary); }
+        code { font-family: 'Courier New', monospace; font-size: 0.85rem; background: var(--green-pale); color: var(--green-deep); padding: 0.1rem 0.35rem; border-radius: 4px; }
+        .demo-notice { background: #fff8ee; border: 1.5px solid rgba(200,169,106,0.3); border-radius: 10px; padding: 1.25rem 1.5rem; margin: 1.25rem 0; font-size: 0.9rem; color: #5a4520; font-weight: 500; line-height: 1.7; }
+        .demo-notice strong { color: #7a5c2e; }
+        .fee-note { background: var(--white); border-left: 3px solid var(--gold); padding: 0.85rem 1.25rem; margin: 1.25rem 0; font-size: 0.88rem; color: var(--ink); font-weight: 500; }
+        .fee-note strong { color: var(--green-deep); }
+        .audience-tag { display: inline-block; font-size: 0.65rem; font-weight: 700; text-transform: uppercase; letter-spacing: 1.2px; padding: 0.2rem 0.55rem; border-radius: 100px; margin-right: 0.5rem; }
+        .tag-enterprise { background: var(--green-pale); color: var(--green-deep); border: 1px solid rgba(45,106,79,0.2); }
+        .tag-developer { background: var(--gold-light); color: #7a5c2e; border: 1px solid rgba(200,169,106,0.3); }
+        .audience-block { background: var(--white); border: 1.5px solid var(--border); border-radius: 10px; padding: 1.25rem 1.5rem; margin: 1rem 0 1.5rem; }
+        .audience-block h4 { margin-top: 0; }
+        footer { background: var(--white); border-top: 1px solid var(--border); padding: 3.5rem 0 2rem; }
+        .footer-grid { display: grid; grid-template-columns: 2fr 1fr 1fr 1fr; gap: 3rem; margin-bottom: 3rem; }
+        .footer-brand-name { font-size: 1.4rem; font-weight: 800; color: var(--green-primary); margin-bottom: 0.6rem; }
+        .footer-tagline { font-size: 0.85rem; color: var(--ink-60); line-height: 1.6; max-width: 260px; margin-bottom: 0.75rem; }
+        .footer-note { font-size: 0.78rem; color: var(--ink-30); line-height: 1.6; max-width: 260px; border-top: 1px solid var(--border); padding-top: 0.75rem; margin-top: 0.25rem; }
+        .footer-links h4 { font-size: 0.75rem; font-weight: 700; text-transform: uppercase; letter-spacing: 1.5px; color: var(--ink); margin-bottom: 1rem; }
+        .footer-links ul { list-style: none; }
+        .footer-links a { display: block; font-size: 0.875rem; color: var(--ink-60); text-decoration: none; margin-bottom: 0.6rem; transition: color 0.2s; }
+        .footer-links a:hover { color: var(--green-primary); }
+        .footer-bottom { padding-top: 2rem; border-top: 1px solid var(--border); display: flex; justify-content: space-between; align-items: center; font-size: 0.8rem; color: var(--ink-30); }
+        @media (max-width: 900px) { .footer-grid { grid-template-columns: 1fr 1fr; } }
+        @media (max-width: 640px) {
+            nav ul { display: none; }
+            .toc-grid { grid-template-columns: 1fr; }
+            .footer-grid { grid-template-columns: 1fr; }
+            .footer-bottom { flex-direction: column; gap: 0.5rem; text-align: center; }
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+    <div class="container">
+      <nav>
+        <a href="/" class="logo">
+          <span class="logo-mark">Adworth&#8480;</span>
+          <span class="patent-pill">Patent Pending</span>
+        </a>
+        <ul>
+          <li><a href="/#problem">Problem</a></li>
+          <li><a href="/#how-it-works">How It Works</a></li>
+          <li><a href="/#transparency">How We Make Money</a></li>
+          <li><a href="/dashboard.html">See Who&rsquo;s Targeting You</a></li>
+          <li><a href="/#founder">Founder</a></li>
+          <li><a href="/#investors">Investors</a></li>
+          <li><a href="/enterprise.html">Enterprise</a></li>
+          <li><a href="/#waitlist" class="nav-cta">Join Waitlist</a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+
+    <div class="page-hero">
+        <div class="inner">
+            <span class="page-label">Services</span>
+            <h1>What Adworth Provides</h1>
+            <p>Cryptographic consent infrastructure for digital advertising &middot; Last updated: May 12, 2026</p>
+        </div>
+    </div>
+
+    <div class="content-wrap">
+
+        <!-- Narrative intro -->
+        <div class="highlight-box">
+            <strong>What Adworth is:</strong> the cryptographic settlement layer for digital advertising consent. Where Stripe processes financial transactions, Adworth processes <em>consent</em> transactions. Every time an advertiser pays to reach a user, Adworth verifies a cryptographically signed consent token (&ldquo;The Seal&rdquo;) before the ad serves. No seal, no serve. Adworth earns a flat 2% fee on every verified consent transaction &mdash; the same rate on every transaction, always visible on the ledger, no other revenue streams. This page describes the services we provide, who they&rsquo;re for, and how they work technically.
+        </div>
+
+        <div class="toc">
+            <h2>Services</h2>
+            <div class="toc-grid">
+                <div class="toc-col">
+                    <div class="toc-row"><span class="toc-num">1.</span><span class="toc-link"><a href="#consent-infrastructure">Cryptographic Consent Infrastructure</a></span></div>
+                    <div class="toc-row"><span class="toc-num">2.</span><span class="toc-link"><a href="#ad-intelligence">Ad Intelligence Pipeline</a></span></div>
+                    <div class="toc-row"><span class="toc-num">3.</span><span class="toc-link"><a href="#privacy-cockpit">Privacy Cockpit Browser Extension</a></span></div>
+                </div>
+                <div class="toc-col">
+                    <div class="toc-row"><span class="toc-num">4.</span><span class="toc-link"><a href="#removal-engine">Removal Payload Engine</a></span></div>
+                    <div class="toc-row"><span class="toc-num">5.</span><span class="toc-link"><a href="#compliance">Compliance &amp; Reporting Services</a></span></div>
+                    <div class="toc-row"><span class="toc-num">6.</span><span class="toc-link"><a href="#developer-platform">Developer Platform &amp; API</a></span></div>
+                    <div class="toc-row"><span class="toc-num">7.</span><span class="toc-link"><a href="#service-tiers">Service Tiers &amp; Pricing</a></span></div>
+                </div>
+            </div>
+        </div>
+
+        <!-- 01 — Cryptographic Consent Infrastructure -->
+        <div class="policy-section" id="consent-infrastructure">
+            <h2><span class="section-num">01</span> Cryptographic Consent Infrastructure</h2>
+            <p>The thesis service. Consent moves from a checkbox to a cryptographically signed, verifiable transaction. This is the patent-bearing core of Adworth (Provisional 63/988,435, filed February 23, 2026).</p>
+
+            <div class="audience-block">
+                <h4>For Enterprises &amp; Investors</h4>
+                <p>Today, ad platforms self-regulate consent through honor-system toggles &mdash; cookie banners, privacy dashboards, IAB Transparency &amp; Consent Frameworks. The platform that benefits from the data is the same platform that polices the consent. Adworth replaces this with cryptographic enforcement at the transaction layer: an advertiser cannot complete a transaction without presenting a valid, signed consent token. Compliance becomes a property of the network, not a policy on a page.</p>
+            </div>
+
+            <div class="audience-block">
+                <h4>For Developers</h4>
+                <p>Three patent-bearing components work together:</p>
+                <ul>
+                    <li><strong>Cryptographic Consent Token (&ldquo;The Seal,&rdquo; CCT)</strong> &mdash; a 128-bit cryptographically random token bound to a specific advertiser, data scope, and time window via HMAC-SHA256 signature. Issued by <code>adworth-consent-widget</code> (v3.4.0) or <code>adworth-ingestion-api</code> (v1.3.0, via Privacy Cockpit Ed25519 verification). Tokens are stored in the <code>ADWORTH_TOKENS</code> KV namespace and identified by opaque IDs &mdash; no PII.</li>
+                    <li><strong>Privacy Governance Engine (&ldquo;The Bouncer,&rdquo; PGE)</strong> &mdash; runs in <code>adworth-bouncer</code> (v2.3.0). Performs six sequential cryptographic checks on every access request: token existence, revocation status, expiration, advertiser match, scope match, and HMAC signature verification. Honors Global Privacy Control (<code>Sec-GPC: 1</code>) as a valid opt-out under CPRA &sect;&nbsp;1798.135(d). Applies a Minor Shield block returning <code>MINOR_SHIELD_ACTIVE</code> when minor user status is detected &mdash; this block is final and cannot be overridden.</li>
+                    <li><strong>Invisibility Ledger</strong> &mdash; append-only, tamper-evident audit trail in the <code>ADWORTH_LEDGER</code> KV namespace. Records consent lifecycle events (<code>CONSENT_ISSUED</code>, <code>CONSENT_REVOKED</code>, <code>CONSENT_EXPIRED</code>) and enforcement events (<code>ACCESS_CHECKED</code>, <code>VIOLATION_DETECTED</code>, <code>RPE_GENERATED</code>, <code>MINOR_SHIELD_ACTIVE</code>). Includes synthetic chaff entries (see <a href="/privacy.html#advanced-privacy-protocols">Advanced Privacy Protocols</a>) for surveillance resistance. Viewer is read-only by architectural design.</li>
+                </ul>
+            </div>
+
+            <div class="fee-note">
+                <strong>Revenue model:</strong> Adworth earns a flat 2% fee on every verified consent transaction. Same rate on every transaction. Always visible on the ledger.
+            </div>
+        </div>
+
+        <!-- 02 — Ad Intelligence Pipeline -->
+        <div class="policy-section" id="ad-intelligence">
+            <h2><span class="section-num">02</span> Ad Intelligence Pipeline</h2>
+            <p>Real-time analysis of how a domain is targeted in digital advertising, with cryptographic anonymization of any personal names that appear in returned data. Powered by <code>adworth-ads</code> (v5.4.0).</p>
+
+            <div class="audience-block">
+                <h4>For Enterprises &amp; Investors</h4>
+                <p>The Ad Intelligence Dashboard at <code>adworth.app/dashboard</code> demonstrates the consent-enforcement opportunity. Enter any domain &mdash; see what advertisers are targeting users associated with that domain, what data inferences are being made, and which regulations (GDPR, CCPA, DSA) those practices trigger. This is the &ldquo;before Adworth&rdquo; view. Without consent infrastructure, this is what every advertised user is exposed to. The dashboard is a live working product, not a mockup &mdash; useful for enterprise privacy teams evaluating their exposure and for journalists documenting ad transparency.</p>
+            </div>
+
+            <div class="audience-block">
+                <h4>For Developers</h4>
+                <p>Pipeline architecture:</p>
+                <ul>
+                    <li><strong>Data source:</strong> DataForSEO SERP API (<code>POST /v3/serp/google/organic/live/advanced</code>). Called exclusively from <code>adworth-ads</code> Cloudflare Worker; no direct browser-to-DataForSEO requests. Cost: $0.002 per request. Results cached in <code>ADWORTH_ADS_CACHE</code> KV namespace for 6 hours under <code>ads:{domain}</code> keys.</li>
+                    <li><strong>PII Advertiser Name Classifier (v5.4.0):</strong> two-pass detection pipeline. Pass 1 is a regex pre-filter for Title-Case name bigrams, filtered against a denylist of brand names, place names, and common phrases. Pass 2 sends remaining candidates to Anthropic Claude Haiku as a named-entity-recognition classifier. Detected names are replaced in-place with the <code>[PERSON]</code> token before any downstream use. A non-reversible HMAC-SHA256 audit hash (salted with a server-side secret) is written to <code>ADWORTH_ADS_CACHE</code> under the <code>audit:pii:</code> key prefix with a 90-day TTL. Privacy-fail-safe: if NER is unavailable, all regex candidates are anonymized.</li>
+                    <li><strong>AI privacy analysis:</strong> Anthropic Claude Haiku generates risk scores, regulatory flags, findings, and an Adworth-value summary. Operates only on already-anonymized data &mdash; person names have been replaced before this call is made.</li>
+                    <li><strong>Public endpoint:</strong> <code>POST /analyze</code> on <code>adworth-ads.adworthllc.workers.dev</code>. Rate-limited to 10 requests per IP per hour via Cloudflare KV. Strict CORS origin allowlist. Constant-time HMAC-SHA256 API key authentication for authenticated callers.</li>
+                </ul>
+                <p>Full technical disclosure is in <a href="/terms.html#description">Terms of Service Section 2</a> and <a href="/privacy.html#third-party-processing">Privacy Policy Section 3</a>.</p>
+            </div>
+
+            <div class="fee-note">
+                <strong>Availability:</strong> Live and publicly accessible. No account required for the rate-limited public endpoint. Authenticated access (which bypasses rate limits) is provisioned per enterprise contract.
+            </div>
+        </div>
+
+        <!-- 03 — Privacy Cockpit -->
+        <div class="policy-section" id="privacy-cockpit">
+            <h2><span class="section-num">03</span> Privacy Cockpit Browser Extension</h2>
+            <p>End-user-facing consent issuance. A Chrome extension (Manifest V3) that lets users cryptographically sign their consent grants on-device and submit them to Adworth's Ingestion API. Currently distributed as a developer build pending Chrome Web Store submission.</p>
+
+            <div class="audience-block">
+                <h4>For Enterprises &amp; Investors</h4>
+                <p>This is the user-side proof. A consent token isn't issued by a platform on behalf of a user; it's issued by the user, signed with a private key that never leaves their device. The advertiser receives only a verifiable signature, not the user's identity. Consent becomes user-sovereign, cryptographically enforceable, and revocable in real time. The Cockpit is the canonical implementation of how a user grants the Seal that Section 1 describes.</p>
+            </div>
+
+            <div class="audience-block">
+                <h4>For Developers</h4>
+                <p>Architecture:</p>
+                <ul>
+                    <li><strong>On-device key generation:</strong> Ed25519 keypair (FIPS 186-5 approved) generated in the extension's background service worker via the browser's Web Crypto API (<code>crypto.subtle</code>). Private key stored exclusively in <code>chrome.storage.local</code> as a non-extractable CryptoKey object &mdash; never transmitted, never exported.</li>
+                    <li><strong>Public key registration:</strong> Public key uploaded to <code>adworth-ingestion-api</code> and stored in the <code>ADWORTH_PUBLIC_KEYS</code> KV namespace under <code>user:{user_id}:pubkey:{device}</code>. One keypair per device; multi-device by design. Revocation invalidates the device's signing ability but preserves previously verified records.</li>
+                    <li><strong>Data extraction:</strong> A MutationObserver detects ad-platform dashboard updates (Google Ads, Meta Ads) in the user's active browser tab. The extension extracts campaign-level metrics, strips all PII client-side, and signs the sanitized data with the device's private key before transmission. Adworth never receives raw dashboard content.</li>
+                    <li><strong>Ledger write:</strong> As of Ingestion API v1.3.0, upon successful Ed25519 signature verification, a <code>CONSENT_ISSUED</code> event is written to <code>ADWORTH_LEDGER</code>. This event becomes immediately evaluable by the Privacy Governance Engine during subsequent advertiser access requests.</li>
+                </ul>
+            </div>
+
+            <div class="demo-notice">
+                <strong>Current status:</strong> The Privacy Cockpit extension and Ingestion API (v1.3.0) are confirmed working end-to-end on Cloudflare. Ed25519 signature verification, ingestion data storage, and <code>CONSENT_ISSUED</code> ledger write are all live. The extension is currently distributed as a developer build and has not been published to the Chrome Web Store.
+            </div>
+
+            <div class="fee-note">
+                <strong>For users:</strong> the Privacy Cockpit is and will remain free. The 2% fee is paid by advertisers, not users.
+            </div>
+        </div>
+
+        <!-- 04 — Removal Payload Engine -->
+        <div class="policy-section" id="removal-engine">
+            <h2><span class="section-num">04</span> Removal Payload Engine</h2>
+            <p>When consent is revoked or expires and a third party still retains the underlying data, the Removal Payload Engine (<code>adworth-rpe</code> v2.3.0) generates legally-cited, cryptographically signed deletion requests with deterministic legal grounding.</p>
+
+            <div class="audience-block">
+                <h4>For Enterprises &amp; Investors</h4>
+                <p>This service closes the enforcement loop. Revocation isn't a UI state &mdash; it's an action that, when persistence is detected, produces a legally formatted deletion request with full regulatory citation, a tamper-evident HMAC signature, and a public verification endpoint. The notice is generated against a versioned regulation rules table (<code>adworth-rules</code> v1.0.0, effective March 5, 2026), so the legal basis of every notice is reproducible, auditable, and version-locked at the moment of generation.</p>
+            </div>
+
+            <div class="audience-block">
+                <h4>For Developers</h4>
+                <p>RPE architecture:</p>
+                <ul>
+                    <li><strong>Runtime rule evaluation:</strong> <code>adworth-rpe</code> fetches legal citations, deadlines, and obligations at runtime from <code>adworth-rules</code> via a Cloudflare Service Binding (<code>RULES_WORKER</code>) &mdash; direct worker-to-worker communication, bypasses the public network. Currently supports <code>GDPR-ART17</code>, <code>GDPR-ART7</code>, <code>CCPA-1798105</code>, <code>CCPA-1798120</code>, <code>DSA-ART26</code>, and <code>DSA-ART25</code>. Planned extensions: LGPD, UK GDPR, Virginia VCDPA, Colorado CPA, Connecticut CTDPA.</li>
+                    <li><strong>Notice contents:</strong> Notice ID, target domain, right ID, regulation, <code>rules_version</code>, <code>rules_effective_date</code>, opaque data subject reference, data categories, legal citation text, compliance deadline, HMAC-SHA256 signature of the notice content, SHA-256 content hash for tamper detection. Stored in <code>RPE_DATA</code> KV namespace.</li>
+                    <li><strong>Public verification:</strong> Unauthenticated endpoints for third-party verification of any RPE-generated notice. Verification returns status, target, regulation, <code>rules_version</code>, jurisdiction, deadline, generation timestamp, content hash, HMAC signature, and integrity result. No PII disclosed.</li>
+                </ul>
+            </div>
+
+            <div class="demo-notice">
+                <strong>Current status:</strong> RPE generates real legal citations and HMAC-SHA256 signatures, but notices are not yet transmitted to actual data brokers. No deletion requests have been sent to any third party. This service operates in simulated mode for demonstration purposes; <a href="/terms.html">Terms of Service</a> will be updated before live broker delivery begins.
+            </div>
+        </div>
+
+        <!-- 05 — Compliance & Reporting -->
+        <div class="policy-section" id="compliance">
+            <h2><span class="section-num">05</span> Compliance &amp; Reporting Services</h2>
+            <p>Adjacent services that operationalize the cryptographic consent infrastructure for the regulatory regimes that govern it: GDPR, CCPA/CPRA, DSA, COPPA, and applicable U.S. state laws.</p>
+
+            <div class="audience-block">
+                <h4>For Enterprises &amp; Investors</h4>
+                <p>These services exist because regulatory compliance is a buyer requirement, not a marketing claim. Each one maps to a specific obligation in a specific regulation and is built to produce evidence on demand &mdash; the kind of evidence an enterprise privacy team can hand to outside counsel during a regulatory inquiry without further preparation.</p>
+            </div>
+
+            <div class="audience-block">
+                <h4>For Developers</h4>
+                <p>Components in this service area:</p>
+                <ul>
+                    <li><strong>Data Subject Request processor (<code>adworth-dsr</code>):</strong> GDPR Art. 17 and CCPA &sect;&nbsp;1798.105 handler. Cross-namespace deletion authority across the consent infrastructure. Records DSR events in <code>ADWORTH_DSR_LOG</code> with verification token TTL of 3600 seconds.</li>
+                    <li><strong>Audit trail export (<code>adworth-audit-export</code>):</strong> Read-only export bundling audit data across <code>ADWORTH_LEDGER</code>, <code>ADWORTH_DSR_LOG</code>, and <code>ADWORTH_CHANGELOG</code>. Fulfills GDPR Art. 15 access requests. User-facing exports exclude synthetic chaff entries. No PII in exports.</li>
+                    <li><strong>Consent receipt delivery (<code>adworth-consent-receipt</code>):</strong> Generates and delivers cryptographically signed consent receipts to users upon token issuance. Receipts written to <code>ADWORTH_RECEIPTS</code>.</li>
+                    <li><strong>Age gate (<code>adworth-age-gate</code>):</strong> COPPA-relevant age certification enforcement at the platform front door, gating Minor Shield eligibility downstream.</li>
+                    <li><strong>Breach notification (<code>adworth-breach</code>):</strong> Logs security events in <code>ADWORTH_BREACH_LOG</code>. Triggers the South Carolina &sect;&nbsp;39-1-90 notification workflow when threshold conditions are met.</li>
+                    <li><strong>CCPA Enforcement Gap (<code>adworth-ccpa-gap</code>):</strong> Public reference data on enforcement disparities, sourced from reports companies are required to publish under California Civil Code &sect;&nbsp;1798.185(a)(7). Available at <a href="/ccpa-gap.html">adworth.app/ccpa-gap</a>.</li>
+                    <li><strong>Retention enforcement (<code>adworth-retention</code>):</strong> Daily cron at 03:00&nbsp;UTC. Purges expired tokens, stale KV entries beyond retention windows, and stale monitor state.</li>
+                </ul>
+            </div>
+        </div>
+
+        <!-- 06 — Developer Platform -->
+        <div class="policy-section" id="developer-platform">
+            <h2><span class="section-num">06</span> Developer Platform &amp; API</h2>
+            <p>The runtime, authentication model, and operational guarantees that all the services above run on.</p>
+
+            <div class="audience-block">
+                <h4>For Enterprises &amp; Investors</h4>
+                <p>Adworth runs entirely on Cloudflare Workers at the network edge &mdash; 29 Workers across 41 KV namespaces, no traditional servers, no databases, no separate ops layer. This architecture matters for two reasons: latency (every consent check resolves at the edge, in single-digit milliseconds globally) and cost (a single $5/month Cloudflare Workers Paid plan handles current load with significant headroom). The 29-Worker fleet is deployed exclusively via the Cloudflare Dashboard, never via the Wrangler CLI; every deploy is logged to <code>adworth-deploy-integrity</code> with a tamper-evident record.</p>
+            </div>
+
+            <div class="audience-block">
+                <h4>For Developers</h4>
+                <h4>Authentication</h4>
+                <p>All protected endpoints across the 29-Worker fleet require an <code>X-API-Key</code> header or Bearer token in the HTTP <code>Authorization</code> header. All API key comparisons use constant-time HMAC-SHA256 verification via <code>crypto.subtle</code> to prevent timing-based side-channel attacks. API keys are stored as encrypted Cloudflare environment secrets, never in source code or version control.</p>
+
+                <h4>Rate limits</h4>
+                <p>Rate-limit policy varies by endpoint surface. Public endpoints (e.g. <code>adworth-ads /analyze</code>: 10 requests per IP per hour) are KV-counter-based. Authenticated endpoints have higher limits per partner contract. Brute-force protection on authentication endpoints is centralized in <code>adworth-auth-guard</code>.</p>
+
+                <h4>CORS</h4>
+                <p>Strict origin allowlist on every Worker. No wildcard origins, no <code>localhost</code> or <code>127.0.0.1</code> origins in production. Unknown origins return null Access-Control headers (no fallback origin disclosure).</p>
+
+                <h4>Error contract</h4>
+                <p>JSON error responses across the fleet: <code>{success: false, error: &quot;...&quot;}</code> with appropriate HTTP status codes. Unauthenticated requests receive <code>401 Unauthorized</code> with no data disclosure. Rate-limited requests receive <code>429</code>. Internal errors return <code>500</code> with a generic message; internal details are logged but never leaked in the response body.</p>
+
+                <h4>Fleet structure</h4>
+                <p>The 29-Worker fleet falls into five architectural patterns: data-handling Workers (own data namespace + <code>_RL</code> partner + <code>ADWORTH_CHANGELOG</code>), stateless verification Workers (<code>_RL</code> namespace only + <code>ADWORTH_CHANGELOG</code>), single-namespace Workers, cross-system reader Workers, and pure stateless Workers (e.g. <code>adworth-well-known</code> with zero KV bindings). One Worker uses a Service Binding (<code>adworth-rpe</code> &rarr; <code>adworth-rules</code>). One Worker has a cron trigger (<code>adworth-healthcheck</code> running daily at 06:00&nbsp;UTC).</p>
+
+                <p>Complete Worker-by-Worker disclosure including KV bindings is in <a href="/privacy.html#third-party-processing">Privacy Policy Section 3</a>.</p>
+            </div>
+        </div>
+
+        <!-- 07 — Service Tiers & Pricing -->
+        <div class="policy-section" id="service-tiers">
+            <h2><span class="section-num">07</span> Service Tiers &amp; Pricing</h2>
+
+            <h3>Revenue model</h3>
+            <p>Adworth earns a <strong>flat 2% fee on every verified consent transaction</strong>. Same rate on every transaction, regardless of volume, advertiser size, or industry vertical. The fee is paid by advertisers, not by users. Every fee is recorded on the Invisibility Ledger and is part of the user-facing audit trail.</p>
+            <p>This is the only revenue stream. Adworth does not sell user data, does not collect referral commissions, does not run advertising of its own, and does not sell access to anonymized or aggregated user behavior. The 2% transaction fee is the entire business.</p>
+
+            <h3>Public tier</h3>
+            <p>The Ad Intelligence Dashboard (<code>adworth.app/dashboard</code>), the CCPA Enforcement Gap page, the Invisibility Ledger viewer (real entries only), and RPE public verification endpoints are accessible without an account, subject to IP rate limits.</p>
+
+            <h3>Waitlist / Founding Member tier</h3>
+            <p>Users who join the Adworth waitlist prior to the public marketplace launch may be designated as Founding Members. Founding Member status confers priority onboarding access when the consent marketplace launches. It is not an equity instrument and does not constitute a binding commitment of any payment or service level. See <a href="/terms.html#consent-widget">Terms of Service Section 7</a> for the Founding Member terms.</p>
+
+            <h3>Enterprise tier</h3>
+            <p>Enterprise contracts cover authenticated API access (bypasses public rate limits), Data Processing Agreements under GDPR Art. 28, Business Associate Agreements where applicable, custom regulation rule additions to <code>adworth-rules</code>, and direct integration support. Pricing is indicative until the consent marketplace launches and is set per contract. Contact <span class="email-link" data-u="hello" data-d="adworth.app"></span> with subject line &ldquo;Enterprise Inquiry.&rdquo;</p>
+
+            <div class="fee-note">
+                <strong>Pricing transparency:</strong> Any pricing figures referenced on adworth.app are indicative projections only and do not constitute binding price commitments. They will become contractually binding only upon execution of an enterprise agreement or public marketplace launch.
+            </div>
+        </div>
+
+        <!-- 08 — Service status and roadmap -->
+        <div class="policy-section" id="status">
+            <h2><span class="section-num">08</span> Service Status &amp; Roadmap</h2>
+
+            <h3>Currently live</h3>
+            <ul>
+                <li>Ad Intelligence Pipeline (<code>adworth-ads</code> v5.4.0) &mdash; live, public, rate-limited</li>
+                <li>Cryptographic Consent Infrastructure &mdash; live in production, demonstration-mode marketplace</li>
+                <li>Privacy Governance Engine with Minor Shield and GPC detection &mdash; live</li>
+                <li>Invisibility Ledger &mdash; live, includes Ledger Chaff entries by design</li>
+                <li>Privacy Cockpit Chrome extension &mdash; live as developer build (Chrome Web Store submission pending)</li>
+                <li>Ingestion API v1.3.0 with Ed25519 verification and live ledger writes &mdash; live</li>
+                <li>Regulation Rules Worker (<code>adworth-rules</code> v1.0.0) &mdash; live, serving rules to RPE</li>
+                <li>Removal Payload Engine &mdash; live for notice generation and public verification (broker delivery pending; see Section 4)</li>
+                <li>CCPA Enforcement Gap (<code>adworth.app/ccpa-gap</code>) &mdash; live with aggregated public data</li>
+            </ul>
+
+            <h3>On the roadmap</h3>
+            <ul>
+                <li><strong>Consent marketplace launch</strong> &mdash; activates Founding Member program; live payment rails for the 2% fee</li>
+                <li><strong>Chrome Web Store publication</strong> for Privacy Cockpit</li>
+                <li><strong>Regulation rule extensions</strong> &mdash; LGPD, UK GDPR, Virginia VCDPA, Colorado CPA, Connecticut CTDPA</li>
+                <li><strong>Nashville Offline Protocol</strong> &mdash; device-bound offline consent authorization via Secure Enclave and NFC/Bluetooth Mesh Promissory Tokens</li>
+                <li><strong>Biometric Gating</strong> &mdash; local FaceID / TouchID verification gate for consent token activation; no biometric data ever transmitted to Adworth</li>
+                <li><strong>Consumer app (<code>app.adworth.app</code>)</strong> Phase 1: DSA Transparency Dashboard and Consent Token Management UI</li>
+            </ul>
+            <p>Roadmap items are development intentions, not guaranteed deliverables. <a href="/terms.html#disclaimer">Terms of Service Section 13</a> describes the limits of forward-looking statements.</p>
+        </div>
+
+        <!-- 09 — Service Level -->
+        <div class="policy-section" id="service-level">
+            <h2><span class="section-num">09</span> Service Level &amp; Operational Guarantees</h2>
+
+            <p>Adworth is an early-stage platform. We do not currently offer a contractual uptime SLA. The operational guarantees we do make:</p>
+
+            <ul>
+                <li><strong>Append-only ledger immutability:</strong> Invisibility Ledger entries, once written, cannot be modified, overwritten, or deleted by any party including Adworth. Architectural guarantee, not a policy.</li>
+                <li><strong>Tamper-evident deploys:</strong> Every Worker deployment is logged to <code>adworth-deploy-integrity</code> via authenticated <code>POST /log-deploy</code>. The full deploy history is queryable.</li>
+                <li><strong>Cryptographic verification:</strong> Every consent token carries an HMAC-SHA256 signature. Every RPE notice carries a SHA-256 content hash and an HMAC-SHA256 signature with a public verification endpoint. Adworth&rsquo;s claims about consent and removal are independently verifiable; you do not have to trust us.</li>
+                <li><strong>Constant-time key comparison:</strong> All API key validation across the 29-Worker fleet uses <code>crypto.subtle</code> for constant-time HMAC comparison, preventing timing-based side-channel attacks.</li>
+                <li><strong>Strict origin allowlist:</strong> CORS policy across the fleet uses explicit allowlists, no wildcards, no <code>localhost</code> origins in production.</li>
+                <li><strong>Memory-only API key handling:</strong> API keys entered in any Adworth dashboard are held in JavaScript memory for the active session only &mdash; never written to <code>localStorage</code>, <code>sessionStorage</code>, cookies, or any server-side log.</li>
+            </ul>
+
+            <p>Enterprise contracts may include negotiated SLA terms; contact <span class="email-link" data-u="hello" data-d="adworth.app"></span> with subject line &ldquo;Enterprise Inquiry&rdquo; for current SLA availability.</p>
+        </div>
+
+        <!-- 10 — Contact -->
+        <div class="policy-section" id="contact">
+            <h2><span class="section-num">10</span> Contact &amp; Service Inquiries</h2>
+            <div class="highlight-box">
+                <strong>Adworth&#8480; LLC</strong><br>
+                Charleston, SC, United States<br>
+                <span class="email-link" data-u="hello" data-d="adworth.app"></span>
+            </div>
+
+            <h3>Common inquiry routing</h3>
+            <ul>
+                <li><strong>Enterprise integration:</strong> Email with subject &ldquo;Enterprise Inquiry&rdquo;</li>
+                <li><strong>Data Processing Agreement / BAA:</strong> Email with subject &ldquo;DPA Request&rdquo; (5 business day response)</li>
+                <li><strong>Developer API access:</strong> Email with subject &ldquo;Developer Access&rdquo;</li>
+                <li><strong>Security vulnerability disclosure:</strong> <a href="/.well-known/security.txt">adworth.app/.well-known/security.txt</a> or email with subject &ldquo;Security Disclosure&rdquo; (72 hour response)</li>
+                <li><strong>Data Subject Requests (GDPR Art. 15, 17 / CCPA &sect;&nbsp;1798.105):</strong> Email with subject &ldquo;DSR Request&rdquo;</li>
+                <li><strong>Press &amp; investor:</strong> See <a href="/#investors">investor section</a> on the homepage</li>
+            </ul>
+
+            <p>For the legal framework governing all the services described on this page, see our <a href="/terms.html">Terms of Service</a>. For how data is handled across these services, see our <a href="/privacy.html">Privacy Policy</a>.</p>
+        </div>
+
+    </div><!-- end .content-wrap -->
+
+    <footer>
+      <div class="container">
+        <div class="footer-grid">
+          <div>
+            <div class="footer-brand-name">Adworth&#8480;</div>
+            <p class="footer-tagline">Cryptographic consent infrastructure for digital advertising. Privacy for people, compliance for platforms.</p>
+            <p class="footer-note">We earn exactly 2% when advertisers pay you for verified consent. That&rsquo;s our only revenue source. Always visible. Always on the ledger. No exceptions.</p>
+          </div>
+          <div class="footer-links">
+            <h4>Product</h4>
+            <ul>
+              <li><a href="/#problem">Problem</a></li>
+              <li><a href="/#how-it-works">How It Works</a></li>
+              <li><a href="/#transparency">How We Make Money</a></li>
+              <li><a href="/app/consent/">How It Works for You</a></li>
+              <li><a href="/dashboard.html">See Who&rsquo;s Targeting You</a></li>
+              <li><a href="/ledger.html">Consent Ledger</a></li>
+              <li><a href="/ccpa-gap.html">Ad Transparency Tool</a></li>
+              <li><a href="/app/developers/">Developer Docs</a></li>
+              <li><a href="/enterprise.html">Enterprise</a></li>
+              <li><a href="/#waitlist">Join Waitlist</a></li>
+            </ul>
+          </div>
+          <div class="footer-links">
+            <h4>Company</h4>
+            <ul>
+              <li><a href="/#founder">Founder</a></li>
+              <li><a href="/#investors">Investors</a></li>
+              <li><span class="email-link" data-u="hello" data-d="adworth.app"></span></li>
+            </ul>
+          </div>
+          <div class="footer-links">
+            <h4>Legal</h4>
+            <ul>
+              <li><a href="/services.html">Services</a></li>
+              <li><a href="/privacy.html">Privacy Policy</a></li>
+              <li><a href="/terms.html">Terms of Service</a></li>
+              <li style="border-top: 1px solid var(--border); padding-top: 0.75rem; margin-top: 0.25rem;">
+                <a href="https://adworth-consent-widget.adworthllc.workers.dev/optout">Do Not Sell or Share My Personal Information</a>
+                <p style="font-size:0.78rem; color: var(--ink-30); line-height:1.5; margin-top:0.3rem;">Required by CCPA/CPRA. We don&rsquo;t sell your data &mdash; this link lets you assert that right on record.</p>
+              </li>
+              <li><a href="/.well-known/security.txt">Security Disclosure</a></li>
+            </ul>
+          </div>
+        </div>
+        <div class="footer-bottom">
+          <span>&copy; 2026 Adworth&#8480; LLC &middot; Patent Pending &middot; Charleston, SC</span>
+          <span>Built in public &middot; Raising seed round</span>
+        </div>
+      </div>
+    </footer>
+
+
+<script>
+  // Runtime email builder — prevents Cloudflare obfuscation and harvesting
+  document.querySelectorAll('.email-link').forEach(function(el) {
+    var u = el.getAttribute('data-u');
+    var d = el.getAttribute('data-d');
+    var addr = u + '@' + d;
+    var a = document.createElement('a');
+    a.href = 'mailto:' + addr;
+    a.textContent = addr;
+    el.parentNode.replaceChild(a, el);
+  });
+</script>
+
+</body>
+</html>
