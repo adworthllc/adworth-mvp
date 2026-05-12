@@ -1,4 +1,26 @@
 <!DOCTYPE html>
+<!--
+  Adworth℠ demo.html — Privacy Cockpit extraction target
+  Last updated: 2026-05-12 (v5.4.0 era — adworth-ads PII Classifier deployed)
+
+  Purpose: Simulated advertising-platform dashboard used by the Privacy Cockpit
+  Chrome extension as its test extraction surface. The cryptographic chain that
+  follows the sync (Ed25519 sign → Ingestion API verify → ADWORTH_LEDGER write
+  → PGE eval) is LIVE. Only the source dashboard data on this page is simulated.
+
+  CRITICAL CONTRACT: The <table id="metrics-table"> block (Aggregated Campaign
+  Metrics section) is parsed by extractDemoMetrics() in the extension's
+  content-script.js. Do NOT change the structure, row order, or first-column
+  labels of that table — they are an API contract with the extension.
+
+  Standing Rule 1: This file participates in the demo flow described in
+  services.html §03 (Privacy Cockpit Browser Extension). Updates to demo.html
+  should be reflected in services.html where the flow is documented.
+
+  Indexing: <meta name="robots" content="noindex"> is intentional. This file
+  is deliberately not included in sitemap.xml. It is reachable by direct URL
+  for demo purposes but not surfaced in search.
+-->
 <html lang="en">
 <head>
   <meta charset="UTF-8">
@@ -292,6 +314,51 @@
     .event-text strong { color: var(--ink); font-weight: 600; }
     .event-time { font-size: 0.68rem; color: var(--ink-30); flex-shrink: 0; }
 
+    /* ── NEXT-STEP CALLOUT ── */
+    .next-step {
+      background: var(--green-tint);
+      border: 1.5px solid rgba(82,183,136,0.3);
+      border-radius: 12px;
+      padding: 1.5rem 1.75rem;
+      margin: 0 2rem 2rem;
+    }
+    .next-step-tag {
+      display: inline-block;
+      font-size: 0.6rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 1.2px;
+      background: var(--green-accent);
+      color: white;
+      padding: 0.2rem 0.55rem;
+      border-radius: 100px;
+      margin-bottom: 0.75rem;
+    }
+    .next-step h3 {
+      font-family: 'DM Serif Display', Georgia, serif;
+      font-size: 1.15rem;
+      color: var(--green-deep);
+      margin-bottom: 0.5rem;
+    }
+    .next-step p { font-size: 0.85rem; color: var(--green-deep); line-height: 1.65; margin-bottom: 0.75rem; }
+    .next-step-links { display: flex; flex-wrap: wrap; gap: 0.6rem; margin-top: 0.85rem; }
+    .next-step-link {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.4rem;
+      background: var(--white);
+      border: 1.5px solid rgba(82,183,136,0.3);
+      color: var(--green-deep);
+      text-decoration: none;
+      font-size: 0.78rem;
+      font-weight: 600;
+      padding: 0.5rem 0.85rem;
+      border-radius: 8px;
+      transition: all 0.2s;
+    }
+    .next-step-link:hover { background: var(--green-pale); border-color: var(--green-primary); }
+    .next-step-link .arrow { font-size: 0.85rem; }
+
     /* ── FOOTER ── */
     footer {
       border-top: 1px solid var(--border);
@@ -341,7 +408,7 @@
     <!-- PAGE HEADER -->
     <div class="page-header">
       <h1 class="page-title">Campaign Overview</h1>
-      <p class="page-subtitle">Q1 2026 · All campaigns · Last 30 days</p>
+      <p class="page-subtitle">Q2 2026 · All campaigns · Last 30 days</p>
     </div>
 
     <!-- KPI ROW -->
@@ -508,10 +575,22 @@
     </div>
   </div>
 
+  <!-- WHAT HAPPENS NEXT — for demo viewers, points to the full cryptographic chain -->
+  <div class="next-step">
+    <span class="next-step-tag">After Sync</span>
+    <h3>See your token in the live cryptographic chain</h3>
+    <p>Once Privacy Cockpit signs and submits the metrics above, a <code style="background:rgba(255,255,255,0.6);padding:0.05rem 0.3rem;border-radius:3px;font-family:'Courier New',monospace;font-size:0.78rem;">CONSENT_ISSUED</code> event is written to the Invisibility Ledger. The token is then immediately evaluable by the Privacy Governance Engine (Bouncer) when advertisers request access. Verify the full chain below.</p>
+    <div class="next-step-links">
+      <a href="/ledger.html" class="next-step-link">View Invisibility Ledger <span class="arrow">→</span></a>
+      <a href="/advertiser-sandbox.html" class="next-step-link">Test access via Advertiser Sandbox <span class="arrow">→</span></a>
+      <a href="/services.html#privacy-cockpit" class="next-step-link">How this works <span class="arrow">→</span></a>
+    </div>
+  </div>
+
   <!-- FOOTER -->
   <footer>
     <span>Adworth℠ LLC · Charleston, SC · Demo environment — no real user data</span>
-    <span><a href="/privacy.html">Privacy</a> · <a href="/terms.html">Terms</a> · <a href="https://adworth-ingestion-api.adworthllc.workers.dev/extension/verify">API Status</a></span>
+    <span><a href="/services.html">Services</a> · <a href="/privacy.html">Privacy</a> · <a href="/terms.html">Terms</a> · <a href="https://adworth-ingestion-api.adworthllc.workers.dev/extension/verify">API Status</a></span>
   </footer>
 
   <script>
