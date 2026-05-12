@@ -220,6 +220,20 @@
                 </ul>
             </div>
 
+            <div class="audience-block">
+                <h4>Live Verification Flow</h4>
+                <p>For investors, partners, journalists, and developers who want to verify the cryptographic chain end-to-end, Adworth provides a working demo at <a href="/demo.html"><code>adworth.app/demo.html</code></a> &mdash; a simulated advertising-platform dashboard built specifically as a Privacy Cockpit extraction target. The page is intentionally excluded from the sitemap and carries a <code>noindex</code> meta tag; it is reachable by direct URL but not surfaced in search.</p>
+                <p>The five-step demo flow:</p>
+                <ol>
+                    <li>Navigate to <a href="/demo.html"><code>adworth.app/demo.html</code></a> in Chrome with the Privacy Cockpit extension installed</li>
+                    <li>Open the extension popup and click <strong>Sync Dashboard Data</strong></li>
+                    <li>The extension extracts the campaign metrics on the page, strips any PII client-side, and signs the sanitized payload with the device&rsquo;s Ed25519 private key</li>
+                    <li>The signed payload is submitted to <code>adworth-ingestion-api</code>, which verifies the signature using the device&rsquo;s registered public key and writes a <code>CONSENT_ISSUED</code> event to <code>ADWORTH_LEDGER</code></li>
+                    <li>Verify the token landed in the ledger at <a href="/ledger.html">adworth.app/ledger.html</a>, and optionally evaluate it through the Privacy Governance Engine via the Advertiser Sandbox at <a href="/advertiser-sandbox.html">adworth.app/advertiser-sandbox.html</a></li>
+                </ol>
+                <p>Source dashboard data on <code>demo.html</code> is simulated. The cryptographic chain, the Worker fleet, the signature verification, and the ledger write are live. This is the canonical proof-of-flow for any party seeking to verify Adworth&rsquo;s claims independently &mdash; no account required.</p>
+            </div>
+
             <div class="demo-notice">
                 <strong>Current status:</strong> The Privacy Cockpit extension and Ingestion API (v1.3.0) are confirmed working end-to-end on Cloudflare. Ed25519 signature verification, ingestion data storage, and <code>CONSENT_ISSUED</code> ledger write are all live. The extension is currently distributed as a developer build and has not been published to the Chrome Web Store.
             </div>
