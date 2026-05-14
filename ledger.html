@@ -6,7 +6,7 @@
     <meta http-equiv="X-Content-Type-Options" content="nosniff">
     <meta http-equiv="X-Frame-Options" content="DENY">
     <meta name="referrer" content="strict-origin-when-cross-origin">
-  <title>My Consent Ledger — Adworth℠</title>
+  <title>My Consent Ledger &mdash; Adworth&#8480;</title>
   <meta name="description" content="Your cryptographic consent ledger. Every token issued, every access blocked, every deletion enforced — on your terms.">
   <link rel="icon" type="image/x-icon" href="/favicon.ico">
   <link rel="preconnect" href="https://adworth-fonts.adworthllc.workers.dev">
@@ -582,7 +582,7 @@
 <header>
   <nav>
     <a href="/" class="logo">
-      <span class="logo-text">Adworth℠</span>
+      <span class="logo-text">Adworth&#8480;</span>
       <span class="badge">Consent Ledger</span>
     </a>
     <div class="nav-right">
@@ -625,7 +625,7 @@
     <div class="ch-cell c-blocked">
       <div class="ch-eyebrow amber">Requests Blocked</div>
       <div class="ch-count">3</div>
-      <div class="ch-desc"><strong>1 scope violation</strong> — Spotify requested health data outside their token scope. Denied automatically. <strong>2 expired</strong> — access attempts after token windows closed.</div>
+      <div class="ch-desc"><strong>1 scope violation</strong> &mdash; Demo Music Service requested health data outside their token scope. Denied automatically. <strong>2 expired</strong> &mdash; access attempts after token windows closed.</div>
     </div>
   </div>
 
@@ -701,15 +701,15 @@
 
       <div class="earnings-panel">
         <div class="ep-header">
-          <div class="ep-title">Earnings Breakdown</div>
-          <div class="ep-sub">Consequence of consent working — not the point of it</div>
+          <div class="ep-title">Earnings Breakdown <em style="font-style:normal;color:var(--green-accent);font-size:0.7rem;font-weight:700;letter-spacing:0.6px;margin-left:0.4rem;vertical-align:middle;">PHASE 2 PREVIEW</em></div>
+          <div class="ep-sub">Consequence of consent working &mdash; not the point of it</div>
         </div>
         <div class="ep-row">
-          <div class="ep-advertiser">Spotify USA Inc<small>music-listening · 30d · active</small></div>
+          <div class="ep-advertiser">Demo Music Service<small>music-listening · 30d · active</small></div>
           <div class="ep-amount">$2.50</div>
         </div>
         <div class="ep-row">
-          <div class="ep-advertiser">Spotify USA Inc<small>podcast-listening · 30d · active</small></div>
+          <div class="ep-advertiser">Demo Music Service<small>podcast-listening · 30d · active</small></div>
           <div class="ep-amount">$1.70</div>
         </div>
         <div class="ep-row">
@@ -763,7 +763,7 @@
     <a href="/">Home</a>
   </p>
   <p style="margin-top:0.75rem; max-width:760px; margin-left:auto; margin-right:auto; line-height:1.7; color:rgba(255,255,255,0.12);">
-    <strong>Disclaimer:</strong> All data shown is simulated for illustrative purposes only. This is not a functional product. No real user data, transactions, consents, or tokens are represented here. This page is not legal advice, financial advice, investment advice, or a prospectus. The Adworth℠ system is under development. Privacy Cockpit (MV3 browser extension) is in testing. No earnings or transactions are real. The demonstration does not constitute an offer to buy or sell securities or to provide financial services.
+    <strong>Disclaimer:</strong> All data shown is simulated for illustrative purposes only. This is not a functional product. No real user data, transactions, consents, or tokens are represented here. This page is not legal advice, financial advice, investment advice, or a prospectus. The Adworth&#8480; system is under development. Privacy Cockpit (MV3 browser extension) is in testing. No earnings or transactions are real. The demonstration does not constitute an offer to buy or sell securities or to provide financial services.
   </p>
 </footer>
 
@@ -791,15 +791,15 @@
   // ── DATA ────────────────────────────────────────────────
   const TOKENS = [
     {
-      id: 'AWX-7f3a9c2d', advertiser: 'Spotify USA Inc',
+      id: 'AWX-7f3a9c2d', advertiser: 'Demo Music Service',
       logo: '🎵', bg: 'rgba(30,215,96,0.12)',
       scope: 'music-listening · behavioral-targeting',
       status: 'active', issued: 'Feb 1, 2026', expires: 'Mar 3, 2026',
       duration: '30 days', earned: '$2.50', rate: '$2.50/mo', access: 14,
-      event: { type:'blocked', label:'ACCESS_BLOCKED', desc:'Spotify requested health-data scope — outside this token. Request denied automatically.' }
+      event: { type:'blocked', label:'ACCESS_BLOCKED', desc:'Demo Music Service requested health-data scope &mdash; outside this token. Request denied automatically.' }
     },
     {
-      id: 'AWX-2b8e1f7a', advertiser: 'Spotify USA Inc',
+      id: 'AWX-2b8e1f7a', advertiser: 'Demo Music Service',
       logo: '🎙️', bg: 'rgba(30,215,96,0.09)',
       scope: 'podcast-listening · interest-targeting',
       status: 'active', issued: 'Feb 10, 2026', expires: 'Mar 12, 2026',
@@ -841,14 +841,14 @@
   ];
 
   const AUDIT = [
-    { type:'blocked',  cls:'amber', label:'ACCESS_BLOCKED',     desc:'Spotify requested health-data — outside AWX-7f3a9c2d scope. Auto-denied.',             time:'Today 14:32' },
-    { type:'payment',  cls:'gold',  label:'PAYMENT_RECEIVED',   desc:'$1.25 · Spotify USA Inc · AWX-7f3a9c2d · music-listening.',                            time:'Today 09:14' },
-    { type:'payment',  cls:'gold',  label:'PAYMENT_RECEIVED',   desc:'$0.85 · Spotify USA Inc · AWX-2b8e1f7a · podcast-listening.',                          time:'Feb 25 11:00' },
+    { type:'blocked',  cls:'amber', label:'ACCESS_BLOCKED',     desc:'Demo Music Service requested health-data &mdash; outside AWX-7f3a9c2d scope. Auto-denied.',             time:'Today 14:32' },
+    { type:'payment',  cls:'gold',  label:'PAYMENT_RECEIVED',   desc:'$1.25 &middot; Demo Music Service &middot; AWX-7f3a9c2d &middot; music-listening.',                            time:'Today 09:14' },
+    { type:'payment',  cls:'gold',  label:'PAYMENT_RECEIVED',   desc:'$0.85 &middot; Demo Music Service &middot; AWX-2b8e1f7a &middot; podcast-listening.',                          time:'Feb 25 11:00' },
     { type:'enforced', cls:'green', label:'RPE_GENERATED',      desc:'GDPR Art. 17 removal notice auto-filed against ClearVPN Ltd. · AWX-6d4e9f1a.',         time:'Feb 5 08:45' },
     { type:'enforced', cls:'green', label:'VIOLATION_DETECTED', desc:'State-monitor found ClearVPN still held browsing data 5 days post-revocation.',         time:'Feb 5 08:40' },
     { type:'revoked',  cls:'red',   label:'CONSENT_REVOKED',    desc:'You revoked AWX-6d4e9f1a · ClearVPN Ltd. · access terminated immediately.',            time:'Jan 30 19:22' },
     { type:'expired',  cls:'muted', label:'TOKEN_EXPIRED',      desc:'AWX-4c1d8b5e · RunnerBrand Co. · 60-day window closed. Access auto-revoked.',          time:'Jan 30 09:00' },
-    { type:'issued',   cls:'green', label:'CONSENT_ISSUED',     desc:'AWX-2b8e1f7a · Spotify USA Inc · podcast-listening · 30d · $1.70/mo.',                 time:'Feb 10 09:00' },
+    { type:'issued',   cls:'green', label:'CONSENT_ISSUED',     desc:'AWX-2b8e1f7a &middot; Demo Music Service &middot; podcast-listening &middot; 30d &middot; $1.70/mo.',                 time:'Feb 10 09:00' },
     { type:'issued',   cls:'green', label:'CONSENT_ISSUED',     desc:'AWX-4c1d8b5e · RunnerBrand Co. · athletic-data · 60d · $3.00/mo.',                     time:'Dec 1 10:00' },
   ];
 
