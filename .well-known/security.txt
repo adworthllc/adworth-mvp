@@ -1,0 +1,12 @@
+# Adworth℠ LLC — Security Policy
+# RFC 9116 compliant
+
+Contact: mailto:hello@adworth.app
+Expires: 2027-03-18T00:00:00Z
+Canonical: https://adworth.app/.well-known/security.txt
+Preferred-Languages: en
+Policy: https://adworth.app/security-policy
+
+# Adworth builds cryptographic consent infrastructure.
+# We take responsible disclosure seriously.
+# Please allow up to 72 hours for an initial response.
