@@ -59,19 +59,19 @@
         .st-container { max-width: 960px; margin: 0 auto; padding: 0 2rem; }
 
         /* Hero */
-        .st-hero { background: #0b1810; padding: 7rem 2rem 6rem; text-align: center; overflow: hidden; position: relative; }
-        .st-hero::before { content: ''; position: absolute; inset: 0; background-image: linear-gradient(rgba(82,183,136,0.028) 1px,transparent 1px),linear-gradient(90deg,rgba(82,183,136,0.028) 1px,transparent 1px); background-size: 48px 48px; pointer-events: none; }
+        .st-hero { background: var(--off-white); padding: 7rem 2rem 6rem; text-align: center; overflow: hidden; position: relative; }
+        .st-hero::before { content: ''; position: absolute; inset: 0; background-image: linear-gradient(rgba(45,106,79,0.04) 1px,transparent 1px),linear-gradient(90deg,rgba(45,106,79,0.04) 1px,transparent 1px); background-size: 48px 48px; pointer-events: none; }
         .st-hero-inner { max-width: 720px; margin: 0 auto; position: relative; z-index: 1; }
-        .st-eyebrow { display: inline-block; font-size: 0.65rem; font-weight: 700; text-transform: uppercase; letter-spacing: 2.5px; color: var(--green-accent); background: rgba(82,183,136,0.1); border: 1px solid rgba(82,183,136,0.2); padding: 0.3rem 0.85rem; border-radius: 100px; margin-bottom: 2rem; animation: fadeDown 0.6s ease both; }
-        .st-headline { font-family: 'DM Serif Display', serif; font-size: clamp(2.4rem,6vw,3.8rem); color: white; line-height: 1.1; margin-bottom: 1.5rem; animation: fadeDown 0.6s 0.1s ease both; }
-        .st-headline em { font-style: italic; color: var(--green-accent); }
-        .st-sub { font-size: 1.05rem; color: rgba(255,255,255,0.45); line-height: 1.8; max-width: 560px; margin: 0 auto 2.5rem; animation: fadeDown 0.6s 0.2s ease both; }
-        .st-sub strong { color: rgba(255,255,255,0.75); font-weight: 600; }
+        .st-eyebrow { display: inline-block; font-size: 0.65rem; font-weight: 700; text-transform: uppercase; letter-spacing: 2.5px; color: var(--green-mid); background: var(--green-tint); border: 1px solid rgba(45,106,79,0.25); padding: 0.3rem 0.85rem; border-radius: 100px; margin-bottom: 2rem; animation: fadeDown 0.6s ease both; }
+        .st-headline { font-family: 'DM Serif Display', serif; font-size: clamp(2.4rem,6vw,3.8rem); color: var(--ink); line-height: 1.1; margin-bottom: 1.5rem; animation: fadeDown 0.6s 0.1s ease both; }
+        .st-headline em { font-style: italic; color: var(--green-primary); }
+        .st-sub { font-size: 1.05rem; color: var(--ink-60); line-height: 1.8; max-width: 560px; margin: 0 auto 2.5rem; animation: fadeDown 0.6s 0.2s ease both; }
+        .st-sub strong { color: var(--ink); font-weight: 600; }
         .st-cta-row { display: flex; gap: 0.75rem; justify-content: center; flex-wrap: wrap; animation: fadeDown 0.6s 0.3s ease both; }
         .btn-hero-primary { padding: 0.9rem 2rem; background: var(--green-primary); color: white; border: none; border-radius: 8px; font-family: 'Poppins', sans-serif; font-weight: 700; font-size: 0.9rem; cursor: pointer; transition: all 0.2s; text-decoration: none; display: inline-block; }
         .btn-hero-primary:hover { background: var(--green-accent); color: #111; transform: translateY(-1px); }
-        .btn-hero-secondary { padding: 0.9rem 2rem; background: transparent; color: rgba(255,255,255,0.45); border: 1px solid rgba(255,255,255,0.15); border-radius: 8px; font-family: 'Poppins', sans-serif; font-weight: 600; font-size: 0.9rem; cursor: pointer; transition: all 0.2s; text-decoration: none; display: inline-block; }
-        .btn-hero-secondary:hover { color: white; border-color: rgba(255,255,255,0.35); }
+        .btn-hero-secondary { padding: 0.9rem 2rem; background: transparent; color: var(--ink-60); border: 1px solid var(--border); border-radius: 8px; font-family: 'Poppins', sans-serif; font-weight: 600; font-size: 0.9rem; cursor: pointer; transition: all 0.2s; text-decoration: none; display: inline-block; }
+        .btn-hero-secondary:hover { color: var(--ink); border-color: var(--green-primary); }
 
         /* Section labels */
         .section-eyebrow { font-size: 0.65rem; font-weight: 700; text-transform: uppercase; letter-spacing: 2px; color: var(--green-accent); margin-bottom: 0.75rem; }
@@ -188,6 +188,7 @@
           <li><a href="/#problem">Problem</a></li>
           <li><a href="/#how-it-works">How It Works</a></li>
           <li><a href="/#transparency">How We Make Money</a></li>
+          <li><a href="/dashboard.html">See Who&rsquo;s Targeting You</a></li>
           <li><a href="/#founder">Founder</a></li>
           <li><a href="/#investors">Investors</a></li>
           <li><a href="/enterprise.html">Enterprise</a></li>
@@ -371,20 +372,20 @@
             <div class="pv-label">Live consent token preview</div>
             <div class="pv-token">
               <div class="pv-token-header">
-                <div class="pv-advertiser">Spotify USA Inc</div>
+                <div class="pv-advertiser">Demo Advertiser</div>
                 <div class="pv-status"><span class="pv-dot"></span>Active</div>
               </div>
               <div class="pv-row"><span class="pv-row-label">Token ID</span><span class="pv-row-value">AWX-7f3a9c2d</span></div>
               <div class="pv-row"><span class="pv-row-label">Scope</span><span class="pv-row-value">music-listening</span></div>
               <div class="pv-row"><span class="pv-row-label">Duration</span><span class="pv-row-value">30 days</span></div>
               <div class="pv-row"><span class="pv-row-label">Signed with</span><span class="pv-row-value">Ed25519 &middot; FIPS 186-5</span></div>
-              <div class="pv-row"><span class="pv-row-label">Earned</span><span class="pv-row-value green">$2.50 / month</span></div>
+              <div class="pv-row"><span class="pv-row-label">Earned <em style="font-style:normal;color:var(--green-accent);font-size:0.7rem;font-weight:600;letter-spacing:0.5px;">PHASE 2</em></span><span class="pv-row-value green">$2.50 / month</span></div>
             </div>
             <div class="pv-event"><span class="pv-event-dot green"></span>CONSENT_ISSUED &mdash; Feb 1, 2026 &middot; 09:00 UTC</div>
             <div class="pv-event"><span class="pv-event-dot red"></span>ACCESS_BLOCKED &mdash; health-data scope violation &middot; auto-denied</div>
-            <div class="pv-event"><span class="pv-event-dot green"></span>PAYMENT_RECEIVED &mdash; $1.25 &middot; Feb 15, 2026</div>
+            <div class="pv-event"><span class="pv-event-dot green"></span>PAYMENT_RECEIVED &mdash; $1.25 &middot; <em style="font-style:normal;color:var(--green-accent);font-weight:600;letter-spacing:0.4px;font-size:0.7rem;">PHASE 2 PREVIEW</em></div>
             <div style="margin-top:1.25rem;padding:0.85rem;background:rgba(82,183,136,0.06);border:1px solid rgba(82,183,136,0.15);border-radius:8px;font-size:0.7rem;color:rgba(255,255,255,0.3);line-height:1.6;">
-              <strong style="color:rgba(255,255,255,0.5);">Demo only.</strong> Simulated token for illustration. No real transaction.
+              <strong style="color:rgba(255,255,255,0.5);">Demo only.</strong> Simulated token for illustration. The Earned row and PAYMENT_RECEIVED event preview Phase 2 functionality (post-seed). Phase 1 (today) is the cryptographic consent infrastructure shown in all other fields.
             </div>
           </div>
         </div>
@@ -444,7 +445,7 @@
         <div>
           <div class="footer-brand-name">Adworth&#8480;</div>
           <p class="footer-tagline">Cryptographic consent infrastructure for digital advertising. Privacy for people, compliance for platforms.</p>
-          <p class="footer-note">We earn exactly 2% when advertisers pay you for verified consent. That&rsquo;s our only revenue source. Always visible. Always on the ledger. No exceptions.</p>
+          <p class="footer-note">Adworth earns a flat 2% on every verified consent transaction &mdash; paid by advertisers today, by consent transactions in the future consumer marketplace. Always visible. Always on the ledger.</p>
         </div>
         <div class="footer-links">
           <h4>Product</h4>
@@ -472,6 +473,7 @@
         <div class="footer-links">
           <h4>Legal</h4>
           <ul>
+            <li><a href="/services.html">Services</a></li>
             <li><a href="/privacy.html">Privacy Policy</a></li>
             <li><a href="/terms.html">Terms of Service</a></li>
             <li style="border-top: 1px solid var(--border); padding-top: 0.6rem; margin-top: 0.25rem;">
