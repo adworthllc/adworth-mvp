@@ -4,7 +4,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Developer Docs &mdash; Adworth&#8480;</title>
-  <meta name="description" content="Two-sided consent marketplace. Free for everyone. 2% fee on revenue you generate. Advertisers verify consent. Consumers earn for data.">
+  <meta name="description" content="Adworth's developer API: cryptographic consent verification at the transaction layer. Flat 2% per verified consent transaction, paid by advertisers. Vision: a consumer marketplace where users earn from data (Phase 2). Phase 1 (now): the consent infrastructure advertisers integrate with.">
   <meta http-equiv="X-Content-Type-Options" content="nosniff">
   <meta http-equiv="X-Frame-Options" content="DENY">
   <meta http-equiv="Referrer-Policy" content="strict-origin-when-cross-origin">
@@ -505,6 +505,7 @@
         <li><a href="/#problem">Problem</a></li>
         <li><a href="/#how-it-works">How It Works</a></li>
         <li><a href="/#transparency">How We Make Money</a></li>
+        <li><a href="/dashboard.html">See Who&rsquo;s Targeting You</a></li>
         <li><a href="/#founder">Founder</a></li>
         <li><a href="/#investors">Investors</a></li>
         <li><a href="/enterprise.html">Enterprise</a></li>
@@ -515,8 +516,8 @@
 
   <div class="header">
     <div>
-      <h1>Adworth℠ — Consent Marketplace</h1>
-      <div class="subtitle">Free for everyone · 2% fee on revenue · API Reference · Live Sandbox</div>
+      <h1>Adworth&#8480; &mdash; Developer API</h1>
+      <div class="subtitle">Flat 2% per verified consent transaction &middot; API Reference &middot; Live Sandbox</div>
     </div>
     <span class="badge">Patent Pending</span>
   </div>
@@ -526,25 +527,25 @@
     <!-- Hero -->
     <div class="integration-hero">
       <h2>Cryptographic consent<br><em>for both sides of the market.</em></h2>
-      <p>Consumers earn for data. Advertisers verify consent cryptographically. Adworth takes 2% marketplace fee when revenue is generated. Free forever. No minimums. No gatekeeping.</p>
+      <p>Advertisers verify consent cryptographically at the transaction layer. Adworth charges a flat 2% per verified consent transaction. The consumer marketplace where users earn from data is on the Phase 2 roadmap. No minimums. No gatekeeping.</p>
     </div>
 
     <!-- Two-Sided Marketplace -->
     <div class="section">
       <div class="section-label">The Marketplace</div>
       <div class="section-title">How both sides work together</div>
-      <div class="section-desc">Adworth is a two-sided consent marketplace. Consumers own their data and sell consent. Advertisers verify compliance and buy access. We take 2% when revenue flows.</div>
+      <div class="section-desc">Adworth's consent infrastructure connects two sides. Today (Phase 1): consumers grant and revoke consent, advertisers verify compliance and pay a flat 2% per verified consent transaction. Phase 2 (post-seed): consumers earn directly when they grant consent to advertisers.</div>
 
       <div class="two-sided-flow">
         <div class="marketplace-side">
           <h3>🧑 Consumers</h3>
           <div class="subtitle">Privacy Cockpit Extension</div>
           <ul>
-            <li><strong>Access cost:</strong> Free forever</li>
-            <li><strong>What you do:</strong> Grant consent to advertisers for your data</li>
-            <li><strong>What you earn:</strong> Direct payment per consent token</li>
-            <li><strong>How Adworth gets paid:</strong> 2% of your earnings (only taken when you make money)</li>
-            <li><strong>Example:</strong> Nike pays $1.00 for your data. You get $0.98. Adworth takes $0.02.</li>
+            <li><strong>Access cost:</strong> Free</li>
+            <li><strong>What you do today (Phase 1):</strong> Grant and revoke consent to advertisers. View every access decision on the Invisibility Ledger.</li>
+            <li><strong>What you earn today:</strong> Nothing direct &mdash; Adworth's revenue comes from advertisers, not from you.</li>
+            <li><strong>Phase 2 (post-seed):</strong> Direct payment per consent token when you grant consent to advertisers.</li>
+            <li><strong>Phase 2 example:</strong> Advertiser pays $1.00 per consent. You get $0.98. Adworth takes $0.02.</li>
           </ul>
         </div>
 
@@ -553,10 +554,9 @@
           <div class="subtitle">Bouncer API + Governance Engine</div>
           <ul>
             <li><strong>Access cost:</strong> Free to verify consent</li>
-            <li><strong>What you do:</strong> Call /evaluate before accessing data</li>
-            <li><strong>What you get:</strong> Cryptographic proof of consent (or block reason)</li>
-            <li><strong>How Adworth gets paid:</strong> 2% of marketplace transactions (via consumer pool)</li>
-            <li><strong>Premium tiers:</strong> Analytics, priority support, white-label ($99+/mo)</li>
+            <li><strong>What you do:</strong> Call /evaluate before accessing user data. Get cryptographic proof of consent (or block reason) before serving any ad.</li>
+            <li><strong>Your cost:</strong> Flat 2% per verified consent transaction. Same rate every transaction. Same rate every advertiser. Always paid by you, not by the user.</li>
+            <li><strong>Why it's worth it:</strong> Cryptographic compliance proof for GDPR / CCPA / DSA / GSRA 2026. One integration covers them all.</li>
           </ul>
         </div>
       </div>
@@ -800,7 +800,7 @@
         <div class="feature-card">
           <div class="feat-icon">📈</div>
           <h4>Higher Engagement</h4>
-          <p>Users who actively consent are 3-5x more likely to engage with your ads. No more wasted impressions on hostile audiences.</p>
+          <p>Users who actively consent &mdash; rather than dismissing dark-pattern cookie banners &mdash; engage more deeply with ads they expected to see. Cryptographic consent filters out hostile audiences.</p>
         </div>
         <div class="feature-card">
           <div class="feat-icon">🛡️</div>
@@ -813,27 +813,27 @@
     <!-- Pricing -->
     <div class="section">
       <div class="section-label">Pricing</div>
-      <div class="section-title">2% marketplace model. That's it.</div>
-      <div class="section-desc">No seat licenses. No minimums. No gatekeeping. Everyone starts free. Adworth takes 2% when revenue flows through the marketplace.</div>
+      <div class="section-title">Flat 2%. Same rate every transaction.</div>
+      <div class="section-desc">No seat licenses. No minimums. No gatekeeping. No tiers. Flat 2% on every verified consent transaction &mdash; paid by advertisers today, by consent transactions in the future consumer marketplace.</div>
 
       <div class="pricing-card">
         <div class="section-label">Fair Market</div>
         <div class="price">2%</div>
-        <div class="price-sub">marketplace fee on revenue</div>
+        <div class="price-sub">per verified consent transaction</div>
         <ul class="pricing-features">
           <li>Unlimited API calls to /evaluate endpoint</li>
           <li>Real-time consent verification</li>
           <li>Automatic ledger recording</li>
           <li>Cryptographic proof of compliance</li>
           <li>Block reason analytics</li>
-          <li>Premium tiers available (analytics, support)</li>
+          <li>Block reason codes returned on every decision</li>
         </ul>
       </div>
     </div>
 
     <!-- Disclosure -->
     <div class="disclosure">
-      <strong>Complete Transparency Disclosure:</strong> This integration guide connects to the live Adworth Privacy Governance Engine (Patent Component #2). The API sandbox sends real requests and records real decisions in the Invisibility Ledger. <strong>Adworth takes exactly 2% marketplace fee</strong> — no hidden charges, no enterprise gatekeeping. Both consumers and advertisers start free. We only make money when marketplace revenue flows. The consent marketplace is live. Premium tiers (analytics, priority support, white-label) are under development. See <a href="/privacy.html">Privacy Policy</a> and <a href="/terms.html">Terms of Service</a> for complete details.
+      <strong>Complete Transparency Disclosure:</strong> This integration guide connects to the live Adworth Privacy Governance Engine (Patent Component #2). The API sandbox sends real requests and records real decisions in the Invisibility Ledger. <strong>Adworth charges a flat 2% per verified consent transaction</strong> &mdash; no tiers, no enterprise gatekeeping, no hidden charges. Phase 1 (now): advertisers integrate with the consent infrastructure and pay the 2%. Phase 2 (post-seed): the consumer marketplace opens where users earn directly when they grant consent. See <a href="/privacy.html">Privacy Policy</a>, <a href="/terms.html">Terms of Service</a>, and <a href="/services.html">Services</a> for complete details.
     </div>
   </div>
 
@@ -844,7 +844,7 @@
         <div>
           <div class="footer-brand-name">Adworth&#8480;</div>
           <p class="footer-tagline">Cryptographic consent infrastructure for digital advertising. Privacy for people, compliance for platforms.</p>
-          <p class="footer-note">We earn exactly 2% when advertisers pay you for verified consent. That&rsquo;s our only revenue source. Always visible. Always on the ledger. No exceptions.</p>
+          <p class="footer-note">Adworth earns a flat 2% on every verified consent transaction &mdash; paid by advertisers today, by consent transactions in the future consumer marketplace. Always visible. Always on the ledger.</p>
         </div>
         <div class="footer-links">
           <h4>Product</h4>
@@ -872,6 +872,7 @@
         <div class="footer-links">
           <h4>Legal</h4>
           <ul>
+            <li><a href="/services.html">Services</a></li>
             <li><a href="/privacy.html">Privacy Policy</a></li>
             <li><a href="/terms.html">Terms of Service</a></li>
             <li style="border-top: 1px solid var(--border); padding-top: 0.6rem; margin-top: 0.25rem;">
