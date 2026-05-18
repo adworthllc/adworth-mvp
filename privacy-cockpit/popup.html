@@ -149,6 +149,16 @@
       padding-top: 1rem;
       border-top: 1px solid #e2e8df;
     }
+    
+    .metadata a {
+      color: var(--green-primary);
+      text-decoration: none;
+      font-weight: 600;
+    }
+    
+    .metadata a:hover {
+      text-decoration: underline;
+    }
   </style>
 </head>
 <body>
@@ -175,7 +185,8 @@
   
   <div class="metadata" id="metadata">
     <p>Device: <span id="device">—</span></p>
-    <p>Ingestions: <span id="ingestions">0</span></p>
+    <p>Consent records synced: <span id="ingestions">0</span></p>
+    <p style="margin-top:0.6rem;"><a href="https://adworth.app/ledger.html" target="_blank" id="ledgerLink">View your consent on the Invisibility Ledger &rarr;</a></p>
   </div>
   
   <script src="popup.js"></script>
