@@ -1,15 +1,17 @@
 {
   "manifest_version": 3,
   "name": "Adworth Privacy Cockpit",
-  "version": "1.0.0",
-  "description": "Extract and protect your marketing data with Ed25519 cryptography",
+  "version": "1.1.0",
+  "description": "Cryptographically sign and submit your advertising consent with on-device Ed25519 keys. Your private key never leaves your device.",
   "permissions": [
     "storage",
     "activeTab",
     "scripting"
   ],
   "host_permissions": [
-    "<all_urls>"
+    "https://ads.google.com/*",
+    "https://business.facebook.com/*",
+    "https://adworth.app/*"
   ],
   "background": {
     "service_worker": "background.js"
@@ -22,16 +24,5 @@
       "128": "icons/icon-128.png"
     },
     "default_title": "Adworth Privacy Cockpit"
-  },
-  "content_scripts": [
-    {
-      "matches": [
-        "https://ads.google.com/*",
-        "https://business.facebook.com/*",
-        "https://adworth.app/*"
-      ],
-      "js": ["content-script.js"],
-      "run_at": "document_idle"
-    }
-  ]
+  }
 }
