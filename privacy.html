@@ -106,7 +106,7 @@
     <div class="inner">
         <span class="page-label">Legal</span>
         <h1>Privacy Policy</h1>
-        <p>Last updated: May 12, 2026 &middot; Adworth&#8480; LLC &middot; Charleston, SC</p>
+        <p>Last updated: May 18, 2026 &middot; Adworth&#8480; LLC &middot; Charleston, SC</p>
     </div>
 </div>
 
@@ -177,6 +177,10 @@
             <li><strong>Setup tokens:</strong> Single-use setup tokens are issued during registration with a five-minute expiry. They are used solely to coordinate keypair registration and are invalidated immediately on use.</li>
         </ul>
         <p>Multi-device support is provided by design &mdash; each device generates its own keypair. If a device is lost or compromised, you may request key revocation by contacting <span class="email-link" data-u="hello" data-d="adworth.app"></span>.</p>
+
+        <h3>Retrieving your own consent ledger</h3>
+        <p>You can retrieve your own consent records directly through the Privacy Cockpit extension. When you request your ledger, the extension signs a short, time-stamped request using the private key held on your device, and the Invisibility Ledger verifies that signature against your registered public key before returning anything. This means access to your ledger is proven by your key, not by a password or login &mdash; Adworth does not store a password, email address, or name for this purpose. A request that is not validly signed returns no data. Because Adworth holds no link between your identifier and your real-world identity, your ledger is associated only with an opaque identifier. You will see only your own real consent events; synthetic noise entries used for surveillance resistance (see Section 8) are never included in your results.</p>
+        <p><strong>Important:</strong> because your private key is the only proof of identity, it cannot be recovered or reset by Adworth. If you lose access to your device keys, you lose the ability to retrieve, issue, or revoke consent tokens from that device. Generating keys on additional devices, while a device is still available, is the recommended safeguard.</p>
         <div class="demo-notice">
             <strong>Current status:</strong> The Ingestion API (v1.3.0) and Privacy Cockpit extension are confirmed working end-to-end for investor demonstration and user testing. Ed25519 signature verification, ingestion data storage, and <code>CONSENT_ISSUED</code> ledger write to <code>ADWORTH_LEDGER</code> are all live on Cloudflare. The extension is currently distributed as a developer build and has not been published to the Chrome Web Store.
         </div>
