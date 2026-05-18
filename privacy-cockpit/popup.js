@@ -373,7 +373,10 @@ function renderLedger(data) {
     if (issued)  card.appendChild(makeRow('Issued', formatDate(issued)));
     if (expires) card.appendChild(makeRow('Expires', formatDate(expires)));
 
-    // Scope — present but may be unspecified until consent categories ship
+    // Scope — present but may be unspecified until consent categories ship.
+    // 'running-data-shoe-ads' is a hardcoded demo default in the current
+    // ingestion-api build (not a real user choice); tag it so the dashboard
+    // does not present a placeholder as a genuine consent decision.
     const scopeRow = document.createElement('div');
     scopeRow.className = 'tc-row';
     const scopeLabel = document.createElement('span');
@@ -381,7 +384,13 @@ function renderLedger(data) {
     scopeLabel.textContent = 'Scope';
     scopeRow.appendChild(scopeLabel);
     const scopeVal = document.createElement('span');
-    if (scope) {
+    if (scope === 'running-data-shoe-ads') {
+      scopeVal.textContent = scope + ' ';
+      const tag = document.createElement('span');
+      tag.className = 'tc-scope-pending';
+      tag.textContent = '(demo default)';
+      scopeVal.appendChild(tag);
+    } else if (scope) {
       scopeVal.textContent = scope;
     } else {
       scopeVal.className = 'tc-scope-pending';
