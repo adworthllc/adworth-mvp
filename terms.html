@@ -111,7 +111,7 @@
         <div class="inner">
             <span class="page-label">Legal</span>
             <h1>Terms of Service</h1>
-            <p>Last updated: May 12, 2026 &middot; Adworth&#8480; LLC &middot; Charleston, SC</p>
+            <p>Last updated: May 18, 2026 &middot; Adworth&#8480; LLC &middot; Charleston, SC</p>
         </div>
     </div>
 
@@ -261,7 +261,8 @@
                 <li>The extension strips all personally identifiable information (including advertiser billing names, email addresses, and billing addresses) before transmission &mdash; only campaign-level metrics are retained</li>
                 <li>Sanitized data is cryptographically signed with your device&rsquo;s private key before transmission, proving authenticity without exposing private key material</li>
                 <li>You are responsible for ensuring you have appropriate authorization to extract and submit data from the advertising dashboards you access using the extension</li>
-                <li>The extension uses a MutationObserver to detect dashboard updates and may trigger automatic data submissions when dashboard content changes</li>
+                <li>Data extraction is user-initiated &mdash; it runs only when you click sync in the extension, as a one-time read of the tab you are actively viewing via <code>chrome.scripting.executeScript</code>. The extension does not run a background observer and does not submit data automatically</li>
+                <li>The extension can extract only from the advertising platform dashboards and from <code>adworth.app</code> that its host permissions allow; it cannot read any other website</li>
             </ul>
 
             <h3>Ingestion data storage and consent ledger write</h3>
@@ -424,12 +425,22 @@
             </ul>
 
             <h3>Invisibility Ledger Viewer</h3>
-            <p>The Invisibility Ledger viewer (<code>adworth-ledger</code>) provides read-only access to the tamper-evident audit trail. By using the viewer, you acknowledge that:</p>
+            <p>The Invisibility Ledger viewer (<code>adworth-ledger</code>) provides read-only access to the tamper-evident audit trail. The ledger remains append-only and immutable in all cases &mdash; no interface, including the user retrieval described below, can modify, overwrite, or delete an entry. By using the viewer, you acknowledge that:</p>
             <ul>
                 <li>The viewer is strictly read-only &mdash; it cannot modify, delete, or create ledger entries by architectural design</li>
                 <li>Ledger entries displayed represent real consent lifecycle and enforcement events across all patent components, as well as synthetic chaff entries (see Section 7a) &mdash; both are visible in the full audit view</li>
                 <li>Access requires API key authentication; API keys are held in JavaScript memory for the session only and cleared when the page is closed &mdash; never written to <code>localStorage</code>, <code>sessionStorage</code>, cookies, or any server-side log</li>
                 <li>The viewer is a proof-of-concept and may be modified without notice</li>
+            </ul>
+
+            <h3 id="ledger-access">Your Ledger Access and Key Responsibility</h3>
+            <p>Separately from the administrative viewer above, you may retrieve the consent ledger entries associated with your own opaque identifier through the Privacy Cockpit extension. Retrieval is granted only upon cryptographic verification of a request signed with the private key held on your device. By using this feature, you acknowledge that:</p>
+            <ul>
+                <li>Your private key is the sole proof of identity for retrieving, issuing, or revoking consent tokens. Adworth does not store a password, email address, or name tied to your consent records, and provides no identity-recovery or password-reset mechanism</li>
+                <li><strong>If you lose access to your device keys, that access cannot be recovered or reset by Adworth.</strong> Loss of your private key means loss of the ability to retrieve your ledger or to issue or revoke consent tokens from that device. This is a deliberate consequence of an architecture in which Adworth holds no link to your real-world identity</li>
+                <li>Generating keys on additional devices, while a device is still available, is the recommended safeguard against key loss. Each device holds its own independent keypair</li>
+                <li>Retrieval returns only your own real consent events. Synthetic chaff entries (see Section 7a) are never included in your results</li>
+                <li>This retrieval feature does not alter the append-only, immutable nature of the ledger &mdash; it provides read access only</li>
             </ul>
 
             <h3 id="founding-member">Founding Member Program</h3>
