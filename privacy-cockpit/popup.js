@@ -1,4 +1,5 @@
 const API_BASE = 'https://adworth-ingestion-api.adworthllc.workers.dev';
+const LEDGER_BASE = 'https://adworth-ledger.adworthllc.workers.dev';
 
 document.addEventListener('DOMContentLoaded', async () => {
   await updateStatus();
@@ -6,6 +7,15 @@ document.addEventListener('DOMContentLoaded', async () => {
 
   document.getElementById('setupBtn').addEventListener('click', handleSetup);
   document.getElementById('syncBtn').addEventListener('click', handleSync);
+  document.getElementById('ledgerBtn').addEventListener('click', handleViewLedger);
+
+  // Key-loss acknowledgment gates the Setup button
+  const ack = document.getElementById('keylossAck');
+  if (ack) {
+    ack.addEventListener('change', () => {
+      document.getElementById('setupBtn').disabled = !ack.checked;
+    });
+  }
 });
 
 async function updateStatus() {
@@ -14,28 +24,42 @@ async function updateStatus() {
   const statusValue = document.getElementById('statusValue');
   const setupBtn = document.getElementById('setupBtn');
   const syncBtn = document.getElementById('syncBtn');
+  const ledgerBtn = document.getElementById('ledgerBtn');
+  const keylossBox = document.getElementById('keylossBox');
 
   if (data.setup_complete) {
     statusEl.className = 'status ready';
-    statusValue.textContent = '✓ Ready';
+    statusValue.textContent = '\u2713 Ready';
     setupBtn.style.display = 'none';
+    keylossBox.style.display = 'none';
     syncBtn.disabled = false;
+    ledgerBtn.disabled = false;
   } else {
     statusEl.className = 'status error';
-    statusValue.textContent = '⚠ Not Setup';
+    statusValue.textContent = '\u26a0 Not Setup';
     setupBtn.style.display = 'block';
+    // Setup stays disabled until the key-loss box is acknowledged
+    keylossBox.style.display = 'block';
+    setupBtn.disabled = !document.getElementById('keylossAck').checked;
     syncBtn.disabled = true;
+    ledgerBtn.disabled = true;
   }
 }
 
 async function loadMetadata() {
   const data = await chrome.storage.local.get(['device_fingerprint', 'ingestion_count']);
   document.getElementById('device').textContent =
-    data.device_fingerprint ? data.device_fingerprint.substring(0, 12) + '...' : '—';
+    data.device_fingerprint ? data.device_fingerprint.substring(0, 12) + '...' : '\u2014';
   document.getElementById('ingestions').textContent = data.ingestion_count || 0;
 }
 
 async function handleSetup() {
+  // Defense in depth — the button is disabled until acknowledged, but re-check.
+  if (!document.getElementById('keylossAck').checked) {
+    showMessage('Please acknowledge the key notice before setup.', 'error');
+    return;
+  }
+
   const messageEl = document.getElementById('message');
   messageEl.className = '';
   messageEl.textContent = 'Setting up...';
@@ -90,18 +114,14 @@ async function handleSetup() {
       private_key_ref: 'stored_in_crypto_api'
     });
 
-    // Private key already stored inside background.js generateKey handler — nothing to pass here
-
-    messageEl.className = 'message success';
-    messageEl.textContent = '✓ Setup complete! Ready to sync data.';
+    showMessage('\u2713 Setup complete! Ready to sync data.', 'success');
 
     await updateStatus();
     await loadMetadata();
 
   } catch (err) {
     console.error('Setup error:', err);
-    messageEl.className = 'message error';
-    messageEl.textContent = '✗ Setup failed: ' + err.message;
+    showMessage('\u2717 Setup failed: ' + err.message, 'error');
   }
 }
 
@@ -116,8 +136,8 @@ async function handleSync() {
     if (!tab) throw new Error('No active tab found');
 
     // ── Direct extraction — no message passing, no race condition ──
-    // executeScript with func: runs inline in page context and returns data immediately.
-    // No listener registration needed, no timing dependency.
+    // executeScript with func: runs inline in page context and returns data
+    // immediately. Limited by host_permissions to the three permitted domains.
     let results;
     try {
       results = await chrome.scripting.executeScript({
@@ -131,14 +151,13 @@ async function handleSync() {
           };
 
           if (hostname.includes('adworth.app') && href.includes('/demo')) {
-            // demo.html — reads <tr><td> table structure
             const rows = document.querySelectorAll('tr');
             rows.forEach(row => {
               const cells = row.querySelectorAll('td');
               if (cells.length >= 2) {
                 const label = cells[0]?.textContent?.toLowerCase().trim() || '';
                 const value = cells[1]?.textContent?.trim() || '';
-                if (label.includes('campaign')) metrics.campaign_name = value;
+                if (label.includes('campaign'))   metrics.campaign_name = value;
                 if (label.includes('spend'))      metrics.spend = parseFloat(value.replace(/[$,]/g, '')) || 0;
                 if (label.includes('conversion')) metrics.conversions = parseInt(value.replace(/[^0-9]/g, '')) || 0;
                 if (label.includes('impression')) metrics.impressions = parseInt(value.replace(/[^0-9]/g, '')) || 0;
@@ -148,16 +167,14 @@ async function handleSync() {
             metrics.platform = 'adworth_demo';
 
           } else if (hostname.includes('adworth.app')) {
-            // dashboard.html or any other adworth page — extract visible metric cards
             const cards = document.querySelectorAll('[class*="metric"],[class*="stat"],[class*="result"],[class*="card"],[class*="val"]');
             cards.forEach(card => {
               const text = card.textContent?.toLowerCase() || '';
               const num = parseInt(card.textContent?.replace(/[^0-9]/g, '')) || 0;
               if (text.includes('ads found') || text.includes('ads_found')) metrics.ads_found = num;
               if (text.includes('risk')) metrics.privacy_risk = card.textContent?.trim();
-              if (text.includes('flag'))  metrics.reg_flags = num;
+              if (text.includes('flag')) metrics.reg_flags = num;
             });
-            // Also grab any domain that was analysed
             const domainInput = document.querySelector('input[type="text"],input[placeholder*="domain"]');
             if (domainInput?.value) metrics.analysed_domain = domainInput.value;
             metrics.platform = 'adworth_dashboard';
@@ -212,7 +229,6 @@ async function handleSync() {
     const messageToSign = JSON.stringify({ ...data, timestamp });
 
     // ── Sign with private key via background service worker ──
-    // If SW was terminated by Chrome, sendMessage will wake it back up.
     const signatureBase64 = await new Promise((resolve, reject) => {
       chrome.runtime.sendMessage({
         action: 'signData',
@@ -222,7 +238,7 @@ async function handleSync() {
         if (chrome.runtime.lastError) {
           reject(new Error(chrome.runtime.lastError.message));
         } else if (!sig) {
-          reject(new Error('Session expired — please click Setup Extension again to regenerate your key.'));
+          reject(new Error('Session expired \u2014 please click Setup Extension again to regenerate your key.'));
         } else {
           resolve(sig);
         }
@@ -246,16 +262,175 @@ async function handleSync() {
     const newCount = (stored.ingestion_count || 0) + 1;
     await chrome.storage.local.set({ ingestion_count: newCount });
 
-    messageEl.className = 'message success';
-    messageEl.textContent = `✓ Data synced! ID: ${result.ingestion_id.substring(0, 8)}...`;
+    showMessage(`\u2713 Data synced! ID: ${result.ingestion_id.substring(0, 8)}...`, 'success');
 
     await loadMetadata();
 
   } catch (err) {
     console.error('Sync error:', err);
-    messageEl.className = 'message error';
-    messageEl.textContent = '✗ Sync failed: ' + err.message;
+    showMessage('\u2717 Sync failed: ' + err.message, 'error');
   }
+}
+
+// ── View My Consent Ledger ──────────────────────────────────────────────────
+// Proves identity by signing "{userId}:{timestamp}" with the device private
+// key, then calls POST /user/ledger. No password, no API key — the key is the
+// identity. Returned data is rendered with createTextNode (no innerHTML of
+// server data) to keep rendering XSS-safe.
+async function handleViewLedger() {
+  const messageEl = document.getElementById('message');
+  messageEl.className = '';
+  messageEl.textContent = 'Retrieving your ledger...';
+
+  try {
+    const stored = await chrome.storage.local.get(['user_id']);
+    const userId = stored.user_id;
+    if (!userId) throw new Error('Not setup yet. Click Setup Extension first.');
+
+    // The challenge: a numeric timestamp. The Worker enforces a 5-min window.
+    const timestamp = String(Date.now());
+    const challenge = `${userId}:${timestamp}`;
+
+    const signature = await new Promise((resolve, reject) => {
+      chrome.runtime.sendMessage({
+        action: 'signData',
+        userId: userId,
+        message: challenge
+      }, (sig) => {
+        if (chrome.runtime.lastError) {
+          reject(new Error(chrome.runtime.lastError.message));
+        } else if (!sig) {
+          reject(new Error('Session expired \u2014 please click Setup Extension again to regenerate your key.'));
+        } else {
+          resolve(sig);
+        }
+      });
+    });
+
+    const res = await fetch(`${LEDGER_BASE}/user/ledger`, {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ userId, timestamp, signature })
+    });
+
+    if (res.status === 401) throw new Error('Could not verify your key. Try again, or re-run Setup.');
+    if (!res.ok) throw new Error('Ledger retrieval failed: ' + res.statusText);
+
+    const data = await res.json();
+    renderLedger(data);
+    messageEl.className = '';
+    messageEl.textContent = '';
+
+  } catch (err) {
+    console.error('Ledger error:', err);
+    showMessage('\u2717 ' + err.message, 'error');
+  }
+}
+
+function renderLedger(data) {
+  const section = document.getElementById('ledgerSection');
+  const content = document.getElementById('ledgerContent');
+  content.textContent = ''; // clear
+  section.style.display = 'block';
+
+  const tokens = Array.isArray(data.tokens) ? data.tokens : [];
+
+  if (tokens.length === 0) {
+    const empty = document.createElement('div');
+    empty.className = 'ledger-empty';
+    empty.textContent = 'No consent tokens yet. Use "Generate Consent Token" to create one.';
+    content.appendChild(empty);
+    return;
+  }
+
+  tokens.forEach((token) => {
+    const card = document.createElement('div');
+    card.className = 'token-card';
+
+    // Token ID
+    const idEl = document.createElement('div');
+    idEl.className = 'tc-id';
+    idEl.textContent = token.token_id || 'unknown';
+    card.appendChild(idEl);
+
+    // Derive status + dates from the token's events
+    const events = Array.isArray(token.events) ? token.events : [];
+    let status = 'active';
+    let issued = null;
+    let expires = null;
+    let scope = null;
+    for (const ev of events) {
+      if (ev.event === 'CONSENT_REVOKED') status = 'revoked';
+      if (ev.event === 'CONSENT_EXPIRED') status = 'expired';
+      if (ev.event === 'CONSENT_ISSUED') {
+        issued = ev.timestamp || null;
+        if (ev.details && ev.details.expiresAt) expires = ev.details.expiresAt;
+      }
+      if (ev.scope) scope = ev.scope;
+    }
+
+    card.appendChild(makeRow('Status', null, status));
+    if (issued)  card.appendChild(makeRow('Issued', formatDate(issued)));
+    if (expires) card.appendChild(makeRow('Expires', formatDate(expires)));
+
+    // Scope — present but may be unspecified until consent categories ship
+    const scopeRow = document.createElement('div');
+    scopeRow.className = 'tc-row';
+    const scopeLabel = document.createElement('span');
+    scopeLabel.className = 'tc-label';
+    scopeLabel.textContent = 'Scope';
+    scopeRow.appendChild(scopeLabel);
+    const scopeVal = document.createElement('span');
+    if (scope) {
+      scopeVal.textContent = scope;
+    } else {
+      scopeVal.className = 'tc-scope-pending';
+      scopeVal.textContent = 'not yet specified';
+    }
+    scopeRow.appendChild(scopeVal);
+    card.appendChild(scopeRow);
+
+    content.appendChild(card);
+  });
+}
+
+// Build a label/value row. If statusValue is provided, render it as a pill.
+function makeRow(label, value, statusValue) {
+  const row = document.createElement('div');
+  row.className = 'tc-row';
+
+  const labelEl = document.createElement('span');
+  labelEl.className = 'tc-label';
+  labelEl.textContent = label;
+  row.appendChild(labelEl);
+
+  if (statusValue) {
+    const pill = document.createElement('span');
+    pill.className = 'tc-status ' + statusValue;
+    pill.textContent = statusValue;
+    row.appendChild(pill);
+  } else {
+    const valEl = document.createElement('span');
+    valEl.textContent = value || '\u2014';
+    row.appendChild(valEl);
+  }
+  return row;
+}
+
+function formatDate(ts) {
+  try {
+    const d = new Date(ts);
+    if (isNaN(d.getTime())) return String(ts);
+    return d.toLocaleDateString('en-US', { year: 'numeric', month: 'short', day: 'numeric' });
+  } catch {
+    return String(ts);
+  }
+}
+
+function showMessage(text, type) {
+  const el = document.getElementById('message');
+  el.className = 'message ' + type;
+  el.textContent = text;
 }
 
 function generateDeviceFingerprint() {
