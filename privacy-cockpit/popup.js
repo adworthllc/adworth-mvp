@@ -187,19 +187,18 @@ async function handleSync() {
               if (label.includes('conversion')) metrics.conversions = parseInt(value.replace(/[^0-9]/g, '')) || 0;
             });
             metrics.platform = 'facebook';
-
-          } else {
-            // Any other page — capture basic page signal so demo still flows end-to-end
-            metrics.platform = 'web_page';
-            metrics.page_title = document.title?.substring(0, 80) || '';
-            metrics.ad_elements = document.querySelectorAll('[id*="ad"],[class*="ad"],[class*="sponsor"]').length;
           }
+          // No else branch: host_permissions is restricted to ads.google.com,
+          // business.facebook.com, and adworth.app. executeScript cannot run
+          // on any other origin, so arbitrary-page extraction is impossible
+          // by design. Page titles / browsing context of other sites are
+          // never read. (v1.1.0 — privacy hardening.)
 
           return metrics;
         }
       });
     } catch (injectErr) {
-      throw new Error('Could not access this page: ' + injectErr.message + '. Try adworth.app/demo.');
+      throw new Error('This page is not a supported ad platform. Open Google Ads, Meta Ads Manager, or adworth.app/demo, then sync.');
     }
 
     const data = results?.[0]?.result;
