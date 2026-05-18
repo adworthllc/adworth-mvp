@@ -9,9 +9,13 @@
   → PGE eval) is LIVE. Only the source dashboard data on this page is simulated.
 
   CRITICAL CONTRACT: The <table id="metrics-table"> block (Aggregated Campaign
-  Metrics section) is parsed by extractDemoMetrics() in the extension's
-  content-script.js. Do NOT change the structure, row order, or first-column
-  labels of that table — they are an API contract with the extension.
+  Metrics section) is parsed by the Privacy Cockpit extension. As of extension
+  v1.1.0 the extraction runs inline via chrome.scripting.executeScript in
+  popup.js (the standalone content-script.js was removed). The extractor reads
+  each <tr>: first <td> is the label, second <td> is the value, matching on
+  the lowercased label text for: campaign, spend, impression, conversion, roas.
+  Do NOT change the structure, row order, or first-column labels of that table
+  — they are an API contract with the extension.
 
   Standing Rule 1: This file participates in the demo flow described in
   services.html §03 (Privacy Cockpit Browser Extension). Updates to demo.html
