@@ -119,7 +119,7 @@
         <div class="inner">
             <span class="page-label">Services</span>
             <h1>What Adworth Provides</h1>
-            <p>Cryptographic consent infrastructure for digital advertising &middot; Last updated: May 18, 2026</p>
+            <p>Cryptographic consent infrastructure for digital advertising &middot; Last updated: May 19, 2026</p>
         </div>
     </div>
 
@@ -215,19 +215,19 @@
                 <ul>
                     <li><strong>On-device key generation:</strong> Ed25519 keypair (FIPS 186-5 approved) generated in the extension's background service worker via the browser's Web Crypto API (<code>crypto.subtle</code>). Private key stored exclusively in <code>chrome.storage.local</code> as a non-extractable CryptoKey object &mdash; never transmitted, never exported.</li>
                     <li><strong>Public key registration:</strong> Public key uploaded to <code>adworth-ingestion-api</code> and stored in the <code>ADWORTH_PUBLIC_KEYS</code> KV namespace under <code>user:{user_id}:pubkey:{device}</code>. One keypair per device; multi-device by design. Revocation invalidates the device's signing ability but preserves previously verified records.</li>
-                    <li><strong>Data extraction:</strong> Extraction is user-initiated, not passive. When the user clicks sync in the extension popup, the extension runs a one-time read of the active browser tab via <code>chrome.scripting.executeScript</code> &mdash; there is no background observer monitoring page activity. Extraction is limited by the extension's host permissions to ad-platform dashboards (Google Ads, Meta Ads Manager) and <code>adworth.app</code>; the extension cannot read any other site. It extracts campaign-level metrics, strips PII client-side, and signs the sanitized data with the device's private key before transmission. Adworth never receives raw dashboard content.</li>
+                    <li><strong>Data extraction (proof-of-concept):</strong> Extraction is user-initiated, not passive. When the user clicks sync in the extension popup, the extension runs a one-time read of the active browser tab via <code>chrome.scripting.executeScript</code> &mdash; there is no background observer monitoring page activity. Extraction is limited by the extension's host permissions and cannot read arbitrary sites. In the current proof-of-concept build, the extracted payload is campaign-level metrics from a demonstration dashboard &mdash; an illustrative payload used to exercise the signing-and-verification pipeline end-to-end. This is demonstration scaffolding, not the production model: Adworth is consent infrastructure at the transaction layer, and the production pipeline carries a user's signed consent decision rather than extracted advertiser data. PII is stripped client-side; data is signed with the device's private key before transmission; Adworth never receives raw dashboard content.</li>
                     <li><strong>Ledger write:</strong> As of Ingestion API v1.3.0, upon successful Ed25519 signature verification, a <code>CONSENT_ISSUED</code> event is written to <code>ADWORTH_LEDGER</code>. This event becomes immediately evaluable by the Privacy Governance Engine during subsequent advertiser access requests.</li>
                 </ul>
             </div>
 
             <div class="audience-block">
                 <h4>Live Verification Flow</h4>
-                <p>For investors, partners, journalists, and developers who want to verify the cryptographic chain end-to-end, Adworth provides a working demo at <a href="/demo.html"><code>adworth.app/demo.html</code></a> &mdash; a simulated advertising-platform dashboard built specifically as a Privacy Cockpit extraction target. The page is intentionally excluded from the sitemap and carries a <code>noindex</code> meta tag; it is reachable by direct URL but not surfaced in search.</p>
+                <p>For investors, partners, journalists, and developers who want to verify the cryptographic chain end-to-end, Adworth provides a working demo at <a href="/demo.html"><code>adworth.app/demo.html</code></a>. The demo page presents a simulated advertising-platform dashboard purely as an illustrative extraction target &mdash; it exists to exercise the cryptographic pipeline, not to represent Adworth's production model, which verifies consent at the transaction layer. The page is intentionally excluded from the sitemap and carries a <code>noindex</code> meta tag; it is reachable by direct URL but not surfaced in search.</p>
                 <p>The five-step demo flow:</p>
                 <ol>
                     <li>Navigate to <a href="/demo.html"><code>adworth.app/demo.html</code></a> in Chrome with the Privacy Cockpit extension installed</li>
-                    <li>Open the extension popup and click <strong>Sync Dashboard Data</strong></li>
-                    <li>The extension extracts the campaign metrics on the page, strips any PII client-side, and signs the sanitized payload with the device&rsquo;s Ed25519 private key</li>
+                    <li>Open the extension popup and click <strong>Generate Consent Token</strong></li>
+                    <li>The extension performs a one-time read of the demonstration page's illustrative payload, strips any PII client-side, and signs it with the device&rsquo;s Ed25519 private key</li>
                     <li>The signed payload is submitted to <code>adworth-ingestion-api</code>, which verifies the signature using the device&rsquo;s registered public key and writes a <code>CONSENT_ISSUED</code> event to <code>ADWORTH_LEDGER</code></li>
                     <li>Verify the token landed in the ledger at <a href="/ledger.html">adworth.app/ledger.html</a>, and optionally evaluate it through the Privacy Governance Engine via the Advertiser Sandbox at <a href="/advertiser-sandbox.html">adworth.app/advertiser-sandbox.html</a></li>
                 </ol>
