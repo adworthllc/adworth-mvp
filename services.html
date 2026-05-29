@@ -119,7 +119,7 @@
         <div class="inner">
             <span class="page-label">Services</span>
             <h1>What Adworth Provides</h1>
-            <p>Cryptographic consent infrastructure for digital advertising &middot; Last updated: May 19, 2026</p>
+            <p>Cryptographic consent infrastructure for digital advertising &middot; Last updated: May 28, 2026</p>
         </div>
     </div>
 
@@ -175,20 +175,20 @@
         <!-- 02 — Ad Intelligence Pipeline -->
         <div class="policy-section" id="ad-intelligence">
             <h2><span class="section-num">02</span> Ad Intelligence Pipeline</h2>
-            <p>Real-time analysis of how a domain is targeted in digital advertising, with cryptographic anonymization of any personal names that appear in returned data. Powered by <code>adworth-ads</code> (v5.4.0).</p>
+            <p>Real-time analysis of the advertisers running ads associated with a domain, drawn from Google&rsquo;s public Ads Transparency Center, with cryptographic anonymization of any personal names that appear in advertiser data. Powered by <code>adworth-ads</code> (v6.0.0).</p>
 
             <div class="audience-block">
                 <h4>For Enterprises &amp; Investors</h4>
-                <p>The Ad Intelligence Dashboard at <code>adworth.app/dashboard</code> demonstrates the consent-enforcement opportunity. Enter any domain &mdash; see what advertisers are targeting users associated with that domain, what data inferences are being made, and which regulations (GDPR, CCPA, DSA) those practices trigger. This is the &ldquo;before Adworth&rdquo; view. Without consent infrastructure, this is what every advertised user is exposed to. The dashboard is a live working product, not a mockup &mdash; useful for enterprise privacy teams evaluating their exposure and for journalists documenting ad transparency.</p>
+                <p>The Ad Intelligence Dashboard at <code>adworth.app/dashboard</code> demonstrates the consent-enforcement opportunity. Enter any domain &mdash; see which advertisers are actively running ads associated with it, in what creative formats, and over what date ranges, drawn directly from Google&rsquo;s public Ads Transparency Center, alongside which regulations (GDPR, CCPA, DSA) that advertising footprint implicates. This is the &ldquo;before Adworth&rdquo; view. Without consent infrastructure, this is the advertiser ecosystem every user is exposed to. The dashboard is a live working product, not a mockup &mdash; useful for enterprise privacy teams evaluating their exposure and for journalists documenting ad transparency.</p>
             </div>
 
             <div class="audience-block">
                 <h4>For Developers</h4>
                 <p>Pipeline architecture:</p>
                 <ul>
-                    <li><strong>Data source:</strong> DataForSEO SERP API (<code>POST /v3/serp/google/organic/live/advanced</code>). Called exclusively from <code>adworth-ads</code> Cloudflare Worker; no direct browser-to-DataForSEO requests. Cost: $0.002 per request. Results cached in <code>ADWORTH_ADS_CACHE</code> KV namespace for 6 hours under <code>ads:{domain}</code> keys.</li>
-                    <li><strong>PII Advertiser Name Classifier (v5.4.0):</strong> two-pass detection pipeline. Pass 1 is a regex pre-filter for Title-Case name bigrams, filtered against a denylist of brand names, place names, and common phrases. Pass 2 sends remaining candidates to Anthropic Claude Haiku as a named-entity-recognition classifier. Detected names are replaced in-place with the <code>[PERSON]</code> token before any downstream use. A non-reversible HMAC-SHA256 audit hash (salted with a server-side secret) is written to <code>ADWORTH_ADS_CACHE</code> under the <code>audit:pii:</code> key prefix with a 90-day TTL. Privacy-fail-safe: if NER is unavailable, all regex candidates are anonymized.</li>
-                    <li><strong>AI privacy analysis:</strong> Anthropic Claude Haiku generates risk scores, regulatory flags, findings, and an Adworth-value summary. Operates only on already-anonymized data &mdash; person names have been replaced before this call is made.</li>
+                    <li><strong>Data source:</strong> SerpApi Google Ads Transparency Center API (<code>engine=google_ads_transparency_center</code>). Called exclusively from the <code>adworth-ads</code> Cloudflare Worker; no direct browser-to-SerpApi requests. Returns real paid ad-creative metadata &mdash; advertiser, creative format, target domain, and the dates each creative was shown &mdash; not search results. Results cached in <code>ADWORTH_ADS_CACHE</code> KV namespace for 6 hours under <code>ads:{domain}</code> keys. A monthly per-Worker budget cap bounds AI-analysis cost.</li>
+                    <li><strong>PII Advertiser Name Classifier (v6.0.0):</strong> two-pass detection pipeline applied to advertiser names. Pass 1 is a regex pre-filter for Title-Case name bigrams, filtered against a denylist of brand names, place names, and common phrases. Pass 2 sends remaining candidates to Anthropic Claude Haiku as a named-entity-recognition classifier. Detected names are replaced in-place with the <code>[PERSON]</code> token before any downstream use. A non-reversible HMAC-SHA256 audit hash (salted with a server-side secret) is written to <code>ADWORTH_ADS_CACHE</code> under the <code>audit:pii:</code> key prefix with a 90-day TTL. Privacy-fail-safe: if the classifier is unavailable or the monthly AI budget is exhausted, all regex candidates are anonymized.</li>
+                    <li><strong>AI privacy analysis:</strong> Anthropic Claude Haiku generates risk scores, regulatory flags, findings, and an Adworth-value summary from the advertiser-ecosystem metadata. Operates only on already-anonymized data &mdash; person names have been replaced before this call is made. Gated by a monthly budget cap; when the cap is reached, a static assessment is served instead.</li>
                     <li><strong>Public endpoint:</strong> <code>POST /analyze</code> on <code>adworth-ads.adworthllc.workers.dev</code>. Rate-limited to 10 requests per IP per hour via Cloudflare KV. Strict CORS origin allowlist. Constant-time HMAC-SHA256 API key authentication for authenticated callers.</li>
                 </ul>
                 <p>Full technical disclosure is in <a href="/terms.html#description">Terms of Service Section 2</a> and <a href="/privacy.html#third-party-processing">Privacy Policy Section 3</a>.</p>
@@ -352,7 +352,7 @@
 
             <h3>Currently live</h3>
             <ul>
-                <li>Ad Intelligence Pipeline (<code>adworth-ads</code> v5.4.0) &mdash; live, public, rate-limited</li>
+                <li>Ad Intelligence Pipeline (<code>adworth-ads</code> v6.0.0) &mdash; live, public, rate-limited</li>
                 <li>Cryptographic Consent Infrastructure &mdash; live in production, demonstration-mode marketplace</li>
                 <li>Privacy Governance Engine with Minor Shield and GPC detection &mdash; live</li>
                 <li>Invisibility Ledger &mdash; live, includes Ledger Chaff entries by design</li>
@@ -434,7 +434,7 @@
               <li><a href="/app/consent/">How It Works for You</a></li>
               <li><a href="/dashboard.html">See Who&rsquo;s Targeting You</a></li>
               <li><a href="/ledger.html">Consent Ledger</a></li>
-              <li><a href="/ccpa-gap.html">Ad Transparency Tool</a></li>
+              <li><a href="/dashboard">Ad Transparency Tool</a></li>
               <li><a href="/app/developers/">Developer Docs</a></li>
               <li><a href="/enterprise.html">Enterprise</a></li>
               <li><a href="/#waitlist">Join Waitlist</a></li>
