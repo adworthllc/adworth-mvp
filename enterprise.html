@@ -90,6 +90,29 @@
     .demo-finding-label { color: var(--green-accent); font-style: normal; font-size: 0.65rem; font-weight: 700; text-transform: uppercase; letter-spacing: 1.5px; display: block; margin-bottom: 0.5rem; }
     .demo-disclaimer { margin: 0 2.5rem 2rem; font-size: 0.72rem; color: rgba(255,255,255,0.25); line-height: 1.6; font-style: italic; }
     .demo-cta-bar { padding: 0 2.5rem 2.5rem; text-align: center; }
+    /* ── Metric info buttons + modal (ported from dashboard.html for consistency) ── */
+    .metric-info-btn { display: inline-flex; align-items: center; justify-content: center; width: 15px; height: 15px; border-radius: 50%; border: 1px solid rgba(82,183,136,0.4); background: transparent; color: var(--green-accent); font-size: 0.6rem; font-weight: 700; cursor: pointer; transition: all 0.2s; flex-shrink: 0; font-family: 'Poppins', sans-serif; line-height: 1; padding: 0; vertical-align: middle; margin-left: 0.3rem; }
+    .metric-info-btn:hover { background: var(--green-accent); color: #111; border-color: var(--green-accent); }
+    .metric-modal-overlay { display: none; position: fixed; inset: 0; background: rgba(0,0,0,0.78); backdrop-filter: blur(4px); z-index: 1000; align-items: center; justify-content: center; padding: 1.5rem; }
+    .metric-modal-overlay.open { display: flex; }
+    .metric-modal { background: #151f18; border: 1px solid rgba(82,183,136,0.25); border-radius: 16px; padding: 2.5rem; max-width: 520px; width: 100%; position: relative; animation: modalIn 0.2s ease; }
+    @keyframes modalIn { from{opacity:0;transform:translateY(12px) scale(0.97)} to{opacity:1;transform:translateY(0) scale(1)} }
+    .metric-modal-close { position: absolute; top: 1.25rem; right: 1.25rem; background: rgba(255,255,255,0.06); border: none; color: rgba(255,255,255,0.4); width: 28px; height: 28px; border-radius: 50%; cursor: pointer; font-size: 0.85rem; display: flex; align-items: center; justify-content: center; transition: all 0.2s; }
+    .metric-modal-close:hover { background: rgba(255,255,255,0.12); color: white; }
+    .metric-modal-tag { font-size: 0.65rem; font-weight: 700; text-transform: uppercase; letter-spacing: 2px; color: var(--green-accent); margin-bottom: 0.6rem; }
+    .metric-modal-title { font-family: 'DM Serif Display', serif; font-size: 1.75rem; color: white; margin-bottom: 1.25rem; line-height: 1.2; }
+    .metric-modal-body { font-size: 0.875rem; color: rgba(255,255,255,0.65); line-height: 1.8; }
+    .metric-modal-body p + p { margin-top: 0.9rem; }
+    .metric-modal-scale { margin-top: 1.25rem; background: rgba(255,255,255,0.04); border: 1px solid rgba(255,255,255,0.07); border-radius: 10px; padding: 1.1rem 1.25rem; }
+    .metric-modal-scale-title { font-size: 0.65rem; font-weight: 700; text-transform: uppercase; letter-spacing: 1.5px; color: rgba(255,255,255,0.35); margin-bottom: 0.75rem; }
+    .scale-row { display: flex; align-items: baseline; gap: 0.75rem; padding: 0.3rem 0; font-size: 0.82rem; border-bottom: 1px solid rgba(255,255,255,0.04); }
+    .scale-row:last-child { border-bottom: none; }
+    .scale-range { font-family: 'Poppins', monospace; font-size: 0.75rem; font-weight: 600; min-width: 52px; }
+    .scale-low { color: var(--green-accent); }
+    .scale-mid { color: #e8b860; }
+    .scale-high { color: #f07070; }
+    .scale-desc { color: rgba(255,255,255,0.5); line-height: 1.4; }
+    .metric-modal-disclaimer { margin-top: 1.25rem; font-size: 0.72rem; color: rgba(255,255,255,0.25); line-height: 1.6; font-style: italic; }
     .steps { display: grid; grid-template-columns: repeat(2, 1fr); gap: 1.5rem; margin-top: 1rem; counter-reset: steps; }
     .step { background: var(--off-white); border: 1.5px solid var(--border); border-radius: 12px; padding: 2.25rem; position: relative; overflow: hidden; transition: border-color 0.2s, transform 0.2s; }
     .step:hover { border-color: var(--green-accent); transform: translateY(-3px); }
@@ -242,26 +265,26 @@
           <div class="demo-bar">
             <div class="demo-dots"><div class="demo-dot"></div><div class="demo-dot"></div><div class="demo-dot"></div></div>
             <div class="demo-url">adworth.app/demo &mdash; apple.com analysis</div>
-            <div class="demo-live">Live Data</div>
+            <div class="demo-live">Sample Analysis</div>
           </div>
           <div class="demo-metrics">
             <div class="demo-metric">
-              <div class="demo-metric-label">Ads Found</div>
-              <div class="demo-metric-value val-green">40</div>
-              <div class="demo-metric-sub">apple.com · live pull</div>
+              <div class="demo-metric-label">Ads Found <button class="metric-info-btn" onclick="openMetricModal('ads')" title="How is this counted?" aria-label="About Ads Found">i</button></div>
+              <div class="demo-metric-value val-green">20</div>
+              <div class="demo-metric-sub">apple.com · sample</div>
             </div>
             <div class="demo-metric">
-              <div class="demo-metric-label">Privacy Risk</div>
+              <div class="demo-metric-label">Privacy Risk <button class="metric-info-btn" onclick="openMetricModal('risk')" title="How is this scored?" aria-label="About Privacy Risk">i</button></div>
               <div class="demo-metric-value val-risk">8/10</div>
               <div class="demo-metric-sub">AI-scored · high</div>
             </div>
             <div class="demo-metric">
-              <div class="demo-metric-label">Transparency</div>
+              <div class="demo-metric-label">Transparency <button class="metric-info-btn" onclick="openMetricModal('trans')" title="How is this scored?" aria-label="About Transparency">i</button></div>
               <div class="demo-metric-value val-risk">2/10</div>
               <div class="demo-metric-sub">disclosure quality</div>
             </div>
             <div class="demo-metric">
-              <div class="demo-metric-label">Reg. Flags</div>
+              <div class="demo-metric-label">Reg. Flags <button class="metric-info-btn" onclick="openMetricModal('flags')" title="What are these?" aria-label="About Regulatory Flags">i</button></div>
               <div class="demo-metric-value val-amber">4</div>
               <div class="demo-metric-sub">GDPR · CCPA · DSA</div>
             </div>
@@ -271,7 +294,7 @@
             "Apple.com hosts persistent multi-year ad campaigns from opaque entities using image-only formats that bypass user inspection, creating unverifiable consent and targeting opacity. Adworth consent tokens would enforce granular opt-in for each advertiser entity and targeting dataset, with cryptographic proof of user authorization tied to specific ad placements."
           </div>
           <div class="demo-disclaimer">
-            This analysis is based on publicly available data from Google's Ads Transparency Center via DataForSEO and AI analysis by Anthropic Claude. Results represent a sample of up to 40 ads and are for informational and educational purposes only. This does not constitute a finding of wrongdoing, regulatory violation, or legal determination of any kind. Try the live tool below to run your own query.
+            This analysis is based on publicly available data from Google's Ads Transparency Center via SerpApi and AI analysis by Anthropic Claude. Results represent a sample of up to 40 ads and are for informational and educational purposes only. This does not constitute a finding of wrongdoing, regulatory violation, or legal determination of any kind. Try the live tool below to run your own query.
           </div>
           <div class="demo-cta-bar">
             <a href="/dashboard.html" class="btn btn-primary">Try Live Demo &mdash; Enter Any Domain &rarr;</a>
@@ -585,9 +608,79 @@
     // Contact email card
     var cec = document.getElementById('contact-email-card');
     if (cec) { cec.href = 'mailto:hello@adworth.app?subject=Investor%20Inquiry'; }
+
+    // ── Metric info modals (matches dashboard.html) ──
+    var metricModalData = {
+      ads: {
+        tag: 'Data Source', title: 'Ads Found',
+        body: '<p>This count reflects unique ad creatives retrieved from Google\u2019s Ads Transparency Center for the domain analyzed. We retrieve up to <strong style="color:rgba(255,255,255,0.85)">20 creatives per query</strong>. A domain may have more \u2014 this is a representative sample.</p>' +
+              '<p>Individual advertiser names (personal names rather than business names) are automatically anonymized before display, consistent with our privacy-first approach.</p>',
+        scale: null,
+        disclaimer: "Ad counts reflect real paid ad-creative data from Google\u2019s Ads Transparency Center via SerpApi. Results may be incomplete. This count does not imply any wrongdoing."
+      },
+      risk: {
+        tag: 'AI Scoring Methodology', title: 'Privacy Risk Score',
+        body: '<p>The Privacy Risk Score is generated by Anthropic\u2019s Claude AI, which analyzes publicly available ad data. The AI evaluates advertiser opacity, ad format risk, campaign longevity, targeting transparency, and consent signal presence.</p>',
+        scale: { title: 'Score Interpretation', rows: [
+          { range: '1 \u2013 3', cls: 'scale-low',  desc: 'Low risk \u2014 strong disclosure, clear advertiser identities, consent signals present' },
+          { range: '4 \u2013 6', cls: 'scale-mid',  desc: 'Moderate risk \u2014 some opacity, limited consent visibility, mixed disclosure quality' },
+          { range: '7 \u2013 10', cls: 'scale-high', desc: 'High risk \u2014 opaque advertisers, image-only formats, no verifiable consent signals' }
+        ]},
+        disclaimer: "AI-generated probabilistic assessment for informational purposes only. Not a legal determination or allegation of wrongdoing."
+      },
+      trans: {
+        tag: 'AI Scoring Methodology', title: 'Transparency Score',
+        body: '<p>The Transparency Score measures the quality of a domain\u2019s ad disclosure practices. Higher is better. The AI evaluates advertiser clarity, content legibility, disclosure completeness, and regulatory alignment across GDPR, CCPA, and DSA standards.</p>',
+        scale: { title: 'Score Interpretation', rows: [
+          { range: '8 \u2013 10', cls: 'scale-low',  desc: 'High transparency \u2014 strong disclosures, named advertisers, regulation-aligned' },
+          { range: '4 \u2013 7',  cls: 'scale-mid',  desc: 'Partial transparency \u2014 some disclosures present but gaps exist' },
+          { range: '1 \u2013 3',  cls: 'scale-high', desc: 'Low transparency \u2014 limited disclosure, opaque ecosystem, consent signals absent' }
+        ]},
+        disclaimer: "AI-generated probabilistic assessment for informational purposes only. Not a legal determination or allegation of wrongdoing."
+      },
+      flags: {
+        tag: 'Regulatory Framework', title: 'Regulatory Flags',
+        body: '<p>Flags indicate areas where a domain\u2019s ad practices may warrant attention under GDPR (lawful basis, right to object), CCPA (opt-out rights, data disclosure), and DSA Article 26 (ad labeling, targeting parameter disclosure). These are AI observations, not legal findings.</p>',
+        scale: null,
+        disclaimer: "Regulatory flags are AI-generated observations for informational purposes only. They do not constitute a legal finding or allegation of any regulatory violation."
+      }
+    };
+
+    function openMetricModal(type) {
+      var d = metricModalData[type];
+      if (!d) return;
+      document.getElementById('metric-modal-tag').textContent = d.tag;
+      document.getElementById('metric-modal-title').textContent = d.title;
+      var bodyHtml = d.body;
+      if (d.scale) {
+        bodyHtml += '<div class="metric-modal-scale"><div class="metric-modal-scale-title">' + d.scale.title + '</div>' +
+          d.scale.rows.map(function(r) { return '<div class="scale-row"><span class="scale-range ' + r.cls + '">' + r.range + '</span><span class="scale-desc">' + r.desc + '</span></div>'; }).join('') +
+          '</div>';
+      }
+      if (d.disclaimer) bodyHtml += '<div class="metric-modal-disclaimer">' + d.disclaimer + '</div>';
+      document.getElementById('metric-modal-body').innerHTML = bodyHtml;
+      document.getElementById('metric-modal-overlay').classList.add('open');
+      document.body.style.overflow = 'hidden';
+    }
+    function closeMetricModal() {
+      document.getElementById('metric-modal-overlay').classList.remove('open');
+      document.body.style.overflow = '';
+    }
+    function closeMetricModalOutside(e) {
+      if (e.target === document.getElementById('metric-modal-overlay')) closeMetricModal();
+    }
+    document.addEventListener('keydown', function(e) { if (e.key === 'Escape') closeMetricModal(); });
   </script>
 
   <script defer src="https://static.cloudflareinsights.com/beacon.min.js/v8c78df7c7c0f484497ecbca7046644da1771523124516" integrity="sha512-8DS7rgIrAmghBFwoOTujcf6D9rXvH8xm8JQ1Ja01h9QX8EzXldiszufYa4IFfKdLUKTTrnSFXLDkUEOTrZQ8Qg==" data-cf-beacon='{"version":"2024.11.0","token":"7a960585c0124d9eb1bd09e01230cdef","r":1,"server_timing":{"name":{"cfCacheStatus":true,"cfEdge":true,"cfExtPri":true,"cfL4":true,"cfOrigin":true,"cfSpeedBrain":true},"location_startswith":null}}' crossorigin="anonymous"></script>
+  <div class="metric-modal-overlay" id="metric-modal-overlay" onclick="closeMetricModalOutside(event)">
+    <div class="metric-modal">
+      <button class="metric-modal-close" onclick="closeMetricModal()" aria-label="Close">&#10005;</button>
+      <div class="metric-modal-tag" id="metric-modal-tag">How We Score</div>
+      <div class="metric-modal-title" id="metric-modal-title"></div>
+      <div class="metric-modal-body" id="metric-modal-body"></div>
+    </div>
+  </div>
 
 </body>
 </html>
