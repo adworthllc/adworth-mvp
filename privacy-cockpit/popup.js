@@ -164,7 +164,7 @@ async function handleSync() {
                 if (label.includes('roas'))       metrics.roas = parseFloat(value) || 0;
               }
             });
-            metrics.platform = 'adworth_demo';
+            metrics.platform = 'adworth_demo'; metrics.advertiser_id = 'adworth-demo-advertiser';
 
           } else if (hostname.includes('adworth.app')) {
             const cards = document.querySelectorAll('[class*="metric"],[class*="stat"],[class*="result"],[class*="card"],[class*="val"]');
