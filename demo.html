@@ -1,11 +1,12 @@
 <!DOCTYPE html>
 <!--
   Adworth℠ demo.html — Privacy Cockpit extraction target
-  Last updated: 2026-05-12 (v5.4.0 era — adworth-ads PII Classifier deployed)
+  Last updated: 2026-07-04 (v6.0.0 era — banner/callout updated to match extension
+  v1.1.1 "Generate Consent Token" UI; extraction contract unchanged)
 
   Purpose: Simulated advertising-platform dashboard used by the Privacy Cockpit
   Chrome extension as its test extraction surface. The cryptographic chain that
-  follows the sync (Ed25519 sign → Ingestion API verify → ADWORTH_LEDGER write
+  follows token generation (Ed25519 sign → Ingestion API verify → ADWORTH_LEDGER write
   → PGE eval) is LIVE. Only the source dashboard data on this page is simulated.
 
   CRITICAL CONTRACT: The <table id="metrics-table"> block (Aggregated Campaign
@@ -404,7 +405,7 @@
   <!-- COCKPIT BANNER -->
   <div class="cockpit-banner">
     <div class="cockpit-dot"></div>
-    <span><strong>Privacy Cockpit ready.</strong> Open the extension and click <em>Sync Dashboard Data</em> to extract, sign, and ingest the metrics below.</span>
+    <span><strong>Privacy Cockpit ready.</strong> Open the extension and click <em>Generate Consent Token</em> to extract, sign, and submit the metrics below — your device key does the signing.</span>
   </div>
 
   <div class="container">
@@ -412,7 +413,7 @@
     <!-- PAGE HEADER -->
     <div class="page-header">
       <h1 class="page-title">Campaign Overview</h1>
-      <p class="page-subtitle">Q2 2026 · All campaigns · Last 30 days</p>
+      <p class="page-subtitle">Q3 2026 · All campaigns · Last 30 days</p>
     </div>
 
     <!-- KPI ROW -->
@@ -581,7 +582,7 @@
 
   <!-- WHAT HAPPENS NEXT — for demo viewers, points to the full cryptographic chain -->
   <div class="next-step">
-    <span class="next-step-tag">After Sync</span>
+    <span class="next-step-tag">After Issuing</span>
     <h3>See your token in the live cryptographic chain</h3>
     <p>Once Privacy Cockpit signs and submits the metrics above, a <code style="background:rgba(255,255,255,0.6);padding:0.05rem 0.3rem;border-radius:3px;font-family:'Courier New',monospace;font-size:0.78rem;">CONSENT_ISSUED</code> event is written to the Invisibility Ledger. The token is then immediately evaluable by the Privacy Governance Engine (Bouncer) when advertisers request access. Verify the full chain below.</p>
     <div class="next-step-links">
