@@ -627,7 +627,7 @@
 
         <!-- WHAT TO EXPECT NOTE -->
         <div style="background:var(--green-light); border-radius:8px; padding:10px 14px; margin-bottom:14px; font-size:12px; color:var(--green); font-weight:500; line-height:1.5;">
-          <strong>What will happen:</strong> The Bouncer runs 6 checks against the live ledger in real time. GRANTED means a valid consent token was found for this exact user + advertiser + scope. BLOCKED means no token, wrong scope, revoked, expired, or Minor Shield active. Every evaluation is logged permanently.
+          <strong>What will happen:</strong> The Bouncer runs runs a pipeline of checks against the live ledger in real time. GRANTED means a valid consent token was found for this exact user + advertiser + scope. BLOCKED means no token, wrong scope, revoked, expired, or Minor Shield active. Every evaluation is logged permanently.
         </div>
 
         <button class="btn btn-primary" id="evalBtn" onclick="evaluate()" disabled style="width:100%">
