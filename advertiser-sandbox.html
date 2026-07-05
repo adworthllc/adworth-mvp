@@ -536,7 +536,7 @@
       <div class="panel-header" style="background:var(--granted-bg)">
         <div>
           <div class="panel-title" style="color:var(--granted)">🔗 Wire to Live Token</div>
-          <div class="panel-subtitle">Paste the User ID shown in the Privacy Cockpit popup after issuing a token — this wires your live consent token directly to the Bouncer evaluation</div>
+          <div class="panel-subtitle">Paste the User ID from your Privacy Cockpit extension to close the loop</div>
         </div>
       </div>
       <div class="panel-body">
@@ -601,7 +601,7 @@
 
         <div class="field">
           <label>Advertiser ID</label>
-          <input type="text" id="fAdvertiser" value="nike-ads" placeholder="e.g. nike-ads, meta-ads, your-brand">
+          <input type="text" id="fAdvertiser" value="adworth-demo-advertiser" placeholder="e.g. adworth-demo-advertiser, your-brand-id">
           <div class="field-hint">Issued by Adworth on registration — like a Stripe merchant ID. Must match the advertiserId named in the user's consent token exactly.</div>
         </div>
         <div class="field">
@@ -778,7 +778,7 @@
   // ── SCENARIO PRESETS ─────────────────────────────────────────────────────
   const SCENARIOS = {
     granted: {
-      advertiserId:  'nike-ads',
+      advertiserId:  'adworth-demo-advertiser',
       userId:        'test-user-001',
       dataScope:     'running-data-shoe-ads',
       requestReason: 'targeted_advertising',
@@ -792,14 +792,14 @@
       cpmUsd:        1.00
     },
     revoked: {
-      advertiserId:  'meta-ads',
+      advertiserId:  'demo-social-advertiser',
       userId:        'test-revoked-user',
       dataScope:     'social_retargeting',
       requestReason: 'retargeting',
       cpmUsd:        0.75
     },
     minor: {
-      advertiserId:  'google-ads',
+      advertiserId:  'demo-search-advertiser',
       userId:        'test-minor-user',
       dataScope:     'behavioral_targeting',
       requestReason: 'targeted_advertising',
