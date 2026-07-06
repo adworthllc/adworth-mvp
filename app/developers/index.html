@@ -506,7 +506,7 @@
         <li><a href="/#how-it-works">How It Works</a></li>
         <li><a href="/#transparency">How We Make Money</a></li>
         <li><a href="/dashboard.html">See Who&rsquo;s Targeting You</a></li>
-        <li><a href="/#founder">Founder</a></li>
+        <li><a href="/founder.html">Founder</a></li>
         <li><a href="/#investors">Investors</a></li>
         <li><a href="/enterprise.html">Enterprise</a></li>
         <li><a href="/#waitlist" class="nav-cta">Join Waitlist</a></li>
@@ -556,7 +556,7 @@
             <li><strong>Access cost:</strong> Free to verify consent</li>
             <li><strong>What you do:</strong> Call /evaluate before accessing user data. Get cryptographic proof of consent (or block reason) before serving any ad.</li>
             <li><strong>Your cost:</strong> Flat 2% per verified consent transaction. Same rate every transaction. Same rate every advertiser. Always paid by you, not by the user.</li>
-            <li><strong>Why it's worth it:</strong> Cryptographic compliance proof for GDPR / CCPA / DSA / GSRA 2026. One integration covers them all.</li>
+            <li><strong>Why it's worth it:</strong> Cryptographic consent records that support your GDPR, CCPA, and DSA compliance program. One integration, audit-ready proof.</li>
           </ul>
         </div>
       </div>
@@ -579,7 +579,7 @@
           <div class="flow-step">
             <div class="flow-step-icon bouncer">🛡️</div>
             <h4>The Bouncer</h4>
-            <p>Validates consent token: exists? active? right advertiser? right scope? not expired?</p>
+            <p>Runs the full check pipeline: token exists, active, right advertiser, right scope, not expired &mdash; plus Minor Shield and GPC opt-out checks</p>
           </div>
           <div class="flow-arrow">→</div>
           <div class="flow-step">
@@ -627,7 +627,7 @@
   },
   <span class="key">body</span>: JSON.<span class="method">stringify</span>({
     <span class="key">userId</span>:       <span class="string">'user-abc-123'</span>,
-    <span class="key">advertiserId</span>: <span class="string">'nike-ads'</span>,
+    <span class="key">advertiserId</span>: <span class="string">'adworth-demo-advertiser'</span>,
     <span class="key">dataScope</span>:    <span class="string">'running-data-shoe-ads'</span>
   })
 });
@@ -636,10 +636,10 @@
 
 <span class="keyword">if</span> (decision.<span class="key">decision</span> === <span class="string">'GRANTED'</span>) {
   <span class="comment">// ✅ Valid consent — proceed with data access</span>
-  <span class="method">accessUserData</span>(decision.<span class="key">token_id</span>);
+  <span class="method">accessUserData</span>(decision.<span class="key">tokenUsed</span>.<span class="key">tokenId</span>);
 } <span class="keyword">else</span> {
   <span class="comment">// 🚫 No consent — do NOT access data</span>
-  console.<span class="method">log</span>(<span class="string">'Blocked:'</span>, decision.<span class="key">reason_description</span>);
+  console.<span class="method">log</span>(<span class="string">'Blocked:'</span>, decision.<span class="key">blockReason</span>);
 }</pre>
         </div>
       </div>
@@ -651,22 +651,59 @@
           <span class="endpoint">200 OK</span>
         </div>
         <div class="code-body">
-          <pre><span class="comment">// User has valid, active consent for this scope</span>
+          <pre><span class="comment">// Real response from the live Privacy Governance Engine — all seven checks pass</span>
 {
-  <span class="key">"decision"</span>:    <span class="string">"GRANTED"</span>,
-  <span class="key">"decision_id"</span>: <span class="string">"gov_a1b2c3d4-..."</span>,
-  <span class="key">"token_id"</span>:    <span class="string">"bf5e15a558b04546-..."</span>,
-  <span class="key">"details"</span>: {
-    <span class="key">"token_scope"</span>:      <span class="string">"running-data-shoe-ads"</span>,
-    <span class="key">"token_advertiser"</span>: <span class="string">"nike-ads"</span>,
-    <span class="key">"expires_at"</span>:       <span class="string">"2026-04-01T00:00:00Z"</span>,
-    <span class="key">"remaining"</span>:        <span class="string">"29d"</span>
-  },
-  <span class="key">"checks_performed"</span>: [
-    <span class="string">"token_exists"</span>, <span class="string">"token_not_revoked"</span>,
-    <span class="string">"token_not_expired"</span>, <span class="string">"advertiser_match"</span>,
-    <span class="string">"scope_match"</span>, <span class="string">"ledger_revocation_check"</span>
-  ]
+  <span class="key">"decision"</span>: <span class="string">"GRANTED"</span>,
+  <span class="key">"evaluationId"</span>: <span class="string">"gov_60c7cb33-3875-4e23-b69d-11323097e0bf"</span>,
+  <span class="key">"evaluatedAt"</span>: <span class="string">"2026-07-06T22:36:55.934Z"</span>,
+  <span class="key">"advertiserId"</span>: <span class="string">"adworth-demo-advertiser"</span>,
+  <span class="key">"userId"</span>: <span class="string">"test-user-001"</span>,
+  <span class="key">"dataScope"</span>: <span class="string">"running-data-shoe-ads"</span>,
+  <span class="key">"blockReason"</span>: null,
+  <span class="key">"checks"</span>: [
+    {
+      <span class="key">"check"</span>: <span class="string">"MINOR_SHIELD"</span>,
+      <span class="key">"status"</span>: <span class="string">"PASS"</span>,
+      <span class="key">"detail"</span>: <span class="string">"User test-user-001 is not flagged as a minor. Proceeding to consent evaluation."</span>
+    },
+    {
+      <span class="key">"check"</span>: <span class="string">"GPC_OPT_OUT"</span>,
+      <span class="key">"status"</span>: <span class="string">"PASS"</span>,
+      <span class="key">"detail"</span>: <span class="string">"No GPC opt-out signal detected. Proceeding to token evaluation."</span>
+    },
+    {
+      <span class="key">"check"</span>: <span class="string">"TOKEN_EXISTS"</span>,
+      <span class="key">"status"</span>: <span class="string">"PASS"</span>,
+      <span class="key">"detail"</span>: <span class="string">"Found 1 token(s) for user test-user-001 with advertiser adworth-demo-advertiser"</span>
+    },
+    {
+      <span class="key">"check"</span>: <span class="string">"SCOPE_MATCH"</span>,
+      <span class="key">"status"</span>: <span class="string">"PASS"</span>,
+      <span class="key">"detail"</span>: <span class="string">"1 token(s) match scope \"running-data-shoe-ads\""</span>
+    },
+    {
+      <span class="key">"check"</span>: <span class="string">"REVOCATION_STATUS"</span>,
+      <span class="key">"status"</span>: <span class="string">"PASS"</span>,
+      <span class="key">"detail"</span>: <span class="string">"1 token(s) are not revoked"</span>
+    },
+    {
+      <span class="key">"check"</span>: <span class="string">"EXPIRATION"</span>,
+      <span class="key">"status"</span>: <span class="string">"PASS"</span>,
+      <span class="key">"detail"</span>: <span class="string">"1 token(s) are within valid time window"</span>
+    },
+    {
+      <span class="key">"check"</span>: <span class="string">"ADVERTISER_MATCH"</span>,
+      <span class="key">"status"</span>: <span class="string">"PASS"</span>,
+      <span class="key">"detail"</span>: <span class="string">"Advertiser \"adworth-demo-advertiser\" matches token grant"</span>
+    }
+  ],
+  <span class="key">"tokenUsed"</span>: {
+    <span class="key">"tokenId"</span>: <span class="string">"9d57bd5bbe34dbf33bd3265e42a9ade7"</span>,
+    <span class="key">"issuedAt"</span>: <span class="string">"2026-07-06T22:31:02.000Z"</span>,
+    <span class="key">"expiresAt"</span>: <span class="string">"2027-02-01T00:00:00.000Z"</span>,
+    <span class="key">"scope"</span>: <span class="string">"running-data-shoe-ads"</span>,
+    <span class="key">"advertiserId"</span>: <span class="string">"adworth-demo-advertiser"</span>
+  }
 }</pre>
         </div>
       </div>
@@ -678,15 +715,33 @@
           <span class="endpoint">403 Forbidden</span>
         </div>
         <div class="code-body">
-          <pre><span class="comment">// No valid consent — do NOT access this user's data</span>
+          <pre><span class="comment">// Fail-closed: the pipeline stops at the first failing check — do NOT access data</span>
 {
-  <span class="key">"decision"</span>:            <span class="string">"BLOCKED"</span>,
-  <span class="key">"reason"</span>:              <span class="string">"SCOPE_MISMATCH"</span>,
-  <span class="key">"reason_description"</span>:  <span class="string">"Requested data scope is not covered by the consent token"</span>,
-  <span class="key">"details"</span>: {
-    <span class="key">"token_scope"</span>:    <span class="string">"running-data-shoe-ads"</span>,
-    <span class="key">"requested_scope"</span>: <span class="string">"health-insurance-data"</span>
-  }
+  <span class="key">"decision"</span>: <span class="string">"BLOCKED"</span>,
+  <span class="key">"evaluationId"</span>: <span class="string">"gov_d9a47613-e294-4606-be4e-b781d4e80eb2"</span>,
+  <span class="key">"evaluatedAt"</span>: <span class="string">"2026-07-06T22:17:22.376Z"</span>,
+  <span class="key">"advertiserId"</span>: <span class="string">"adworth-demo-advertiser"</span>,
+  <span class="key">"userId"</span>: <span class="string">"test-user-001"</span>,
+  <span class="key">"dataScope"</span>: <span class="string">"running-data-shoe-ads"</span>,
+  <span class="key">"blockReason"</span>: <span class="string">"NO_CONSENT_TOKEN"</span>,
+  <span class="key">"checks"</span>: [
+    {
+      <span class="key">"check"</span>: <span class="string">"MINOR_SHIELD"</span>,
+      <span class="key">"status"</span>: <span class="string">"PASS"</span>,
+      <span class="key">"detail"</span>: <span class="string">"User test-user-001 is not flagged as a minor. Proceeding to consent evaluation."</span>
+    },
+    {
+      <span class="key">"check"</span>: <span class="string">"GPC_OPT_OUT"</span>,
+      <span class="key">"status"</span>: <span class="string">"PASS"</span>,
+      <span class="key">"detail"</span>: <span class="string">"No GPC opt-out signal detected. Proceeding to token evaluation."</span>
+    },
+    {
+      <span class="key">"check"</span>: <span class="string">"TOKEN_EXISTS"</span>,
+      <span class="key">"status"</span>: <span class="string">"FAIL"</span>,
+      <span class="key">"detail"</span>: <span class="string">"No consent tokens found for user test-user-001 with advertiser adworth-demo-advertiser"</span>
+    }
+  ],
+  <span class="key">"tokenUsed"</span>: null
 }</pre>
         </div>
       </div>
@@ -721,7 +776,7 @@
           <div class="sandbox-row">
             <div class="sandbox-field">
               <label>Advertiser ID</label>
-              <input type="text" id="sandboxAdvertiser" value="nike-ads">
+              <input type="text" id="sandboxAdvertiser" value="adworth-demo-advertiser">
             </div>
             <div class="sandbox-field">
               <label>User ID</label>
@@ -748,39 +803,44 @@
     <!-- Block Reason Codes -->
     <div class="section">
       <div class="section-label">Reference</div>
-      <div class="section-title">Block reason codes</div>
-      <div class="section-desc">When access is denied, the response includes a machine-readable reason code. Handle each appropriately in your integration.</div>
+      <div class="section-title">The seven-check pipeline</div>
+      <div class="section-desc">Every <code>/evaluate</code> call runs these checks in order and fails closed at the first failure. The response&rsquo;s <code>checks</code> array shows each check that ran with a human-readable detail; <code>blockReason</code> identifies the failing check. Requests missing <code>userId</code>, <code>advertiserId</code>, or <code>dataScope</code> are rejected before the pipeline runs.</div>
 
       <div class="features-grid">
         <div class="feature-card">
+          <div class="feat-icon">🛡️</div>
+          <h4>1 &middot; MINOR_SHIELD</h4>
+          <p>Runs before everything else. Users flagged as minors are blocked from all advertising data access regardless of token status &mdash; and the check fails closed on any storage error. <code>blockReason: MINOR_SHIELD_ACTIVE</code></p>
+        </div>
+        <div class="feature-card">
+          <div class="feat-icon">✋</div>
+          <h4>2 &middot; GPC_OPT_OUT</h4>
+          <p>Global Privacy Control signals are honored as valid opt-outs under CPRA &sect; 1798.135(d). No consent token can override a GPC signal. <code>blockReason: GPC_OPT_OUT</code></p>
+        </div>
+        <div class="feature-card">
           <div class="feat-icon">🔍</div>
-          <h4>TOKEN_NOT_FOUND</h4>
-          <p>No consent token exists for this user-advertiser pair. The user has never granted consent.</p>
-        </div>
-        <div class="feature-card">
-          <div class="feat-icon">🚫</div>
-          <h4>TOKEN_REVOKED</h4>
-          <p>User explicitly revoked consent. All data must be deleted per the original token terms.</p>
-        </div>
-        <div class="feature-card">
-          <div class="feat-icon">⏰</div>
-          <h4>TOKEN_EXPIRED</h4>
-          <p>Consent window has closed. Request new consent from the user to continue access.</p>
-        </div>
-        <div class="feature-card">
-          <div class="feat-icon">🔀</div>
-          <h4>ADVERTISER_MISMATCH</h4>
-          <p>Token was issued to a different advertiser. Consent is non-transferable.</p>
+          <h4>3 &middot; TOKEN_EXISTS</h4>
+          <p>At least one consent token must exist for this user-advertiser pair. No token means the user never said yes. <code>blockReason: NO_CONSENT_TOKEN</code></p>
         </div>
         <div class="feature-card">
           <div class="feat-icon">📋</div>
-          <h4>SCOPE_MISMATCH</h4>
-          <p>Requested data type isn't covered by the consent token. Only the agreed scope is accessible.</p>
+          <h4>4 &middot; SCOPE_MATCH</h4>
+          <p>The requested data scope must be covered by a token&rsquo;s granted scope. A token for one data type doesn&rsquo;t open the door to another.</p>
         </div>
         <div class="feature-card">
-          <div class="feat-icon">⚠️</div>
-          <h4>INVALID_REQUEST</h4>
-          <p>Missing required fields. Every request needs userId, advertiserId, and dataScope.</p>
+          <div class="feat-icon">🚫</div>
+          <h4>5 &middot; REVOCATION_STATUS</h4>
+          <p>Revoked tokens are treated as no consent. Revocation is recorded permanently on the ledger and takes effect at the next evaluation.</p>
+        </div>
+        <div class="feature-card">
+          <div class="feat-icon">⏰</div>
+          <h4>6 &middot; EXPIRATION</h4>
+          <p>Consent expires on the schedule the user chose. Stale consent is treated the same as no consent. <code>blockReason: TOKEN_EXPIRED</code></p>
+        </div>
+        <div class="feature-card">
+          <div class="feat-icon">🔀</div>
+          <h4>7 &middot; ADVERTISER_MATCH</h4>
+          <p>The token must have been granted to the requesting advertiser specifically. Consent is non-transferable between advertisers.</p>
         </div>
       </div>
     </div>
@@ -795,7 +855,7 @@
         <div class="feature-card">
           <div class="feat-icon">⚖️</div>
           <h4>Regulatory Compliance</h4>
-          <p>GDPR, CCPA, DSA — one integration covers them all. Cryptographic proof of consent holds up in any jurisdiction.</p>
+          <p>GDPR, CCPA, DSA — one integration produces cryptographic consent records you can bring to any audit, in any jurisdiction.</p>
         </div>
         <div class="feature-card">
           <div class="feat-icon">📈</div>
@@ -821,7 +881,7 @@
         <div class="price">2%</div>
         <div class="price-sub">per verified consent transaction</div>
         <ul class="pricing-features">
-          <li>Unlimited API calls to /evaluate endpoint</li>
+          <li>API calls to /evaluate included &mdash; fair-use rate limits apply</li>
           <li>Real-time consent verification</li>
           <li>Automatic ledger recording</li>
           <li>Cryptographic proof of compliance</li>
@@ -833,7 +893,7 @@
 
     <!-- Disclosure -->
     <div class="disclosure">
-      <strong>Complete Transparency Disclosure:</strong> This integration guide connects to the live Adworth Privacy Governance Engine (Patent Component #2). The API sandbox sends real requests and records real decisions in the Invisibility Ledger. <strong>Adworth charges a flat 2% per verified consent transaction</strong> &mdash; no tiers, no enterprise gatekeeping, no hidden charges. Phase 1 (now): advertisers integrate with the consent infrastructure and pay the 2%. Phase 2 (post-seed): the consumer marketplace opens where users earn directly when they grant consent. See <a href="/privacy.html">Privacy Policy</a>, <a href="/terms.html">Terms of Service</a>, and <a href="/services.html">Services</a> for complete details.
+      <strong>Complete Transparency Disclosure:</strong> This integration guide connects to the live Adworth Privacy Governance Engine (patent-pending). The API sandbox sends real requests and records real decisions in the Invisibility Ledger. <strong>Adworth charges a flat 2% per verified consent transaction</strong> &mdash; no tiers, no enterprise gatekeeping, no hidden charges. Phase 1 (now): advertisers integrate with the consent infrastructure and pay the 2%. Phase 2 (post-seed): the consumer marketplace opens where users earn directly when they grant consent. See <a href="/privacy.html">Privacy Policy</a>, <a href="/terms.html">Terms of Service</a>, and <a href="/services.html">Services</a> for complete details.
     </div>
   </div>
 
@@ -864,7 +924,7 @@
         <div class="footer-links">
           <h4>Company</h4>
           <ul>
-            <li><a href="/#founder">Founder</a></li>
+            <li><a href="/founder.html">Founder</a></li>
             <li><a href="/#investors">Investors</a></li>
             <li><span class="email-link" data-u="hello" data-d="adworth.app"></span></li>
           </ul>
