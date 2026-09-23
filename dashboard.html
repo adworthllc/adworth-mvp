@@ -798,7 +798,7 @@
           '<span class="ads-section-label">Active Ads</span>' +
           '</div>';
 
-        ads.slice(0, 15).forEach(function(ad) {
+        ads.slice(0, 20).forEach(function(ad) {
           var advertiserName = (ad.advertiser && ad.advertiser.name) ? ad.advertiser.name : (ad.advertiser || domain);
           var firstSeen = ad.first_shown || ad.firstShown || '';
           var lastSeen = ad.last_shown || ad.lastShown || '';
