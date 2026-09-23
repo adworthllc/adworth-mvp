@@ -3,8 +3,6 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-Content-Type-Options" content="nosniff">
-    <meta http-equiv="X-Frame-Options" content="DENY">
     <meta name="referrer" content="strict-origin-when-cross-origin">
   <title>Adworth&#8480; &#8212; Ad Transparency Dashboard</title>
   <link rel="icon" type="image/x-icon" href="/favicon.ico">
@@ -503,7 +501,7 @@
       <div class="context-banner-left">
         <div class="context-banner-eyebrow">What You&#8217;re Looking At</div>
         <div class="context-banner-headline">
-          Real ads. Real data. <em>Zero consent from you.</em>
+          Real ads. Real data. <em>No consent rail.</em>
         </div>
         <div class="context-banner-sub">
           This tool pulls live advertising data from Google&#8217;s Ads Transparency Center &#8212; the same ads targeting people right now. Enter any domain to see who&#8217;s running ads, how long they&#8217;ve been running, and what your data is worth to them. Then see what Adworth would do about it.
@@ -630,11 +628,11 @@
             </div>
             <div class="explainer-step">
               <div class="explainer-num">3</div>
-              <div class="explainer-text"><strong>Deletion is enforced, not promised</strong> &#8212; when you revoke consent, our system actively monitors and sends legally-cited removal requests if companies still hold your data.</div>
+              <div class="explainer-text"><strong>Deletion is designed in, not promised</strong> &#8212; when you revoke consent, Adworth is designed to monitor for continued use and generate legally-cited removal requests. (Removal requests currently run in simulation; live sending is on the roadmap.)</div>
             </div>
             <div class="explainer-step">
               <div class="explainer-num">4</div>
-              <div class="explainer-text"><strong>Everything above is recorded</strong> &#8212; an append-only audit ledger that neither you nor we can modify. Your consent history is yours forever.</div>
+              <div class="explainer-text"><strong>Everything above is recorded</strong> &#8212; an append-only, tamper-evident audit ledger. Your consent history stays verifiable.</div>
             </div>
             <div class="explainer-cta">
               <button class="explainer-cta-btn" onclick="toggleExplainerWaitlist()" id="explainer-cta-btn">Be first when consent starts paying &#8594;</button>
@@ -717,6 +715,7 @@
         showError('Please enter a valid domain, like example.com');
         return;
       }
+
       const btn = document.getElementById('analyze-btn');
       btn.disabled = true;
       btn.textContent = 'Analyzing\u2026';
@@ -787,7 +786,7 @@
         if (gaps.length) {
           html += '<div>';
           gaps.slice(0, 4).forEach(function(gap) {
-          html += '<div class="finding-item"><div class="finding-icon">\u2139</div><div class="finding-text"><strong>Consent Gap: </strong>' + esc(gap) + '</div></div>';
+            html += '<div class="finding-item"><div class="finding-icon">\u2139</div><div class="finding-text"><strong>Consent Gap: </strong>' + esc(gap) + '</div></div>';
           });
           html += '</div>';
         }
@@ -826,16 +825,16 @@
       var riskLevel = risk >= 7 ? 'high' : risk >= 4 ? 'medium' : 'low';
       var momentCopy = {
         high: {
-          headline: 'This is what your data looks like <em>without your consent.</em>',
-          body: 'You just watched <strong>' + adCount + ' ads</strong> targeting real people \u2014 none of whom were asked, paid, or given the right to say no. A Privacy Risk Score of <strong>' + risk + '/10</strong> means the gaps are significant. Adworth\u2019s consent tokens would give users control over exactly this type of data use \u2014 and compensate them for it.'
+          headline: 'This is what advertising looks like <em>without a consent rail.</em>',
+          body: 'None of these <strong>' + adCount + ' ads</strong> were checked against a verifiable consent token before serving \u2014 because no consent rail exists in the ad pipeline today. A Privacy Risk Score of <strong>' + risk + '/10</strong> means the gaps are significant. Adworth\u2019s consent tokens are designed to give users control over exactly this type of data use \u2014 and, in the future consumer marketplace, to compensate them for it.'
         },
         medium: {
           headline: 'You can see the problem. <em>Adworth is building the fix.</em>',
-          body: 'These <strong>' + adCount + ' ads</strong> are running with limited transparency and no meaningful consent mechanism. The data that powers them belongs to real people who got nothing in return. Consent infrastructure changes that \u2014 cryptographically, automatically, and permanently.'
+          body: 'These <strong>' + adCount + ' ads</strong> run through a system with limited transparency and no verifiable consent mechanism. Consent infrastructure is designed to change that \u2014 cryptographically and verifiably.'
         },
         low: {
           headline: 'Better than most \u2014 but <em>consent still isn\u2019t happening.</em>',
-          body: 'Even with a lower risk score, none of these <strong>' + adCount + ' ads</strong> involve explicit user consent or compensation. That\u2019s the baseline Adworth is raising. When consent rails exist, even well-behaved advertisers operate more transparently \u2014 and, in the future consumer marketplace, users will be paid for the data that powers them.'
+          body: 'Even with a lower risk score, none of these <strong>' + adCount + ' ads</strong> were verified against an explicit consent token. That\u2019s the baseline Adworth is raising. When consent rails exist, even well-behaved advertisers operate more transparently \u2014 and, in the future consumer marketplace, users will be paid for the data that powers them.'
         }
       };
 
@@ -884,7 +883,7 @@
             regFlags.map(function(f) {
               var parts = f.split(/^([^:]+):/);
               var flagHtml = parts.length >= 3
-                  ? '<strong style="color:rgba(255,255,255,0.85);">' + esc(parts[1].trim()) + '</strong><span style="color:rgba(255,255,255,0.55);">:</span> ' + esc(parts[2].trim())
+                ? '<strong style="color:rgba(255,255,255,0.85);">' + esc(parts[1].trim()) + '</strong><span style="color:rgba(255,255,255,0.55);">:</span> ' + esc(parts[2].trim())
                 : esc(f);
               return '<div class="finding-item"><div class="finding-icon" style="background:rgba(200,169,106,0.15);color:#c8a96a;">\u2696</div><div class="finding-text">' + flagHtml + '</div></div>';
             }).join('');
@@ -1039,8 +1038,8 @@
         return (url.protocol === 'https:' &&
                 url.hostname === 'adstransparency.google.com') ? url.href : '';
       } catch (e) { return ''; }
-    } 
-    
+    }
+
     function scoreColor(score, invertHigh) {
       if (!score) return '';
       if (invertHigh) return score >= 7 ? 'score-risk' : score >= 4 ? 'score-medium' : 'score-safe';
@@ -1054,7 +1053,7 @@
         '<div class="loading-text">Analyzing ' + domain + '</div>' +
         '<div class="loading-steps">' +
         '<div class="loading-step" style="animation-delay:0.3s">\u2192 Pulling ads from Google Transparency Center</div>' +
-        '<div class="loading-step" style="animation-delay:1.2s">\u2192 Anonymizing individual advertiser names</div>' +
+        '<div class="loading-step" style="animation-delay:1.2s">\u2192 Pseudonymizing individual advertiser names</div>' +
         '<div class="loading-step" style="animation-delay:2.2s">\u2192 Running AI privacy analysis</div>' +
         '<div class="loading-step" style="animation-delay:3.0s">\u2192 Scoring consent gaps &amp; regulatory flags</div>' +
         '</div></div>';
@@ -1065,7 +1064,7 @@
         '<div class="empty-state">' +
         '<div class="empty-icon">\u26a0\ufe0f</div>' +
         '<div class="empty-title">Analysis Failed</div>' +
-        '<div class="empty-sub">Check that your Worker is deployed and secrets are set</div>' +
+        '<div class="empty-sub">Analysis is temporarily unavailable. Please try again shortly.</div>' +
         '</div>';
     }
 
