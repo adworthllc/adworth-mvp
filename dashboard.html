@@ -713,7 +713,10 @@
       const input = document.getElementById('domain-input');
       const domain = input.value.trim().replace(/^https?:\/\//, '').replace(/\/$/, '');
       if (!domain) return;
-
+      if (!/^[a-z0-9]([a-z0-9-]{0,61}[a-z0-9])?(\.[a-z0-9]([a-z0-9-]{0,61}[a-z0-9])?)+$/i.test(domain)) {
+        showError('Please enter a valid domain, like example.com');
+        return;
+      }
       const btn = document.getElementById('analyze-btn');
       btn.disabled = true;
       btn.textContent = 'Analyzing\u2026';
@@ -745,7 +748,7 @@
     // ── RENDER ──────────────────────────────────────────────
     function renderResults(data) {
       var domain = data.domain;
-      var adCount = data.ad_count || (data.ad_creatives ? data.ad_creatives.length : 0);
+      var adCount = Number(data.ad_count || (data.ad_creatives ? data.ad_creatives.length : 0)) || 0;
       var ads = data.ad_creatives || [];
       var analysis = data.privacy_analysis || null;
 
@@ -784,7 +787,7 @@
         if (gaps.length) {
           html += '<div>';
           gaps.slice(0, 4).forEach(function(gap) {
-            html += '<div class="finding-item"><div class="finding-icon">\u2139</div><div class="finding-text"><strong>Consent Gap: </strong>' + gap + '</div></div>';
+          html += '<div class="finding-item"><div class="finding-icon">\u2139</div><div class="finding-text"><strong>Consent Gap: </strong>' + esc(gap) + '</div></div>';
           });
           html += '</div>';
         }
@@ -800,17 +803,17 @@
           var advertiserName = (ad.advertiser && ad.advertiser.name) ? ad.advertiser.name : (ad.advertiser || domain);
           var firstSeen = ad.first_shown || ad.firstShown || '';
           var lastSeen = ad.last_shown || ad.lastShown || '';
-          var detailsLink = ad.details_link || '';
+          var detailsLink = safeAdLink(ad.details_link || '');
           // v6.0.0: SerpApi Ads Transparency Center returns clean creative formats
           // (text | image | video). No SERP-noise filtering needed; no ad-copy text.
           var rawFormat = (ad.format || '').toUpperCase();
           var formatLabel = rawFormat || 'AD';
           html += '<div class="ad-item">' +
             '<div class="ad-meta"><div class="ad-advertiser-row">' +
-            '<span class="ad-domain">' + advertiserName + '</span>' +
-            '</div><span class="ad-format">' + formatLabel + '</span></div>';
+            '<span class="ad-domain">' + esc(advertiserName) + '</span>' +
+            '</div><span class="ad-format">' + esc(formatLabel) + '</span></div>';
           html += '<div class="ad-footer">';
-          if (firstSeen || lastSeen) html += '<span>Shown: ' + (firstSeen || '?') + ' \u2192 ' + (lastSeen || '?') + '</span>';
+          if (firstSeen || lastSeen) html += '<span>Shown: ' + esc(firstSeen || '?') + ' \u2192 ' + esc(lastSeen || '?') + '</span>';
           if (detailsLink) html += '<span><a href="' + detailsLink + '" target="_blank" rel="noopener noreferrer" style="color:var(--green-accent);text-decoration:none;">View on Google \u2197</a></span>';
           html += '</div></div>';
         });
@@ -865,13 +868,13 @@
         document.getElementById('adworth-value-text').textContent = analysis.adworth_value || analysis.adworthValue || analysis.summary || '';
         var allFindings = analysis.findings || [];
         document.getElementById('top-finding').innerHTML = allFindings.length
-          ? allFindings.map(function(f) { return '<div style="margin-bottom:0.5rem;">&#8226; ' + f + '</div>'; }).join('')
+          ? allFindings.map(function(f) { return '<div style="margin-bottom:0.5rem;">&#8226; ' + esc(f) + '</div>'; }).join('')
           : '';
         document.getElementById('finding-panel').style.display = 'block';
 
         if (analysis.dataTypesInferred && analysis.dataTypesInferred.length) {
           document.getElementById('tags-list').innerHTML =
-            analysis.dataTypesInferred.map(function(t) { return '<span class="tag tag-amber">' + t + '</span>'; }).join('');
+            analysis.dataTypesInferred.map(function(t) { return '<span class="tag tag-amber">' + esc(t) + '</span>'; }).join('');
           document.getElementById('tags-panel').style.display = 'block';
         }
 
@@ -881,8 +884,8 @@
             regFlags.map(function(f) {
               var parts = f.split(/^([^:]+):/);
               var flagHtml = parts.length >= 3
-                ? '<strong style="color:rgba(255,255,255,0.85);">' + parts[1].trim() + '</strong><span style="color:rgba(255,255,255,0.55);">:</span> ' + parts[2].trim()
-                : f;
+                  ? '<strong style="color:rgba(255,255,255,0.85);">' + esc(parts[1].trim()) + '</strong><span style="color:rgba(255,255,255,0.55);">:</span> ' + esc(parts[2].trim())
+                : esc(f);
               return '<div class="finding-item"><div class="finding-icon" style="background:rgba(200,169,106,0.15);color:#c8a96a;">\u2696</div><div class="finding-text">' + flagHtml + '</div></div>';
             }).join('');
           document.getElementById('reg-panel').style.display = 'block';
@@ -1021,6 +1024,23 @@
     }
 
     // ── HELPERS ─────────────────────────────────────────────
+    // XSS protection: escape untrusted text before any innerHTML insertion
+    function esc(s) {
+      return String(s == null ? '' : s)
+        .replace(/&/g, '&amp;').replace(/</g, '&lt;')
+        .replace(/>/g, '&gt;').replace(/"/g, '&quot;')
+        .replace(/'/g, '&#39;');
+    }
+
+    // Only allow https links to Google's Ads Transparency Center
+    function safeAdLink(u) {
+      try {
+        var url = new URL(u);
+        return (url.protocol === 'https:' &&
+                url.hostname === 'adstransparency.google.com') ? url.href : '';
+      } catch (e) { return ''; }
+    } 
+    
     function scoreColor(score, invertHigh) {
       if (!score) return '';
       if (invertHigh) return score >= 7 ? 'score-risk' : score >= 4 ? 'score-medium' : 'score-safe';
