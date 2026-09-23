@@ -1041,7 +1041,7 @@
     }
 
     function scoreColor(score, invertHigh) {
-      if (!score) return '';
+      if (score == null) return '';
       if (invertHigh) return score >= 7 ? 'score-risk' : score >= 4 ? 'score-medium' : 'score-safe';
       return score >= 7 ? 'score-safe' : score >= 4 ? 'score-medium' : 'score-risk';
     }
