@@ -543,7 +543,7 @@
           <ul>
             <li><strong>Access cost:</strong> Free</li>
             <li><strong>What you do today (Phase 1):</strong> Grant and revoke consent to advertisers. View every access decision on the Invisibility Ledger.</li>
-            <li><strong>What you earn today:</strong> Nothing direct &mdash; Adworth's revenue comes from advertisers, not from you.</li>
+            <li><strong>What you earn today:</strong> Nothing direct &mdash; Adworth's revenue comes from enterprises and advertisers, not from you.</li>
             <li><strong>Phase 2 (post-seed):</strong> Direct payment per consent token when you grant consent to advertisers.</li>
             <li><strong>Phase 2 example:</strong> Advertiser pays $1.00 per consent. You get $0.98. Adworth takes $0.02.</li>
           </ul>
@@ -553,10 +553,10 @@
           <h3>🏢 Advertisers</h3>
           <div class="subtitle">Bouncer API + Governance Engine</div>
           <ul>
-            <li><strong>Access cost:</strong> Free to verify consent</li>
+            <li><strong>Access cost:</strong> Free sandbox access to /evaluate for integration and testing (fair-use rate limits); production use priced below</li>
             <li><strong>What you do:</strong> Call /evaluate before accessing user data. Get cryptographic proof of consent (or block reason) before serving any ad.</li>
             <li><strong>Your cost:</strong> Flat 2% per verified consent transaction. Same rate every transaction. Same rate every advertiser. Always paid by you, not by the user.</li>
-            <li><strong>Why it's worth it:</strong> Cryptographic consent records that support your GDPR, CCPA, and DSA compliance program. One integration, audit-ready proof.</li>
+            <li><strong>Why it's worth it:</strong> Cryptographic consent records that support your GDPR, CCPA, and DSA compliance program. One integration, audit-ready evidence.</li>
           </ul>
         </div>
       </div>
@@ -585,7 +585,7 @@
           <div class="flow-step">
             <div class="flow-step-icon token">🔑</div>
             <h4>Token Check</h4>
-            <p>Cryptographic verification — the token can't be faked, extended, or transferred</p>
+            <p>Validated against the signed consent record — a forged, extended, or transferred token fails the check</p>
           </div>
           <div class="flow-arrow">→</div>
           <div class="flow-step">
@@ -626,7 +626,7 @@
     <span class="string">'Authorization'</span>: <span class="string">'Bearer YOUR_API_KEY'</span>
   },
   <span class="key">body</span>: JSON.<span class="method">stringify</span>({
-    <span class="key">userId</span>:       <span class="string">'user-abc-123'</span>,
+    <span class="key">userId</span>:       <span class="string">''test-user-001''</span>,
     <span class="key">advertiserId</span>: <span class="string">'adworth-demo-advertiser'</span>,
     <span class="key">dataScope</span>:    <span class="string">'running-data-shoe-ads'</span>
   })
