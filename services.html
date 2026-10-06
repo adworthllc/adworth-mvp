@@ -119,7 +119,7 @@
         <div class="inner">
             <span class="page-label">Services</span>
             <h1>What Adworth Provides</h1>
-            <p>Cryptographic consent infrastructure for digital advertising &middot; Last updated: July 4, 2026</p>
+            <p>Cryptographic consent infrastructure for digital advertising &middot; Last updated: October 5, 2026</p>
         </div>
     </div>
 
@@ -130,7 +130,7 @@
 
         <!-- Narrative intro -->
         <div class="highlight-box">
-            <strong>What Adworth is:</strong> the cryptographic settlement layer for digital advertising consent. Where Stripe processes financial transactions, Adworth processes <em>consent</em> transactions. Every time an advertiser pays to reach a user, Adworth verifies a cryptographically signed consent token (&ldquo;The Seal&rdquo;) before the ad serves. No seal, no serve. Adworth earns a flat 2% fee on every verified consent transaction &mdash; the same rate on every transaction, always visible on the ledger, no other revenue streams. This page describes the services we provide, who they&rsquo;re for, and how they work technically.
+            <strong>What Adworth is:</strong> the cryptographic settlement layer for digital advertising consent. Where Stripe processes financial transactions, Adworth processes <em>consent</em> transactions. Every time an advertiser pays to reach a user, Adworth verifies a cryptographically signed consent token (&ldquo;The Seal&rdquo;) before the ad serves. No seal, no serve. Enterprises pay Adworth to verify and enforce consent at the transaction layer; in Phase 2 that becomes a flat 2% per consent transaction, with the rest going to you &mdash; always visible on the ledger, no other revenue streams. This page describes the services we provide, who they&rsquo;re for, and how they work technically.
         </div>
 
         <div class="toc">
@@ -166,12 +166,12 @@
                 <ul>
                     <li><strong>Cryptographic Consent Token (&ldquo;The Seal,&rdquo; CCT)</strong> &mdash; a 128-bit cryptographically random token bound to a specific advertiser, data scope, and time window via HMAC-SHA256 signature. Issued by <code>adworth-consent-widget</code> (v3.4.0), <code>adworth-consent-api</code> (v3.7.0, server-side issuance and advertiser management), or <code>adworth-ingestion-api</code> (v1.4.0, via Privacy Cockpit Ed25519 verification). Tokens are stored in the <code>ADWORTH_TOKENS</code> KV namespace. Where a token is associated with a user identifier, that identifier is SHA-256 <strong>hashed</strong> before storage &mdash; no plaintext identity is held in the token. We state this plainly for technical diligence: the hashed identifier is <em>pseudonymous, not anonymous</em> (a stable hash remains joinable by any party able to compute it), and cross-advertiser unlinkability is a planned later phase that is not yet in effect.</li>
                     <li><strong>Privacy Governance Engine (&ldquo;The Bouncer,&rdquo; PGE)</strong> &mdash; runs in <code>adworth-bouncer</code> (v2.3.0). Performs six sequential cryptographic checks on every access request: token existence, revocation status, expiration, advertiser match, scope match, and HMAC signature verification. Honors Global Privacy Control (<code>Sec-GPC: 1</code>) as a valid opt-out under CPRA &sect;&nbsp;1798.135(d). Applies a Minor Shield block returning <code>MINOR_SHIELD_ACTIVE</code> when minor user status is detected &mdash; this block is final and cannot be overridden.</li>
-                    <li><strong>Invisibility Ledger</strong> &mdash; append-only, tamper-evident audit trail in the <code>ADWORTH_LEDGER</code> KV namespace. Records consent lifecycle events (<code>CONSENT_ISSUED</code>, <code>CONSENT_REVOKED</code>, <code>CONSENT_EXPIRED</code>) and enforcement events (<code>ACCESS_CHECKED</code>, <code>VIOLATION_DETECTED</code>, <code>RPE_GENERATED</code>, <code>MINOR_SHIELD_ACTIVE</code>). Includes synthetic chaff entries (see <a href="/privacy.html#advanced-privacy-protocols">Advanced Privacy Protocols</a>) for surveillance resistance. Viewer is read-only by architectural design. Users can retrieve their own consent records through the Privacy Cockpit extension: the request is signed with the user's on-device Ed25519 key and verified before any data is returned &mdash; no account, password, or stored identity is involved. The key is the proof of identity, and Adworth holds no link to a real-world person; consequently a lost key cannot be recovered.</li>
+                    <li><strong>Invisibility Ledger</strong> &mdash; tamper-evident audit trail in the <code>ADWORTH_LEDGER</code> KV namespace. Records consent lifecycle events (<code>CONSENT_ISSUED</code>, <code>CONSENT_REVOKED</code>, <code>CONSENT_EXPIRED</code>) and enforcement events (<code>ACCESS_CHECKED</code>, <code>VIOLATION_DETECTED</code>, <code>RPE_GENERATED</code>, <code>MINOR_SHIELD_ACTIVE</code>). Includes synthetic chaff entries (see <a href="/privacy.html#advanced-privacy-protocols">Advanced Privacy Protocols</a>) for surveillance resistance. Viewer is read-only by architectural design. Users can retrieve their own consent records through the Privacy Cockpit extension: the request is signed with the user's on-device Ed25519 key and verified before any data is returned &mdash; no account, password, or stored identity is involved. The key is the proof of identity, and Adworth holds no link to a real-world person; consequently a lost key cannot be recovered.</li>
                 </ul>
             </div>
 
             <div class="fee-note">
-                <strong>Revenue model:</strong> Adworth earns a flat 2% fee on every verified consent transaction. Same rate on every transaction. Always visible on the ledger.
+            <strong>Revenue model:</strong> Enterprises pay per verified consent check or per annual contract in Phase 1; a flat 2% per consent transaction in Phase 2. Always visible on the ledger.
             </div>
         </div>
 
@@ -242,7 +242,7 @@
             </div>
 
             <div class="fee-note">
-                <strong>For users:</strong> the Privacy Cockpit is and will remain free. The 2% fee is paid by advertisers, not users.
+            <strong>For users:</strong> the Privacy Cockpit is and will remain free. Fees are paid by enterprises and advertisers, not users.
             </div>
         </div>
 
@@ -332,8 +332,12 @@
             <h2><span class="section-num">07</span> Service Tiers &amp; Pricing</h2>
 
             <h3>Revenue model</h3>
-            <p>Adworth earns a <strong>flat 2% fee on every verified consent transaction</strong>. Same rate on every transaction, regardless of volume, advertiser size, or industry vertical. The fee is paid by advertisers, not by users. Every fee is recorded on the Invisibility Ledger and is part of the user-facing audit trail.</p>
-            <p>This is the only revenue stream. Adworth does not sell user data, does not collect referral commissions, does not run advertising of its own, and does not sell access to anonymized or aggregated user behavior. The 2% transaction fee is the entire business.</p>
+            <p>In Phase 1, <strong>enterprises pay Adworth to verify and enforce consent at the transaction layer</strong>, per verified consent check or per annual contract, set per agreement. When the consumer marketplace opens in Phase 2, pricing becomes a flat 2% per consent transaction, with the rest going to the user whose consent authorized the ad. In both phases the fee is paid by enterprises and advertisers, never by users. Every fee is recorded on the Invisibility Ledger and is part of the user-facing audit trail.</p>
+            <p>This is the only revenue stream. Adworth does not sell user data, does not collect referral commissions, does not run advertising of its own, and does not sell access to pseudonymous or aggregated user behavior. Consent verification fees are the entire business.</p>
+
+            <h3>Consent tiers</h3>
+            <p>Adworth verifies two kinds of consent at serve time. A <strong>Seal</strong> is consent signed by the user&rsquo;s own device through the Privacy Cockpit extension; the private key never leaves the device, and the Seal is the patent-pending, user-held form of authorization. A <strong>Stamp</strong> is consent the advertiser or publisher captured through its own banner or consent management platform, submitted to Adworth and made tamper-evident so that it can be verified and enforced before the ad serves. Stamps let enterprises use the rail with their existing consent flows; Seals are the upgrade path to user-held consent.</p>
+            <p>Stamp issuance and verification are in build (planned Worker <code>adworth-stamp</code>) and are not yet available. This page, the Privacy Policy, and the Terms of Service will be updated with Stamp data-handling details before that service goes live.</p>
 
             <h3>Public tier</h3>
             <p>The Ad Intelligence Dashboard (<code>adworth.app/dashboard</code>), the CCPA Enforcement Gap page, the Invisibility Ledger viewer (real entries only), and RPE public verification endpoints are accessible without an account, subject to IP rate limits.</p>
@@ -342,7 +346,7 @@
             <p>Users who join the Adworth waitlist prior to the consumer marketplace launch may be designated as Founding Members. Founding Member status confers priority onboarding access when the consumer marketplace launches (currently scheduled as Phase 2 of the Adworth roadmap, post-seed). It is not an equity instrument and does not constitute a binding commitment of any payment or service level. See <a href="/terms.html#founding-member">Terms of Service Section 7</a> for the Founding Member terms.</p>
 
             <h3>Enterprise tier</h3>
-            <p>Enterprise contracts cover authenticated API access (bypasses public rate limits), Data Processing Agreements under GDPR Art. 28, Business Associate Agreements where applicable, custom regulation rule additions to <code>adworth-rules</code>, and direct integration support. Pricing is indicative until the consent marketplace launches and is set per contract. Contact <span class="email-link" data-u="hello" data-d="adworth.app"></span> with subject line &ldquo;Enterprise Inquiry.&rdquo;</p>
+            <p>Enterprise contracts cover authenticated API access (bypasses public rate limits), Data Processing Agreements under GDPR Art. 28, Business Associate Agreements where applicable, custom regulation rule additions to <code>adworth-rules</code>, and direct integration support. Phase 1 enterprise pricing is per verified consent check or per annual contract, set per agreement and indicative until the marketplace launches. No minimums, no seats. Contact <span class="email-link" data-u="hello" data-d="adworth.app"></span> with subject line &ldquo;Enterprise Inquiry.&rdquo;</p>
 
             <div class="fee-note">
                 <strong>Pricing transparency:</strong> Any pricing figures referenced on adworth.app are indicative projections only and do not constitute binding price commitments. They will become contractually binding only upon execution of an enterprise agreement or public marketplace launch.
@@ -368,7 +372,7 @@
 
             <h3>On the roadmap</h3>
             <ul>
-                <li><strong>Consent marketplace launch</strong> &mdash; activates Founding Member program; live payment rails for the 2% fee</li>
+                <li><strong>Consent marketplace launch</strong> &mdash; activates Founding Member program; live payment rails for the 2% consent transaction fee</li>
                 <li><strong>Chrome Web Store publication</strong> for Privacy Cockpit</li>
                 <li><strong>Regulation rule extensions</strong> &mdash; LGPD, UK GDPR, Virginia VCDPA, Colorado CPA, Connecticut CTDPA</li>
                 <li><strong>Nashville Offline Protocol</strong> &mdash; device-bound offline consent authorization via Secure Enclave and NFC/Bluetooth Mesh Promissory Tokens</li>
@@ -385,9 +389,9 @@
             <p>Adworth is an early-stage platform. We do not currently offer a contractual uptime SLA. The operational guarantees we do make:</p>
 
             <ul>
-                <li><strong>Append-only ledger immutability:</strong> Invisibility Ledger entries, once written, cannot be modified, overwritten, or deleted by any party including Adworth. Architectural guarantee, not a policy.</li>
+                <li><strong>Tamper-evident ledger:</strong> Invisibility Ledger entries are written with cryptographic integrity markers so that any alteration is detectable. The ledger is designed to be append-only; today, fulfilling a verified data subject request updates the affected entry in place rather than appending a tombstone record, and that limitation is disclosed here until the append-only redaction path ships.</li>
                 <li><strong>Tamper-evident deploys:</strong> Every Worker deployment is logged to <code>adworth-deploy-integrity</code> via authenticated <code>POST /log-deploy</code>. The full deploy history is queryable.</li>
-                <li><strong>Cryptographic verification:</strong> Every consent token carries an HMAC-SHA256 signature. Every RPE notice carries a SHA-256 content hash and an HMAC-SHA256 signature with a public verification endpoint. Adworth&rsquo;s claims about consent and removal are independently verifiable; you do not have to trust us.</li>
+                <li><strong>Cryptographic verification:</strong> Every consent token carries an HMAC-SHA256 signature. Every RPE notice carries a SHA-256 content hash and an HMAC-SHA256 signature with a public verification endpoint. RPE notice hashes are publicly verifiable at the verification endpoint; consent token signatures are verified by Adworth&rsquo;s own Workers, with user-held key verification on the roadmap.</li>
                 <li><strong>Constant-time key comparison:</strong> All API key validation across the 31-Worker fleet uses <code>crypto.subtle</code> for constant-time HMAC comparison, preventing timing-based side-channel attacks.</li>
                 <li><strong>Strict origin allowlist:</strong> CORS policy across the fleet uses explicit allowlists, no wildcards, no <code>localhost</code> origins in production.</li>
                 <li><strong>Memory-only API key handling:</strong> API keys entered in any Adworth dashboard are held in JavaScript memory for the active session only &mdash; never written to <code>localStorage</code>, <code>sessionStorage</code>, cookies, or any server-side log.</li>
