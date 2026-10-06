@@ -638,7 +638,7 @@
     <div class="stat-card">
       <div class="stat-label">Ledger Entries</div>
       <div class="stat-value">58</div>
-      <div class="stat-sub">Append-only · no one can modify or delete</div>
+      <div class="stat-sub">Tamper-evident · any change is detectable</div>
     </div>
     <div class="stat-card">
       <div class="stat-label">Tokens Issued Total</div>
@@ -648,7 +648,7 @@
     <div class="stat-card">
       <div class="stat-label">Total Earned</div>
       <div class="stat-value earnings">$14.43</div>
-      <div class="stat-sub">After 2% Adworth fee · 4 advertisers · 6 tokens</div>
+      <div class="stat-sub">After 2% Phase 2 marketplace fee · 4 advertisers · 6 tokens</div>
     </div>
   </div>
 
@@ -694,7 +694,7 @@
       <div class="audit-panel">
         <div class="audit-header">
           <div class="audit-title">Invisibility Ledger</div>
-          <div class="audit-sub">Append-only · tamper-evident · permanent record · immutable</div>
+          <div class="audit-sub">Tamper-evident · designed to be append-only</div>
         </div>
         <div id="audit-log"></div>
       </div>
@@ -725,7 +725,7 @@
           <div class="ep-amount partial">$1.73 partial</div>
         </div>
         <div class="ep-fee-row">
-          <div class="ep-fee-label">Adworth platform fee (2% · transparent pricing)</div>
+          <div class="ep-fee-label">Adworth Phase 2 marketplace fee (2% · transparent pricing)</div>
           <div class="ep-fee-amount">−$0.30</div>
         </div>
         <div class="ep-total">
@@ -812,7 +812,7 @@
       scope: 'athletic-data · purchase-intent',
       status: 'expired', issued: 'Dec 1, 2025', expires: 'Jan 30, 2026',
       duration: '60 days', earned: '$6.00', rate: '$3.00/mo', access: 11,
-      event: { type:'expired', label:'TOKEN_EXPIRED', desc:'60-day window closed. Access automatically revoked. Data deletion confirmed.' }
+      event: { type:'expired', label:'TOKEN_EXPIRED', desc:'60-day window closed. Access automatically revoked. Deletion notice generated.' }
     },
     {
       id: 'AWX-9a3f2c8b', advertiser: 'TechGadget Inc.',
@@ -972,7 +972,7 @@
         <ul class="modal-steps">
           <li><span class="step-num">1</span><div><strong>Token invalidated instantly</strong> — the cryptographic token is marked void. Any ad served after this moment without a valid Seal is a violation.</div></li>
           <li><span class="step-num">2</span><div><strong>Access blocked at the edge</strong> — all future API calls from ${token.advertiser} using this token are rejected.</div></li>
-          <li><span class="step-num">3</span><div><strong>CONSENT_REVOKED written to your ledger</strong> — permanent, append-only, tamper-evident. The timestamp is cryptographically sealed.</div></li>
+          <li><span class="step-num">3</span><div><strong>CONSENT_REVOKED written to your ledger</strong> — tamper-evident, designed to be append-only. The timestamp is cryptographically signed.</div></li>
           <li><span class="step-num">4</span><div><strong>State-Persistence Monitor activated</strong> — begins checking whether ${token.advertiser} has actually deleted your data within the required window.</div></li>
           <li><span class="step-num">5</span><div><strong>If data persists, RPE fires</strong> — a legally-cited removal notice is auto-generated and filed under GDPR Article 17 and CCPA §1798.105. You do nothing.</div></li>
         </ul>
@@ -994,7 +994,7 @@
       body.innerHTML = `
         <p style="font-size:0.82rem;color:rgba(255,255,255,0.45);line-height:1.65;margin-bottom:1.25rem;">
           Renewing issues a <strong style="color:rgba(255,255,255,0.72);">new cryptographic token</strong> for ${token.advertiser} with a fresh time window.
-          Your full ledger history — every prior payment, every access record — remains permanently on-chain.
+          Your full ledger history — every prior payment, every access record — remains in your tamper-evident ledger.
         </p>
         <ul class="modal-steps">
           <li><span class="step-num green">1</span><div><strong>New token generated</strong> — a fresh Ed25519-signed consent token with a new expiry window.</div></li>
@@ -1032,10 +1032,10 @@
           <div class="record-row"><span class="record-label">Access Count</span><span class="record-value">${token.access}× granted</span></div>
           <div class="record-row"><span class="record-label">Earned</span><span class="record-value highlight">${token.earned}</span></div>
           <div class="record-row"><span class="record-label">Cryptographic proof</span><span class="record-value green">Ed25519 · FIPS 186-5</span></div>
-          <div class="record-row"><span class="record-label">Ledger type</span><span class="record-value">Append-only · immutable · tamper-evident</span></div>
+          <div class="record-row"><span class="record-label">Ledger type</span><span class="record-value">Tamper-evident · designed to be append-only</span></div>
         </div>
         <div class="modal-note">
-          Every entry in this record is <strong>permanent and cryptographically signed</strong> — it cannot be altered, deleted, or disputed. This is the proof chain Adworth files if a legal removal is required.
+          Every entry in this record is <strong>cryptographically signed and tamper-evident</strong> — any alteration is detectable. This is the evidence chain the Removal Payload Engine is designed to cite when a legal removal notice is generated.
           <br><br><strong>Demo only.</strong> Join the waitlist for a real ledger.
         </div>`;
 
